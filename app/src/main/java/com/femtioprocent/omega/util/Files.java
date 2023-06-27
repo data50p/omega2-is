@@ -144,11 +144,9 @@ INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD        
 //log	OmegaContext.sout_log.getLogger().info("ERR: " + "got file " + file);
         try {
             URL url = file.toURI().toURL();
-            URL url2 = file.toURL();
             String url0 = "file:" + slashify(file.getAbsolutePath(), file.isDirectory());
             Log.getLogger().warning("URL matter:      " + file);
             Log.getLogger().warning("    matter: new " + url);
-            Log.getLogger().warning("    matter: old " + url2);
             Log.getLogger().warning("    matter: alt " + url0);
             url_s = url0;//url2.toString();
         } catch (Exception ex) {
