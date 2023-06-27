@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="18.0.1" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>Sign Word Movie Scale</string>
+   <string>Sign Word Movie Scale</string>
+  </void>
+  <void method="put">
+   <string>Show Sign after each word</string>
+   <string>Show Sign after each word</string>
+  </void>
+  <void method="put">
+   <string>Sign Word Transparence</string>
+   <string>Sign Word Transparence</string>
+  </void>
+  <void method="put">
+   <string>dep_set Image Attribute</string>
+   <string>dep_set Image Attribute</string>
+  </void>
+  <void method="put">
+   <string>Sign Sentence Movie Scale</string>
+   <string>Sign Sentence Movie Scale</string>
+  </void>
+  <void method="put">
+   <string>Sign Sentence Transparence</string>
+   <string>Sign Sentence Transparence</string>
+  </void>
+  <void method="put">
+   <string>Play All</string>
+   <string>Play All</string>
+  </void>
+  <void method="put">
+   <string>dep_set Visibility</string>
+   <string>dep_set Visibility</string>
+  </void>
+  <void method="put">
+   <string>Reset Sequence</string>
+   <string>Reset Sequence</string>
+  </void>
+  <void method="put">
+   <string>Sign Sentence Background</string>
+   <string>Sign Sentence Background</string>
+  </void>
+  <void method="put">
+   <string>Set Assets</string>
+   <string>Set Assets</string>
+  </void>
+  <void method="put">
+   <string>Svenska</string>
+   <string>Svenska</string>
+  </void>
+  <void method="put">
+   <string>&lt;Ny Elev&gt;</string>
+   <string>&lt;Ny Elev&gt;</string>
+  </void>
+  <void method="put">
+   <string>Play Sign Moview</string>
+   <string>Play Sign Moview</string>
+  </void>
+  <void method="put">
+   <string>Sound after each word</string>
+   <string>Sound after each word</string>
+  </void>
+  <void method="put">
+   <string>Lesson Lang</string>
+   <string>Lesson Lang</string>
+  </void>
+  <void method="put">
+   <string>+</string>
+   <string>+</string>
+  </void>
+  <void method="put">
+   <string>Item: Sign Movies, positive </string>
+   <string>Item: Sign Movies, positive </string>
+  </void>
+  <void method="put">
+   <string>Reset Starter</string>
+   <string>Reset Starter</string>
+  </void>
+  <void method="put">
+   <string>dep_set Layer</string>
+   <string>dep_set Layer</string>
+  </void>
+  <void method="put">
+   <string>English</string>
+   <string>English</string>
+  </void>
+  <void method="put">
+   <string>Lars</string>
+   <string>Lars</string>
+  </void>
+  <void method="put">
+   <string>Lesson lang:</string>
+   <string>Lesson lang:</string>
+  </void>
+  <void method="put">
+   <string>Show Sign after sentence</string>
+   <string>Show Sign after sentence</string>
+  </void>
+  <void method="put">
+   <string>Omega Assets:</string>
+   <string>Omega Assets:</string>
+  </void>
+  <void method="put">
+   <string>Sign Word Background</string>
+   <string>Sign Word Background</string>
+  </void>
+ </object>
+</java>

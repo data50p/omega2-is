@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.4.2_03" class="java.beans.XMLDecoder"> 
+ <object class="java.util.HashMap"> 
+  <void method="put"> 
+   <string>LessonsInEnglish</string> 
+   <string>LessonsInEnglish</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror Y</string> 
+   <string>mirror Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>Primary scale</string> 
+   <string>Primary scale</string> 
+  </void> 
+  <void method="put"> 
+   <string>Rotation spot</string> 
+   <string>Rotation spot</string> 
+  </void> 
+  <void method="put"> 
+   <string>unsaved</string> 
+   <string>unsaved</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete</string> 
+   <string>Delete</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor ID</string> 
+   <string>Actor ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>Image name</string> 
+   <string>Image name</string> 
+  </void> 
+  <void method="put"> 
+   <string>unsaved)</string> 
+   <string>unsaved)</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror X</string> 
+   <string>mirror X</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;Ny Elev&gt;</string> 
+   <string>&lt;Ny Elev&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>no mirror</string> 
+   <string>no mirror</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror X and Y</string> 
+   <string>mirror X and Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>Primary mirror</string> 
+   <string>Primary mirror</string> 
+  </void> 
+  <void method="put"> 
+   <string>Norsk-bokmål</string> 
+   <string>Norsk-bokmål</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor Properties</string> 
+   <string>Actor Properties</string> 
+  </void> 
+  <void method="put"> 
+   <string>Svenska</string> 
+   <string>Svenska</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set</string> 
+   <string>Set</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path spot</string> 
+   <string>Path spot</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path id</string> 
+   <string>Path id</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Target Property</string> 
+   <string>Omega - Target Property</string> 
+  </void> 
+  <void method="put"> 
+   <string>Value          </string> 
+   <string>Value          </string> 
+  </void> 
+  <void method="put"> 
+   <string>Parameter:   </string> 
+   <string>Parameter:   </string> 
+  </void> 
+  <void method="put"> 
+   <string>(Clear data)</string> 
+   <string>(Clear current actor)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Slot id</string> 
+   <string>Label</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;Select file...&gt;</string> 
+   <string>&lt;Select file...&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Post Test Dummy Text):</string> 
+   <string>(Teacher Test Dummy Text):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Item property</string> 
+   <string>Omega - Item property</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor id</string> 
+   <string>Actor ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>Variables</string> 
+   <string>Variables</string> 
+  </void> 
+  <void method="put"> 
+   <string>Slot id list</string> 
+   <string>Label(s) for Target(s)</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Post Test Dummy Sound):</string> 
+   <string>(Teacher Test Dummy Sound):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Text</string> 
+   <string>Text</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sound</string> 
+   <string>Sound</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Select in list)</string> 
+   <string>(Select in list)</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Select item in list)</string> 
+   <string>(Select actor in list)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Load</string> 
+   <string>Load</string> 
+  </void> 
+  <void method="put"> 
+   <string>Deactivate</string> 
+   <string>De-activate</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animation Background</string> 
+   <string>Animation Background</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show manual</string> 
+   <string>Show manual</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set action file</string> 
+   <string>Set action file</string> 
+  </void> 
+  <void method="put"> 
+   <string>New</string> 
+   <string>New</string> 
+  </void> 
+  <void method="put"> 
+   <string>always</string> 
+   <string>always</string> 
+  </void> 
+  <void method="put"> 
+   <string>Help</string> 
+   <string>Help</string> 
+  </void> 
+  <void method="put"> 
+   <string>fast</string> 
+   <string>fast</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average</string> 
+   <string>Average</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson name:</string> 
+   <string>Lesson name:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Results Summary</string> 
+   <string>Omega - Results Summary</string> 
+  </void> 
+  <void method="put"> 
+   <string>Label:</string> 
+   <string>Label:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animator editor</string> 
+   <string>Animator editor</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save</string> 
+   <string>Save</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path id:</string> 
+   <string>Path ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Repeat animation twice</string> 
+   <string>Repeat animation twice</string> 
+  </void> 
+  <void method="put"> 
+   <string>Session Length</string> 
+   <string>Session Length</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Feedback</string> 
+   <string>Settings for Feedback</string> 
+  </void> 
+  <void method="put"> 
+   <string>test</string> 
+   <string>test</string> 
+  </void> 
+  <void method="put"> 
+   <string>none</string> 
+   <string>none</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Sentence</string> 
+   <string>Time Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Next story:</string> 
+   <string>Next in story:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Play Sound</string> 
+   <string>Play Sound</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete whole path and timeline</string> 
+   <string>Delete whole path and timeline</string> 
+  </void> 
+  <void method="put"> 
+   <string>About Anim Editor</string> 
+   <string>About Anim Editor</string> 
+  </void> 
+  <void method="put"> 
+   <string>Story display</string> 
+   <string>Story display</string> 
+  </void> 
+  <void method="put"> 
+   <string>Export</string> 
+   <string>Export</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong Word</string> 
+   <string>Wrong Word</string> 
+  </void> 
+  <void method="put"> 
+   <string>Invisible</string> 
+   <string>Invisible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Back</string> 
+   <string>Back</string> 
+  </void> 
+  <void method="put"> 
+   <string>TCS</string> 
+   <string>TCS</string> 
+  </void> 
+  <void method="put"> 
+   <string>10% visible</string> 
+   <string>10% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Welcome</string> 
+   <string>Welcome</string> 
+  </void> 
+  <void method="put"> 
+   <string>WS</string> 
+   <string>WS</string> 
+  </void> 
+  <void method="put"> 
+   <string>Details</string> 
+   <string>Details</string> 
+  </void> 
+  <void method="put"> 
+   <string>OK</string> 
+   <string>OK</string> 
+  </void> 
+  <void method="put"> 
+   <string>%CS</string> 
+   <string>%CS</string> 
+  </void> 
+  <void method="put"> 
+   <string>Scale</string> 
+   <string>Scale</string> 
+  </void> 
+  <void method="put"> 
+   <string>Create new</string> 
+   <string>Create new</string> 
+  </void> 
+  <void method="put"> 
+   <string>90% visible</string> 
+   <string>90% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>TWS</string> 
+   <string>TWS</string> 
+  </void> 
+  <void method="put"> 
+   <string>Anim speed</string> 
+   <string>Anim speed</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct Word</string> 
+   <string>Correct Word</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Name:</string> 
+   <string>Pupil Name:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default language</string> 
+   <string>Default language</string> 
+  </void> 
+  <void method="put"> 
+   <string>Change Color...</string> 
+   <string>Change Color...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test</string> 
+   <string>Test</string> 
+  </void> 
+  <void method="put"> 
+   <string>Finish</string> 
+   <string>Finish</string> 
+  </void> 
+  <void method="put"> 
+   <string>CS</string> 
+   <string>CS</string> 
+  </void> 
+  <void method="put"> 
+   <string>WW</string> 
+   <string>WW</string> 
+  </void> 
+  <void method="put"> 
+   <string>Replay</string> 
+   <string>Replay</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct Sentence</string> 
+   <string>Correct Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>SL</string> 
+   <string>SL</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lt</string> 
+   <string>Lt</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Correct Word</string> 
+   <string>No. Correct Word</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animator editor: </string> 
+   <string>Animator editor: </string> 
+  </void> 
+  <void method="put"> 
+   <string>activate selected</string> 
+   <string>activate selected</string> 
+  </void> 
+  <void method="put"> 
+   <string>Action File</string> 
+   <string>Action File</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Layer</string> 
+   <string>set Layer</string> 
+  </void> 
+  <void method="put"> 
+   <string>Look&amp;Feel</string> 
+   <string>Look&amp;Feel</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animation</string> 
+   <string>Animation</string> 
+  </void> 
+  <void method="put"> 
+   <string>Middle</string> 
+   <string>Middle</string> 
+  </void> 
+  <void method="put"> 
+   <string>First in story:</string> 
+   <string>First in story:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Redraw</string> 
+   <string>Redraw</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to exit Omega?</string> 
+   <string>Are you sure to exit Omega?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Close</string> 
+   <string>Close</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson:</string> 
+   <string>Lesson:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Prop...</string> 
+   <string>Prop...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select Type:</string> 
+   <string>Select Type:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save sentence list</string> 
+   <string>Save sentence list</string> 
+  </void> 
+  <void method="put"> 
+   <string>70% visible</string> 
+   <string>70% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show wings properties...</string> 
+   <string>Show wings properties...</string> 
+  </void> 
+  <void method="put"> 
+   <string>NCW</string> 
+   <string>NCW</string> 
+  </void> 
+  <void method="put"> 
+   <string>Reopen</string> 
+   <string>Reopen</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson type</string> 
+   <string>Lesson type</string> 
+  </void> 
+  <void method="put"> 
+   <string>Listen</string> 
+   <string>Listen to sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre 1</string> 
+   <string>Pre 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. of Sentences</string> 
+   <string>No. of Sentences</string> 
+  </void> 
+  <void method="put"> 
+   <string>Split in two</string> 
+   <string>Split in two</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to close Anim Editor?</string> 
+   <string>Are you sure to close Anim Editor?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Speech</string> 
+   <string>Item: Speech</string> 
+  </void> 
+  <void method="put"> 
+   <string>Admin</string> 
+   <string>Admin</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mouse Pos:</string> 
+   <string>Mouse Pos:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set...</string> 
+   <string>Set...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Warning!!!</string> 
+   <string>Warning!!!</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item</string> 
+   <string>Item - in list</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ping after complete sentence</string> 
+   <string>Sound after complete sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Info:</string> 
+   <string>Info:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil</string> 
+   <string>Pupil</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete pupil</string> 
+   <string>Delete pupil</string> 
+  </void> 
+  <void method="put"> 
+   <string>L#</string> 
+   <string>L#</string> 
+  </void> 
+  <void method="put"> 
+   <string>Play</string> 
+   <string>Play</string> 
+  </void> 
+  <void method="put"> 
+   <string>Edit anim</string> 
+   <string>Edit animation</string> 
+  </void> 
+  <void method="put"> 
+   <string>Y only </string> 
+   <string>Y only </string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Look&amp;Feel</string> 
+   <string>Settings for Look&amp;Feel</string> 
+  </void> 
+  <void method="put"> 
+   <string>create</string> 
+   <string>create</string> 
+  </void> 
+  <void method="put"> 
+   <string>About</string> 
+   <string>About</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Animations</string> 
+   <string>Settings for Animations</string> 
+  </void> 
+  <void method="put"> 
+   <string>seldom</string> 
+   <string>seldom</string> 
+  </void> 
+  <void method="put"> 
+   <string>Feedback</string> 
+   <string>Feedback</string> 
+  </void> 
+  <void method="put"> 
+   <string>The pupil data will ramain in the file system.&lt;br&gt;</string> 
+   <string>The pupil data will remain in the file system.&lt;br&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Properties:</string> 
+   <string>Properties:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Status:</string> 
+   <string>Status:</string> 
+  </void> 
+  <void method="put"> 
+   <string>both X and Y</string> 
+   <string>both X and Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>Stop</string> 
+   <string>Stop</string> 
+  </void> 
+  <void method="put"> 
+   <string>Guest</string> 
+   <string>Guest</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wings</string> 
+   <string>Wings</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can bee eaten</string> 
+   <string>Can bee eaten</string> 
+  </void> 
+  <void method="put"> 
+   <string>Activate &apos;Delete Pupil&apos;</string> 
+   <string>Activate &apos;Delete Pupil&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add a wing</string> 
+   <string>Add a wing</string> 
+  </void> 
+  <void method="put"> 
+   <string>TS</string> 
+   <string>TS</string> 
+  </void> 
+  <void method="put"> 
+   <string>50% visible</string> 
+   <string>50% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Date</string> 
+   <string>Date</string> 
+  </void> 
+  <void method="put"> 
+   <string>Left</string> 
+   <string>Left</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor</string> 
+   <string>Actors</string> 
+  </void> 
+  <void method="put"> 
+   <string>Scale object</string> 
+   <string>Scale object</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Results Detail</string> 
+   <string>Omega - Results Detail</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set Pupil Image...</string> 
+   <string>Set Pupil Image...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Read and Listen</string> 
+   <string>Read and Listen</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set speed</string> 
+   <string>Set speed</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson select</string> 
+   <string>Lesson select</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Text</string> 
+   <string>Item: Text</string> 
+  </void> 
+  <void method="put"> 
+   <string>Specific</string> 
+   <string>Specific</string> 
+  </void> 
+  <void method="put"> 
+   <string>Total:</string> 
+   <string>Total:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Commands:</string> 
+   <string>Commands:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cancel</string> 
+   <string>Cancel</string> 
+  </void> 
+  <void method="put"> 
+   <string>30% visible</string> 
+   <string>30% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence</string> 
+   <string>Sentences - options</string> 
+  </void> 
+  <void method="put"> 
+   <string>TimeLine</string> 
+   <string>TimeLine</string> 
+  </void> 
+  <void method="put"> 
+   <string>Action Movie Background</string> 
+   <string>Action Movie Background</string> 
+  </void> 
+  <void method="put"> 
+   <string>NWW</string> 
+   <string>NWW</string> 
+  </void> 
+  <void method="put"> 
+   <string>Loading</string> 
+   <string>Loading</string> 
+  </void> 
+  <void method="put"> 
+   <string>often</string> 
+   <string>often</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Image Attribute</string> 
+   <string>set Image Attribute</string> 
+  </void> 
+  <void method="put"> 
+   <string>English</string> 
+   <string>English</string> 
+  </void> 
+  <void method="put"> 
+   <string>Change color</string> 
+   <string>Change color</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Image, negative</string> 
+   <string>Item: Image, negative</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. of Words</string> 
+   <string>No. of Words</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson id</string> 
+   <string>Lesson id</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path</string> 
+   <string>Path</string> 
+  </void> 
+  <void method="put"> 
+   <string>Print</string> 
+   <string>Print</string> 
+  </void> 
+  <void method="put"> 
+   <string>%CW</string> 
+   <string>%CW</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default Theme</string> 
+   <string>Default Theme</string> 
+  </void> 
+  <void method="put"> 
+   <string>Type</string> 
+   <string>Type</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Sentence Property</string> 
+   <string>Omega - Sentence Property</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time</string> 
+   <string>Time</string> 
+  </void> 
+  <void method="put"> 
+   <string>Selection</string> 
+   <string>Selection</string> 
+  </void> 
+  <void method="put"> 
+   <string>Exit</string> 
+   <string>Exit</string> 
+  </void> 
+  <void method="put"> 
+   <string>Right</string> 
+   <string>Right</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cast</string> 
+   <string>Cast</string> 
+  </void> 
+  <void method="put"> 
+   <string>Flip actor/wings</string> 
+   <string>Flip actor/wings</string> 
+  </void> 
+  <void method="put"> 
+   <string>Some administrative settings</string> 
+   <string>Some administrative settings</string> 
+  </void> 
+  <void method="put"> 
+   <string>Fit in window</string> 
+   <string>Fit in window</string> 
+  </void> 
+  <void method="put"> 
+   <string>Rotate object</string> 
+   <string>Rotate object</string> 
+  </void> 
+  <void method="put"> 
+   <string>lock</string> 
+   <string>lock</string> 
+  </void> 
+  <void method="put"> 
+   <string>X only</string> 
+   <string>X only</string> 
+  </void> 
+  <void method="put"> 
+   <string>normal</string> 
+   <string>normal</string> 
+  </void> 
+  <void method="put"> 
+   <string>Quit</string> 
+   <string>Quit</string> 
+  </void> 
+  <void method="put"> 
+   <string>name</string> 
+   <string>name</string> 
+  </void> 
+  <void method="put"> 
+   <string>Canvas</string> 
+   <string>Canvas</string> 
+  </void> 
+  <void method="put"> 
+   <string>Result</string> 
+   <string>Result</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select</string> 
+   <string>Select</string> 
+  </void> 
+  <void method="put"> 
+   <string>Dat</string> 
+   <string>Dat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil:</string> 
+   <string>Pupil:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Correct Sentence</string> 
+   <string>Time Correct Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Open</string> 
+   <string>Open</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Image</string> 
+   <string>Pupil Image</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set actor</string> 
+   <string>Set actor</string> 
+  </void> 
+  <void method="put"> 
+   <string> 5% visible</string> 
+   <string> 5% visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>Feedback Movie Background</string> 
+   <string>Feedback Movie Background</string> 
+  </void> 
+  <void method="put"> 
+   <string>File</string> 
+   <string>File</string> 
+  </void> 
+  <void method="put"> 
+   <string>Extend at end</string> 
+   <string>Extend at end</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can eat</string> 
+   <string>Can eat</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Visibility</string> 
+   <string>set Visibility</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default, as set in word prop</string> 
+   <string>Default, as set in word prop</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show actor properties...</string> 
+   <string>Show actor properties...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save as</string> 
+   <string>Save as</string> 
+  </void> 
+  <void method="put"> 
+   <string>Behind all</string> 
+   <string>Behind all</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Movie</string> 
+   <string>Item: Movie</string> 
+  </void> 
+  <void method="put"> 
+   <string>Nynorsk</string> 
+   <string>Nynorsk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Down</string> 
+   <string>Down</string> 
+  </void> 
+  <void method="put"> 
+   <string>image eat/eaten</string> 
+   <string>image eat/eaten</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mats</string> 
+   <string>Mats</string> 
+  </void> 
+  <void method="put"> 
+   <string>Front</string> 
+   <string>Front</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select Printer</string> 
+   <string>Select Printer</string> 
+  </void> 
+  <void method="put"> 
+   <string>Logout</string> 
+   <string>Logout</string> 
+  </void> 
+  <void method="put"> 
+   <string>Printer...</string> 
+   <string>Printer...</string> 
+  </void> 
+  <void method="put"> 
+   <string>NCS</string> 
+   <string>NCS</string> 
+  </void> 
+  <void method="put"> 
+   <string>As file</string> 
+   <string>As file</string> 
+  </void> 
+  <void method="put"> 
+   <string>Space key is</string> 
+   <string>Space key is</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Correct Sentence</string> 
+   <string>No. Correct Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Word</string> 
+   <string>Time Word</string> 
+  </void> 
+  <void method="put"> 
+   <string>Speed</string> 
+   <string>Speed</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor id:</string> 
+   <string>Actor ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Wrong Word</string> 
+   <string>No. Wrong Words</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Pos:</string> 
+   <string>Time Pos:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Post 2</string> 
+   <string>Post 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Duplicate</string> 
+   <string>Duplicate</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average time (s):</string> 
+   <string>Average time (s):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Wrong Sentence</string> 
+   <string>Time Wrong Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Image, positive</string> 
+   <string>Item: Image, positive</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Settings</string> 
+   <string>Pupil Settings</string> 
+  </void> 
+  <void method="put"> 
+   <string>image Mirror</string> 
+   <string>image Mirror</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frequence</string> 
+   <string>Frequence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Bigger</string> 
+   <string>Bigger</string> 
+  </void> 
+  <void method="put"> 
+   <string>Post 1</string> 
+   <string>Post 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Login</string> 
+   <string>Pupil Login</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Language</string> 
+   <string>Settings for Language</string> 
+  </void> 
+  <void method="put"> 
+   <string>Language</string> 
+   <string>Language</string> 
+  </void> 
+  <void method="put"> 
+   <string>Written Sentence</string> 
+   <string>Written Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ping before/after animation</string> 
+   <string>Sound before/after animation</string> 
+  </void> 
+  <void method="put"> 
+   <string>Smaller</string> 
+   <string>Smaller</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Shift) Click on the table header to (reverse) sort</string> 
+   <string>(Shift) Click on the table header to (reverse) sort</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre 2</string> 
+   <string>Pre 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Manual</string> 
+   <string>Manual</string> 
+  </void> 
+  <void method="put"> 
+   <string>TW</string> 
+   <string>TW</string> 
+  </void> 
+  <void method="put"> 
+   <string>NS</string> 
+   <string>NS</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;New Pupil&gt;</string> 
+   <string>&lt;New Pupil&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>slow</string> 
+   <string>slow</string> 
+  </void> 
+  <void method="put"> 
+   <string>Target</string> 
+   <string>Target - in sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Create sentence</string> 
+   <string>Create sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show Sentence</string> 
+   <string>Show Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Up</string> 
+   <string>Up</string> 
+  </void> 
+  <void method="put"> 
+   <string>Norsk-bokm�l</string> 
+   <string>Norsk-bokm�l</string> 
+  </void> 
+  <void method="put"> 
+   <string>On Top</string> 
+   <string>On Top</string> 
+  </void> 
+  <void method="put"> 
+   <string>Color theme</string> 
+   <string>Color theme</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong Sentence</string> 
+   <string>Wrong Sentence</string> 
+  </void> 
+  <void method="put"> 
+   <string>Type:</string> 
+   <string>Type:</string> 
+  </void> 
+  <void method="put"> 
+   <string>About Lesson Editor</string> 
+   <string>About Lesson Editor</string> 
+  </void> 
+  <void method="put"> 
+   <string>NW</string> 
+   <string>NW</string> 
+  </void> 
+  <void method="put"> 
+   <string>select next</string> 
+   <string>select next</string> 
+  </void> 
+  <void method="put"> 
+   <string>Visible</string> 
+   <string>Visible</string> 
+  </void> 
+  <void method="put"> 
+   <string>CW</string> 
+   <string>CW</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence build</string> 
+   <string>Sentence build</string> 
+  </void> 
+  <void method="put"> 
+   <string>Export:</string> 
+   <string>Export:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set background</string> 
+   <string>Set background</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete segment</string> 
+   <string>Delete segment</string> 
+  </void>
+  <void method="put"> 
+   <string>LessonsInEnglish</string> 
+   <string>LessonsInEnglish</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mirror</string> 
+   <string>Mirror</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to open?</string> 
+   <string>Are you sure to open?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set position</string> 
+   <string>Set position</string> 
+  </void> 
+  <void method="put"> 
+   <string>Layer</string> 
+   <string>Layer</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add</string> 
+   <string>Add</string> 
+  </void> 
+  <void method="put"> 
+   <string>Position</string> 
+   <string>Position</string> 
+  </void> 
+  <void method="put"> 
+   <string>Changes are unsaved!</string> 
+   <string>Changes are unsaved!</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to start with a new animation</string> 
+   <string>Are you sure to start with a new animation</string> 
+  </void> 
+  <void method="put"> 
+   <string> (not saved)</string> 
+   <string> (not saved)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Changes not saved</string> 
+   <string>Changes not saved</string> 
+  </void> 
+  <void method="put"> 
+   <string>Properties</string> 
+   <string>Properties</string> 
+  </void>  
+ </object> 
+</java> 

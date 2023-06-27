@@ -1,0 +1,12 @@
+dir=${1:-/home/lars/classes}
+
+for i in $dir/*.jar
+	do
+	if [ x$jp == x ]; then
+		jp=$i
+	else	
+		jp=$jp:$i
+	fi
+	done
+
+echo $jp

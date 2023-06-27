@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rsync --delete -uvarHlE ../../github/omega2-omega_assets/animega/default.omega_assets/ runtime/default.omega_assets/
+rsync -uvarHlE ../../github/omega2-omega_assets/omega/default.omega_assets/ runtime/default.omega_assets/
+#rsync -uvarHlE ../../github/omega2-omega_assets/animega/default.omega_assets/ runtime/default.omega_assets/
+#rsync -uvarHlE ../../github/omega2-omega_assets/omega/default.omega_assets/ runtime/default.omega_assets/

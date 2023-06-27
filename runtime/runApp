@@ -1,0 +1,2 @@
+PATH=..:$PATH
+java -cp $(alljar ../app/build/install/app/lib) com.femtioprocent.omega.appl.Omega_IS

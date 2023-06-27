@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE omega_lesson >
+
+<omega_lesson version="0.0">
+<lesson_canvas color_bg_b="#8cdcf0" color_bg_fr="#0" color_bg_frbg="#ffff66" color_bg_m="#d2b4dc" color_bg_t="#f0dc8c" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#ff0000" color_bt_hi="#ffffcc" color_bt_hs="#ffff33" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffff66" color_sn_fr="#0" color_sn_hi="#ff9933" color_sn_tx="#0" show_wordbox="true"/>
+<lesson name="abc" ord="0">
+<target>
+<t-item Lid="A" Tid="s" ord="0" type="passive"/>
+<t-item Lid="" Tid="v" ord="1" type="action"/>
+<t-item Lid="B" Tid="o" ord="2" type="passive"/>
+</target>
+<items>
+<item-entry Tid="s" ord="0" type="actor">
+<item Lid="dog" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/hand.wav" dummytext="handen" ord="0" sound="audio/words-sv/dog.wav" text="hunden" var-1="" var-2="" var-3=""/>
+<item Lid="tiger" action-fname="" action-type="null" dummysound="audio/words-sv/dummy/train.wav" dummytext="tåget" ord="1" sound="audio/words-sv/tiger.wav" text="tigern" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="v" ord="1" type="action">
+<item action-fname="anim/ActiveAnim/ChaseChased1" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-sv/chases.wav" text="jagar" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/HidingInGrass" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-sv/hides.wav" text="gömmer" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="o" ord="2" type="passive">
+<item Lid="tiger" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/dummy/train.wav" dummytext="tåget" ord="0" sound="audio/words-sv/tiger.wav" text="tigern" var-1="" var-2="" var-3=""/>
+<item Lid="dog" action-fname="" action-type="null" dummysound="audio/words-sv/hand.wav" dummytext="handen" ord="1" sound="audio/words-sv/dog.wav" text="hunden" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+</items>
+</lesson>
+<action_specific/>
+<test_entries>
+<test_entry ord="0" type="pre">
+<sentence ord="0" text="Hunden{s} jagar{v} tigern{o}"/>
+<sentence ord="1" text="Hunden{s} gömmer{v} hunden{o}"/>
+<sentence ord="2" text="Tigern{s} gömmer{v} tigern{o}"/>
+<sentence ord="3" text="Hunden{s} jagar{v} hunden{o}"/>
+</test_entry>
+<test_entry ord="1" type="pre">
+<sentence ord="0" text="Tigern{s} jagar{v} hunden{o}"/>
+<sentence ord="1" text="Tigern{s} gömmer{v} hunden{o}"/>
+<sentence ord="2" text="Hunden{s} jagar{v} tigern{o}"/>
+<sentence ord="3" text="Hunden{s} gömmer{v} tigern{o}"/>
+</test_entry>
+<test_entry ord="0" type="post">
+<sentence ord="0" text="Tigern{s} gömmer{v} hunden{o}"/>
+<sentence ord="1" text="Hunden{s} jagar{v} hunden{o}"/>
+<sentence ord="2" text="Tigern{s} jagar{v} tigern{o}"/>
+<sentence ord="3" text="Hunden{s} gömmer{v} tigern{o}"/>
+<sentence ord="4" text="Tigern{s} gömmer{v} tigern{o}"/>
+<sentence ord="5" text="Tigern{s} jagar{v} hunden{o}"/>
+<sentence ord="6" text="Hunden{s} gömmer{v} hunden{o}"/>
+<sentence ord="7" text="Hunden{s} jagar{v} tigern{o}"/>
+</test_entry>
+<test_entry ord="1" type="post">
+<sentence ord="0" text="Hunden{s} gömmer{v} hunden{o}"/>
+<sentence ord="1" text="Tigern{s} gömmer{v} hunden{o}"/>
+<sentence ord="2" text="Hunden{s} jagar{v} hunden{o}"/>
+<sentence ord="3" text="Hunden{s} jagar{v} tigern{o}"/>
+<sentence ord="4" text="Tigern{s} jagar{v} hunden{o}"/>
+<sentence ord="5" text="Hunden{s} gömmer{v} tigern{o}"/>
+<sentence ord="6" text="Tigern{s} jagar{v} tigern{o}"/>
+</test_entry>
+</test_entries>
+</omega_lesson>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE pupil_settings >
+
+<pupil_settings>
+<values>
+<value key="image_on" val="true"/>
+<value key="image" val="media/feedback/GraphicsPos/flowers2.png"/>
+<value key="showSoundWord" val="true"/>
+<value key="image_wrong" val="media/feedback/GraphicsNeg/Bee-sad-02.png"/>
+<value key="movie" val="media/feedback/film3/feedback3.mpg"/>
+<value key="speech_on" val="true"/>
+<value key="movie_on" val="true"/>
+<value key="text_on" val="true"/>
+<value key="speed" val="1"/>
+<value key="pingSentence" val="true"/>
+<value key="repeatanim" val="false"/>
+<value key="space_key" val="next"/>
+<value key="pingAnim" val="true"/>
+<value key="speech" val="feedback/AudioPos/wheee.wav"/>
+<value key="languageSuffix" val="sv"/>
+<value key="theme" val="option1.omega_colors"/>
+<value key="showSentence" val="true"/>
+<value key="text" val="Prima !!!"/>
+<value key="image_wrong_on" val="true"/>
+<value key="frequence" val="3"/>
+</values>
+</pupil_settings>

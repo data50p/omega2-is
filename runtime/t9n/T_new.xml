@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_181" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>Set sign file</string>
+   <string>Set sign file</string>
+  </void>
+  <void method="put">
+   <string>Automatic, play each separate word</string>
+   <string>Automatic, play each separate word</string>
+  </void>
+  <void method="put">
+   <string>Sound after each word</string>
+   <string>Sound after each word</string>
+  </void>
+  <void method="put">
+   <string>Lesson Lang</string>
+   <string>Lesson Lang</string>
+  </void>
+  <void method="put">
+   <string>Play All</string>
+   <string>Play All</string>
+  </void>
+  <void method="put">
+   <string>+</string>
+   <string>+</string>
+  </void>
+  <void method="put">
+   <string>Reset Starter</string>
+   <string>Reset Starter</string>
+  </void>
+  <void method="put">
+   <string>Turn off</string>
+   <string>Turn off</string>
+  </void>
+  <void method="put">
+   <string>English</string>
+   <string>English</string>
+  </void>
+  <void method="put">
+   <string>TTS</string>
+   <string>TTS</string>
+  </void>
+  <void method="put">
+   <string>(Post Test Dummy Sign):</string>
+   <string>(Post Test Dummy Sign):</string>
+  </void>
+  <void method="put">
+   <string>Set Assets</string>
+   <string>Set Assets</string>
+  </void>
+  <void method="put">
+   <string>Default, as dep_set in word prop</string>
+   <string>Default, as dep_set in word prop</string>
+  </void>
+  <void method="put">
+   <string>Lesson lang:</string>
+   <string>Lesson lang:</string>
+  </void>
+  <void method="put">
+   <string>Svenska</string>
+   <string>Svenska</string>
+  </void>
+  <void method="put">
+   <string>Sign movie</string>
+   <string>Sign movie</string>
+  </void>
+  <void method="put">
+   <string>Sign</string>
+   <string>Sign</string>
+  </void>
+  <void method="put">
+   <string>Omega Assets:</string>
+   <string>Omega Assets:</string>
+  </void>
+  <void method="put">
+   <string>&lt;Ny Elev&gt;</string>
+   <string>&lt;Ny Elev&gt;</string>
+  </void>
+  <void method="put">
+   <string>Play Next</string>
+   <string>Play Next</string>
+  </void>
+ </object>
+</java>

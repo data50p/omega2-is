@@ -1,0 +1,1945 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.4.2_03" class="java.beans.XMLDecoder"> 
+ <object class="java.util.HashMap"> 
+  <void method="put"> 
+   <string>Animation Background</string> 
+   <string>Bakgrunn - animasjonar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background middle</string> 
+   <string>Bakgrunn midt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to open an animation</string> 
+   <string>Er du sikker du vil opne ein animasjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>unsaved)</string> 
+   <string>ikke lagret)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Change color</string> 
+   <string>Endre farge</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Visibility</string> 
+   <string>Stell in synleghet</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to open?</string> 
+   <string>Er du sikker du vil opne?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Changes are unsaved!</string> 
+   <string>Endringar er ikkje lagra!</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete selected red timesync?</string> 
+   <string>Slett valgte raude tidssynk?</string> 
+  </void>
+  <void method="put"> 
+   <string>Help</string> 
+   <string>Hjelp</string> 
+  </void> 
+  <void method="put"> 
+   <string>always</string> 
+   <string>altid</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show status</string> 
+   <string>Vis status</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set colors for Main</string> 
+   <string>Velj farger for &apos;Grund&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete</string> 
+   <string>Slett</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t find lesson file: </string> 
+   <string>Finn ikkje leksjonsfil: </string> 
+  </void> 
+  <void method="put"> 
+   <string>Show word box</string> 
+   <string>Vis ordplass</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Results Summary</string> 
+   <string>Omega - Resultatoppsummering</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save</string> 
+   <string>Lagre</string> 
+  </void> 
+  <void method="put"> 
+   <string>Session Length</string> 
+   <string>Sesjonslengde</string> 
+  </void> 
+  <void method="put"> 
+   <string>Argument</string> 
+   <string>Argument</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Feedback</string> 
+   <string>Response-instillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil login</string> 
+   <string>Logge inn elev</string> 
+  </void> 
+  <void method="put"> 
+   <string>Words</string> 
+   <string>Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence prop...</string> 
+   <string>Setningseigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Marker Properties</string> 
+   <string>Markørseigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Fg Color...</string> 
+   <string>Fg farge</string> 
+  </void> 
+  <void method="put"> 
+   <string>Play Sound</string> 
+   <string>Spel lyd</string> 
+  </void> 
+  <void method="put"> 
+   <string>About Anim Editor</string> 
+   <string>Kring Animasjonsredaktøren</string> 
+  </void> 
+  <void method="put"> 
+   <string>Post test 1</string> 
+   <string>Ettertest 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Test mode</string> 
+   <string>Omega - Testmodus</string> 
+  </void> 
+  <void method="put"> 
+   <string>Story display</string> 
+   <string>Forteljingsvindauge</string> 
+  </void> 
+  <void method="put"> 
+   <string>Hilite word box</string> 
+   <string>Markere ordplass</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background Hilite</string> 
+   <string>Bakgrunn - Markere</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Select item in list)</string> 
+   <string>(Velj deltakar i lista)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Export</string> 
+   <string>Eksportere</string> 
+  </void> 
+  <void method="put"> 
+   <string>File Omega-berættelser not saved.</string> 
+   <string>Filen Omega-forteljingar ikkje lagra.</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong Word</string> 
+   <string>Feil Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to close Omega?</string> 
+   <string>Avslutte Omega - sikker?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background solid</string> 
+   <string>Solid bakgrunn</string> 
+  </void> 
+  <void method="put"> 
+   <string>TCS</string> 
+   <string>TRM</string> 
+  </void> 
+  <void method="put"> 
+   <string>Back</string> 
+   <string>Bak</string> 
+  </void> 
+  <void method="put"> 
+   <string>Welcome</string> 
+   <string>Velkomen</string> 
+  </void> 
+  <void method="put"> 
+   <string>10% visible</string> 
+   <string>10% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Details</string> 
+   <string>Detaljar</string> 
+  </void> 
+  <void method="put"> 
+   <string>OK</string> 
+   <string>OK</string> 
+  </void> 
+  <void method="put"> 
+   <string>%CS</string> 
+   <string>%RM</string> 
+  </void> 
+  <void method="put"> 
+   <string>No</string> 
+   <string>Nei</string> 
+  </void> 
+  <void method="put"> 
+   <string>contrast 0</string> 
+   <string>Kontrast 0</string> 
+  </void> 
+  <void method="put"> 
+   <string>Scale</string> 
+   <string>Endr storleik</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test...</string> 
+   <string>Test...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Create new</string> 
+   <string>Lage ny</string> 
+  </void> 
+  <void method="put"> 
+   <string>Anim speed</string> 
+   <string>Animasjonsfart</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Name:</string> 
+   <string>Elevnamn:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default language</string> 
+   <string>Basspråk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Action file</string> 
+   <string>Aktivitetsfil</string> 
+  </void> 
+  <void method="put"> 
+   <string>sentence</string> 
+   <string>setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average time (s)</string> 
+   <string>Gjennomsnittstid (s)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lisa</string> 
+   <string>Lisa</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background</string> 
+   <string>Bakgrunn</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test</string> 
+   <string>Teste</string> 
+  </void> 
+  <void method="put"> 
+   <string>CS</string> 
+   <string>RM</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Post Test Dummy Sound):</string> 
+   <string>(Ettertest-bom-lyd):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Primary scale</string> 
+   <string>Grunnskala</string> 
+  </void> 
+  <void method="put"> 
+   <string>SL</string> 
+   <string>SL</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lt</string> 
+   <string>Lt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Change</string> 
+   <string>Endre</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animator editor: </string> 
+   <string>Animasjonsredaktøren: </string> 
+  </void> 
+  <void method="put"> 
+   <string>File pojk-hund not saved.</string> 
+   <string>Filen gut-hund ikkje lagra.</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre test 1</string> 
+   <string>Førtest 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Yes; Add new bureau</string> 
+   <string>Ja; Legg til ny ordkolonne</string> 
+  </void> 
+  <void method="put"> 
+   <string>Action File</string> 
+   <string>Aktivitetsfil</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Layer</string> 
+   <string>Velj lager</string> 
+  </void> 
+  <void method="put"> 
+   <string>Look&amp;Feel</string> 
+   <string>Farger&amp;Styring</string> 
+  </void> 
+  <void method="put"> 
+   <string>Text Hilite</string> 
+   <string>Tekste  - Markere</string> 
+  </void> 
+  <void method="put"> 
+   <string>Redraw</string> 
+   <string>Teikne om</string> 
+  </void> 
+  <void method="put"> 
+   <string>Close</string> 
+   <string>Steng</string> 
+  </void> 
+  <void method="put"> 
+   <string>Prop...</string> 
+   <string>Karak...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Word ID</string> 
+   <string>Ord-ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select Type:</string> 
+   <string>Velj type:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pretest 2</string> 
+   <string>Førtest 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to delete the Wing?</string> 
+   <string>Slett kuliss - sikker?</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror X and Y</string> 
+   <string>spegle i X og Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>70% visible</string> 
+   <string>70% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>sentences</string> 
+   <string>setninger</string> 
+  </void> 
+  <void method="put"> 
+   <string>No; Cancel, do not add anything</string> 
+   <string>Nei; Avbryt, legg ikkje til</string> 
+  </void> 
+  <void method="put"> 
+   <string>NCW</string> 
+   <string>ARO</string> 
+  </void> 
+  <void method="put"> 
+   <string>Reopen</string> 
+   <string>Opne på nytt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Dummy Sound:</string> 
+   <string>Bom-lyd:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre 1</string> 
+   <string>Før 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. of Sentences</string> 
+   <string>Antal Setningar</string> 
+  </void> 
+  <void method="put"> 
+   <string>TimeMarker for timeline</string> 
+   <string>Tidsmarkør for tidslinje</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to close Anim Editor?</string> 
+   <string>Avslutte animasjonsredaktøren - sikker?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Speech</string> 
+   <string>Tale/lyd:</string> 
+  </void> 
+  <void method="put"> 
+   <string>contrast B</string> 
+   <string>Kontrast B</string> 
+  </void> 
+  <void method="put"> 
+   <string>Marker delete</string> 
+   <string>Radere markør</string> 
+  </void> 
+  <void method="put"> 
+   <string>Marker</string> 
+   <string>Markør</string> 
+  </void> 
+  <void method="put"> 
+   <string>pre_1</string> 
+   <string>før_1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set...</string> 
+   <string>Velj...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select file...</string> 
+   <string>Velj fil ...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Warning!!!</string> 
+   <string>Varning!!!</string> 
+  </void> 
+  <void method="put"> 
+   <string>Stat</string> 
+   <string>Stat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average time</string> 
+   <string>Gjennomsnittstid</string> 
+  </void> 
+  <void method="put"> 
+   <string>Info:</string> 
+   <string>Info:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete pupil</string> 
+   <string>Slett elev</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - ver    </string> 
+   <string>Omega - ver    </string> 
+  </void> 
+  <void method="put"> 
+   <string>Play</string> 
+   <string>Køyr</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror X</string> 
+   <string>spegle i X</string> 
+  </void> 
+  <void method="put"> 
+   <string>create</string> 
+   <string>lage</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Look&amp;Feel</string> 
+   <string>Farge- &amp; styreinnstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Properties:</string> 
+   <string>Karakter:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background2...</string> 
+   <string>Bakgrunn2...</string> 
+  </void> 
+  <void method="put"> 
+   <string>both X and Y</string> 
+   <string>både X og Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add target</string> 
+   <string>Legg til mål</string> 
+  </void> 
+  <void method="put"> 
+   <string>No name, use open.</string> 
+   <string>Ikkje noko namn, bruk opne</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wings</string> 
+   <string>Kulisser</string> 
+  </void> 
+  <void method="put"> 
+   <string>words</string> 
+   <string>ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct answer is:</string> 
+   <string>Rett svar er:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct word</string> 
+   <string>Rett ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to delete the Actor?</string> 
+   <string>Slett deltakar - sikker?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can bee eaten</string> 
+   <string>Kan etes</string> 
+  </void> 
+  <void method="put"> 
+   <string>Posttest 1</string> 
+   <string>Ettertest 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Activate &apos;Delete Pupil&apos;</string> 
+   <string>Aktivere &apos;Slett Elev&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Test Property</string> 
+   <string>Omega - Test: Eigenskap</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre test 2</string> 
+   <string>Førtest 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Position</string> 
+   <string>Posisjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cabaret Actor Properties</string> 
+   <string>Deltakarprofil</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add a wing</string> 
+   <string>Legg til kuliss</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show the sentences only</string> 
+   <string>Vis berre setningar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Solid</string> 
+   <string>Solid</string> 
+  </void> 
+  <void method="put"> 
+   <string>TS</string> 
+   <string>TM</string> 
+  </void> 
+  <void method="put"> 
+   <string>MessageArea</string> 
+   <string>Meldingsområde</string> 
+  </void> 
+  <void method="put"> 
+   <string>post_1</string> 
+   <string>etter_1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Stat.</string> 
+   <string>Stat.</string> 
+  </void> 
+  <void method="put"> 
+   <string>50% visible</string> 
+   <string>50% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Order</string> 
+   <string>Orden</string> 
+  </void> 
+  <void method="put"> 
+   <string>Date</string> 
+   <string>Dato</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor</string> 
+   <string>Deltakar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Note/Description</string> 
+   <string>Notat/beskriving</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test Statistics</string> 
+   <string>Teststatistikk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set Pupil Image...</string> 
+   <string>Velj elevbilete ...                </string> 
+  </void> 
+  <void method="put"> 
+   <string>Set speed</string> 
+   <string>Velj fart</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set position</string> 
+   <string>Velj posisjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Total:</string> 
+   <string>Totalt:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add after selection</string> 
+   <string>Legg til etter</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cancel</string> 
+   <string>Avbryt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t run test </string> 
+   <string>Kan ikkje køyre test </string> 
+  </void> 
+  <void method="put"> 
+   <string>Set colors for Pupil</string> 
+   <string>Velj farger for &apos;Elev&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete selected red trigger?</string> 
+   <string>Slett valt raud markør?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mirror</string> 
+   <string>Spegle</string> 
+  </void> 
+  <void method="put"> 
+   <string>NWW</string> 
+   <string>AFO</string> 
+  </void> 
+  <void method="put"> 
+   <string>Action Movie Background</string> 
+   <string>Bakgrunn - filmklipp</string> 
+  </void> 
+  <void method="put"> 
+   <string>often</string> 
+   <string>ofte</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor ID</string> 
+   <string>Deltakar-ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>set Image Attribute</string> 
+   <string>Velj bileteattributt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t run test</string> 
+   <string>Kan ikkje køyre &apos;test&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. of Words</string> 
+   <string>Antal Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Item property</string> 
+   <string>Omega - Ord: Eigenskap</string> 
+  </void> 
+  <void method="put"> 
+   <string>Print</string> 
+   <string>Skriv ut</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct sentence</string> 
+   <string>Rett setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Right Word</string> 
+   <string>Rett ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Yes; Delete bureau</string> 
+   <string>Ja; Ta bort heile ordkolonnen</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add trigger</string> 
+   <string>Legg til aktivitet</string> 
+  </void> 
+  <void method="put"> 
+   <string>File hund1 not saved.</string> 
+   <string>Filen hund1 ikkje lagra.</string> 
+  </void> 
+  <void method="put"> 
+   <string>Type</string> 
+   <string>Type</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default Theme</string> 
+   <string>Grundtema</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cor. w</string> 
+   <string>Rett ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Continue</string> 
+   <string>Fortsett</string> 
+  </void> 
+  <void method="put"> 
+   <string>Exit</string> 
+   <string>Avslutt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Selection</string> 
+   <string>Utval</string> 
+  </void> 
+  <void method="put"> 
+   <string>Right</string> 
+   <string>Høgre</string> 
+  </void> 
+  <void method="put"> 
+   <string>5% visible</string> 
+   <string>5% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;angle change / sec&gt; {end angle=&lt;none&gt;}</string> 
+   <string>&lt;vinkelforandr./ sek&gt; {sluttvinkel=&lt;ingen&gt;}</string> 
+  </void> 
+  <void method="put"> 
+   <string>Flip actor/wings</string> 
+   <string>Veksle deltakar/kuliss</string> 
+  </void> 
+  <void method="put"> 
+   <string>Some administrative settings</string> 
+   <string>Administrative innstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Print to the story</string> 
+   <string>Skriv forteljinga</string> 
+  </void> 
+  <void method="put"> 
+   <string>Fit in window</string> 
+   <string>Anpasse til vindauge</string> 
+  </void> 
+  <void method="put"> 
+   <string>No; Cancel, do not delete anything</string> 
+   <string>Nei; Avbryt, ta ikkje bort</string> 
+  </void> 
+  <void method="put"> 
+   <string>Rotate object</string> 
+   <string>Rotere objekt</string> 
+  </void> 
+  <void method="put"> 
+   <string>normal</string> 
+   <string>normal</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;Select file...&gt;</string> 
+   <string>&lt;Velj fil...&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Dat</string> 
+   <string>Dat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Value          </string> 
+   <string>Verdi         </string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil:</string> 
+   <string>Elev:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background top</string> 
+   <string>Bakgrunn topp</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Image</string> 
+   <string>Elevbilete</string> 
+  </void> 
+  <void method="put"> 
+   <string>sentence </string> 
+   <string>setning </string> 
+  </void> 
+  <void method="put"> 
+   <string>Text Hilite Selected</string> 
+   <string>Tekste  - Markere valde</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Select in list)</string> 
+   <string>(Velj i lista)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set actor</string> 
+   <string>Velj deltakar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Yes</string> 
+   <string>Ja</string> 
+  </void> 
+  <void method="put"> 
+   <string>What kind of test?</string> 
+   <string>Kva for slags test?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Extend at end</string> 
+   <string>Forleng på slutten</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can eat</string> 
+   <string>Kan ete</string> 
+  </void> 
+  <void method="put"> 
+   <string>Layer</string> 
+   <string>Lager</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t find pupil result data</string> 
+   <string>Kan ikkje finne eleven sitt resultat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson Id:</string> 
+   <string>Leksjons-ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show actor properties...</string> 
+   <string>Vis deltakarprofil...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Type = </string> 
+   <string>Type = </string> 
+  </void> 
+  <void method="put"> 
+   <string>Hilite</string> 
+   <string>Markere</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item prop...</string> 
+   <string>Posteigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Replay all the animation</string> 
+   <string>Gjenta alle animasjoner</string> 
+  </void> 
+  <void method="put"> 
+   <string>Yes; Add new target</string> 
+   <string>Ja; Legg til nytt setningsledd</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add before selection</string> 
+   <string>Legg til før</string> 
+  </void> 
+  <void method="put"> 
+   <string>Text</string> 
+   <string>Tekste</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item:</string> 
+   <string>Post:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Logout</string> 
+   <string>Logg ut</string> 
+  </void> 
+  <void method="put"> 
+   <string>Colors:</string> 
+   <string>Farger:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Right answer</string> 
+   <string>Rett svar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Printer...</string> 
+   <string>Skriver...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings</string> 
+   <string>Innstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Where adding target?</string> 
+   <string>Kor skal målet plasseres?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong</string> 
+   <string>Feil</string> 
+  </void> 
+  <void method="put"> 
+   <string>Changes not saved</string> 
+   <string>Endringar ikkje lagra</string> 
+  </void> 
+  <void method="put"> 
+   <string>word</string> 
+   <string>ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Include separate word</string> 
+   <string>Vis enkelte ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>As file</string> 
+   <string>Som fil</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lars</string> 
+   <string>Lars</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Correct Sentence</string> 
+   <string>Antal Rette Setningar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Rotation spot</string> 
+   <string>Rotasjonspunkt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Space key is</string> 
+   <string>Blanksteg gjev</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Word</string> 
+   <string>Tid Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item...</string> 
+   <string>&apos;Ord&apos; i lista...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Listen to the story</string> 
+   <string>Lytt til forteljinga</string> 
+  </void> 
+  <void method="put"> 
+   <string>Speed</string> 
+   <string>Fart</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor id:</string> 
+   <string>Deltakar-ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Wrong Word</string> 
+   <string>Antal Feilaktige Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add</string> 
+   <string>Legg til</string> 
+  </void> 
+  <void method="put"> 
+   <string> (not saved)</string> 
+   <string> (ikkje lagra)</string> 
+  </void> 
+  <void method="put"> 
+   <string>Corr. w</string> 
+   <string>Rett ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Image, positive</string> 
+   <string>Postitivt bilete:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Settings</string> 
+   <string>Elevinnstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>image Mirror</string> 
+   <string>Spegle bilete</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frequence</string> 
+   <string>Frekvens</string> 
+  </void> 
+  <void method="put"> 
+   <string>Post 1</string> 
+   <string>Etter 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil Login</string> 
+   <string>Elevinnlogging</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Language</string> 
+   <string>Språkinnstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Language</string> 
+   <string>Språk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Smaller</string> 
+   <string>Mindre</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Shift) Click on the table header to (reverse) sort</string> 
+   <string>(Shift-)klikk på tabellrubrikken for (omvendt) sortering</string> 
+  </void> 
+  <void method="put"> 
+   <string>What kind of Summary?</string> 
+   <string>Kva for sorts oppsummering?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Manual</string> 
+   <string>Manual</string> 
+  </void> 
+  <void method="put"> 
+   <string>NS</string> 
+   <string>AM</string> 
+  </void> 
+  <void method="put"> 
+   <string>slow</string> 
+   <string>langsam</string> 
+  </void> 
+  <void method="put"> 
+   <string>Target</string> 
+   <string>Ord - i setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set shown</string> 
+   <string>Velj vist</string> 
+  </void> 
+  <void method="put"> 
+   <string>Add timesync</string> 
+   <string>Legg til tidssynk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show Sentence</string> 
+   <string>Vis setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Color theme</string> 
+   <string>Fargetema</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background:</string> 
+   <string>Bakgrunn:</string> 
+  </void> 
+  <void method="put"> 
+   <string>About Lesson Editor</string> 
+   <string>Kring Leksjonsredaktøren</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t find any test text</string> 
+   <string>Kan ikkje finne nokon testtekst</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sorry, wrong answer</string> 
+   <string>Diverre, feil svar</string> 
+  </void> 
+  <void method="put"> 
+   <string>NW</string> 
+   <string>AO</string> 
+  </void> 
+  <void method="put"> 
+   <string>CW</string> 
+   <string>RO</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence build</string> 
+   <string>Lage setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Tail part in filename (${banid:var})</string> 
+   <string>Slutten av filnamn (${ban-id:var})</string> 
+  </void> 
+  <void method="put"> 
+   <string>Saved in file</string> 
+   <string>Lagret til filen</string> 
+  </void> 
+  <void method="put"> 
+   <string>What is the new pupils name?</string> 
+   <string>Den nye eleven sitt namn?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show manual</string> 
+   <string>Vis manual</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set action file</string> 
+   <string>Velj aktivitetsfil</string> 
+  </void> 
+  <void method="put"> 
+   <string>New</string> 
+   <string>Nytt</string> 
+  </void> 
+  <void method="put"> 
+   <string>fast</string> 
+   <string>rask</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average</string> 
+   <string>Gjennomsnitt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson name:</string> 
+   <string>Leksjonsnamn:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong word</string> 
+   <string>Feil ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Slot id</string> 
+   <string>Etikett for &apos;ord&apos; i setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Label:</string> 
+   <string>Etikett:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animator editor</string> 
+   <string>Animasjonsredaktøren</string> 
+  </void> 
+  <void method="put"> 
+   <string>Parameter:   </string> 
+   <string>Parameter:   </string> 
+  </void> 
+  <void method="put"> 
+   <string>Path id:</string> 
+   <string>Bane-ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Repeat animation twice</string> 
+   <string>Gjenta animasjon 2 gonger</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background bottom</string> 
+   <string>Bakgrunn bunn</string> 
+  </void> 
+  <void method="put"> 
+   <string>test</string> 
+   <string>teste</string> 
+  </void> 
+  <void method="put"> 
+   <string>none</string> 
+   <string>aldri</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Sentence</string> 
+   <string>Tid Setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Next story:</string> 
+   <string>  Forteljing - neste:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Story</string> 
+   <string>Omega - Forteljing</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frame...</string> 
+   <string>Ramme...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete whole path and timeline</string> 
+   <string>Slett heile bana og tidslinja</string> 
+  </void> 
+  <void method="put"> 
+   <string>mirror Y</string> 
+   <string>spegle i Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>Right Sentence</string> 
+   <string>Rett setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Realy add a new bureau?</string> 
+   <string>Skal ny kolonne legges til?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Invisible</string> 
+   <string>usynleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test prop...</string> 
+   <string>Testeigenskapar...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Counter</string> 
+   <string>Sammenstilling</string> 
+  </void> 
+  <void method="put"> 
+   <string>WS</string> 
+   <string>FM</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sound</string> 
+   <string>Lyd</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background...</string> 
+   <string>Bakgrunn...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sound:</string> 
+   <string>Lyd:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson </string> 
+   <string>Leksjon </string> 
+  </void> 
+  <void method="put"> 
+   <string>90% visible</string> 
+   <string>90% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>TWS</string> 
+   <string>TFM</string> 
+  </void> 
+  <void method="put"> 
+   <string>Filter:</string> 
+   <string>Filter:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct Word</string> 
+   <string>Rett Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Deleting the target?</string> 
+   <string>Sletter objektet?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Change Color...</string> 
+   <string>Endr farge...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Target:</string> 
+   <string>Setning:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Finish</string> 
+   <string>Avslutt</string> 
+  </void> 
+  <void method="put"> 
+   <string>WW</string> 
+   <string>FO</string> 
+  </void> 
+  <void method="put"> 
+   <string>Replay</string> 
+   <string>Spel om att</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct Sentence</string> 
+   <string>Korrekt setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>No. Correct Word</string> 
+   <string>Antal Rette Ord</string> 
+  </void> 
+  <void method="put"> 
+   <string>Y only</string> 
+   <string>berre Y</string> 
+  </void> 
+  <void method="put"> 
+   <string>contrast AB</string> 
+   <string>Kontrast AB</string> 
+  </void> 
+  <void method="put"> 
+   <string>audio file (${path id:var})</string> 
+   <string>lydfil (${ban-ID:var})</string> 
+  </void> 
+  <void method="put"> 
+   <string>activate selected</string> 
+   <string>aktiver valde</string> 
+  </void> 
+  <void method="put"> 
+   <string>Animation</string> 
+   <string>Animasjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time (s)</string> 
+   <string>Tid (s)</string> 
+  </void> 
+  <void method="put"> 
+   <string>First in story:</string> 
+   <string>Fyrst i forteljinga:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Middle</string> 
+   <string>Midt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set from list</string> 
+   <string>Velj frå liste</string> 
+  </void> 
+  <void method="put"> 
+   <string>Are you sure to exit Omega?</string> 
+   <string>Er du sikker på at du vil avslutte Omega?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson:</string> 
+   <string>Leksjon:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save sentence list</string> 
+   <string>Lagre setningsliste</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default theme</string> 
+   <string>Bastema</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor id</string> 
+   <string>Deltakar-ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;factor change / sec&gt; &lt;end factor=1.0&gt;</string> 
+   <string>&lt;faktorforandr./ sek&gt; &lt;sluttfaktor=1.0&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frame Hilite</string> 
+   <string>Ramme  - Markere</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frame</string> 
+   <string>Ramme</string> 
+  </void> 
+  <void method="put"> 
+   <string>Bottom</string> 
+   <string>Lengst ned</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save all colors in theme file</string> 
+   <string>Lagre alle farger i ein temafil</string> 
+  </void> 
+  <void method="put"> 
+   <string>Show wings properties...</string> 
+   <string>Vis kulisseigenskapar...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson type</string> 
+   <string>Leksjonstype</string> 
+  </void> 
+  <void method="put"> 
+   <string>Listen</string> 
+   <string>Lytt til setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct word/sentence</string> 
+   <string>Rett ord/setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>time stamp</string> 
+   <string>tidsstempel</string> 
+  </void> 
+  <void method="put"> 
+   <string>Split in two</string> 
+   <string>Dele på to</string> 
+  </void> 
+  <void method="put"> 
+   <string>Duration = </string> 
+   <string>Tidslengde = </string> 
+  </void> 
+  <void method="put"> 
+   <string>Background3...</string> 
+   <string>Bakgrunn3...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Target prop...</string> 
+   <string>Måleigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Primary mirror</string> 
+   <string>Grunnspegling</string> 
+  </void> 
+  <void method="put"> 
+   <string>When = </string> 
+   <string>Kor tid = </string> 
+  </void> 
+  <void method="put"> 
+   <string>Duration</string> 
+   <string>Tidslengde</string> 
+  </void> 
+  <void method="put"> 
+   <string>Admin</string> 
+   <string>Administrator</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mouse Pos:</string> 
+   <string>Musposisjon:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Load Story</string> 
+   <string>Lad forteljing</string> 
+  </void> 
+  <void method="put"> 
+   <string>Value:          </string> 
+   <string>Verdi:          </string> 
+  </void> 
+  <void method="put"> 
+   <string>Set Visibility</string> 
+   <string>Velj synligheit</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frame Color...</string> 
+   <string>Rammefarge</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item</string> 
+   <string>Ord - i liste</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set colors for Words</string> 
+   <string>Velj farger for &apos;Ord&apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ping after complete sentence</string> 
+   <string>Lyd etter ferdig setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ping efter complete sentence</string> 
+   <string>Lyd etter ferdig setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pupil</string> 
+   <string>Elev</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Clear data)</string> 
+   <string>(Ta bort data - begynn på nytt)</string> 
+  </void> 
+  <void method="put"> 
+   <string>contrast A</string> 
+   <string>Kontrast A</string> 
+  </void> 
+  <void method="put"> 
+   <string>L#</string> 
+   <string>L#</string> 
+  </void> 
+  <void method="put"> 
+   <string>Edit anim</string> 
+   <string>Redigere anim</string> 
+  </void> 
+  <void method="put"> 
+   <string>Y only </string> 
+   <string>berre Y </string> 
+  </void> 
+  <void method="put"> 
+   <string>no mirror</string> 
+   <string>ingen spegling</string> 
+  </void> 
+  <void method="put"> 
+   <string>About</string> 
+   <string>Kring</string> 
+  </void> 
+  <void method="put"> 
+   <string>Settings for Animations</string> 
+   <string>Animasjonsinnstillingar</string> 
+  </void> 
+  <void method="put"> 
+   <string>pre_2</string> 
+   <string>før_2</string> 
+  </void> 
+  <void method="put"> 
+   <string>seldom</string> 
+   <string>sjeldan</string> 
+  </void> 
+  <void method="put"> 
+   <string>Pretest 1</string> 
+   <string>Førtest 1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Feedback</string> 
+   <string>Response</string> 
+  </void> 
+  <void method="put"> 
+   <string>The pupil data will ramain in the file system.&lt;br&gt;</string> 
+   <string>Elevdata lagres i filsystemet.&lt;br&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Status:</string> 
+   <string>Status:</string> 
+  </void> 
+  <void method="put"> 
+   <string>(Post Test Dummy Text):</string> 
+   <string>(Ettertest-bom-ord):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Stop</string> 
+   <string>Stoppe</string> 
+  </void> 
+  <void method="put"> 
+   <string>Guest</string> 
+   <string>Gjest</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ordinal(type) = </string> 
+   <string>Orden(typ) = </string> 
+  </void> 
+  <void method="put"> 
+   <string>Post test 2</string> 
+   <string>Ettertest 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Return</string> 
+   <string>Gå tilbake</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cabaret</string> 
+   <string>Deltakar-bakgrunnar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Posttest 2</string> 
+   <string>Ettertest 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Left</string> 
+   <string>Venstre</string> 
+  </void> 
+  <void method="put"> 
+   <string>Button</string> 
+   <string>Knapp</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Results Detail</string> 
+   <string>Omega - Resultat-Detaljar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Scale object</string> 
+   <string>Endr storleik på objekt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Test Result</string> 
+   <string>Resultat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path id</string> 
+   <string>Bane-ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>Created Sentence</string> 
+   <string>Lage setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Read and Listen</string> 
+   <string>Les og lytt</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson select</string> 
+   <string>Velj leksjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Text</string> 
+   <string>Tekst:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Specific</string> 
+   <string>Spesifikk</string> 
+  </void> 
+  <void method="put"> 
+   <string>Event</string> 
+   <string>Hending</string> 
+  </void> 
+  <void method="put"> 
+   <string>Bg Color...</string> 
+   <string>Bg farge</string> 
+  </void> 
+  <void method="put"> 
+   <string>Commands:</string> 
+   <string>Kommandoer:</string> 
+  </void> 
+  <void method="put"> 
+   <string>30% visible</string> 
+   <string>30% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence</string> 
+   <string>Setningar - alternativ</string> 
+  </void> 
+  <void method="put"> 
+   <string>TimeLine</string> 
+   <string>Tidslinje</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t bind actor with timeline; &apos;</string> 
+   <string>Kan ikkje binde deltakar til tidslinje; &apos;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Yes; Delete target</string> 
+   <string>Ja; Ta bort setningsleddet</string> 
+  </void> 
+  <void method="put"> 
+   <string>Up level</string> 
+   <string>Tilbake</string> 
+  </void> 
+  <void method="put"> 
+   <string>Loading</string> 
+   <string>Lader</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Image, negative</string> 
+   <string>Negativt bilete:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Deactivate</string> 
+   <string>Deaktivere</string> 
+  </void> 
+  <void method="put"> 
+   <string>Replay all the animations</string> 
+   <string>Gjenta alle animasjoner</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson id</string> 
+   <string>Leksjons-ID</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path</string> 
+   <string>Bane</string> 
+  </void> 
+  <void method="put"> 
+   <string>Slot id list</string> 
+   <string>Liste etiketter for &apos;ord&apos; i setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Transform image</string> 
+   <string>Omforme bilete</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t bind path and actor</string> 
+   <string>Kan ikkje binde bane og deltakar</string> 
+  </void> 
+  <void method="put"> 
+   <string>%CW</string> 
+   <string>%RO</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time</string> 
+   <string>Tid</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Sentence Property</string> 
+   <string>Omega - Setning: Eigenskap</string> 
+  </void> 
+  <void method="put"> 
+   <string>Color</string> 
+   <string>Farge</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t find sentence </string> 
+   <string>Kan ikkje finne setning </string> 
+  </void> 
+  <void method="put"> 
+   <string>Cast</string> 
+   <string>Deltakar-bakgrunnar</string> 
+  </void> 
+  <void method="put"> 
+   <string>lock</string> 
+   <string>lås</string> 
+  </void> 
+  <void method="put"> 
+   <string>X only</string> 
+   <string>berre X</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete whole path and timeline no</string> 
+   <string>Slett heile bane og tidslinje nr</string> 
+  </void> 
+  <void method="put"> 
+   <string>Quit</string> 
+   <string>Avslutt</string> 
+  </void> 
+  <void method="put"> 
+   <string>name</string> 
+   <string>namn</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select a sentence</string> 
+   <string>Velj ei setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Image</string> 
+   <string>Bilete:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Canvas</string> 
+   <string>Bakgrunn</string> 
+  </void> 
+  <void method="put"> 
+   <string>Omega - Target Property</string> 
+   <string>Omega - Mål: Eigenskap</string> 
+  </void> 
+  <void method="put"> 
+   <string>Lesson</string> 
+   <string>Leksjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Result</string> 
+   <string>Resultat</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select</string> 
+   <string>Velj</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Correct Sentence</string> 
+   <string>Tid Rett Setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Open</string> 
+   <string>Opne</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;sec / frame&gt;</string> 
+   <string>&lt;sek / bilete&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Load</string> 
+   <string>Lade</string> 
+  </void> 
+  <void method="put"> 
+   <string>File</string> 
+   <string>Arkiv</string> 
+  </void> 
+  <void method="put"> 
+   <string>Feedback Movie Background</string> 
+   <string>Bakgrunn - responsfilmar</string> 
+  </void> 
+  <void method="put"> 
+   <string> 5% visible</string> 
+   <string> 5% synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Top</string> 
+   <string>Åverst</string> 
+  </void> 
+  <void method="put"> 
+   <string>Frame Hilite Selected</string> 
+   <string>Ramme  - Markere valde</string> 
+  </void> 
+  <void method="put"> 
+   <string>Marker properties</string> 
+   <string>Markørseigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Default, as set in word prop</string> 
+   <string>Grunninnstilling etter ordeigenskapar</string> 
+  </void> 
+  <void method="put"> 
+   <string>TimeMarker for timeline </string> 
+   <string>Tidsmarkør for tidslinje </string> 
+  </void> 
+  <void method="put"> 
+   <string>post_2</string> 
+   <string>etter_2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Save as</string> 
+   <string>Lagre som</string> 
+  </void> 
+  <void method="put"> 
+   <string>Behind all</string> 
+   <string>Bak alle</string> 
+  </void> 
+  <void method="put"> 
+   <string>Item: Movie</string> 
+   <string>Film:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Down</string> 
+   <string>Ned</string> 
+  </void> 
+  <void method="put"> 
+   <string>image eat/eaten</string> 
+   <string>bilete ete/etes</string> 
+  </void> 
+  <void method="put"> 
+   <string>Mats</string> 
+   <string>Mats</string> 
+  </void> 
+  <void method="put"> 
+   <string>Front</string> 
+   <string>Framfor</string> 
+  </void> 
+  <void method="put"> 
+   <string>Select Printer</string> 
+   <string>Velj skriver</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t load lessonfile </string> 
+   <string>Kan ikkje opne leksonsfilen </string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct: ?   Wrong: ?</string> 
+   <string>Rett: ?   Feil: ?</string> 
+  </void> 
+  <void method="put"> 
+   <string>Background Hilite Selected</string> 
+   <string>Bakgrunn  - Markere valde</string> 
+  </void> 
+  <void method="put"> 
+   <string>NCS</string> 
+   <string>ARM</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set</string> 
+   <string>Velj</string> 
+  </void> 
+  <void method="put"> 
+   <string>Z order</string> 
+   <string>Z-orden</string> 
+  </void> 
+  <void method="put"> 
+   <string>Theme</string> 
+   <string>Tema</string> 
+  </void> 
+  <void method="put"> 
+   <string>audio file (${banid:var})</string> 
+   <string>lydfil  (${ban-ID:var})</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t load lessonfile %1</string> 
+   <string>Kan ikkje lade leksjonsfil %1</string> 
+  </void> 
+  <void method="put"> 
+   <string>Variables</string> 
+   <string>Variablar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct</string> 
+   <string>Rett</string> 
+  </void> 
+  <void method="put"> 
+   <string>Cancel, do not add anything</string> 
+   <string>Avbryt, legg ikkje til</string> 
+  </void> 
+  <void method="put"> 
+   <string>Read Story</string> 
+   <string>Les forteljing</string> 
+  </void> 
+  <void method="put"> 
+   <string>Text...</string> 
+   <string>Tekste...</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;Ny elev&gt;</string> 
+   <string>&lt;Ny elev&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Pos:</string> 
+   <string>Tidsposisjon:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Properties</string> 
+   <string>Karakter</string> 
+  </void> 
+  <void method="put"> 
+   <string>Sentence...</string> 
+   <string>Setninga...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Duplicate</string> 
+   <string>Fordoble</string> 
+  </void> 
+  <void method="put"> 
+   <string>Post 2</string> 
+   <string>Etter 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>Average time (s):</string> 
+   <string>Gjennomsnittstid (s):</string> 
+  </void> 
+  <void method="put"> 
+   <string>Time Wrong Sentence</string> 
+   <string>Tid feil setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Bigger</string> 
+   <string>Større</string> 
+  </void> 
+  <void method="put"> 
+   <string>Written Sentence</string> 
+   <string>Skapt setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ping before/after animation</string> 
+   <string>Lyd før/etter animasjon</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path spot</string> 
+   <string>Punkte på bane</string> 
+  </void> 
+  <void method="put"> 
+   <string>Ordinal = </string> 
+   <string>Ordenstal = </string> 
+  </void> 
+  <void method="put"> 
+   <string>Pre 2</string> 
+   <string>Før 2</string> 
+  </void> 
+  <void method="put"> 
+   <string>TW</string> 
+   <string>TO</string> 
+  </void> 
+  <void method="put"> 
+   <string>&lt;New Pupil&gt;</string> 
+   <string>&lt;Ny Elev&gt;</string> 
+  </void> 
+  <void method="put"> 
+   <string>Variables:</string> 
+   <string>Variablar</string> 
+  </void> 
+  <void method="put"> 
+   <string>Target...</string> 
+   <string>&apos;Ord&apos; i setning...</string> 
+  </void> 
+  <void method="put"> 
+   <string>Full Sentence</string> 
+   <string>Heil setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Can&apos;t find any saved story</string> 
+   <string>Kan ikkje finne lagra forteljing</string> 
+  </void> 
+  <void method="put"> 
+   <string>is On</string> 
+   <string>slådd på</string> 
+  </void> 
+  <void method="put"> 
+   <string>Create sentence</string> 
+   <string>Lage</string> 
+  </void> 
+  <void method="put"> 
+   <string>Eat images</string> 
+   <string>Et bilete</string> 
+  </void> 
+  <void method="put"> 
+   <string>Up</string> 
+   <string>Opp</string> 
+  </void> 
+  <void method="put"> 
+   <string>On Top</string> 
+   <string>Topp</string> 
+  </void> 
+  <void method="put"> 
+   <string>Wrong Sentence</string> 
+   <string>Feil setning</string> 
+  </void> 
+  <void method="put"> 
+   <string>Type:</string> 
+   <string>Type:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Image name</string> 
+   <string>Biletenamn</string> 
+  </void> 
+  <void method="put"> 
+   <string>Correct answer</string> 
+   <string>Rett svar</string> 
+  </void> 
+  <void method="put"> 
+   <string>select next</string> 
+   <string>velj neste</string> 
+  </void> 
+  <void method="put"> 
+   <string>Realy delete selected bureau?</string> 
+   <string>Skal valt kolonne tas bort</string> 
+  </void> 
+  <void method="put"> 
+   <string>Visible</string> 
+   <string>Synleg</string> 
+  </void> 
+  <void method="put"> 
+   <string>Path ID:</string> 
+   <string>Bane-ID:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Export:</string> 
+   <string>Eksportere:</string> 
+  </void> 
+  <void method="put"> 
+   <string>Delete segment</string> 
+   <string>Slett segment</string> 
+  </void> 
+  <void method="put"> 
+   <string>Set background</string> 
+   <string>Velj bakgrunn</string> 
+  </void> 
+  <void method="put"> 
+   <string>Actor Properties</string> 
+   <string>Deltakarkarprofil</string> 
+  </void> 
+ </object> 
+</java> 

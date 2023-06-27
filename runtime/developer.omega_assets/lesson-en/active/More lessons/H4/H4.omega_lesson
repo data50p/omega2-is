@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE omega_lesson >
+
+<omega_lesson version="0.0">
+<lesson_canvas color_bg_b="#8cdcf0" color_bg_fr="#0" color_bg_frbg="#ffff66" color_bg_m="#d2b4dc" color_bg_t="#f0dc8c" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#ff0000" color_bt_hi="#ffffcc" color_bt_hs="#ffff33" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffff66" color_sn_fr="#0" color_sn_hi="#ff9933" color_sn_tx="#0" show_wordbox="true"/>
+<lesson name="abc" ord="0">
+<target>
+<t-item Lid="{++1}" Tid="s" ord="0" type="passive"/>
+<t-item Lid="" Tid="v" ord="1" type="action"/>
+<t-item Tid="a1" ord="2" type="passive"/>
+<t-item Lid="C" Tid="o" ord="3" type="passive"/>
+</target>
+<items>
+<item-entry Tid="s" ord="0" type="actor">
+<item Lid="car" action-fname="" action-type="null" dummysound="" dummytext="" ord="0" sound="audio/words-en/car.wav" text="The car" var-1="" var-2="" var-3=""/>
+<item Lid="bus" action-fname="" action-type="null" dummysound="" dummytext="" ord="1" sound="audio/words-en/bus.wav" text="The bus" var-1="" var-2="" var-3=""/>
+<item Lid="mc" action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="2" sound="audio/words-en/mc.wav" text="The motorcycle" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="v" ord="1" type="action">
+<item action-fname="anim/ActiveAnim/DriveInRelationTo{++2}" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-en/drives.wav" text="drives" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/StopsInRelationTo{++2}" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-en/stops.wav" text="stops" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="a1" ord="2" type="passive">
+<item action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-en/dummy/infrontof.wav" text="in front of" var-1="B" var-2="" var-3=""/>
+<item action-fname="" action-type="null" dummysound="" dummytext="" ord="1" sound="audio/words-en/dummy/behind.wav" text="behind" var-1="A" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="o" ord="3" type="passive">
+<item Lid="house" action-fname="" action-type="null" dummysound="audio/words-en/dummy/hive.wav" dummytext="the hive" ord="0" sound="audio/words-en/house.wav" text="the house" var-1="t" var-2="2" var-3=""/>
+<item Lid="car2" action-fname="" action-type="omega_anim" dummysound="audio/words-en/dummy/jar.wav" dummytext="the jar" ord="1" sound="audio/words-en/car.wav" text="the car" var-1="n" var-2="1" var-3=""/>
+<item Lid="tree" action-fname="" action-type="null" dummysound="audio/words-en/bee.wav" dummytext="the bee" ord="2" sound="audio/words-en/tree.wav" text="the tree" var-1="t" var-2="2" var-3=""/>
+<item Lid="mc2" action-fname="" action-type="null" dummysound="audio/words-en/dummy/popsicle.wav" dummytext="the popsicle" ord="3" sound="audio/words-en/mc.wav" text="the motorcycle" var-1="n" var-2="1" var-3=""/>
+<item Lid="bus2" action-fname="" action-type="null" dummysound="audio/words-en/dummy/bass.wav" dummytext="the bass" ord="4" sound="audio/words-en/bus.wav" text="the bus" var-1="n" var-2="1" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+</items>
+</lesson>
+<action_specific/>
+<test_entries>
+<test_entry ord="0" type="pre">
+<sentence ord="0" text="The motorcycle{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="1" text="The motorcycle{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="2" text="The car{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="3" text="The car{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="4" text="The car{s} stops{v} in front of{a1} the bus{o}"/>
+<sentence ord="5" text="The car{s} drives{v} behind{a1} the car{o}"/>
+</test_entry>
+<test_entry ord="1" type="pre">
+<sentence ord="0" text="The car{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="1" text="The car{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="2" text="The car{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="3" text="The bus{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="4" text="The motorcycle{s} stops{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="5" text="The bus{s} stops{v} behind{a1} the bus{o}"/>
+</test_entry>
+<test_entry ord="0" type="post">
+<sentence ord="0" text="The car{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="1" text="The motorcycle{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="2" text="The car{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="2" text="The car{s} stops{v} in front of{a1} the bus{o}"/>
+<sentence ord="3" text="The motorcycle{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="4" text="The bus{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="5" text="The motorcycle{s} stops{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="6" text="The car{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="7" text="The bus{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="8" text="The bus{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="9" text="The car{s} drives{v} behind{a1} the car{o}"/>
+<sentence ord="10" text="The car{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="11" text="The motorcycle{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="12" text="The car{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="13" text="The motorcycle{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="14" text="The bus{s} drives{v} behind{a1} the house{o}"/>
+<sentence ord="15" text="The motorcycle{s} stops{v} in front of{a1} the tree{o}"/>
+<sentence ord="16" text="The bus{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="17" text="The bus{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="18" text="The motorcycle{s} drives{v} behind{a1} the car{o}"/>
+<sentence ord="19" text="The car{s} stops{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="20" text="The car{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="21" text="The motorcycle{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="22" text="The car{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="23" text="The motorcycle{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="24" text="The bus{s} drives{v} behind{a1} the car{o}"/>
+<sentence ord="25" text="The motorcycle{s} stops{v} in front of{a1} the car{o}"/>
+<sentence ord="26" text="The bus{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="27" text="The bus{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="28" text="The motorcycle{s} drives{v} behind{a1} the tree{o}"/>
+<sentence ord="29" text="The bus{s} stops{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="30" text="The car{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="31" text="The motorcycle{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="33" text="The motorcycle{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="34" text="The bus{s} drives{v} behind{a1} the tree{o}"/>
+<sentence ord="35" text="The motorcycle{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="36" text="The bus{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="37" text="The bus{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="38" text="The motorcycle{s} drives{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="39" text="The car{s} drives{v} behind{a1} the bus{o}"/>
+<sentence ord="40" text="The car{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="41" text="The motorcycle{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="42" text="The car{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="43" text="The motorcycle{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="44" text="The bus{s} drives{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="45" text="The motorcycle{s} drives{v} behind{a1} the bus{o}"/>
+<sentence ord="46" text="The bus{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="47" text="The bus{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="48" text="The motorcycle{s} stops{v} in front of{a1} the bus{o}"/>
+<sentence ord="49" text="The bus{s} stops{v} in front of{a1} the tree{o}"/>
+</test_entry>
+<test_entry ord="1" type="post">
+<sentence ord="0" text="The motorcycle{s} drives{v} behind{a1} the car{o}"/>
+<sentence ord="1" text="The car{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="2" text="The motorcycle{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="3" text="The bus{s} drives{v} behind{a1} the car{o}"/>
+<sentence ord="4" text="The motorcycle{s} stops{v} in front of{a1} the bus{o}"/>
+<sentence ord="5" text="The car{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="6" text="The bus{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="7" text="The motorcycle{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="8" text="The car{s} drives{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="9" text="The bus{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="10" text="The motorcycle{s} drives{v} behind{a1} the house{o}"/>
+<sentence ord="11" text="The car{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="12" text="The motorcycle{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="13" text="The bus{s} drives{v} behind{a1} the tree{o}"/>
+<sentence ord="14" text="The motorcycle{s} stops{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="15" text="The car{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="16" text="The bus{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="17" text="The motorcycle{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="18" text="The car{s} drives{v} behind{a1} the bus{o}"/>
+<sentence ord="19" text="The car{s} drives{v} behind{a1} the house{o}"/>
+<sentence ord="20" text="The motorcycle{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="21" text="The car{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="22" text="The motorcycle{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="23" text="The bus{s} drives{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="24" text="The motorcycle{s} stops{v} in front of{a1} the tree{o}"/>
+<sentence ord="25" text="The car{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="26" text="The bus{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="27" text="The bus{s} stops{v} behind{a1} the bus{o}"/>
+<sentence ord="28" text="The car{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="29" text="The car{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="30" text="The motorcycle{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="31" text="The bus{s} drives{v} in front of{a1} the house{o}"/>
+<sentence ord="32" text="The motorcycle{s} stops{v} behind{a1} the car{o}"/>
+<sentence ord="33" text="The bus{s} drives{v} behind{a1} the bus{o}"/>
+<sentence ord="34" text="The motorcycle{s} stops{v} in front of{a1} the car{o}"/>
+<sentence ord="35" text="The car{s} drives{v} in front of{a1} the motorcycle{o}"/>
+<sentence ord="36" text="The bus{s} drives{v} behind{a1} the house{o}"/>
+<sentence ord="37" text="The bus{s} stops{v} behind{a1} the motorcycle{o}"/>
+<sentence ord="38" text="The car{s} stops{v} in front of{a1} the car{o}"/>
+<sentence ord="39" text="The bus{s} stops{v} in front of{a1} the bus{o}"/>
+<sentence ord="40" text="The motorcycle{s} drives{v} in front of{a1} the tree{o}"/>
+<sentence ord="41" text="The bus{s} drives{v} in front of{a1} the car{o}"/>
+<sentence ord="42" text="The motorcycle{s} stops{v} behind{a1} the house{o}"/>
+<sentence ord="43" text="The bus{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="44" text="The motorcycle{s} stops{v} in front of{a1} the house{o}"/>
+<sentence ord="45" text="The car{s} drives{v} in front of{a1} the bus{o}"/>
+<sentence ord="46" text="The bus{s} stops{v} in front of{a1} the car{o}"/>
+<sentence ord="47" text="The bus{s} stops{v} behind{a1} the tree{o}"/>
+<sentence ord="48" text="The car{s} stops{v} in front of{a1} the tree{o}"/>
+</test_entry>
+</test_entries>
+</omega_lesson>

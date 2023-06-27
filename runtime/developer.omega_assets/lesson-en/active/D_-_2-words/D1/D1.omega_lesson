@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE omega_lesson >
+
+<omega_lesson version="0.0">
+<lesson_canvas color_bg_b="#8cdcf0" color_bg_fr="#0" color_bg_frbg="#ffff66" color_bg_m="#d2b4dc" color_bg_t="#f0dc8c" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#ff0000" color_bt_hi="#ffffcc" color_bt_hs="#ffff33" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffff66" color_sn_fr="#0" color_sn_hi="#ff9933" color_sn_tx="#0" show_wordbox="true"/>
+<lesson name="abc" ord="0">
+<target>
+<t-item Lid="A" Tid="s" ord="0" type="actor"/>
+<t-item Lid="" Tid="v" ord="1" type="action"/>
+</target>
+<items>
+<item-entry Tid="s" ord="0" type="actor">
+<item Lid="squirrel" dummysound="audio/words-en/girl.wav" dummytext="the girl" ord="0" sound="audio/words-en/squirrel.wav" text="the squirrel" var-1="n" var-2="" var-3=""/>
+<item Lid="frog" dummysound="audio/words-en/dummy/hog.wav" dummytext="the hog" ord="1" sound="audio/words-en/frog.wav" text="the frog" var-1="n" var-2="" var-3=""/>
+<item Lid="mouse" dummysound="audio/words-en/dummy/moose.wav" dummytext="the moose" ord="2" sound="audio/words-en/mouse.wav" text="the mouse" var-1="n" var-2="" var-3=""/>
+<item dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="v" ord="1" type="action">
+<item action-fname="anim/ActiveAnim/HidingBehindStone" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-en/hides.wav" text="hides" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/DancingAroundStone" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-en/dances.wav" text="dances" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/JumpingByStone" action-type="omega_anim" dummysound="" dummytext="" ord="2" sound="audio/words-en/jumps.wav" text="jumps" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+</items>
+</lesson>
+<action_specific/>
+<test_entries>
+<test_entry ord="0" type="pre">
+<sentence ord="0" text="The squirrel{s} hides{v}"/>
+<sentence ord="1" text="The squirrel{s} dances{v}"/>
+<sentence ord="2" text="The squirrel{s} jumps{v}"/>
+<sentence ord="3" text="The frog{s} hides{v}"/>
+<sentence ord="4" text="The frog{s} dances{v}"/>
+</test_entry>
+<test_entry ord="1" type="pre">
+<sentence ord="0" text="The mouse{s} jumps{v}"/>
+<sentence ord="1" text="The mouse{s} dances{v}"/>
+<sentence ord="2" text="The mouse{s} hides{v}"/>
+<sentence ord="3" text="The frog{s} jumps{v}"/>
+<sentence ord="4" text="The frog{s} dances{v}"/>
+<sentence ord="8" text="The squirrel{s} hides{v}"/>
+</test_entry>
+<test_entry ord="0" type="post">
+<sentence ord="0" text="The squirrel{s} hides{v}"/>
+<sentence ord="1" text="The frog{s} hides{v}"/>
+<sentence ord="2" text="The squirrel{s} dances{v}"/>
+<sentence ord="3" text="The frog{s} dances{v}"/>
+<sentence ord="4" text="The squirrel{s} jumps{v}"/>
+<sentence ord="5" text="The mouse{s} hides{v}"/>
+<sentence ord="6" text="The frog{s} jumps{v}"/>
+<sentence ord="7" text="The mouse{s} dances{v}"/>
+<sentence ord="8" text="The mouse{s} jumps{v}"/>
+</test_entry>
+<test_entry ord="1" type="post">
+<sentence ord="0" text="The mouse{s} hides{v}"/>
+<sentence ord="1" text="The frog{s} hides{v}"/>
+<sentence ord="2" text="The squirrel{s} jumps{v}"/>
+<sentence ord="3" text="The mouse{s} dances{v}"/>
+<sentence ord="4" text="The frog{s} dances{v}"/>
+<sentence ord="5" text="The frog{s} jumps{v}"/>
+<sentence ord="6" text="The mouse{s} jumps{v}"/>
+<sentence ord="7" text="The squirrel{s} hides{v}"/>
+<sentence ord="8" text="The squirrel{s} dances{v}"/>
+</test_entry>
+</test_entries>
+</omega_lesson>

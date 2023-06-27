@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE omega_settings >
+
+<omega_settings version="0.0">
+<canvas color_bg_b="#6a6a74" color_bg_fr="#0" color_bg_frbg="#f0dc8c" color_bg_m="#9999a4" color_bg_t="#d2d2e6" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#0" color_bt_hi="#fce27a" color_bt_hs="#fff0b4" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#f0dc8c" color_sn_fr="#0" color_sn_hi="#fce27a" color_sn_tx="#0" name="main"/>
+<canvas color_bg_b="#6a6a74" color_bg_fr="#333378" color_bg_frbg="#ffffcc" color_bg_m="#9999a4" color_bg_t="#d2d2e6" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#0" color_bt_hi="#fce27a" color_bt_hs="#fff0b4" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#f0dc8c" color_sn_fr="#0" color_sn_hi="#fce27a" color_sn_tx="#0" name="pupil"/>
+<canvas color_bg_b="#6a6a74" color_bg_fr="#1e1e8c" color_bg_frbg="#ffffcc" color_bg_m="#9999a4" color_bg_t="#d2d2e6" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#0" color_bt_hi="#fce27a" color_bt_hs="#fff0b4" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#f0dc8c" color_sn_fr="#0" color_sn_hi="#fce27a" color_sn_tx="#0" name="sent"/>
+<canvas color_bg_b="#6a6a74" color_bg_fr="#990033" color_bg_frbg="#ffff99" color_bg_m="#9999a4" color_bg_t="#d2d2e6" color_bg_tx="#0" color_bt_bg="#ffff66" color_bt_fr="#1e1e33" color_bt_fr_hi="#3c143c" color_bt_fr_hs="#ff0000" color_bt_hi="#ffff99" color_bt_hs="#ffffcc" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffffcc" color_sn_fr="#1e1e82" color_sn_hi="#ff6600" color_sn_tx="#0" name="words"/>
+</omega_settings>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE omega_lesson >
+
+<omega_lesson version="0.0">
+<lesson_canvas color_bg_b="#8cdcf0" color_bg_fr="#0" color_bg_frbg="#ffff66" color_bg_m="#d2b4dc" color_bg_t="#f0dc8c" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#ff0000" color_bt_hi="#ffffcc" color_bt_hs="#ffff33" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffff66" color_sn_fr="#0" color_sn_hi="#ff9933" color_sn_tx="#0" show_wordbox="true"/>
+<lesson name="abc" ord="0">
+<target>
+<t-item Lid="{++1}" Tid="s" ord="0" type="passive"/>
+<t-item Lid="" Tid="v" ord="1" type="action"/>
+<t-item Tid="a1" ord="2" type="passive"/>
+<t-item Lid="C" Tid="o" ord="3" type="passive"/>
+</target>
+<items>
+<item-entry Tid="s" ord="0" type="actor">
+<item Lid="car" action-fname="" action-type="null" dummysound="" dummytext="" ord="0" sound="audio/words-sv/car.wav" text="Bilen" var-1="n" var-2="" var-3=""/>
+<item Lid="bus" action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-sv/bus.wav" text="Bussen" var-1="n" var-2="" var-3=""/>
+<item Lid="mc" action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="2" sound="audio/words-sv/mc.wav" text="Motorcykeln" var-1="n" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="v" ord="1" type="action">
+<item action-fname="anim/ActiveAnim/DriveInRelationTo{++2}" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-sv/drives.wav" text="kör" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/StopsInRelationTo{++2}" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-sv/stops.wav" text="stannar" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="a1" ord="2" type="passive">
+<item action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-sv/infrontof.wav" text="framför" var-1="B" var-2="" var-3=""/>
+<item action-fname="" action-type="null" dummysound="" dummytext="" ord="1" sound="audio/words-sv/behind.wav" text="bakom" var-1="A" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="o" ord="3" type="passive">
+<item Lid="house" action-fname="" action-type="null" dummysound="audio/words-sv/candle.wav" dummytext="ljuset" ord="0" sound="audio/words-sv/house.wav" text="huset" var-1="t" var-2="2" var-3=""/>
+<item Lid="car2" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/dummy/arrow.wav" dummytext="pilen" ord="1" sound="audio/words-sv/car.wav" text="bilen" var-1="n" var-2="1" var-3=""/>
+<item Lid="tree" action-fname="" action-type="null" dummysound="audio/words-sv/dummy/thread.wav" dummytext="tråden" ord="2" sound="audio/words-sv/tree.wav" text="trädet" var-1="t" var-2="2" var-3=""/>
+<item Lid="mc2" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/dummy/CarrotCycle.wav" dummytext="morotcykeln" ord="3" sound="audio/words-sv/mc.wav" text="motorcykeln" var-1="n" var-2="1" var-3=""/>
+<item Lid="bus2" action-fname="" action-type="null" dummysound="audio/words-sv/dummy/kiss.wav" dummytext="pussen" ord="4" sound="audio/words-sv/bus.wav" text="bussen" var-1="n" var-2="1" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+</items>
+</lesson>
+<action_specific/>
+<test_entries>
+<test_entry ord="0" type="pre">
+<sentence ord="0" text="Bilen{s} kör{v} framför{a1} huset{o}"/>
+<sentence ord="1" text="Motorcykeln{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="2" text="Motorcykeln{s} kör{v} bakom{a1} huset{o}"/>
+<sentence ord="3" text="Bussen{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="4" text="Bilen{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="5" text="Bilen{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="6" text="Bussen{s} kör{v} framför{a1} bussen{o}"/>
+<sentence ord="7" text="Bilen{s} stannar{v} framför{a1} bilen{o}"/>
+<sentence ord="8" text="Bussen{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="9" text="Motorcykeln{s} stannar{v} framför{a1} huset{o}"/>
+</test_entry>
+<test_entry ord="1" type="pre">
+<sentence ord="0" text="Motorcykeln{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="1" text="Bussen{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="2" text="Bilen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="3" text="Bussen{s} kör{v} framför{a1} trädet{o}"/>
+<sentence ord="4" text="Bilen{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="5" text="Bussen{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="6" text="Motorcykeln{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="7" text="Motorcykeln{s} stannar{v} framför{a1} bussen{o}"/>
+<sentence ord="8" text="Bussen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="9" text="Bilen{s} stannar{v} framför{a1} bussen{o}"/>
+</test_entry>
+<test_entry ord="0" type="post">
+<sentence ord="0" text="Bilen{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="1" text="Bilen{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="2" text="Bussen{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="3" text="Motorcykeln{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="4" text="Bussen{s} kör{v} framför{a1} bilen{o}"/>
+<sentence ord="5" text="Motorcykeln{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="6" text="Motorcykeln{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="7" text="Bussen{s} kör{v} bakom{a1} trädet{o}"/>
+<sentence ord="8" text="Bilen{s} kör{v} framför{a1} huset{o}"/>
+<sentence ord="9" text="Bilen{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="10" text="Bilen{s} kör{v} framför{a1} bussen{o}"/>
+<sentence ord="11" text="Bilen{s} stannar{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="12" text="Bussen{s} stannar{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="13" text="Motorcykeln{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="14" text="Bussen{s} kör{v} framför{a1} trädet{o}"/>
+<sentence ord="15" text="Motorcykeln{s} stannar{v} framför{a1} bussen{o}"/>
+<sentence ord="16" text="Bussen{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="17" text="Bussen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="18" text="Bilen{s} kör{v} framför{a1} bilen{o}"/>
+<sentence ord="19" text="Bussen{s} kör{v} framför{a1} huset{o}"/>
+<sentence ord="20" text="Bilen{s} kör{v} bakom{a1} huset{o}"/>
+<sentence ord="21" text="Bilen{s} stannar{v} framför{a1} bussen{o}"/>
+<sentence ord="22" text="Bussen{s} stannar{v} framför{a1} bussen{o}"/>
+<sentence ord="23" text="Motorcykeln{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="24" text="Bussen{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="25" text="Motorcykeln{s} stannar{v} framför{a1} bilen{o}"/>
+<sentence ord="26" text="Bussen{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="27" text="Bilen{s} stannar{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="28" text="Bilen{s} kör{v} framför{a1} trädet{o}"/>
+<sentence ord="29" text="Bussen{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="30" text="Bilen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="31" text="Bilen{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="32" text="Bussen{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="33" text="Motorcykeln{s} kör{v} bakom{a1} trädet{o}"/>
+<sentence ord="34" text="Bussen{s} kör{v} framför{a1} bussen{o}"/>
+<sentence ord="35" text="Motorcykeln{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="36" text="Motorcykeln{s} kör{v} framför{a1} bilen{o}"/>
+<sentence ord="37" text="Bilen{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="38" text="Bilen{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="39" text="Motorcykeln{s} kör{v} framför{a1} huset{o}"/>
+<sentence ord="40" text="Bilen{s} kör{v} bakom{a1} trädet{o}"/>
+<sentence ord="41" text="Bilen{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="42" text="Bussen{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="43" text="Motorcykeln{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="44" text="Bussen{s} kör{v} bakom{a1} huset{o}"/>
+<sentence ord="45" text="Motorcykeln{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="46" text="Bussen{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="47" text="Bilen{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="48" text="Bilen{s} stannar{v} framför{a1} bilen{o}"/>
+</test_entry>
+<test_entry ord="1" type="post">
+<sentence ord="0" text="Motorcykeln{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="1" text="Motorcykeln{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="2" text="Motorcykeln{s} kör{v} bakom{a1} huset{o}"/>
+<sentence ord="4" text="Bussen{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="5" text="Bussen{s} stannar{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="6" text="Bussen{s} kör{v} bakom{a1} trädet{o}"/>
+<sentence ord="7" text="Bussen{s} kör{v} framför{a1} huset{o}"/>
+<sentence ord="8" text="Bilen{s} stannar{v} framför{a1} bussen{o}"/>
+<sentence ord="9" text="Bilen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="10" text="Motorcykeln{s} stannar{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="11" text="Motorcykeln{s} stannar{v} framför{a1} bilen{o}"/>
+<sentence ord="12" text="Motorcykeln{s} kör{v} framför{a1} bussen{o}"/>
+<sentence ord="14" text="Bussen{s} stannar{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="15" text="Bussen{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="16" text="Bussen{s} kör{v} bakom{a1} bilen{o}"/>
+<sentence ord="17" text="Bilen{s} stannar{v} bakom{a1} bussen{o}"/>
+<sentence ord="18" text="Bilen{s} stannar{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="19" text="Bilen{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="20" text="Motorcykeln{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="21" text="Motorcykeln{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="22" text="Motorcykeln{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="24" text="Bussen{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="25" text="Bussen{s} stannar{v} framför{a1} bilen{o}"/>
+<sentence ord="26" text="Bussen{s} kör{v} bakom{a1} huset{o}"/>
+<sentence ord="27" text="Bilen{s} stannar{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="28" text="Bilen{s} stannar{v} framför{a1} trädet{o}"/>
+<sentence ord="29" text="Bilen{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="30" text="Motorcykeln{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="31" text="Motorcykeln{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="32" text="Motorcykeln{s} kör{v} framför{a1} trädet{o}"/>
+<sentence ord="34" text="Bussen{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="35" text="Bussen{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="36" text="Bussen{s} kör{v} framför{a1} bussen{o}"/>
+<sentence ord="37" text="Bilen{s} stannar{v} bakom{a1} trädet{o}"/>
+<sentence ord="38" text="Bilen{s} stannar{v} framför{a1} bilen{o}"/>
+<sentence ord="39" text="Bussen{s} kör{v} framför{a1} bilen{o}"/>
+<sentence ord="40" text="Motorcykeln{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="41" text="Motorcykeln{s} kör{v} bakom{a1} motorcykeln{o}"/>
+<sentence ord="42" text="Motorcykeln{s} kör{v} framför{a1} bilen{o}"/>
+<sentence ord="44" text="Bussen{s} stannar{v} bakom{a1} huset{o}"/>
+<sentence ord="45" text="Bussen{s} kör{v} bakom{a1} bussen{o}"/>
+<sentence ord="46" text="Bussen{s} kör{v} framför{a1} motorcykeln{o}"/>
+<sentence ord="47" text="Bilen{s} stannar{v} bakom{a1} bilen{o}"/>
+<sentence ord="48" text="Bilen{s} stannar{v} framför{a1} huset{o}"/>
+<sentence ord="49" text="Motorcykeln{s} kör{v} bakom{a1} trädet{o}"/>
+</test_entry>
+</test_entries>
+</omega_lesson>

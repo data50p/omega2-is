@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE omega_lesson >
+
+<omega_lesson version="0.0">
+<lesson_canvas color_bg_b="#8cdcf0" color_bg_fr="#0" color_bg_frbg="#ffff66" color_bg_m="#d2b4dc" color_bg_t="#f0dc8c" color_bg_tx="#0" color_bt_bg="#f0dc8c" color_bt_fr="#0" color_bt_fr_hi="#0" color_bt_fr_hs="#ff0000" color_bt_hi="#ffffcc" color_bt_hs="#ffff33" color_bt_tx="#0" color_bt_tx_hi="#0" color_bt_tx_hs="#0" color_sn_bg="#ffff66" color_sn_fr="#0" color_sn_hi="#ff9933" color_sn_tx="#0" show_wordbox="true"/>
+<lesson name="abc" ord="0">
+<target>
+<t-item Lid="A" Tid="s" ord="0" type="passive"/>
+<t-item Tid="v" ord="1" type="action"/>
+<t-item Lid="B" Tid="o" ord="2" type="passive"/>
+</target>
+<items>
+<item-entry Tid="s" ord="0" type="actor">
+<item Lid="beaver" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/bear.wav" dummytext="björnen" ord="0" sound="audio/words-sv/beaver.wav" text="bävern" var-1="n" var-2="" var-3=""/>
+<item Lid="buzzard" action-fname="" action-type="omega_anim" dummysound="audio/words-sv/fish.wav" dummytext="fisken" ord="1" sound="audio/words-sv/bird.wav" text="fågeln" var-1="t" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="v" ord="1" type="action">
+<item action-fname="anim/ActiveAnim/EatFruitRoom" action-type="omega_anim" dummysound="" dummytext="" ord="0" sound="audio/words-sv/eats.wav" text="äter" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/JumpFruitRoom" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-sv/jumpsover.wav" text="hoppar över" var-1="" var-2="" var-3=""/>
+<item action-fname="anim/ActiveAnim/HidingInGrass" action-type="omega_anim" dummysound="" dummytext="" ord="2" sound="audio/words-sv/hides.wav" text="gömmer" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+<item-entry Tid="o" ord="2" type="actor">
+<item Lid="banana" action-fname="" action-type="null" dummysound="" dummytext="" ord="0" sound="audio/words-sv/banana.wav" text="bananen" var-1="n" var-2="" var-3=""/>
+<item Lid="apple" action-fname="" action-type="omega_anim" dummysound="" dummytext="" ord="1" sound="audio/words-sv/apple.wav" text="äpplet" var-1="t" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="2" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="3" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="4" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="5" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="6" sound="" text="" var-1="" var-2="" var-3=""/>
+<item action-fname="" action-type="" dummysound="" dummytext="" ord="7" sound="" text="" var-1="" var-2="" var-3=""/>
+</item-entry>
+</items>
+</lesson>
+<action_specific/>
+<test_entries>
+<test_entry ord="0" type="pre">
+<sentence ord="0" text="Bävern{s} äter{v} bananen{o}"/>
+<sentence ord="1" text="Bävern{s} gömmer{v} bananen{o}"/>
+<sentence ord="2" text="Fågeln{s} gömmer{v} bananen{o}"/>
+<sentence ord="3" text="Fågeln{s} äter{v} äpplet{o}"/>
+<sentence ord="4" text="Bävern{s} hoppar över{v} bananen{o}"/>
+</test_entry>
+<test_entry ord="1" type="pre">
+<sentence ord="0" text="Fågeln{s} gömmer{v} äpplet{o}"/>
+<sentence ord="1" text="Fågeln{s} hoppar över{v} bananen{o}"/>
+<sentence ord="2" text="Bävern{s} gömmer{v} äpplet{o}"/>
+<sentence ord="3" text="Bävern{s} hoppar över{v} äpplet{o}"/>
+<sentence ord="4" text="Bävern{s} äter{v} bananen{o}"/>
+</test_entry>
+<test_entry ord="0" type="post">
+<sentence ord="0" text="Bävern{s} äter{v} bananen{o}"/>
+<sentence ord="1" text="Bävern{s} gömmer{v} äpplet{o}"/>
+<sentence ord="2" text="Fågeln{s} äter{v} äpplet{o}"/>
+<sentence ord="3" text="Bävern{s} hoppar över{v} äpplet{o}"/>
+<sentence ord="4" text="Fågeln{s} hoppar över{v} äpplet{o}"/>
+<sentence ord="5" text="Bävern{s} äter{v} äpplet{o}"/>
+<sentence ord="6" text="Fågeln{s} gömmer{v} äpplet{o}"/>
+<sentence ord="7" text="Bävern{s} hoppar över{v} bananen{o}"/>
+<sentence ord="8" text="Fågeln{s} hoppar över{v} bananen{o}"/>
+<sentence ord="9" text="Fågeln{s} äter{v} bananen{o}"/>
+<sentence ord="10" text="Fågeln{s} gömmer{v} bananen{o}"/>
+<sentence ord="11" text="Bävern{s} gömmer{v} bananen{o}"/>
+</test_entry>
+<test_entry ord="1" type="post">
+<sentence ord="1" text="Fågeln{s} äter{v} bananen{o}"/>
+<sentence ord="2" text="Bävern{s} gömmer{v} bananen{o}"/>
+<sentence ord="3" text="Fågeln{s} hoppar över{v} bananen{o}"/>
+<sentence ord="4" text="Bävern{s} hoppar över{v} bananen{o}"/>
+<sentence ord="5" text="Fågeln{s} gömmer{v} bananen{o}"/>
+<sentence ord="6" text="Bävern{s} äter{v} bananen{o}"/>
+<sentence ord="7" text="Fågeln{s} hoppar över{v} äpplet{o}"/>
+<sentence ord="8" text="Bävern{s} hoppar över{v} äpplet{o}"/>
+<sentence ord="9" text="Bävern{s} gömmer{v} äpplet{o}"/>
+<sentence ord="10" text="Bävern{s} äter{v} äpplet{o}"/>
+<sentence ord="11" text="Fågeln{s} äter{v} äpplet{o}"/>
+</test_entry>
+</test_entries>
+</omega_lesson>
