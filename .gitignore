@@ -25,4 +25,5 @@ all.omega_assets
 .gradle
 build
 Z*
-runtime/omega_assets
+runtime/omega_assets/all.omega_assets
+runtime/omega_assets/was_default.omega_assets
