@@ -13,7 +13,7 @@ public class OmegaVersion {
         if (s != null)
             return s + ' ' + "Ω, version: " + getDetailedVersion();
         else
-            return "Ω, version " + getDetailedVersion();
+            return "Ω, version: " + getDetailedVersion();
     }
 
     static public String getDetailedVersion() {

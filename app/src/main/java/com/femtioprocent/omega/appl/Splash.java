@@ -32,7 +32,7 @@ public class Splash extends JWindow {
         int yoff = 324;
         g.drawString(OmegaVersion.getOmegaVersion(), 5, yoff + 20 * line++);
         g.drawString(OmegaVersion.getCWD(), 5, yoff + 20 * line++);
-        g.drawString("Java version " + OmegaVersion.getJavaVersion(), 5, yoff + 20 * line++);
+        g.drawString("Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion(), 5, yoff + 20 * line++);
         g.drawString(OmegaVersion.getJavaVendor() + "; " + System.getProperty("os.name").toLowerCase(), 5, yoff + 20 * line++);
         g.drawString(OmegaVersion.getJavaHome(), 5, yoff + 20 * line++);
     }
