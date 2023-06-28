@@ -11,13 +11,13 @@ public class OmegaVersion {
 
     static public String getOmegaVersion(String s) {
         if (s != null)
-            return s + ' ' + "Ω, ver " + getDetailedVersion();
+            return s + ' ' + "Ω, version: " + getDetailedVersion();
         else
-            return "Ω, ver " + getDetailedVersion();
+            return "Ω, version " + getDetailedVersion();
     }
 
     static public String getDetailedVersion() {
-        String ver = getVersion() + " " + getBuildDate();
+        String ver = getVersion() + "; build: " + getBuildDate();
         return ver;
     }
 
@@ -30,7 +30,15 @@ public class OmegaVersion {
     }
 
     static public String get(String item) {
-        try {
+        switch (item) {
+            case "Version":
+                return "3.0.0";
+            case "Date":
+                return "§§23-06-28§§".replaceAll("§", "");
+            default:
+                return "?";
+        }
+/*        try {
             InputStream ins = OmegaVersion.class.getClassLoader().getResourceAsStream("version");
             if (ins != null) {
                 Reader r = new InputStreamReader(ins);
@@ -45,6 +53,7 @@ public class OmegaVersion {
             e.printStackTrace();
         }
         return item + ": ?";
+ */
     }
 
     public static String getCWD() {
