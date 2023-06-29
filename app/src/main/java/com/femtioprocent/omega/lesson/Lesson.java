@@ -7,6 +7,7 @@ import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.adm.register.data.*;
 import com.femtioprocent.omega.appl.OmegaAppl;
 import com.femtioprocent.omega.appl.OmegaStartManager;
+import com.femtioprocent.omega.appl.Splash;
 import com.femtioprocent.omega.lesson.actions.ActionI;
 import com.femtioprocent.omega.lesson.actions.AnimAction;
 import com.femtioprocent.omega.lesson.actions.MpgAction;
@@ -1325,7 +1326,7 @@ public class Lesson implements LessonCanvasListener {
 	    ap.play();
 	}
 
-	SundryUtils.m_sleep(5000);
+	SundryUtils.m_sleep(3000);
 
 	machine = new Machine(l_ctxt);
 
@@ -2130,6 +2131,8 @@ public class Lesson implements LessonCanvasListener {
 	//	window.setVisible(true);
 	le_canvas.populateGUI();
 
+	while (Splash.keep != null && Splash.keep )
+	    SundryUtils.m_sleep(300);
 	OmegaAppl.closeSplash();
 
 	if (fn != null) {

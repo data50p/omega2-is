@@ -32,9 +32,9 @@ public class OmegaVersion {
     static public String get(String item) {
         switch (item) {
             case "Version":
-                return "3.0.0";
+                return "2.1.0";
             case "Date":
-                return "§§23-06-28§§".replaceAll("§", "");
+                return "§§23-06-29_13:06:08§§".replaceAll("§", "");
             default:
                 return "?";
         }

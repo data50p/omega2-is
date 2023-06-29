@@ -71,7 +71,9 @@ public class AnimEditorAppl extends OmegaAppl {
 
         if (LicenseShowManager.showAndAccepted()) {
             AnimEditorAppl e = new AnimEditorAppl(verbose);
-            SundryUtils.m_sleep(6000);
+            SundryUtils.m_sleep(3000);
+            while ( Splash.keep != null && Splash.keep )
+                SundryUtils.m_sleep(300);
             OmegaAppl.closeSplash();
         } else {
             System.exit(1);
