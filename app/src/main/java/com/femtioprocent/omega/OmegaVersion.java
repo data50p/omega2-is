@@ -34,7 +34,7 @@ public class OmegaVersion {
             case "Version":
                 return "2.1.0";
             case "Date":
-                return "§§23-06-29_13:06:08§§".replaceAll("§", "");
+                return "§§23-06-29_13:13:06 mango.local§§".replaceAll("§", "");
             default:
                 return "?";
         }

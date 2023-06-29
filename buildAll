@@ -1,4 +1,4 @@
 #!/bin/bash
-sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S)§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
+sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname)§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
 mv Z-OmegaVersion.java  app/src/main/java/com/femtioprocent/omega/OmegaVersion.java
 gradle clean build installDist
