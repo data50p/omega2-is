@@ -4,8 +4,8 @@ import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.util.Factory;
 
 public class LoginFactory {
-    static public Login createLogin(String name) {
-        String n = "Login" + name;
+    static public Login createLogin(String package_name, String name) {
+        String n = package_name + ".Login" + name;
         try {
             Login login = (Login) Factory.createObject(n);
             return login;

@@ -3223,8 +3223,6 @@ public class Lesson implements LessonCanvasListener {
 	    le_canvas.skip_keycode = false;
 	    inExecHbox = false;
 	    mistNoMouse = false;
-
-
 	}
     }
 

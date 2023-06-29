@@ -9,7 +9,7 @@ public class LoginAppl {
     Login l;
 
     LoginAppl() {
-        l = LoginFactory.createLogin("Simple");
+        l = LoginFactory.createLogin(getClass().getPackageName(), "Simple");
     }
 
     void start() {

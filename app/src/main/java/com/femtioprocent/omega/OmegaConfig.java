@@ -29,7 +29,7 @@ public class OmegaConfig {
     public static boolean smaller = OmegaContext.isDeveloper();
 
     public static final int VAR_NUM = 5;
-    public static boolean tts = true;
+    public static boolean tts = !true;
 
     static public boolean isKeyNext(int kc) {
         return kc == key_next_1 ||

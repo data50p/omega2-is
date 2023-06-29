@@ -18,7 +18,7 @@ public class APlayer {
 
     static boolean T = true;
 
-    static boolean alwaysFxPlayer = !true;
+    static boolean alwaysFxPlayer = false;
 
     JPlayer jplayer;
     FxPlayer fxplayer;
