@@ -1,15 +1,10 @@
 # omega-is
 Omega - Interactive Sentences - version 2
 
-Build with Idea 2016.3 or later.
+1. Install java jdk, version 20
+1. Install omega assets in runtim/omega_assets
+1. ./buildAll
+1. ./run
 
-./buildAll build all as well using only embedded gradlew
-
-After build:
-
-(cd runtime; java -jar omega-is-2.*.jar)
-
-
-
-
+Develop using Intellij Idea
 
