@@ -29,6 +29,14 @@ public class OmegaVersion {
         return get("Date");
     }
 
+    public static String getVersionBlurb() {
+        String s = "CWD: " + OmegaVersion.getCWD() + "\n" +
+        "Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion() + "\n" +
+        "Java Vendor: " + OmegaVersion.getJavaVendor() + "; OS name: " + System.getProperty("os.name").toLowerCase() + "\n" +
+        "java home: " + OmegaVersion.getJavaHome();
+        return s;
+    }
+
     static public String get(String item) {
         switch (item) {
             case "Version":

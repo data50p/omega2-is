@@ -49,6 +49,7 @@ public class OmegaStartManager {
     public static int fromPU(String[] argv, Integer selection) {
 	HashMap start_object = getStartObject();
 	Integer setting_selection = (Integer) start_object.get(SELECTION_ITEM);
+	setting_selection = 0; // I ignore the stored selection
 	if (setting_selection != null && setting_selection > 0) {
 	    selection = setting_selection;
 	    return selection;
