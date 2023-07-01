@@ -2,8 +2,6 @@ package com.femtioprocent.omega;
 
 // DO NO CHANGE HERE
 
-import java.io.*;
-
 public class OmegaVersion {
     static public String getOmegaVersion() {
         return getOmegaVersion(null);
@@ -17,8 +15,7 @@ public class OmegaVersion {
     }
 
     static public String getDetailedVersion() {
-        String ver = getVersion() + "; build: " + getBuildDate();
-        return ver;
+        return getVersion() + "; build: " + getBuildDate();
     }
 
     static public String getVersion() {
@@ -30,40 +27,19 @@ public class OmegaVersion {
     }
 
     public static String getVersionBlurb() {
-        String s =
-                getOmegaVersion() + "\n"
-                        + "CWD: " + OmegaVersion.getCWD() + "\n"
-                        + "Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion() + "\n"
-                        + "Java Vendor: " + OmegaVersion.getJavaVendor() + "; OS name: " + System.getProperty("os.name").toLowerCase() + "\n"
-                        + "java home: " + OmegaVersion.getJavaHome();
-        return s;
+        return getOmegaVersion() + "\n"
+                + "CWD: " + OmegaVersion.getCWD() + "\n"
+                + "Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion() + "\n"
+                + "Java Vendor: " + OmegaVersion.getJavaVendor() + "; OS name: " + System.getProperty("os.name").toLowerCase() + "\n"
+                + "java home: " + OmegaVersion.getJavaHome();
     }
 
     static public String get(String item) {
-        switch (item) {
-            case "Version":
-                return "2.1.0";
-            case "Date":
-                return "§§23-07-01_22:27:02 mango.local §§".replaceAll("§", "");
-            default:
-                return "?";
-        }
-/*        try {
-            InputStream ins = OmegaVersion.class.getClassLoader().getResourceAsStream("version");
-            if (ins != null) {
-                Reader r = new InputStreamReader(ins);
-                BufferedReader br = new BufferedReader(r);
-                for (; ; ) {
-                    String s = br.readLine();
-                    if (s.startsWith(item + ":"))
-                        return s.substring((item + ":").length()).trim();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return item + ": ?";
- */
+        return switch (item) {
+            case "Version" -> "2.1.0";
+            case "Date" -> "§§23-07-01_22:27:02 mango.local §§".replaceAll("§", "");
+            default -> "?";
+        };
     }
 
     public static String getCWD() {
