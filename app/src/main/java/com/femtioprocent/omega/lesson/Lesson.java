@@ -39,6 +39,7 @@ import com.femtioprocent.omega.util.Log;
 import com.femtioprocent.omega.util.SundryUtils;
 import com.femtioprocent.omega.value.Values;
 import com.femtioprocent.omega.xml.Element;
+import javafx.scene.media.AudioClip;
 
 import javax.print.PrintService;
 import javax.swing.*;
@@ -1317,6 +1318,10 @@ public class Lesson implements LessonCanvasListener {
 		    null,
 		    null);
 	    ap.play();
+	} else {
+		String name = "file:" + OmegaContext.getMediaFile("audio/greeting.wav");
+		AudioClip ac = new AudioClip(name);
+		ac.play();
 	}
 
 	if (true) {
