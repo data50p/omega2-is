@@ -4,7 +4,6 @@
 
 OPTIND=1
 
-output_file=""
 version=0
 
 while getopts "v" opt; do
@@ -16,8 +15,9 @@ done
 
 shift $((OPTIND-1))
 
+
 if [ $version == 1 ]; then
-	sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname)§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
+	sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname) ${1}§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
 	mv Z-OmegaVersion.java  app/src/main/java/com/femtioprocent/omega/OmegaVersion.java
 fi
 

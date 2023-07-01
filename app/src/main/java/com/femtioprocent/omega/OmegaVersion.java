@@ -30,10 +30,12 @@ public class OmegaVersion {
     }
 
     public static String getVersionBlurb() {
-        String s = "CWD: " + OmegaVersion.getCWD() + "\n" +
-        "Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion() + "\n" +
-        "Java Vendor: " + OmegaVersion.getJavaVendor() + "; OS name: " + System.getProperty("os.name").toLowerCase() + "\n" +
-        "java home: " + OmegaVersion.getJavaHome();
+        String s =
+                getOmegaVersion() + "\n"
+                        + "CWD: " + OmegaVersion.getCWD() + "\n"
+                        + "Version: java " + OmegaVersion.getJavaVersion() + ",   javafx " + com.sun.javafx.runtime.VersionInfo.getRuntimeVersion() + "\n"
+                        + "Java Vendor: " + OmegaVersion.getJavaVendor() + "; OS name: " + System.getProperty("os.name").toLowerCase() + "\n"
+                        + "java home: " + OmegaVersion.getJavaHome();
         return s;
     }
 
@@ -42,7 +44,7 @@ public class OmegaVersion {
             case "Version":
                 return "2.1.0";
             case "Date":
-                return "§§23-07-01_22:08:43 mango.local§§".replaceAll("§", "");
+                return "§§23-07-01_22:27:02 mango.local §§".replaceAll("§", "");
             default:
                 return "?";
         }
