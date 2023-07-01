@@ -1,4 +1,24 @@
 #!/bin/bash
-sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname)§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
-mv Z-OmegaVersion.java  app/src/main/java/com/femtioprocent/omega/OmegaVersion.java
+
+#!/bin/sh
+
+OPTIND=1
+
+output_file=""
+version=0
+
+while getopts "v" opt; do
+  case "$opt" in
+    v)  version=1
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+if [ $version == 1 ]; then
+	sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname)§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.java > Z-OmegaVersion.java
+	mv Z-OmegaVersion.java  app/src/main/java/com/femtioprocent/omega/OmegaVersion.java
+fi
+
 ./gradlew clean build installDist

@@ -42,7 +42,7 @@ public class OmegaVersion {
             case "Version":
                 return "2.1.0";
             case "Date":
-                return "§§23-07-01_19:34:09 hallon.local§§".replaceAll("§", "");
+                return "§§23-07-01_22:08:43 mango.local§§".replaceAll("§", "");
             default:
                 return "?";
         }
