@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="18.0.1" class="java.beans.XMLDecoder">
+<java version="20.0.1" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>Sign Word Movie Scale</string>
@@ -58,6 +58,10 @@
    <string>Play Sign Moview</string>
   </void>
   <void method="put">
+   <string>Omega - Message</string>
+   <string>Omega - Message</string>
+  </void>
+  <void method="put">
    <string>Sound after each word</string>
    <string>Sound after each word</string>
   </void>
@@ -70,12 +74,20 @@
    <string>+</string>
   </void>
   <void method="put">
+   <string>Nu such directory</string>
+   <string>Nu such directory</string>
+  </void>
+  <void method="put">
    <string>Item: Sign Movies, positive </string>
    <string>Item: Sign Movies, positive </string>
   </void>
   <void method="put">
    <string>Reset Starter</string>
    <string>Reset Starter</string>
+  </void>
+  <void method="put">
+   <string>File is</string>
+   <string>File is</string>
   </void>
   <void method="put">
    <string>dep_set Layer</string>
