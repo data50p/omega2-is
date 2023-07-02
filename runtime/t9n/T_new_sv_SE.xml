@@ -6,16 +6,8 @@
    <string>Sign Word Movie Scale</string>
   </void>
   <void method="put">
-   <string>Show Sign after each word</string>
-   <string>Show Sign after each word</string>
-  </void>
-  <void method="put">
    <string>Sign Word Transparence</string>
    <string>Sign Word Transparence</string>
-  </void>
-  <void method="put">
-   <string>dep_set Image Attribute</string>
-   <string>dep_set Image Attribute</string>
   </void>
   <void method="put">
    <string>Sign Sentence Movie Scale</string>
@@ -30,76 +22,56 @@
    <string>Play All</string>
   </void>
   <void method="put">
-   <string>dep_set Visibility</string>
-   <string>dep_set Visibility</string>
+   <string>New Omega Bundle</string>
+   <string>New Omega Bundle</string>
   </void>
   <void method="put">
-   <string>Reset Sequence</string>
-   <string>Reset Sequence</string>
+   <string>View &amp; Add Omega Bundle</string>
+   <string>View &amp; Add Omega Bundle</string>
   </void>
   <void method="put">
-   <string>Sign Sentence Background</string>
-   <string>Sign Sentence Background</string>
+   <string>Add Omega Assets to Bundle</string>
+   <string>Add Omega Assets to Bundle</string>
   </void>
   <void method="put">
-   <string>Set Assets</string>
-   <string>Set Assets</string>
+   <string>Sign movie</string>
+   <string>Sign movie</string>
   </void>
   <void method="put">
-   <string>Svenska</string>
-   <string>Svenska</string>
-  </void>
-  <void method="put">
-   <string>&lt;Ny Elev&gt;</string>
-   <string>&lt;Ny Elev&gt;</string>
-  </void>
-  <void method="put">
-   <string>Play Sign Moview</string>
-   <string>Play Sign Moview</string>
+   <string>Scan and Add to Bundle</string>
+   <string>Scan and Add to Bundle</string>
   </void>
   <void method="put">
    <string>Omega - Message</string>
    <string>Omega - Message</string>
   </void>
   <void method="put">
-   <string>Sound after each word</string>
-   <string>Sound after each word</string>
-  </void>
-  <void method="put">
-   <string>Lesson Lang</string>
-   <string>Lesson Lang</string>
-  </void>
-  <void method="put">
    <string>+</string>
    <string>+</string>
   </void>
   <void method="put">
-   <string>Nu such directory</string>
-   <string>Nu such directory</string>
+   <string>Omega - Assets Bundle Dialog</string>
+   <string>Omega - Assets Bundle Dialog</string>
   </void>
   <void method="put">
-   <string>Item: Sign Movies, positive </string>
-   <string>Item: Sign Movies, positive </string>
-  </void>
-  <void method="put">
-   <string>Reset Starter</string>
-   <string>Reset Starter</string>
-  </void>
-  <void method="put">
-   <string>File is</string>
-   <string>File is</string>
+   <string>Turn off</string>
+   <string>Turn off</string>
   </void>
   <void method="put">
    <string>dep_set Layer</string>
    <string>dep_set Layer</string>
   </void>
   <void method="put">
-   <string>English</string>
-   <string>English</string>
+   <string>Lars</string>
+   <string>Lars</string>
   </void>
   <void method="put">
-   <string>Lars</string>
-   <string>Lars</string>
+   <string>Import Omega Bundle</string>
+   <string>Import Omega Bundle</string>
+  </void>
+  <void method="put">
+   <string>Dependent Files</string>
+   <string>Dependent Files</string>
   </void>
   <void method="put">
    <string>Lesson lang:</string>
@@ -112,6 +84,126 @@
   <void method="put">
    <string>Omega Assets:</string>
    <string>Omega Assets:</string>
+  </void>
+  <void method="put">
+   <string>not found</string>
+   <string>not found</string>
+  </void>
+  <void method="put">
+   <string>Show Sign after each word</string>
+   <string>Show Sign after each word</string>
+  </void>
+  <void method="put">
+   <string>dep_set Image Attribute</string>
+   <string>dep_set Image Attribute</string>
+  </void>
+  <void method="put">
+   <string>Automatic, play each separate word</string>
+   <string>Automatic, play each separate word</string>
+  </void>
+  <void method="put">
+   <string>specified</string>
+   <string>specified</string>
+  </void>
+  <void method="put">
+   <string>dep_set Visibility</string>
+   <string>dep_set Visibility</string>
+  </void>
+  <void method="put">
+   <string>Reset Sequence</string>
+   <string>Reset Sequence</string>
+  </void>
+  <void method="put">
+   <string>TTS</string>
+   <string>TTS</string>
+  </void>
+  <void method="put">
+   <string>Exist</string>
+   <string>Exist</string>
+  </void>
+  <void method="put">
+   <string>Sign Sentence Background</string>
+   <string>Sign Sentence Background</string>
+  </void>
+  <void method="put">
+   <string>Set Assets</string>
+   <string>Set Assets</string>
+  </void>
+  <void method="put">
+   <string>Import Omega Assets Bundle</string>
+   <string>Import Omega Assets Bundle</string>
+  </void>
+  <void method="put">
+   <string>Svenska</string>
+   <string>Svenska</string>
+  </void>
+  <void method="put">
+   <string>&lt;Ny Elev&gt;</string>
+   <string>&lt;Ny Elev&gt;</string>
+  </void>
+  <void method="put">
+   <string>Correct answer is :</string>
+   <string>Correct answer is :</string>
+  </void>
+  <void method="put">
+   <string>Save Omega Assets Bundle</string>
+   <string>Save Omega Assets Bundle</string>
+  </void>
+  <void method="put">
+   <string>Play Sign Moview</string>
+   <string>Play Sign Moview</string>
+  </void>
+  <void method="put">
+   <string>Set sign file</string>
+   <string>Set sign file</string>
+  </void>
+  <void method="put">
+   <string>Sound after each word</string>
+   <string>Sound after each word</string>
+  </void>
+  <void method="put">
+   <string>Lesson Lang</string>
+   <string>Lesson Lang</string>
+  </void>
+  <void method="put">
+   <string>Nu such directory</string>
+   <string>Nu such directory</string>
+  </void>
+  <void method="put">
+   <string>Info</string>
+   <string>Info</string>
+  </void>
+  <void method="put">
+   <string>Item: Sign Movies, positive </string>
+   <string>Item: Sign Movies, positive </string>
+  </void>
+  <void method="put">
+   <string>Reset Starter</string>
+   <string>Reset Starter</string>
+  </void>
+  <void method="put">
+   <string>Source Files</string>
+   <string>Source Files</string>
+  </void>
+  <void method="put">
+   <string>File is</string>
+   <string>File is</string>
+  </void>
+  <void method="put">
+   <string>English</string>
+   <string>English</string>
+  </void>
+  <void method="put">
+   <string>(Post Test Dummy Sign):</string>
+   <string>(Post Test Dummy Sign):</string>
+  </void>
+  <void method="put">
+   <string>Default, as dep_set in word prop</string>
+   <string>Default, as dep_set in word prop</string>
+  </void>
+  <void method="put">
+   <string>Sign</string>
+   <string>Sign</string>
   </void>
   <void method="put">
    <string>Sign Word Background</string>
