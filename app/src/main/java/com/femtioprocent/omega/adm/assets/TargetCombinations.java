@@ -41,10 +41,7 @@ public class TargetCombinations {
                 return false;
             if (!(o instanceof TCItem))
                 return false;
-            if (((TCItem) o).fn.equals(fn))
-                return true;
-            else
-                return false;
+            return ((TCItem) o).fn.equals(fn);
         }
 
         public int hashCode() {
