@@ -1,6 +1,6 @@
-select oa in omega_assets/*.omega_assets
-do
 rm -f default.omega_assets
+select oa in omega_assets/*.omega_assets *.omega_assets
+do
 ln -s $oa default.omega_assets
 ls -l default.omega_assets/
 exit 0
