@@ -39,12 +39,12 @@ public class OmegaSwingUtils {
         } catch (Exception e) {
             File cdir = new File(".");
             try {
-                System.out.println("File " + cdir.getCanonicalPath());
+                OmegaContext.sout_log.getLogger().info("File " + cdir.getCanonicalPath());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             Image image = Toolkit.getDefaultToolkit().createImage(path);
-            System.out.println("getImage() from resource did not work for: " + path + ' ' + image);
+            OmegaContext.sout_log.getLogger().info("getImage() from resource did not work for: " + path + ' ' + image);
             return image;
         }
     }

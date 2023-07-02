@@ -1079,7 +1079,7 @@ public class BaseCanvas extends JPanel {
                 HashMap<String,Object> newColors = new HashMap<>();
 
                 for(Object o : colors.keySet()) {
-                    System.err.println("o is " + o);
+                    //System.err.println("o is " + o);
                     String k = (String)o;
 /*
                     if (!(colors.get(k) instanceof Color))

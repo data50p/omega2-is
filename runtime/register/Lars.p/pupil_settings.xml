@@ -6,46 +6,23 @@
 <value key="image_on" val="false"/>
 <value key="image" val="media/default/feedback.png"/>
 <value key="showSoundWord" val="true"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> d7d77eb0 (sign)
-<value key="showSignWord" val="true"/>
+<value key="showSignWord" val="false"/>
 <value key="image_wrong" val="media/default/feedbackwrong.png"/>
 <value key="movie" val=""/>
 <value key="sign_movie_on" val="false"/>
 <value key="speech_on" val="false"/>
 <value key="sign_movie" val=""/>
 <value key="movie_on" val="false"/>
-<value key="showSignSentence" val="true"/>
+<value key="showSignSentence" val="false"/>
 <value key="text_on" val="true"/>
 <value key="speed" val="1"/>
-<<<<<<< HEAD
-=======
-<value key="image_wrong" val="media/default/feedbackwrong.png"/>
-<value key="movie" val=""/>
-<value key="speech_on" val="false"/>
-<value key="movie_on" val="false"/>
-<value key="text_on" val="true"/>
-<value key="speed" val="0"/>
->>>>>>> bac37833 (updated to M1, and mango)
-=======
->>>>>>> d7d77eb0 (sign)
 <value key="pingSentence" val="true"/>
 <value key="repeatanim" val="false"/>
 <value key="space_key" val="next"/>
 <value key="pingAnim" val="false"/>
 <value key="speech" val=""/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<value key="languageSuffix" val=""/>
-=======
 <value key="languageSuffix" val="sv"/>
->>>>>>> bac37833 (updated to M1, and mango)
-=======
-<value key="languageSuffix" val=""/>
->>>>>>> d7d77eb0 (sign)
-<value key="theme" val="default.omega_colors"/>
+<value key="theme" val="option4.omega_colors"/>
 <value key="showSentence" val="true"/>
 <value key="text" val=""/>
 <value key="image_wrong_on" val="false"/>

@@ -24,8 +24,12 @@ public class VideoUtil {
      * @return
      */
     public static String findSupportedFname(String fname) {
-        String altFname = fname.replaceAll("\\.[mM][pP][gG]$", ".mp4").replaceAll("\\.[mM][oO][vV]$", ".mp4").replaceAll("\\.[mM][pP][eE][gG]$", ".mp4").replaceAll("\\.[aA][vV][iI]$", ".mp4");
-        System.err.println("alt file name " + altFname);
+        String altFname = fname
+                .replaceAll("\\.[mM][pP][gG]$", ".mp4")
+                .replaceAll("\\.[mM][oO][vV]$", ".mp4")
+                .replaceAll("\\.[mM][pP][eE][gG]$", ".mp4")
+                .replaceAll("\\.[aA][vV][iI]$", ".mp4");
+        System.err.println("alt file name: " + fname + " -> " + altFname);
         if (fileExist(altFname))
             return altFname;
 

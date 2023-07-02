@@ -94,6 +94,10 @@
    <string>Show Sign after each word</string>
   </void>
   <void method="put">
+   <string>Test text empty (null)</string>
+   <string>Test text empty (null)</string>
+  </void>
+  <void method="put">
    <string>dep_set Image Attribute</string>
    <string>dep_set Image Attribute</string>
   </void>
