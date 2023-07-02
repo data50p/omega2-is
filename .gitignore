@@ -10,7 +10,6 @@ runtime/omega*.jar
 *.omega_result
 /.nb-gradle/
 .nb-gradle-properties
-alternate.omega_assets
 *.omega_anim.prev*
 SAVED-*
 *.omega_assets.zip
@@ -19,7 +18,6 @@ __*
 src/main/resources/version
 *.0.0
 local.properties
-all.omega_assets
 
 # Ignore Gradle project-specific cache directory
 .gradle
@@ -27,4 +25,3 @@ build
 Z*
 runtime/omega_assets
 runtime/default.omega_assets
-!runtime/omega_assets/developer.omega_assets
