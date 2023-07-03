@@ -87,19 +87,19 @@ public class PathHelper {
 	    if ( el_tp == null )
 	        continue;
 	    cntTpath++;
-	    Log.getLogger().info("fix: TPath " + el_tp.findAttr("nid"));
+	    Log.getLogger().info("fix TPath " + i + ": " + el_tp.findAttr("nid"));
 	    for (int j = 0; j < 100; j++) {
 		Element el_q = el.findElement("q", j);
 		if ( el_q == null )
 		    break;
-		Log.getLogger().info("fix: q " + el_q.findAttr("ord"));
+		Log.getLogger().info("fix q " + i + ": " + el_q.findAttr("ord"));
 	    }
 	    Path p = new Path(el_tp);
 	    double[] lenArr = p.getLenA();
 	    Point2D[] point2d = p.getPoint2D();
-	    Log.getLogger().info("flatness: " + OmegaConfig.FLATNESS);
-	    Log.getLogger().info("len: " + lenArr.length + ' ' + Path.format(lenArr));
-	    Log.getLogger().info("seg: " + point2d.length + ' ' + Path.format(point2d));
+	    Log.getLogger().info("flatness " + i + ": " + OmegaConfig.FLATNESS);
+	    Log.getLogger().info("len " + i + ": " + lenArr.length + ' ' + Path.format(lenArr));
+	    Log.getLogger().info("seg " + i + ": " + point2d.length + ' ' + Path.format(point2d));
 
 	    Element el_i = el_tp.findElement("info", 0);
 	    if ( el_i == null ) {

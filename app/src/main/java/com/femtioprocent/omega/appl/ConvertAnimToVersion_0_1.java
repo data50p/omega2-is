@@ -17,13 +17,18 @@ public class ConvertAnimToVersion_0_1 {
     static HashMap<String,String> flags;
     static List<String> argl;
     File baseDir = null;
+    File theFile = null;
 
     static double flatness = OmegaConfig.FLATNESS;
 
-    ConvertAnimToVersion_0_1(File baseDir) {
-        this.baseDir = baseDir;
+    ConvertAnimToVersion_0_1(File fn) {
+	if ( fn.isDirectory() ) {
+	    this.baseDir = fn;
+	} else {
+	    this.theFile = fn;
+	}
 	String flatnessF = (String) flags.get("flatness");
-	if ( flatnessF != null) {
+	if (flatnessF != null) {
 	    double flatness = Double.valueOf(flatnessF);
 	    OmegaConfig.FLATNESS = flatness;
 	}
@@ -31,25 +36,37 @@ public class ConvertAnimToVersion_0_1 {
 
     public static void main(String[] args) {
         if ( args.length == 0 ) {
-	    System.err.println("-b=<backupExt> -d=dir -status -flatness=value");
+	    System.err.println("-b=<backupExt> -d=dir -status -flatness=value example.omega_anim,...");
 	    System.exit(99);
 	}
 	Log.getLogger().info("Started");
 	flags = SundryUtils.flagAsMap(args);
 	argl = SundryUtils.argAsList(args);
-	String baseDir = ".";
+	String baseDir = null;
 
 	String dir = flags.get("d");
 	if ( dir != null )
 	    baseDir = dir;
-	ConvertAnimToVersion_0_1 c01 = new ConvertAnimToVersion_0_1(new File(baseDir));
-	c01.start();
+	if ( baseDir != null ) {
+	    ConvertAnimToVersion_0_1 c01 = new ConvertAnimToVersion_0_1(new File(baseDir));
+	    c01.start();
+	} else {
+	    for (String fn : argl ) {
+		ConvertAnimToVersion_0_1 c01 = new ConvertAnimToVersion_0_1(new File(fn));
+		c01.start();
+	    }
+	}
     }
 
     public void start() {
 	Set<TargetCombinations.TCItem> dep_set = new HashSet<>();
-	fill(dep_set);
-	keep(dep_set, ".omega_anim");
+	if ( baseDir != null ) {
+	    fill(dep_set);
+	    keep(dep_set, ".omega_anim");
+	} else {
+	    TargetCombinations.TCItem tci = createTCI(theFile);
+	    dep_set.add(tci);
+	}
 
 	PathHelper ph = new PathHelper(dep_set);
 	String doBackup = flags.get("b");
