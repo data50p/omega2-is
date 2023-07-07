@@ -377,7 +377,10 @@ public class MpgAction implements ActionI {
     }
 
     private void showMsgFx(MsgItem mi) {
-        mpg_player.fxp.showMsg(mi);
+        int ww = mpg_player.visual.getWidth();
+        int hh = mpg_player.visual.getHeight();
+
+        mpg_player.fxp.showMsg(mi, ww, hh);
         mpg_player.visual.repaint();
         mpg_player.fxp.messageShown = true;
         show_msg = true;

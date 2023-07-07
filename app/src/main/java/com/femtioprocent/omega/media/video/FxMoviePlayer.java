@@ -255,12 +255,32 @@ public class FxMoviePlayer {
         fxp.start(null);
     }
 
-    public void showMsg(MsgItem mi) {
+    public void showMsg(MsgItem mi, int width, int height) {
+        int x = width / 2;
+        int y = height - 10;
+
         Platform.runLater(() -> {
+/*            Text text0 = new Text("[]");
+            int tw = (int) text0.getLayoutBounds().getWidth();
+            int th = (int) text0.getLayoutBounds().getHeight();
+            System.out.println("TW = " + tw);
+            System.out.println("TH = " + th);
+            text0.setX(x - th/2);
+            text0.setY(y - th - th);
+            text0.setFont(new Font(25));
+            root.getChildren().add(text0);
+*/
+            int tw, th;
             Text text = new Text(mi.text);
-            text.setX(55);
-            text.setY(55);
+            double sx = root.getScaleX();
+            double sy = root.getScaleY();
             text.setFont(new Font(25));
+            tw = (int) text.getLayoutBounds().getWidth();
+            th = (int) text.getLayoutBounds().getHeight();
+            System.out.println("TW = " + tw);
+            System.out.println("TH = " + th);
+            text.setX(x - tw / 2);
+            text.setY(y - th - th - th);
             root.getChildren().add(text);
         });
     }
