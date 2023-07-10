@@ -334,7 +334,8 @@ public class MpgAction implements ActionI {
                         String[] actA,
                         String[] pathA,
                         int ord,
-                        Runnable hook) {
+                        Runnable hook,
+                        HashMap colors) {
         if (mpg_player == null)
             mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, window.getWidth(), window.getHeight());
         else
@@ -356,7 +357,7 @@ public class MpgAction implements ActionI {
         if (ord == 0) {
 //	    dispose();
             if (show_sentence) {
-                showMsgFx(new MsgItem("", sentence));
+                showMsgFx(new MsgItem("", sentence), colors);
                 while (show_msg && mpg_player.fxp.messageShown) {
                     SundryUtils.m_sleep(200);
                     if (again_audio && again_audio2) {
@@ -381,11 +382,11 @@ public class MpgAction implements ActionI {
         OmegaContext.sout_log.getLogger().info("ERR: " + "mp_shown");
     }
 
-    private void showMsgFx(MsgItem mi) {
+    private void showMsgFx(MsgItem mi, HashMap colors) {
         int ww = mpg_player.visual.getWidth();
         int hh = mpg_player.visual.getHeight();
 
-        mpg_player.fxp.showMsg(mi, ww, hh);
+        mpg_player.fxp.showMsg(mi, ww, hh, colors);
         mpg_player.visual.repaint();
         mpg_player.fxp.messageShown = true;
         show_msg = true;

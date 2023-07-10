@@ -6,7 +6,6 @@ import com.femtioprocent.omega.OmegaConfig;
 import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.adm.register.data.*;
 import com.femtioprocent.omega.appl.OmegaAppl;
-import com.femtioprocent.omega.appl.OmegaStartManager;
 import com.femtioprocent.omega.appl.Splash;
 import com.femtioprocent.omega.lesson.actions.ActionI;
 import com.femtioprocent.omega.lesson.actions.AnimAction;
@@ -55,8 +54,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import java.util.prefs.Preferences;
-
-import static com.femtioprocent.omega.util.SundryUtils.empty;
 
 public class Lesson implements LessonCanvasListener {
 
@@ -3395,7 +3392,8 @@ public class Lesson implements LessonCanvasListener {
 					//card_show("anim1");
 					OmegaContext.sout_log.getLogger().info("ERR: " + "start hook");
 				    }
-				});
+				},
+				null);
 
 			if (anim_twice) {
 			    SundryUtils.m_sleep(getCurrentPupil().getSpeed(800));
@@ -3404,6 +3402,7 @@ public class Lesson implements LessonCanvasListener {
 				    actA,
 				    pathA,
 				    0,
+				    null,
 				    null);
 			}
 
@@ -3459,6 +3458,7 @@ public class Lesson implements LessonCanvasListener {
 					    actA,
 					    pathA,
 					    0,
+					    null,
 					    null);
 				    end_code_s = le_canvas.waitReplyAction((AnimAction) action,
 					    all_text,
@@ -3566,13 +3566,14 @@ public class Lesson implements LessonCanvasListener {
 		}
 	    }
 	    MyRA myra = new MyRA();
-
+	    BaseCanvas scan = canvases.get("words");
 	    mpg_action.perform(window,
 		    action_s,
 		    actA,
 		    pathA,
 		    anim_twice ? 1 : 0,
-		    myra);
+		    myra,
+		    scan.colors);
 
 	    SundryUtils.m_sleep(getCurrentPupil().getSpeed(400));
 	    if (anim_twice) {
@@ -3582,7 +3583,8 @@ public class Lesson implements LessonCanvasListener {
 			actA,
 			pathA,
 			0,
-			myra);
+			myra,
+			scan.colors);
 	    }
 	    mpg_action.stop();
 	    mpg_action.dispose();
@@ -3702,6 +3704,7 @@ public class Lesson implements LessonCanvasListener {
 		    pd.actA,
 		    pd.pathA,
 		    0,
+		    null,
 		    null);
 	    saveRecastAction(le_canvas.getLessonName(),
 		    pd.action_s,

@@ -106,7 +106,8 @@ public class AnimAction implements ActionI {
                         String[] actA,
                         String[] pathA,
                         int ord,
-                        Runnable hook) {
+                        Runnable hook,
+                        HashMap colors) {
 
         rt.getAC().setHidden(false);
         rt.runAction(window, action_s, actA, pathA, args, hook);
