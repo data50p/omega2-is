@@ -266,21 +266,16 @@ public class FxMoviePlayer {
         fxp.start(null);
     }
 
+    private Color getColor(HashMap colors, String key, java.awt.Color def) {
+        java.awt.Color c = colors != null ? (java.awt.Color) colors.get(key) : def;
+        return Color.rgb(c.getRed(), c.getGreen(), c.getBlue());
+    }
+
     public void showMsg(MsgItem mi, int width, int height, HashMap colors) {
         int x = width / 2;
         int y = height - 10;
 
         Platform.runLater(() -> {
-/*            Text text0 = new Text("[]");
-            int tw = (int) text0.getLayoutBounds().getWidth();
-            int th = (int) text0.getLayoutBounds().getHeight();
-            System.out.println("TW = " + tw);
-            System.out.println("TH = " + th);
-            text0.setX(x - th/2);
-            text0.setY(y - th - th);
-            text0.setFont(new Font(25));
-            root.getChildren().add(text0);
-*/
             Text text = new Text(mi.text);
             double sx = root.getScaleX();
             double sy = root.getScaleY();
@@ -289,23 +284,18 @@ public class FxMoviePlayer {
             double th = (int) text.getLayoutBounds().getHeight();
             System.out.println("TW = " + tw);
             System.out.println("TH = " + th);
-
             double cX = x - tw / 2;
             double cY = y - th - th - th;
+
             Rectangle rect = new Rectangle(cX - 30, cY - th * 0.5, tw + 60, th * 1.6);
-            rect.setArcHeight(30);
-            rect.setArcWidth(30);
-            java.awt.Color cB = (java.awt.Color) colors.get("sn_bg");
-            Color colF = Color.rgb(cB.getRed(), cB.getGreen(), cB.getBlue());
-            rect.setFill(colF);
-            java.awt.Color cS = (java.awt.Color) colors.get("sn_fr");
-            Color colS = Color.rgb(cS.getRed(), cS.getGreen(), cS.getBlue());
-            rect.setStrokeWidth(5);
-            rect.setStroke(colS);
+            rect.setArcHeight(40);
+            rect.setArcWidth(40);
+            rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
+            rect.setStrokeWidth(4);
+            rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
             root.getChildren().add(rect);
-            java.awt.Color cT = (java.awt.Color) colors.get("sn_tx");
-            Color colT = Color.rgb(cT.getRed(), cT.getGreen(), cT.getBlue());
-            text.setFill(colT);
+
+            text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
             text.setX(cX);
             text.setY(cY + th * 0.5);
             root.getChildren().add(text);

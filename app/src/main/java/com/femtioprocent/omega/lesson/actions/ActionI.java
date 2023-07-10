@@ -14,8 +14,7 @@ public interface ActionI {
                         String[] actA,
                         String[] pathA,
                         int ord,
-                        Runnable hook,
-                        HashMap colors);
+                        Runnable hook);
 
     public void show();
 

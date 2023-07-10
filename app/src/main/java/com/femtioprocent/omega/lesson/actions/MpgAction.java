@@ -334,8 +334,7 @@ public class MpgAction implements ActionI {
                         String[] actA,
                         String[] pathA,
                         int ord,
-                        Runnable hook,
-                        HashMap colors) {
+                        Runnable hook) {
         if (mpg_player == null)
             mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, window.getWidth(), window.getHeight());
         else
@@ -357,6 +356,7 @@ public class MpgAction implements ActionI {
         if (ord == 0) {
 //	    dispose();
             if (show_sentence) {
+                HashMap colors = (HashMap) getHm().get("colors");
                 showMsgFx(new MsgItem("", sentence), colors);
                 while (show_msg && mpg_player.fxp.messageShown) {
                     SundryUtils.m_sleep(200);

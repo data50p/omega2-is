@@ -22,6 +22,10 @@
    <string>Play All</string>
   </void>
   <void method="put">
+   <string>Can&apos;t find lesson file</string>
+   <string>Can&apos;t find lesson file</string>
+  </void>
+  <void method="put">
    <string>New Omega Bundle</string>
    <string>New Omega Bundle</string>
   </void>

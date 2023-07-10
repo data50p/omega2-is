@@ -3379,6 +3379,8 @@ public class Lesson implements LessonCanvasListener {
 			action.getHm().put("anim_background", omega_settings_dialog.anim_background.color);
 			action.getHm().put("anim_colors", le_canvas.colors);
 			action.getHm().put("variables", variables_hm);
+			action.getHm().put("colors", canvases.get("words").colors);
+
 			boolean anim_twice = getCurrentPupil().getBool("repeatanim", false);
 
 			card_show("anim1");
@@ -3392,8 +3394,8 @@ public class Lesson implements LessonCanvasListener {
 					//card_show("anim1");
 					OmegaContext.sout_log.getLogger().info("ERR: " + "start hook");
 				    }
-				},
-				null);
+				}
+			);
 
 			if (anim_twice) {
 			    SundryUtils.m_sleep(getCurrentPupil().getSpeed(800));
@@ -3402,8 +3404,8 @@ public class Lesson implements LessonCanvasListener {
 				    actA,
 				    pathA,
 				    0,
-				    null,
-				    null);
+				    null
+			    );
 			}
 
 			String allText = tg.getAllText();
@@ -3458,8 +3460,8 @@ public class Lesson implements LessonCanvasListener {
 					    actA,
 					    pathA,
 					    0,
-					    null,
-					    null);
+					    null
+				    );
 				    end_code_s = le_canvas.waitReplyAction((AnimAction) action,
 					    all_text,
 					    getCurrentPupil().getBool("showSentence", true),
@@ -3567,13 +3569,14 @@ public class Lesson implements LessonCanvasListener {
 	    }
 	    MyRA myra = new MyRA();
 	    BaseCanvas scan = canvases.get("words");
+	    mpg_action.getHm().put("colors", scan.colors);
 	    mpg_action.perform(window,
 		    action_s,
 		    actA,
 		    pathA,
 		    anim_twice ? 1 : 0,
-		    myra,
-		    scan.colors);
+		    myra
+	    );
 
 	    SundryUtils.m_sleep(getCurrentPupil().getSpeed(400));
 	    if (anim_twice) {
@@ -3583,8 +3586,8 @@ public class Lesson implements LessonCanvasListener {
 			actA,
 			pathA,
 			0,
-			myra,
-			scan.colors);
+			myra
+		);
 	    }
 	    mpg_action.stop();
 	    mpg_action.dispose();
@@ -3692,6 +3695,8 @@ public class Lesson implements LessonCanvasListener {
 	action.getHm().put("speed", getCurrentPupil().getSpeed(1000));
 	action.getHm().put("anim_background", omega_settings_dialog.anim_background.color);
 	action.getHm().put("anim_colors", le_canvas.colors);
+	action.getHm().put("colors", canvases.get("words").colors);
+
 	Iterator it = al.iterator();
 	while (it.hasNext()) {
 	    if (hit_key == '\033') {
@@ -3704,8 +3709,8 @@ public class Lesson implements LessonCanvasListener {
 		    pd.actA,
 		    pd.pathA,
 		    0,
-		    null,
-		    null);
+		    null
+	    );
 	    saveRecastAction(le_canvas.getLessonName(),
 		    pd.action_s,
 		    pd.actA,
