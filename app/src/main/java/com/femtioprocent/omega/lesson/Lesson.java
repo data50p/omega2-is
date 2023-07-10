@@ -3584,6 +3584,7 @@ public class Lesson implements LessonCanvasListener {
 			0,
 			myra);
 	    }
+	    mpg_action.stop();
 	    mpg_action.dispose();
 	    mpg_action = null;
 	} catch (Exception ex) {

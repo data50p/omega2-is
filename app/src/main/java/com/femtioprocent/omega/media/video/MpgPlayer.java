@@ -34,6 +34,9 @@ public class MpgPlayer {
     }
 
     public void reset() {
+        if ( fxp != null ) {
+            fxp.reset();
+        }
         ready = false;
     }
 
@@ -43,6 +46,8 @@ public class MpgPlayer {
     }
 
     public void stop() {
+        if (fxp != null)
+            fxp.player.stop();
     }
 
     public void wait4() {

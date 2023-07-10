@@ -136,6 +136,7 @@ public class FxMoviePlayer {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) {
                 Log.getLogger().info("Key Pressed: " + ke.getText() + ' ' + ke.getCode());
+                //reset();
             }
         });
 
@@ -196,7 +197,7 @@ public class FxMoviePlayer {
         player.setOnEndOfMedia(() -> {
             Log.getLogger().info("EOF ");
             stopped = true;
-            player.dispose();
+//            player.dispose();
         });
 
         Log.getLogger().info("leave initFX");
@@ -213,6 +214,14 @@ public class FxMoviePlayer {
 
         if (player != null) {
             Log.getLogger().info("Play the movie...");
+            player.play();
+        }
+    }
+
+    public void reset() {
+        if (player != null) {
+            stopped = false;
+            player.seek(player.getStartTime());
             player.play();
         }
     }

@@ -118,6 +118,11 @@ public class MpgAction implements ActionI {
         return jpan;
     }
 
+    public void stop() {
+        if (mpg_player != null)
+            mpg_player.stop();
+    }
+
     public void dispose() {
         if (mpg_player != null)
             mpg_player.dispose(jpan);
