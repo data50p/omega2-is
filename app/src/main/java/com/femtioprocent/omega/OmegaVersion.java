@@ -37,7 +37,7 @@ public class OmegaVersion {
     static public String get(String item) {
         return switch (item) {
             case "Version" -> "2.1.0";
-            case "Date" -> "§§23-07-03_14:44:47 hallon.local §§".replaceAll("§", "");
+            case "Date" -> "§§23-07-11_11:55:37 hallon.local §§".replaceAll("§", "");
             default -> "?";
         };
     }
