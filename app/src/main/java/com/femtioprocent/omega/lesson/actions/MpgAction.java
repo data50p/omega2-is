@@ -30,9 +30,9 @@ public class MpgAction implements ActionI {
     public String sentence;
     public boolean show_sentence = true;
 
-    private boolean again_play = false;
+    private boolean again_play_request = false;
     private boolean again_play2 = false;
-    private boolean again_audio = false;
+    private boolean again_audio_request = false;
     private boolean again_audio2 = false;
 
     MsgDialog msg_dlg = new MsgDialog();
@@ -68,10 +68,10 @@ public class MpgAction implements ActionI {
         }
         OmegaContext.sout_log.getLogger().info("ERR: " + "own kk " + kc);
         if (kc == 'l') {
-            again_play = true;
+            again_play_request = true;
         }
         if (kc == 'u') {
-            again_audio = true;
+            again_audio_request = true;
         }
 
         return true;
@@ -360,25 +360,29 @@ public class MpgAction implements ActionI {
                 showMsgFx(new MsgItem("", sentence), colors);
                 while (show_msg && mpg_player.fxp.messageShown) {
                     SundryUtils.m_sleep(200);
-                    if (again_audio && again_audio2) {
+                    if (again_audio_request && again_audio2) {
                         hook.run();
                         again_audio2 = false;
                     }
-                    if (again_play && again_play2) {
-                        hideMsg();
-                        mpg_player.reset();
-                        mpg_player.start();
-                        mpg_player.wait4();
-                        again_play2 = false;
-                        again_play = false;
-                        showMsg(new MsgItem("", sentence));
+                    if (again_play_request) {
+                        // Do it once
+                        if (again_play2) {
+                            hideMsg();
+                            hideMsg(true);
+                            mpg_player.reset();
+                            mpg_player.start();
+                            mpg_player.wait4();
+                            again_play2 = false;
+                            again_play_request = false;
+                            hideMsg(false);
+                            showMsg(new MsgItem("", sentence));
+                        } else {
+                            return;
+                        }
                     }
                 }
             }
         }
-// may play twice	mpg_player.stop();
-// 	mpg_player.dispose(jpan);
-// 	mpg_player = null;
         OmegaContext.sout_log.getLogger().info("ERR: " + "mp_shown");
     }
 
@@ -390,6 +394,11 @@ public class MpgAction implements ActionI {
         mpg_player.visual.repaint();
         mpg_player.fxp.messageShown = true;
         show_msg = true;
+    }
+
+    void hideMsg(boolean hide) {
+        mpg_player.fxp.hideMsg(hide);
+        mpg_player.visual.repaint();
     }
 
     public void clearScreen() {

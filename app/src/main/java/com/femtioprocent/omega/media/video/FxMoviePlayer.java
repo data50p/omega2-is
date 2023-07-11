@@ -271,6 +271,26 @@ public class FxMoviePlayer {
         return Color.rgb(c.getRed(), c.getGreen(), c.getBlue());
     }
 
+    public void hideMsg(boolean hide) {
+        items.hide(hide);
+    }
+
+    static class Items {
+        Text text;
+        Rectangle rect;
+
+        public void hide(boolean hide) {
+            if ( text != null ) {
+                text.setVisible(!hide);
+            }
+            if ( rect != null ) {
+                rect.setVisible(!hide);
+            }
+        }
+    }
+
+    Items items = new Items();
+
     public void showMsg(MsgItem mi, int width, int height, HashMap colors) {
         int x = width / 2;
         int y = height - 10;
@@ -288,8 +308,8 @@ public class FxMoviePlayer {
             double cY = y - th - th - th;
 
             Rectangle rect = new Rectangle(cX - 30, cY - th * 0.5, tw + 60, th * 1.6);
-            rect.setArcHeight(40);
-            rect.setArcWidth(40);
+            rect.setArcHeight(width * 0.02);
+            rect.setArcWidth(width * 0.02);
             rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
             rect.setStrokeWidth(4);
             rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
@@ -299,6 +319,9 @@ public class FxMoviePlayer {
             text.setX(cX);
             text.setY(cY + th * 0.5);
             root.getChildren().add(text);
+
+            items.text = text;
+            items.rect = rect;
         });
     }
 }
