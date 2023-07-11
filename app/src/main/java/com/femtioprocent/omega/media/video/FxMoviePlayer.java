@@ -294,39 +294,38 @@ public class FxMoviePlayer {
 
     public void showMsg(MsgItem mi, int width, int height, HashMap colors) {
         Platform.runLater(() -> {
-            double txtH = height * 0.037;
+            double fontH = height * 0.037;
             msgItems.text = new Text(mi.text);
-            msgItems.text.setFont(new Font(txtH));
-            double sw = msgItems.text.getLayoutBounds().getWidth();
-            double sh = msgItems.text.getLayoutBounds().getHeight();
+            msgItems.text.setFont(new Font(fontH));
+            double textW = msgItems.text.getLayoutBounds().getWidth();
+            double textH = msgItems.text.getLayoutBounds().getHeight();
 
-            double frw = sw + 10 + width * 0.03;
-            double frh = height * 0.06;
-            double frth = height * 0.026;
-            double frx = width * 0.5 - frw / 2;
-            double fry = height * 0.88;
-            double frr = width * 0.02;
-            double frtx = frx + frw / 2 - sw / 2;
-            double frty = fry + frh - (2 * txtH) / 5;
-            double frsw = height / 200;
+            double w = textW + 10 + width * 0.03;
+            double h = height * 0.06;
+            double x = width * 0.5 - w / 2;
+            double y = height * 0.88;
+            double r = width * 0.02;
+            double tx = x + w / 2 - textW / 2;
+            double ty = y + h - (2 * fontH) / 5;
+            double sw = height / 200;
 
             DropShadow ds = new DropShadow();
-            ds.setOffsetY(frr);
-            ds.setOffsetX(frr);
+            ds.setOffsetY(sw);
+            ds.setOffsetX(sw);
             ds.setColor(Color.GRAY);
 
-            msgItems.rect = new Rectangle(frx, fry, frw, frh);
+            msgItems.rect = new Rectangle(x, y, w, h);
             msgItems.rect.setEffect(ds);
-            msgItems.rect.setArcHeight(frr);
-            msgItems.rect.setArcWidth(frr);
+            msgItems.rect.setArcHeight(r);
+            msgItems.rect.setArcWidth(r);
             msgItems.rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
-            msgItems.rect.setStrokeWidth(frsw);
+            msgItems.rect.setStrokeWidth(sw);
             msgItems.rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
             root.getChildren().add(msgItems.rect);
 
             msgItems.text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
-            msgItems.text.setX(frtx);
-            msgItems.text.setY(frty);
+            msgItems.text.setX(tx);
+            msgItems.text.setY(ty);
             root.getChildren().add(msgItems.text);
       });
     }

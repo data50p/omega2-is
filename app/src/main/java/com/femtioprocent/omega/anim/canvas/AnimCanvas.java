@@ -1161,7 +1161,6 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
             int w = sw + 10 + gX(0.03);
             int h = gY(0.06);
-            int th = gY(0.026);
             int x = gX(0.5) - w / 2;
             int y = gY(0.88);
             int r = gX(0.02);
@@ -1176,6 +1175,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
             if (false) {
                 // titlebar
+                int th = gY(0.026);
                 g2.setColor(new Color(88, 88, 88));
                 g2.setClip(fr);
                 g2.fill(new Rectangle2D.Double(x, y, w, th));
