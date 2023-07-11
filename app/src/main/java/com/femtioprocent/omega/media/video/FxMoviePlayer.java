@@ -9,6 +9,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
@@ -272,10 +273,10 @@ public class FxMoviePlayer {
     }
 
     public void hideMsg(boolean hide) {
-        items.hide(hide);
+        msgItems.hide(hide);
     }
 
-    static class Items {
+    private static class MsgItems {
         Text text;
         Rectangle rect;
 
@@ -289,39 +290,44 @@ public class FxMoviePlayer {
         }
     }
 
-    Items items = new Items();
+    MsgItems msgItems = new MsgItems();
 
     public void showMsg(MsgItem mi, int width, int height, HashMap colors) {
-        int x = width / 2;
-        int y = height - 10;
-
         Platform.runLater(() -> {
-            Text text = new Text(mi.text);
-            double sx = root.getScaleX();
-            double sy = root.getScaleY();
-            text.setFont(new Font(25));
-            double tw = (int) text.getLayoutBounds().getWidth();
-            double th = (int) text.getLayoutBounds().getHeight();
-            System.out.println("TW = " + tw);
-            System.out.println("TH = " + th);
-            double cX = x - tw / 2;
-            double cY = y - th - th - th;
+            double txtH = height * 0.037;
+            msgItems.text = new Text(mi.text);
+            msgItems.text.setFont(new Font(txtH));
+            double sw = msgItems.text.getLayoutBounds().getWidth();
+            double sh = msgItems.text.getLayoutBounds().getHeight();
 
-            Rectangle rect = new Rectangle(cX - 30, cY - th * 0.5, tw + 60, th * 1.6);
-            rect.setArcHeight(width * 0.02);
-            rect.setArcWidth(width * 0.02);
-            rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
-            rect.setStrokeWidth(4);
-            rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
-            root.getChildren().add(rect);
+            double frw = sw + 10 + width * 0.03;
+            double frh = height * 0.06;
+            double frth = height * 0.026;
+            double frx = width * 0.5 - frw / 2;
+            double fry = height * 0.88;
+            double frr = width * 0.02;
+            double frtx = frx + frw / 2 - sw / 2;
+            double frty = fry + frh - (2 * txtH) / 5;
+            double frsw = height / 200;
 
-            text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
-            text.setX(cX);
-            text.setY(cY + th * 0.5);
-            root.getChildren().add(text);
+            DropShadow ds = new DropShadow();
+            ds.setOffsetY(frr);
+            ds.setOffsetX(frr);
+            ds.setColor(Color.GRAY);
 
-            items.text = text;
-            items.rect = rect;
-        });
+            msgItems.rect = new Rectangle(frx, fry, frw, frh);
+            msgItems.rect.setEffect(ds);
+            msgItems.rect.setArcHeight(frr);
+            msgItems.rect.setArcWidth(frr);
+            msgItems.rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
+            msgItems.rect.setStrokeWidth(frsw);
+            msgItems.rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
+            root.getChildren().add(msgItems.rect);
+
+            msgItems.text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
+            msgItems.text.setX(frtx);
+            msgItems.text.setY(frty);
+            root.getChildren().add(msgItems.text);
+      });
     }
 }
