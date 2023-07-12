@@ -309,7 +309,7 @@ public class FxMoviePlayer {
 
             double tx = x + w / 2 - textW / 2;
             double ty = y + h - (2 * fontH) / 5;
-            double sw = height / 200;
+            double sw = height / 200.0;
 
             DropShadow ds = new DropShadow();
             ds.setOffsetX(sw);
