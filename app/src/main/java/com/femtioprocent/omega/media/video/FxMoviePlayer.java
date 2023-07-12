@@ -300,32 +300,34 @@ public class FxMoviePlayer {
             double textW = msgItems.text.getLayoutBounds().getWidth();
             double textH = msgItems.text.getLayoutBounds().getHeight();
 
-            double w = textW + 10 + width * 0.03;
-            double h = height * 0.06;
-            double x = width * 0.5 - w / 2;
+            double w_ = textW + 10 + width * 0.03;
+            double x = width * 0.5 - w_ / 2;
             double y = height * 0.88;
+            double w = w_;
+            double h = height * 0.06;
             double r = width * 0.02;
+
             double tx = x + w / 2 - textW / 2;
             double ty = y + h - (2 * fontH) / 5;
             double sw = height / 200;
 
             DropShadow ds = new DropShadow();
-            ds.setOffsetY(sw);
             ds.setOffsetX(sw);
+            ds.setOffsetY(sw);
             ds.setColor(Color.GRAY);
 
             msgItems.rect = new Rectangle(x, y, w, h);
             msgItems.rect.setEffect(ds);
-            msgItems.rect.setArcHeight(r);
             msgItems.rect.setArcWidth(r);
-            msgItems.rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
+            msgItems.rect.setArcHeight(r);
             msgItems.rect.setStrokeWidth(sw);
             msgItems.rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
+            msgItems.rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
             root.getChildren().add(msgItems.rect);
 
-            msgItems.text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
             msgItems.text.setX(tx);
             msgItems.text.setY(ty);
+            msgItems.text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
             root.getChildren().add(msgItems.text);
       });
     }
