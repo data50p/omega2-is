@@ -1,13 +1,16 @@
 package com.femtioprocent.omega.media.video;
 
+import com.femtioprocent.omega.OmegaConfig;
 import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.lesson.canvas.MsgItem;
 import com.femtioprocent.omega.util.Log;
 import com.femtioprocent.omega.util.SundryUtils;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyEvent;
@@ -17,6 +20,7 @@ import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -323,12 +327,53 @@ public class FxMoviePlayer {
             msgItems.rect.setStrokeWidth(sw);
             msgItems.rect.setStroke(getColor(colors, "sn_fr", java.awt.Color.black));
             msgItems.rect.setFill(getColor(colors, "sn_bg", java.awt.Color.white));
-            root.getChildren().add(msgItems.rect);
 
             msgItems.text.setX(tx);
             msgItems.text.setY(ty);
             msgItems.text.setFill(getColor(colors, "sn_tx", java.awt.Color.black));
-            root.getChildren().add(msgItems.text);
-      });
+
+            root.getChildren().addAll(msgItems.rect, msgItems.text);
+
+            if (OmegaConfig.isDebug()) {
+                plot(root, x, y, w, h, Color.RED);
+                plot(root, tx, ty, textW, -textH, Color.ORANGE);
+                plot(root, x-30, y, sw, sw, Color.BLUE);
+            }
+        });
+    }
+
+    private void plot(Group g, double x, double y, double w, double h, Color col) {
+        g.getChildren().add(plotXY(x, y, col));
+        g.getChildren().add(plotWH(x, y, w, h, col));
+    }
+
+    private Node plotXY(double x, double y, Color col) {
+        return plotIt(x, y,
+                -10, -10,
+                10, 10,
+                col);
+    }
+
+    private Node plotWH(double x, double y, double w, double h, Color col) {
+        return plotIt(x + w, y + h,
+                -20 * Math.signum(w), -20 * Math.signum(h),
+                0 * Math.signum(w), 0 * Math.signum(h),
+                col);
+    }
+
+    private Node plotIt(double x, double y, double ax, double ay, double a2x, double a2y, Color col) {
+        Line n1 = new Line(x+ax, y, x+a2x, y);
+        Line n2 = new Line(x, y+ay, x, y+a2y);
+        Line n3 = new Line(x+ax, y, x+a2x, y);
+        Line n4 = new Line(x, y+ay, x, y+a2y);
+        n1.setStroke(col);
+        n2.setStroke(col);
+        n1.setStrokeWidth(1.0);
+        n2.setStrokeWidth(1.0);
+        n3.setStroke(Color.BLACK);
+        n4.setStroke(Color.BLACK);
+        n3.setStrokeWidth(3.0);
+        n4.setStrokeWidth(3.0);
+        return new Group(n3, n4, n1, n2);
     }
 }

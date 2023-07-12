@@ -1,5 +1,7 @@
 package com.femtioprocent.omega;
 
+import java.io.File;
+
 public class OmegaConfig {
     public static final String OMEGA_BUNDLE = "omega_bundle";
     public static final String OMEGA_BUNDLE_EXTENSION = "." + OMEGA_BUNDLE;
@@ -18,11 +20,19 @@ public class OmegaConfig {
     static public int key_select_2 = '\r';
     static public int key_select_3 = '\n';
 
-    static public boolean LIU_Mode = !false;
+    static public boolean LIU_Mode = false;
 
     static public boolean isLIU_Mode() {
         System.out.println("is LIU_Mode: " + LIU_Mode);
         return LIU_Mode;
+    }
+
+    static Boolean debug = null;
+
+    static public boolean isDebug() {
+        if ( debug == null )
+            debug = (new File("DEBUG")).exists();
+        return debug;
     }
 
     public static boolean fullScreen = !false;
