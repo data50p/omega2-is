@@ -22,3 +22,6 @@ if [ $version == 1 ]; then
 fi
 
 ./gradlew clean build installDist
+
+mkdir -f runtime/lib
+rsync --delete -uvarHl app/build/install/app/lib/ runtime/lib

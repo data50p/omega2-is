@@ -1,6 +1,4 @@
 java -version
 
-PATH=..:$PATH
-
-ls default.omega_assets && java -cp $(alljar ../app/build/install/app/lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
+ls default.omega_assets && java -cp $(alljar lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
 
