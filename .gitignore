@@ -28,3 +28,4 @@ runtime/default.omega_assets
 runtime/DEBUG
 runtime/lib
 runtime*.tar.gz
+runtime*.tar
