@@ -23,7 +23,7 @@ local.properties
 .gradle
 build
 Z*
-runtime/omega_assets
+runtime/omega_assets/*
 runtime/default.omega_assets
 runtime/DEBUG
 runtime/lib
