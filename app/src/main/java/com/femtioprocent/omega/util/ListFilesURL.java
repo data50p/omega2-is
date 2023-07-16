@@ -11,8 +11,8 @@ public class ListFilesURL {
         String name = OmegaContext.getMediaFile(n);
         File dir = new File(name);
         String[] names = dir.list();
-// 	OmegaContext.sout_log.getLogger().info("ERR: " + "FILE dir[] name " + name + ' ' + names);
-// 	OmegaContext.sout_log.getLogger().info("ERR: " + "FILE dir[] names " + SundryUtils.a2s(names));
+// 	OmegaContext.sout_log.getLogger().info(":--: " + "FILE dir[] name " + name + ' ' + names);
+// 	OmegaContext.sout_log.getLogger().info(":--: " + "FILE dir[] names " + SundryUtils.a2s(names));
         Set li = new HashSet();
         for (int i = 0; i < names.length; i++) {
             li.add(names[i]);
@@ -21,7 +21,7 @@ public class ListFilesURL {
         }
         String[] sa = (String[]) li.toArray(new String[li.size()]);
 
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "FILE dir[] " + dir + ' ' + SundryUtils.a2s(names));
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "FILE dir[] " + dir + ' ' + SundryUtils.a2s(names));
 //	return names;
 
         return sa;
@@ -31,9 +31,9 @@ public class ListFilesURL {
     static public void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             long ct0 = SundryUtils.ct();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "" + SundryUtils.a2s(getMediaList("actor")));
+            OmegaContext.sout_log.getLogger().info(":--: " + "" + SundryUtils.a2s(getMediaList("actor")));
             long ct1 = SundryUtils.ct();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "" + (ct1 - ct0));
+            OmegaContext.sout_log.getLogger().info(":--: " + "" + (ct1 - ct0));
             SundryUtils.m_sleep(200);
             System.gc();
         }

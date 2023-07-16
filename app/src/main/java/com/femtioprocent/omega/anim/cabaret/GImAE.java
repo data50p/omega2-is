@@ -267,7 +267,7 @@ public class GImAE extends GIm {
 //  	    use_alt_hotspot = true;
 //  	else
 //  	    use_alt_hotspot = false;
-//  	OmegaContext.sout_log.getLogger().info("ERR: " + "alt hs " + use_alt_hotspot);
+//  	OmegaContext.sout_log.getLogger().info(":--: " + "alt hs " + use_alt_hotspot);
 //      }
 
     public void setPrimScale(double a) {
@@ -352,15 +352,15 @@ public class GImAE extends GIm {
 
                 if (ii == -1) {
                     po = pa.getPointAt(0);
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "po1: " + po);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "po1: " + po);
                 } else if (ii == da.length - 1) {
                     po = pa.getPointAt(da[ii]);
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "po2: " + po);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "po2: " + po);
                     if (len == 0)
                         where = da[ii] / 1;
                     else
                         where = da[ii] / len;
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "wh2: " + where + ' ' + da[ii] + ' ' + len);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "wh2: " + where + ' ' + da[ii] + ' ' + len);
                 } else {
                     int len2 = (int) da[ii];
                     double difft = dt - dat[ii];
@@ -369,18 +369,18 @@ public class GImAE extends GIm {
                         fact = difft / (dat[ii + 1] - dat[ii]);
                     double dlen = da[ii + 1] - da[ii];
                     len2 += fact * dlen;
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "da3: " + da[ii+1] + ' ' + da[ii] + ' ' + ii);
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "f3: " + fact + ' ' + dlen);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "da3: " + da[ii+1] + ' ' + da[ii] + ' ' + ii);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "f3: " + fact + ' ' + dlen);
                     po = pa.getPointAt(len2);
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "po3: " + po);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "po3: " + po);
                     if (len == 0)
                         where = (double) len2 / 1;
                     else
                         where = (double) len2 / len;
-                    //OmegaContext.sout_log.getLogger().info("ERR: " + "wh3: " + where + ' ' + len2 + ' ' + len);
+                    //OmegaContext.sout_log.getLogger().info(":--: " + "wh3: " + where + ' ' + len2 + ' ' + len);
                 }
 
-                //OmegaContext.sout_log.getLogger().info("ERR: " + "-------- where " + where);
+                //OmegaContext.sout_log.getLogger().info(":--: " + "-------- where " + where);
 
                 double hotsp_x = hotspot.getX(where);
                 if (prim_mirror_x ^ mirror_x) {

@@ -23,7 +23,7 @@ public class OmegaConfig {
     static public boolean LIU_Mode = false;
 
     static public boolean isLIU_Mode() {
-        System.out.println("is LIU_Mode: " + LIU_Mode);
+        OmegaContext.sout_log.getLogger().info("is LIU_Mode: " + LIU_Mode);
         return LIU_Mode;
     }
 

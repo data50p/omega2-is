@@ -86,7 +86,7 @@ public class AnimEditor extends JFrame {
     }
 
     private void maybeClose() {
-	System.err.println("LessonRuntime want to close " + (ApplContext.top_frame == this) + ' ' + ApplContext.top_frame + '\n' + this);
+	OmegaContext.serr_log.getLogger().info("LessonRuntime want to close " + (ApplContext.top_frame == this) + ' ' + ApplContext.top_frame + '\n' + this);
 	if (ApplContext.top_frame == this)
 	    System.exit(0);
     }
@@ -152,7 +152,7 @@ public class AnimEditor extends JFrame {
 
 	addWindowListener(new WindowAdapter() {
 	    public void windowClosing(WindowEvent ev) {
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "closing");
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "closing");
 		if (false && exit_on_close) {
 		    System.exit(0);
 		} else
@@ -163,7 +163,7 @@ public class AnimEditor extends JFrame {
 	ToolExecute ae_texec = new ToolExecute() {
 	    public void execute(String cmd) {
 		if (OmegaConfig.T)
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "AnimEditor.texec: execute " + cmd);
+		    OmegaContext.sout_log.getLogger().info(":--: " + "AnimEditor.texec: execute " + cmd);
 
 		if ("exit".equals(cmd)) {
 		    String s = "";
@@ -174,14 +174,14 @@ public class AnimEditor extends JFrame {
 			int sel = JOptionPane.showConfirmDialog(AnimEditor.this,
 				T.t("Are you sure to exit Omega?") +
 					s);
-//log			    OmegaContext.sout_log.getLogger().info("ERR: " + "" + sel);
+//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0)
 			    System.exit(0);
 		    } else {
 			int sel = JOptionPane.showConfirmDialog(AnimEditor.this,
 				T.t("Are you sure to close Anim Editor?") +
 					s);
-//log			    OmegaContext.sout_log.getLogger().info("ERR: " + "" + sel);
+//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0) {
 			    try {
 				a_ctxt.arun.clean();
@@ -295,7 +295,7 @@ public class AnimEditor extends JFrame {
 		if (gel != null)
 		    gel.execute(cmd);
 		else
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "! missed " + cmd);
+		    OmegaContext.sout_log.getLogger().info(":--: " + "! missed " + cmd);
 	    }
 	};
 
@@ -584,7 +584,7 @@ public class AnimEditor extends JFrame {
 	    a_ctxt.anim_canvas.loadActor(ix, ua[1]);
 	    a_ctxt.ae.setDirty(true);
 	} else {
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "ERROR file: " + url_s);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "ERROR file: " + url_s);
 	}
     }
 
@@ -595,7 +595,7 @@ public class AnimEditor extends JFrame {
 	    xImage.invalidateCache();
 	    a_ctxt.anim_canvas.loadActor(cab_ixx, ua[1]);
 	} else {
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "ERROR file: " + url_s);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "ERROR file: " + url_s);
 	}
 	a_ctxt.ae.setDirty(true);
     }
@@ -613,7 +613,7 @@ public class AnimEditor extends JFrame {
 		wings_panel.removeAllWings();
 	    }
 	} else {
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "ERROR file: " + url_s);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "ERROR file: " + url_s);
 	}
 	a_ctxt.ae.setDirty(true);
     }

@@ -244,7 +244,7 @@ public class TestProperty extends Property_B {
 //  	    cbg = (JComboBox)guimap.get("type");
 //  	    if ( cb == cbg ) {
 //  		String s = (String)cb.getSelectedItem();
-//  		OmegaContext.sout_log.getLogger().info("ERR: " + "CB type " + cb);
+//  		OmegaContext.sout_log.getLogger().info(":--: " + "CB type " + cb);
 //  		if ( s.equals("action") )
 //  		    setLabel("Llid", "Path id");
 //  		if ( s.equals("actor") )

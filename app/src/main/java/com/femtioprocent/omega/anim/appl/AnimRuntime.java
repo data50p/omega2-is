@@ -104,17 +104,17 @@ public class AnimRuntime {
                 try {
                     String banid = s1.substring(0, ix); // if [0] == '@' -> target id
                     String varix = s1.substring(ix + 1);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "GOT  REF:: " + banid + ':' + varix);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "GOT  REF:: " + banid + ':' + varix);
                     int varixi = Integer.parseInt(varix);
                     if (banid.charAt(0) == '@') {
                         String target_id = banid.substring(1);
                         String sv = (String) OmegaContext.variables.get(target_id + ':' + varix);
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "GOT TARGET REF:: " + target_id + ':' + varix + " = " + sv);
+                        OmegaContext.sout_log.getLogger().info(":--: " + "GOT TARGET REF:: " + target_id + ':' + varix + " = " + sv);
                         sa[i] = sv;
                     } else {
                         // get variable from the actor (actorlist in animator)
                         Actor ac2 = anim_canvas.getAnimatedActor(banid);
-                        //log		    OmegaContext.sout_log.getLogger().info("ERR: " + "got ac2 " + banid + ' ' + ac2);
+                        //log		    OmegaContext.sout_log.getLogger().info(":--: " + "got ac2 " + banid + ' ' + ac2);
                         GImAE gimae2 = ac2.gimae;
                         sa[i] = gimae2.getVariable(varixi);
                     }
@@ -140,7 +140,7 @@ public class AnimRuntime {
                     String cmd = te.getCmd();
 
                     Actor ac = anim_canvas.getAnimatedActor(tm.tl.nid);
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "}}}}} action " + cmd + ' ' + tm.tl.nid + ' ' + ac);
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "}}}}} action " + cmd + ' ' + tm.tl.nid + ' ' + ac);
 
                     if (ac == null)
                         return;
@@ -148,10 +148,10 @@ public class AnimRuntime {
                     GImAE gimae = ac.gimae;
                     if (cmd.equals("ImageAttrib")) {
                         String anam = te.getArgString();
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + ">>>>> anam " + anam);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + ">>>>> anam " + anam);
                         if (hasVar(anam)) {
                             String scat = composeVar(anam);
-//log			    OmegaContext.sout_log.getLogger().info("ERR: " + "var attrib " + scat);
+//log			    OmegaContext.sout_log.getLogger().info(":--: " + "var attrib " + scat);
                             if (dry)
                                 gimae.setAttribName(scat);
                             else
@@ -205,7 +205,7 @@ public class AnimRuntime {
                         String arg_alt = gimae.getLessonIdAlt().replace(':', '_');
 
                         if (dry) {
-                            OmegaContext.sout_log.getLogger().info("ERR: " + "PLAY SOUND " + arg + ' ' + arg_alt);
+                            OmegaContext.sout_log.getLogger().info(":--: " + "PLAY SOUND " + arg + ' ' + arg_alt);
                         } else {
                             APlayer ap = APlayer.createAPlayer(arg, arg_alt, "TL_" + tm.tl.nid);
                             if (!ap.isLoaded()) {
@@ -285,7 +285,7 @@ public class AnimRuntime {
     }
 
     public boolean bindActor(String actor_lid, String timeline_lid) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "BINDING " + actor_lid + " -> " + timeline_lid);
+        OmegaContext.sout_log.getLogger().info(":--: " + "BINDING " + actor_lid + " -> " + timeline_lid);
         if (!anim_canvas.bindActor(actor_lid, timeline_lid)) {
             JOptionPane.showMessageDialog(a_ctxt.anim_canvas,
                     T.t("Can't bind actor with timeline; '") +
@@ -298,7 +298,7 @@ public class AnimRuntime {
     }
 
     public void bindAllNoActor() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "BINDING empty tl");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "BINDING empty tl");
         anim_canvas.bindAllNoActor();
     }
 
@@ -337,7 +337,7 @@ public class AnimRuntime {
             anim_canvas.repaint();
             if (a_ctxt.tl_player.play(after))
                 ;
-            OmegaContext.sout_log.getLogger().info("ERR: " + "playAnimation done zq");
+            OmegaContext.sout_log.getLogger().info(":--: " + "playAnimation done zq");
             clean();
         } catch (NullPointerException ex) {
             OmegaContext.sout_log.getLogger().info("ERR: " + "AnimRintime:234: Nullpointerexception " + ex);
@@ -375,7 +375,7 @@ public class AnimRuntime {
 //  	if ( ua != null ) {
 //  	    anim_canvas.loadActor(ix, ua[1]);
 //  	} else {
-//  	    OmegaContext.sout_log.getLogger().info("ERR: " + "ERROR file: " + url_s);
+//  	    OmegaContext.sout_log.getLogger().info(":--: " + "ERROR file: " + url_s);
 //  	}
 //      }
 
@@ -389,7 +389,7 @@ public class AnimRuntime {
                 }
             }
         } else {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "ERROR file: " + url_s);
+            OmegaContext.sout_log.getLogger().info(":--: " + "ERROR file: " + url_s);
         }
     }
 
@@ -470,14 +470,14 @@ public class AnimRuntime {
             String[] lid_timelines = getLessonId_TimeLines();
             String[] lid_actors = getLessonId_Actors();
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "anim: TL   " + SundryUtils.arrToString(lid_timelines));
-            OmegaContext.sout_log.getLogger().info("ERR: " + "anim: Act  " + SundryUtils.arrToString(lid_actors));
+            OmegaContext.sout_log.getLogger().info(":--: " + "anim: TL   " + SundryUtils.arrToString(lid_timelines));
+            OmegaContext.sout_log.getLogger().info(":--: " + "anim: Act  " + SundryUtils.arrToString(lid_actors));
 
             String[] aaid = actA;
-            OmegaContext.sout_log.getLogger().info("ERR: " + "less: act  " + SundryUtils.arrToString(aaid) + ' ' + aaid.length);
+            OmegaContext.sout_log.getLogger().info(":--: " + "less: act  " + SundryUtils.arrToString(aaid) + ' ' + aaid.length);
 
             String[] v_pa = pathA;
-            OmegaContext.sout_log.getLogger().info("ERR: " + "less: path " + SundryUtils.arrToString(v_pa) + ' ' + v_pa.length);
+            OmegaContext.sout_log.getLogger().info(":--: " + "less: path " + SundryUtils.arrToString(v_pa) + ' ' + v_pa.length);
 
             for (int i = 0; i < v_pa.length; i++)
                 try {
@@ -492,7 +492,7 @@ public class AnimRuntime {
                     System.exit(1);
                 }
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "nVt " + SundryUtils.arrToString(v_pa));
+            OmegaContext.sout_log.getLogger().info(":--: " + "nVt " + SundryUtils.arrToString(v_pa));
 
             fa_ctxt.anim_canvas.bindAllStatistActor();
 
@@ -535,7 +535,7 @@ public class AnimRuntime {
                 final long drct0 = SundryUtils.ct();
                 dry_playAnimation(new Runnable() {
                     public void run() {
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "Dry Running done " + (SundryUtils.ct() - drct0));
+                        OmegaContext.sout_log.getLogger().info(":--: " + "Dry Running done " + (SundryUtils.ct() - drct0));
                     }
                 });
 
@@ -549,11 +549,11 @@ public class AnimRuntime {
                 getAC().HIDDEN = false;
                 playAnimation(new Runnable() {
                     public void run() {
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "Running done " + (SundryUtils.ct() - rct0));
+                        OmegaContext.sout_log.getLogger().info(":--: " + "Running done " + (SundryUtils.ct() - rct0));
                         //fa_ctxt.anim_canvas.hideActors(); // LAST
                         String end_code_s = fa_ctxt.anim_canvas.getEndCode();
                         end_code[0] = end_code_s;
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "Endcode " + end_code_s);
+                        OmegaContext.sout_log.getLogger().info(":--: " + "Endcode " + end_code_s);
                     }
                 });
 
@@ -563,23 +563,23 @@ public class AnimRuntime {
                 clean();
 
             } else {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "*** Running 1 fail&done. ***");
+//		OmegaContext.sout_log.getLogger().info(":--: " + "*** Running 1 fail&done. ***");
                 fa_ctxt.anim_canvas.hideActors();
             }
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "--------ok-------");
+            OmegaContext.sout_log.getLogger().info(":--: " + "--------ok-------");
         }
     }
 
     synchronized public void clean() {
 
-        OmegaContext.sout_log.getLogger().info("ERR: " + "AnimRuntime Close");
+        OmegaContext.sout_log.getLogger().info(":--: " + "AnimRuntime Close");
 
 // 	int i = 0;
 // 	Iterator it = ap_li.iterator();
 // 	while(it.hasNext()) {
 // 	    APlayer ap = (APlayer)it.next();
-// 	    // OmegaContext.sout_log.getLogger().info("ERR: " + "Close " + i++ + ' ' + ap.nname);
+// 	    // OmegaContext.sout_log.getLogger().info(":--: " + "Close " + i++ + ' ' + ap.nname);
 // 	    ap.close();
 // 	}
 // 	ap_li = new ArrayList();

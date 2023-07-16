@@ -32,7 +32,7 @@ abstract public class Login {
     }
 
     public void setName(String name) {
-        Log.getLogger().info("ERR: " + "setName " + name + mode);
+        Log.getLogger().info(":--: " + "setName " + name + mode);
         switch (mode) {
             case USER:
                 user.setName(name);

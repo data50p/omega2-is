@@ -120,7 +120,7 @@ public class ItemEntry {
                 itm.setText_Krull(src_itm.getDummyText());
                 itm.sound = src_itm.getDummySound();
                 itm.sign = src_itm.getDummySign();
-                if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "this is now dummy " + itm);
+                if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "this is now dummy " + itm);
                 return;
             }
         }
@@ -130,7 +130,7 @@ public class ItemEntry {
             Item itm = (Item) free.get(fix);
             itm.allocateDummySpace(src_itm);
             if (Tr)
-                OmegaContext.sout_log.getLogger().info("ERR: " + "this is now alloc dummy " + fix + ' ' + free.size() + ' ' + itm);
+                OmegaContext.sout_log.getLogger().info(":--: " + "this is now alloc dummy " + fix + ' ' + free.size() + ' ' + itm);
         }
     }
 
@@ -168,9 +168,9 @@ public class ItemEntry {
     }
 
     public void resetItems() {
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "RESET old items " + items);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "RESET old items " + items);
         items = all_items;
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "RESET new items " + items);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "RESET new items " + items);
     }
 
     public Item getItemAt(int ix) {
@@ -235,7 +235,7 @@ public class ItemEntry {
     }
 
     public int sowDummy(String current_correct_sentence) {
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "sowD " + current_correct_sentence);
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "sowD " + current_correct_sentence);
 
         resetItems();
         if (current_correct_sentence == null)
@@ -256,15 +256,15 @@ public class ItemEntry {
                 for (int jj = 0; jj < extras.length; jj++) {
                     String extra = has_krull ? "{" + extras[jj] + '}' : "";
                     String s = itm.getText() + extra; // current item + {tid}
-                    if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "try locate " + s);
+                    if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "try locate " + s);
                     if (current_correct_sentence.toLowerCase().indexOf(s.toLowerCase()) == -1) {
                         if (!itm.isDummySpaceAllocated()) {
                             if (free_1 != null)
                                 free_1.add(itm);
-                            if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "free_1 added " + itm);
+                            if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "free_1 added " + itm);
                         }
                     } else {
-                        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "free_1->null");
+                        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "free_1->null");
                         free_1 = null;
                     }
                 }
@@ -273,7 +273,7 @@ public class ItemEntry {
                 }
             }
         }
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "free is " + free);
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "free is " + free);
 
         Set used = new HashSet();
         it = items.iterator();
@@ -284,11 +284,11 @@ public class ItemEntry {
                 for (int jj = 0; jj < extras.length; jj++) {
                     String extra = has_krull ? "{" + extras[jj] + '}' : "";
                     String s = itm.getText() + extra; // current item + {tid}
-                    if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "try locate' " + s);
+                    if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "try locate' " + s);
                     if (current_correct_sentence.toLowerCase().indexOf(s.toLowerCase()) == -1) {
                         // this word not in correct sent
                     } else {  // we have this item as one of the correct
-                        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "use?y " + s + ' ' + used);
+                        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "use?y " + s + ' ' + used);
                         if (!used.contains(itm.getText())) {
                             setDummyExtra(itm, jj, free);
                         }
@@ -313,7 +313,7 @@ public class ItemEntry {
         }
         if (items.size() != n_items.size())
             items = n_items;
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "stale " + items);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "stale " + items);
     }
 
     public void mixList() {
@@ -322,7 +322,7 @@ public class ItemEntry {
         items = new ArrayList(Arrays.asList(iA));
         reOrdItem();
         OmegaContext.def_log.getLogger().info("mixList " + items);
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "mixList " + items);
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "mixList " + items);
     }
 
     void removeDummy() {

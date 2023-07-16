@@ -97,7 +97,7 @@ public class OmAssProp_TableModel extends AbstractTableModel {
     }
 
     public void setValueAt(Object val, int row, int col) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "SET VAL " + val);
+        OmegaContext.sout_log.getLogger().info(":--: " + "SET VAL " + val);
 //	if (col == SentenceProperty.COL_ACT) {
 //	    String sent = sa[row].replaceAll("\\{[a-z0-9]*?\\}", "");
 //	    sprop.l_ctxt.getLesson().action_specific.setAction(sent, (String) val);

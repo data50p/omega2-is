@@ -347,7 +347,7 @@ public class Path {
                     cnt++;
                     break;
                 default:
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "pi ?");
+                    OmegaContext.sout_log.getLogger().info(":--: " + "pi ?");
             }
             pi.next();
         }
@@ -377,7 +377,7 @@ public class Path {
                     y = yy;
                     break;
                 default:
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "pi ?");
+                    OmegaContext.sout_log.getLogger().info(":--: " + "pi ?");
             }
             cnt2++;
             pi.next();
@@ -435,7 +435,7 @@ public class Path {
         int i = ix;
 // 	for(int i = 0; i < lenA.length; i++) {
 // 	    if ( lenA[i] >= l ) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "bin " + ix + ' ' + i);
+//		OmegaContext.sout_log.getLogger().info(":--: " + "bin " + ix + ' ' + i);
 
         double prev = 0;
         if (i != 0)
@@ -711,11 +711,11 @@ public class Path {
         pa2.extendSegment(new Point2D.Double(350, 300));
         pa2.draw((Graphics2D) ca.getGraphics());
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(0.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(10.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(100.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(100.2));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(pa.getLength()));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(0.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(10.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.2));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(pa.getLength()));
     }
 
     public double[] getLenA() {

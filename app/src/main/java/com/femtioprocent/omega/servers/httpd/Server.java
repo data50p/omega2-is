@@ -29,12 +29,12 @@ public class Server extends Thread {
     }
 
     public void run() {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "httpd: Server started");
+        OmegaContext.sout_log.getLogger().info(":--: " + "httpd: Server started");
         try {
             sso = new ServerSocket(port);
             for (; ; ) {
                 Socket so = sso.accept();
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "httpd: Connection accepted");
+//		OmegaContext.sout_log.getLogger().info(":--: " + "httpd: Connection accepted");
                 connection_cnt++;
                 ServerConnection con = new ServerConnection(so, this);
                 con.start();

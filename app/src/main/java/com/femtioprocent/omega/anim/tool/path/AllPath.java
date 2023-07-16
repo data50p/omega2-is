@@ -200,11 +200,11 @@ public class AllPath {
         pa2.extendSegment(new Point2D.Double(350, 300));
         pa2.draw((Graphics2D) ca.getGraphics());
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(0.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(10.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(100.0));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(100.2));
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + pa.getPointAt(pa.getLength()));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(0.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(10.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.2));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(pa.getLength()));
 
         final P_Canvas fca = ca;
 
@@ -220,7 +220,7 @@ public class AllPath {
             }
 
             public void mousePressed(MouseEvent e) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "m p " + e);
+//		OmegaContext.sout_log.getLogger().info(":--: " + "m p " + e);
                 if (e.getX() < 20 && e.getY() < 20) {
                     if (selected_prb != null)
                         selected_prb.seg.path.removeSegment();
@@ -256,11 +256,11 @@ public class AllPath {
             }
 
             public void mouseMoved(MouseEvent e) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "m m " + e);
+//		OmegaContext.sout_log.getLogger().info(":--: " + "m m " + e);
             }
 
             public void mouseDragged(MouseEvent e) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "m d " + e);
+//		OmegaContext.sout_log.getLogger().info(":--: " + "m d " + e);
                 Point2D drag_p = new Point2D.Double(e.getX(), e.getY());
                 selected_prb.seg.moveto(selected_prb.sel, drag_p);
                 selected_prb.seg.path.rebuildGP();

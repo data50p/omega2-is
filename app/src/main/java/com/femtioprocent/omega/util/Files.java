@@ -76,7 +76,7 @@ public class Files {
             return null;
         }
         //cdu = cdu.substring(0, cdu.length() - 1);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "mkRelativeCWD\n" + url_s + '\n' + cdu);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "mkRelativeCWD\n" + url_s + '\n' + cdu);
         int len_cd = cdu.length();
 
         String[] sa = new String[2];
@@ -98,7 +98,7 @@ public class Files {
             return null;
         }
         cdu = cdu.substring(0, cdu.length());
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "mkRelativeCWD\n" + url_s + '\n' + cdu);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "mkRelativeCWD\n" + url_s + '\n' + cdu);
         int len_cd = cdu.length();
 
         String[] sa = new String[2];
@@ -135,13 +135,13 @@ WARNING   29/05 09:27:32.391     0 Files                   toURL                
 WARNING   29/05 09:27:32.391     0 Files                   toURL                      matter: new file:/C:/Users/Mats%20L/Documents/Omega-IS/default.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
 WARNING   29/05 09:27:32.391     0 Files                   toURL                      matter: old file:/C:/Users/Mats L/Documents/Omega-IS/default.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
 WARNING   29/05 09:27:32.391     0 Files                   toURL                      matter: alt file:/C:/Users/Mats L/Documents/Omega-IS/default.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
-INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD          ERR: mkRelativeCWD file:/C:/Users/Mats L/Documents/Omega-IS/default.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson -> file:/C:/Users/Mats%20L/Documents/Omega-IS/
-INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD          ERR: +++ fault.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
+INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD          :--: mkRelativeCWD file:/C:/Users/Mats L/Documents/Omega-IS/default.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson -> file:/C:/Users/Mats%20L/Documents/Omega-IS/
+INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD          :--: +++ fault.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
 
      */
     public static String toURL(File file) {
         String url_s = null;
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "got file " + file);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "got file " + file);
         try {
             URL url = file.toURI().toURL();
             String url0 = "file:" + slashify(file.getAbsolutePath(), file.isDirectory());

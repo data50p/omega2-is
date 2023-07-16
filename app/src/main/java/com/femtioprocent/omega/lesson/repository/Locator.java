@@ -56,7 +56,7 @@ public class Locator {
     static String[] scanDirLes(String dir) {
         File df = new File(dir);
         File[] fa = df.listFiles(fnf_le);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "# " + SundryUtils.a2s(fa));
+//	OmegaContext.sout_log.getLogger().info(":--: " + "# " + SundryUtils.a2s(fa));
         int N = 0;
         if (fa != null) {
             for (int i = 0; i < fa.length; i++)
@@ -78,7 +78,7 @@ public class Locator {
     static String[] scanDirSel(String dir) {
         File df = new File(dir);
         File[] fa = df.listFiles(fnf_se);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scan sel " + dir);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scan sel " + dir);
         if (fa != null) {
             String[] sa = new String[fa.length];
             for (int i = 0; i < fa.length; i++)
@@ -92,7 +92,7 @@ public class Locator {
     static String[] scanDirDir(String dir) {
         File df = new File(dir);
         File[] fa = df.listFiles(fnf_dir);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scan dirdir " + dir);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scan dirdir " + dir);
         if (fa != null) {
             String[] sa = new String[fa.length];
             for (int i = 0; i < fa.length; i++)
@@ -104,7 +104,7 @@ public class Locator {
     }
 
     static String[] scanDir(String dir) {
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "SCAN in " + dir + ' ' + StackTrace.trace());
+//	OmegaContext.sout_log.getLogger().info(":--: " + "SCAN in " + dir + ' ' + StackTrace.trace());
         File df = new File(dir);
         File[] fa = df.listFiles(fnf_dir);
         int N = 0;
@@ -128,7 +128,7 @@ public class Locator {
     static String[] scanDirExt(String dir, String ext) {
         File df = new File(dir);
         File[] fa = df.listFiles(fnf_le);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scan sel " + dir);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scan sel " + dir);
         if (fa != null) {
             String[] sa = new String[fa.length];
             for (int i = 0; i < fa.length; i++)
@@ -140,7 +140,7 @@ public class Locator {
     }
 
     static String[] scanDir(String dir, FilenameFilter fnf) {
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scan " + dir + ' ' + fnf);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scan " + dir + ' ' + fnf);
         File df = new File(dir);
         File[] fa = df.listFiles(fnf);
         if (fa != null) {
@@ -170,11 +170,11 @@ public class Locator {
         String[] sa = new String[1000];
         int ix = 0;
 
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "FILES dirs " + SundryUtils.a2s(dirs));
+//	OmegaContext.sout_log.getLogger().info(":--: " + "FILES dirs " + SundryUtils.a2s(dirs));
         if (dirs != null)
             for (int i = 0; i < dirs.length; i++) {
                 String[] files = scanDir(dirs[i], fnf_ext);
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "FILES " + SundryUtils.a2s(files));
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "FILES " + SundryUtils.a2s(files));
                 if (files != null) {
                     System.arraycopy(files, 0, sa, ix, files.length);
                     ix += files.length;

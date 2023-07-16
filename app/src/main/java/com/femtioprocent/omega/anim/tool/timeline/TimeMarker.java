@@ -64,7 +64,7 @@ public class TimeMarker implements Serializable {
         if (type == TRIGGER || type == START || type == STOP || type == BEGIN || type == END) {
             t_event = new TriggerEvent[TriggerEventFactory.getSize()];
             String[] sa = TriggerEventFactory.getAllAsStringA();
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "Trigger " + SundryUtils.arrToString(sa));
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "Trigger " + SundryUtils.arrToString(sa));
             for (int i = 0; i < sa.length; i++) {
                 t_event[i] = TriggerEventFactory.get(i);
             }

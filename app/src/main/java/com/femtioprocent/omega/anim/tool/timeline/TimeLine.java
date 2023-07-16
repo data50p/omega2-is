@@ -87,7 +87,7 @@ public class TimeLine implements Serializable {
                     tm.when - offset,
                     tm.duration);
             if (tm.t_event != null) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "t_ev " + tm.t_event.length);
+//		OmegaContext.sout_log.getLogger().info(":--: " + "t_ev " + tm.t_event.length);
                 for (int i = 0; i < tm.t_event.length; i++) {
                     TriggerEvent te = tm.t_event[i];
                     TriggerEvent nte = TriggerEventFactory.createTriggerEvent(te.getCmd());
@@ -99,7 +99,7 @@ public class TimeLine implements Serializable {
                             nte.setArg(arg);
                         nte.setOn(te.is_on);
                     }
-//		    OmegaContext.sout_log.getLogger().info("ERR: " + "new " + nte);
+//		    OmegaContext.sout_log.getLogger().info(":--: " + "new " + nte);
                     new_tm.setTriggerEvent(nte, i);
                 }
             }

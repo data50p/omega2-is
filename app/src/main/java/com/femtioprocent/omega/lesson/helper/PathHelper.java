@@ -43,7 +43,7 @@ public class PathHelper {
 		Log.getLogger().info("Fix path: " + fname);
 		Element el = Restore.restore(fname);
 		if ( el == null ) {
-		    System.out.println("status: " + (modify ? "upd" : "dry") + " error " + fname);
+		    OmegaContext.sout_log.getLogger().info("status: " + (modify ? "upd" : "dry") + " error " + fname);
 		    continue;
 		}
 		String version = el.findAttr("version");
@@ -66,7 +66,7 @@ public class PathHelper {
 			Save.save(fname, el);
 		    Log.getLogger().info("Saved: " + el);
 		}
-		System.out.println("status: " + (modify ? "upd" : "dry") + ' ' + version + ' ' + status + ' ' + fname);
+		OmegaContext.sout_log.getLogger().info("status: " + (modify ? "upd" : "dry") + ' ' + version + ' ' + status + ' ' + fname);
 	    } catch (Exception ex) {
 		Log.getLogger().info("***Exception: " + ex);
 	    }

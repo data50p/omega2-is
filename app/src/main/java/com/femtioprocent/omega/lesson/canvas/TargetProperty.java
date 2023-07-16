@@ -95,7 +95,7 @@ public class TargetProperty extends Property_B {
         while (it.hasNext()) {
             Value v = (Value) it.next();
 
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "V " + v);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "V " + v);
 
             if (v.getId().equals("pathlist")) {         // banor
                 JComboBox cb = (JComboBox) guimap.get("Slid");
@@ -113,7 +113,7 @@ public class TargetProperty extends Property_B {
                     pack();
                     continue;
                 } else
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "ss is null " + v);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "ss is null " + v);
             }
 
             Object gui = guimap.get(v.id);
@@ -169,7 +169,7 @@ public class TargetProperty extends Property_B {
             cbg = (JComboBox) guimap.get("type");
             if (cb == cbg) {
                 String s = (String) cb.getSelectedItem();
-//log  		OmegaContext.sout_log.getLogger().info("ERR: " + "CB type " + cb);
+//log  		OmegaContext.sout_log.getLogger().info(":--: " + "CB type " + cb);
 /*
                   if ( s.equals("action") )
   		    setLabel("Llid", "Path id");
@@ -178,7 +178,7 @@ public class TargetProperty extends Property_B {
   		else
   		    setLabel("Llid", "Path id");
 */
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "=0= " + cb);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "=0= " + cb);
                 fireValueChanged(new Value("type", s));
             }
 

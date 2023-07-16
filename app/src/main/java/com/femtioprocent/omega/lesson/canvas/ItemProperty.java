@@ -235,7 +235,7 @@ public class ItemProperty extends Property_B implements ActionListener {
                 JTextField tf = (JTextField) o;
                 if (doc == tf.getDocument()) {
                     String txt = tf.getText();
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "updTrigger: " + txt + ' ' + tf);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "updTrigger: " + txt + ' ' + tf);
                     fireValueChanged(new Value(key, txt));
                     if (!skip_dirty)
                         LessonEditor.setDirty();
@@ -255,9 +255,9 @@ public class ItemProperty extends Property_B implements ActionListener {
                 String url_s = Files.toURL(file);
 // 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + url_s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
                 String fn = Files.mkRelFnameAlt(url_s, "media");
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + fn);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
 
                 JTextField tf = (JTextField) guimap.get("sound");
                 tf.setText(fn);
@@ -274,9 +274,9 @@ public class ItemProperty extends Property_B implements ActionListener {
                 String url_s = Files.toURL(file);
 // 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + url_s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
                 String fn = Files.mkRelFnameAlt(url_s, "media");
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + fn);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
 
                 JTextField tf = (JTextField) guimap.get("sign");
                 tf.setText(fn);
@@ -293,9 +293,9 @@ public class ItemProperty extends Property_B implements ActionListener {
                 String url_s = Files.toURL(file);
 // 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + url_s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
                 String fn = Files.mkRelFnameAlt(url_s, "media");
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + fn);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
 
                 JTextField tf = (JTextField) guimap.get("dummysound");
                 tf.setText(fn);
@@ -312,9 +312,9 @@ public class ItemProperty extends Property_B implements ActionListener {
                 String url_s = Files.toURL(file);
 // 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + url_s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
                 String fn = Files.mkRelFnameAlt(url_s, "media");
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + fn);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
 
                 JTextField tf = (JTextField) guimap.get("dummysign");
                 tf.setText(fn);
@@ -402,7 +402,7 @@ public class ItemProperty extends Property_B implements ActionListener {
 
             Object gui = guimap.get(v.id);
             if (gui instanceof JTextField) {
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "VVV " + v);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "VVV " + v);
                 JTextField tf = (JTextField) gui;
                 tf.setText(v.getStr());
             }
@@ -432,7 +432,7 @@ public class ItemProperty extends Property_B implements ActionListener {
 //  	    }
         }
         long ct1 = SundryUtils.ct();
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "iprop " + (ct1-ct0));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "iprop " + (ct1-ct0));
         skip_dirty = false;
     }
 }

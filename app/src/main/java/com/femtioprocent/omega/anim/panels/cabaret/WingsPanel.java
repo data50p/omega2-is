@@ -267,7 +267,7 @@ public class WingsPanel extends JPanel {
                 wingA.arr[ix].nid = nid;
                 repaint();
             } else {
-                OmegaContext.sout_log.getLogger().info("ERR: " + "NO SLOT");
+                OmegaContext.sout_log.getLogger().info(":--: " + "NO SLOT");
             }
         }
         setPropTarget(ix);

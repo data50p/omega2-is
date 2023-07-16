@@ -255,7 +255,7 @@ public class Target {
                 ty = "passive";
             String tid = ti_el.findAttr("Tid");
             String lid = ti_el.findAttr("Lid");
-            //log		OmegaContext.sout_log.getLogger().info("ERR: " + "tg_load add " + ty + ' ' + tid + ' ' + lid);
+            //log		OmegaContext.sout_log.getLogger().info(":--: " + "tg_load add " + ty + ' ' + tid + ' ' + lid);
             t_items.add(new T_Item(i, ty, tid, lid));
         }
 
@@ -264,13 +264,13 @@ public class Target {
 
         story_next = null;
         Element story_el = el.findElement("story", 0);
-        //log	    OmegaContext.sout_log.getLogger().info("ERR: " + "FSt " + story_el);
+        //log	    OmegaContext.sout_log.getLogger().info(":--: " + "FSt " + story_el);
         if (story_el != null) {
             Element ell = story_el.findElement("link", 0);
-            //log		OmegaContext.sout_log.getLogger().info("ERR: " + "FSt story/link " + ell);
+            //log		OmegaContext.sout_log.getLogger().info(":--: " + "FSt story/link " + ell);
             String next = ell.findAttr("next");
             if ( next != null ) {
-                OmegaContext.sout_log.getLogger().info("ERR: " + "FSt story/link[next] " + next);
+                OmegaContext.sout_log.getLogger().info(":--: " + "FSt story/link[next] " + next);
                 story_next = next;
             }
         }
@@ -417,7 +417,7 @@ public class Target {
         T_Item t_itm = getT_Item(tg_ix);
         String tg_tid = t_itm.tid;
         ItemEntry[] it_ent = findItemEntryMatchTidAll(tg_tid);
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "match " + tg_tid + " " + SundryUtils.a2s(it_ent));
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "match " + tg_tid + " " + SundryUtils.a2s(it_ent));
         int len = it_ent.length;
         int[] ia = new int[len];
         for (int i = 0; i < len; i++)
@@ -577,7 +577,7 @@ public class Target {
 
         if (hasVar(s))
             s = apply(4, ix, s);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + " " + s );
+//	OmegaContext.sout_log.getLogger().info(":--: " + " " + s );
         return s;
     }
 
@@ -672,7 +672,7 @@ public class Target {
             T_Item titm = (T_Item) it.next();
             titm.clearText();
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "target released");
+        OmegaContext.sout_log.getLogger().info(":--: " + "target released");
     }
 
     public Item pickNextItem() {
@@ -681,7 +681,7 @@ public class Target {
 
     public Item pickItemAtEx(int ix, int iy, int tg_ix) { // pick at ix,iy -> target[tg_ix]
         Item ret = pickItemAt(ix, iy, tg_ix, false, true);
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "pick  " + ret);
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "pick  " + ret);
         return ret;
     }
 
@@ -710,10 +710,10 @@ public class Target {
             }
             T_Item t_itm = (T_Item) t_items.get(tg_ix);
             String tg_tid = t_itm.tid;
-            //   OmegaContext.sout_log.getLogger().info("ERR: " + "pick it tg_tid " + tg_tid + ' ' + ix + ' ' + iy);
+            //   OmegaContext.sout_log.getLogger().info(":--: " + "pick it tg_tid " + tg_tid + ' ' + ix + ' ' + iy);
             //ItemEntry it_ent = items.getItemEntryTid(tg_tid);
             ItemEntry it_ent_ix = items.getItemEntryAt(ix);
-            //	    OmegaContext.sout_log.getLogger().info("ERR: " + "tid.. " + it_ent_ix.tid);
+            //	    OmegaContext.sout_log.getLogger().info(":--: " + "tid.. " + it_ent_ix.tid);
 
             if (it_ent_ix == null) {
                 ret = null;
@@ -733,8 +733,8 @@ public class Target {
             ex.printStackTrace();
         } finally {
 //	    if ( ret == null )
-// 		OmegaContext.sout_log.getLogger().info("ERR: " + "pickItem -> NULL " + ix + ' ' + iy);
-// 	    OmegaContext.sout_log.getLogger().info("ERR: " + "pickItem -> " + ix + ' ' + iy + ' ' + ret.getText());
+// 		OmegaContext.sout_log.getLogger().info(":--: " + "pickItem -> NULL " + ix + ' ' + iy);
+// 	    OmegaContext.sout_log.getLogger().info(":--: " + "pickItem -> " + ix + ' ' + iy + ' ' + ret.getText());
         }
         return ret;
     }
@@ -842,13 +842,13 @@ public class Target {
 
     public String getAllText() {
         String s = getTextUpto(t_items.size(), 1);
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "getAllText " + s + '.');
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "getAllText " + s + '.');
         return s;
     }
 
     public String getAllTTS() {
         String s = getTTSUpto(t_items.size(), 1);
-        if (Tr) OmegaContext.sout_log.getLogger().info("ERR: " + "getAllTTS " + s + '.');
+        if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "getAllTTS " + s + '.');
         return s;
     }
 
@@ -1029,7 +1029,7 @@ public class Target {
         }
         String[] sa = (String[]) li.toArray(new String[0]);
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "[] get sounds " + SundryUtils.a2s(sa));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "[] get sounds " + SundryUtils.a2s(sa));
         return sa;
     }
 
@@ -1048,7 +1048,7 @@ public class Target {
         }
         String[] sa = (String[]) li.toArray(new String[0]);
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "[] get sounds " + SundryUtils.a2s(sa));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "[] get sounds " + SundryUtils.a2s(sa));
         return sa;
     }
 
@@ -1151,7 +1151,7 @@ public class Target {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 String sx = titm.getTextVarsOrNull(); // text:v1:v2:v3:sound : is paragraph_
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "tvvv = " + sx);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "tvvv = " + sx);
                 String s = titm.getLIDOrNull();
                 if (s != null && s.length() > 0) {
                     String[] sa = SundryUtils.split(sx, ",");

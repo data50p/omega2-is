@@ -1,5 +1,7 @@
 package com.femtioprocent.omega.media.video;
 
+import com.femtioprocent.omega.OmegaContext;
+
 import java.io.File;
 
 /**
@@ -29,7 +31,7 @@ public class VideoUtil {
                 .replaceAll("\\.[mM][oO][vV]$", ".mp4")
                 .replaceAll("\\.[mM][pP][eE][gG]$", ".mp4")
                 .replaceAll("\\.[aA][vV][iI]$", ".mp4");
-        System.err.println("alt file name: " + fname + " -> " + altFname);
+        OmegaContext.serr_log.getLogger().info("alt file name: " + fname + " -> " + altFname);
         if (fileExist(altFname))
             return altFname;
 

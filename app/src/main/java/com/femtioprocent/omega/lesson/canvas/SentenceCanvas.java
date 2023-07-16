@@ -66,7 +66,7 @@ public class SentenceCanvas extends BaseCanvas {
             }
             return true;
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "pupil own " + kc);
+        OmegaContext.sout_log.getLogger().info(":--: " + "pupil own " + kc);
         if (OmegaConfig.isKeyNext(kc))
             if (is_shift)
                 setMyPrevRed();
@@ -189,7 +189,7 @@ public class SentenceCanvas extends BaseCanvas {
                 String filename = (String) l.getSelectedValue();
                 if (e.getValueIsAdjusting())
                     selected_index = story_list.getSelectedIndex();
-                OmegaContext.sout_log.getLogger().info("ERR: " + "Selected " + filename + ' ' + e);
+                OmegaContext.sout_log.getLogger().info(":--: " + "Selected " + filename + ' ' + e);
             }
         }
     };
@@ -219,7 +219,7 @@ public class SentenceCanvas extends BaseCanvas {
                     if (0 == selected_index)
                         story_list_sp.setVisible(false);
                     selected_index = 0;
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "Clicked on Item " + index + ' ' + ix);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "Clicked on Item " + index + ' ' + ix);
                 }
             };
             story_list.addMouseListener(mouseListener);
@@ -470,7 +470,7 @@ public class SentenceCanvas extends BaseCanvas {
 
     void drawList(Graphics2D g2) {
         if (story_list_sp.isVisible()) {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "story is visible");
+            OmegaContext.sout_log.getLogger().info(":--: " + "story is visible");
             story_list_x = gX(0.5 - 0.25);
             story_list_y = gY(0.07);
             story_list_w = gX(0.5);

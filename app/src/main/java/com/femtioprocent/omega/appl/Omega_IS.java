@@ -1,5 +1,6 @@
 package com.femtioprocent.omega.appl;
 
+import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.OmegaVersion;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -89,7 +90,7 @@ public class Omega_IS extends JDialog {
     public static void main(String[] argv) {
 
         try {
-            System.err.println("CWD: " + (new File(".")).getCanonicalPath());
+            OmegaContext.serr_log.getLogger().info("CWD: " + (new File(".")).getCanonicalPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

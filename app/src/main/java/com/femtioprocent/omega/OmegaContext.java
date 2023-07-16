@@ -29,6 +29,7 @@ public class OmegaContext {
 
     public static Log def_log = new Log();
     public static Log sout_log = def_log;
+    public static Log serr_log = def_log;
     public static Log exc_log = def_log;
     public static Log story_log = def_log;
     public static Log lesson_log = def_log;
@@ -168,13 +169,13 @@ public class OmegaContext {
 
         public void push(String s) {
             stack.push(s);
-            //	    OmegaContext.sout_log.getLogger().info("ERR: " + "H push " + stack);
+            //	    OmegaContext.sout_log.getLogger().info(":--: " + "H push " + stack);
         }
 
         public String get() {
             if (stack.empty())
                 return null;
-            //	    OmegaContext.sout_log.getLogger().info("ERR: " + "H get " + (String)stack.peek());
+            //	    OmegaContext.sout_log.getLogger().info(":--: " + "H get " + (String)stack.peek());
             return stack.peek();
         }
 
@@ -184,7 +185,7 @@ public class OmegaContext {
             if (s.length() == 0 || s.equals(get()))
                 if (!stack.empty())
                     stack.pop();
-            //	    OmegaContext.sout_log.getLogger().info("ERR: " + "H pop " + stack);
+            //	    OmegaContext.sout_log.getLogger().info(":--: " + "H pop " + stack);
         }
     }
 

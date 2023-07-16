@@ -17,13 +17,13 @@ public class Server implements Runnable {
     }
 
     public void run() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "Server started");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "Server started");
         for (; ; ) {
             try {
                 ServerSocket sso = new ServerSocket(port);
                 for (; ; ) {
                     Socket so = sso.accept();
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "lessond: Connection accepted");
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "lessond: Connection accepted");
                     Connection con = new Connection(so, this);
                     con.start();
                 }

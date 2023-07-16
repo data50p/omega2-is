@@ -92,7 +92,7 @@ public class Anim_Repository {
 	StringBuffer sbl = new StringBuffer();
 	el.render(sbu, sbl);
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "EEEEEE " + sbu + ' ' + sbl);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "EEEEEE " + sbu + ' ' + sbl);
 
 	PrintWriter ppw = SundryUtils.createPrintWriterUTF8("SAVED-omega_anim.dump");
 	ppw.println("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n" +
@@ -131,7 +131,7 @@ public class Anim_Repository {
 	    if (err == false) {
 		File file = new File(OmegaContext.omegaAssets(fn));
 		File filet = new File(OmegaContext.omegaAssets(fn + ".tmp"));
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "SAVED " + file + ' ' + filet);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "SAVED " + file + ' ' + filet);
 		if (file.exists()) {
 		    File filep = new File(OmegaContext.omegaAssets(fn + ".prev"));
 		    if (filep.exists()) {
@@ -157,7 +157,7 @@ public class Anim_Repository {
 
     public Element open(AnimContext a_ctxt, String fn) {
 	try {
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "** PARSING " + fn);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "** PARSING " + fn);
 	    Element el = SAX_node.parse(fn, false);
 //  	if ( el == null ) {
 //  	    JOptionPane.showMessageDialog(null, // a_ctxt.
@@ -200,7 +200,7 @@ public class Anim_Repository {
 	int rv = choose_if.showDialog(c, T.t("Select"));
 	if (rv == JFileChooser.APPROVE_OPTION) {
 	    File file = choose_if.getSelectedFile();
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "got file " + file);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "got file " + file);
 	    url_s = Files.toURL(file);
 	    return url_s;
 	}

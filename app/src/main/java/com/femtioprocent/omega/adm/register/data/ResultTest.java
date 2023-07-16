@@ -136,12 +136,12 @@ public class ResultTest extends Result {
     }
 
     public void dump() {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "sl-" + session_length);
-        OmegaContext.sout_log.getLogger().info("ERR: " + "ty-" + type);
+        OmegaContext.sout_log.getLogger().info(":--: " + "sl-" + session_length);
+        OmegaContext.sout_log.getLogger().info(":--: " + "ty-" + type);
         Iterator it = entries.iterator();
         while (it.hasNext()) {
             Entry e = (Entry) it.next();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "==  " + e);
+            OmegaContext.sout_log.getLogger().info(":--: " + "==  " + e);
         }
     }
 }

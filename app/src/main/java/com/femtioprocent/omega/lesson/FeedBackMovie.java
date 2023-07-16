@@ -81,7 +81,7 @@ public class FeedBackMovie extends FeedBack {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Current dir:" + currentPath);
+        OmegaContext.sout_log.getLogger().info("Current dir:" + currentPath);
 
         File f = new File(OmegaContext.omegaAssets(rsrs));
         OmegaContext.lesson_log.getLogger().info(": " + "+++++++ random  " + f + ' ' + f.exists() + ' ' + f.isDirectory());

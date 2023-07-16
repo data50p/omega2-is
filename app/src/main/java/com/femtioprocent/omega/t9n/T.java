@@ -31,7 +31,7 @@ public class T {
             lang_country = la;
         } else {
             loc = Locale.getDefault();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "locale " + loc);
+            OmegaContext.sout_log.getLogger().info(":--: " + "locale " + loc);
             lang = loc.getLanguage();
             lang_country = loc.getLanguage() + '_' + loc.getCountry();
             if ("no".equals(lang)) {
@@ -58,13 +58,13 @@ public class T {
         FileInputStream in = null;
         try {
             in = new FileInputStream(fn);
-            OmegaContext.sout_log.getLogger().info("ERR: " + "T file is " + fn);
+            OmegaContext.sout_log.getLogger().info(":--: " + "T file is " + fn);
             who[0] = 0;
         } catch (FileNotFoundException ex) {
             try {
                 if (fn2 != null) {
                     in = new FileInputStream(fn2);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "T file is " + fn2);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "T file is " + fn2);
                     who[0] = 1;
                 }
             } catch (FileNotFoundException ex2) {
@@ -86,7 +86,7 @@ public class T {
 
             String enc = br.readLine();
             if ("utf-8".equals(enc))
-                OmegaContext.sout_log.getLogger().info("ERR: " + "T_ enc is " + fn + ' ' + fn2 + ' ' + enc);
+                OmegaContext.sout_log.getLogger().info(":--: " + "T_ enc is " + fn + ' ' + fn2 + ' ' + enc);
             else
                 enc = null;
 
@@ -104,16 +104,16 @@ public class T {
                 for (; ; ) {
                     String s = br.readLine();
                     if (s == null) {
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "rL: null");
+                        OmegaContext.sout_log.getLogger().info(":--: " + "rL: null");
                         break;
                     }
                     String sa[] = s.split("[\\]\\[]+");
                     if (cnt < 10)
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "got T_ " + sa.length + ' ' + SundryUtils.a2s(sa));
+                        OmegaContext.sout_log.getLogger().info(":--: " + "got T_ " + sa.length + ' ' + SundryUtils.a2s(sa));
                     if (sa.length == 3)
                         hm_.put(sa[1], sa[2]);
                     else
-                        OmegaContext.sout_log.getLogger().info("ERR: " + "t9n.T.t strange " + SundryUtils.a2s(sa));
+                        OmegaContext.sout_log.getLogger().info(":--: " + "t9n.T.t strange " + SundryUtils.a2s(sa));
                     cnt++;
                 }
                 br.close();
@@ -140,7 +140,7 @@ public class T {
             if (!(result instanceof HashMap)) {
                 return -1;
             }
-            OmegaContext.sout_log.getLogger().info("ERR: " + "T_xml " + ((HashMap) result).size());
+            OmegaContext.sout_log.getLogger().info(":--: " + "T_xml " + ((HashMap) result).size());
 
             hm_.putAll((HashMap) result);
             return who[0];
@@ -218,10 +218,10 @@ public class T {
 // 		pw.println("[" + s + "][" + s + "]");
 // 		pw.flush();
 // 		pw.close();
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "T.t " + s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "T.t " + s);
             }
         } else {
-            //	    OmegaContext.sout_log.getLogger().info("ERR: " + "Tt " + s + ' ' + ss);
+            //	    OmegaContext.sout_log.getLogger().info(":--: " + "Tt " + s + ' ' + ss);
         }
         return ss;
     }

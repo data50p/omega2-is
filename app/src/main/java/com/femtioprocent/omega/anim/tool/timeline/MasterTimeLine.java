@@ -167,11 +167,11 @@ public class MasterTimeLine implements PlayCtrlListener {
 
     public void playBegin(boolean dry) {
         this.dry = dry;
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "PLAY BEGIN");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "PLAY BEGIN");
     }
 
     public void playEnd(int when) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "PLAY END");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "PLAY END");
         dry = false;
     }
 

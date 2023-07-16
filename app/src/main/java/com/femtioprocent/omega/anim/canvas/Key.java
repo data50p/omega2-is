@@ -14,7 +14,7 @@ public class Key extends KeyAdapter {
     }
 
     public void keyTyped(KeyEvent k) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "key " + k);
+        OmegaContext.sout_log.getLogger().info(":--: " + "key " + k);
     }
 }
 

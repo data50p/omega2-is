@@ -93,8 +93,8 @@ public class APlayer {
                 base = name.substring(ix + 1);
             }
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "audio: dir " + dir);
-            OmegaContext.sout_log.getLogger().info("ERR: " + "audio: base " + base);
+            OmegaContext.sout_log.getLogger().info(":--: " + "audio: dir " + dir);
+            OmegaContext.sout_log.getLogger().info(":--: " + "audio: base " + base);
 
 
             String[] list = (String[]) dir_cache.get(dir);
@@ -104,7 +104,7 @@ public class APlayer {
                     list = ListFilesURL.getMediaList(dir);
                     long ct1a = System.nanoTime();
                     dir_cache.put(dir, list);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "===== " + dir + ' ' + (ct1a - ct0a));
+                    OmegaContext.sout_log.getLogger().info(":--: " + "===== " + dir + ' ' + (ct1a - ct0a));
                 } catch (Exception ex) {
                     OmegaContext.sout_log.getLogger().info("ERR: " + "Can't get file list " + lang + ' ' + name + ' ' + attr + ' ' + id);
                 }
@@ -143,7 +143,7 @@ public class APlayer {
                     ffname = alname;
                     lang_id = ":" + lang;
                 }
-                OmegaContext.sout_log.getLogger().info("ERR: " + "NAME IS " + ffname);
+                OmegaContext.sout_log.getLogger().info(":--: " + "NAME IS " + ffname);
             }
 
 
@@ -154,10 +154,10 @@ public class APlayer {
                 ffname = maybeeTheMp3(ffname);
                 if (ffname.endsWith(".mp3") || alwaysFxPlayer) {
                     apl.fxplayer = new FxPlayer(ffname);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "FxPlayer created: " + nname + ' ' + apl.fxplayer);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "FxPlayer created: " + nname + ' ' + apl.fxplayer);
                 } else {
                     apl.jplayer = new JPlayer(ffname);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "JPlayer created: " + nname + ' ' + apl.jplayer);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "JPlayer created: " + nname + ' ' + apl.jplayer);
                 }
             } catch (Exception ex) {
                 OmegaContext.sout_log.getLogger().info("ERR: " + "" + ex);

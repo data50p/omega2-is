@@ -95,9 +95,9 @@ public class LessonMainCanvas extends BaseCanvas {
     }
 
     public void addLessonBase(String bs, int ord) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "add " + this.bs + ' ' + bs);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "add " + this.bs + ' ' + bs);
         bs_hm.put("" + this.bs, ord);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "<!add> LBhm: " + bs_hm);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "<!add> LBhm: " + bs_hm);
         if (this.bs != null)
             this.bs = this.bs + '/' + bs;
         else
@@ -109,7 +109,7 @@ public class LessonMainCanvas extends BaseCanvas {
 
     public void tellLessonBase(String bs, int ord) {
         bs_hm.put("" + this.bs, ord);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "<!tell> LBhm: " + bs_hm);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "<!tell> LBhm: " + bs_hm);
     }
 
     public String getLessonBase() {
@@ -180,7 +180,7 @@ public class LessonMainCanvas extends BaseCanvas {
 
         mkButtons();
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "base is " + bs);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "base is " + bs);
         String[] lessons_name;
         if (bs == null)
             lessons_name = locator.getAllLessonsInDir();
@@ -240,7 +240,7 @@ public class LessonMainCanvas extends BaseCanvas {
                                 w / 5,
                                 h);
                     }
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "PARENT " + i + ' ' + imn + ' ' + imicp);
+                    OmegaContext.sout_log.getLogger().info(":--: " + "PARENT " + i + ' ' + imn + ' ' + imicp);
                     if (imicp != null) {
                         parent.setSize(imicp.getImage().getWidth(null), imicp.getImage().getHeight(null));
                         parent.setLocation(gX(l25) + w + 10, v0);
@@ -252,7 +252,7 @@ public class LessonMainCanvas extends BaseCanvas {
 
                 }
                 String dispName = litm.getLessonDisplayName(OmegaContext.getLessonLang());
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "recreate le " + i + ' ' + litm);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "recreate le " + i + ' ' + litm);
                 ImageAreaJB l;
                 if (lesson[i] == null) {
                     lesson[i] = new ImageAreaJB("",
@@ -346,7 +346,7 @@ public class LessonMainCanvas extends BaseCanvas {
     }
 
     public void paintComponent(Graphics g) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "++++++++++ repaint LMC ");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "++++++++++ repaint LMC ");
         //SundryUtils.m_sleep(100);
         if (title == null)
             populate(false);
@@ -364,7 +364,7 @@ public class LessonMainCanvas extends BaseCanvas {
     }
 
     public void enter() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "LeMa-Enter");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "LeMa-Enter");
         super.enter();
 
         Integer I = (Integer) bs_hm.get("" + bs);
@@ -373,7 +373,7 @@ public class LessonMainCanvas extends BaseCanvas {
     }
 
     public void leave() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "LeMa-Leave");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "LeMa-Leave");
         super.leave();
     }
 

@@ -192,7 +192,7 @@ public class ExtensionFileFilter extends FileFilter {
         if (f != null) {
             String filename = f.getName();
 
-            if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info("ERR: " + "try " + filename + ' ' + ch);
+            if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: " + "try " + filename + ' ' + ch);
             if (filename.indexOf(ch) != -1)
                 return true;
             return false;

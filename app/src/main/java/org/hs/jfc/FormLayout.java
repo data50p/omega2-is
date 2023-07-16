@@ -1,5 +1,7 @@
 package org.hs.jfc;
 
+import com.femtioprocent.omega.OmegaContext;
+
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -635,7 +637,7 @@ public class FormLayout implements LayoutManager, ComponentListener {
      * @param comp ignored
      */
     public void addLayoutComponent(String name, Component comp) {
-        System.out.println("FormLayout.addLayoutComponent(String, Component): Warning!  Use of unsupported method!");
+        OmegaContext.sout_log.getLogger().info("FormLayout.addLayoutComponent(String, Component): Warning!  Use of unsupported method!");
     }
 
     // Oversees and coordinates RowLayouts

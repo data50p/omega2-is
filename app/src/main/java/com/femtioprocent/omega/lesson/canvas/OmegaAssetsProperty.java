@@ -122,7 +122,7 @@ public class OmegaAssetsProperty extends Property_B {
 
                 String url_s = null;
                 int rv = choose_f.showDialog(ApplContext.top_frame, T.t("Save"));
-                OmegaContext.sout_log.getLogger().info("ERR: " + "choose file -> " + rv);
+                OmegaContext.sout_log.getLogger().info(":--: " + "choose file -> " + rv);
                 if (rv == JFileChooser.APPROVE_OPTION) {
                     File file = choose_f.getSelectedFile();
                     if (!file.getName().endsWith(OmegaConfig.OMEGA_BUNDLE_EXTENSION))
@@ -205,7 +205,7 @@ public class OmegaAssetsProperty extends Property_B {
         ChooseDir choose_f = new ChooseDir();
 
         int rv = choose_f.showDialog(ApplContext.top_frame, T.t("Scan"));
-        OmegaContext.sout_log.getLogger().info("ERR: " + "choose file -> " + rv);
+        OmegaContext.sout_log.getLogger().info(":--: " + "choose file -> " + rv);
         if (rv == JFileChooser.APPROVE_OPTION) {
             File dir = choose_f.getSelectedFile();
 
@@ -219,7 +219,7 @@ public class OmegaAssetsProperty extends Property_B {
                     for (File file : list) {
                         String url_s = Files.toURL(file);
                         String fn = Files.mkRelFname1(url_s);
-                        System.err.println("scanned: " + fn);
+                        OmegaContext.serr_log.getLogger().info("scanned: " + fn);
                         l_ctxt.getLesson().sendMsgWait("load", (String) fn);
                         SundryUtils.m_sleep(200);
                         latestTargetCombinations = l_ctxt.getLessonCanvas().getAllTargetCombinationsEx2(false);
@@ -271,7 +271,7 @@ public class OmegaAssetsProperty extends Property_B {
 
         String url_s = null;
         int rv = choose_f.showDialog(ApplContext.top_frame, T.t(unpack ? "Import" : "List"));
-        OmegaContext.sout_log.getLogger().info("ERR: " + "choose file -> " + rv);
+        OmegaContext.sout_log.getLogger().info(":--: " + "choose file -> " + rv);
         if (rv == JFileChooser.APPROVE_OPTION) {
             File file = choose_f.getSelectedFile();
             if (!file.getName().endsWith(".omega_bundle"))
@@ -291,14 +291,14 @@ public class OmegaAssetsProperty extends Property_B {
                         File dir = new File(OmegaContext.omegaAssets(name));
                         if (unpack) {
                             if (dir.mkdirs()) {
-                                System.err.println("Created dir: T " + dir);
+                                OmegaContext.serr_log.getLogger().info("Created dir: T " + dir);
                             } else {
-                                System.err.println("Created dir: f " + dir);
+                                OmegaContext.serr_log.getLogger().info("Created dir: f " + dir);
                             }
                         }
                     } else {
                         try {
-                            System.err.println("Got: " + name + ' ' + OmegaContext.omegaAssets("."));
+                            OmegaContext.serr_log.getLogger().info("Got: " + name + ' ' + OmegaContext.omegaAssets("."));
                             FileOutputStream output = null;
                             boolean obManifest = OMEGA_BUNDLE_MANIFEST.equals(name);
                             if (obManifest)
@@ -310,7 +310,7 @@ public class OmegaAssetsProperty extends Property_B {
                                     if (!entFile.getParentFile().exists())
                                         entFile.getParentFile().mkdirs();
                                     if (entFile.exists()) {
-                                        System.err.println("Overwrite: exist " + entFile);
+                                        OmegaContext.serr_log.getLogger().info("Overwrite: exist " + entFile);
 //                                    continue;
                                     }
                                 }
@@ -426,7 +426,7 @@ public class OmegaAssetsProperty extends Property_B {
         }
 
         public void valueChanged(ListSelectionEvent ev) {
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "" + ev);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "" + ev);
             if (ev.getValueIsAdjusting() == false) {
                 OmegaAssetsProperty.MyListSelectionModel lselmod_ = (OmegaAssetsProperty.MyListSelectionModel) ev.getSource();
                 int ix = lselmod_.getMinSelectionIndex();
@@ -591,7 +591,7 @@ public class OmegaAssetsProperty extends Property_B {
 //  	    cbg = (JComboBox)guimap.get("type");
 //  	    if ( cb == cbg ) {
 //  		String s = (String)cb.getSelectedItem();
-//  		OmegaContext.sout_log.getLogger().info("ERR: " + "CB type " + cb);
+//  		OmegaContext.sout_log.getLogger().info(":--: " + "CB type " + cb);
 //  		if ( s.equals("action") )
 //  		    setLabel("Llid", "Path id");
 //  		if ( s.equals("actor") )

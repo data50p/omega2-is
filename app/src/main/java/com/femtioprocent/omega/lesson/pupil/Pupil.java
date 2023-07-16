@@ -78,7 +78,7 @@ public class Pupil {
         }
         String s = (String) params.get(key);
         String ret = s == null || s.length() == 0 ? def : s;
-        OmegaContext.sout_log.getLogger().info("ERR: " + "Pupil -> " + ret + ' ' + (def));
+        OmegaContext.sout_log.getLogger().info(":--: " + "Pupil -> " + ret + ' ' + (def));
         OmegaContext.lesson_log.getLogger().info("OK " + ret);
 
         return ret;

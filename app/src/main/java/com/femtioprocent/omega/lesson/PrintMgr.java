@@ -154,7 +154,7 @@ public class PrintMgr implements Printable {
             HH += sh + gap;
             WW = sw > WW ? sw : WW;
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "bounding is " + WW + ' ' + HH);
+        OmegaContext.sout_log.getLogger().info(":--: " + "bounding is " + WW + ' ' + HH);
         return new int[]{WW, HH};
     }
 
@@ -170,16 +170,16 @@ public class PrintMgr implements Printable {
 // 	    double scaleX = pfW / imW;
 // 	    double scaleY = pfH / imH;
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "print..." + pageIndex);
-            OmegaContext.sout_log.getLogger().info("ERR: " + "size " + /* imW + ' ' + imH + ' ' + */ pfW + ' ' + pfH);
-            OmegaContext.sout_log.getLogger().info("ERR: " + "po " + pfX + ' ' + pfY);
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "scale " + scaleX + ' ' + scaleY);
+            OmegaContext.sout_log.getLogger().info(":--: " + "print..." + pageIndex);
+            OmegaContext.sout_log.getLogger().info(":--: " + "size " + /* imW + ' ' + imH + ' ' + */ pfW + ' ' + pfH);
+            OmegaContext.sout_log.getLogger().info(":--: " + "po " + pfX + ' ' + pfY);
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "scale " + scaleX + ' ' + scaleY);
 
             if (pageIndex == 0) {
                 Graphics2D g2 = (Graphics2D) g;
                 //AffineTransform at = new AffineTransform();
                 AffineTransform at = g2.getTransform();
-                OmegaContext.sout_log.getLogger().info("ERR: " + "at " + at);
+                OmegaContext.sout_log.getLogger().info(":--: " + "at " + at);
                 at.translate(pfX, pfY);
                 g2.setTransform(at);
 
@@ -194,7 +194,7 @@ public class PrintMgr implements Printable {
                     int size = getItemFont().getSize();
                     setItemFont(new Font("Arial", Font.PLAIN, (int) (size * 0.9)));
                     bounding = getBounding(g2, sentences);
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "font size is " + getItemFont().getSize());
+                    OmegaContext.sout_log.getLogger().info(":--: " + "font size is " + getItemFont().getSize());
 
                 }
 

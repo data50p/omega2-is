@@ -1,5 +1,6 @@
 package com.femtioprocent.omega.lesson.appl;
 
+import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.lesson.Lesson;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class LessonRuntime extends ApplLesson {
     }
 
     private void maybeClose() {
-        System.err.println("LessonRuntime want to close " + (ApplContext.top_frame == this) + ' ' + ApplContext.top_frame + '\n'+ this);
+        OmegaContext.serr_log.getLogger().info("LessonRuntime want to close " + (ApplContext.top_frame == this) + ' ' + ApplContext.top_frame + '\n'+ this);
         if ( ApplContext.top_frame == this )
 	    System.exit(0);
     }

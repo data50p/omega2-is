@@ -28,7 +28,7 @@ public class RegLocator {
     }
 
     static String[] scanDir(String dir, FilenameFilter fnf) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "scan " + dir + ' ' + fnf);
+        OmegaContext.sout_log.getLogger().info(":--: " + "scan " + dir + ' ' + fnf);
         File df = new File(dir);
         File[] fa = df.listFiles(fnf);
         if (fa != null) {
@@ -124,8 +124,8 @@ public class RegLocator {
     public static void main(String[] args) {
         RegLocator l = new RegLocator();
         String sa[] = l.getAllPupilsName();
-        OmegaContext.sout_log.getLogger().info("ERR: " + "" + SundryUtils.a2s(sa));
+        OmegaContext.sout_log.getLogger().info(":--: " + "" + SundryUtils.a2s(sa));
         sa = l.getAllResultsFName("Lars", new String[]{"test"});
-        OmegaContext.sout_log.getLogger().info("ERR: " + "" + SundryUtils.a2s(sa));
+        OmegaContext.sout_log.getLogger().info(":--: " + "" + SundryUtils.a2s(sa));
     }
 }

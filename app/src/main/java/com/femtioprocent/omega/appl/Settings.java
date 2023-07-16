@@ -23,15 +23,15 @@ public class Settings {
     public static Settings getSettings() {
         if (default_settings == null) {
             default_settings = new Settings();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "Settings created");
+            OmegaContext.sout_log.getLogger().info(":--: " + "Settings created");
         }
 
         return default_settings;
     }
 
     Settings() {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "" + flags);
-        OmegaContext.sout_log.getLogger().info("ERR: " + "" + args);
+        OmegaContext.sout_log.getLogger().info(":--: " + "" + flags);
+        OmegaContext.sout_log.getLogger().info(":--: " + "" + args);
 
         settings.put("audio-cache", false);
         settings.put("audio-jmf", false);
@@ -46,7 +46,7 @@ public class Settings {
     }
 
     void list() {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "list: " + settings);
+        OmegaContext.sout_log.getLogger().info(":--: " + "list: " + settings);
     }
 
     class MyActionListener implements ActionListener {
@@ -65,7 +65,7 @@ public class Settings {
             Component comp = cA[i];
             if (comp instanceof JTextField) {
                 JTextField tf = (JTextField) comp;
-                OmegaContext.sout_log.getLogger().info("ERR: " + "" + tf.getText());
+                OmegaContext.sout_log.getLogger().info(":--: " + "" + tf.getText());
             }
             if (comp instanceof JLabel) {
                 JLabel la = (JLabel) comp;

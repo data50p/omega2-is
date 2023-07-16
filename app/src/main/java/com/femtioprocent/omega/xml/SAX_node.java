@@ -89,16 +89,16 @@ public class SAX_node extends DefaultHandler {
 
     public void ignorableWhitespace(char buf[], int offset, int len)
             throws SAXException {
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "iW " + new String(buf, offset, len));
+//	OmegaContext.sout_log.getLogger().info(":--: " + "iW " + new String(buf, offset, len));
     }
 
     public void processingInstruction(String target, String data)
             throws SAXException {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "pI " + target);
+        OmegaContext.sout_log.getLogger().info(":--: " + "pI " + target);
     }
 
     public void notationDecl(String name, String publicId, String systemId) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "nD " + name);
+        OmegaContext.sout_log.getLogger().info(":--: " + "nD " + name);
     }
 
     public void unparsedEntityDecl(String name, String publicId,

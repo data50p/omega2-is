@@ -179,7 +179,7 @@ public class ResultDialogTableDetail extends JDialog
         if (o instanceof JCheckBox) {
             String ac = ((JCheckBox) o).getActionCommand();
             boolean b = ((JCheckBox) o).isSelected();
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "AC " + ac);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "AC " + ac);
             boolean ns = false;
             if (ac.equals("word"))
                 ns = _f(F_W, b);
@@ -546,7 +546,7 @@ public class ResultDialogTableDetail extends JDialog
 // 		cur_ix = 0;
             String pup = register.pupil.getName();
             String res_name = register.rl.getFullFName(pup, sa[cur_ix]);
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "RESULT " + res_name);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 
 // 	    if ( res_name.equals(last) )
 // 		return;
@@ -608,7 +608,7 @@ public class ResultDialogTableDetail extends JDialog
                     data[nn_ix][CO_RO] = "" + ccw_sa[3];
                     data[nn_ix][CO_FO] = "" + ccw_sa[4];
                     nn_ix++;
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "table + " + te);
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "table + " + te);
                 }
                 if (ent.type.equals("select") && filter[F_W]) { // word
                     SelectEntry sel = (SelectEntry) ent;
@@ -625,13 +625,13 @@ public class ResultDialogTableDetail extends JDialog
                         data[nn_ix][CO_SEL] = sel.word;
                         data[nn_ix][CO_DUR] = "" + form(sel.when);
                         data[nn_ix][CO_WORDID] = "" + sel.l_id;
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + "table + " + sel);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + "table + " + sel);
                         nn_ix++;
                     }
                 }
                 if (ent.type.equals("create") && filter[F_C]) {
                     CreateEntry ce = (CreateEntry) ent;
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "table + " + ce);
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "table + " + ce);
                     data[nn_ix][CO_SENT] = ce.sentence;
                     data[nn_ix][CO_DUR] = "" + form(ce.duration);
                     data[nn_ix][CO_WORDID] = "" + ce.l_id_list;

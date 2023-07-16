@@ -22,20 +22,20 @@ public class LessonEditorAppl extends OmegaAppl {
         java.util.List argl = SundryUtils.argAsList(argv);
 
         if (flag.get("help") != null) {
-            System.err.println("-help");
-            System.err.println("-omega_assets=<assets name>");
-            System.err.println("-omega_lang=<lang>");
-            System.err.println("-T=<step>");
-            System.err.println("-small");
-            System.err.println("-");
-            System.err.println("-");
+            OmegaContext.serr_log.getLogger().info("-help");
+            OmegaContext.serr_log.getLogger().info("-omega_assets=<assets name>");
+            OmegaContext.serr_log.getLogger().info("-omega_lang=<lang>");
+            OmegaContext.serr_log.getLogger().info("-T=<step>");
+            OmegaContext.serr_log.getLogger().info("-small");
+            OmegaContext.serr_log.getLogger().info("-");
+            OmegaContext.serr_log.getLogger().info("-");
             System.exit(1);
         }
 
         OmegaContext.setOmegaAssets((String) flag.get("omega_assets"));
 
         OmegaContext.omega_lang = (String) flag.get("omega_lang");
-        OmegaContext.sout_log.getLogger().info("ERR: " + "param omega_lang is " + OmegaContext.omega_lang);
+        OmegaContext.sout_log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang);
         OmegaContext.small = (String) flag.get("small");
 
         try {

@@ -175,7 +175,7 @@ public class PupilCanvas extends BaseCanvas implements ListSelectionListener {
     }
 
     public void enter() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "ENTER pupil");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "ENTER pupil");
         super.enter();
         if (buttons[0] == null) {
             return;

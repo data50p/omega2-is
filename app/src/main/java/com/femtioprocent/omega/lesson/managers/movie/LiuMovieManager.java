@@ -162,7 +162,7 @@ public class LiuMovieManager extends Manager {
                 + "/"
                 + sitm.getTextD()
                 + ".mpg";
-        System.err.println("sign movie name: " + sfn);
+        OmegaContext.serr_log.getLogger().info("sign movie name: " + sfn);
         if (mediaFileExist(sfn))
             return sfn;
         return null;

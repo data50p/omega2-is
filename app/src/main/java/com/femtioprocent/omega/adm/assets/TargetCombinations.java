@@ -29,11 +29,11 @@ public class TargetCombinations {
             this.exist = OmegaContext.omegaAssetsExist(fn);
 
             if (fn.contains("{"))
-                System.err.println("MORE using var");
+                OmegaContext.serr_log.getLogger().info("MORE using var");
             if (fn.contains(","))
-                System.err.println("MORE using ,");
+                OmegaContext.serr_log.getLogger().info("MORE using ,");
             if (!fn.contains("/"))
-                System.err.println("LESS using /");
+                OmegaContext.serr_log.getLogger().info("LESS using /");
         }
 
         public boolean equals(Object o) {

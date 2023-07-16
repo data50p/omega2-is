@@ -26,11 +26,11 @@ public class TimeLineComponent extends JPanel implements PlayCtrlListener {
     // --------- interface PlayCtrlListener
 
     public void beginPlay(boolean dry) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "updatera begin");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera begin");
     }
 
     public boolean playAt(int lt, int t) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "updatera " + lt + ' ' + t);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera " + lt + ' ' + t);
         return false;
     }
 
@@ -41,10 +41,10 @@ public class TimeLineComponent extends JPanel implements PlayCtrlListener {
     }
 
     public void endPlay() {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "updatera end");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera end");
     }
 
     public void propertyChanged(String s) {
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "updatera prop " + s);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera prop " + s);
     }
 } 

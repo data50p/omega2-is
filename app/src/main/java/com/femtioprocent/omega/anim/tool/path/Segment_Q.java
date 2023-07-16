@@ -67,7 +67,7 @@ public class Segment_Q {
                 pc.setLocation(p.getX(), p.getY());
                 break;
             default:
-                OmegaContext.sout_log.getLogger().info("ERR: " + "active_nr " + who);
+                OmegaContext.sout_log.getLogger().info(":--: " + "active_nr " + who);
         }
         q.setCurve(p1, pc, p2);
     }

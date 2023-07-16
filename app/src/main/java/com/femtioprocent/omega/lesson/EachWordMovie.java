@@ -31,7 +31,7 @@ public class EachWordMovie {
             return null;
 
         if (mp == null) {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "+++++++ prepare new: " + fName);
+            OmegaContext.sout_log.getLogger().info(":--: " + "+++++++ prepare new: " + fName);
             mp = MpgPlayer.createMpgPlayer(fName, jcomp, jcomp.getWidth(), jcomp.getHeight());
             if (mp == null)
                 return null;
@@ -39,7 +39,7 @@ public class EachWordMovie {
             vw_orig = mp.getOrigW();
             vh_orig = mp.getOrigH();
         } else {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "+++++++ prepare again: " + fName);
+            OmegaContext.sout_log.getLogger().info(":--: " + "+++++++ prepare again: " + fName);
             mp.setSize(1, 1);
             mp.setLocation(10, 10);
             mp.visual.setVisible(false);
@@ -55,7 +55,7 @@ public class EachWordMovie {
         if (jcomp != null) {
             w = jcomp.getWidth();
             h = jcomp.getHeight();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "" + vw_orig + ' ' + vh_orig + ' ' + w + ' ' + h);
+            OmegaContext.sout_log.getLogger().info(":--: " + "" + vw_orig + ' ' + vh_orig + ' ' + w + ' ' + h);
             int ww = w / 5;
             mp.setSize(ww, (int) (ww * ((double) vh_orig / vw_orig)));
         }
@@ -83,7 +83,7 @@ public class EachWordMovie {
         mp.setLocation(xx, y);
         mp.visual.setVisible(true);
 
-        OmegaContext.sout_log.getLogger().info("ERR: " + "+++++++ perform movie: " + vw_orig + ' ' + vh_orig + ' ' + w + ' ' + h + ' ' + ww);
+        OmegaContext.sout_log.getLogger().info(":--: " + "+++++++ perform movie: " + vw_orig + ' ' + vh_orig + ' ' + w + ' ' + h + ' ' + ww);
 
         mp.start();
     }
@@ -107,7 +107,7 @@ public class EachWordMovie {
         mp.dispose(jcomp);
         jcomp = null;
         mp = null;
-        OmegaContext.sout_log.getLogger().info("ERR: " + "+++++ disposed");
+        OmegaContext.sout_log.getLogger().info(":--: " + "+++++ disposed");
     }
 
     public void reset() {

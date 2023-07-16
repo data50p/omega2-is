@@ -66,7 +66,7 @@ public class MpgAction implements ActionI {
             hideMsg();
             return false;
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "own kk " + kc);
+        OmegaContext.sout_log.getLogger().info(":--: " + "own kk " + kc);
         if (kc == 'l') {
             again_play_request = true;
         }
@@ -126,7 +126,7 @@ public class MpgAction implements ActionI {
     public void dispose() {
         if (mpg_player != null)
             mpg_player.dispose(jpan);
-        OmegaContext.sout_log.getLogger().info("ERR: " + "mpg disposed");
+        OmegaContext.sout_log.getLogger().info(":--: " + "mpg disposed");
         jpan.setVisible(false);
         mpg_player = null;
     }
@@ -241,7 +241,7 @@ public class MpgAction implements ActionI {
             Color col = OmegaContext.COLOR_WARP;
             RoundRectangle2D fr = new RoundRectangle2D.Double(x, y, w, h, r, r);
 
-            OmegaContext.sout_log.getLogger().info("ERR: " + "MPG draw: " + w + ' ' + sw + ' ' + text);
+            OmegaContext.sout_log.getLogger().info(":--: " + "MPG draw: " + w + ' ' + sw + ' ' + text);
 
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f));
             g2.setColor(col);
@@ -268,7 +268,7 @@ public class MpgAction implements ActionI {
 
             g2.setFont(item_fo);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-            OmegaContext.sout_log.getLogger().info("ERR: " + "MPG text: " + x + ' ' + y + ' ' + h + ' ' + item_fo + ' ' + text);
+            OmegaContext.sout_log.getLogger().info(":--: " + "MPG text: " + x + ' ' + y + ' ' + h + ' ' + item_fo + ' ' + text);
             g2.drawString(text,
                     x + 5,
                     y + 2 * h / 3);
@@ -339,7 +339,7 @@ public class MpgAction implements ActionI {
             mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, window.getWidth(), window.getHeight());
         else
             Log.getLogger().info("already created MpgPayer ... ");
-        OmegaContext.sout_log.getLogger().info("ERR: " + "mpg created " + mpg_player.getOrigW() + ' ' + mpg_player.getOrigH());
+        OmegaContext.sout_log.getLogger().info(":--: " + "mpg created " + mpg_player.getOrigW() + ' ' + mpg_player.getOrigH());
         mpg_player.fxp.waitReady();
         again_play2 = true;
         again_audio2 = true;
@@ -352,7 +352,7 @@ public class MpgAction implements ActionI {
 
         mpg_player.start();
         mpg_player.wait4();
-        OmegaContext.sout_log.getLogger().info("ERR: " + "mp_waited");
+        OmegaContext.sout_log.getLogger().info(":--: " + "mp_waited");
         if (ord == 0) {
 //	    dispose();
             if (show_sentence) {
@@ -383,7 +383,7 @@ public class MpgAction implements ActionI {
                 }
             }
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "mp_shown");
+        OmegaContext.sout_log.getLogger().info(":--: " + "mp_shown");
     }
 
     private void showMsgFx(MsgItem mi, HashMap colors) {

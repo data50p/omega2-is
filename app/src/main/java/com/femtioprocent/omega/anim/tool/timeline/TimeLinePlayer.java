@@ -1,6 +1,7 @@
 package com.femtioprocent.omega.anim.tool.timeline;
 
 import com.femtioprocent.omega.OmegaConfig;
+import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.util.SundryUtils;
 
 import javax.swing.event.EventListenerList;
@@ -65,7 +66,7 @@ public class TimeLinePlayer implements ActionListener {
         long a = ct0 - last;
 //	Log.getLogger().info("P " + a + ' ' + t);
         if (last > 0 && a > 300)
-            System.err.println("playAt: long time " + a + ' ' + t);
+            OmegaContext.serr_log.getLogger().info("playAt: long time " + a + ' ' + t);
         last = ct0;
         boolean b = false;
         Object[] lia = playctrl_listeners.getListenerList();

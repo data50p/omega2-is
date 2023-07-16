@@ -79,7 +79,7 @@ public class SettingsDialog extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + cmd);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + cmd);
         if ("OK".equals(cmd)) {
             if ( save() == false )
                 JOptionPane.showMessageDialog(ApplContext.top_frame,

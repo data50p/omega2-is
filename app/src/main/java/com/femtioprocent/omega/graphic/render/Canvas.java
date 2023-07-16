@@ -55,7 +55,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
 
         String imn = im_name;
         bg = LoadImage.loadAndWaitOrNull(this, imn, false);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "bg " + bg + ' ' + imn);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "bg " + bg + ' ' + imn);
         im_size = new Dimension(bg.getWidth(null), bg.getHeight(null));
 
         updWings();
@@ -153,7 +153,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
     Image createWithWings(Image bg, Dimension im_size, java.util.List wings) {
         try {
             Image im = createImage(im_size.width, im_size.height);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "withW im is " + im + ' ' + im_size);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "withW im is " + im + ' ' + im_size);
             if (im == null)
                 return bg;
 

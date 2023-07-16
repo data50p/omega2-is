@@ -1,5 +1,7 @@
 package org.hs.jfc;
 
+import com.femtioprocent.omega.OmegaContext;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -189,7 +191,7 @@ public class FormPanel extends JPanel {
      * @param message spew this
      */
     protected void warn(String message) {
-        System.out.println(message);
+        OmegaContext.sout_log.getLogger().info(message);
     }
 
     public void setChronologicalFocus() {

@@ -62,7 +62,7 @@ public class ResultDialog extends JDialog
         if (o instanceof JCheckBox) {
             String ac = ((JCheckBox) o).getActionCommand();
             boolean b = ((JCheckBox) o).isSelected();
-//log	    OmegaContext.sout_log.getLogger().info("ERR: " + "AC " + ac);
+//log	    OmegaContext.sout_log.getLogger().info(":--: " + "AC " + ac);
             boolean ns = false;
             if (ac.equals("word"))
                 ns = _f(F_W, b);
@@ -261,7 +261,7 @@ public class ResultDialog extends JDialog
                 cur_ix = sa.length - 1;
             String pup = register.pupil.getName();
             String res_name = register.rl.getFullFName(pup, sa[cur_ix]);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "RESULT " + res_name);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 
             ResultTest rt = new ResultTest(pup, "", "", res_name);
 

@@ -43,7 +43,7 @@ public class ColorDisplay extends JDialog implements ActionListener {
 	    if (ie.getStateChange() == ItemEvent.SELECTED)
 		if (cb == color_file) {
 		    String fn = (String) cb.getSelectedItem();
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "FILE sel " + fn);
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "FILE sel " + fn);
 		    HashMap hm = Lesson.getColors(fn, who);
 		    if (hm != null) {
 			colors = hm;

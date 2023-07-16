@@ -25,7 +25,7 @@ public class HelpSystem {
     }
 
     protected void show(String doc, int w, int h) {
-        OmegaContext.sout_log.getLogger().info("ERR: " + "--SHOW MANUAL " + doc);
+        OmegaContext.sout_log.getLogger().info(":--: " + "--SHOW MANUAL " + doc);
 
         String file_s = OmegaContext.URL_BASE_AS_FILE + "webroot/" + doc;
         File file = new File(file_s);

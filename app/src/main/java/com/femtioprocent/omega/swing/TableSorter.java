@@ -181,7 +181,7 @@ public class TableSorter extends TableMap {
 
     public void checkModel() {
         if (indexes.length != model.getRowCount()) {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "Sorter not informed of a change in model.");
+            OmegaContext.sout_log.getLogger().info(":--: " + "Sorter not informed of a change in model.");
         }
     }
 

@@ -602,7 +602,7 @@ public class ResultDialogTableSummary extends JDialog
                 int i2_l = rt.howManyTestEntries();
                 for (int i2 = 0; i2 < i2_l; i2++) {
                     Entry ent = rt.getEntry(i2);
-                    //		    OmegaContext.sout_log.getLogger().info("ERR: " + "ent " + ent);
+                    //		    OmegaContext.sout_log.getLogger().info(":--: " + "ent " + ent);
 
 		    /*
                     if ( "select".equals(ent.type) ) {

@@ -15,7 +15,7 @@ public class Restore {
             } else {
                 aName = OmegaContext.omegaAssets(fname);
             }
-            OmegaContext.sout_log.getLogger().info("ERR: " + "Restore from (~A) " + fname + " -> (A) " + aName);
+            OmegaContext.sout_log.getLogger().info(":--: " + "Restore from (~A) " + fname + " -> (A) " + aName);
             Element el = SAX_node.parse(aName, false);
             return el;
         } catch (Exception ex) {

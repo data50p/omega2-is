@@ -147,7 +147,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                 hook.mousePressed(e);
                 return;
             }
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "m p " + e.getX() + ',' + e.getY());
+//	OmegaContext.sout_log.getLogger().info(":--: " + "m p " + e.getX() + ',' + e.getY());
             if (getVisibilityMode(HIDE_PATH)) {
                 hideActors();
                 repaint();
@@ -212,7 +212,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                                 if (e.isControlDown()) {
                                     Path.Mark mk = ap.findNearestMarker(press_p);
                                     if (OmegaConfig.T)
-                                        OmegaContext.sout_log.getLogger().info("ERR: " + "marker hit " + mk);
+                                        OmegaContext.sout_log.getLogger().info(":--: " + "marker hit " + mk);
                                     if (mk != null) {
                                         Path pa = mk.pa;
                                         pa.setSelected(true);
@@ -290,7 +290,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                 hook.mouseDragged(e);
                 return;
             }
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "m d " + e.getX() + ',' + e.getY());
+//	OmegaContext.sout_log.getLogger().info(":--: " + "m d " + e.getX() + ',' + e.getY());
             switch (m_tool) {
                 case M_TOOL_IMAGE:
                     Point2D drag2_p = new Point2D.Double(e.getX(), e.getY());
@@ -392,29 +392,29 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     protected void processKeyEvent(KeyEvent ke) {
         super.processKeyEvent(ke);
-        OmegaContext.sout_log.getLogger().info("ERR: " + "AnimCanvas:KEYEVENT " + ke);
+        OmegaContext.sout_log.getLogger().info(":--: " + "AnimCanvas:KEYEVENT " + ke);
         if (ke.getID() == ke.KEY_PRESSED) {
             if (ke.getKeyCode() == ke.VK_SPACE) {
                 if (big_button_text != null)
                     big_button_text = null;
-                OmegaContext.sout_log.getLogger().info("ERR: " + "SPACE");
+                OmegaContext.sout_log.getLogger().info(":--: " + "SPACE");
             }
             if (ke.getKeyCode() == ke.VK_ENTER) {
                 if (big_button_text != null)
                     big_button_text = null;
-                OmegaContext.sout_log.getLogger().info("ERR: " + "ENTER");
+                OmegaContext.sout_log.getLogger().info(":--: " + "ENTER");
             }
             if (ke.getKeyCode() == ke.VK_LEFT) {
                 if (trigger_left) {
                     if (big_button_text != null)
                         big_button_text = null;
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "LEFT");
+                    OmegaContext.sout_log.getLogger().info(":--: " + "LEFT");
                 }
                 trigger_left = false;
             }
             if (ke.getKeyCode() == ke.VK_UP) {
                 if (trigger_up)
-                    OmegaContext.sout_log.getLogger().info("ERR: " + "UP");
+                    OmegaContext.sout_log.getLogger().info(":--: " + "UP");
                 trigger_up = false;
             }
         }
@@ -456,7 +456,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     public void centerBackground() {
         Image im = getImageBackground();
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "centerBackground " + im);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "centerBackground " + im);
         if (im == null)
             return;
 
@@ -469,8 +469,8 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
         double ww = sca * w;
         double hh = sca * h;
 
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "CALC " + cw + ' ' + w + ' ' + ww);
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "CALC " + ch + ' ' + h + ' ' + hh);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "CALC " + cw + ' ' + w + ' ' + ww);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "CALC " + ch + ' ' + h + ' ' + hh);
 
         if (cw == 0 && ch == 0) {
             cw = (int) ww;
@@ -486,7 +486,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     public void offCenterBackground() {
         Image im = getImageBackground();
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "offCenterBackground " + im);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "offCenterBackground " + im);
         if (im == null)
             return;
 
@@ -674,7 +674,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                         repaint();
 
                         int src_nid = selected_prb.seg.path.nid;
-//			OmegaContext.sout_log.getLogger().info("ERR: " + "src " + src_nid + ' ' + nid);
+//			OmegaContext.sout_log.getLogger().info(":--: " + "src " + src_nid + ' ' + nid);
                         TimeLine tl_src = a_ctxt.mtl.getTimeLine(src_nid);
                         TimeLine tl = new TimeLine(nid, tl_src);
                         a_ctxt.mtl.addTimeLine(tl);
@@ -742,7 +742,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
         gem = new GenericEventManager();
         cab = new Cabaret(a_ctxt);
         init();
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "AnimCanvas(ae) created " + this);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "AnimCanvas(ae) created " + this);
     }
 
     void init() {
@@ -750,7 +750,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
         addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-                OmegaContext.sout_log.getLogger().info("ERR: " + "AnimCanvas:KeyAd " + e);
+                OmegaContext.sout_log.getLogger().info(":--: " + "AnimCanvas:KeyAd " + e);
             }
         });
         if (ae == null) {
@@ -865,7 +865,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                     Actor act = findActorByNId(i);
                     if (act != null)
                         bindActorOnTL(tl.nid, act.gimae);
-//		    OmegaContext.sout_log.getLogger().info("ERR: " + "--- statist actor " + tl.nid + ' ' + act);
+//		    OmegaContext.sout_log.getLogger().info(":--: " + "--- statist actor " + tl.nid + ' ' + act);
                 }
             }
         }
@@ -904,7 +904,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
             return null;
         if (tl_nid < OmegaConfig.TIMELINES_N) {
             GImAE gim = new GImAE(this, gimae, tl_nid); // make a ghost
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "bound actor " + tl_nid + ' ' + gim);
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "bound actor " + tl_nid + ' ' + gim);
             Actor act = new Actor(a_ctxt, gim);
             actA_animated[tl_nid] = act;
             allgim.set(gim, tl_nid);
@@ -915,7 +915,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     public Actor bindNoActorOnTL(int tl_nid) {
         if (tl_nid < OmegaConfig.TIMELINES_N) {
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "bound no actor " + tl_nid);
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "bound no actor " + tl_nid);
             actA_animated[tl_nid] = null;
             allgim.set(null, tl_nid);
             return null;
@@ -936,13 +936,13 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
             a = a_ctxt.ae.cabaret_panel.getActorInPanel(nid);
         else
             a = actA_animated[nid];
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "getAnimatedActor -> " + nid + ' ' + a + ' ' + SundryUtils.a2s(actA_animated));
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "getAnimatedActor -> " + nid + ' ' + a + ' ' + SundryUtils.a2s(actA_animated));
         return a;
     }
 
     public Actor getAnimatedActor(String sid) {
         int nid = findTimeLineNidByLessonId(sid);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + ">>>>>>>> getting animact " + sid + ' ' + nid);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + ">>>>>>>> getting animact " + sid + ' ' + nid);
         return getAnimatedActor(nid);
     }
 
@@ -1154,10 +1154,10 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                 fo = new Font("Arial", Font.PLAIN, txtH);
                 int o_sw = sw;
                 sw = getStringWidth(g2, fo, msg_item.text);
-                //		OmegaContext.sout_log.getLogger().info("ERR: " + "recalc sw " + o_sw + ' ' + sw + ' ' + txtH);
+                //		OmegaContext.sout_log.getLogger().info(":--: " + "recalc sw " + o_sw + ' ' + sw + ' ' + txtH);
             }
             long ct1 = SundryUtils.ct();
-            OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + (ct1 - ct0));
+            OmegaContext.sout_log.getLogger().info(":--: " + "--> " + (ct1 - ct0));
 
             int w = sw + 10 + gX(0.03);
             int h = gY(0.06);
@@ -1263,7 +1263,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
         AffineTransform at0 = g2.getTransform();
         AffineTransform at = g2.getTransform();
 
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "trans " + offs_x + ' ' + offs_y);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "trans " + offs_x + ' ' + offs_y);
         at.translate(offs_x, offs_y);
         at.scale(sca, sca);
 
@@ -1325,7 +1325,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 //  	Element aacel = new Element("AllActors");
 //  	for(int i = 0; i < cab.actorNum(); i++) {
 //  	    Actor act = a_ctxt.ae.cabaret_panel.getActorInPanelAbs(i);
-//  	    OmegaContext.sout_log.getLogger().info("ERR: " + "saving " + i + ' ' + act);
+//  	    OmegaContext.sout_log.getLogger().info(":--: " + "saving " + i + ' ' + act);
 //  	    if ( act != null ) {
 //  		Element acel = act.getElement();
 //  		acel.addAttr("nid", "" + i);
@@ -1364,7 +1364,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
         Element aacel = new Element("AllActors");
         for (int i = 0; i < cab.actorNum(); i++) {
             Actor act = a_ctxt.ae.cabaret_panel.getActorInPanelAbs(i);
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "saving " + i + ' ' + act);
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "saving " + i + ' ' + act);
             if (act != null) {
                 Element acel = act.getElement();
                 acel.addAttr("nid", "" + i);
@@ -1434,7 +1434,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
                     Actor act = loadActor(ix, fn);
 
-//log		    OmegaContext.sout_log.getLogger().info("ERR: " + "!!!!!!!!!!! actor loaded " + act + ' ' + var1 + ' ' + var2 + ' ' + var3 + '.');
+//log		    OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!!!!! actor loaded " + act + ' ' + var1 + ' ' + var2 + ' ' + var3 + '.');
                     String hs = acel.findAttr("hotspot");
                     if (hs != null) {
                         act.gimae.setHotSpotIx(0, hs);

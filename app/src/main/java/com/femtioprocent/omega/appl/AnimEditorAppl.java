@@ -47,7 +47,7 @@ public class AnimEditorAppl extends OmegaAppl {
         java.util.List argl = SundryUtils.argAsList(argv);
 
         OmegaContext.omega_lang = (String) flag.get("omega_lang");
-        OmegaContext.sout_log.getLogger().info("ERR: " + "param omega_lang is " + OmegaContext.omega_lang);
+        OmegaContext.sout_log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang);
 
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.MetalLookAndFeel");
@@ -67,7 +67,7 @@ public class AnimEditorAppl extends OmegaAppl {
         String s = null;
         if ((s = (String) flag.get("t")) != null)
             OmegaConfig.t_step = Integer.parseInt(s);
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "" + OmegaConfig.t_step);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + OmegaConfig.t_step);
 
         if (LicenseShowManager.showAndAccepted()) {
             AnimEditorAppl e = new AnimEditorAppl(verbose);
@@ -79,6 +79,6 @@ public class AnimEditorAppl extends OmegaAppl {
             System.exit(1);
         }
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "--------ok-------");
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "--------ok-------");
     }
 }

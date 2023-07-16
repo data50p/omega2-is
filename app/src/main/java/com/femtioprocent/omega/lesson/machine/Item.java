@@ -93,7 +93,7 @@ public class Item {
         action_fname_orig = action_fname_;
         this.action_fname = krull(action_fname_);
         if (action_fname_ != null && action_fname_.length() > 0)
-            OmegaContext.sout_log.getLogger().info("ERR: " + "ACTION " + this.action_fname + ' ' + action_fname_);
+            OmegaContext.sout_log.getLogger().info(":--: " + "ACTION " + this.action_fname + ' ' + action_fname_);
     }
 
     public void setDefaultAction() {
@@ -177,7 +177,7 @@ public class Item {
                     char ch2 = raw_text.charAt(i + ii);
                     if (ch2 == '}') {
                         String kr_s = raw_text.substring(i + 1, i + ii);
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + "got text kr_s: " + kr_s);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + "got text kr_s: " + kr_s);
                         if (onlynumeric(kr_s)) {
                             sb.append((char) v);
                             i += ii;
@@ -263,7 +263,7 @@ public class Item {
         this.saved_dummysign = dummysign;
 
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "NEW TXTXO " + text + ' ' + text_orig);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "NEW TXTXO " + text + ' ' + text_orig);
 
         String v1 = el.findAttr("var-1");
         if (v1 == null) v1 = "";
@@ -385,7 +385,7 @@ public class Item {
             vs.setStr("ftype", action_type);
         }
 
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "Values is " + vs);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "Values is " + vs);
         return vs;
     }
 
@@ -570,7 +570,7 @@ public class Item {
 
     public void setDummy(boolean b) {
         dummy_flag = b;
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "DUMMY dep_set to " + b + ' ' + dummytext + ' ' + text);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "DUMMY dep_set to " + b + ' ' + dummytext + ' ' + text);
     }
 
     public void restoreSavedDummy() {
@@ -595,7 +595,7 @@ public class Item {
             String sx = sa[i] + '.' + action_type;
             ss += sx;
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "return getActionText " + ss);
+        OmegaContext.sout_log.getLogger().info(":--: " + "return getActionText " + ss);
         return ss;
     }
 

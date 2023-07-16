@@ -64,7 +64,7 @@ public class TimeMarkerProperties extends OmegaProperties implements ActionListe
             buildProperties(tm);
             pack();
         } else {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "tm null");
+            OmegaContext.sout_log.getLogger().info(":--: " + "tm null");
         }
         skipDirty = false;
     }
@@ -332,9 +332,9 @@ public class TimeMarkerProperties extends OmegaProperties implements ActionListe
                 url_s = Files.toURL(file);
 // 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + url_s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
                 String fn = Files.mkRelFnameAlt(url_s, "media");
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FILE " + fn);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
                 TriggerEvent te = bound_tm.findTEvent("PlaySound");
                 te.setArg(fn);
                 refresh();

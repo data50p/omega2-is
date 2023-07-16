@@ -37,7 +37,7 @@ public class PathProperties extends OmegaProperties implements ActionListener {
             }
             pack();
         } else {
-            OmegaContext.sout_log.getLogger().info("ERR: " + "pa null");
+            OmegaContext.sout_log.getLogger().info(":--: " + "pa null");
         }
     }
 

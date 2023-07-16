@@ -1079,7 +1079,7 @@ public class BaseCanvas extends JPanel {
                 HashMap<String,Object> newColors = new HashMap<>();
 
                 for(Object o : colors.keySet()) {
-                    //System.err.println("o is " + o);
+                    //OmegaContext.serr_log.getLogger().info("o is " + o);
                     String k = (String)o;
 /*
                     if (!(colors.get(k) instanceof Color))
@@ -1094,7 +1094,7 @@ public class BaseCanvas extends JPanel {
                         String c = el.findAttr("color_" + k);
 
                         if (c != null) {
-//			OmegaContext.sout_log.getLogger().info("ERR: " + "col " + k + ' ' + col + ' ' + c);
+//			OmegaContext.sout_log.getLogger().info(":--: " + "col " + k + ' ' + col + ' ' + c);
                             if (c.charAt(0) == '#') {
                                 int rgb;
                                 if (c.length() == 9)
@@ -1108,7 +1108,7 @@ public class BaseCanvas extends JPanel {
                         c = el.findAttr("colorTid_" + k);
                         // s#123456,v#123456,o#123456
                         if (c != null) {
-//			OmegaContext.sout_log.getLogger().info("ERR: " + "col " + k + ' ' + col + ' ' + c);
+//			OmegaContext.sout_log.getLogger().info(":--: " + "col " + k + ' ' + col + ' ' + c);
                             HashMap<String, Color> cols = new HashMap<>();
                             String[] ca = c.split(",");
                             for (String c1 : ca) {

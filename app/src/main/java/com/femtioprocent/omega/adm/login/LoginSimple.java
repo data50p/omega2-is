@@ -41,7 +41,7 @@ public class LoginSimple extends Login {
                 public void actionPerformed(ActionEvent e) {
                     synchronized (o) {
                         if (tf.getText().length() > 0) {
-                            OmegaContext.sout_log.getLogger().info("ERR: " + "action " + tf.getText());
+                            OmegaContext.sout_log.getLogger().info(":--: " + "action " + tf.getText());
                             LoginSimple.this.setName(tf.getText());
                             ready = true;
                             o.notify();

@@ -52,7 +52,7 @@ public class AnimAction implements ActionI {
                         }
                     }
                 }
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FIND all tl " + s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FIND all tl " + s);
                 return s;
             }
         }
@@ -86,7 +86,7 @@ public class AnimAction implements ActionI {
                         }
                     }
                 }
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "FIND all act " + s);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "FIND all act " + s);
                 return s;
             }
         }

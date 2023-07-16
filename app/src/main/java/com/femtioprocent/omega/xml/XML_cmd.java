@@ -23,7 +23,7 @@ public class XML_cmd {
 	    return;
 	}
 
-	OmegaContext.sout_log.getLogger().info("ERR: " + "argl " + argl + ' ' + flag);
+	OmegaContext.sout_log.getLogger().info(":--: " + "argl " + argl + ' ' + flag);
 
 	String file = (String) argl.get(0);
 	String cmd = (String) argl.get(1);

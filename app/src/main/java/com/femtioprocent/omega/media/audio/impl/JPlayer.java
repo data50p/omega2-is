@@ -32,7 +32,7 @@ public class JPlayer implements LineListener {
 
     private static void s_pe(String s) {
         if (o)
-            System.err.println(s);
+            OmegaContext.serr_log.getLogger().info(s);
     }
 
     private static void s_pe_(String s) {
@@ -85,7 +85,7 @@ public class JPlayer implements LineListener {
             aformat = null;
             sdataline = null;
             done = true;
-            OmegaContext.sout_log.getLogger().info("ERR: " + "JPlayer1: " + ex);
+            OmegaContext.sout_log.getLogger().info(":--: " + "JPlayer1: " + ex);
         }
     }
 

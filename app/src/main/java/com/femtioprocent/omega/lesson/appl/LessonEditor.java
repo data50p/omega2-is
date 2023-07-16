@@ -47,7 +47,7 @@ public class LessonEditor extends ApplLesson {
     }
 
     public void maybeClose() {
-        System.err.println("LessonEditor want to close " + (ApplContext.top_frame == LessonEditor.this) + ' ' + ApplContext.top_frame + '\n' + this);
+        OmegaContext.serr_log.getLogger().info("LessonEditor want to close " + (ApplContext.top_frame == LessonEditor.this) + ' ' + ApplContext.top_frame + '\n' + this);
         if (ApplContext.top_frame == LessonEditor.this)
             System.exit(0);
     }
@@ -93,7 +93,7 @@ public class LessonEditor extends ApplLesson {
 
     ToolExecute ae_texec = new ToolExecute() {
         public void execute(String cmd) {
-            if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info("ERR: " + "LessonEditor.texec: execute " + cmd);
+            if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: " + "LessonEditor.texec: execute " + cmd);
 
             if ("exit".equals(cmd)) {
                 int sel = JOptionPane.showConfirmDialog(LessonEditor.this,

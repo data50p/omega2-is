@@ -227,7 +227,7 @@ public class PupilSettingsDialog extends SettingsDialog {
     };
 
     private void createTheme(String fname) {
-	System.err.println("Create this " + fname);
+	OmegaContext.serr_log.getLogger().info("Create this " + fname);
 	if (OmegaContext.omegaAssetsExist(fname))
 	    return;
 	File fnew = new File(OmegaContext.omegaAssets(fname));

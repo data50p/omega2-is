@@ -131,7 +131,7 @@ public class Lesson implements LessonCanvasListener {
     }
 
     private LiuMovieManager signMoviePrepare(Target tg, int tg_ix) {
-	System.out.println("Liu Prepare sign movie");
+	OmegaContext.sout_log.getLogger().info("Liu Prepare sign movie");
 	Rectangle tgr = le_canvas.getTargetRectangle(tg_ix);
 	LiuMovieManager lmm = new LiuMovieManager(window, le_canvas);
 	final T_Item t_Item = tg.getT_Item(tg_ix);
@@ -139,14 +139,14 @@ public class Lesson implements LessonCanvasListener {
 	if (smfName != null) {
 	    boolean liuMovieOk = lmm.prepare(OmegaContext.media(), smfName, true);
 	    if (!liuMovieOk) {
-		System.err.println("sign move not OK");
+		OmegaContext.serr_log.getLogger().info("sign move not OK");
 		return null;
 	    }
 	} else {
-	    System.err.println("sign move not OK'");
+	    OmegaContext.serr_log.getLogger().info("sign move not OK'");
 	    return null;
 	}
-	System.err.println("Sign movie ok");
+	OmegaContext.serr_log.getLogger().info("Sign movie ok");
 	return lmm;
     }
 
@@ -275,7 +275,7 @@ public class Lesson implements LessonCanvasListener {
 	boolean has_shown = false;
 
 	RegisterProxy(Pupil pupil) {
-	    //log OmegaContext.sout_log.getLogger().info("ERR: " + "PUPIL REG created ");
+	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG created ");
 	    this.pupil = pupil;
 	    this.lesson_name = null;
 	    this.test_mode = null;
@@ -284,7 +284,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	RegisterProxy(Pupil pupil, String lesson_name, int test_mode) {
-	    //log OmegaContext.sout_log.getLogger().info("ERR: " + "PUPIL REG created ");
+	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG created ");
 	    this.pupil = pupil;
 	    this.lesson_name = lesson_name;
 	    this.test_mode = getTestModeString(test_mode);
@@ -296,7 +296,7 @@ public class Lesson implements LessonCanvasListener {
 	void setStarted() {
 	    last_ct = started = SundryUtils.ct();
 	    register_log.getLogger().info("started " + started);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + " STARTED ");
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + " STARTED ");
 	}
 
 	String getTestModeString(int test_mode) {
@@ -319,12 +319,12 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	String fix(String lesson_name) {
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "fix " + lesson_name);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "fix " + lesson_name);
 	    int ix = lesson_name.lastIndexOf('/');
 	    String s = lesson_name.substring(0, ix);
 	    ix = s.lastIndexOf('/');
 	    s = s.substring(ix + 1);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "fix -> " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "fix -> " + s);
 	    return s;
 	}
 
@@ -334,9 +334,9 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	void word(String mode, long when_ct, String word, String l_id) {
-	    //log OmegaContext.sout_log.getLogger().info("ERR: " + "PUPIL REG " + mode + ' ' + word);
+	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG " + mode + ' ' + word);
 	    int when = (int) (when_ct - last_ct);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "WHEN " + (when_ct - SundryUtils.ct()));
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "WHEN " + (when_ct - SundryUtils.ct()));
 	    last_ct = when_ct;
 	    rt.add(new SelectEntry(mode, word, when, l_id));
 	    register_log.getLogger().info("word: " + mode + ' ' + word + ' ' + l_id);
@@ -350,7 +350,7 @@ public class Lesson implements LessonCanvasListener {
 		  String answer,
 		  String correct_words,
 		  String l_id_list) {
-	    //log OmegaContext.sout_log.getLogger().info("ERR: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + answer);
+	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + answer);
 	    int when = (int) (when_ct - started);
 	    rt.add(new TestEntry(mode,
 		    sentence,
@@ -368,7 +368,7 @@ public class Lesson implements LessonCanvasListener {
 		    String sentence,
 		    int duration,
 		    String l_id_list) {
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + duration);
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + duration);
 	    int when = (int) (when_ct - started);
 	    rt.add(new CreateEntry(sentence, when, l_id_list));
 	    register_log.getLogger().info("creat: " + mode + ' ' + sentence);
@@ -486,13 +486,13 @@ public class Lesson implements LessonCanvasListener {
 // 	}
 // 	private void prefetchAny(String id) {
 // 	    String[] sa = (String[])prfHM.get(id);
-// 	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "prefetched " + sa);
+// 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "prefetched " + sa);
 // 	    if ( sa == null )
 // 		return;
 // 	    for(int i = 0; i < sa.length;i++) {
 // 		String as = sa[i];
 // 		APlayer.prefetch(as);
-// 		//		OmegaContext.sout_log.getLogger().info("ERR: " + "prefetched " + as);
+// 		//		OmegaContext.sout_log.getLogger().info(":--: " + "prefetched " + as);
 // 	    }
 // 	}
 // 	public void saveit(String lesson_fn, String[] used_file) {
@@ -500,18 +500,18 @@ public class Lesson implements LessonCanvasListener {
 // 	    prfHM.put(lesson_fn, used_file);
 // 	    audio_prefetch_cache.save(prfHM);
 // 	    audio_log.getLogger().info("saveit: " + prfHM + ' ' + tm.get());
-// 	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "saveit " + prfHM + ' ' + tm.get());
+// 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "saveit " + prfHM + ' ' + tm.get());
 // 	}
 // 	private void loadit() {
 // 	    prfHM = (HashMap)audio_prefetch_cache.load();
 // 	    if ( prfHM == null )
 // 		prfHM = new HashMap();
-// 	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "PREFETCH CACHE " + prfHM);
+// 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "PREFETCH CACHE " + prfHM);
 // 	    Iterator it = prfHM.keySet().iterator();
 // 	    while(it.hasNext()) {
 // 		String id = (String)it.next();
 // 		String[] afn = (String[])prfHM.get(id);
-// 		//		OmegaContext.sout_log.getLogger().info("ERR: " + "PC " + id + ' ' + SundryUtils.a2s(afn));
+// 		//		OmegaContext.sout_log.getLogger().info(":--: " + "PC " + id + ' ' + SundryUtils.a2s(afn));
 // 	    }
 // 	}
 //     }
@@ -618,7 +618,7 @@ public class Lesson implements LessonCanvasListener {
 		if (it.hasNext()) {
 		    String s = (String) it.next();
 		    it.previous();
-		    //log 		    OmegaContext.sout_log.getLogger().info("ERR: " + "test text " + s);
+		    //log 		    OmegaContext.sout_log.getLogger().info(":--: " + "test text " + s);
 		    int ix = s.indexOf(':');
 		    if (ix != -1) {
 			test_text = s.substring(ix + 1);
@@ -707,7 +707,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	int[][] getTestMatrix(String[] all_sentence) {
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "###### getTestMatrix");
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### getTestMatrix");
 
 	    int[][] tmm = new int[all_sentence.length][4];
 
@@ -739,7 +739,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	void setFromMatrix(String sentA[], int[][] tmm) {
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "###### setFromMatrix");
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### setFromMatrix");
 
 	    int len = tmm.length;
 	    if (len > 0) {
@@ -751,7 +751,7 @@ public class Lesson implements LessonCanvasListener {
 			if (ord > 0) {
 			    String txt = sentA[j];
 
-			    //log 			    OmegaContext.sout_log.getLogger().info("ERR: " + "--- dep_set seq " + j + ' ' + ord + ' ' + txt);
+			    //log 			    OmegaContext.sout_log.getLogger().info(":--: " + "--- dep_set seq " + j + ' ' + ord + ' ' + txt);
 
 			    int ord_i = ord - 1;
 			    li.add(genSeqKey(ord_i) + ':' + txt);
@@ -768,7 +768,7 @@ public class Lesson implements LessonCanvasListener {
 		return;
 	    }
 
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "###### buildTestSent");
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### buildTestSent");
 
 	    Element t_el = el.findElement("test_entries", 0);
 	    if (t_el != null) {
@@ -794,7 +794,7 @@ public class Lesson implements LessonCanvasListener {
 
 			    li.add(genSeqKey(ord_i) + ':' + text);
 
-			    //log 			    OmegaContext.sout_log.getLogger().info("ERR: " + "sent li " + li);
+			    //log 			    OmegaContext.sout_log.getLogger().info(":--: " + "sent li " + li);
 			}
 
 			li = sortList(li);
@@ -802,9 +802,9 @@ public class Lesson implements LessonCanvasListener {
 		    }
 		}
 		this.el = el;
-		//log 		OmegaContext.sout_log.getLogger().info("ERR: " + "saved test sent " + el);
+		//log 		OmegaContext.sout_log.getLogger().info(":--: " + "saved test sent " + el);
 	    }
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "++++++++++++++++++++++ " + texts);
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "++++++++++++++++++++++ " + texts);
 	}
 
 	Element getElement() {
@@ -844,7 +844,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	void dump() {
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "Seq: texts = " + texts);
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "Seq: texts = " + texts);
 	}
 
 	public String toString() {
@@ -900,7 +900,7 @@ public class Lesson implements LessonCanvasListener {
 	try {
 	    String s = msg.substring(12);
 	    String sn = msg.substring(19);
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "Load lesson " + s);
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "Load lesson " + s);
 	    int ord = Integer.parseInt(sn);
 	    BaseCanvas.ImageAreaJB ima = lemain_canvas.lesson[ord];
 	    if (ima == null) {
@@ -909,7 +909,7 @@ public class Lesson implements LessonCanvasListener {
 	    litm = (LessonItem) (ima.o);
 	    if (litm == null) {
 	    } else if (litm.isDir()) {
-		//log 		    OmegaContext.sout_log.getLogger().info("ERR: " + "Load group " + s);
+		//log 		    OmegaContext.sout_log.getLogger().info(":--: " + "Load group " + s);
 		lemain_canvas.setRedPush(ord);
 		lemain_canvas.addLessonBase(litm.getLessonName(), ord);
 		lemain_canvas.requestFocusOrd(0);
@@ -954,7 +954,7 @@ public class Lesson implements LessonCanvasListener {
 
     void prepareTest(String mode) {
 	session_length_start = SundryUtils.ct();
-	//log 	OmegaContext.sout_log.getLogger().info("ERR: " + "prepare test " + mode);
+	//log 	OmegaContext.sout_log.getLogger().info(":--: " + "prepare test " + mode);
 	try {
 	    if ("create".equals(mode)) {
 		current_test_mode = TM_CREATE;
@@ -990,7 +990,7 @@ public class Lesson implements LessonCanvasListener {
     void loadTest(String fn) {
 	String lfn = fn; //loaded_fname;
 
-	// 	OmegaContext.sout_log.getLogger().info("ERR: " + "loadTest >>> test_mode = " + current_test_mode);
+	// 	OmegaContext.sout_log.getLogger().info(":--: " + "loadTest >>> test_mode = " + current_test_mode);
 
 	register = new RegisterProxy(getCurrentPupil(), fn, current_test_mode);
 
@@ -1016,15 +1016,15 @@ public class Lesson implements LessonCanvasListener {
 		sendMsg("new_test", lfn, "loadTest3");
 		break;
 	}
-	//log 	OmegaContext.sout_log.getLogger().info("ERR: " + "loadTest <<<");
+	//log 	OmegaContext.sout_log.getLogger().info(":--: " + "loadTest <<<");
 	le_canvas.hideMsg();
     }
 
     public MsgItem getResultSummary_MsgItem() {
-	OmegaContext.sout_log.getLogger().info("ERR: " + "getRslt " + register);
+	OmegaContext.sout_log.getLogger().info(":--: " + "getRslt " + register);
 
 	if (register != null && register.has_shown) {
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "2006: register " + register + ' ' + (register != null ? register.has_shown : false));
+	    OmegaContext.sout_log.getLogger().info(":--: " + "2006: register " + register + ' ' + (register != null ? register.has_shown : false));
 	    return null;
 	}
 
@@ -1117,7 +1117,7 @@ public class Lesson implements LessonCanvasListener {
 	    }
 
 	    if ("show_result".equals(msg)) {
-		OmegaContext.sout_log.getLogger().info("ERR: " + "show_result " + register);
+		OmegaContext.sout_log.getLogger().info(":--: " + "show_result " + register);
 		sendMsg("show_result_msg", null, "exit_create");
 	    }
 	    if ("exit create".equals(msg)) {
@@ -1129,7 +1129,7 @@ public class Lesson implements LessonCanvasListener {
 		play_data_list = new PlayDataList();
 		play_data_list_is_last = new PlayDataList();
 	    }
-	    // 		OmegaContext.sout_log.getLogger().info("ERR: " + ">>>>>>> msg DONE " + msg);
+	    // 		OmegaContext.sout_log.getLogger().info(":--: " + ">>>>>>> msg DONE " + msg);
 	}
 
 	private void act_pupil_test_p() {
@@ -1168,7 +1168,7 @@ public class Lesson implements LessonCanvasListener {
 	    };
 
 	    prepareTest(choise2[a]);
-	    //			OmegaContext.sout_log.getLogger().info("ERR: " + "choosen test " + a + ' ' + choise[a]);
+	    //			OmegaContext.sout_log.getLogger().info(":--: " + "choosen test " + a + ' ' + choise[a]);
 	    card_show("main");
 	    lemain_canvas.setRedClear();
 	    lemain_canvas.requestFocusOrd(0);
@@ -1202,14 +1202,14 @@ public class Lesson implements LessonCanvasListener {
 	    if (ds == null) {
 		card_show("pupil");
 	    } else {
-		//log 			    OmegaContext.sout_log.getLogger().info("ERR: " + "--- lesson base is now " + ds);
+		//log 			    OmegaContext.sout_log.getLogger().info(":--: " + "--- lesson base is now " + ds);
 		int ix = ds.lastIndexOf('/');
 		if (ix != -1) {
-		    //log 				OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + ds.substring(0, ix));
+		    //log 				OmegaContext.sout_log.getLogger().info(":--: " + "--> " + ds.substring(0, ix));
 		    String lb = ds.substring(0, ix);
 		    int sel_ix = lemain_canvas.setLessonBase(lb);
 		} else {
-		    //log 				OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + null);
+		    //log 				OmegaContext.sout_log.getLogger().info(":--: " + "--> " + null);
 		    lemain_canvas.setLessonBase(null);
 		}
 		lemain_canvas.requestFocus();
@@ -1219,7 +1219,7 @@ public class Lesson implements LessonCanvasListener {
 
 	private void act_pupil_pupil() {
 	    String pn = getCurrentPupil().getName();
-	    //			OmegaContext.sout_log.getLogger().info("ERR: " + "---------- pupil " + pn);
+	    //			OmegaContext.sout_log.getLogger().info(":--: " + "---------- pupil " + pn);
 	    pupil_settings_dialog.setPupil(getCurrentPupil());
 	    global_skipF(true);
 	    pupil_settings_dialog.setVisible(true);
@@ -1247,7 +1247,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	private void act_exit_create() {
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "sm1 " + current_card + ' ' + register);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "sm1 " + current_card + ' ' + register);
 	    // savePrefetch();
 	    if (edit) {
 		globalExit = true;
@@ -1270,7 +1270,7 @@ public class Lesson implements LessonCanvasListener {
 	    try {
 		setCurrentPupil(new Pupil(pupil_canvas.getPupilName()));
 		register = new RegisterProxy(getCurrentPupil());
-		//			    OmegaContext.sout_log.getLogger().info("ERR: " + "got reg " + register);
+		//			    OmegaContext.sout_log.getLogger().info(":--: " + "got reg " + register);
 		rdlg.set(register);
 		global_skipF(true);
 		OmegaContext.HELP_STACK.push("result_summary");
@@ -1474,7 +1474,7 @@ public class Lesson implements LessonCanvasListener {
     }
 
     static public HashMap getColors(String fname, String who) {
-	//	OmegaContext.sout_log.getLogger().info("ERR: " + "restore " + fname + ' ' + who);
+	//	OmegaContext.sout_log.getLogger().info(":--: " + "restore " + fname + ' ' + who);
 	Element el = Restore.restore(fname);
 	if (el == null) {
 	    return null;
@@ -1486,7 +1486,7 @@ public class Lesson implements LessonCanvasListener {
 		return null;
 	    }
 	    String name = fel.findAttr("name");
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "found " + name);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "found " + name);
 	    if (who.equals(name)) {
 		try {
 		    HashMap hm = new HashMap();
@@ -1501,9 +1501,9 @@ public class Lesson implements LessonCanvasListener {
 			Color col = (Color) hm.get(k);
 			String c = fel.findAttr("color_" + k);
 
-			//			OmegaContext.sout_log.getLogger().info("ERR: " + "found " + k + ' ' + col + ' ' + c);
+			//			OmegaContext.sout_log.getLogger().info(":--: " + "found " + k + ' ' + col + ' ' + c);
 			if (c != null) {
-			    //			    OmegaContext.sout_log.getLogger().info("ERR: " + "col " + k + ' ' + col + ' ' + c);
+			    //			    OmegaContext.sout_log.getLogger().info(":--: " + "col " + k + ' ' + col + ' ' + c);
 			    if (c.charAt(0) == '#') {
 				int rgb;
 				if (c.length() == 9) {
@@ -1555,7 +1555,7 @@ public class Lesson implements LessonCanvasListener {
 
     void saveSettings(String fn) {
 	String afn = OmegaContext.omegaAssets(fn);
-	OmegaContext.sout_log.getLogger().info("ERR: " + "save settings in file " + afn);
+	OmegaContext.sout_log.getLogger().info(":--: " + "save settings in file " + afn);
 	Element el = getSettingsElement();
 	Save.save(afn, el);
     }
@@ -1636,28 +1636,28 @@ public class Lesson implements LessonCanvasListener {
     }
 
     synchronized void addValues(Values vs) {
-	//	OmegaContext.sout_log.getLogger().info("ERR: " + "addValues " + vs);
+	//	OmegaContext.sout_log.getLogger().info(":--: " + "addValues " + vs);
 	if (action != null) {
 	    String s = action.getPathList();
 	    vs.setStr("pathlist", s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "pathlist: " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "pathlist: " + s);
 
 	    s = action.getActorList();
 	    vs.setStr("actorlist", s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "actorlist: " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "actorlist: " + s);
 	}
     }
 
     synchronized void addValues(Values vs, ActionI action_) {
-	//	OmegaContext.sout_log.getLogger().info("ERR: " + "addValues " + vs);
+	//	OmegaContext.sout_log.getLogger().info(":--: " + "addValues " + vs);
 	if (action_ != null) {
 	    String s = action_.getPathList();
 	    vs.setStr("pathlist", s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "pathlist: " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "pathlist: " + s);
 
 	    s = action_.getActorList();
 	    vs.setStr("actorlist", s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "actorlist: " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "actorlist: " + s);
 	}
     }
 
@@ -1665,7 +1665,7 @@ public class Lesson implements LessonCanvasListener {
 	if (lep != null && type == 'p') {
 	    lep.setActiveTargetIx(ix);
 	    Values vs = lep.le_canvas.getTarget().getTargetValues(ix);
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "target " + vs);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "target " + vs);
 	    addValues(vs);
 	    lep.setTarget(vs);
 	}
@@ -1684,7 +1684,7 @@ public class Lesson implements LessonCanvasListener {
 	    lep.setActiveItemIx(ix, iy);
 	    item_at_xy = lep.le_canvas.getTarget().getItemAt(ix, iy);
 	    Values vs = lep.le_canvas.getTarget().getItemAt(ix, iy).getValues(true);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "item " + vs);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "item " + vs);
 	    addValues(vs, action_);
 	    lep.setItem(vs);
 	}
@@ -1751,7 +1751,7 @@ public class Lesson implements LessonCanvasListener {
     }
 
     private void card_show(String name, int id) {
-	OmegaContext.sout_log.getLogger().info("ERR: " + "**************** change " + current_card + " > " + id + ' ' + new Date() + ' ' + name);
+	OmegaContext.sout_log.getLogger().info(":--: " + "**************** change " + current_card + " > " + id + ' ' + new Date() + ' ' + name);
 
 	if (name.equals("anim1")) {
 	}
@@ -1767,7 +1767,7 @@ public class Lesson implements LessonCanvasListener {
 		// 		pupil_settings_dialog.setPupil(getCurrentPupil());
 		// 		HashMap pparm = pupil_settings_dialog.getParams();
 		// 		getCurrentPupil().setParams(pparm);
-		// 		OmegaContext.sout_log.getLogger().info("ERR: " + "Pupil param" + pparm);
+		// 		OmegaContext.sout_log.getLogger().info(":--: " + "Pupil param" + pparm);
 		//		register = new RegisterProxy(getCurrentPupil());
 	    }
 	}
@@ -1835,10 +1835,10 @@ public class Lesson implements LessonCanvasListener {
     }
 
     private void sendMsg(String msg, Object o, String id) {
-	OmegaContext.sout_log.getLogger().info("ERR: " + "!!!!!!!! sendMsg " + msg + ' ' + SundryUtils.ct() + ' ' + o + ' ' + id);
+	OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + msg + ' ' + SundryUtils.ct() + ' ' + o + ' ' + id);
 	synchronized (msg_list) {
 	    msg_list.add(new Object[]{msg, o, Long.valueOf(SundryUtils.ct()), id});
-	    //log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
+	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
 	    msg_list.notify();
 	}
     }
@@ -1978,9 +1978,9 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	public boolean is(String s) {
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "try specific action " + s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + element_root);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + hm);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "try specific action " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + element_root);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + hm);
 
 	    String as = (String) hm.get(s);
 	    lesson_log.getLogger().info("action_specific.is:" + s + '<' + as + '>');
@@ -1988,9 +1988,9 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	public boolean isSign(String s) {
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "try specific action " + s);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + element_root);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + hm);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "try specific action " + s);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + element_root);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + hm);
 
 	    String as = (String) hmSign.get(s);
 	    lesson_log.getLogger().info("action_specific.isSign:" + s + '<' + as + '>');
@@ -1998,9 +1998,9 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	public String getAction(String s) {
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "try specific action " + s);
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + element_root);
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + hm);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "try specific action " + s);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + element_root);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + hm);
 
 	    String as = (String) hm.get(s);
 	    lesson_log.getLogger().info("action_specific.getAction:" + s + '<' + as + '>');
@@ -2008,9 +2008,9 @@ public class Lesson implements LessonCanvasListener {
 	}
 
 	public String getSign(String s) {
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "try specific action " + s);
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + element_root);
-	    //  	    OmegaContext.sout_log.getLogger().info("ERR: " + "                     " + hm);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "try specific action " + s);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + element_root);
+	    //  	    OmegaContext.sout_log.getLogger().info(":--: " + "                     " + hm);
 
 	    String as = (String) hmSign.get(s);
 	    lesson_log.getLogger().info("action_specific.getSign:" + s + '<' + as + '>');
@@ -2059,7 +2059,7 @@ public class Lesson implements LessonCanvasListener {
 
 	void fill(Element el) {
 	    Element as_el = el.findElement("action_specific", 0);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "FOUND EL action specific " + as_el);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "FOUND EL action specific " + as_el);
 	    if (as_el != null) {
 		for (int i = 0; i < 1000; i++) {
 		    Element el1 = as_el.findElement("value", i);
@@ -2080,7 +2080,7 @@ public class Lesson implements LessonCanvasListener {
 
 	void fillSign(Element el) {
 	    Element as_el = el.findElement("sign_specific", 0);
-	    //	    OmegaContext.sout_log.getLogger().info("ERR: " + "FOUND EL action specific " + as_el);
+	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "FOUND EL action specific " + as_el);
 	    if (as_el != null) {
 		for (int i = 0; i < 1000; i++) {
 		    Element el1 = as_el.findElement("value", i);
@@ -2152,7 +2152,7 @@ public class Lesson implements LessonCanvasListener {
 		    wait_id.notify();
 	    }
 
-	    System.err.println(" -----------> done " + last_id);
+	    OmegaContext.serr_log.getLogger().info(" -----------> done " + last_id);
 	    Object o[] = getMsg();
 	    String msg = (String) o[0];
 	    Object obj = o[1];
@@ -2183,7 +2183,7 @@ public class Lesson implements LessonCanvasListener {
 	    } else if ("new_test".equals(msg)) {
 		//seq.initNewTest();
 		le_canvas.hideMsg();
-		//		OmegaContext.sout_log.getLogger().info("ERR: " + "here load_test");
+		//		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
 		sendMsg("load", (String) obj, "new_test");
 		// 		if ( current_test_mode_group == TMG_CREATE )
 		// 		    card_show("words");
@@ -2193,7 +2193,7 @@ public class Lesson implements LessonCanvasListener {
 		test_index = exec_test_cont();
 
 	    } else if ("show_result_msg".equals(msg)) {
-		OmegaContext.sout_log.getLogger().info("ERR: " + "show_result_msg " + +' ' + register);
+		OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + +' ' + register);
 
 		if (register != null && register.has_shown == false && current_test_mode == TM_RAND) {
 		    le_canvas.showMsg(getResultSummary_MsgItem());
@@ -2215,10 +2215,10 @@ public class Lesson implements LessonCanvasListener {
 
 	    } else if ("action".equals(msg)) {
 		sendMsg("play", null, "action");
-		//log 		OmegaContext.sout_log.getLogger().info("ERR: " + "action:play done");
+		//log 		OmegaContext.sout_log.getLogger().info(":--: " + "action:play done");
 		if (tg.getStoryNext() != null) {
 		    //		    show_progress = false;
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "STORY NEXT  " + tg.getStoryNext());
+		    OmegaContext.sout_log.getLogger().info(":--: " + "STORY NEXT  " + tg.getStoryNext());
 		    sendMsg("create", tg.getStoryNext(), "action2");
 		    card_show("words", 5);
 		} else {
@@ -2244,7 +2244,7 @@ public class Lesson implements LessonCanvasListener {
 
 	    } else if ("play".equals(msg)) {
 		exec_play(tg, true);
-		//		OmegaContext.sout_log.getLogger().info("ERR: " + "exec_play done");
+		//		OmegaContext.sout_log.getLogger().info(":--: " + "exec_play done");
 		if (register != null) {
 		    register.setStarted();
 		}
@@ -2356,7 +2356,7 @@ public class Lesson implements LessonCanvasListener {
 		    global_skipF(true);
 		    JOptionPane.showMessageDialog(ApplContext.top_frame, T.t("File") + ' ' + fullname + ' ' + T.t("not saved") + '.');
 		    global_skipF(false);
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "" + ex);
+		    OmegaContext.sout_log.getLogger().info(":--: " + "" + ex);
 		}
 
 	    } else if ("sent_select".equals(msg)) {
@@ -2461,7 +2461,7 @@ public class Lesson implements LessonCanvasListener {
 	    }
 	    le_canvas.removeDummy();
 	    SundryUtils.m_sleep(100);
-	    //log 	OmegaContext.sout_log.getLogger().info("ERR: " + "Loading Restoring " + fn + ' ' + last_lesson_fn);
+	    //log 	OmegaContext.sout_log.getLogger().info(":--: " + "Loading Restoring " + fn + ' ' + last_lesson_fn);
 
 	    final Element el;
 
@@ -2470,7 +2470,7 @@ public class Lesson implements LessonCanvasListener {
 		String fn_lang = fn.replaceAll("lesson-[a-zA-Z]*/active", "lesson-" + lang + "/active"); // LESSON-DIR-A
 		String fn_lang_demo = fn.replaceAll("lesson-[a-zA-Z]*/active", "lesson-" + lang + "/demo"); // LESSON-DIR-A
 		String fn_lang_demo2 = fn.replaceAll("lesson-[a-zA-Z]*/active", "lesson/demo"); // LESSON-DIR-A
-		OmegaContext.sout_log.getLogger().info("ERR: " + "LANG repl (~A)" + fn + ' ' + fn_lang);
+		OmegaContext.sout_log.getLogger().info(":--: " + "LANG repl (~A)" + fn + ' ' + fn_lang);
 		Element el1 = Restore.restore(fn_lang);
 		if (el1 == null) {
 		    el1 = Restore.restore(fn);
@@ -2526,7 +2526,7 @@ public class Lesson implements LessonCanvasListener {
 		    String full_test_txt = seq.getTestText(current_test_mode, true);
 		    String test_txt = seq.getTestText(current_test_mode, false);
 
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "EL [][][] FOUND " + full_test_txt + ' ' + test_txt);
+		    OmegaContext.sout_log.getLogger().info(":--: " + "EL [][][] FOUND " + full_test_txt + ' ' + test_txt);
 
 		    if (test_txt == null) {
 			global_skipF(true);
@@ -2548,7 +2548,7 @@ public class Lesson implements LessonCanvasListener {
 		    }
 		}
 
-		//log 	    OmegaContext.sout_log.getLogger().info("ERR: " + "=-= new tm " + current_test_mode);
+		//log 	    OmegaContext.sout_log.getLogger().info(":--: " + "=-= new tm " + current_test_mode);
 
 		le_canvas.setFrom(el, dummy);
 
@@ -2592,7 +2592,7 @@ public class Lesson implements LessonCanvasListener {
 	if (!edit && current_test_mode > TM_CREATE) {
 	    String full_test_txt = seq.getTestText(current_test_mode, true);
 
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "got this full_test_text: " + full_test_txt);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "got this full_test_text: " + full_test_txt);
 	    le_canvas.removeDummy();
 	    if (current_test_mode == TM_POST_1
 		    || current_test_mode == TM_POST_2) {
@@ -2609,7 +2609,7 @@ public class Lesson implements LessonCanvasListener {
 	    Set<String> allCorrect = getMatchingSameActionSpecific(action_specific, test_txt);
 
 
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "got this test_text: " + test_txt + " -> " + allCorrect);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "got this test_text: " + test_txt + " -> " + allCorrect);
 
 	    try {
 		le_canvas.getTarget().reloadComposite(test_txt);
@@ -2624,7 +2624,7 @@ public class Lesson implements LessonCanvasListener {
 
 	    Set<int[][]> test_index = new HashSet<>();
 
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "ET[][][] FOUND " + full_test_txt + ' ' + test_txt);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "ET[][][] FOUND " + full_test_txt + ' ' + test_txt);
 	    if (test_txt != null) {
 	        if (allCorrect.size() == 0 ) {
 		    int[][] test_index1 = le_canvas.getTarget().getAllTargetCombinationsIndexes(test_txt);
@@ -2635,7 +2635,7 @@ public class Lesson implements LessonCanvasListener {
 			test_index.add(test_index1);
 		    }
 		}
-		OmegaContext.sout_log.getLogger().info("ERR: " + "ET  [][] " + test_index.size());
+		OmegaContext.sout_log.getLogger().info(":--: " + "ET  [][] " + test_index.size());
 
 		if (test_index.size() == 0) {
 		    global_skipF(true);
@@ -2702,12 +2702,12 @@ public class Lesson implements LessonCanvasListener {
 			    if (current_test_mode_group != TMG_CREATE) {
 				int next_i_x = tg.findEntryIxMatchTargetIx(tg_ix);
 				for ( int[][] test_index1 : test_index ) {
-				    OmegaContext.sout_log.getLogger().info("ERR: " + "!!! using test index: " + SundryUtils.a2s(test_index) + ' ' + tg_ix);
+				    OmegaContext.sout_log.getLogger().info(":--: " + "!!! using test index: " + SundryUtils.a2s(test_index) + ' ' + tg_ix);
 				    int next_i_y = test_index1[tg_ix][0];
 				    int next_i_x_ = test_index1[tg_ix][1];
 				    int next_i_y_ = test_index1[tg_ix][2];
 				    // next 0 8    i_ 1 0
-				    OmegaContext.sout_log.getLogger().info("ERR: " + "HERE:  " + i_x + ' ' + i_y + "    next " + next_i_x + ' ' + next_i_y + "   next_  " + next_i_x_ + ' ' + next_i_y_);
+				    OmegaContext.sout_log.getLogger().info(":--: " + "HERE:  " + i_x + ' ' + i_y + "    next " + next_i_x + ' ' + next_i_y + "   next_  " + next_i_x_ + ' ' + next_i_y_);
 				    if (next_i_x_ == i_x && next_i_y_ == i_y) {
 				        was_wrong = false;
 				    } else {
@@ -2727,7 +2727,7 @@ public class Lesson implements LessonCanvasListener {
 						+ "item pos (xy)" + i_x + ' ' + i_y + "\n"
 						+ "target pos " + tg_ix);
 				global_skipF(false);
-				OmegaContext.sout_log.getLogger().info("ERR: " + "Internal error when picking\n"
+				OmegaContext.sout_log.getLogger().info(":--: " + "Internal error when picking\n"
 					+ "item pos (xy)" + i_x + ' ' + i_y + "\n"
 					+ "target pos " + tg_ix);
 			    } else {
@@ -2843,7 +2843,7 @@ public class Lesson implements LessonCanvasListener {
 				if (itm.isAction) {
 				    try {
 					String action_s = tg.getActionFileName(0);
-					OmegaContext.sout_log.getLogger().info("ERR: " + "Action fn " + action_s);
+					OmegaContext.sout_log.getLogger().info(":--: " + "Action fn " + action_s);
 					if (action_s != null && action_s.length() > 0) {
 					    if (false && action == null) { //--
 						action = new AnimAction();
@@ -2858,7 +2858,7 @@ public class Lesson implements LessonCanvasListener {
 						    // patch or else we need to double press item to fill editors panel with actorlist
 						    if (lep != null && item_at_xy != null) {
 							Values vs = item_at_xy.getValues(true);
-							OmegaContext.sout_log.getLogger().info("ERR: " + "item " + vs);
+							OmegaContext.sout_log.getLogger().info(":--: " + "item " + vs);
 							addValues(vs);
 							lep.setItem(vs);
 						    }
@@ -2873,7 +2873,7 @@ public class Lesson implements LessonCanvasListener {
 
 				long ct1 = SundryUtils.ct();
 
-				//				    OmegaContext.sout_log.getLogger().info("ERR: " + "time prefetch " + (ct1-ct0));
+				//				    OmegaContext.sout_log.getLogger().info(":--: " + "time prefetch " + (ct1-ct0));
 
 				if (tg.isTargetFilled() && !edit) {
 				    if (current_test_mode == TM_CREATE) {
@@ -2978,7 +2978,7 @@ public class Lesson implements LessonCanvasListener {
 							    do_it = true;
 							    break;
 						    }
-						    //						OmegaContext.sout_log.getLogger().info("ERR: " + "+++++ do_it " + do_it);
+						    //						OmegaContext.sout_log.getLogger().info(":--: " + "+++++ do_it " + do_it);
 						    if (do_it && feedback_movie == null) {
 							feedback_movie = new FeedBackMovie(getCurrentPupil().getBool("sign_movie_on", false));
 							String mn = getCurrentPupil().getString(getCurrentPupil().getBool("sign_movie_on", false) ? "sign_movie" : "movie", null);
@@ -3042,7 +3042,7 @@ public class Lesson implements LessonCanvasListener {
 							    card_panel.remove(m_pan);
 							    le_canvas.requestFocus();
 							    le_canvas.showMsg(null);
-							    //							OmegaContext.sout_log.getLogger().info("ERR: " + "now ready mpg (Lesson:1853)");
+							    //							OmegaContext.sout_log.getLogger().info(":--: " + "now ready mpg (Lesson:1853)");
 							    do_prepare = true;
 							} catch (Exception ex) {
 							    OmegaContext.lesson_log.getLogger().warning("movie feedback failed: " + ex);
@@ -3174,7 +3174,7 @@ public class Lesson implements LessonCanvasListener {
 					seq.next(current_test_mode);
 					mistNoMouse = false;
 					boolean has_more = seq.getTestText(current_test_mode, false) != null;
-					//				    OmegaContext.sout_log.getLogger().info("ERR: " + "====))) " + has_more + ' ' + seq);
+					//				    OmegaContext.sout_log.getLogger().info(":--: " + "====))) " + has_more + ' ' + seq);
 					if (has_more) {
 					    card_show("anim1");
 					    sendMsg("test_cont", null, "L1745");
@@ -3392,7 +3392,7 @@ public class Lesson implements LessonCanvasListener {
 				new Runnable() {
 				    public void run() {
 					//card_show("anim1");
-					OmegaContext.sout_log.getLogger().info("ERR: " + "start hook");
+					OmegaContext.sout_log.getLogger().info(":--: " + "start hook");
 				    }
 				}
 			);
@@ -3412,9 +3412,9 @@ public class Lesson implements LessonCanvasListener {
 			saveRecastAction(le_canvas.getLessonName(), action_s, actA, actTextA, sound_list, pathA, true, tg, is_last, allText);
 			SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
 			ArrayList ss_li = sent_li.sentence_list;
-			//			OmegaContext.sout_log.getLogger().info("ERR: " + "ALL TEXT1 " + all_text);
+			//			OmegaContext.sout_log.getLogger().info(":--: " + "ALL TEXT1 " + all_text);
 			all_text = tg.getAllText();
-			//			OmegaContext.sout_log.getLogger().info("ERR: " + "ALL TEXT2 " + all_text);
+			//			OmegaContext.sout_log.getLogger().info(":--: " + "ALL TEXT2 " + all_text);
 			if (is_last) {
 			    ss_li.add(all_text);
 			}
@@ -3440,20 +3440,20 @@ public class Lesson implements LessonCanvasListener {
 			class MyRA implements Runnable {
 
 			    public void run() {
-				OmegaContext.sout_log.getLogger().info("ERR: " + "MyRA called");
+				OmegaContext.sout_log.getLogger().info(":--: " + "MyRA called");
 				sayAll(ftg);
 			    }
 			}
 			MyRA myra = new MyRA();
 
 			if ( waiting ) {
-			    OmegaContext.sout_log.getLogger().info("ERR: " + "waitReply? " + is_last + ' ' + current_test_mode);
+			    OmegaContext.sout_log.getLogger().info(":--: " + "waitReply? " + is_last + ' ' + current_test_mode);
 			    if (is_last && current_test_mode == TM_CREATE) {
 				String end_code_s = le_canvas.waitReplyAction((AnimAction) action,
 					all_text,
 					getCurrentPupil().getBool("showSentence", true),
 					myra);
-				OmegaContext.sout_log.getLogger().info("ERR: " + "Lesson: end_code_s " + end_code_s);
+				OmegaContext.sout_log.getLogger().info(":--: " + "Lesson: end_code_s " + end_code_s);
 				if (end_code_s.equals("left")) {
 				    action.perform(window,
 					    action_s,
@@ -3466,7 +3466,7 @@ public class Lesson implements LessonCanvasListener {
 					    all_text,
 					    getCurrentPupil().getBool("showSentence", true),
 					    myra);
-				    OmegaContext.sout_log.getLogger().info("ERR: " + "Lesson: end_code_s2 " + end_code_s);
+				    OmegaContext.sout_log.getLogger().info(":--: " + "Lesson: end_code_s2 " + end_code_s);
 				}
 			    }
 			}
@@ -3544,14 +3544,14 @@ public class Lesson implements LessonCanvasListener {
 
 	    pan.setVisible(true);
 	    card_panel.add(pan, "msg_anim");
-	    //log 			OmegaContext.sout_log.getLogger().info("ERR: " + "CCnt " + card_panel.getComponentCount());
+	    //log 			OmegaContext.sout_log.getLogger().info(":--: " + "CCnt " + card_panel.getComponentCount());
 	    card_show("msg_anim");
 	    mpg_action.show();
 	    mpg_action.getHm().put("speed", getCurrentPupil().getSpeed(1000));
 	    progress.dismiss();
 //	    mpg_action.setParentWH(c_w, c_h);
 	    mpg_action.sentence = all_text;
-	    OmegaContext.sout_log.getLogger().info("ERR: " + "sentence " + all_text);
+	    OmegaContext.sout_log.getLogger().info(":--: " + "sentence " + all_text);
 	    boolean anim_twice = getCurrentPupil().getBool("repeatanim", false);
 	    boolean show_sentence = getCurrentPupil().getBool("showSentence", true);
 	    mpg_action.show_sentence = show_sentence;
@@ -3563,7 +3563,7 @@ public class Lesson implements LessonCanvasListener {
 	    class MyRA implements Runnable {
 
 		public void run() {
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "MyRA called");
+		    OmegaContext.sout_log.getLogger().info(":--: " + "MyRA called");
 		    sayAll(ftg);
 		}
 	    }
@@ -3742,7 +3742,7 @@ public class Lesson implements LessonCanvasListener {
     }
 
     void TEST_story() {
-	OmegaContext.sout_log.getLogger().info("ERR: " + "TEST story");
+	OmegaContext.sout_log.getLogger().info(":--: " + "TEST story");
 	card_show("sent");
 	sentence_canvas.showMsg(null);
 
@@ -3919,7 +3919,7 @@ public class Lesson implements LessonCanvasListener {
 		    String timeline_lid) {
 	try {
 	    String sa[] = actor_text.split("§");  ////    UTF-8
-	    // 	    OmegaContext.sout_log.getLogger().info("ERR: " + "put dyn " + thisLessonName + ' ' +
+	    // 	    OmegaContext.sout_log.getLogger().info(":--: " + "put dyn " + thisLessonName + ' ' +
 	    // 		 actor_lid + ' ' +
 	    // 		 actor_text + ' ' +
 	    // 		 timeline_lid);
@@ -3975,7 +3975,7 @@ public class Lesson implements LessonCanvasListener {
 		if (kc != 16 && kc != 17 && kc != 18) {
 		    if (e.getID() == KeyEvent.KEY_PRESSED) {
 			if (P) {
-			    OmegaContext.sout_log.getLogger().info("ERR: " + "KEY: P " + current_card + ' ' + e.getID()
+			    OmegaContext.sout_log.getLogger().info(":--: " + "KEY: P " + current_card + ' ' + e.getID()
 				    + " '" + ch + "' " + kc + "" + ' ' + state + last_state);
 			}
 			if (state == 'r') {
@@ -4032,7 +4032,7 @@ public class Lesson implements LessonCanvasListener {
 
 		    if (e.getID() == KeyEvent.KEY_TYPED) {
 			if (P) {
-			    OmegaContext.sout_log.getLogger().info("ERR: " + "KEY: T " + current_card + ' ' + e.getID() + " '" + ch + "' " + kc + "" + ' ' + state + last_state);
+			    OmegaContext.sout_log.getLogger().info(":--: " + "KEY: T " + current_card + ' ' + e.getID() + " '" + ch + "' " + kc + "" + ' ' + state + last_state);
 			}
 			state = 't';
 			if (first_tr == false) {
@@ -4045,7 +4045,7 @@ public class Lesson implements LessonCanvasListener {
 			last_state = state;
 			state = 'r';
 			if (P) {
-			    OmegaContext.sout_log.getLogger().info("ERR: " + "KEY: R " + current_card + ' ' + e.getID() + " '" + ch + "' " + kc + "" + ' ' + state + last_state);
+			    OmegaContext.sout_log.getLogger().info(":--: " + "KEY: R " + current_card + ' ' + e.getID() + " '" + ch + "' " + kc + "" + ' ' + state + last_state);
 			}
 			first_tr = false;
 		    }
@@ -4054,7 +4054,7 @@ public class Lesson implements LessonCanvasListener {
 		}
 
 		if (P) {
-		    OmegaContext.sout_log.getLogger().info("ERR: " + "KEY: state " + state + last_state + ' ' + do_own);
+		    OmegaContext.sout_log.getLogger().info(":--: " + "KEY: state " + state + last_state + ' ' + do_own);
 		}
 
 		boolean ret = true;
@@ -4113,7 +4113,7 @@ public class Lesson implements LessonCanvasListener {
 		}
 		if (do_it && dispatch) {
 		    if (P) {
-			OmegaContext.sout_log.getLogger().info("ERR: " + "do dispatch ");
+			OmegaContext.sout_log.getLogger().info(":--: " + "do dispatch ");
 		    }
 		    return super.dispatchKeyEvent(e);
 		}

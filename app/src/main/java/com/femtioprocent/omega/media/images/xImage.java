@@ -80,7 +80,7 @@ public class xImage {
         seq = -1;
         ext = file[EXT];
         calcMaxSeq();
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "xImage created " + this);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "xImage created " + this);
     }
 
     private String mkPeTaskNid(String name) {
@@ -107,7 +107,7 @@ public class xImage {
         this.seq = xim.seq;
         this.ext = xim.ext;
         calcMaxSeq();
-        //	OmegaContext.sout_log.getLogger().info("ERR: " + "xImage cloned " + this);
+        //	OmegaContext.sout_log.getLogger().info(":--: " + "xImage cloned " + this);
     }
 
     public static void invalidateCache() {
@@ -137,7 +137,7 @@ public class xImage {
                     ent.im.flush();
                 }
                 cache_imf.remove(k);
-                OmegaContext.sout_log.getLogger().info("ERR: " + "%%%%%%%% remove from cache " + k + ", cnt:" + ent.cnt);
+                OmegaContext.sout_log.getLogger().info(":--: " + "%%%%%%%% remove from cache " + k + ", cnt:" + ent.cnt);
             }
         }
 
@@ -163,7 +163,7 @@ public class xImage {
                     ent.im.flush();
                 }
                 cache_imf.remove(k);
-                OmegaContext.sout_log.getLogger().info("ERR: " + "%%%%%%%% remove from cache " + k + ", cnt:" + ent.cnt);
+                OmegaContext.sout_log.getLogger().info(":--: " + "%%%%%%%% remove from cache " + k + ", cnt:" + ent.cnt);
             }
         }
 
@@ -192,18 +192,18 @@ public class xImage {
     }
 
     public boolean setInnerAnimIndex(int dt, int ix) {
-        //OmegaContext.sout_log.getLogger().info("ERR: " + "ANIM setix " + ix + ' ' + seq + ' ' + max_seq + ' ' + ix_base0);
+        //OmegaContext.sout_log.getLogger().info(":--: " + "ANIM setix " + ix + ' ' + seq + ' ' + max_seq + ' ' + ix_base0);
         if (hasInnerAnim()) {
             if (seq == (ix % (max_seq + 1))) {
-                //System.err.println("ERR: " + "ANIM setix same  " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
+                //OmegaContext.serr_log.getLogger().info(":--: " + "ANIM setix same  " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
                 return false; // it has not been changed
             }
             seq = ix;
             seq %= (max_seq + 1);
-            //System.err.println("ERR: " + "ANIM setix true  " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
+            //OmegaContext.serr_log.getLogger().info(":--: " + "ANIM setix true  " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
             return true;
         }
-        //System.err.println("ERR: " + "ANIM setix false " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
+        //OmegaContext.serr_log.getLogger().info(":--: " + "ANIM setix false " + ix + ' ' + seq + ' ' + max_seq + ' ' + dt);
         return false;
     }
 
@@ -330,7 +330,7 @@ public class xImage {
             try {
                 list = ListFilesURL.getMediaList(dir);
             } catch (Exception ex) {
-                OmegaContext.sout_log.getLogger().info("ERR: " + "=== " + ex + ' ' + dir);
+                OmegaContext.sout_log.getLogger().info(":--: " + "=== " + ex + ' ' + dir);
                 JOptionPane.showMessageDialog(null,
                         new String[]{
                                 T.t("Nu such directory") + "!\n" +
@@ -341,7 +341,7 @@ public class xImage {
             }
 //	    list_hm.put(dir, list);
         }
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scanDir -> " + SundryUtils.arrToString(list));
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scanDir -> " + SundryUtils.arrToString(list));
         cache_dir.put(dir, list);
         return list;
     }
@@ -388,7 +388,7 @@ public class xImage {
             if (im != null) {
                 return im;
             }
-//	    OmegaContext.sout_log.getLogger().info("ERR: " + "¤¤¤¤¤ loading " + key);
+//	    OmegaContext.sout_log.getLogger().info(":--: " + "¤¤¤¤¤ loading " + key);
             im = LoadImage.loadAndWaitOrNull(comp, key, false);
             putEntry(key, im);
         }
@@ -457,18 +457,18 @@ public class xImage {
         if (I != null)
             return I.intValue();
 
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scanInner " + toString());
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scanInner " + toString());
         int max = -1;
 
         try {
             String[] list = scanDir(dir);
             for (int i = 0; i < list.length; i++) {
                 String[] file = splitFile(list[i]);
-                //	    OmegaContext.sout_log.getLogger().info("ERR: " + "try " + SundryUtils.arrToString(file));
+                //	    OmegaContext.sout_log.getLogger().info(":--: " + "try " + SundryUtils.arrToString(file));
                 if (file[BASE].equals(base) && ((attr == null && file[ATTR] == null) ||
                         (attr != null && attr.equals(file[ATTR])))) {
                     if (file[SEQ] != null) {
-                        //		    OmegaContext.sout_log.getLogger().info("ERR: " + "FOund seq " + SundryUtils.arrToString(file));
+                        //		    OmegaContext.sout_log.getLogger().info(":--: " + "FOund seq " + SundryUtils.arrToString(file));
                         int v = Integer.parseInt(file[SEQ]);
                         if (v > max)
                             max = v;
@@ -477,7 +477,7 @@ public class xImage {
             }
         } catch (Exception ex) {
         }
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "found max = " + max);
+//	OmegaContext.sout_log.getLogger().info(":--: " + "found max = " + max);
 
         cache_seqLen.put(key, max);
 
@@ -485,7 +485,7 @@ public class xImage {
     }
 
     private boolean scanAttrib(String a) {
-//	OmegaContext.sout_log.getLogger().info("ERR: " + "scanInner Attrib " + a + " ...");
+//	OmegaContext.sout_log.getLogger().info(":--: " + "scanInner Attrib " + a + " ...");
 
         String key = getFN_noSeq();
         Boolean B = (Boolean) cache_attr.get(key);
@@ -497,7 +497,7 @@ public class xImage {
             for (int i = 0; i < list.length; i++) {
                 String[] file = splitFile(list[i]);
                 if (file[BASE].equals(base) && a != null && a.equals(file[ATTR])) {
-//		OmegaContext.sout_log.getLogger().info("ERR: " + "found attr " + SundryUtils.arrToString(file));
+//		OmegaContext.sout_log.getLogger().info(":--: " + "found attr " + SundryUtils.arrToString(file));
                     cache_attr.put(key, Boolean.valueOf(true));
                     return true;
                 }

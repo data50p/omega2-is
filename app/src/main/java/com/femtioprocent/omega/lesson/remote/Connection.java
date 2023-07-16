@@ -26,7 +26,7 @@ public class Connection extends Thread {
             LOOP:
             for (; ; ) {
                 int ch = is.read(); //.readLine();
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "read lessond " + ch);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "read lessond " + ch);
                 if (ch == -1)
                     break;
 
@@ -61,7 +61,7 @@ public class Connection extends Thread {
     public void run() {
         long ct0 = SundryUtils.ct();
 
-        if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info("ERR: " + "lessond Connection established");
+        if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: " + "lessond Connection established");
         try {
                 /*BufferedReader rd = new BufferedReader(new InputStreamReader(*/
             InputStream is = so.getInputStream(); // ));

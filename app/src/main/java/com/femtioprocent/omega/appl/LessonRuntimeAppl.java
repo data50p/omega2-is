@@ -62,7 +62,7 @@ public class LessonRuntimeAppl extends OmegaAppl {
         java.util.List argl = SundryUtils.argAsList(argv);
 
         OmegaContext.omega_lang = (String) flag.get("omega_lang");
-        OmegaContext.sout_log.getLogger().info("ERR: " + "param omega_lang is " + OmegaContext.omega_lang);
+        OmegaContext.sout_log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang);
 
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.MetalLookAndFeel");
@@ -80,11 +80,11 @@ public class LessonRuntimeAppl extends OmegaAppl {
         if (demo) {
             OmegaContext.DEMO = true;
         }
-        OmegaContext.sout_log.getLogger().info("ERR: " + "Omega demo: " + OmegaContext.DEMO);
+        OmegaContext.sout_log.getLogger().info(":--: " + "Omega demo: " + OmegaContext.DEMO);
 
         boolean ask = flag.get("ask") != null;
         String fn = argl.size() > 0 ? (String) argl.get(0) : null;
-//log	OmegaContext.sout_log.getLogger().info("ERR: " + "start " + ask + ' ' + fn);
+//log	OmegaContext.sout_log.getLogger().info(":--: " + "start " + ask + ' ' + fn);
         String t_steps = (String) flag.get("T");
         if (t_steps != null) {
             OmegaConfig.t_step = Integer.parseInt(t_steps);

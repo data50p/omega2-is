@@ -1,6 +1,7 @@
 package com.femtioprocent.omega.appl;
 
 import com.femtioprocent.omega.OmegaConfig;
+import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.adm.assets.TargetCombinations;
 import com.femtioprocent.omega.lesson.helper.PathHelper;
 import com.femtioprocent.omega.util.Log;
@@ -36,7 +37,7 @@ public class ConvertAnimToVersion_0_1 {
 
     public static void main(String[] args) {
         if ( args.length == 0 ) {
-	    System.err.println("-b=<backupExt> -d=dir -status -flatness=value example.omega_anim,...");
+	    OmegaContext.serr_log.getLogger().info("-b=<backupExt> -d=dir -status -flatness=value example.omega_anim,...");
 	    System.exit(99);
 	}
 	Log.getLogger().info("Started");

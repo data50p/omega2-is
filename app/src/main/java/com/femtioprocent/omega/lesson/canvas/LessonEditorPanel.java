@@ -100,7 +100,7 @@ public class LessonEditorPanel extends JPanel {
 
     ValuesListener mvl_tg = new ValuesListener() {
         public void changed(Value v) {
-//log		OmegaContext.sout_log.getLogger().info("ERR: " + "=00= val list " + v);
+//log		OmegaContext.sout_log.getLogger().info(":--: " + "=00= val list " + v);
             Target.T_Item tit = le_canvas.getTarget().getT_Item(active_target_ix);
             if (tit == null)
                 return;
@@ -152,7 +152,7 @@ public class LessonEditorPanel extends JPanel {
             } else if (v.id.equals("dummysign")) {
                 itm.setDummySign_Krull(v.getStr(), true);
             } else if (v.id.equals("fname")) {
-                Log.getLogger().info("ERR: " + "FNAME " + itm.it_ent.type);
+                Log.getLogger().info(":--: " + "FNAME " + itm.it_ent.type);
                 if (true || itm.it_ent.type.equals("action")) { // isAction ) {
                     itm.setAction_Fname(v.getStr(), "omega_anim");
                 }
@@ -245,7 +245,7 @@ public class LessonEditorPanel extends JPanel {
                         int[][] allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(sentence);
                         int ixTg = 0;
                         for (int[] ixArr : allTargetCombinationsIndexes) {
-                            System.out.println("Sentence: " + sentence + ' ' + Arrays.toString(ixArr));
+                            OmegaContext.sout_log.getLogger().info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr));
                             le_canvas.l_ctxt.getLesson().l_ctxt.getTarget().pickItemAt(ixArr[1], ixArr[2], ixTg);
                             ixTg++;
                         }
@@ -275,7 +275,7 @@ public class LessonEditorPanel extends JPanel {
             }
             if (s.equals("editanim")) {
                 String fn = le_canvas.l_ctxt.getTarget().getActionFileName(0); // main default, first
-                Log.getLogger().info("ERR: " + "MANY? " + fn);
+                Log.getLogger().info(":--: " + "MANY? " + fn);
                 if (fn == null || fn.length() == 0) {
                     JOptionPane.showMessageDialog(LessonEditor.TOP_JFRAME,
                             //le_canvas.l_ctxt.top_frame,
@@ -312,13 +312,13 @@ public class LessonEditorPanel extends JPanel {
                     try {
                         File file = choose_af.getSelectedFile();
                         String fname_s = file.getName();
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + fname_s);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
 //                        fname_s = file.toURI().toURL().toString(); // getCanonicalPath();
                         fname_s = Files.toURL(file);
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + fname_s);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
                         String fn = Files.mkRelativeCWD(fname_s);
                         fn = OmegaContext.antiOmegaAssets(fn);
-//log			OmegaContext.sout_log.getLogger().info("ERR: " + "--> " + fn);
+//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fn);
                         lesson_link_next.setText(fn);
                         enable_LLN.setSelected(true);
                         lesson_link_next.setEnabled(true);
@@ -345,7 +345,7 @@ public class LessonEditorPanel extends JPanel {
                         url_s = url_s.replaceAll("/$", "");
                         url_s = rmDuplicate(url_s);
                         String oa = Files.mkRelativeCWD(url_s);
-                        System.err.println("setOmegaAssets: " + url_s);
+                        OmegaContext.serr_log.getLogger().info("setOmegaAssets: " + url_s);
                         OmegaContext.setOmegaAssets(oa);
                         omega_assets_name.setText(OmegaContext.omegaAssetsName());
                     } catch (IOException e) {
