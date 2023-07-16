@@ -37,7 +37,7 @@ public class JPlayer implements LineListener {
 
     private static void s_pe_(String s) {
         if (o)
-            System.err.print(s);
+            OmegaContext.serr_log.getLogger().info(s);
     }
 
     static {
