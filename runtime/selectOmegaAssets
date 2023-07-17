@@ -1,7 +1,7 @@
-rm -f default.omega_assets
-select oa in omega_assets/*.omega_assets *.omega_assets
+select oa in $(ls -1d omega_assets/*.omega_assets *.omega_assets | grep -v '^default.omega_assets$')
 do
-ln -s $oa default.omega_assets
-ls -l default.omega_assets/
-exit 0
+  rm -f default.omega_assets
+  ln -s $oa default.omega_assets
+  ls -l default.omega_assets/
+  exit 0
 done
