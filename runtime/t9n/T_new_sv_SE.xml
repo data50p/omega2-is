@@ -42,6 +42,10 @@
    <string>Sign movie</string>
   </void>
   <void method="put">
+   <string>Error while loading lesson: &quot;</string>
+   <string>Error while loading lesson: &quot;</string>
+  </void>
+  <void method="put">
    <string>Scan and Add to Bundle</string>
    <string>Scan and Add to Bundle</string>
   </void>
@@ -172,6 +176,10 @@
   <void method="put">
    <string>Lesson Lang</string>
    <string>Lesson Lang</string>
+  </void>
+  <void method="put">
+   <string>kotlin</string>
+   <string>kotlin</string>
   </void>
   <void method="put">
    <string>Nu such directory</string>

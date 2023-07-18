@@ -81,7 +81,7 @@ public class ConvertAnimToVersion_0_1 {
 	Iterator<TargetCombinations.TCItem> it = dep_set.iterator();
 	while (it.hasNext()) {
 	    final TargetCombinations.TCItem next = it.next();
-	    if ( next.fn.endsWith(s) )
+	    if ( next.getFn().endsWith(s) )
 	        continue;
 	    it.remove();
 	}

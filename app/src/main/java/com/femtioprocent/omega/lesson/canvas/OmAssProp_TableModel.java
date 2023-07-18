@@ -32,9 +32,9 @@ public class OmAssProp_TableModel extends AbstractTableModel {
         this.sprop = sprop;
         this.tc = tc;
         li_set = new ArrayList<TargetCombinations.TCItem>();
-        li_set.addAll(tc.dep_set);
+        li_set.addAll(tc.getDep_set());
         li_set0 = new ArrayList<TargetCombinations.TCItem>();
-        li_set0.addAll(tc.src_set);
+        li_set0.addAll(tc.getSrc_set());
         test_member_map = tmm;
     }
 
@@ -43,7 +43,7 @@ public class OmAssProp_TableModel extends AbstractTableModel {
     }
 
     public int getRowCount() {
-        return Math.max(tc.dep_set.size(), tc.src_set.size());
+        return Math.max(tc.getDep_set().size(), tc.getSrc_set().size());
     }
 
     public Class getColumnClass(int c) {
@@ -62,14 +62,14 @@ public class OmAssProp_TableModel extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         if (col == 0) {
-            String se = row < li_set0.size() ? li_set0.get(row).fn : "";
+            String se = row < li_set0.size() ? li_set0.get(row).getFn() : "";
             if (se == null)
                 se = "";
             return se;
         }
 
         if (col == 1) {
-            String se = row < li_set.size() ? li_set.get(row).fn : "";
+            String se = row < li_set.size() ? li_set.get(row).getFn() : "";
             if (se == null)
                 se = "";
             return se;
@@ -116,9 +116,9 @@ public class OmAssProp_TableModel extends AbstractTableModel {
     public void update(TargetCombinations targetCombinations) {
         tc = targetCombinations;
         li_set = new ArrayList<TargetCombinations.TCItem>();
-        li_set.addAll(tc.dep_set);
+        li_set.addAll(tc.getDep_set());
         li_set0 = new ArrayList<TargetCombinations.TCItem>();
-        li_set0.addAll(tc.src_set);
+        li_set0.addAll(tc.getSrc_set());
         fireTableDataChanged();
     }
 }

@@ -10,6 +10,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.14'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
 }
 
 task wrapper(type: Wrapper){
@@ -42,13 +43,14 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'de.codecentric.centerdevice:centerdevice-nsmenufx:2.1.4'
     implementation 'com.intellij:forms_rt:7.0.3'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(18)
+        languageVersion = JavaLanguageVersion.of(20)
     }
 }
 
@@ -59,4 +61,16 @@ application {
     File runningDir = new File('../runtime')
     runningDir.mkdirs()
     tasks.run.workingDir = runningDir
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "20"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "20"
+    }
 }

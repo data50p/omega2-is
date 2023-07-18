@@ -35,7 +35,7 @@ public class PathHelper {
     public void perform(boolean modify, String doBackup) {
 	for(TargetCombinations.TCItem tci : dep_set) {
 	    try {
-		String fname = tci.fn;
+		String fname = tci.getFn();
 		if (!fname.endsWith(".omega_anim")) {
 		    Log.getLogger().info("Skip: wrong file name " + fname);
 		    continue;

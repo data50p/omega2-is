@@ -1467,7 +1467,7 @@ public class Target {
         }
         List<String> media = lesson.action_specific.getMedia();
         for (String s : media)
-            tc.dep_set.add(new TargetCombinations.TCItem(s));
+            tc.getDep_set().add(new TargetCombinations.TCItem(s));
 
         Target tg2 = this;
 
@@ -1548,12 +1548,12 @@ public class Target {
 
     private void addLessonIcon(TargetCombinations tc, String fn) {
         if (OmegaContext.omegaAssetsExist(fn))
-            tc.dep_set.add(new TargetCombinations.TCItem(fn));
+            tc.getDep_set().add(new TargetCombinations.TCItem(fn));
     }
 
     private void update(TargetCombinations tc) {
         Target nTarget = new Target();
-        tc.tg_set.add(nTarget);     // not populated yet
+        tc.getTg_set().add(nTarget);     // not populated yet
 
         List<String> sound_list = getAll_Sound_Items();
         for (String s : sound_list) {
@@ -1561,15 +1561,15 @@ public class Target {
             List<TargetCombinations.TCItem> l = expandVariants(fn);
             boolean oneExist = false;
             for (TargetCombinations.TCItem f : l) {
-                if (OmegaContext.omegaAssetsExist(f.fn)) {
-                    tc.dep_set.add(f);
+                if (OmegaContext.omegaAssetsExist(f.getFn())) {
+                    tc.getDep_set().add(f);
                     oneExist = true;
                 } else {
                     ;//tc.dep_set.add(new TargetCombinations.TCItem(f, false));
                 }
             }
             if (!oneExist) {
-                tc.dep_set.add(new TargetCombinations.TCItem(fn));
+                tc.getDep_set().add(new TargetCombinations.TCItem(fn));
             }
         }
 /*
@@ -1609,7 +1609,7 @@ public class Target {
                         String s = eb.findAttr("name");
                         if (s != null) {
                             String fn = "media" + File.separator + s;
-                            tc.dep_set.add(new TargetCombinations.TCItem(fn));
+                            tc.getDep_set().add(new TargetCombinations.TCItem(fn));
                         }
                     }
                 }
@@ -1622,10 +1622,10 @@ public class Target {
                             String s = eb.findAttr("name");
                             if (s != null) {
                                 String ms = "media" + File.separator + s;
-                                tc.dep_set.add(new TargetCombinations.TCItem(ms));
+                                tc.getDep_set().add(new TargetCombinations.TCItem(ms));
                                 List<TargetCombinations.TCItem> aiL = attributedImages(ms);
                                 for (TargetCombinations.TCItem ai : aiL)
-                                    tc.dep_set.add(ai);
+                                    tc.getDep_set().add(ai);
                             }
                         }
                     }
@@ -1649,15 +1649,15 @@ public class Target {
                                                 List<TargetCombinations.TCItem> l = expandVariants(fn);
                                                 boolean oneExist = false;
                                                 for (TargetCombinations.TCItem f : l) {
-                                                    if (OmegaContext.omegaAssetsExist(f.fn)) {
-                                                        tc.dep_set.add(f);
+                                                    if (OmegaContext.omegaAssetsExist(f.getFn())) {
+                                                        tc.getDep_set().add(f);
                                                         oneExist = true;
                                                     } else {
                                                         ;//tc.dep_set.add(new TargetCombinations.TCItem(f, false));
                                                     }
                                                 }
                                                 if (!oneExist) {
-                                                    tc.dep_set.add(new TargetCombinations.TCItem(fn));
+                                                    tc.getDep_set().add(new TargetCombinations.TCItem(fn));
                                                 }
                                             }
                                         }
@@ -1667,7 +1667,7 @@ public class Target {
                         }
                     }
                 }
-                tc.dep_set.add(new TargetCombinations.TCItem(af));
+                tc.getDep_set().add(new TargetCombinations.TCItem(af));
             }
         }
     }

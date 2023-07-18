@@ -129,12 +129,12 @@ public class OmegaAssetsProperty extends Property_B {
                         file = new File(file.getPath() + OmegaConfig.OMEGA_BUNDLE_EXTENSION);
                     try {
                         java.util.List<String> manifest = new ArrayList<>();
-                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().src_set) {
-                            String manifestInfo = manifestInfo(s2.fn);
+                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().getSrc_set()) {
+                            String manifestInfo = manifestInfo(s2.getFn());
                             manifest.add(manifestInfo);
                         }
-                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().dep_set) {
-                            String manifestInfo = manifestInfo(s2.fn);
+                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().getDep_set()) {
+                            String manifestInfo = manifestInfo(s2.getFn());
                             manifest.add(manifestInfo);
                         }
 
@@ -149,11 +149,11 @@ public class OmegaAssetsProperty extends Property_B {
                             sb.append(man + "\n");
                         putData(out, OMEGA_BUNDLE_MANIFEST, sb.toString());
 
-                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().src_set) {
-                            put(out, s2.fn);
+                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().getSrc_set()) {
+                            put(out, s2.getFn());
                         }
-                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().dep_set) {
-                            put(out, s2.fn);
+                        for (TargetCombinations.TCItem s2 : targetCombinationsBuilder.asOne().getDep_set()) {
+                            put(out, s2.getFn());
                         }
 
                         out.close();
@@ -223,7 +223,7 @@ public class OmegaAssetsProperty extends Property_B {
                         l_ctxt.getLesson().sendMsgWait("load", (String) fn);
                         SundryUtils.m_sleep(200);
                         latestTargetCombinations = l_ctxt.getLessonCanvas().getAllTargetCombinationsEx2(false);
-                        latestTargetCombinations.src_set.add(new TargetCombinations.TCItem(l_ctxt.getLesson().getLoadedFName()));
+                        latestTargetCombinations.getSrc_set().add(new TargetCombinations.TCItem(l_ctxt.getLesson().getLoadedFName()));
 
                         targetCombinationsBuilder.add(latestTargetCombinations);
                         latestTargetCombinations = targetCombinationsBuilder.asOne();
@@ -331,10 +331,10 @@ public class OmegaAssetsProperty extends Property_B {
                                     }
                                 }
                                 if (name.endsWith(".omega_lesson")) {
-                                    latestTargetCombinations.src_set.add(new TargetCombinations.TCItem(name));
+                                    latestTargetCombinations.getSrc_set().add(new TargetCombinations.TCItem(name));
                                 } else {
                                     if (!obManifest)
-                                        latestTargetCombinations.dep_set.add(new TargetCombinations.TCItem(name));
+                                        latestTargetCombinations.getDep_set().add(new TargetCombinations.TCItem(name));
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -518,7 +518,7 @@ public class OmegaAssetsProperty extends Property_B {
         X = 0;
 
         latestTargetCombinations = l_ctxt.getLessonCanvas().getAllTargetCombinationsEx2(false);
-        latestTargetCombinations.src_set.add(new TargetCombinations.TCItem(l_ctxt.getLesson().getLoadedFName()));
+        latestTargetCombinations.getSrc_set().add(new TargetCombinations.TCItem(l_ctxt.getLesson().getLoadedFName()));
         tmod = new OmAssProp_TableModel(this, latestTargetCombinations, tmm);
 
         TableSorter tsort = new TableSorter(tmod);

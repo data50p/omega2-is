@@ -35,10 +35,10 @@ abstract public class Login {
         Log.getLogger().info(":--: " + "setName " + name + mode);
         switch (mode) {
             case USER:
-                user.setName(name);
+                user.jname = name;
                 break;
             case TEACHER:
-                teacher.setName(name);
+                teacher.jname = name;
                 break;
         }
     }
