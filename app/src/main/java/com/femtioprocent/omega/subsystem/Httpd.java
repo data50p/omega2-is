@@ -1,6 +1,7 @@
 package com.femtioprocent.omega.subsystem;
 
 import com.femtioprocent.omega.servers.httpd.Server;
+import org.jetbrains.annotations.NotNull;
 
 public class Httpd extends Subsystem {
     public static Server httpd;
