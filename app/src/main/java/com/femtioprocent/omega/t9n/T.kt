@@ -150,7 +150,7 @@ class T {
             val f = File(OmegaContext.t9n("T_new_" + lang_country))
             if (f.exists() && f.length() > 0) return
             val pw = SundryUtils.createPrintWriter(OmegaContext.t9n("T_new"))
-            pw.println("utf-8")
+            pw!!.println("utf-8")
             pw.close()
         }
 
