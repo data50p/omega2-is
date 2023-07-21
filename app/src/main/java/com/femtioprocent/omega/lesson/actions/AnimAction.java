@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class AnimAction implements ActionI {
     public AnimRuntime rt = new AnimRuntime();
-    public HashMap args = new HashMap();
+    public HashMap<String,String> args = new HashMap();
 
     public Element prefetch(String action_s) {
         Element el = null;

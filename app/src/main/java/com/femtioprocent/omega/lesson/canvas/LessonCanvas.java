@@ -607,7 +607,7 @@ public class LessonCanvas extends BaseCanvas {
 
     class AllBox {
 
-        HashMap all;
+        HashMap<String,Box> all;
 
         AllBox() {
             all = new HashMap();

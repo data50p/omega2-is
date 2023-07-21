@@ -21,7 +21,7 @@ public class OmegaContext {
     private static String currentOmegaAssets = getDefaultOmegaAssets();
 
     static Object lock = new Object();
-    static HashMap<String, Subsystem> subsystems = new HashMap<String, Subsystem>();
+    static HashMap<String, Subsystem> subsystems = new HashMap<>();
     public static String URL_BASE = "http://localhost:8089/";
     public static String URL_BASE_AS_FILE = "";
 

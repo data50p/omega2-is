@@ -70,7 +70,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     public Color background_color = new Color(30, 30, 90);
 
-    public HashMap colors = new HashMap();
+    public HashMap<String,Color> colors = new HashMap<>();
 
     public boolean hidden = false;
 

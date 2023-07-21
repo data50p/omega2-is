@@ -5,17 +5,13 @@ import com.femtioprocent.omega.swing.ToolBar;
 import java.util.HashMap;
 
 public abstract class ToolBar_Base extends ToolBar {
-    HashMap jb;
-
     ToolBar_Base(Object o) {
         super();
-        jb = new HashMap();
         init(o);
     }
 
     ToolBar_Base(Object o, int orientation) {
         super(orientation);
-        jb = new HashMap();
         init(o);
     }
 

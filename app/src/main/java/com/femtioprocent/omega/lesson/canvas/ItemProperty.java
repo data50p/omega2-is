@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class ItemProperty extends Property_B implements ActionListener {
-    HashMap guimap = new HashMap();
+    HashMap<String,JComponent> guimap = new HashMap();
     boolean skip_dirty = false;
 
     JTextField text_tf;

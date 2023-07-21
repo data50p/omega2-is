@@ -445,10 +445,10 @@ public class Lesson implements LessonCanvasListener {
 
     class Canvases {
 
-	HashMap hm;
+	HashMap<String,BaseCanvas> hm;
 
 	Canvases() {
-	    hm = new HashMap();
+	    hm = new HashMap<>();
 	}
 
 	java.util.Set keySet() {
@@ -1983,8 +1983,8 @@ public class Lesson implements LessonCanvasListener {
 
     public class ActionSpecific {
 
-	HashMap hm;
-	HashMap hmSign;
+	HashMap<String,String> hm;
+	HashMap<String,String> hmSign;
 
 	ActionSpecific() {
 	    hm = new HashMap();
@@ -1993,9 +1993,9 @@ public class Lesson implements LessonCanvasListener {
 
 	public List<String> getMedia() {
 	    List<String> li = new ArrayList<>();
-	    for (Object ov : hm.values())
+	    for (String ov : hm.values())
 		li.add(ov.toString());
-	    for (Object ov : hmSign.values())
+	    for (String ov : hmSign.values())
 		li.add(ov.toString());
 	    return li;
 	}
@@ -2050,7 +2050,7 @@ public class Lesson implements LessonCanvasListener {
 
 	Element getElement() {
 	    Element el = new Element("action_specific");
-	    Iterator it = hm.keySet().iterator();
+	    Iterator<String> it = hm.keySet().iterator();
 	    while (it.hasNext()) {
 		String key = (String) it.next();
 		String val = (String) hm.get(key);
@@ -2066,7 +2066,7 @@ public class Lesson implements LessonCanvasListener {
 
 	Element getSignElement() {
 	    Element el = new Element("sign_specific");
-	    Iterator it = hmSign.keySet().iterator();
+	    Iterator<String> it = hmSign.keySet().iterator();
 	    while (it.hasNext()) {
 		String key = (String) it.next();
 		String val = (String) hmSign.get(key);

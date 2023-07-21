@@ -109,15 +109,15 @@ public class TimeMarkerProperties extends OmegaProperties implements ActionListe
     OnOffItemEvent onoff_listener = new OnOffItemEvent();
 
 
-    private HashMap hm_onoff = new HashMap();
-    private HashMap hm_doc = new HashMap();
-    private HashMap hm_cb = new HashMap();
+    private HashMap<JCheckBox,Integer> hm_onoff = new HashMap();
+    private HashMap<Document,Integer> hm_doc = new HashMap();
+    private HashMap<JComponent,Integer> hm_cb = new HashMap<>();
 
 
     void initCache() {
         hm_onoff = new HashMap();
         hm_doc = new HashMap();
-        hm_cb = new HashMap();
+        hm_cb = new HashMap<>();
     }
 
     private void buildProperties(TimeMarker tm) {

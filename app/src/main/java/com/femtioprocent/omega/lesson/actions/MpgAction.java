@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class MpgAction implements ActionI {
     public MpgPlayer mpg_player;
     MyPanel jpan;
-    HashMap args = new HashMap();
+    HashMap<String,String> args = new HashMap();
     private Font item_fo = null;
     int parent_w = 100;
     int parent_h = 100;

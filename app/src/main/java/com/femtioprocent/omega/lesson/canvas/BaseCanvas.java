@@ -31,7 +31,7 @@ public class BaseCanvas extends JPanel {
     EventListenerList lc_listeners;
     LessonContext l_ctxt;
 
-    public HashMap colors = new HashMap();
+    public HashMap<String,Color> colors = new HashMap();
 
     Font fo;
 

@@ -21,8 +21,8 @@ import java.util.HashMap;
 public class ColorDisplay extends JDialog implements ActionListener {
     int WW = 700;
     int HH = 500;
-    HashMap colors_orig;
-    public HashMap colors;
+    HashMap<String,Color> colors_orig;
+    public HashMap<String,Color> colors;
     public boolean select = false;
     String who;
 
