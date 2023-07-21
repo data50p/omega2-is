@@ -2416,8 +2416,8 @@ public class Lesson implements LessonCanvasListener {
 			    try (ObjectInput in = new ObjectInputStream(new FileInputStream(file))) {
 				SentenceList sent_li = (SentenceList) in.readObject();
 				story_hm.put("sentence_list", sent_li);
-				play_data_list.arr = (ArrayList) in.readObject();
-				play_data_list_is_last.arr = (ArrayList) in.readObject();
+				play_data_list.arr = (ArrayList<PlayData>) in.readObject();
+				play_data_list_is_last.arr = (ArrayList<PlayData>) in.readObject();
 			    }
 			} else {
 			    global_skipF(true);
