@@ -2708,7 +2708,7 @@ public class Lesson implements LessonCanvasListener {
 				register.word(":again",
 					exec_hbox_time,
 					hBox.getItem().getText(),
-					hBox.getItem().it_ent.tid);
+					hBox.getItem().getIt_ent().tid);
 			    }
 			    le_canvas.renderTg();
 			} else {
@@ -2855,7 +2855,7 @@ public class Lesson implements LessonCanvasListener {
 				    }
 				}
 
-				if (itm.isAction) {
+				if (itm.isAction()) {
 				    try {
 					String action_s = tg.getActionFileName(0);
 					OmegaContext.sout_log.getLogger().info(":--: " + "Action fn " + action_s);

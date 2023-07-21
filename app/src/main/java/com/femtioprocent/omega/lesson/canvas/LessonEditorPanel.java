@@ -121,7 +121,7 @@ public class LessonEditorPanel extends JPanel {
             Item itm = le_canvas.getTarget().getItemAt(it_ix, it_iy);
             if (itm == null)
                 return;
-            boolean is_action = itm.it_ent.type.equals("action");
+            boolean is_action = itm.getIt_ent().type.equals("action");
 
             if (v.id.equals("text")) {
                 itm.setText_Krull(v.getStr());
@@ -130,7 +130,7 @@ public class LessonEditorPanel extends JPanel {
             } else if (v.id.equals("dummytext")) {
                 itm.setDummyText_Krull(v.getStr(), true);
             } else if (v.id.equals("tid")) {
-                itm.it_ent.tid = v.getStr();
+                itm.getIt_ent().tid = v.getStr();
             } else if (v.id.equals("v1")) {
                 itm.setVar(1, v.getStr());
             } else if (v.id.equals("v2")) {
@@ -152,13 +152,13 @@ public class LessonEditorPanel extends JPanel {
             } else if (v.id.equals("dummysign")) {
                 itm.setDummySign_Krull(v.getStr(), true);
             } else if (v.id.equals("fname")) {
-                Log.getLogger().info(":--: " + "FNAME " + itm.it_ent.type);
-                if (true || itm.it_ent.type.equals("action")) { // isAction ) {
+                Log.getLogger().info(":--: " + "FNAME " + itm.getIt_ent().type);
+                if (true || itm.getIt_ent().type.equals("action")) { // isAction ) {
                     itm.setAction_Fname(v.getStr(), "omega_anim");
                 }
             } else if (v.id.equals("ftype")) {
-                if (itm.isAction) {
-                    itm.action_type = v.getStr();
+                if (itm.isAction()) {
+                    itm.setAction_type(v.getStr());
                 }
             }
             le_canvas.repaint(itm);

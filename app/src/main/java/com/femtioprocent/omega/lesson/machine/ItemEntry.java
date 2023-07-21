@@ -25,8 +25,8 @@ public class ItemEntry {
     ItemEntry() {
         items = new ArrayList();
         Item item = new Item("");
-        item.ord = 0;
-        item.it_ent = this;
+        item.setOrd(0);
+        item.setIt_ent(this);
         items.add(item);
         type = "passive";
         tid = "";
@@ -64,7 +64,7 @@ public class ItemEntry {
             }
             if (item.getDummyText() == null || item.getDummyText().length() == 0)
                 cant_have_dummy = true;
-            item.it_ent = this;
+            item.setIt_ent(this);
             items.add(item);
             last_i = i + 1;
         }
@@ -74,9 +74,9 @@ public class ItemEntry {
                     if (cant_have_dummy == false) {
                         if (items.size() < 8) {
                             Item item = new Item("@" + ord + '.' + i);
-                            item.it_ent = this;
-                            item.dummy_extra = i;  // -1 no dummy
-                            item.dummy_slot = true;
+                            item.setIt_ent(this);
+                            item.setDummy_extra(i);  // -1 no dummy
+                            item.setDummy_slot(true);
                             items.add(item);
                         } else {
                         }
@@ -99,8 +99,8 @@ public class ItemEntry {
             Item item = new Item(sa[i][0], true);
             item.setActionFile(sa[i][2]);
             item.setLid_Krull(sa[i][1]);
-            item.it_ent = this;
-            item.ord = i;
+            item.setIt_ent(this);
+            item.setOrd(i);
             item.setSound_Krull(sa[i][3]);
             if (sa[i].length > 4) {
                 item.setVar(0, sa[i][4]);
@@ -116,10 +116,10 @@ public class ItemEntry {
         Iterator<Item> it = items.iterator();
         while (it.hasNext()) {
             Item itm = (Item) it.next();
-            if (itm.dummy_extra == ix) {  // OK, this is a free empty cell, I can use it
+            if (itm.getDummy_extra() == ix) {  // OK, this is a free empty cell, I can use it
                 itm.setText_Krull(src_itm.getDummyText());
-                itm.sound = src_itm.getDummySound();
-                itm.sign = src_itm.getDummySign();
+                itm.setSound(src_itm.getDummySound());
+                itm.setSign(src_itm.getDummySign());
                 if (Tr) OmegaContext.sout_log.getLogger().info(":--: " + "this is now dummy " + itm);
                 return;
             }
@@ -139,7 +139,7 @@ public class ItemEntry {
         Iterator it = items.iterator();
         while (it.hasNext()) {
             Item itm = (Item) it.next();
-            itm.ord = a++;
+            itm.setOrd(a++);
         }
     }
 
@@ -161,7 +161,7 @@ public class ItemEntry {
         } else {
             itm = new Item(txt, true);
         }
-        itm.it_ent = this;
+        itm.setIt_ent(this);
         items.add(ix, itm);
         reOrdItem();
         all_items = items;

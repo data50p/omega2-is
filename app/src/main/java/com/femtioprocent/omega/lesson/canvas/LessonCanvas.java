@@ -379,7 +379,7 @@ public class LessonCanvas extends BaseCanvas {
             String colorModifier = "";
             if (itm != null) {
                 s = itm.getDefaultFilledText();
-                colorModifier = itm.it_ent.tid;
+                colorModifier = itm.getIt_ent().tid;
             }
 
             g2.setStroke(stroke);
@@ -1053,7 +1053,7 @@ public class LessonCanvas extends BaseCanvas {
             l_ctxt.getLesson().sendMsg("hBox" + (with_mouse ? "M" : "K"), bx);
         }
 
-        if (bx.getItem() != null && bx.getItem().isAction) {
+        if (bx.getItem() != null && bx.getItem().isAction()) {
             active_item_action_box = bx;
             //repaint();
         }
@@ -1479,20 +1479,20 @@ public class LessonCanvas extends BaseCanvas {
                     Box obx = getAllBox().getBox(o_x, o_y);
                     if (itm != null) {
                         if (obx == null) {
-                            bx = new Box(itm.it_ent, x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
+                            bx = new Box(itm.getIt_ent(), x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
                         } else {
                             bx = obx;
                             bx.marked = false;
-                            bx.noNewBox(itm.it_ent, x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
+                            bx.noNewBox(itm.getIt_ent(), x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
                         }
                     } else if (edit) { // itm == null
                         getTarget().addEmptyItem(xi, yi);
                         itm = getTarget().getItemAt(xi, yi);
                         if (obx == null) {
-                            bx = new Box(itm.it_ent, x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
+                            bx = new Box(itm.getIt_ent(), x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
                         } else {
                             bx = obx;
-                            bx.noNewBox(itm.it_ent, x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
+                            bx.noNewBox(itm.getIt_ent(), x + xx, y + yi * (hh + hhh), sww, hh, o_x, o_y);
                         }
                     } else
                         ;
