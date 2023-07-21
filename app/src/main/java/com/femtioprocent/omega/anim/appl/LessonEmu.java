@@ -131,7 +131,7 @@ public class LessonEmu extends JPanel {
         }
         verb = new Verb(verb_s);
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "VERB " + verb);
-        ArrayList li = new ArrayList();
+        ArrayList<String> li = new ArrayList<>();
 
         this.el = el;
         Element aact = el.findElement("AllActors", 0);
@@ -193,7 +193,7 @@ public class LessonEmu extends JPanel {
         if (rslt == null)
             return new String[0];
 
-        ArrayList li = new ArrayList();
+        ArrayList<String> li = new ArrayList<>();
 
         for (int i = 0; i < rslt.size(); i++)
             if (rslt.a[i].hasActor)

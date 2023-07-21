@@ -288,25 +288,34 @@ public class LessonCanvas extends BaseCanvas {
 
     public class ShapeList {
 
-        java.util.List li;
+        static class ShapeItem {
+            String id;
+            Shape shp;
+            Color col;
+
+            public ShapeItem(String id, Shape shp, Color col) {
+                this.id = id;
+                this.shp = shp;
+                this.col = col;
+            }
+        }
+
+        java.util.List<ShapeItem> li;
 
         ShapeList() {
-            li = new ArrayList();
+            li = new ArrayList<>();
         }
 
         void add(String id, Shape shp, Color col) {
-            li.add(new Object[]{id, shp, col});
+            li.add(new ShapeItem(id, shp, col));
         }
 
         void draw(Graphics2D g2) {
-            Iterator it = li.iterator();
+            Iterator<ShapeItem> it = li.iterator();
             while (it.hasNext()) {
-                Object[] oa = (Object[]) it.next();
-                String id = (String) oa[0];
-                Shape shp = (Shape) oa[1];
-                Color col = (Color) oa[2];
-                g2.setColor(col);
-                g2.fill(shp);
+                ShapeItem sh = it.next();
+                g2.setColor(sh.col);
+                g2.fill(sh.shp);
             }
         }
     }
@@ -2100,7 +2109,7 @@ public class LessonCanvas extends BaseCanvas {
     void createAddBoxes() {
         ShapeList naddBoxes = new ShapeList();
 
-        java.util.List li = new ArrayList();
+        java.util.List<Double> li = new ArrayList();
         li.add(Double.valueOf(0.0));
 
         double y = 0;
@@ -2128,7 +2137,7 @@ public class LessonCanvas extends BaseCanvas {
     void createTgAddBoxes() {
         ShapeList naddBoxes = new ShapeList();
 
-        java.util.List li = new ArrayList();
+        java.util.List<Double> li = new ArrayList();
         Rectangle2D r0 = getTargetRectangle();
         li.add(Double.valueOf(r0.getX()));
 
@@ -2149,7 +2158,7 @@ public class LessonCanvas extends BaseCanvas {
     void createTgDelBoxes() {
         ShapeList naddBoxes = new ShapeList();
 
-        java.util.List li = new ArrayList();
+        java.util.List<Double> li = new ArrayList();
         Rectangle2D r0 = getTargetRectangle();
 
         double d = 0.0;
@@ -2170,8 +2179,8 @@ public class LessonCanvas extends BaseCanvas {
         ShapeList ndelBoxes = new ShapeList();
 
         boolean[] ba = new boolean[20];
-        java.util.List li = new ArrayList();
-        java.util.List liy = new ArrayList();
+        java.util.List<Double> li = new ArrayList();
+        java.util.List<Double> liy = new ArrayList();
 
         boolean hasmore1 = true;
         Box bx = getAllBox().getBox(1, 0);

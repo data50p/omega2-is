@@ -526,7 +526,7 @@ public class ResultDialogTableSummary extends JDialog
 
             String[][] data = new String[sa.length][tmod.mode == 't' ? CO_MAX : 8];
 
-            ArrayList dataLi = new ArrayList();
+            ArrayList<String[]> dataLi = new ArrayList();
 
             StatValue statval_tfm = new StatValue();
             StatValue statval_trm = new StatValue();

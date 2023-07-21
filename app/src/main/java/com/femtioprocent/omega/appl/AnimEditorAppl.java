@@ -43,8 +43,8 @@ public class AnimEditorAppl extends OmegaAppl {
     }
 
     public static void main(String[] argv) {
-        HashMap flag = SundryUtils.flagAsMap(argv);
-        java.util.List argl = SundryUtils.argAsList(argv);
+        HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+        java.util.List<String> argl = SundryUtils.argAsList(argv);
 
         OmegaContext.omega_lang = (String) flag.get("omega_lang");
         OmegaContext.sout_log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang);

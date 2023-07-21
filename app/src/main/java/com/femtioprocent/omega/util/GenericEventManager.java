@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GenericEventManager {
-    List li = new ArrayList();
+    List<GenericEventListener> li = new ArrayList<>();
 
     public void fireGenericEvent(GenericEvent ge, Object a) {
-        Iterator it = li.iterator();
+        Iterator<GenericEventListener> it = li.iterator();
         while (it.hasNext()) {
             GenericEventListener gel = (GenericEventListener) it.next();
             if (true /*gel.grp.equals(ge.grp) */)

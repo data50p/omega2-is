@@ -120,8 +120,8 @@ public class xImage {
             return;
 
         synchronized (cache_imf) {
-            ArrayList li = new ArrayList();
-            Iterator it;
+            ArrayList<String> li = new ArrayList<>();
+            Iterator<String> it;
             it = cache_imf.keySet().iterator();
             while (it.hasNext()) {
                 String k = (String) it.next();
@@ -146,8 +146,8 @@ public class xImage {
 
     public static void removeAllEntry() {
         synchronized (cache_imf) {
-            ArrayList li = new ArrayList();
-            Iterator it;
+            ArrayList<String> li = new ArrayList();
+            Iterator<String> it;
             it = cache_imf.keySet().iterator();
             while (it.hasNext()) {
                 String k = (String) it.next();

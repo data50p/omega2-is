@@ -506,7 +506,7 @@ public class BaseCanvas extends JPanel {
     class CycleList {
         int want_first = 0;
         int ix;
-        ArrayList li;
+        ArrayList<MyButton> li;
 
         CycleList(int want_first) {
             this.want_first = want_first;

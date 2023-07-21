@@ -113,7 +113,7 @@ public class Cabaret {
     }
 
     public String[] getLessonId() {
-        ArrayList li = new ArrayList();
+        ArrayList<String> li = new ArrayList<>();
 
         for (int i = 0; i < actA.arr.length; i++) {
             Actor act = actA.arr[i].ac;
@@ -124,7 +124,7 @@ public class Cabaret {
             }
         }
 
-        return (String[]) li.toArray(new String[0]);
+        return li.toArray(new String[0]);
     }
 
     private String reduce(String s, int v) {

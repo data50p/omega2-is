@@ -4,7 +4,6 @@ import com.femtioprocent.omega.OmegaConfig;
 import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.graphic.render.Canvas;
 import com.femtioprocent.omega.util.DelimitedStringBuilder;
-import com.femtioprocent.omega.util.Log;
 import com.femtioprocent.omega.util.SundryUtils;
 import com.femtioprocent.omega.xml.Element;
 
@@ -65,18 +64,18 @@ public class Path {
         }
     }
 
-    List marker;  // Mark
+    List<Mark> marker;  // Mark
 
     GeneralPath gp;
-    List seg_l;
+    List<Segment_Q> seg_l;
 
     double[] lenA;
     Point2D[] pointA;
     double len = 0;
 
     public Path(Element el) {       // TPath
-        seg_l = new ArrayList();
-        marker = new ArrayList();
+        seg_l = new ArrayList<>();
+        marker = new ArrayList<>();
         String nidp_s = el.findAttr("nid");
         int nidp_i = Integer.parseInt(nidp_s);
         nid = nidp_i;
@@ -115,8 +114,8 @@ public class Path {
 
     public Path(int nid, Point2D sp, Point2D ep) {
         this.nid = nid;
-        seg_l = new ArrayList();
-        marker = new ArrayList();
+        seg_l = new ArrayList<>();
+        marker = new ArrayList<>();
         double dx = ep.getX() - sp.getX();
         double dy = ep.getY() - sp.getY();
         Segment_Q sq = new Segment_Q(seg_l.size(),
@@ -136,8 +135,8 @@ public class Path {
 
     public Path(int nid, Path pa_src, int offx, int offy) {
         this.nid = nid;
-        seg_l = new ArrayList();
-        marker = new ArrayList();
+        seg_l = new ArrayList<>();
+        marker = new ArrayList<>();
 
         Iterator it = pa_src.seg_l.iterator();
         while (it.hasNext()) {
@@ -195,11 +194,11 @@ public class Path {
     }
 
     public void splitSegment() {
-        List nseg_l = new ArrayList();
+        List<Segment_Q> nseg_l = new ArrayList<>();
 
         boolean b = false;
 
-        Iterator it = seg_l.iterator();
+        Iterator<Segment_Q> it = seg_l.iterator();
         while (it.hasNext()) {
             Segment_Q sq = (Segment_Q) it.next();
             if (sq.selectedPoint >= 0) {
@@ -219,11 +218,11 @@ public class Path {
     }
 
     public void removeSegment() {
-        List nseg_l = new ArrayList();
+        List<Segment_Q> nseg_l = new ArrayList<>();
 
         boolean b = false;
 
-        Iterator it = seg_l.iterator();
+        Iterator<Segment_Q> it = seg_l.iterator();
         while (it.hasNext()) {
             Segment_Q sq = (Segment_Q) it.next();
             if (sq.selectedPoint >= 0) {
@@ -292,10 +291,10 @@ public class Path {
                 return (int) (tm1.where - tm2.where);
             }
         });
-        marker = new ArrayList();
+        marker = new ArrayList<>();
         for (int i = 0; i < ma.length; i++)
             ma[i].ord = i;
-        Collection col = Arrays.asList(ma);
+        Collection<Mark> col = Arrays.asList(ma);
         marker.addAll(col);
     }
 
@@ -673,8 +672,8 @@ public class Path {
 
 
     public static void main(String[] argv) {
-        HashMap flag = SundryUtils.flagAsMap(argv);
-        java.util.List argl = SundryUtils.argAsList(argv);
+        HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+        java.util.List<String> argl = SundryUtils.argAsList(argv);
 
         JFrame f = new JFrame("Path - test");
         Container c = f.getContentPane();

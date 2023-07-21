@@ -53,7 +53,7 @@ public class PrintMgr implements Printable {
     }
 
     RenderedImage image2;
-    ArrayList sentences;
+    ArrayList<String> sentences;
     String lesson_name;
     Font item_fo;
 
@@ -89,7 +89,7 @@ public class PrintMgr implements Printable {
 
     void print(PrintService print_service,
 	       String title,
-	       ArrayList sentences,
+	       ArrayList<String> sentences,
 	       String lesson_name) throws Exception {
 	this.sentences = sentences;
 	this.lesson_name = lesson_name;
@@ -112,7 +112,7 @@ public class PrintMgr implements Printable {
     }
 
     void prepare(String title,
-	       ArrayList sentences,
+	       ArrayList<String> sentences,
 	       String lesson_name) throws Exception {
 	this.sentences = sentences;
 	this.lesson_name = lesson_name;
@@ -140,13 +140,13 @@ public class PrintMgr implements Printable {
 
     int gap = 4;
 
-    int[] getBounding(Graphics2D g2, ArrayList li) {
+    int[] getBounding(Graphics2D g2, ArrayList<String> li) {
         int WW = 0;
         int HH = 0;
         if (li == null)
             return new int[]{500, 350};
 
-        Iterator it = li.iterator();
+        Iterator<String> it = li.iterator();
         while (it.hasNext()) {
             String sent = (String) it.next();
             int sh = getStringHeight(g2, getItemFont(), sent);
@@ -159,7 +159,7 @@ public class PrintMgr implements Printable {
     }
 
     public int print(Graphics g, PageFormat pf, int pageIndex) {
-        ArrayList sentences = this.sentences;
+        ArrayList<String> sentences = this.sentences;
 
         try {
             double pfW = pf.getImageableWidth();

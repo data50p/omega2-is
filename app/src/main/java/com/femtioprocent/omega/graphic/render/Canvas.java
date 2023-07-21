@@ -27,7 +27,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
 
     private static boolean gdbg = false;
 
-    java.util.List wings = new ArrayList();
+    java.util.List<Wing> wings = new ArrayList<>();
 
     public boolean HIDDEN = false;
 
@@ -47,10 +47,10 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
         setBackground(im_name, null);
     }
 
-    public void setBackground(String im_name, java.util.List wings) {
+    public void setBackground(String im_name, java.util.List<Wing> wings) {
         this.im_name = im_name;
         if (wings == null)
-            wings = new ArrayList();
+            wings = new ArrayList<>();
         this.wings = wings;
 
         String imn = im_name;
@@ -74,7 +74,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
         return w;
     }
 
-    public java.util.List removeWing(int ix) {
+    public java.util.List<Wing> removeWing(int ix) {
         if (ix >= wings.size())
             return null;
 
@@ -302,7 +302,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
             if (eb != null) {
                 String s = eb.findAttr("name");
                 if (s != null) {
-                    setBackground(s, new ArrayList());
+                    setBackground(s, new ArrayList<>());
 //fix		    wings_panel.removeAllWings();
                 }
             }

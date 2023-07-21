@@ -14,7 +14,7 @@ public class Verb {
 
         String[] sa = SundryUtils.split(s, " ");
 
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         String ww = "";
         for (int i = 0; i < sa.length; i++) {
@@ -35,7 +35,7 @@ public class Verb {
             li.add(ww);
         ww = "";
 
-        part = (String[]) li.toArray(new String[0]);
+        part = li.toArray(new String[0]);
     }
 
     String getBase() {
@@ -46,7 +46,7 @@ public class Verb {
     }
 
     String[] getActorsPath() {
-        ArrayList li = new ArrayList();
+        ArrayList<String> li = new ArrayList<>();
 
         for (int i = 0; i < part.length; i++)
             if (part[i].charAt(0) == '$')

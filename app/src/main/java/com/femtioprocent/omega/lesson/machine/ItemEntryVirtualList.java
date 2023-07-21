@@ -6,7 +6,7 @@ import java.util.List;
 public class ItemEntryVirtualList {
     public String type;
     public String tid;
-    List items;
+    List<Item> items;
     //    public int ord;
 
     ItemEntryVirtualList() {

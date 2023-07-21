@@ -293,14 +293,14 @@ public class SentenceCanvas extends BaseCanvas {
     boolean show_msg;
 
     class MsgDialog {
-        ArrayList li;
+        ArrayList<String> li;
         int cnt_show = 0;
         ImageIcon imic, imic_done;
 
         MsgDialog() {
         }
 
-        void set(ArrayList li) {
+        void set(ArrayList<String> li) {
             this.li = li;
             cnt_show = 0;
             repaint();
@@ -312,7 +312,7 @@ public class SentenceCanvas extends BaseCanvas {
             if (li == null)
                 return new int[]{500, 350};
 
-            Iterator it = li.iterator();
+            Iterator<String> it = li.iterator();
             while (it.hasNext()) {
                 String sent = (String) it.next();
                 int sh = getStringHeight(getItemFont(), sent);
@@ -526,7 +526,7 @@ public class SentenceCanvas extends BaseCanvas {
         }
     }
 
-    public void showMsg(ArrayList sentences) {
+    public void showMsg(ArrayList<String> sentences) {
         item_fo = null;
         msg_dlg.set(sentences);
     }
@@ -574,7 +574,7 @@ public class SentenceCanvas extends BaseCanvas {
     }
 
     public void setStoryData(Lesson.PlayDataList playDataList) {
-        ArrayList story_list = playDataList.arr;
+        ArrayList<Lesson.PlayData> story_list = playDataList.arr;
         Lesson.PlayData pd = null;
     }
 

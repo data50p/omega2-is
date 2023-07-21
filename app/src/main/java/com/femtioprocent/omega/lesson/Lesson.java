@@ -108,10 +108,24 @@ public class Lesson implements LessonCanvasListener {
     long session_length_start = SundryUtils.ct();
     public String lessonLang = null;
 
+    static class Message {
+	String msg;
+	Object obj;
+	long msg_time;
+	String id;
+
+	Message(String msg, Object obj, long msg_time, String id) {
+	    this.msg = msg;
+	    this.obj = obj;
+	    this.msg_time = msg_time;
+	    this.id = id;
+	}
+    }
+
     public class PlayDataList {
     	int ord;
     	Date date;
-    	public ArrayList<Object> arr = new ArrayList<>();
+    	public ArrayList<PlayData> arr = new ArrayList<>();
 
 	public int nextOrd() {
 	    if ( ord != 0 )
@@ -249,7 +263,7 @@ public class Lesson implements LessonCanvasListener {
 
     static class SentenceList implements Serializable {
 
-	ArrayList sentence_list;
+	ArrayList<String> sentence_list;
 	String lesson_name;
 
 	SentenceList() {
@@ -520,12 +534,12 @@ public class Lesson implements LessonCanvasListener {
 	return SundryUtils.pL(a, 6, '0');
     }
 
-    class ListAndIterator {
+    class ListAndIterator<T> {
 
-	java.util.List list;
-	ListIterator it;
+	java.util.List<T> list;
+	ListIterator<T> it;
 
-	ListAndIterator(java.util.List li) {
+	ListAndIterator(java.util.List<T> li) {
 	    list = li;
 	    it = list.listIterator();
 	}
@@ -536,7 +550,7 @@ public class Lesson implements LessonCanvasListener {
 	int index;
 	Element el;
 	int rand_map[];
-	private HashMap texts;
+	private HashMap<String,ListAndIterator<String>> texts;
 	String current;
 	int cnt_sent_correct;
 	int cnt_sent_wrong;
@@ -744,7 +758,7 @@ public class Lesson implements LessonCanvasListener {
 	    int len = tmm.length;
 	    if (len > 0) {
 		for (int i = 0; i < tmm[0].length; i++) {
-		    java.util.List li = new ArrayList();
+		    java.util.List<String> li = new ArrayList<>();
 		    int t_mode = ((i / 2) + 1) * 10 + (i % 2);
 		    for (int j = 0; j < len; j++) {
 			int ord = tmm[j][i];
@@ -758,7 +772,7 @@ public class Lesson implements LessonCanvasListener {
 			}
 		    }
 
-		    texts.put(genKey(t_mode), new ListAndIterator(li));
+		    texts.put(genKey(t_mode), new ListAndIterator<String>(li));
 		}
 	    }
 	}
@@ -781,7 +795,7 @@ public class Lesson implements LessonCanvasListener {
 			int t_mode = a_type.equals(t_id[0]) ? 10 : 20;
 			t_mode += a_ord.equals("0") ? 0 : 1;
 
-			java.util.List li = new ArrayList();
+			java.util.List<String> li = new ArrayList<>();
 
 			for (int ii = 0; ii < 100; ii++) {
 			    Element s_el = ty_el.findElement("sentence", ii);
@@ -798,7 +812,7 @@ public class Lesson implements LessonCanvasListener {
 			}
 
 			li = sortList(li);
-			texts.put(genKey(t_mode), new ListAndIterator(li));
+			texts.put(genKey(t_mode), new ListAndIterator<>(li));
 		    }
 		}
 		this.el = el;
@@ -813,7 +827,7 @@ public class Lesson implements LessonCanvasListener {
 	    for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
 		    int t_mode = 10 * (i + 1) + j;
-		    java.util.List li = getList(t_mode);
+		    java.util.List<String> li = getList(t_mode);
 
 		    if (li != null && li.size() > 0) {
 			String[] sa = (String[]) li.toArray(new String[0]);
@@ -857,7 +871,7 @@ public class Lesson implements LessonCanvasListener {
     java.util.List sortList(java.util.List li) {
 	String[] sa = (String[]) li.toArray(new String[0]);
 	Arrays.sort(sa);
-	ArrayList nli = new ArrayList();
+	ArrayList<String> nli = new ArrayList<>();
 	for (int i = 0; i < sa.length; i++) {
 	    nli.add(sa[i]);
 	}
@@ -1815,7 +1829,7 @@ public class Lesson implements LessonCanvasListener {
 	current_card = name;
     }
 
-    java.util.List msg_list = new ArrayList();
+    java.util.List<Message> msg_list = new ArrayList<>();
     boolean stop_msg;
 
     public void sendMsg(String msg, Object o) {
@@ -1835,15 +1849,16 @@ public class Lesson implements LessonCanvasListener {
     }
 
     private void sendMsg(String msg, Object o, String id) {
+	Message m = new Message(msg, o, Long.valueOf(SundryUtils.ct()), id);
 	OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + msg + ' ' + SundryUtils.ct() + ' ' + o + ' ' + id);
 	synchronized (msg_list) {
-	    msg_list.add(new Object[]{msg, o, Long.valueOf(SundryUtils.ct()), id});
+	    msg_list.add(m);
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
 	    msg_list.notify();
 	}
     }
 
-    private Object[] getMsg() {
+    private Message getMsg() {
 	synchronized (msg_list) {
 	    while (msg_list.size() == 0) {
 		try {
@@ -1852,7 +1867,7 @@ public class Lesson implements LessonCanvasListener {
 		}
 	    }
 	    int len = msg_list.size();
-	    Object[] msg = (Object[]) msg_list.remove(0);
+	    Message msg = msg_list.remove(0);
 	    return msg;
 	}
     }
@@ -2153,11 +2168,11 @@ public class Lesson implements LessonCanvasListener {
 	    }
 
 	    OmegaContext.serr_log.getLogger().info(" -----------> done " + last_id);
-	    Object o[] = getMsg();
-	    String msg = (String) o[0];
-	    Object obj = o[1];
-	    long msg_time = ((Long) o[2]).longValue();
-	    String id = (String) o[3];
+	    Message m = getMsg();
+	    String msg = m.msg;
+	    Object obj = m.obj;
+	    long msg_time = ((Long) m.msg_time).longValue();
+	    String id = m.id;
 	    long delta = msg_time - last_msg_time;
 	    last_msg_time = msg_time;
 
@@ -2273,7 +2288,7 @@ public class Lesson implements LessonCanvasListener {
 	    } else if ("sent_read".equals(msg)) {
 		sentence_canvas.hidePopup(3);
 		SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
-		ArrayList ss_li = sent_li.sentence_list;
+		ArrayList<String> ss_li = sent_li.sentence_list;
 		OmegaContext.story_log.getLogger().info("sent_read story_hm 1599 " + story_hm);
 		OmegaContext.story_log.getLogger().info("sent_read sent_li 1599 " + sent_li);
 		OmegaContext.story_log.getLogger().info("sent_read ss_li 1599 " + ss_li);
@@ -2305,7 +2320,7 @@ public class Lesson implements LessonCanvasListener {
 	    } else if ("sent_print_print".equals(msg)) {
 		sentence_canvas.setBusy(true);
 		SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
-		ArrayList ss_li = sent_li.sentence_list;
+		ArrayList<String> ss_li = sent_li.sentence_list;
 		OmegaContext.story_log.getLogger().info("sent_print story_hm 1599 " + story_hm);
 		OmegaContext.story_log.getLogger().info("sent_print sent_li 1599 " + sent_li);
 		OmegaContext.story_log.getLogger().info("sent_print ss_li 1599 " + ss_li);
@@ -2315,7 +2330,7 @@ public class Lesson implements LessonCanvasListener {
 	    } else if ("sent_save".equals(msg)) {
 		sentence_canvas.hidePopup(3);
 		SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
-		ArrayList ss_li = sent_li.sentence_list;
+		ArrayList<String> ss_li = sent_li.sentence_list;
 		String lname = sent_li.lesson_name;
 		DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		Date d = play_data_list.date;
@@ -3411,7 +3426,7 @@ public class Lesson implements LessonCanvasListener {
 			String allText = tg.getAllText();
 			saveRecastAction(le_canvas.getLessonName(), action_s, actA, actTextA, sound_list, pathA, true, tg, is_last, allText);
 			SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
-			ArrayList ss_li = sent_li.sentence_list;
+			ArrayList<String> ss_li = sent_li.sentence_list;
 			//			OmegaContext.sout_log.getLogger().info(":--: " + "ALL TEXT1 " + all_text);
 			all_text = tg.getAllText();
 			//			OmegaContext.sout_log.getLogger().info(":--: " + "ALL TEXT2 " + all_text);
@@ -3689,7 +3704,7 @@ public class Lesson implements LessonCanvasListener {
     PlayDataList play_data_list_is_last = new PlayDataList();
 
     public void playFromDataList(PlayDataList playDataList) {
-	ArrayList al = playDataList.arr;
+	ArrayList<PlayData> al = playDataList.arr;
 	card_show("anim1");
 	action.show();
 	action.getHm().put("speed", getCurrentPupil().getSpeed(1000));
@@ -3729,7 +3744,7 @@ public class Lesson implements LessonCanvasListener {
 	    try {
 		PrintMgr pm = new PrintMgr();
 		//	    pm.list(true);
-		ArrayList ss_li = new ArrayList();
+		ArrayList<String> ss_li = new ArrayList();
 		ss_li.add("Raden 1");
 		ss_li.add("Rad 2");
 		ss_li.add("Ldkfj lkdjf ldksjf ldksjf lkdsjf lsdkjf ldskjf ldskjf dslkjf sdlkfh sdkjfh dskjf hsdkfjhds SIST.");
@@ -3748,7 +3763,7 @@ public class Lesson implements LessonCanvasListener {
 
 	int key = waitHitKey(1);
 
-	ArrayList al = new ArrayList();
+	ArrayList<String> al = new ArrayList();
 	al.add("Den talande reven rev en annan rev");
 	al.add("");
 	al.add("Flamingon flyger lagom");
@@ -3799,11 +3814,11 @@ public class Lesson implements LessonCanvasListener {
 
     public void printFromDataList(PlayDataList playDataList) {
 	try {
-	    ArrayList al = playDataList.arr;
+	    ArrayList<PlayData> al = playDataList.arr;
 	    PrintMgr pm = new PrintMgr();
 	    //	    pm.list(true);
 	    SentenceList sent_li = (SentenceList) story_hm.get("sentence_list");
-	    ArrayList ss_li = sent_li.sentence_list;
+	    ArrayList<String> ss_li = sent_li.sentence_list;
 	    OmegaContext.story_log.getLogger().info("printed 2402 " + ss_li);
 	    global_skipF(true);
 	    pm.prepare("Omega", ss_li, sent_li.lesson_name);

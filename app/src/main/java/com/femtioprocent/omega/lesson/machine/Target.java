@@ -24,7 +24,7 @@ public class Target {
 
     public Machine machine;
 
-    public List t_items;
+    public List<T_Item> t_items;
     Items items;
 
     String story_next;
@@ -853,7 +853,7 @@ public class Target {
     }
 
     public ArrayList<String> getAllSignMovies(LiuMovieManager lmm) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < t_items.size(); i++) {
             final T_Item t_Item = getT_Item(i);
             String smfName = lmm.getSignMovieFileName(t_Item.item, this, i);
@@ -970,7 +970,7 @@ public class Target {
     }
 
     public String[] getAllLessonBothArg() {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         for (Iterator it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
@@ -987,9 +987,9 @@ public class Target {
     }
 
     public String[] getAll_Lid_Target() {  // banor,banor...
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             String s = titm.getLID4TgOrNull();
             if (s != null && s.length() > 0) {
@@ -1001,9 +1001,9 @@ public class Target {
     }
 
     public String[] getAll_Lid_Target_KeepVar() {  // banor,banor...
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             String s = titm.getLID4TgOrNull_KeepVar();
             if (s != null && s.length() > 0) {
@@ -1015,10 +1015,10 @@ public class Target {
     }
 
     public String[] getAllSounds() {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         int ix = 0;
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null && titm.item != null) {
                 String s = titm.item.getSoundD();
@@ -1034,10 +1034,10 @@ public class Target {
     }
 
     public String[] getSoundsAt(int x, int y) {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         int ix = 0;
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null && titm.item != null) {
                 String s = titm.item.getSoundD();
@@ -1053,9 +1053,9 @@ public class Target {
     }
 
     public String[] getAll_Lid_Item() {  // actor,actor...
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 String s = titm.getLIDOrNull();
@@ -1071,7 +1071,7 @@ public class Target {
     public String getAll_Tid_Item() {  // ordgrupps id
         StringBuffer sb = new StringBuffer();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 String s = titm.tid;
@@ -1084,9 +1084,9 @@ public class Target {
     }
 
     public String[] getAll_Text_Item() {  // actor,actor...
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 String sx = titm.getTextOrNull();
@@ -1103,7 +1103,7 @@ public class Target {
     public String getAll_Sound_Item() {
         String s = "";
         int ix = 0;
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             String snd = titm.item.getSound();
             snd = fillVarHere(ix, snd);          // WHY-SundryUtil
@@ -1118,7 +1118,7 @@ public class Target {
     public List<String> getAll_Sound_Items() {
         List<String> li = new ArrayList<>();
         int ix = 0;
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             String snd = titm.item.getSound();
             snd = fillVarHere(ix, snd);          // WHY-SundryUtil
@@ -1145,9 +1145,9 @@ public class Target {
     }
 
     public String[] getAll_TextVars_Item() {  // actor,actor...
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 String sx = titm.getTextVarsOrNull(); // text:v1:v2:v3:sound : is paragraph_
@@ -1163,7 +1163,7 @@ public class Target {
     }
 
     public void putAll_TextVars_Item(HashMap hm) {
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 Item item = titm.getItem();
@@ -1231,7 +1231,7 @@ public class Target {
     }
 
     public String[] getAllTargetCombinations_old(String sep) {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         Target tg2 = this;
 
@@ -1301,7 +1301,7 @@ public class Target {
     }
 
     public String[] getAllTargetCombinations(String sep) {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         Target tg2 = this;
 
@@ -1378,7 +1378,7 @@ public class Target {
     }
 
     public String[] getAllTargetCombinationsEx(String sep, char delim) {
-        List li = new ArrayList();
+        List<String> li = new ArrayList();
 
         Target tg2 = this;
 
@@ -1719,7 +1719,7 @@ public class Target {
     }
 
     private String[][] getAllTargetCombinationsAndMore(boolean dummy) {
-        List li = new ArrayList();
+        List<String[]> li = new ArrayList();
 
         Target tg2 = this;
 
@@ -1790,7 +1790,7 @@ public class Target {
     }
 
     public int[][] getAllTargetCombinationsIndexes(String txt) {
-        List li = new ArrayList();
+        List<String[]> li = new ArrayList();
 
         Target tg2 = this;
 

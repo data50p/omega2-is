@@ -382,7 +382,7 @@ public class AnimRuntime {
     public void setBackground(String url_s) {
         String ua[] = Files.splitUrlString(url_s);
         if (ua != null) {
-            anim_canvas.setBackground(ua[1], new ArrayList());
+            anim_canvas.setBackground(ua[1], new ArrayList<>());
             if (a_ctxt.ae != null) {
                 if (a_ctxt.ae.wings_panel != null) {
                     a_ctxt.ae.wings_panel.removeAllWings();

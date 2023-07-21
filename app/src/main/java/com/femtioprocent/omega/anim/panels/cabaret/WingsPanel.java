@@ -28,7 +28,7 @@ public class WingsPanel extends JPanel {
     WingsProperties prop = null;
 
     private Mouse m;
-    private List cLiLi = new ArrayList();
+    private List<ChangeListener> cLiLi = new ArrayList<>();
 
     private int selected = -1;
     private boolean fld_state_id = false;
@@ -114,9 +114,9 @@ public class WingsPanel extends JPanel {
     }
 
     void fireStateChange() {
-        Iterator it = cLiLi.iterator();
+        Iterator<ChangeListener> it = cLiLi.iterator();
         while (it.hasNext()) {
-            ChangeListener cli = (ChangeListener) it.next();
+            ChangeListener cli = it.next();
             cli.stateChanged(new ChangeEvent(this));
         }
     }
@@ -234,11 +234,11 @@ public class WingsPanel extends JPanel {
 
     public void removeWing(int ix) {
         removeAllWings();
-        List li = ae.a_ctxt.anim_canvas.removeWing(ix);
+        List<Wing> li = ae.a_ctxt.anim_canvas.removeWing(ix);
 
         if (li != null) {
             int cnt = 0;
-            for (Iterator it = li.iterator(); it.hasNext(); ) {
+            for (Iterator<Wing> it = li.iterator(); it.hasNext(); ) {
                 Wing w = (Wing) it.next();
                 setWing(w, cnt++);
             }

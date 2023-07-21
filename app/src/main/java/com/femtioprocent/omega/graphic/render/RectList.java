@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class RectList {
-    List rl;
+    List<Rectangle2D> rl;
     Rectangle2D nr;
 
     RectList() {
-        rl = new ArrayList();
+        rl = new ArrayList<>();
         nr = new Rectangle2D.Double();
     }
 
@@ -27,9 +27,9 @@ public class RectList {
     }
 
     void add(Rectangle2D r) {
-        List nrl = new ArrayList();
+        List<Rectangle2D> nrl = new ArrayList<>();
 
-        Iterator it = rl.iterator();
+        Iterator<Rectangle2D> it = rl.iterator();
         while (it.hasNext()) {
             Rectangle2D r1 = (Rectangle2D) it.next();
             intersect(r, r1, nr);
@@ -51,8 +51,8 @@ public class RectList {
     }
 
     public static void main(String[] argv) {
-        HashMap flag = SundryUtils.flagAsMap(argv);
-        java.util.List argl = SundryUtils.argAsList(argv);
+        HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+        java.util.List<String> argl = SundryUtils.argAsList(argv);
 
         RectList rl = new RectList();
         rl.add(new Rectangle2D.Double(100, 100, 100, 100));

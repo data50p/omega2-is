@@ -21,7 +21,7 @@ public class Item {
     private String dummytext_orig;
     private String lid;
     private String lid_orig;
-    public List var;
+    public List<String> var;
     String sign;
     private String sign_orig;
     String sound;

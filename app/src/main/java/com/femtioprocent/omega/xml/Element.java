@@ -5,7 +5,7 @@ import java.util.*;
 public class Element extends Node implements Cloneable {
     String name;
     SortedMap attr;
-    List content;
+    List<Node> content;
     boolean hasSubElement = false;
     int nx_ix;
     boolean ro;

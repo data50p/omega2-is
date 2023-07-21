@@ -15,8 +15,8 @@ import java.util.List;
 public class ItemEntry {
     public String type;
     public String tid;
-    List items;
-    List all_items;
+    List<Item> items;
+    List<Item> all_items;
     public int ord;
     //    ItemEntry link_next;
 
@@ -112,8 +112,8 @@ public class ItemEntry {
         all_items = items;
     }
 
-    public void setDummyExtra(Item src_itm, int ix, ArrayList free) {
-        Iterator it = items.iterator();
+    public void setDummyExtra(Item src_itm, int ix, ArrayList<Item> free) {
+        Iterator<Item> it = items.iterator();
         while (it.hasNext()) {
             Item itm = (Item) it.next();
             if (itm.dummy_extra == ix) {  // OK, this is a free empty cell, I can use it
@@ -246,13 +246,13 @@ public class ItemEntry {
         if (current_correct_sentence.indexOf('{') != -1)
             has_krull = true;
 
-        ArrayList free = new ArrayList();
+        ArrayList<Item> free = new ArrayList<>();
 
         while (it.hasNext()) {
             Item itm = (Item) it.next();
             if (itm != null) {
                 String extras[] = SundryUtils.split(tid, ",");
-                ArrayList free_1 = new ArrayList();
+                ArrayList<Item> free_1 = new ArrayList<>();
                 for (int jj = 0; jj < extras.length; jj++) {
                     String extra = has_krull ? "{" + extras[jj] + '}' : "";
                     String s = itm.getText() + extra; // current item + {tid}
@@ -302,8 +302,8 @@ public class ItemEntry {
     }
 
     private void removeStaleDummyProxy() {
-        List n_items = new ArrayList();
-        Iterator it = items.iterator();
+        List<Item> n_items = new ArrayList<>();
+        Iterator<Item> it = items.iterator();
         while (it.hasNext()) {
             Item itm = (Item) it.next();
             if (itm.getText().charAt(0) == '@')

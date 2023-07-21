@@ -176,7 +176,7 @@ public class TimeMarker implements Serializable {
         return el;
     }
 
-    public void fetchPlaySound(List li) {
+    public void fetchPlaySound(List<String> li) {
         if (t_event != null)
             for (int i = 0; i < t_event.length; i++) {
                 if (t_event[i] != null) {

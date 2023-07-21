@@ -13,8 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Settings {
-    static HashMap flags;
-    static List args;
+    static HashMap<String,String> flags;
+    static List<String> args;
 
     HashMap settings = new HashMap();
 

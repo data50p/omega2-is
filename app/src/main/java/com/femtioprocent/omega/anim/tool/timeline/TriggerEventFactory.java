@@ -102,7 +102,7 @@ public class TriggerEventFactory {
     }
 
     static public String[] getAllAsStringA() {
-        List l = new ArrayList();
+        List<String> l = new ArrayList();
 
         for (int i = 0; i < 100; i++) {
             Class cl = getTriggerEvent(i);
@@ -123,7 +123,7 @@ public class TriggerEventFactory {
                 throw new RuntimeException(e);
             }
         }
-        return (String[]) l.toArray(new String[0]);
+        return l.toArray(new String[0]);
     }
 
     static public TriggerEvent get(int ix) {

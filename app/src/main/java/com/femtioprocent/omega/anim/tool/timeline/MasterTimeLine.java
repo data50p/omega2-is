@@ -86,14 +86,14 @@ public class MasterTimeLine implements PlayCtrlListener {
     }
 
     private List<TimeMarker> getMarkersAbs(int from, int to) {
-        List<Object> l = new ArrayList<>();
+        List<TimeMarker> l = new ArrayList<>();
 
         for (TimeLine tl : timelines) {
             if (tl == null)
                 continue;
             l.addAll(tl.getMarkersAbs(from, to));
         }
-        TimeMarker[] tla = (TimeMarker[]) l.toArray(new TimeMarker[0]);
+        TimeMarker[] tla = l.toArray(new TimeMarker[0]);
         Arrays.sort(tla, TimeMarker.getComparator());
         return Arrays.asList(tla);
     }
@@ -314,7 +314,7 @@ public class MasterTimeLine implements PlayCtrlListener {
     }
 
     public List fetchPlaySound(boolean b[]) {
-        List li = new ArrayList();
+        List<String> li = new ArrayList<>();
         for (int i = 0; i < timelines.length; i++) {
             TimeLine tl = timelines[i];
             if (tl != null && b[i])

@@ -63,7 +63,7 @@ public class Items {
     ItemEntry[] getItemEntryTidAll(String tg_tid) { // ie v
         String tg_choise = "," + tg_tid + ",";
 
-        ArrayList li = new ArrayList();
+        ArrayList<ItemEntry> li = new ArrayList<>();
 
         for (Iterator it = item_entry_list.iterator(); it.hasNext(); ) {
             ItemEntry it_ent = (ItemEntry) it.next();

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ToolActionGroup {
-    List li;
+    List<ToolAction> li;
 
     public ToolActionGroup() {
         li = new ArrayList();
@@ -24,7 +24,7 @@ public class ToolActionGroup {
     }
 
     public ToolAction find(String cmd) {
-        Iterator it = li.iterator();
+        Iterator<ToolAction> it = li.iterator();
         while (it.hasNext()) {
             ToolAction ta = (ToolAction) it.next();
             if (ta.getCommand().equals(cmd))

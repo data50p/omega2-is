@@ -26,11 +26,11 @@ public class TimeLine implements Serializable {
 
     public TimeLine(int nid) {
         this.nid = nid;
-        markers = new LinkedList<TimeMarker>();
+        markers = new LinkedList<>();
     }
 
     public TimeLine(Element el) {
-        markers = new LinkedList<TimeMarker>();
+        markers = new LinkedList<>();
         String id = el.findAttr("lesson_id");
         if (id != null)
             lesson_id = id;
@@ -76,7 +76,7 @@ public class TimeLine implements Serializable {
     }
 
     public TimeLine(int nid, TimeLine src) {
-        markers = new LinkedList<TimeMarker>();
+        markers = new LinkedList<>();
         this.nid = nid;
         offset = src.offset;
         duration = src.duration;
@@ -135,7 +135,7 @@ public class TimeLine implements Serializable {
         Arrays.sort(ma, (TimeMarker tm1, TimeMarker tm2) -> {
             return tm1.when - tm2.when;
         });
-        markers = new ArrayList<TimeMarker>();
+        markers = new ArrayList<>();
         for (int i = 0; i < ma.length; i++)
             ma[i].ord = i;
 
@@ -300,7 +300,7 @@ public class TimeLine implements Serializable {
     }
 
     public List<TimeMarker> getMarkersAbs(int from, int to, boolean special) {
-        List<TimeMarker> l = new ArrayList<TimeMarker>();
+        List<TimeMarker> l = new ArrayList<>();
         for (TimeMarker tm : markers) {
             if (tm.when > from && tm.when <= to)
                 l.add(tm);
@@ -335,7 +335,6 @@ public class TimeLine implements Serializable {
         int dt_f = 9999999;
         TimeMarker tm_f = null;
 
-        List l = new ArrayList();
         for (TimeMarker tm : markers) {
             int tdist = (int) Math.abs(tm.when - dt);
             if (tdist < dt_f) {
@@ -381,7 +380,7 @@ public class TimeLine implements Serializable {
         return el;
     }
 
-    void fetchPlaySound(List li) {
+    void fetchPlaySound(List<String> li) {
         for (TimeMarker tm : markers) {
             tm.fetchPlaySound(li);
         }

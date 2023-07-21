@@ -17,7 +17,7 @@ public class ResultTest extends Result {
     String pupil;
     public long session_length = 0;
 
-    List entries;
+    List<Entry> entries;
 
     Date first_perform_date;
 
@@ -27,7 +27,7 @@ public class ResultTest extends Result {
         this.type = type;
         created = new Date();
 
-        entries = new ArrayList();
+        entries = new ArrayList<>();
 
         first_perform_date = new Date();
     }
@@ -36,7 +36,7 @@ public class ResultTest extends Result {
         this.pupil = pupil;
         this.l_id = l_id;
         this.type = type;
-        entries = new ArrayList();
+        entries = new ArrayList<>();
 
         first_perform_date = new Date();
 

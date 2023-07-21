@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AllPath {
-    List li = new ArrayList();
+    List<Path> li = new ArrayList<>();
 
     public AllPath() {
     }
@@ -143,7 +143,7 @@ public class AllPath {
 
 
     public void load(Element el) {
-        li = new ArrayList();
+        li = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             try {
                 Element eel = el.findElement("TPath", i);
@@ -157,8 +157,8 @@ public class AllPath {
     }
 
     public static void main(String[] argv) {
-        HashMap flag = SundryUtils.flagAsMap(argv);
-        java.util.List argl = SundryUtils.argAsList(argv);
+        HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+        java.util.List<String> argl = SundryUtils.argAsList(argv);
 
         JFrame f = new JFrame("Path - test");
         Container c = f.getContentPane();

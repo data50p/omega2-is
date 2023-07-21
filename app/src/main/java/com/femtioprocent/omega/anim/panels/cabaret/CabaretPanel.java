@@ -28,7 +28,7 @@ public class CabaretPanel extends JPanel {
     CabaretProperties prop = null;
 
     private Mouse m;
-    private List cLiLi = new ArrayList();
+    private List<ChangeListener> cLiLi = new ArrayList<>();
 
     private int selected = 0;
     private boolean fld_state_id = false;
@@ -86,9 +86,9 @@ public class CabaretPanel extends JPanel {
     }
 
     void fireStateChange() {
-        Iterator it = cLiLi.iterator();
+        Iterator<ChangeListener> it = cLiLi.iterator();
         while (it.hasNext()) {
-            ChangeListener cli = (ChangeListener) it.next();
+            ChangeListener cli = it.next();
             cli.stateChanged(new ChangeEvent(this));
         }
     }

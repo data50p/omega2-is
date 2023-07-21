@@ -608,7 +608,7 @@ public class AnimEditor extends JFrame {
     public void setBackground(String url_s) {
 	String ua[] = Files.splitUrlString(url_s);
 	if (ua != null) {
-	    a_ctxt.anim_canvas.setBackground(ua[1], new ArrayList());
+	    a_ctxt.anim_canvas.setBackground(ua[1], new ArrayList<>());
 	    if (wings_panel != null) {
 		wings_panel.removeAllWings();
 	    }
