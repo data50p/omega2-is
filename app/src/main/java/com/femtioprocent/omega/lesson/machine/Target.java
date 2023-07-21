@@ -156,7 +156,7 @@ public class Target {
 
     public void loadCompositeFromEl(Element el,
                                     String test_txt,
-                                    HashMap story_hm,
+                                    HashMap<String, Lesson.SentenceList> story_hm,
                                     final boolean dummy,
                                     final boolean mix) throws Exception {
         iam_composite = true;
@@ -233,7 +233,7 @@ public class Target {
 
     public void loadFromEl(Element el,
                            String test_txt,
-                           HashMap story_hm,
+                           HashMap<String, Lesson.SentenceList> story_hm,
                            boolean dummy,
                            boolean mix) throws Exception {
         iam_composite = false;
@@ -981,7 +981,7 @@ public class Target {
         return (String[]) li.toArray(new String[0]);
     }
 
-    void addSA(List li, String[] sa) {
+    void addSA(List<String> li, String[] sa) {
         for (int i = 0; i < sa.length; i++)
             li.add(sa[i]);
     }

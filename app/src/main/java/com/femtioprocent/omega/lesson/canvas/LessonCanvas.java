@@ -1248,7 +1248,7 @@ public class LessonCanvas extends BaseCanvas {
     public String[] getAllTargetCombinationsEx(String sep, boolean dummy, char delim) {
         try {
             Target tg2 = new Target();
-            HashMap story_hm = Lesson.story_hm;
+            HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
             tg2.loadFromEl(l_ctxt.getLesson().getElement(), "", story_hm, dummy, false); // FIX nomix?
 
             String[] sa = tg2.getAllTargetCombinationsEx(sep, delim);
@@ -1262,7 +1262,7 @@ public class LessonCanvas extends BaseCanvas {
     public TargetCombinations getAllTargetCombinationsEx2(boolean dummy) {
         try {
             Target tg2 = new Target();
-            HashMap story_hm = Lesson.story_hm;
+            HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
             tg2.loadFromEl(l_ctxt.getLesson().getElement(), "", story_hm, dummy, false); // FIX nomix?
             return tg2.getAllTargetCombinationsEx2(l_ctxt.getLesson());
         } catch (Exception ex) {
@@ -1274,7 +1274,7 @@ public class LessonCanvas extends BaseCanvas {
     public TargetCombinations getAllTargetCombinationsEx2(File omega_lesson, boolean dummy) {
         try {
             Target tg2 = new Target();
-            HashMap story_hm = Lesson.story_hm;
+            HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
             tg2.loadFromEl(l_ctxt.getLesson().getElement(), "", story_hm, dummy, false); // FIX nomix?
             return tg2.getAllTargetCombinationsEx2(l_ctxt.getLesson());
         } catch (Exception ex) {
@@ -1285,7 +1285,7 @@ public class LessonCanvas extends BaseCanvas {
     public String[] getAllTargetCombinations(String sep, boolean dummy) {
         try {
             Target tg2 = new Target();
-            HashMap story_hm = Lesson.story_hm;
+            HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
             tg2.loadFromEl(l_ctxt.getLesson().getElement(), "", story_hm, dummy, false); // FIX nomix?
 
             String[] sa = tg2.getAllTargetCombinations(sep);

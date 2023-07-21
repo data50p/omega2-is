@@ -313,7 +313,7 @@ public class MasterTimeLine implements PlayCtrlListener {
         }
     }
 
-    public List fetchPlaySound(boolean b[]) {
+    public List<String> fetchPlaySound(boolean b[]) {
         List<String> li = new ArrayList<>();
         for (int i = 0; i < timelines.length; i++) {
             TimeLine tl = timelines[i];

@@ -12,8 +12,8 @@ import java.util.*;
 
 public class XML_cmd {
     public static void main(String argv[]) throws IOException {
-	HashMap flag = SundryUtils.flagAsMap(argv);
-	List argl = SundryUtils.argAsList(argv);
+	HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+	List<String> argl = SundryUtils.argAsList(argv);
 
 	if (argl.size() == 0 || ((String) argl.get(0)).equals("help")) {
 	    OmegaContext.sout_log.getLogger().info("xmlfile extract element");
@@ -37,7 +37,7 @@ public class XML_cmd {
 	if (cmd.equals("extract")) {
 	    String tag = (String) argl.get(2);
 
-	    List li = el.find(tag);
+	    List<Element> li = el.find(tag);
 
 	    Element eel = new Element("extract");
 	    eel.addAttr("found_tag", tag);
@@ -47,7 +47,7 @@ public class XML_cmd {
 		xmlpw.push(eel);
 		xmlpw.put("\n");
 
-		Iterator it = li.iterator();
+		Iterator<Element> it = li.iterator();
 		while (it.hasNext()) {
 		    Element ell = (Element) it.next();
 		    xmlpw.put(ell);
@@ -96,11 +96,11 @@ public class XML_cmd {
 	    if (argl.size() > 3)
 		a = (String) argl.get(3);
 	    final String fa = a;
-	    List li = el.find(tag);
+	    List<Element> li = el.find(tag);
 
-	    Object oa[] = li.toArray();
-	    Arrays.sort(oa, new Comparator() {
-		public int compare(Object o1, Object o2) {
+	    Element oa[] = li.toArray(new Element[0]);
+	    Arrays.sort(oa, new Comparator<Element>() {
+		public int compare(Element o1, Element o2) {
 		    Element e1 = (Element) o1;
 		    Element e2 = (Element) o2;
 		    String s1;
@@ -122,7 +122,7 @@ public class XML_cmd {
 //  		    return i1 - i2; // s1.compareTo(s2);
 		}
 	    });
-	    List sli = Arrays.asList(oa);
+	    List<Element> sli = Arrays.asList(oa);
 
 	    Element eel = new Element("sort");
 	    eel.addAttr("sorted_tag", tag);
@@ -133,7 +133,7 @@ public class XML_cmd {
 		xmlpw.push(eel);
 		xmlpw.put("\n");
 
-		Iterator it = sli.iterator();
+		Iterator<Element> it = sli.iterator();
 		while (it.hasNext()) {
 		    Element ell = (Element) it.next();
 		    xmlpw.put(ell);

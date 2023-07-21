@@ -150,7 +150,7 @@ public class Canvas extends JPanel implements java.awt.image.ImageObserver {
         g2.drawImage(w.im, at, null);
     }
 
-    Image createWithWings(Image bg, Dimension im_size, java.util.List wings) {
+    Image createWithWings(Image bg, Dimension im_size, java.util.List<Wing> wings) {
         try {
             Image im = createImage(im_size.width, im_size.height);
 //	OmegaContext.sout_log.getLogger().info(":--: " + "withW im is " + im + ' ' + im_size);

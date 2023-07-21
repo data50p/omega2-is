@@ -22,8 +22,8 @@ public class ServerConnection extends Thread {
         this.so = so;
     }
 
-    List gHd(BufferedReader rd) throws IOException {
-        List li = new ArrayList();
+    List<String> gHd(BufferedReader rd) throws IOException {
+        List<String> li = new ArrayList();
 
         for (; ; ) {
             String s = rd.readLine();
@@ -143,7 +143,7 @@ public class ServerConnection extends Thread {
         return data2;
     }
 
-    String[] whatFile(List li) {
+    String[] whatFile(List<String> li) {
         String s[] = new String[3];
 
         String[] sa = SundryUtils.split((String) (li.get(0)), " ");
@@ -255,7 +255,7 @@ public class ServerConnection extends Thread {
         return prefix + s + suffix;
     }
 
-    void serve(List sL, BufferedReader rd, DataOutputStream dos) {
+    void serve(List<String> sL, BufferedReader rd, DataOutputStream dos) {
         try {
 //	    OmegaContext.sout_log.getLogger().info(":--: " + "WEB(" + sL.get(0) + ")");
             String[] sa = SundryUtils.split((String) (sL.get(0)), " ");
@@ -272,7 +272,7 @@ public class ServerConnection extends Thread {
         }
     }
 
-    void doPost(String[] sa, String q, List sL, BufferedReader rd, DataOutputStream dos) throws IOException {
+    void doPost(String[] sa, String q, List<String> sL, BufferedReader rd, DataOutputStream dos) throws IOException {
         String fn = sa[1];
         if (fn == null) {
             String cmd = sa[0];
@@ -297,7 +297,7 @@ public class ServerConnection extends Thread {
         }
     }
 
-    void doGet(String[] sa, String q, List sL, BufferedReader rd, DataOutputStream dos) throws IOException {
+    void doGet(String[] sa, String q, List<String> sL, BufferedReader rd, DataOutputStream dos) throws IOException {
         if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: " + "GET " + SundryUtils.arrToString(sa) + ',' + q);
         String fn = sa[1];
         if (fn == null) {
@@ -384,7 +384,7 @@ public class ServerConnection extends Thread {
             BufferedReader rd = new BufferedReader(new InputStreamReader(so.getInputStream()));
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(so.getOutputStream()));
 
-            List li = gHd(rd);
+            List<String> li = gHd(rd);
             serve(li, rd, dos);
             so.close();
         } catch (IOException ex) {

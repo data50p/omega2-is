@@ -81,9 +81,9 @@ public class Element extends Node implements Cloneable {
         }
     }
 
-    public List find(String nm) {
-        List li = new ArrayList();
-        Iterator it = content.iterator();
+    public List<Element> find(String nm) {
+        List<Element> li = new ArrayList<>();
+        Iterator<Node> it = content.iterator();
         while (it.hasNext()) {
             Node n = (Node) it.next();
             if (n instanceof Element) {
@@ -91,7 +91,7 @@ public class Element extends Node implements Cloneable {
                 if (e.name.equals(nm)) {
                     li.add(e);
                 } else {
-                    List li1 = e.find(nm);
+                    List<Element> li1 = e.find(nm);
                     if (li1.size() > 0)
                         li.addAll(li1);
                 }
@@ -111,8 +111,8 @@ public class Element extends Node implements Cloneable {
         if (name.equals(nm))
             return null;
 
-        List nv = new ArrayList();
-        Iterator it = content.iterator();
+        List<Node> nv = new ArrayList();
+        Iterator<Node> it = content.iterator();
         while (it.hasNext()) {
             Node n = (Node) it.next();
             if (n instanceof Element) {
@@ -140,8 +140,8 @@ public class Element extends Node implements Cloneable {
         if (isIn(name, names))
             return null;
 
-        List nv = new ArrayList();
-        Iterator it = content.iterator();
+        List<Node> nv = new ArrayList();
+        Iterator<Node> it = content.iterator();
         while (it.hasNext()) {
             Node n = (Node) it.next();
             if (n instanceof Element) {
@@ -210,7 +210,7 @@ public class Element extends Node implements Cloneable {
     }
 
     public Element findElement(String nm, int ix) {
-        Iterator it = content.iterator();
+        Iterator<Node> it = content.iterator();
         while (it.hasNext()) {
             Node n = (Node) it.next();
             if (n instanceof Element) {
@@ -239,7 +239,7 @@ public class Element extends Node implements Cloneable {
     }
 
     public String findPCDATA() {
-        Iterator it = content.iterator();
+        Iterator<Node> it = content.iterator();
         while (it.hasNext()) {
             Node n = (Node) it.next();
             if (n instanceof PCDATA) {

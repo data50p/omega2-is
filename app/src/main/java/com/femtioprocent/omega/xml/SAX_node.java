@@ -176,8 +176,8 @@ public class SAX_node extends DefaultHandler {
     }
 
     public static void main(String argv[]) throws IOException {
-        HashMap flag = SundryUtils.flagAsMap(argv);
-        List argl = SundryUtils.argAsList(argv);
+        HashMap<String,String> flag = SundryUtils.flagAsMap(argv);
+        List<String> argl = SundryUtils.argAsList(argv);
 
         OmegaContext.sout_log.getLogger().info("ERR: " + "argl " + argl + ' ' + flag);
 
@@ -189,12 +189,12 @@ public class SAX_node extends DefaultHandler {
 
         Element el = SAX_node.parse(file, validating);
 
-        List li = el.find((String) argl.get(1));
+        List<Element> li = el.find((String) argl.get(1));
 
         OmegaContext.sout_log.getLogger().info("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
         OmegaContext.sout_log.getLogger().info("<!DOCTYPE start SYSTEM \"x.dtd\">");
 
-        Iterator it = li.iterator();
+        Iterator<Element> it = li.iterator();
         while (it.hasNext()) {
             Element ell = (Element) it.next();
             StringBuffer sbu = new StringBuffer();

@@ -61,7 +61,7 @@ public class Lesson implements LessonCanvasListener {
 
     public LessonContext l_ctxt;
     int run_mode = 'p';
-    public static HashMap story_hm = new HashMap();
+    public static HashMap<String,SentenceList> story_hm = new HashMap<>();
 
     static {
 	story_hm.put("sentence_list", new SentenceList());
@@ -261,18 +261,26 @@ public class Lesson implements LessonCanvasListener {
 	lmm.wait((int) (tgr.getX() + tgr.getWidth() / 2), (int) (tgr.getY() + tgr.getHeight()), 100.0 / scale);
     }
 
-    static class SentenceList implements Serializable {
+    public static class SentenceList implements Serializable {
 
-	ArrayList<String> sentence_list;
-	String lesson_name;
+	public ArrayList<String> sentence_list;
+	public String asString = null;
+	public String lesson_name;
+
+	SentenceList(String s) {
+	    sentence_list = new ArrayList<>();
+	    sentence_list.add(s);
+	    asString = s;
+	    lesson_name = "";
+	}
 
 	SentenceList() {
-	    sentence_list = new ArrayList();
+	    sentence_list = new ArrayList<>();
 	    lesson_name = "";
 	}
 
 	public String toString() {
-	    return lesson_name + ':' + sentence_list;
+	    return lesson_name + ':' + sentence_list + ':' + asString;
 	}
     }
 
@@ -666,27 +674,27 @@ public class Lesson implements LessonCanvasListener {
 	    return sa;
 	}
 
-	ListIterator getIterator(int test_mode) {
+	ListIterator<String> getIterator(int test_mode) {
 	    String key = genKey(test_mode);
-	    ListAndIterator lai = (ListAndIterator) texts.get(key);
+	    ListAndIterator<String> lai = (ListAndIterator) texts.get(key);
 	    if (lai == null) {
 		return null;
 	    }
 	    return lai.it;
 	}
 
-	ListIterator getNewIterator(int test_mode) {
+	ListIterator<String> getNewIterator(int test_mode) {
 	    String key = genKey(test_mode);
-	    ListAndIterator lai = (ListAndIterator) texts.get(key);
+	    ListAndIterator<String> lai = (ListAndIterator) texts.get(key);
 	    if (lai == null) {
 		return null;
 	    }
 	    return lai.list.listIterator();
 	}
 
-	java.util.List getList(int test_mode) {
+	java.util.List<String> getList(int test_mode) {
 	    String key = genKey(test_mode);
-	    ListAndIterator lai = (ListAndIterator) texts.get(key);
+	    ListAndIterator<String> lai = (ListAndIterator) texts.get(key);
 	    if (lai == null) {
 		return null;
 	    }
@@ -696,7 +704,7 @@ public class Lesson implements LessonCanvasListener {
 	void initNewTest() {
 	    rand_map = null;
 	    index = 0;
-	    texts = new HashMap();
+	    texts = new HashMap<>();
 	    current = null;
 	}
 
@@ -733,7 +741,7 @@ public class Lesson implements LessonCanvasListener {
 	    for (int i = 0; i < 4; i++) {
 		int t_mode = map[i];
 
-		ListIterator it = getNewIterator(t_mode);
+		ListIterator<String> it = getNewIterator(t_mode);
 		if (it == null) {
 		    continue;
 		}
@@ -868,7 +876,7 @@ public class Lesson implements LessonCanvasListener {
 	}
     }
 
-    java.util.List sortList(java.util.List li) {
+    java.util.List<String> sortList(java.util.List<String> li) {
 	String[] sa = (String[]) li.toArray(new String[0]);
 	Arrays.sort(sa);
 	ArrayList<String> nli = new ArrayList<>();
@@ -3938,13 +3946,13 @@ public class Lesson implements LessonCanvasListener {
 	    // 		 actor_lid + ' ' +
 	    // 		 actor_text + ' ' +
 	    // 		 timeline_lid);
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".text", sa[0]);
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-1", sa[1].substring(1));
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-2", sa[2].substring(1));
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-3", sa[3].substring(1));
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".sound", sa[4].substring(1));
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".Lid", actor_lid);
-	    story_hm.put(thisLessonName + '.' + timeline_lid + ".actor", actor_lid);
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".text", new SentenceList(sa[0]));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-1", new SentenceList(sa[1].substring(1)));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-2", new SentenceList(sa[2].substring(1)));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".var-3", new SentenceList(sa[3].substring(1)));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".sound", new SentenceList(sa[4].substring(1)));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".Lid", new SentenceList(actor_lid));
+	    story_hm.put(thisLessonName + '.' + timeline_lid + ".actor", new SentenceList(actor_lid));
 	    OmegaContext.story_log.getLogger().info("put dynact " + story_hm);
 	} catch (Exception ex) {
 	    OmegaContext.sout_log.getLogger().info("ERR: " + "put dynact " + actor_text + ' ' + ex);

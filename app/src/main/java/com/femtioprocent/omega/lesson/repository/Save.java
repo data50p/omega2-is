@@ -20,7 +20,7 @@ public class Save {
     }
 
     private static void save(String fname, Element el, String extension) {
-	List stories = el.find("story");
+	List<Element> stories = el.find("story");
 	if (stories != null && stories.size() > 0) {
 	    Element sel = (Element) stories.get(0);
 	    String isfirst = sel.findAttr("isfirst");

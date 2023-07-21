@@ -239,7 +239,7 @@ public class OmegaAssetsProperty extends Property_B {
         }
     }
 
-    private void scanOmegaLessons(File file, java.util.List list) {
+    private void scanOmegaLessons(File file, java.util.List<File> list) {
         File[] files = file.listFiles();
         for (File f : files) {
             if (f.isDirectory())

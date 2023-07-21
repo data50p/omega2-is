@@ -7,6 +7,7 @@ import com.femtioprocent.omega.util.SundryUtils.empty
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.xml.Element
+import java.lang.NullPointerException
 
 class Item {
     var it_ent: ItemEntry? = null
@@ -152,10 +153,17 @@ class Item {
 	    val sa = split(ks, ":")
 	    val story_hm = Lesson.story_hm ?: return s
 	    Log.getLogger().info("match $s from $story_hm")
-	    var ns = story_hm[sa[0]] as String?
-	    if (ns == null) ns = if (sa.size > 1) sa[1] else ""
-	    Log.getLogger().info("-> $ks¶$s1¶$ns¶$s2")
-	    return s1 + ns + krull(s2)
+	    val s_li = story_hm[sa[0]]
+	    if ( s_li!!.asString == null ) {
+		val ns = if (sa.size > 1) sa[1] else ""
+		Log.getLogger().info("${s1 + ns + krull(s2)} -> $ks¶$s1¶$ns¶$s2")
+		return s1 + ns + krull(s2)
+	    }
+	    s_li!!.asString ?.let {
+		val ns = s_li.asString
+		Log.getLogger().info("-> $ks¶$s1¶$ns¶$s2")
+		return s1 + ns + krull(s2)
+	    }
 	} catch (ex: Exception) {
 	}
 	return s
@@ -502,21 +510,27 @@ class Item {
 	get() = actionText
 
     override fun toString(): String {
-	return "Item{" + ord +
-		", isdummy=" + isDummySpaceAllocated +
-		", text=" + text +
-		", dummytext=" + dummyText +
-		", text_orig=" + text_Orig +
-		", sound=" + sound +
-		", dummysound=" + dummySound +
-		", sign=" + sign +
-		", dummysign=" + dummySign +
-		", Lid=" + lid +
-		", var=" + `var` +
-		", tid'=" + it_ent!!.tid +
-		", action_type=" + action_type +
-		", action_fname_orig=" + action_fname_orig +
-		", action_fname=" + action_fname +
-		"}"
+	try {
+	    return "Item{" + ord +
+		    ", isdummy=" + isDummySpaceAllocated +
+		    ", text=" + text +
+		    ", dummytext=" + dummyText +
+		    ", text_orig=" + text_Orig +
+		    ", sound=" + sound +
+		    ", dummysound=" + dummySound +
+		    ", sign=" + sign +
+		    ", dummysign=" + dummySign +
+		    ", Lid=" + lid +
+		    ", var=" + `var` +
+		    ", tid'=" + it_ent?.tid ?: "null" +
+		    ", action_type=" + action_type +
+		    ", action_fname_orig=" + action_fname_orig +
+		    ", action_fname=" + action_fname +
+		    "}"
+	} catch (e: NullPointerException) {
+	    Log.getLogger().info("While toString " + e)
+	    e.printStackTrace();
+	    return "Item{" + e + "}";
+	}
     }
 }

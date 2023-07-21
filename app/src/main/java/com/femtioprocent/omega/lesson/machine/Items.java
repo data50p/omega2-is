@@ -1,5 +1,6 @@
 package com.femtioprocent.omega.lesson.machine;
 
+import com.femtioprocent.omega.lesson.Lesson;
 import com.femtioprocent.omega.xml.Element;
 
 import java.util.ArrayList;
@@ -8,14 +9,14 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Items {
-    List item_entry_list;
+    List<ItemEntry> item_entry_list;
 
     Items() {
-        item_entry_list = new ArrayList();
+        item_entry_list = new ArrayList<>();
     }
 
-    Items(Element el, Target tg, HashMap story_hm, boolean dummy, boolean mix) {
-        item_entry_list = new ArrayList();
+    Items(Element el, Target tg, HashMap<String, Lesson.SentenceList> story_hm, boolean dummy, boolean mix) {
+        item_entry_list = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
             Element il_el = el.findElement("item-entry", i);
