@@ -191,32 +191,32 @@ class AllPath {
 		override fun mousePressed(e: MouseEvent) {
 //		OmegaContext.sout_log.getLogger().info(":--: " + "m p " + e);
 		    if (e.x < 20 && e.y < 20) {
-			if (selected_prb != null) selected_prb!!.seg.path.removeSegment()
+			if (selected_prb != null) selected_prb!!.seg!!.path!!.removeSegment()
 			ca.repaint()
 			return
 		    }
 		    if (e.x < 20 && e.y < 40) {
-			selected_prb!!.seg.path.splitSegment()
+			selected_prb!!.seg!!.path!!.splitSegment()
 			ca.repaint()
 			return
 		    }
 		    if (e.x < 20 && e.y < 60) {
-			val npa = selected_prb!!.seg.path.createSegment()
+			val npa = selected_prb!!.seg!!.path!!.createSegment()
 			ap.add(npa)
 			ca.repaint()
 			return
 		    }
 		    if (e.x < 20 && e.y < 80) {
-			selected_prb!!.seg.path.extendSegment(press_p!!)
+			selected_prb!!.seg!!.path!!.extendSegment(press_p!!)
 			ca.repaint()
 			return
 		    }
 		    press_p = Point2D.Double(e.x.toDouble(), e.y.toDouble())
 		    ap.deselectAll(ca.graphics as Graphics2D)
 		    val prb = ap.findNearest(press_p)
-		    prb!!.seg.path.selected = true
-		    prb.seg.selectedPoint = prb.sel
-		    prb.seg.path.draw((ca.graphics as Graphics2D))
+		    prb!!.seg!!.path!!.selected = true
+		    prb.seg!!.selectedPoint = prb.sel
+		    prb.seg!!.path!!.draw((ca.graphics as Graphics2D))
 		    selected_prb = prb
 		}
 
@@ -227,8 +227,8 @@ class AllPath {
 		override fun mouseDragged(e: MouseEvent) {
 //		OmegaContext.sout_log.getLogger().info(":--: " + "m d " + e);
 		    val drag_p: Point2D = Point2D.Double(e.x.toDouble(), e.y.toDouble())
-		    selected_prb!!.seg.moveto(selected_prb!!.sel, drag_p)
-		    selected_prb!!.seg.path.rebuildGP()
+		    selected_prb!!.seg!!.moveto(selected_prb!!.sel, drag_p)
+		    selected_prb!!.seg!!.path!!.rebuildGP()
 		    ca.repaint() // ap.redraw((Graphics2D)fca.getGraphics());
 		}
 	    }
