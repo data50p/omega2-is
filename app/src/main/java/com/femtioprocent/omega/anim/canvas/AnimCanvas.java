@@ -215,7 +215,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                                     if (OmegaConfig.T)
                                         OmegaContext.sout_log.getLogger().info(":--: " + "marker hit " + mk);
                                     if (mk != null) {
-                                        Path pa = mk.pa;
+                                        Path pa = mk.getPa();
                                         pa.setSelected(true);
 //  					if ( pa_prop != null )
 //  					    pa_prop.setObject(pa);
@@ -270,7 +270,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                 Point2D mv_p = new Point2D.Double((e.getX() - offs_x) / sca, (e.getY() - offs_y) / sca);
                 Path.Mark mk = ap.findNearestMarker(mv_p);
                 if (mk != null) {
-                    Path pa = mk.pa;
+                    Path pa = mk.getPa();
                     pa.draw(getGraphics2D());
                     setM_Tool(M_TOOL_MARKER);
                 }
@@ -306,7 +306,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
                     Path.Mark mk = selected_mark;
                     if (mk != null) {
                         Point2D drag3_p = new Point2D.Double((e.getX() - offs_x) / sca, (e.getY() - offs_y) / sca);
-                        double where = mk.pa.findNearestPoint(drag3_p);
+                        double where = mk.getPa().findNearestPoint(drag3_p);
                         mk.moveToPathPosition(where);
                         ae.setDirty(true);
                         repaint();
@@ -674,7 +674,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
                         repaint();
 
-                        int src_nid = selected_prb.seg.path.nid;
+                        int src_nid = selected_prb.seg.path.getNid();
 //			OmegaContext.sout_log.getLogger().info(":--: " + "src " + src_nid + ' ' + nid);
                         TimeLine tl_src = a_ctxt.mtl.getTimeLine(src_nid);
                         TimeLine tl = new TimeLine(nid, tl_src);
@@ -688,7 +688,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
                 if (selected_prb != null) {
                     Path pa_src = selected_prb.seg.path;
-                    int src_nid = pa_src.nid;
+                    int src_nid = pa_src.getNid();
 
                     deleteAllNid(src_nid);
                     ae.setDirty(true);

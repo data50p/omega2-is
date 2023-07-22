@@ -53,7 +53,7 @@ public class PathProperties extends OmegaProperties implements ActionListener {
             updAll(pa);
             con.setLayout(new BoxLayout(con, BoxLayout.Y_AXIS));
 
-            con.add(c_pa_nid = new JLabel(T.t("Path for timeline") + ' ' + pa.nid));
+            con.add(c_pa_nid = new JLabel(T.t("Path for timeline") + ' ' + pa.getNid()));
             c_pa_nid.setForeground(Color.black);
             con.add(c_pa_len = new JLabel(T.t("length") + " = " + pa.getLength()));
 
@@ -70,7 +70,7 @@ public class PathProperties extends OmegaProperties implements ActionListener {
             con.add(pp);
             ret = true;
         }
-        c_pa_nid.setText(T.t("Path for timeline") + ' ' + pa.nid);
+        c_pa_nid.setText(T.t("Path for timeline") + ' ' + pa.getNid());
         c_pa_len.setText(T.t("length = ") + pa.getLength());
         c_pa_imname.setText(T.t("--unknown--"));
         return ret;

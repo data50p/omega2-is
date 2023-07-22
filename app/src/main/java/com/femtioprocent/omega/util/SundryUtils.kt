@@ -783,7 +783,7 @@ object SundryUtils {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
     @JvmStatic
-    fun flagAsMap(argv: Array<String?>): HashMap<String, String> {
+    fun flagAsMap(argv: Array<String>): HashMap<String, String> {
 	val argl: MutableList<String?> = Arrays.asList(*argv)
 	val flag: HashMap<String, String> = HashMap()
 	for (i in argl.indices) {

@@ -27,7 +27,7 @@ public class AllPath {
         Iterator it = li.iterator();
         while (it.hasNext()) {
             Path pa = (Path) it.next();
-            if (pa.nid == nid)
+            if (pa.getNid() == nid)
                 return pa;
         }
         return null;
@@ -89,7 +89,7 @@ public class AllPath {
         Iterator it = li.iterator();
         while (it.hasNext()) {
             Path pa = (Path) it.next();
-            if (pa.nid == nid)
+            if (pa.getNid() == nid)
                 return pa;
         }
         return null;

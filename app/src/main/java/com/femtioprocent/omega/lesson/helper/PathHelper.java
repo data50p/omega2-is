@@ -98,8 +98,8 @@ public class PathHelper {
 	    double[] lenArr = p.getLenA();
 	    Point2D[] point2d = p.getPoint2D();
 	    Log.getLogger().info("flatness " + i + ": " + OmegaConfig.FLATNESS);
-	    Log.getLogger().info("len " + i + ": " + lenArr.length + ' ' + Path.format(lenArr));
-	    Log.getLogger().info("seg " + i + ": " + point2d.length + ' ' + Path.format(point2d));
+	    Log.getLogger().info("len " + i + ": " + lenArr.length + ' ' + Path.format_(lenArr));
+	    Log.getLogger().info("seg " + i + ": " + point2d.length + ' ' + Path.format_(point2d));
 
 	    Element el_i = el_tp.findElement("info", 0);
 	    if ( el_i == null ) {
@@ -122,8 +122,8 @@ public class PathHelper {
 	    } else {
 	        cntHelpExist++;
 	    }
-	    el_h.addAttr("len", Path.format(lenArr));
-	    el_h.addAttr("seg", Path.format(point2d));
+	    el_h.addAttr("len", Path.format_(lenArr));
+	    el_h.addAttr("seg", Path.format_(point2d));
 	}
 	return "n:" + cntTpath + " +:" + cntInfoAdded + "," + cntHelpAdded + " =:" + cntInfoExist + "," + cntHelpExist;
     }

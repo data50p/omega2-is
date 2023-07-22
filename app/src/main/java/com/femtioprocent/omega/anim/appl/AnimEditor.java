@@ -477,13 +477,13 @@ public class AnimEditor extends JFrame {
 			    if (tm == ta[i]) {
 				double w1;
 				try {
-				    w1 = pa.getMarker(i - 1).where;
+				    w1 = pa.getMarker(i - 1).getWhere();
 				} catch (NullPointerException ex) {
 				    w1 = 0;
 				}
 				double w2;
 				try {
-				    w2 = pa.getMarker(i).where;
+				    w2 = pa.getMarker(i).getWhere();
 				} catch (NullPointerException ex) {
 				    w2 = pa.getLength();
 				}
@@ -690,7 +690,7 @@ public class AnimEditor extends JFrame {
     }
 
     public void selectTimeLine(Path pa) {
-	tlp.selected_tl = pa.nid;
+	tlp.selected_tl = pa.getNid();
 	tlp.repaint();
     }
 
