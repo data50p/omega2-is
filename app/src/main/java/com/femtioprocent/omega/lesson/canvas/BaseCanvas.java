@@ -35,25 +35,15 @@ public class BaseCanvas extends JPanel {
 
     Font fo;
 
-    public static class ColorColors {
-        public ColorColors(Color color) {
-            this.color = color;
+    public record ColorColors(Color color, HashMap<String, Color> colors) {
+        public static ColorColors create(int r, int g, int b) {
+            return new ColorColors(new Color(r, g, b), null);
         }
-        public ColorColors(HashMap<String, Color> colors) {
-            this.colors = colors;
-        }
-
-        public Color color = null;
-        HashMap<String, Color> colors = null;
-
-        public ColorColors(int r, int g, int b) {
-            color = new Color(r, g, b);
-        }
-
-        public ColorColors(int rgb) {
-            color = new Color(rgb);
+        public static ColorColors create(int rgb) {
+            return new ColorColors(new Color(rgb), null);
         }
     }
+
     boolean ignore_press = false;
 
     ComponentAdapter cmp_li = new ComponentAdapter() {
@@ -375,27 +365,27 @@ public class BaseCanvas extends JPanel {
     }
 
     void initColors() {
-        colors.put("bg_t", new ColorColors(240, 220, 140));
-        colors.put("bg_m", new ColorColors(210, 180, 220));
-        colors.put("bg_b", new ColorColors(140, 220, 240));
-        colors.put("bg_tx", new ColorColors(0, 0, 0));
-        colors.put("bg_fr", new ColorColors(0, 0, 0));
-        colors.put("bg_frbg", new ColorColors(240, 220, 140));
+        colors.put("bg_t", ColorColors.create(240, 220, 140));
+        colors.put("bg_m", ColorColors.create(210, 180, 220));
+        colors.put("bg_b", ColorColors.create(140, 220, 240));
+        colors.put("bg_tx", ColorColors.create(0, 0, 0));
+        colors.put("bg_fr", ColorColors.create(0, 0, 0));
+        colors.put("bg_frbg", ColorColors.create(240, 220, 140));
 
-        colors.put("sn_bg", new ColorColors(240, 220, 140));
-        colors.put("sn_hi", new ColorColors(moreSaturate(new Color(240, 220, 140))));
-        colors.put("sn_fr", new ColorColors(0, 0, 0));
-        colors.put("sn_tx", new ColorColors(0, 0, 0));
+        colors.put("sn_bg", ColorColors.create(240, 220, 140));
+        colors.put("sn_hi", new ColorColors(moreSaturate(new Color(240, 220, 140)), null));
+        colors.put("sn_fr", ColorColors.create(0, 0, 0));
+        colors.put("sn_tx", ColorColors.create(0, 0, 0));
 
-        colors.put("bt_bg", new ColorColors(0, 0, 0));
-        colors.put("bt_hi", new ColorColors(moreSaturate(new Color(240, 220, 140))));
-        colors.put("bt_hs", new ColorColors(255, 240, 180));
-        colors.put("bt_fr", new ColorColors(0, 0, 0));
-        colors.put("bt_tx", new ColorColors(0, 0, 0));
-        colors.put("bt_fr_hi", new ColorColors(0, 0, 0));
-        colors.put("bt_tx_hi", new ColorColors(0, 0, 0));
-        colors.put("bt_fr_hs", new ColorColors(0, 0, 0));
-        colors.put("bt_tx_hs", new ColorColors(0, 0, 0));
+        colors.put("bt_bg", ColorColors.create(0, 0, 0));
+        colors.put("bt_hi", new ColorColors(moreSaturate(new Color(240, 220, 140)), null));
+        colors.put("bt_hs", ColorColors.create(255, 240, 180));
+        colors.put("bt_fr", ColorColors.create(0, 0, 0));
+        colors.put("bt_tx", ColorColors.create(0, 0, 0));
+        colors.put("bt_fr_hi", ColorColors.create(0, 0, 0));
+        colors.put("bt_tx_hi", ColorColors.create(0, 0, 0));
+        colors.put("bt_fr_hs", ColorColors.create(0, 0, 0));
+        colors.put("bt_tx_hs", ColorColors.create(0, 0, 0));
     }
 
     String getPanelName() {
@@ -807,7 +797,7 @@ public class BaseCanvas extends JPanel {
     }
 
     public void setColor(String id, Color col) {
-        colors.put(id, new ColorColors(col));
+        colors.put(id, new ColorColors(col, null));
         repaint(100);
     }
 
@@ -1118,7 +1108,7 @@ public class BaseCanvas extends JPanel {
                                     rgb = Integer.parseInt(c.substring(3), 16);
                                 else
                                     rgb = Integer.parseInt(c.substring(1), 16);
-                                newColors.put(k, new ColorColors(rgb));
+                                newColors.put(k, ColorColors.create(rgb));
                             }
                         }
 
@@ -1139,7 +1129,7 @@ public class BaseCanvas extends JPanel {
                                     cols.put(ca2[0], new Color(rgb));
                                 }
                             }
-                            newColors.put(":" + k, new ColorColors(cols));
+                            newColors.put(":" + k, new ColorColors(null, cols));
                         }
                     } catch (ClassCastException ex) {
                         ex.printStackTrace();

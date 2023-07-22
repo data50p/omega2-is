@@ -273,7 +273,7 @@ public class FxMoviePlayer {
     }
 
     private Color getColor(HashMap<String, BaseCanvas.ColorColors> colors, String key, java.awt.Color def) {
-        java.awt.Color c = colors != null ? colors.get(key).color : def;
+        java.awt.Color c = colors != null ? colors.get(key).color() : def;
         return Color.rgb(c.getRed(), c.getGreen(), c.getBlue());
     }
 

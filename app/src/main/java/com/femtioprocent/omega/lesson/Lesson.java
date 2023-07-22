@@ -4179,8 +4179,8 @@ public class Lesson implements LessonCanvasListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	if (smaller) {
-	    d.width = 600;
-	    d.height = 450;
+	    d.width = 1600;
+	    d.height = 1200;
 	    window.setSize(d);
 	} else {
 	    window.setSize(d);

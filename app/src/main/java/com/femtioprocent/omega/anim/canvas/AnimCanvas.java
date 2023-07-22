@@ -1082,27 +1082,27 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
     }
 
     void initColors() {
-        colors.put("bg_t", new BaseCanvas.ColorColors(240, 220, 140));
-        colors.put("bg_m", new BaseCanvas.ColorColors(210, 180, 220));
-        colors.put("bg_b", new BaseCanvas.ColorColors(140, 220, 240));
-        colors.put("bg_tx", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bg_fr", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bg_frbg", new BaseCanvas.ColorColors(240, 220, 140));
+        colors.put("bg_t", BaseCanvas.ColorColors.create(240, 220, 140));
+        colors.put("bg_m", BaseCanvas.ColorColors.create(210, 180, 220));
+        colors.put("bg_b", BaseCanvas.ColorColors.create(140, 220, 240));
+        colors.put("bg_tx", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bg_fr", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bg_frbg", BaseCanvas.ColorColors.create(240, 220, 140));
 
-        colors.put("sn_bg", new BaseCanvas.ColorColors(240, 220, 140));
-        colors.put("sn_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140))));
-        colors.put("sn_fr", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("sn_tx", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("sn_bg", BaseCanvas.ColorColors.create(240, 220, 140));
+        colors.put("sn_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140)), null));
+        colors.put("sn_fr", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("sn_tx", BaseCanvas.ColorColors.create(0, 0, 0));
 
-        colors.put("bt_bg", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140))));
-        colors.put("bt_hs", new BaseCanvas.ColorColors(255, 240, 180));
-        colors.put("bt_fr", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_tx", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_fr_hi", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_tx_hi", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_fr_hs", new BaseCanvas.ColorColors(0, 0, 0));
-        colors.put("bt_tx_hs", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_bg", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140)), null));
+        colors.put("bt_hs", BaseCanvas.ColorColors.create(255, 240, 180));
+        colors.put("bt_fr", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_tx", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_fr_hi", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_tx_hi", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_fr_hs", BaseCanvas.ColorColors.create(0, 0, 0));
+        colors.put("bt_tx_hs", BaseCanvas.ColorColors.create(0, 0, 0));
     }
 
     public Color getColor(String id, Color def) {
@@ -1110,8 +1110,8 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
         if ( cols == null ) {
             return def;
         }
-        if ( cols.color != null ) {
-            return cols.color;
+        if (null != cols.color()) {
+            return cols.color();
         }
         return def;
     }

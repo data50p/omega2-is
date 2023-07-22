@@ -49,7 +49,7 @@ public class ColorDisplay extends JDialog implements ActionListener {
 		    if (hm != null) {
 			colors = new HashMap<>();
 			for(Map.Entry<String,Color> ent : hm.entrySet())
-			    colors.put(ent.getKey(), new BaseCanvas.ColorColors(ent.getValue()));
+			    colors.put(ent.getKey(), new BaseCanvas.ColorColors(ent.getValue(), null));
 			repaint();
 		    }
 		}
@@ -214,7 +214,7 @@ public class ColorDisplay extends JDialog implements ActionListener {
     Canvas can;
 
     Color getColor(String id) {
-	return (Color) colors.get(id).color;
+	return (Color) colors.get(id).color();
     }
 
     public ColorDisplay(HashMap<String, BaseCanvas.ColorColors> colors, String who) {
@@ -254,10 +254,10 @@ public class ColorDisplay extends JDialog implements ActionListener {
 	    return;
 	}
 //	JMenuItem mi = (JMenuItem)ae.getSource();
-	Color c = colors.get(cmd).color;
+	Color c = colors.get(cmd).color();
 	Color nc = ColorChooser.select(c);
 	if (nc != null)
-	    colors.put(cmd, new BaseCanvas.ColorColors(nc));
+	    colors.put(cmd, new BaseCanvas.ColorColors(nc, null));
 	repaint();
     }
 
