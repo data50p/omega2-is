@@ -1654,7 +1654,7 @@ public class Lesson implements LessonCanvasListener {
     public void copySettings(String from, String to) {
 	BaseCanvas l1 = canvases.get(from);
 	BaseCanvas l2 = canvases.get(to);
-	l2.colors = (HashMap) l1.colors.clone();
+	l2.colors = (HashMap<String, BaseCanvas.ColorColors>) l1.colors.clone();
     }
 
     synchronized void addValues(Values vs) {
@@ -4236,7 +4236,9 @@ public class Lesson implements LessonCanvasListener {
 		ColorDisplay cd = new ColorDisplay(l.colors, name);
 		cd.setVisible(true);
 		if (cd.select) {
-		    l.colors = cd.colors;
+		    for (Map.Entry<String,Color> ent : cd.colors.entrySet()) {
+			l.colors.put(ent.getKey(), new BaseCanvas.ColorColors(ent.getValue()));
+		    }
 		    l.updateDisp();
 		    l.repaint();
 

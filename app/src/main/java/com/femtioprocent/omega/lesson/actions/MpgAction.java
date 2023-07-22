@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class MpgAction implements ActionI {
     public MpgPlayer mpg_player;
     MyPanel jpan;
-    HashMap<String,String> args = new HashMap();
+    HashMap<String,Object> args = new HashMap<>();
     private Font item_fo = null;
     int parent_w = 100;
     int parent_h = 100;
@@ -177,7 +177,7 @@ public class MpgAction implements ActionI {
         mpg_player.setLocation(x, y);
     }
 
-    public HashMap getHm() {
+    public HashMap<String,Object> getHm() {
         return args;
     }
 
@@ -356,7 +356,7 @@ public class MpgAction implements ActionI {
         if (ord == 0) {
 //	    dispose();
             if (show_sentence) {
-                HashMap colors = (HashMap) getHm().get("colors");
+                HashMap<String,Color> colors = (HashMap) getHm().get("colors");
                 showMsgFx(new MsgItem("", sentence), colors);
                 while (show_msg && mpg_player.fxp.messageShown) {
                     SundryUtils.m_sleep(200);

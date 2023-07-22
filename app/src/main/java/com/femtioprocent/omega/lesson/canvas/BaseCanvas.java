@@ -31,11 +31,29 @@ public class BaseCanvas extends JPanel {
     EventListenerList lc_listeners;
     LessonContext l_ctxt;
 
-    public HashMap<String,Color> colors = new HashMap();
+    public HashMap<String,ColorColors> colors = new HashMap<>();
 
     Font fo;
 
+    public static class ColorColors {
+        public ColorColors(Color color) {
+            this.color = color;
+        }
+        public ColorColors(HashMap<String, Color> colors) {
+            this.colors = colors;
+        }
 
+        public Color color = null;
+        HashMap<String, Color> colors = null;
+
+        public ColorColors(int r, int g, int b) {
+            color = new Color(r, g, b);
+        }
+
+        public ColorColors(int rgb) {
+            color = new Color(rgb);
+        }
+    }
     boolean ignore_press = false;
 
     ComponentAdapter cmp_li = new ComponentAdapter() {
@@ -357,27 +375,27 @@ public class BaseCanvas extends JPanel {
     }
 
     void initColors() {
-        colors.put("bg_t", new Color(240, 220, 140));
-        colors.put("bg_m", new Color(210, 180, 220));
-        colors.put("bg_b", new Color(140, 220, 240));
-        colors.put("bg_tx", new Color(0, 0, 0));
-        colors.put("bg_fr", new Color(0, 0, 0));
-        colors.put("bg_frbg", new Color(240, 220, 140));
+        colors.put("bg_t", new ColorColors(240, 220, 140));
+        colors.put("bg_m", new ColorColors(210, 180, 220));
+        colors.put("bg_b", new ColorColors(140, 220, 240));
+        colors.put("bg_tx", new ColorColors(0, 0, 0));
+        colors.put("bg_fr", new ColorColors(0, 0, 0));
+        colors.put("bg_frbg", new ColorColors(240, 220, 140));
 
-        colors.put("sn_bg", new Color(240, 220, 140));
-        colors.put("sn_hi", moreSaturate(new Color(240, 220, 140)));
-        colors.put("sn_fr", new Color(0, 0, 0));
-        colors.put("sn_tx", new Color(0, 0, 0));
+        colors.put("sn_bg", new ColorColors(240, 220, 140));
+        colors.put("sn_hi", new ColorColors(moreSaturate(new Color(240, 220, 140))));
+        colors.put("sn_fr", new ColorColors(0, 0, 0));
+        colors.put("sn_tx", new ColorColors(0, 0, 0));
 
-        colors.put("bt_bg", new Color(0, 0, 0));
-        colors.put("bt_hi", moreSaturate(new Color(240, 220, 140)));
-        colors.put("bt_hs", new Color(255, 240, 180));
-        colors.put("bt_fr", new Color(0, 0, 0));
-        colors.put("bt_tx", new Color(0, 0, 0));
-        colors.put("bt_fr_hi", new Color(0, 0, 0));
-        colors.put("bt_tx_hi", new Color(0, 0, 0));
-        colors.put("bt_fr_hs", new Color(0, 0, 0));
-        colors.put("bt_tx_hs", new Color(0, 0, 0));
+        colors.put("bt_bg", new ColorColors(0, 0, 0));
+        colors.put("bt_hi", new ColorColors(moreSaturate(new Color(240, 220, 140))));
+        colors.put("bt_hs", new ColorColors(255, 240, 180));
+        colors.put("bt_fr", new ColorColors(0, 0, 0));
+        colors.put("bt_tx", new ColorColors(0, 0, 0));
+        colors.put("bt_fr_hi", new ColorColors(0, 0, 0));
+        colors.put("bt_tx_hi", new ColorColors(0, 0, 0));
+        colors.put("bt_fr_hs", new ColorColors(0, 0, 0));
+        colors.put("bt_tx_hs", new ColorColors(0, 0, 0));
     }
 
     String getPanelName() {
@@ -789,17 +807,15 @@ public class BaseCanvas extends JPanel {
     }
 
     public void setColor(String id, Color col) {
-        colors.put(id, col);
-        repaint(100);
-    }
-
-    public void setColor(String id, HashMap<String, Color> col) {
-        colors.put(id, col);
+        colors.put(id, new ColorColors(col));
         repaint(100);
     }
 
     public Color getColor(String id) {
-        Color col = (Color) colors.get(id);
+        ColorColors cols = colors.get(id);
+        if ( cols == null )
+            return Color.gray;
+        Color col = cols.color;
         if (col == null)
             col = Color.black;
         return col;
@@ -811,8 +827,9 @@ public class BaseCanvas extends JPanel {
 
 
         String idMod = id.replace("hi", "bg").replace("hs", "bg");
-        HashMap<String, Color> cols = (HashMap<String, Color>) colors.get(":" + idMod);
-        if (cols != null) {
+        ColorColors ccs = colors.get(":" + idMod);
+        if (ccs != null) {
+            HashMap<String, Color> cols = ccs.colors;
             Color col = cols.get(mod);
             if (col != null) {
                 switch (id) {
@@ -826,7 +843,7 @@ public class BaseCanvas extends JPanel {
             }
         }
 
-        Color col = (Color) colors.get(id);
+        Color col = (Color) colors.get(id).color;
         if (col == null)
             col = Color.black;
         return col;
@@ -1048,11 +1065,11 @@ public class BaseCanvas extends JPanel {
     }
 
     public void fillElement(Element el) {
-        Iterator it = colors.keySet().iterator();
+        Iterator<String> it = colors.keySet().iterator();
         while (it.hasNext()) {
             String k = (String) it.next();
-            if (colors.get(k) instanceof Color) {
-                Color col = (Color) colors.get(k);
+            if (colors.get(k).color != null) {
+                Color col = (Color) colors.get(k).color;
                 el.addAttr("color_" + k, "#" + Integer.toHexString(0xffffff & col.getRGB()));
             } else {
             }
@@ -1060,11 +1077,11 @@ public class BaseCanvas extends JPanel {
     }
 
     public void fillSettingsElement(Element el) {
-        Iterator it = colors.keySet().iterator();
+        Iterator<String> it = colors.keySet().iterator();
         while (it.hasNext()) {
             String k = (String) it.next();
-            if (colors.get(k) instanceof Color) {
-                Color col = (Color) colors.get(k);
+            if (colors.get(k).color != null) {
+                Color col = (Color) colors.get(k).color;
                 el.addAttr("color_" + k, "#" + Integer.toHexString(0xffffff & col.getRGB()));
             } else {
             }
@@ -1076,9 +1093,9 @@ public class BaseCanvas extends JPanel {
             if (el != null) {
                 initColors();
 
-                HashMap<String,Object> newColors = new HashMap<>();
+                HashMap<String,ColorColors> newColors = new HashMap<>();
 
-                for(Object o : colors.keySet()) {
+                for(String o : colors.keySet()) {
                     //OmegaContext.serr_log.getLogger().info("o is " + o);
                     String k = (String)o;
 /*
@@ -1087,10 +1104,10 @@ public class BaseCanvas extends JPanel {
 */
 
                     try {
-                        if ( ! (colors.get(k) instanceof Color) )
+                        if ( colors.get(k).colors != null )
                             continue;
                         
-                        Color col = (Color) colors.get(k);
+                        Color col = (Color) colors.get(k).color;
                         String c = el.findAttr("color_" + k);
 
                         if (c != null) {
@@ -1101,7 +1118,7 @@ public class BaseCanvas extends JPanel {
                                     rgb = Integer.parseInt(c.substring(3), 16);
                                 else
                                     rgb = Integer.parseInt(c.substring(1), 16);
-                                newColors.put(k, new Color(rgb));
+                                newColors.put(k, new ColorColors(rgb));
                             }
                         }
 
@@ -1122,7 +1139,7 @@ public class BaseCanvas extends JPanel {
                                     cols.put(ca2[0], new Color(rgb));
                                 }
                             }
-                            newColors.put(":" + k, cols);
+                            newColors.put(":" + k, new ColorColors(cols));
                         }
                     } catch (ClassCastException ex) {
                         ex.printStackTrace();

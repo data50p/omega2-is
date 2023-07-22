@@ -514,6 +514,7 @@ public class LessonCanvas extends BaseCanvas {
             try {
                 draw(g2, false);
             } catch (Exception ex) {
+                ex.printStackTrace();
                 OmegaContext.sout_log.getLogger().info("ERR: " + "Box:draw(): " + ex);
             }
 // 	    String s = "";

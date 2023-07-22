@@ -17,6 +17,7 @@ import com.femtioprocent.omega.anim.tool.path.Probe;
 import com.femtioprocent.omega.anim.tool.timeline.TimeLine;
 import com.femtioprocent.omega.anim.tool.timeline.TimeMarker;
 import com.femtioprocent.omega.graphic.render.Wing;
+import com.femtioprocent.omega.lesson.canvas.BaseCanvas;
 import com.femtioprocent.omega.swing.Popup;
 import com.femtioprocent.omega.swing.ToolExecute;
 import com.femtioprocent.omega.t9n.T;
@@ -70,7 +71,7 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
 
     public Color background_color = new Color(30, 30, 90);
 
-    public HashMap<String,Color> colors = new HashMap<>();
+    public HashMap<String, BaseCanvas.ColorColors> colors = new HashMap<>();
 
     public boolean hidden = false;
 
@@ -1081,34 +1082,38 @@ public class AnimCanvas extends com.femtioprocent.omega.graphic.render.Canvas {
     }
 
     void initColors() {
-        colors.put("bg_t", new Color(240, 220, 140));
-        colors.put("bg_m", new Color(210, 180, 220));
-        colors.put("bg_b", new Color(140, 220, 240));
-        colors.put("bg_tx", new Color(0, 0, 0));
-        colors.put("bg_fr", new Color(0, 0, 0));
-        colors.put("bg_frbg", new Color(240, 220, 140));
+        colors.put("bg_t", new BaseCanvas.ColorColors(240, 220, 140));
+        colors.put("bg_m", new BaseCanvas.ColorColors(210, 180, 220));
+        colors.put("bg_b", new BaseCanvas.ColorColors(140, 220, 240));
+        colors.put("bg_tx", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bg_fr", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bg_frbg", new BaseCanvas.ColorColors(240, 220, 140));
 
-        colors.put("sn_bg", new Color(240, 220, 140));
-        colors.put("sn_hi", moreSaturate(new Color(240, 220, 140)));
-        colors.put("sn_fr", new Color(0, 0, 0));
-        colors.put("sn_tx", new Color(0, 0, 0));
+        colors.put("sn_bg", new BaseCanvas.ColorColors(240, 220, 140));
+        colors.put("sn_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140))));
+        colors.put("sn_fr", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("sn_tx", new BaseCanvas.ColorColors(0, 0, 0));
 
-        colors.put("bt_bg", new Color(0, 0, 0));
-        colors.put("bt_hi", moreSaturate(new Color(240, 220, 140)));
-        colors.put("bt_hs", new Color(255, 240, 180));
-        colors.put("bt_fr", new Color(0, 0, 0));
-        colors.put("bt_tx", new Color(0, 0, 0));
-        colors.put("bt_fr_hi", new Color(0, 0, 0));
-        colors.put("bt_tx_hi", new Color(0, 0, 0));
-        colors.put("bt_fr_hs", new Color(0, 0, 0));
-        colors.put("bt_tx_hs", new Color(0, 0, 0));
+        colors.put("bt_bg", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_hi", new BaseCanvas.ColorColors(moreSaturate(new Color(240, 220, 140))));
+        colors.put("bt_hs", new BaseCanvas.ColorColors(255, 240, 180));
+        colors.put("bt_fr", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_tx", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_fr_hi", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_tx_hi", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_fr_hs", new BaseCanvas.ColorColors(0, 0, 0));
+        colors.put("bt_tx_hs", new BaseCanvas.ColorColors(0, 0, 0));
     }
 
     public Color getColor(String id, Color def) {
-        Color col = (Color) colors.get(id);
-        if (col == null)
-            col = def;
-        return col;
+        BaseCanvas.ColorColors cols = colors.get(id);
+        if ( cols == null ) {
+            return def;
+        }
+        if ( cols.color != null ) {
+            return cols.color;
+        }
+        return def;
     }
 
     boolean show_msg;
