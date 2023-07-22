@@ -155,7 +155,7 @@ class AllPath {
 	    f.pack()
 	    f.setSize(870, 640)
 	    f.isVisible = true
-	    ca.setBackground("bg.jpg")
+	    // TODO: ca.setBackground("bg.jpg")
 	    m_sleep(300)
 	    val sp: Point2D = Point2D.Double(100.0, 100.0)
 	    val ep: Point2D = Point2D.Double(200.0, 300.0)
