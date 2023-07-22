@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class TargetProperty extends Property_B {
-    HashMap guimap = new HashMap();
+    HashMap<String,JComponent> guimap = new HashMap<>();
 
     TargetProperty(JFrame owner) {
         super(owner, T.t("Omega - Target Property"));
@@ -91,7 +91,7 @@ public class TargetProperty extends Property_B {
     }
 
     public void updValues(Values vs) {
-        Iterator it = vs.iterator();
+        Iterator<Value> it = vs.iterator();
         while (it.hasNext()) {
             Value v = (Value) it.next();
 
@@ -134,7 +134,7 @@ public class TargetProperty extends Property_B {
     }
 
     void updTrigger(Document doc) {
-        Iterator it = guimap.keySet().iterator();
+        Iterator<String> it = guimap.keySet().iterator();
         while (it.hasNext()) {
             String key = (String) it.next();
             Object o = guimap.get(key);
@@ -149,7 +149,7 @@ public class TargetProperty extends Property_B {
     }
 
     void setLabel(String id, String txt) {
-        Iterator it = guimap.keySet().iterator();
+        Iterator<String> it = guimap.keySet().iterator();
         while (it.hasNext()) {
             String key = (String) it.next();
             if (key.equals(id)) {

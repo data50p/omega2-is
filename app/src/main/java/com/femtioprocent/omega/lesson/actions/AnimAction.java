@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class AnimAction implements ActionI {
     public AnimRuntime rt = new AnimRuntime();
-    public HashMap<String,Object> args = new HashMap();
+    public HashMap<String,Object> params = new HashMap();
 
     public Element prefetch(String action_s) {
         Element el = null;
@@ -98,7 +98,7 @@ public class AnimAction implements ActionI {
     }
 
     public HashMap<String,Object> getHm() {
-        return args;
+        return params;
     }
 
     public void perform(Window window,
@@ -109,7 +109,7 @@ public class AnimAction implements ActionI {
                         Runnable hook) {
 
         rt.getAC().setHidden(false);
-        rt.runAction(window, action_s, actA, pathA, args, hook);
+        rt.runAction(window, action_s, actA, pathA, params, hook);
     }
 
     public void clean() {

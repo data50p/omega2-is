@@ -21,33 +21,33 @@ public class OmegaStartManager {
      * Show start option dialog at next Omega start
      */
     public static void enableStarter() {
-	HashMap start_object = getStartObject();
+	HashMap<String,Integer> start_object = getStartObject();
 	start_object.put(SELECTION_ITEM, 0);
 	putStartObject(start_object);
     }
 
     public static void nextStart(int selection) {
-	HashMap start_object = getStartObject();
+	HashMap<String,Integer> start_object = getStartObject();
 	start_object.put(SELECTION_ITEM, selection);
 	putStartObject(start_object);
     }
 
     public static void savePref(int selection) {
-	HashMap start_object = getStartObject();
+	HashMap<String,Integer> start_object = getStartObject();
 	start_object.put(SELECTION_ITEM, selection);
 	putStartObject(start_object);
     }
 
-    private static HashMap getStartObject() {
-	return (HashMap) pu.getObject(START_OBJECT, new HashMap());
+    private static HashMap<String,Integer> getStartObject() {
+	return (HashMap<String,Integer>) pu.getObject(START_OBJECT, new HashMap<String,Integer>());
     }
 
-    private static void putStartObject(HashMap start_object) {
+    private static void putStartObject(HashMap<String,Integer> start_object) {
 	pu.save(START_OBJECT, start_object);
     }
 
     public static int fromPU(String[] argv, Integer selection) {
-	HashMap start_object = getStartObject();
+	HashMap<String,Integer> start_object = getStartObject();
 	Integer setting_selection = (Integer) start_object.get(SELECTION_ITEM);
 	setting_selection = 0; // I ignore the stored selection
 	if (setting_selection != null && setting_selection > 0) {

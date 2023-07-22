@@ -24,7 +24,7 @@ public interface ActionI {
 
     public String getActorList();
 
-    public HashMap getHm();
+    public HashMap<String,Object> getHm();
 
     public void clearScreen();
 

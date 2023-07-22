@@ -17,12 +17,13 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ColorDisplay extends JDialog implements ActionListener {
     int WW = 700;
     int HH = 500;
-    HashMap<String,Color> colors_orig;
-    public HashMap<String,Color> colors;
+    HashMap<String, BaseCanvas.ColorColors> colors_orig;
+    public HashMap<String, BaseCanvas.ColorColors> colors;
     public boolean select = false;
     String who;
 
@@ -44,9 +45,11 @@ public class ColorDisplay extends JDialog implements ActionListener {
 		if (cb == color_file) {
 		    String fn = (String) cb.getSelectedItem();
 //log		    OmegaContext.sout_log.getLogger().info(":--: " + "FILE sel " + fn);
-		    HashMap hm = Lesson.getColors(fn, who);
+		    HashMap<String,Color> hm = Lesson.getColors(fn, who);
 		    if (hm != null) {
-			colors = hm;
+			colors = new HashMap<>();
+			for(Map.Entry<String,Color> ent : hm.entrySet())
+			    colors.put(ent.getKey(), new BaseCanvas.ColorColors(ent.getValue()));
 			repaint();
 		    }
 		}
@@ -211,14 +214,14 @@ public class ColorDisplay extends JDialog implements ActionListener {
     Canvas can;
 
     Color getColor(String id) {
-	return (Color) colors.get(id);
+	return (Color) colors.get(id).color;
     }
 
-    public ColorDisplay(HashMap colors, String who) {
+    public ColorDisplay(HashMap<String, BaseCanvas.ColorColors> colors, String who) {
 	super(LessonEditor.TOP_JFRAME, true);
 	this.who = who;
 	this.colors_orig = colors;
-	this.colors = (HashMap) (colors.clone());
+	this.colors = (HashMap<String, BaseCanvas.ColorColors>) (colors.clone());
 	build();
 	setSize(WW, HH);
     }
@@ -251,10 +254,10 @@ public class ColorDisplay extends JDialog implements ActionListener {
 	    return;
 	}
 //	JMenuItem mi = (JMenuItem)ae.getSource();
-	Color c = (Color) colors.get(cmd);
+	Color c = colors.get(cmd).color;
 	Color nc = ColorChooser.select(c);
 	if (nc != null)
-	    colors.put(cmd, nc);
+	    colors.put(cmd, new BaseCanvas.ColorColors(nc));
 	repaint();
     }
 

@@ -99,7 +99,7 @@ public class PreferenceUtil {
 
     static public void main(String[] args) {
         PreferenceUtil pu = new PreferenceUtil(PreferenceUtil.class);
-        HashMap hm = (HashMap) pu.getObject("test_obj", new HashMap());
+        HashMap<String,String> hm = (HashMap<String,String>) pu.getObject("test_obj", new HashMap());
         OmegaContext.sout_log.getLogger().info(":--: " + "get " + hm);
         hm.put(args[0], args[1]);
         pu.save("test_obj", hm);

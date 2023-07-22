@@ -10,6 +10,10 @@
    <string>Sign Word Transparence</string>
   </void>
   <void method="put">
+   <string>option7.omega_colors</string>
+   <string>option7.omega_colors</string>
+  </void>
+  <void method="put">
    <string>Sign Sentence Movie Scale</string>
    <string>Sign Sentence Movie Scale</string>
   </void>

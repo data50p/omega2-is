@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class Values {
-    HashMap hm;
+    HashMap<String,Value> hm;
 
     public Values() {
-        hm = new HashMap();
+        hm = new HashMap<>();
     }
 
     public Iterator iterator() {

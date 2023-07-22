@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class TestProperty extends Property_B {
-    HashMap guimap = new HashMap();
+    HashMap<String,JComponent> guimap = new HashMap();
     LessonContext l_ctxt;
 
     TestProperty(JFrame owner, LessonContext l_ctxt) {

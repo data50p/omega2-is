@@ -229,7 +229,7 @@ public class LessonEditorPanel extends JPanel {
                 try {
                     if (autoPlayNext.firstTime()) {
                         Target tg2 = new Target();
-                        HashMap story_hm = Lesson.story_hm;
+                        HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
                         tg2.loadFromEl(le_canvas.l_ctxt.getLesson().getElement(), "", story_hm, false, false); // FIX nomix?
                         String[] sa = tg2.getAllTargetCombinations(" ");
                         autoPlayNext.start(sa);
@@ -240,7 +240,7 @@ public class LessonEditorPanel extends JPanel {
                         }
                         String sentence = ((ev.getModifiers() & CTRL_MASK) == 0) ? autoPlayNext.nextSentence() : autoPlayNext.prevSentence();
                         Target tg2 = new Target();
-                        HashMap story_hm = Lesson.story_hm;
+                        HashMap<String, Lesson.SentenceList> story_hm = Lesson.story_hm;
                         tg2.loadFromEl(le_canvas.l_ctxt.getLesson().getElement(), "", story_hm, false, false); // FIX nomix?
                         int[][] allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(sentence);
                         int ixTg = 0;

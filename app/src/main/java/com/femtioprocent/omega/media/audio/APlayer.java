@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.HashMap;
 
 public class APlayer {
-    static HashMap dir_cache = new HashMap();
+    static HashMap<String,String[]> dir_cache = new HashMap();
 
     String id;
     public String nname;

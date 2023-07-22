@@ -82,7 +82,7 @@ public class LessonMainCanvas extends BaseCanvas {
     }
 
     String bs = null;
-    static HashMap bs_hm = new HashMap();
+    static HashMap<String,Integer> bs_hm = new HashMap<>();
 
     public int setLessonBase(String bs) {
         this.bs = bs;
@@ -367,7 +367,7 @@ public class LessonMainCanvas extends BaseCanvas {
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "LeMa-Enter");
         super.enter();
 
-        Integer I = (Integer) bs_hm.get("" + bs);
+        Integer I = bs_hm.get("" + bs);
 
         setNoRed(0);
     }

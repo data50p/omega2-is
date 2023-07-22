@@ -37,7 +37,7 @@ public class SentenceProperty extends Property_B {
     static final int COL_SIGN = 2;
     static final int COL_TEST = 3;
 
-    HashMap guimap = new HashMap();
+    HashMap<String,JComponent> guimap = new HashMap<>();
     LessonContext l_ctxt;
     JFrame owner;
 

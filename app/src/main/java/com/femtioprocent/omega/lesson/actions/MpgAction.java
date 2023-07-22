@@ -2,6 +2,7 @@ package com.femtioprocent.omega.lesson.actions;
 
 import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.lesson.Lesson;
+import com.femtioprocent.omega.lesson.canvas.BaseCanvas;
 import com.femtioprocent.omega.lesson.canvas.MsgItem;
 import com.femtioprocent.omega.media.video.MpgPlayer;
 import com.femtioprocent.omega.swing.ScaledImageIcon;
@@ -23,7 +24,7 @@ import java.util.HashMap;
 public class MpgAction implements ActionI {
     public MpgPlayer mpg_player;
     MyPanel jpan;
-    HashMap<String,Object> args = new HashMap<>();
+    HashMap<String,Object> params = new HashMap<>();
     private Font item_fo = null;
     int parent_w = 100;
     int parent_h = 100;
@@ -178,7 +179,7 @@ public class MpgAction implements ActionI {
     }
 
     public HashMap<String,Object> getHm() {
-        return args;
+        return params;
     }
 
     boolean show_msg = false;
@@ -356,7 +357,7 @@ public class MpgAction implements ActionI {
         if (ord == 0) {
 //	    dispose();
             if (show_sentence) {
-                HashMap<String,Color> colors = (HashMap) getHm().get("colors");
+                HashMap<String, BaseCanvas.ColorColors> colors = (HashMap<String, BaseCanvas.ColorColors>) getHm().get("colors");
                 showMsgFx(new MsgItem("", sentence), colors);
                 while (show_msg && mpg_player.fxp.messageShown) {
                     SundryUtils.m_sleep(200);
@@ -386,7 +387,7 @@ public class MpgAction implements ActionI {
         OmegaContext.sout_log.getLogger().info(":--: " + "mp_shown");
     }
 
-    private void showMsgFx(MsgItem mi, HashMap colors) {
+    private void showMsgFx(MsgItem mi, HashMap<String, BaseCanvas.ColorColors> colors) {
         int ww = mpg_player.visual.getWidth();
         int hh = mpg_player.visual.getHeight();
 

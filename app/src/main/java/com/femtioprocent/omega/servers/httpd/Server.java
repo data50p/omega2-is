@@ -44,9 +44,9 @@ public class Server extends Thread {
         }
     }
 
-    HashMap hm = new HashMap();
+    HashMap<String,String> hm = new HashMap<>();
 
-    public HashMap getHashMap() {
+    public HashMap<String,String> getHashMap() {
         return hm;
     }
 

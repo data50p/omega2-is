@@ -16,7 +16,7 @@ public class Settings {
     static HashMap<String,String> flags;
     static List<String> args;
 
-    HashMap settings = new HashMap();
+    HashMap<String,Object> settings = new HashMap<>();
 
     static Settings default_settings;
 
@@ -41,7 +41,7 @@ public class Settings {
         settings.put("audio-debug", false);
 
         PreferenceUtil pu = new PreferenceUtil(Settings.class);
-        HashMap hm = (HashMap) pu.getObject("settings", new HashMap());
+        HashMap<String,Object> hm = (HashMap<String, Object>) pu.getObject("settings", new HashMap<String,Object>());
         settings.putAll(hm);
     }
 
@@ -120,7 +120,7 @@ public class Settings {
         f.setVisible(true);
     }
 
-    public HashMap getSettingsHashMap() {
+    public HashMap<String,Object> getSettingsHashMap() {
         return settings;
 
     }

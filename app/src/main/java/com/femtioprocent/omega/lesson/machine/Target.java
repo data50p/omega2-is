@@ -1162,7 +1162,7 @@ public class Target {
         return (String[]) li.toArray(new String[0]);
     }
 
-    public void putAll_TextVars_Item(HashMap hm) {
+    public void putAll_TextVars_Item(HashMap<String,String> hm) {
         for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
@@ -1183,7 +1183,7 @@ public class Target {
 
     @Deprecated
     public String getActionFromTarget() {
-        for (Iterator it = t_items.iterator(); it.hasNext(); ) {
+        for (Iterator<T_Item> it = t_items.iterator(); it.hasNext(); ) {
             T_Item titm = (T_Item) it.next();
             if (titm != null) {
                 if (titm.item != null && titm.item.isAction())

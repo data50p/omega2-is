@@ -1250,10 +1250,10 @@ public class Lesson implements LessonCanvasListener {
 		pupil_settings_dialog.was_deleted = false;
 		pupil_canvas.mkList("Guest");
 		setPupil("Guest");
-		HashMap pparm = pupil_settings_dialog.getParams();
+		HashMap<String, String> pparm = pupil_settings_dialog.getParams();
 		getCurrentPupil().setParams(pparm);
 	    } else {
-		HashMap pparm = pupil_settings_dialog.getParams();
+		HashMap<String, String> pparm = pupil_settings_dialog.getParams();
 		getCurrentPupil().setParams(pparm);
 		pupil_canvas.reloadPIM();
 		restoreSettings();
@@ -1476,7 +1476,7 @@ public class Lesson implements LessonCanvasListener {
 	Save.save(fn, el);
     }
 
-    static void initColors(HashMap hm) {
+    static void initColors(HashMap<String,Color> hm) {
 	hm.put("bg_t", new Color(240, 220, 140));
 	hm.put("bg_m", new Color(210, 180, 220));
 	hm.put("bg_b", new Color(140, 220, 240));
@@ -1495,7 +1495,7 @@ public class Lesson implements LessonCanvasListener {
 	hm.put("sn_tx", new Color(0, 0, 0));
     }
 
-    static public HashMap getColors(String fname, String who) {
+    static public HashMap<String,Color> getColors(String fname, String who) {
 	//	OmegaContext.sout_log.getLogger().info(":--: " + "restore " + fname + ' ' + who);
 	Element el = Restore.restore(fname);
 	if (el == null) {
@@ -1511,7 +1511,7 @@ public class Lesson implements LessonCanvasListener {
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "found " + name);
 	    if (who.equals(name)) {
 		try {
-		    HashMap hm = new HashMap();
+		    HashMap<String,Color> hm = new HashMap();
 		    initColors(hm);
 
 		    Iterator it = hm.keySet().iterator();
@@ -1723,7 +1723,7 @@ public class Lesson implements LessonCanvasListener {
 	}
 	pupil_settings_dialog.setPupil(getCurrentPupil());
 
-	HashMap pparm = pupil_settings_dialog.getParams();
+	HashMap<String, String> pparm = pupil_settings_dialog.getParams();
 	getCurrentPupil().setParams(pparm);
 	if ("next".equals(getCurrentPupil().getString("space_key", "select"))) {
 	    OmegaConfig.setNextKey();
@@ -3395,7 +3395,7 @@ public class Lesson implements LessonCanvasListener {
 
 			action.show();
 
-			HashMap variables_hm = new HashMap();
+			HashMap<String,String> variables_hm = new HashMap<>();
 			tg.putAll_TextVars_Item(variables_hm);
 
 			action.getHm().put("speed", getCurrentPupil().getSpeed(1000));
@@ -4236,8 +4236,8 @@ public class Lesson implements LessonCanvasListener {
 		ColorDisplay cd = new ColorDisplay(l.colors, name);
 		cd.setVisible(true);
 		if (cd.select) {
-		    for (Map.Entry<String,Color> ent : cd.colors.entrySet()) {
-			l.colors.put(ent.getKey(), new BaseCanvas.ColorColors(ent.getValue()));
+		    for (Map.Entry<String, BaseCanvas.ColorColors> ent : cd.colors.entrySet()) {
+			l.colors.put(ent.getKey(), ent.getValue());
 		    }
 		    l.updateDisp();
 		    l.repaint();

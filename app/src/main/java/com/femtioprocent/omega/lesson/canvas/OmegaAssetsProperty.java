@@ -44,7 +44,7 @@ public class OmegaAssetsProperty extends Property_B {
     static final int COL_ACT2 = 3;
     public static final String OMEGA_BUNDLE_MANIFEST = "bundle.omega_manifest";
 
-    HashMap guimap = new HashMap();
+    HashMap<String,JComponent> guimap = new HashMap<>();
     LessonContext l_ctxt;
     JFrame owner;
 

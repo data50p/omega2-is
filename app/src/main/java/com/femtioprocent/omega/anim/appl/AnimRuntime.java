@@ -6,6 +6,7 @@ import com.femtioprocent.omega.anim.cabaret.GImAE;
 import com.femtioprocent.omega.anim.canvas.AnimCanvas;
 import com.femtioprocent.omega.anim.context.AnimContext;
 import com.femtioprocent.omega.anim.tool.timeline.*;
+import com.femtioprocent.omega.lesson.canvas.BaseCanvas;
 import com.femtioprocent.omega.media.audio.APlayer;
 import com.femtioprocent.omega.media.images.xImage;
 import com.femtioprocent.omega.servers.httpd.Server;
@@ -438,7 +439,7 @@ public class AnimRuntime {
                           String fn,
                           String[] actA,
                           String[] pathA,
-                          HashMap args,
+                          HashMap<String,Object> params,
                           Runnable hook) {
         final Window win = window;
         final AnimContext fa_ctxt = a_ctxt;
@@ -454,16 +455,16 @@ public class AnimRuntime {
 
         fa_ctxt.arun = this;
 
-        int spd = ((Integer) args.get("speed")).intValue();
+        int spd = ((Integer) params.get("speed")).intValue();
         OmegaContext.SPEED = spd > 1250 ? "-fast" : spd < 750 ? "-slow" : "";
 
-        a_ctxt.anim_speed = ((Integer) args.get("speed")).intValue() / 1000.0;
-        Color col = (Color) args.get("anim_background");
-        HashMap colors = (HashMap) args.get("anim_colors");
+        a_ctxt.anim_speed = ((Integer) params.get("speed")).intValue() / 1000.0;
+        Color col = (Color) params.get("anim_background");
+        HashMap<String, BaseCanvas.ColorColors> colors = (HashMap<String, BaseCanvas.ColorColors>) params.get("anim_colors");
         fa_ctxt.anim_canvas.background_color = col;
         fa_ctxt.anim_canvas.colors = colors;
 
-        Map variables_hm = (Map) args.get("variables");
+        Map variables_hm = (Map) params.get("variables");
         OmegaContext.variables = variables_hm;
 
         for (int i1 = 0; i1 < 1; i1++) {

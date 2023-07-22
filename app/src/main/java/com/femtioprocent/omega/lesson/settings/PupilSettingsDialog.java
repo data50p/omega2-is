@@ -43,7 +43,7 @@ public class PupilSettingsDialog extends SettingsDialog {
     JButton speech_set, image_wrong_set, image_set, movie_set, sign_movie_set;
     JButton color_change;
     JButton col_login, col_lesson, col_sent, col_words;
-    HashMap jcomponent_hm = new HashMap();
+    HashMap<String,JComponent> jcomponent_hm = new HashMap();
     FormPanel cp_laf, cp_lang, cp_anim, cp_feedb, cp_admin;
     //    SecureButton secure_jb;
     JButton secure_jb;
@@ -667,7 +667,7 @@ public class PupilSettingsDialog extends SettingsDialog {
     }
 
     void upd_jcomponent(String key, String val) {
-	JComponent cmp = (JComponent) jcomponent_hm.get(key);
+	JComponent cmp = jcomponent_hm.get(key);
 
 	if (cmp != null) {
 	    if (cmp instanceof JSlider) {
@@ -762,10 +762,10 @@ public class PupilSettingsDialog extends SettingsDialog {
     Element getElements() {
 	Element el = new Element("values");
 
-	Iterator it = jcomponent_hm.keySet().iterator();
+	Iterator<String> it = jcomponent_hm.keySet().iterator();
 	while (it.hasNext()) {
 	    String key = (String) it.next();
-	    JComponent com = (JComponent) jcomponent_hm.get(key);
+	    JComponent com = jcomponent_hm.get(key);
 	    if (com == lang_cb) {
 		String lang = ((MultiString) lang_cb.getSelectedItem()).sa[0];
 		add(el, "languageSuffix", lang);
@@ -1028,14 +1028,14 @@ public class PupilSettingsDialog extends SettingsDialog {
 	doLayout();
     }
 
-    public HashMap getParams() {
+    public HashMap<String,String> getParams() {
 	String fname = getPupilDir(pupil) + "/pupil_settings.xml";
 	try {
 	    Element el = SAX_node.parse(fname, false);
 	    if (el == null) {
 		return null;
 	    }
-	    HashMap hm = new HashMap();
+	    HashMap<String,String> hm = new HashMap();
 
 	    Element vel = el.findElement("values", 0);
 	    for (int i = 0; vel != null && i < 1000; i++) {

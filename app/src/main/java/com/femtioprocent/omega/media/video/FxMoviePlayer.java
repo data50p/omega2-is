@@ -2,6 +2,7 @@ package com.femtioprocent.omega.media.video;
 
 import com.femtioprocent.omega.OmegaConfig;
 import com.femtioprocent.omega.OmegaContext;
+import com.femtioprocent.omega.lesson.canvas.BaseCanvas;
 import com.femtioprocent.omega.lesson.canvas.MsgItem;
 import com.femtioprocent.omega.util.Log;
 import com.femtioprocent.omega.util.SundryUtils;
@@ -271,8 +272,8 @@ public class FxMoviePlayer {
         fxp.start(null);
     }
 
-    private Color getColor(HashMap colors, String key, java.awt.Color def) {
-        java.awt.Color c = colors != null ? (java.awt.Color) colors.get(key) : def;
+    private Color getColor(HashMap<String, BaseCanvas.ColorColors> colors, String key, java.awt.Color def) {
+        java.awt.Color c = colors != null ? colors.get(key).color : def;
         return Color.rgb(c.getRed(), c.getGreen(), c.getBlue());
     }
 
@@ -296,7 +297,7 @@ public class FxMoviePlayer {
 
     MsgItems msgItems = new MsgItems();
 
-    public void showMsg(MsgItem mi, int width, int height, HashMap colors) {
+    public void showMsg(MsgItem mi, int width, int height, HashMap<String, BaseCanvas.ColorColors> colors) {
         Platform.runLater(() -> {
             double fontH = height * 0.037;
             msgItems.text = new Text(mi.text);

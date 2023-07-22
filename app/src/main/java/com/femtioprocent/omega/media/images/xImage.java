@@ -35,10 +35,10 @@ public class xImage {
 
     static long checkNow = SundryUtils.ct() + 10 * 1000;
 
-    static private HashMap cache_dir = new HashMap();
-    static private HashMap cache_imf = new HashMap();
-    static private HashMap cache_seqLen = new HashMap();
-    private HashMap cache_attr = new HashMap();
+    static private HashMap<String,String[]> cache_dir = new HashMap<>();
+    static private HashMap<String,Entry> cache_imf = new HashMap();
+    static private HashMap<String,Integer> cache_seqLen = new HashMap<>();
+    private HashMap<String,Boolean> cache_attr = new HashMap();
 
     class Entry {
         long time_stamp;
@@ -111,7 +111,7 @@ public class xImage {
     }
 
     public static void invalidateCache() {
-        cache_dir = new HashMap();
+        cache_dir = new HashMap<>();
         cache_seqLen = new HashMap();
     }
 

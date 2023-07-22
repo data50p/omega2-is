@@ -13,7 +13,7 @@ import java.util.HashMap;
 @Deprecated
 class SentencePropPanel extends JPanel {
     SentenceProperty sprop;
-    HashMap guimap;
+    HashMap<String,JComponent> guimap;
 
     GBC_Factory gbcf = new GBC_Factory();
 
