@@ -5,6 +5,8 @@ import java.io.File;
 public class OmegaConfig {
     public static final String OMEGA_BUNDLE = "omega_bundle";
     public static final String OMEGA_BUNDLE_EXTENSION = "." + OMEGA_BUNDLE;
+    public static final int SMALL_WIDTH = 1600;
+    public static final int SMALL_HEIGHT = 1200;
     private static final double DEFAULT_FLATNESS = 1.5;
     public static double FLATNESS = DEFAULT_FLATNESS;
     static public int TIMELINES_N = 5;
