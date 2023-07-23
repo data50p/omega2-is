@@ -71,12 +71,9 @@ class Item {
 	saved_dummytext = ""
 	saved_dummysound = ""
 	saved_dummysign = ""
-	`var`.add("")
-	`var`.add("")
-	`var`.add("")
-	`var`.add("")
-	`var`.add("")
-	`var`.add("") // one more for index 0
+	repeat(6) {
+	    `var`.add("")
+	}
 	isAction = false
     }
 
@@ -253,22 +250,9 @@ class Item {
 
 
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "NEW TXTXO " + text + ' ' + text_orig);
-	var v1 = el.findAttr("var-1")
-	if (v1 == null) v1 = ""
-	var v2 = el.findAttr("var-2")
-	if (v2 == null) v2 = ""
-	var v3 = el.findAttr("var-3")
-	if (v3 == null) v3 = ""
-	var v4 = el.findAttr("var-4")
-	if (v4 == null) v4 = ""
-	var v5 = el.findAttr("var-5")
-	if (v5 == null) v5 = ""
 	`var`.add("")
-	`var`.add(v1)
-	`var`.add(v2)
-	`var`.add(v3)
-	`var`.add(v4)
-	`var`.add(v5)
+	for(i in 1..5)
+	    `var`.add(el.findAttr("var-$i") ?: "")
     }
 
     val defaultFilledText: String?

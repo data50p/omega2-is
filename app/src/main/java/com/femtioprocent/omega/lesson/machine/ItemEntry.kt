@@ -49,7 +49,6 @@ class ItemEntry {
 	type = el.findAttr("type")
 	tid = el.findAttr("Tid")
 	val tid_len = count(tid, ',') + 1
-	var last_i = 0
 	var cant_have_dummy = false
 	for (i in 0..99) {
 	    val it_el = el.findElement("item", i) ?: break
@@ -62,7 +61,6 @@ class ItemEntry {
 	    if (item.dummyText == null || item.dummyText!!.length == 0) cant_have_dummy = true
 	    item.it_ent = this
 	    items!!.add(item)
-	    last_i = i + 1
 	}
 	if (dummy) {  // make an extra word place for dummy, one each for list of tid (s,o)
 	    if ("action" != type) {
@@ -201,14 +199,10 @@ class ItemEntry {
 
     fun maxStringWidth(fo: Font, g2: Graphics2D): Int {
 	var mx = 0
-	val it: Iterator<*> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next() as Item?
-	    if (itm != null) {
-		val txt = itm.defaultFilledText
-		val gsw = getStringWidth(fo, g2, txt)
-		if (gsw > mx) mx = gsw
-	    }
+	for(itm in items!!) {
+	    val txt = itm!!?.defaultFilledText
+	    val gsw = getStringWidth(fo, g2, txt)
+	    if (gsw > mx) mx = gsw
 	}
 	return mx * LessonCanvas.CH_W
     }
