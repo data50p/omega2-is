@@ -26,7 +26,7 @@ class Wing(comp: Component?, @JvmField var name: String, x: Int, y: Int, @JvmFie
 
     //    public int mirror;
     init {
-	im = LoadImage.loadAndWaitOrNull(comp, name, false)
+	im = LoadImage.loadAndWaitOrNull(comp, name, false)!!
 	dim = Dimension(im.getWidth(null), im.getHeight(null))
 	pos = Point(x, y)
 	this.ord = ord

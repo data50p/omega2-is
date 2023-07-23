@@ -147,7 +147,7 @@ public class TimeLinePanel extends JPanel {
                                         repaint();
                                     }
                                 } else if (tm.type == TimeMarker.STOP) {
-                                    tl.adjustSomeTimeMarkerRelative((double) dx / (tm.when - tl.getOffset()));
+                                    tl.adjustSomeTimeMarkerRelative((double) dx / (tm.when - tl.offset));
                                     tl.moveSelectedTimeMarker(dx, grid);
                                     AnimContext.ae.setDirty(true);
                                 } else {
@@ -297,7 +297,7 @@ public class TimeLinePanel extends JPanel {
                                 tmty = TimeMarker.TSYNC;
                                 duration = 0;
                             }
-                            tl.addMarker(tmty, (e.getX() - TLOFF) * scale - tl.getOffset(), duration);
+                            tl.addMarker(tmty, (e.getX() - TLOFF) * scale - tl.offset, duration);
                             AnimContext.ae.setDirty(true);
                             fireEvent("addMarker", tl);
                             repaint();
@@ -550,8 +550,8 @@ public class TimeLinePanel extends JPanel {
                 TimeLine tl = mtl.getTimeLine(i);
                 if (tl == null)
                     continue;
-                int start = (int) (tl.getOffset() / scale);
-                int stop = (int) ((tl.getOffset() + tl.getDuration()) / scale);
+                int start = (int) (tl.offset / scale);
+                int stop = (int) ((tl.offset + tl.getDuration()) / scale);
                 g.setColor(outside_tl_color);
                 g.drawLine(0, y, start, y);
                 if (i == selected_tl)

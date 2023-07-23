@@ -45,9 +45,9 @@ open class Canvas : JPanel(), ImageObserver {
 	if (wings == null) wings = ArrayList()
 	this.wings = wings
 	val imn = im_name
-	val bg = LoadImage.loadAndWaitOrNull(this, imn, false)
+	val bg = LoadImage.loadAndWaitOrNull(this, imn!!, false)
 	//	OmegaContext.sout_log.getLogger().info(":--: " + "bg " + bg + ' ' + imn);
-	im_size = Dimension(bg.getWidth(null), bg.getHeight(null))
+	im_size = Dimension(bg!!.getWidth(null), bg.getHeight(null))
 	this.bg = bg
 	updWings()
 	val httpd: Httpd = OmegaContext.getSubsystem("Httpd") as Httpd

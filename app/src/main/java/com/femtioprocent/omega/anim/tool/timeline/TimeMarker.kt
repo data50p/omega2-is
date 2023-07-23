@@ -120,7 +120,7 @@ class TimeMarker : Serializable {
 	    return el
 	}
 
-    fun fetchPlaySound(li: MutableList<String?>) {
+    fun fetchPlaySound(li: MutableList<String>) {
 	if (t_event != null) for (i in t_event!!.indices) {
 	    if (t_event!![i] != null) {
 		if ("PlaySound" == t_event!![i]!!.cmd) {

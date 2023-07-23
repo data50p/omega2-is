@@ -589,7 +589,7 @@ class AnimCanvas : Canvas {
 			repaint()
 			val src_nid = selected_prb!!.seg!!.path!!.nid
 			//			OmegaContext.sout_log.getLogger().info(":--: " + "src " + src_nid + ' ' + nid);
-			val tl_src = a_ctxt.mtl!!.getTimeLine(src_nid)
+			val tl_src = a_ctxt.mtl!!.getTimeLine(src_nid)!!
 			val tl = TimeLine(nid, tl_src)
 			a_ctxt.mtl!!.addTimeLine(tl)
 			ae!!.tlc.repaint()
@@ -717,7 +717,7 @@ class AnimCanvas : Canvas {
     }
 
     fun findTimeLineNidByLessonId(s: String?): Int {
-	return a_ctxt.mtl!!.getNid(s)
+	return a_ctxt.mtl!!.getNid(s!!)
     }
 
     fun deleteAllNid(nid: Int) {
