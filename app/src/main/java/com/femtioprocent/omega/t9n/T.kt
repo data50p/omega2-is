@@ -168,7 +168,7 @@ class T {
         var mythread: MyThread? = null
 
         @JvmStatic
-        fun t(s: String): String? {
+        fun t(s: String): String {
             init()
             if (hm == null) return s
             if (s.length == 0) return s

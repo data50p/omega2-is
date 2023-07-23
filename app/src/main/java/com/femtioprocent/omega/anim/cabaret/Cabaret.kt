@@ -89,7 +89,7 @@ class Cabaret(var a_ctxt: AnimContext) {
     }
 
     fun createActor(ix: Int, fn: String, hotspot: DoubleArray?): Actor {
-	val gim = GImAE(a_ctxt.anim_canvas, fn, ix)
+	val gim = GImAE(a_ctxt.anim_canvas!!, fn, ix)
 	val act = Actor(a_ctxt, gim)
 	if (hotspot == null) act.gimae.setHotSpot(0.5, 0.5) else act.gimae.setHotSpot(hotspot[0], hotspot[1])
 	setActor(ix, act)

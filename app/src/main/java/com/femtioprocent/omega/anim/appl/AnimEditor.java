@@ -104,7 +104,7 @@ public class AnimEditor extends JFrame {
 	    super.processEvent(e);
 	else {
 	    String s = "";
-	    if (a_ctxt != null && a_ctxt.ae != null && a_ctxt.ae.isDirty())
+	    if (a_ctxt != null && AnimContext.ae != null && a_ctxt.ae.isDirty())
 		s = "\n" + T.t("Changes not saved");
 
 	    if (exit_on_close) {
