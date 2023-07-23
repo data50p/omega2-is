@@ -27,7 +27,7 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
     var selected_src_fld = 0
     var selected_dst_fld = 0
     val cab: Cabaret
-	get() = ae!!.a_ctxt.anim_canvas!!.cab
+	get() = ae!!.a_ctxt!!.anim_canvas!!.cab
 
     init {
 	layout = BorderLayout()
@@ -59,7 +59,7 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
 	if (prop != null) prop!!.setTarget(getActor(ixx), ixx)
 	if (prop != null) {
 	    val tl_nid = cab.getTLnid(ixx)
-	    val tl = ae!!.a_ctxt.mtl!!.getTimeLine(tl_nid)
+	    val tl = ae!!.a_ctxt!!.mtl!!.getTimeLine(tl_nid)
 	}
 	selected = ixx
 	repaint()
@@ -130,7 +130,7 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
 	    val ixx = e.x / IMSIZE
 	    if (ixx >= ACT_N) return
 	    if (fld_state_id && selected_src_fld != EMPTY && selected_dst_fld != EMPTY && selected_src_fld != selected_dst_fld) {
-		ae!!.a_ctxt.anim_canvas!!.hideActors()
+		ae!!.a_ctxt!!.anim_canvas!!.hideActors()
 		val tl_nid1: Int = cab.actA.arr.get(selected_src_fld)!!.tl_nid
 		val tl_nid2: Int = cab.actA.arr.get(selected_dst_fld)!!.tl_nid
 		cab.actA.arr.get(selected_src_fld)!!.tl_nid = tl_nid2
@@ -250,7 +250,7 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
 		    val gimae = getGImAE(i)
 
 		    // ae.ae_ctxt.mtl;
-		    val tl = ae!!.a_ctxt.mtl!!.getTimeLine(tl_nid)
+		    val tl = ae!!.a_ctxt!!.mtl!!.getTimeLine(tl_nid)
 		    var ID = ""
 		    if (tl != null) ID = tl.lessonId
 		    g2.drawString("" + (tl_nid + 1) + ": " + ID,

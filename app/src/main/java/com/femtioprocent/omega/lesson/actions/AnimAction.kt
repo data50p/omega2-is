@@ -22,7 +22,7 @@ class AnimAction : ActionI {
 	return el
     }
 
-    val elementRoot: Element
+    val elementRoot: Element?
 	get() = rt!!.elementRoot
 
     override fun show() {
@@ -53,7 +53,7 @@ class AnimAction : ActionI {
 	}
 
     override fun clearScreen() {
-	val aca = rt!!.ac
+	val aca = rt!!.aC
 	aca?.setHidden(true)
 	if (rt != null) rt!!.clean()
     }
@@ -81,15 +81,15 @@ class AnimAction : ActionI {
 	    return null
 	}
     override val canvas: JPanel?
-	get() = rt!!.ac
+	get() = rt!!.aC
 
     override fun perform(window: Window,
 			 action_s: String?,
-			 actA: Array<String?>?,
-			 pathA: Array<String?>?,
+			 actA: Array<String>,
+			 pathA: Array<String>,
 			 ord: Int,
 			 hook: Runnable) {
-	rt!!.ac.setHidden(false)
+	rt!!.aC!!.setHidden(false)
 	rt!!.runAction(window, action_s, actA, pathA, hm, hook)
     }
 

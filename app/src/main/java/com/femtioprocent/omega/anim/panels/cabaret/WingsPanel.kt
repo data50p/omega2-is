@@ -110,7 +110,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	    val pt = e.isPopupTrigger
 	    val ixx = e.x / IMSIZE
 	    if (ixx >= WING_N) return
-	    val ca = ae.a_ctxt.anim_canvas
+	    val ca = ae.a_ctxt!!.anim_canvas
 	    ca!!.traceWing(ixx, 0.0, 0.0, false)
 	    selected_wing_ix = ixx
 	    if (pt) {
@@ -181,7 +181,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 
     fun removeWing(ix: Int) {
 	removeAllWings()
-	val li = ae.a_ctxt.anim_canvas!!.removeWing(ix)
+	val li = ae.a_ctxt!!.anim_canvas!!.removeWing(ix)
 	if (li != null) {
 	    var cnt = 0
 	    val it = li.iterator()
@@ -225,19 +225,19 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	var p_p: Point2D? = null
 
 	init {
-	    val ca = ae.a_ctxt.anim_canvas
+	    val ca = ae.a_ctxt!!.anim_canvas
 	    ca!!.traceWing(ixx, 0.0, 0.0, true)
 	}
 
 	override fun mousePressed(e: MouseEvent) {
-	    val ca = ae.a_ctxt.anim_canvas
+	    val ca = ae.a_ctxt!!.anim_canvas
 	    val p = ca!!.scaleEventPos(e)
 	    p_p = p // new Point2D.Double(e.getX(), e.getY());
 	}
 
 	override fun mouseMoved(e: MouseEvent) {}
 	override fun mouseDragged(e: MouseEvent) {
-	    val ca = ae.a_ctxt.anim_canvas
+	    val ca = ae.a_ctxt!!.anim_canvas
 	    val p = ca!!.scaleEventPos(e)
 	    var dx: Double
 	    var dy: Double
@@ -253,13 +253,13 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 
 	override fun mouseReleased(e: MouseEvent) {
 	    off()
-	    val ca = ae.a_ctxt.anim_canvas
+	    val ca = ae.a_ctxt!!.anim_canvas
 	    //	    ca.traceNoWing();
 	    val p = ca!!.scaleEventPos(e)
 	    val p_w = wingA.arr[ixx]!!.wing!!.pos
 	    val p_n = Point((p_w.getX() + p.getX() - p_p!!.x).toInt(), (p_w.getY() + p.getY() - p_p!!.y).toInt())
 	    wingA.arr[ixx]!!.wing!!.pos = p_n
-	    ae.a_ctxt.anim_canvas!!.resetBackground()
+	    ae.a_ctxt!!.anim_canvas!!.resetBackground()
 	    ca.traceWing(ixx, 0.0, 0.0, false)
 	}
     }
@@ -275,13 +275,13 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
     }
 
     fun on(ixx: Int) {
-	val ca = ae.a_ctxt.anim_canvas
+	val ca = ae.a_ctxt!!.anim_canvas
 	mca = MouseCa(ixx)
 	ca!!.hook = mca
     }
 
     fun off() {
-	val ca = ae.a_ctxt.anim_canvas
+	val ca = ae.a_ctxt!!.anim_canvas
 	ca!!.hook = null
 	mca = null
     }

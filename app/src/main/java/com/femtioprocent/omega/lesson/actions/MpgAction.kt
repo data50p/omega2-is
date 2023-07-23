@@ -280,8 +280,8 @@ class MpgAction : ActionI {
 
     override fun perform(window: Window,
 			 action_s: String?,
-			 actA: Array<String?>?,
-			 pathA: Array<String?>?,
+			 actA: Array<String>,
+			 pathA: Array<String>,
 			 ord: Int,
 			 hook: Runnable) {
 	if (mpg_player == null) mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, window.width, window.height) else Log.getLogger().info("already created MpgPayer ... ")

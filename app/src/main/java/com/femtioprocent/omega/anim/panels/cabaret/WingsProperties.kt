@@ -62,7 +62,7 @@ class WingsProperties(owner: JFrame?, wings_pan: WingsPanel) : OmegaProperties(o
 		    val l = layer!!.selectedIndex
 		    if (l >= 0 && l <= 5) {
 			boundWing!!.layer = l
-			wings_pan.ae.a_ctxt.anim_canvas!!.updWings()
+			wings_pan.ae.a_ctxt!!.anim_canvas!!.updWings()
 			setDirty()
 		    } else {
 		    }
@@ -73,8 +73,8 @@ class WingsProperties(owner: JFrame?, wings_pan: WingsPanel) : OmegaProperties(o
 		    val l = mirror!!.selectedIndex
 		    if (l >= 0 && l < 4) {
 			boundWing!!.mirror = l
-			wings_pan.ae.a_ctxt.anim_canvas!!.updWings()
-			wings_pan.ae.a_ctxt.anim_canvas!!.resetBackground()
+			wings_pan.ae.a_ctxt!!.anim_canvas!!.updWings()
+			wings_pan.ae.a_ctxt!!.anim_canvas!!.resetBackground()
 			setDirty()
 		    } else {
 		    }
@@ -100,8 +100,8 @@ class WingsProperties(owner: JFrame?, wings_pan: WingsPanel) : OmegaProperties(o
 				    } else {
 					scale!!.foreground = Color.black
 				    }
-				    wings_pan.ae.a_ctxt.anim_canvas!!.updWings()
-				    wings_pan.ae.a_ctxt.anim_canvas!!.resetBackground()
+				    wings_pan.ae.a_ctxt!!.anim_canvas!!.updWings()
+				    wings_pan.ae.a_ctxt!!.anim_canvas!!.resetBackground()
 				    timer!!.stop()
 				}
 			    }

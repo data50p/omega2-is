@@ -9,6 +9,10 @@ public class Httpd extends Subsystem {
     public Httpd() {
     }
 
+    public Server getHttpd() {
+        return httpd;
+    }
+
     public void init(Object arg) {
         if (httpd == null) {
             httpd = new Server(8089);

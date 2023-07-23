@@ -156,7 +156,7 @@ class AnimCanvas : Canvas {
 //  				    pa_prop.setObject(prb.seg.path);
 				prb.seg!!.selectedPoint = prb.sel
 				prb.seg!!.path!!.draw(graphics2D)
-				ae!!.selectTimeLine(prb.seg!!.path)
+				ae!!.selectTimeLine(prb!!.seg!!.path!!)
 			    }
 			}
 		    }
@@ -189,7 +189,7 @@ class AnimCanvas : Canvas {
 				var prb = ap.findNearest(press_p)
 				if (prb != null && prb.dist > 20) {
 				    prb = null
-				    ae!!.toolbar_cmd.enable_path(0)
+				    ae!!.toolbar_cmd!!.enable_path(0)
 				    ae!!.selectTimeLine()
 				}
 				if (prb != null) {
@@ -199,8 +199,8 @@ class AnimCanvas : Canvas {
 				    prb.seg!!.selectedPoint = prb.sel
 				    prb.seg!!.path!!.draw(graphics2D)
 				    if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd.enable_path(1) else ae!!.toolbar_cmd.enable_path(2)
-				    ae!!.selectTimeLine(prb.seg!!.path)
+					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+				    ae!!.selectTimeLine(prb.seg!!.path!!)
 				    setM_Tool(M_TOOL_PATH)
 				} else {
 				    setM_Tool(M_TOOL_IMAGE)
@@ -236,7 +236,7 @@ class AnimCanvas : Canvas {
 				var prb = ap.findNearest(press_p)
 				if (prb != null && prb.dist > 20) {
 				    prb = null
-				    ae!!.toolbar_cmd.enable_path(0)
+				    ae!!.toolbar_cmd!!.enable_path(0)
 				    ae!!.selectTimeLine()
 				}
 				if (prb != null) {
@@ -244,8 +244,8 @@ class AnimCanvas : Canvas {
 				    prb.seg!!.selectedPoint = prb.sel
 				    prb.seg!!.path!!.draw(graphics2D)
 				    if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd.enable_path(1) else ae!!.toolbar_cmd.enable_path(2)
-				    ae!!.selectTimeLine(prb.seg!!.path)
+					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+				    ae!!.selectTimeLine(prb.seg!!.path!!)
 				    setM_Tool(M_TOOL_PATH)
 				} else {
 				    setM_Tool(M_TOOL_IMAGE)
@@ -464,18 +464,18 @@ class AnimCanvas : Canvas {
 //  				    pa_prop.setObject(prb.seg.path);
 	prb.seg!!.selectedPoint = prb.sel
 	prb.seg!!.path!!.draw(graphics2D)
-	ae!!.selectTimeLine(prb.seg!!.path)
+	ae!!.selectTimeLine(prb.seg!!.path!!)
 	if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-		prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd.enable_path(1) else ae!!.toolbar_cmd.enable_path(2)
+		prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 	selected_prb = prb
 	repaint()
 	val len = pa.length.toInt()
 	val tl = TimeLine(nid, 200, 5 * len)
 	tl.addMarker(TimeMarker.BEGIN, -tl.offset + 1)
-	tl.addMarker(TimeMarker.END, ae!!.tlp.playEnd - tl.offset)
+	tl.addMarker(TimeMarker.END, ae!!.tlp!!.playEnd - tl.offset)
 	a_ctxt.mtl!!.addTimeLine(tl)
-	ae!!.tlc.repaint()
-	val act = AnimContext.ae!!.cabaret_panel.getActorInPanel(nid)
+	ae!!.tlc!!.repaint()
+	val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanel(nid)
 	allgim[act!!.gimae] = nid
 	ae!!.isDirty = true
     }
@@ -592,7 +592,7 @@ class AnimCanvas : Canvas {
 			val tl_src = a_ctxt.mtl!!.getTimeLine(src_nid)!!
 			val tl = TimeLine(nid, tl_src)
 			a_ctxt.mtl!!.addTimeLine(tl)
-			ae!!.tlc.repaint()
+			ae!!.tlc!!.repaint()
 			ae!!.isDirty = true
 		    }
 		}
@@ -676,7 +676,7 @@ class AnimCanvas : Canvas {
 	    m = Mouse(this)
 	    key = Key(this)
 	    gem!!.addGenericEventListener(gel)
-	    AnimContext.ae!!.cabaret_panel.addChangeListener { ev ->
+	    AnimContext.ae!!.cabaret_panel!!.addChangeListener { ev ->
 		val cabp = ev.source as CabaretPanel
 		for (i in 0 until OmegaConfig.TIMELINES_N) {
 		    val act = cabp.getActorInPanel(i)
@@ -731,7 +731,7 @@ class AnimCanvas : Canvas {
 	    selected_prb = null
 	    repaint()
 	    a_ctxt.mtl!!.removeTimeLine(nid)
-	    ae!!.tlc.repaint()
+	    ae!!.tlc!!.repaint()
 	}
     }
 
@@ -774,7 +774,7 @@ class AnimCanvas : Canvas {
 
     fun deleteActor(ix: Int) {
 	val nid: Int
-	nid = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel.setActorInPanelAbs(null, ix) else ix
+	nid = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel!!.setActorInPanelAbs(null, ix) else ix
 	if (nid >= 0 && nid < OmegaConfig.TIMELINES_N) {
 	    allgim[null] = nid
 	}
@@ -783,7 +783,7 @@ class AnimCanvas : Canvas {
     fun loadActor(ix: Int, fn: String?): Actor {
 	val act = cab.createActor(ix, fn!!, null)
 	val nid: Int
-	nid = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel.setActorInPanelAbs(act, ix) else ix
+	nid = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel!!.setActorInPanelAbs(act, ix) else ix
 	if (nid >= 0 && nid < OmegaConfig.TIMELINES_N) allgim[act.gimae] = nid
 	return act
     }
@@ -812,12 +812,12 @@ class AnimCanvas : Canvas {
     }
 
     fun getActor(nid: Int): Actor? {
-	return if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel.getActorInPanel(nid) else cab.getActor(nid)
+	return if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel!!.getActorInPanel(nid) else cab.getActor(nid)
     }
 
     fun getAnimatedActor(nid: Int): Actor? {
 	var a: Actor? = null
-	a = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel.getActorInPanel(nid) else actA_animated[nid]
+	a = if (AnimContext.ae != null) AnimContext.ae!!.cabaret_panel!!.getActorInPanel(nid) else actA_animated[nid]
 	//log	OmegaContext.sout_log.getLogger().info(":--: " + "getAnimatedActor -> " + nid + ' ' + a + ' ' + SundryUtils.a2s(actA_animated));
 	return a
     }
@@ -834,7 +834,7 @@ class AnimCanvas : Canvas {
 
     private fun createDefaultActors() {
 	if (AnimContext.ae != null) {
-	    AnimContext.ae!!.cabaret_panel.resetCabaretOrder()
+	    AnimContext.ae!!.cabaret_panel!!.resetCabaretOrder()
 	    if (AnimContext.ae != null) {
 		for (i in cab.actorNum() - 1 downTo 0) loadActor(i, "default/default_actor_$i.gif")
 	    } else {
@@ -1167,7 +1167,7 @@ class AnimCanvas : Canvas {
 	}
 	val aacel = Element("AllActors")
 	for (i in 0 until cab.actorNum()) {
-	    val act = AnimContext.ae!!.cabaret_panel.getActorInPanelAbs(i)
+	    val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanelAbs(i)
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "saving " + i + ' ' + act);
 	    if (act != null) {
 		val acel = act.element
@@ -1176,9 +1176,9 @@ class AnimCanvas : Canvas {
 	    }
 	}
 	val awel = Element("AllWings")
-	for (i in AnimContext.ae!!.wings_panel.wingA.arr.indices) {
-	    if (AnimContext.ae!!.wings_panel.getWing(i) != null) {
-		val wel = AnimContext.ae!!.wings_panel.getWing(i)?.element
+	for (i in AnimContext.ae!!.wings_panel!!.wingA.arr.indices) {
+	    if (AnimContext.ae!!.wings_panel!!.getWing(i) != null) {
+		val wel = AnimContext.ae!!.wings_panel!!.getWing(i)?.element
 		wel?.addAttr("nid", "" + i)
 		awel.add(wel)
 	    }
@@ -1269,7 +1269,7 @@ class AnimCanvas : Canvas {
 		    val w = createWing(fn, d1.toInt(), d2.toInt(), la.toInt(),
 			    sc_d, mi.toInt())
 		    val wing_nid = w.ord
-		    if (AnimContext.ae != null) AnimContext.ae!!.wings_panel.setWing(w, wing_nid)
+		    if (AnimContext.ae != null) AnimContext.ae!!.wings_panel!!.setWing(w, wing_nid)
 		    resetBackground()
 		}
 	    }
