@@ -123,7 +123,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	    fireTableCellUpdated(row, col)
 	}
 
-	fun setData(data: Array<Array<String?>?>) {
+	fun setData_(data: Array<Array<String?>?>) {
 	    this.data = data
 	    fireTableStructureChanged()
 	    fireTableDataChanged()
@@ -588,14 +588,14 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 		    t("TWS") + " " + statval_tfm.getAvg_1000("", "") + "   " +
 		    t("SL") + " " + asHMS(stat_sl.avg1) else stat_tf1!!.text = t("TS") + " " + statval_trm.getAvg_1000("", "") + "   " +
 		    t("SL") + " " + stat_sl.getAvg_1000("", "")
-	    tmod!!.setData(dataLi.toTypedArray<Array<String?>?>())
+	    tmod!!.setData_(dataLi.toTypedArray<Array<String?>?>())
 	    table!!.doLayout()
 	    val column = table!!.columnModel.getColumn(map(CO_dat))
 	    column.preferredWidth = 100
 	    //	    upd_stat();
 	    //	    table.doLayout();
 	} catch (ex: NullPointerException) {
-	    tmod!!.setData(Array(0) { arrayOfNulls(1) })
+	    tmod!!.setData_(Array(0) { arrayOfNulls(1) })
 	    Log.getLogger().info("ERR: npe $ex")
 	    ex.printStackTrace()
 	}

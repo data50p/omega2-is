@@ -52,7 +52,7 @@ class ResultDialogTableDetail(var owner: Frame,
     var CO_FO = 7
 
     inner class Result_TableModel : AbstractTableModel() {
-	var data = Array(0) { arrayOfNulls<String>(0) }
+	var data: Array<Array<String?>>
 	var hdn_c = arrayOf(t("Selection"),
 		t("Sentence"),
 		t("Time"),
@@ -71,7 +71,7 @@ class ResultDialogTableDetail(var owner: Frame,
 	    get() = if (mode == 'c') hdn_c else hdn_t
 
 	init {
-	    data = Array(10) { arrayOfNulls(8) }
+	    data = arrayOf(arrayOf("", ""), arrayOf("", ""))
 	}
 
 	override fun getColumnCount(): Int {
@@ -103,7 +103,7 @@ class ResultDialogTableDetail(var owner: Frame,
 	    fireTableCellUpdated(row, col)
 	}
 
-	fun setData(data: Array<Array<String?>>) {
+	fun setData_(data: Array<Array<String?>>) {
 	    this.data = data
 	    fireTableDataChanged()
 	}
@@ -465,9 +465,9 @@ class ResultDialogTableDetail(var owner: Frame,
 	try {
 	    val sa = register!!.getAllTestsAsName(with)
 	    if (false && sa.size == 0) {
-		val data = Array(1) { arrayOfNulls<String>(8) }
+		val data = Array(1) { arrayOfNulls<String?>(8) }
 		data[0][0] = "---"
-		tmod!!.setData(data)
+		tmod!!.setData_(data)
 		table!!.doLayout()
 		return
 	    }
@@ -493,7 +493,7 @@ class ResultDialogTableDetail(var owner: Frame,
 	    if (n == 0) {
 		val data = Array(1) { arrayOfNulls<String>(8) }
 		data[0][0] = "---"
-		tmod!!.setData(data)
+		tmod!!.setData_(data)
 		table!!.doLayout()
 		return
 	    }
@@ -559,7 +559,7 @@ class ResultDialogTableDetail(var owner: Frame,
 		    nn_ix++
 		}
 	    }
-	    tmod!!.setData(data)
+	    tmod!!.setData_(data)
 	    if (mode == 't') {
 		var column = table!!.columnModel.getColumn(1)
 		column.preferredWidth = 300
