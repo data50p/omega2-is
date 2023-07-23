@@ -410,7 +410,7 @@ public class Target {
         T_Item t_itm = getT_Item(tg_ix);
         String tg_tid = t_itm.tid;
         ItemEntry it_ent = findItemEntryMatchTid(tg_tid);
-        return it_ent.ord;
+        return it_ent.getOrd();
     }
 
     public int[] findEntryIxMatchTargetIxAll(int tg_ix) {
@@ -421,7 +421,7 @@ public class Target {
         int len = it_ent.length;
         int[] ia = new int[len];
         for (int i = 0; i < len; i++)
-            ia[i] = it_ent[i].ord;
+            ia[i] = it_ent[i].getOrd();
         return ia;
     }
 
@@ -464,13 +464,13 @@ public class Target {
     }
 
     public void addItemEntry(int ix, int iy) {
-        if (items.item_entry_list.size() < 6) {
+        if (items.getItem_entry_list().size() < 6) {
             items.add(ix);
         }
     }
 
     public void delItemEntry(int ix, int iy) {
-        if (items.item_entry_list.size() >= ix) {
+        if (items.getItem_entry_list().size() >= ix) {
             items.remove(ix);
         }
     }
@@ -1241,37 +1241,37 @@ public class Target {
             ItemEntry it_ent0 = tg2.findItemEntryMatchTid(tid0);
             int ie_n0 = it_ent0.howManyItems();
             for (int i0 = 0; i0 < ie_n0; i0++) {
-                tg2.pickItemAt(it_ent0.ord, i0, 0);
+                tg2.pickItemAt(it_ent0.getOrd(), i0, 0);
                 if (Tn > 1) {
                     String tid1 = tg2.getT_Item(1).tid;
                     ItemEntry it_ent1 = tg2.findItemEntryMatchTid(tid1);
                     int ie_n1 = it_ent1.howManyItems();
                     for (int i1 = 0; i1 < ie_n1; i1++) {
-                        tg2.pickItemAt(it_ent1.ord, i1, 1);
+                        tg2.pickItemAt(it_ent1.getOrd(), i1, 1);
                         if (Tn > 2) {
                             String tid2 = tg2.getT_Item(2).tid;
                             ItemEntry it_ent2 = tg2.findItemEntryMatchTid(tid2);
                             int ie_n2 = it_ent2.howManyItems();
                             for (int i2 = 0; i2 < ie_n2; i2++) {
-                                tg2.pickItemAt(it_ent2.ord, i2, 2);
+                                tg2.pickItemAt(it_ent2.getOrd(), i2, 2);
                                 if (Tn > 3) {
                                     String tid3 = tg2.getT_Item(3).tid;
                                     ItemEntry it_ent3 = tg2.findItemEntryMatchTid(tid3);
                                     int ie_n3 = it_ent3.howManyItems();
                                     for (int i3 = 0; i3 < ie_n3; i3++) {
-                                        tg2.pickItemAt(it_ent3.ord, i3, 3);
+                                        tg2.pickItemAt(it_ent3.getOrd(), i3, 3);
                                         if (Tn > 4) {
                                             String tid4 = tg2.getT_Item(4).tid;
                                             ItemEntry it_ent4 = tg2.findItemEntryMatchTid(tid4);
                                             int ie_n4 = it_ent4.howManyItems();
                                             for (int i4 = 0; i4 < ie_n4; i4++) {
-                                                tg2.pickItemAt(it_ent4.ord, i4, 4);
+                                                tg2.pickItemAt(it_ent4.getOrd(), i4, 4);
                                                 if (Tn > 5) {
                                                     String tid5 = tg2.getT_Item(5).tid;
                                                     ItemEntry it_ent5 = tg2.findItemEntryMatchTid(tid5);
                                                     int ie_n5 = it_ent5.howManyItems();
                                                     for (int i5 = 0; i5 < ie_n5; i5++) {
-                                                        tg2.pickItemAt(it_ent5.ord, i5, 5);
+                                                        tg2.pickItemAt(it_ent5.getOrd(), i5, 5);
                                                         li.add(tg2.getAllText(sep));
                                                     }
                                                 } else {
@@ -1313,42 +1313,42 @@ public class Target {
             int ie_n0 = it_ent0.howManyItems();
             for (int i0 = 0; i0 < ie_n0; i0++) {
                 Item itm0 = it_ent0.getItemAt(i0);
-                tg2.pickItemAt(itm0.getIt_ent().ord, itm0.getOrd(), 0);
+                tg2.pickItemAt(itm0.getIt_ent().getOrd(), itm0.getOrd(), 0);
                 if (Tn > 1) {
                     String tid1 = tg2.getT_Item(1).tid;
                     ItemEntryVirtualList it_ent1 = tg2.findItemEntryVirtualListMatchTid(tid1);
                     int ie_n1 = it_ent1.howManyItems();
                     for (int i1 = 0; i1 < ie_n1; i1++) {
                         Item itm1 = it_ent1.getItemAt(i1);
-                        tg2.pickItemAt(itm1.getIt_ent().ord, itm1.getOrd(), 1);
+                        tg2.pickItemAt(itm1.getIt_ent().getOrd(), itm1.getOrd(), 1);
                         if (Tn > 2) {
                             String tid2 = tg2.getT_Item(2).tid;
                             ItemEntryVirtualList it_ent2 = tg2.findItemEntryVirtualListMatchTid(tid2);
                             int ie_n2 = it_ent2.howManyItems();
                             for (int i2 = 0; i2 < ie_n2; i2++) {
                                 Item itm2 = it_ent2.getItemAt(i2);
-                                tg2.pickItemAt(itm2.getIt_ent().ord, itm2.getOrd(), 2);
+                                tg2.pickItemAt(itm2.getIt_ent().getOrd(), itm2.getOrd(), 2);
                                 if (Tn > 3) {
                                     String tid3 = tg2.getT_Item(3).tid;
                                     ItemEntryVirtualList it_ent3 = tg2.findItemEntryVirtualListMatchTid(tid3);
                                     int ie_n3 = it_ent3.howManyItems();
                                     for (int i3 = 0; i3 < ie_n3; i3++) {
                                         Item itm3 = it_ent3.getItemAt(i3);
-                                        tg2.pickItemAt(itm3.getIt_ent().ord, itm3.getOrd(), 3);
+                                        tg2.pickItemAt(itm3.getIt_ent().getOrd(), itm3.getOrd(), 3);
                                         if (Tn > 4) {
                                             String tid4 = tg2.getT_Item(4).tid;
                                             ItemEntryVirtualList it_ent4 = tg2.findItemEntryVirtualListMatchTid(tid4);
                                             int ie_n4 = it_ent4.howManyItems();
                                             for (int i4 = 0; i4 < ie_n4; i4++) {
                                                 Item itm4 = it_ent4.getItemAt(i4);
-                                                tg2.pickItemAt(itm4.getIt_ent().ord, itm4.getOrd(), 4);
+                                                tg2.pickItemAt(itm4.getIt_ent().getOrd(), itm4.getOrd(), 4);
                                                 if (Tn > 5) {
                                                     String tid5 = tg2.getT_Item(5).tid;
                                                     ItemEntryVirtualList it_ent5 = tg2.findItemEntryVirtualListMatchTid(tid5);
                                                     int ie_n5 = it_ent5.howManyItems();
                                                     for (int i5 = 0; i5 < ie_n5; i5++) {
                                                         Item itm5 = it_ent5.getItemAt(i5);
-                                                        tg2.pickItemAt(itm5.getIt_ent().ord, itm5.getOrd(), 5);
+                                                        tg2.pickItemAt(itm5.getIt_ent().getOrd(), itm5.getOrd(), 5);
                                                         li.add(tg2.getAllText(sep));
                                                     }
                                                 } else {
@@ -1390,42 +1390,42 @@ public class Target {
             int ie_n0 = it_ent0.howManyItems();
             for (int i0 = 0; i0 < ie_n0; i0++) {
                 Item itm0 = it_ent0.getItemAt(i0);
-                tg2.pickItemAt(itm0.getIt_ent().ord, itm0.getOrd(), 0);
+                tg2.pickItemAt(itm0.getIt_ent().getOrd(), itm0.getOrd(), 0);
                 if (Tn > 1) {
                     String tid1 = tg2.getT_Item(1).tid;
                     ItemEntryVirtualList it_ent1 = tg2.findItemEntryVirtualListMatchTid(tid1);
                     int ie_n1 = it_ent1.howManyItems();
                     for (int i1 = 0; i1 < ie_n1; i1++) {
                         Item itm1 = it_ent1.getItemAt(i1);
-                        tg2.pickItemAt(itm1.getIt_ent().ord, itm1.getOrd(), 1);
+                        tg2.pickItemAt(itm1.getIt_ent().getOrd(), itm1.getOrd(), 1);
                         if (Tn > 2) {
                             String tid2 = tg2.getT_Item(2).tid;
                             ItemEntryVirtualList it_ent2 = tg2.findItemEntryVirtualListMatchTid(tid2);
                             int ie_n2 = it_ent2.howManyItems();
                             for (int i2 = 0; i2 < ie_n2; i2++) {
                                 Item itm2 = it_ent2.getItemAt(i2);
-                                tg2.pickItemAt(itm2.getIt_ent().ord, itm2.getOrd(), 2);
+                                tg2.pickItemAt(itm2.getIt_ent().getOrd(), itm2.getOrd(), 2);
                                 if (Tn > 3) {
                                     String tid3 = tg2.getT_Item(3).tid;
                                     ItemEntryVirtualList it_ent3 = tg2.findItemEntryVirtualListMatchTid(tid3);
                                     int ie_n3 = it_ent3.howManyItems();
                                     for (int i3 = 0; i3 < ie_n3; i3++) {
                                         Item itm3 = it_ent3.getItemAt(i3);
-                                        tg2.pickItemAt(itm3.getIt_ent().ord, itm3.getOrd(), 3);
+                                        tg2.pickItemAt(itm3.getIt_ent().getOrd(), itm3.getOrd(), 3);
                                         if (Tn > 4) {
                                             String tid4 = tg2.getT_Item(4).tid;
                                             ItemEntryVirtualList it_ent4 = tg2.findItemEntryVirtualListMatchTid(tid4);
                                             int ie_n4 = it_ent4.howManyItems();
                                             for (int i4 = 0; i4 < ie_n4; i4++) {
                                                 Item itm4 = it_ent4.getItemAt(i4);
-                                                tg2.pickItemAt(itm4.getIt_ent().ord, itm4.getOrd(), 4);
+                                                tg2.pickItemAt(itm4.getIt_ent().getOrd(), itm4.getOrd(), 4);
                                                 if (Tn > 5) {
                                                     String tid5 = tg2.getT_Item(5).tid;
                                                     ItemEntryVirtualList it_ent5 = tg2.findItemEntryVirtualListMatchTid(tid5);
                                                     int ie_n5 = it_ent5.howManyItems();
                                                     for (int i5 = 0; i5 < ie_n5; i5++) {
                                                         Item itm5 = it_ent5.getItemAt(i5);
-                                                        tg2.pickItemAt(itm5.getIt_ent().ord, itm5.getOrd(), 5);
+                                                        tg2.pickItemAt(itm5.getIt_ent().getOrd(), itm5.getOrd(), 5);
                                                         li.add(tg2.getAllText(sep, delim));
                                                     }
                                                 } else {
@@ -1481,42 +1481,42 @@ public class Target {
             int ie_n0 = it_ent0.howManyItems();
             for (int i0 = 0; i0 < ie_n0; i0++) {
                 Item itm0 = it_ent0.getItemAt(i0);
-                tg2.pickItemAt(itm0.getIt_ent().ord, itm0.getOrd(), 0);
+                tg2.pickItemAt(itm0.getIt_ent().getOrd(), itm0.getOrd(), 0);
                 if (Tn > 1) {
                     String tid1 = tg2.getT_Item(1).tid;
                     ItemEntryVirtualList it_ent1 = tg2.findItemEntryVirtualListMatchTid(tid1);
                     int ie_n1 = it_ent1.howManyItems();
                     for (int i1 = 0; i1 < ie_n1; i1++) {
                         Item itm1 = it_ent1.getItemAt(i1);
-                        tg2.pickItemAt(itm1.getIt_ent().ord, itm1.getOrd(), 1);
+                        tg2.pickItemAt(itm1.getIt_ent().getOrd(), itm1.getOrd(), 1);
                         if (Tn > 2) {
                             String tid2 = tg2.getT_Item(2).tid;
                             ItemEntryVirtualList it_ent2 = tg2.findItemEntryVirtualListMatchTid(tid2);
                             int ie_n2 = it_ent2.howManyItems();
                             for (int i2 = 0; i2 < ie_n2; i2++) {
                                 Item itm2 = it_ent2.getItemAt(i2);
-                                tg2.pickItemAt(itm2.getIt_ent().ord, itm2.getOrd(), 2);
+                                tg2.pickItemAt(itm2.getIt_ent().getOrd(), itm2.getOrd(), 2);
                                 if (Tn > 3) {
                                     String tid3 = tg2.getT_Item(3).tid;
                                     ItemEntryVirtualList it_ent3 = tg2.findItemEntryVirtualListMatchTid(tid3);
                                     int ie_n3 = it_ent3.howManyItems();
                                     for (int i3 = 0; i3 < ie_n3; i3++) {
                                         Item itm3 = it_ent3.getItemAt(i3);
-                                        tg2.pickItemAt(itm3.getIt_ent().ord, itm3.getOrd(), 3);
+                                        tg2.pickItemAt(itm3.getIt_ent().getOrd(), itm3.getOrd(), 3);
                                         if (Tn > 4) {
                                             String tid4 = tg2.getT_Item(4).tid;
                                             ItemEntryVirtualList it_ent4 = tg2.findItemEntryVirtualListMatchTid(tid4);
                                             int ie_n4 = it_ent4.howManyItems();
                                             for (int i4 = 0; i4 < ie_n4; i4++) {
                                                 Item itm4 = it_ent4.getItemAt(i4);
-                                                tg2.pickItemAt(itm4.getIt_ent().ord, itm4.getOrd(), 4);
+                                                tg2.pickItemAt(itm4.getIt_ent().getOrd(), itm4.getOrd(), 4);
                                                 if (Tn > 5) {
                                                     String tid5 = tg2.getT_Item(5).tid;
                                                     ItemEntryVirtualList it_ent5 = tg2.findItemEntryVirtualListMatchTid(tid5);
                                                     int ie_n5 = it_ent5.howManyItems();
                                                     for (int i5 = 0; i5 < ie_n5; i5++) {
                                                         Item itm5 = it_ent5.getItemAt(i5);
-                                                        tg2.pickItemAt(itm5.getIt_ent().ord, itm5.getOrd(), 5);
+                                                        tg2.pickItemAt(itm5.getIt_ent().getOrd(), itm5.getOrd(), 5);
                                                         tg2.update(tc);
                                                     }
                                                 } else {
@@ -1730,37 +1730,37 @@ public class Target {
             ItemEntry it_ent0 = tg2.findItemEntryMatchTid(tid0);
             int ie_n0 = it_ent0.howManyItems();
             for (int i0 = 0; i0 < ie_n0; i0++) {
-                tg2.pickItemAtDummy(dummy, it_ent0.ord, i0, 0);
+                tg2.pickItemAtDummy(dummy, it_ent0.getOrd(), i0, 0);
                 if (Tn > 1) {
                     String tid1 = tg2.getT_Item(1).tid;
                     ItemEntry it_ent1 = tg2.findItemEntryMatchTid(tid1);
                     int ie_n1 = it_ent1.howManyItems();
                     for (int i1 = 0; i1 < ie_n1; i1++) {
-                        tg2.pickItemAtDummy(dummy, it_ent1.ord, i1, 1);
+                        tg2.pickItemAtDummy(dummy, it_ent1.getOrd(), i1, 1);
                         if (Tn > 2) {
                             String tid2 = tg2.getT_Item(2).tid;
                             ItemEntry it_ent2 = tg2.findItemEntryMatchTid(tid2);
                             int ie_n2 = it_ent2.howManyItems();
                             for (int i2 = 0; i2 < ie_n2; i2++) {
-                                tg2.pickItemAtDummy(dummy, it_ent2.ord, i2, 2);
+                                tg2.pickItemAtDummy(dummy, it_ent2.getOrd(), i2, 2);
                                 if (Tn > 3) {
                                     String tid3 = tg2.getT_Item(3).tid;
                                     ItemEntry it_ent3 = tg2.findItemEntryMatchTid(tid3);
                                     int ie_n3 = it_ent3.howManyItems();
                                     for (int i3 = 0; i3 < ie_n3; i3++) {
-                                        tg2.pickItemAtDummy(dummy, it_ent3.ord, i3, 3);
+                                        tg2.pickItemAtDummy(dummy, it_ent3.getOrd(), i3, 3);
                                         if (Tn > 4) {
                                             String tid4 = tg2.getT_Item(4).tid;
                                             ItemEntry it_ent4 = tg2.findItemEntryMatchTid(tid4);
                                             int ie_n4 = it_ent4.howManyItems();
                                             for (int i4 = 0; i4 < ie_n4; i4++) {
-                                                tg2.pickItemAtDummy(dummy, it_ent4.ord, i4, 4);
+                                                tg2.pickItemAtDummy(dummy, it_ent4.getOrd(), i4, 4);
                                                 if (Tn > 5) {
                                                     String tid5 = tg2.getT_Item(5).tid;
                                                     ItemEntry it_ent5 = tg2.findItemEntryMatchTid(tid5);
                                                     int ie_n5 = it_ent5.howManyItems();
                                                     for (int i5 = 0; i5 < ie_n5; i5++) {
-                                                        tg2.pickItemAtDummy(dummy, it_ent5.ord, i5, 5);
+                                                        tg2.pickItemAtDummy(dummy, it_ent5.getOrd(), i5, 5);
                                                         li.add(gDta(tg2));
                                                     }
                                                 } else {
@@ -1923,7 +1923,7 @@ public class Target {
             if (in < it_entA[i].howManyItems()) {
                 if (Tr)
                     OmegaContext.sout_log.getLogger().info("ERR: " + "getX) " + it_entA[i].howManyItems() + ' ' + i);
-                return it_entA[0].ord + i;
+                return it_entA[0].getOrd() + i;
             } else {
                 in -= it_entA[i].howManyItems();
                 if (Tr)

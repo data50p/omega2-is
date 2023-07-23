@@ -329,7 +329,7 @@ class Item {
     }
 
     val entryTid: String
-	get() = it_ent!!.tid
+	get() = it_ent!!.tid!!
 
     fun getValues(orig: Boolean): Values {
 	val vs = Values()
