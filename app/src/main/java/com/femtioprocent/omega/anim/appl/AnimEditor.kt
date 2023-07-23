@@ -404,7 +404,7 @@ class AnimEditor : JFrame {
 	tlc = TimeLineComponent(tlp)
 	a_ctxt!!.tl_player!!.addPlayCtrlListener(tlc!!)
 	tlp!!.addTimeLinePanelListener(object : TimeLinePanelAdapter() {
-	    override fun event(evs: String, o: Any) {
+	    override fun event(evs: String?, o: Any?) {
 		if (("selectTL" == evs)) {
 		    if (o != null) {
 			val tl = o as TimeLine
