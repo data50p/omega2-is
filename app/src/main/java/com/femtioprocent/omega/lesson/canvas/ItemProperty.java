@@ -375,7 +375,7 @@ public class ItemProperty extends Property_B implements ActionListener {
         while (it.hasNext()) {
             Value v = (Value) it.next();
 
-            if (v.getId().equals("actorlist")) {
+            if (v.id.equals("actorlist")) {
                 JComboBox cb = (JComboBox) guimap.get("actors");
                 String sc = v.getStr();
                 cb.removeAllItems();

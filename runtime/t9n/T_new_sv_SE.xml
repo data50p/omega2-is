@@ -170,6 +170,10 @@
    <string>Play Sign Moview</string>
   </void>
   <void method="put">
+   <string>Play Next</string>
+   <string>Play Next</string>
+  </void>
+  <void method="put">
    <string>Set sign file</string>
    <string>Set sign file</string>
   </void>

@@ -91,13 +91,13 @@ public class TargetProperty extends Property_B {
     }
 
     public void updValues(Values vs) {
-        Iterator<Value> it = vs.iterator();
+        Iterator<Value> it = (Iterator<Value>) vs.iterator();
         while (it.hasNext()) {
             Value v = (Value) it.next();
 
 //log	    OmegaContext.sout_log.getLogger().info(":--: " + "V " + v);
 
-            if (v.getId().equals("pathlist")) {         // banor
+            if (v.id.equals("pathlist")) {         // banor
                 JComboBox cb = (JComboBox) guimap.get("Slid");
                 String ss = v.getStr();
                 if (ss != null) {

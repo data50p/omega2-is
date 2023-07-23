@@ -24,7 +24,6 @@ public class Omega_IS extends JDialog {
     private JButton settingsButton;
     private JButton animEditorButton;
     private JButton lessonRuntimeButton;
-    private JCheckBox rememberSelectionCheckBox;
     private JPasswordField passwordField1;
     private JTextPane theInfoAndSomeTextPane;
 
@@ -46,8 +45,6 @@ public class Omega_IS extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 selection = 1;
-                if (rememberSelectionCheckBox.isSelected())
-                    OmegaStartManager.savePref(selection);
             }
         });
         lessonRuntimeButton.addActionListener(new ActionListener() {
@@ -55,8 +52,6 @@ public class Omega_IS extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 selection = 2;
-                if (rememberSelectionCheckBox.isSelected())
-                    OmegaStartManager.savePref(selection);
             }
         });
         animEditorButton.addActionListener(new ActionListener() {
@@ -64,8 +59,6 @@ public class Omega_IS extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 selection = 3;
-                if (rememberSelectionCheckBox.isSelected())
-                    OmegaStartManager.savePref(selection);
             }
         });
         settingsButton.addActionListener(new ActionListener() {

@@ -149,16 +149,16 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	 */
 	@JvmStatic
         @Throws(IllegalArgumentException::class)
-	fun setOmegaAssets(omega_assets_name: String) {
+	fun setOmegaAssets(omega_assets_name: String?) {
 	    var omega_assets_name = omega_assets_name
 	    if (empty(omega_assets_name)) {
 		currentOmegaAssets = getDefaultOmegaAssets()
 		Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets)
 	    } else {
-		if (!omega_assets_name.endsWith(OMEGA_ASSETS_SUFFIX)) omega_assets_name = omega_assets_name + OMEGA_ASSETS_SUFFIX
+		if (!omega_assets_name?.endsWith(OMEGA_ASSETS_SUFFIX)!!) omega_assets_name = omega_assets_name + OMEGA_ASSETS_SUFFIX
 		if (File(omega_assets_name).exists()) {
 		    Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets + " -> " + omega_assets_name)
-		    currentOmegaAssets = omega_assets_name
+		    currentOmegaAssets = omega_assets_name!!
 		    return
 		}
 		Log.getLogger().info("setOmegaAssets: unable to set omega assets, keep old! " + currentOmegaAssets)
