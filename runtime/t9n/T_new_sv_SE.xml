@@ -58,6 +58,10 @@
    <string>Omega - Message</string>
   </void>
   <void method="put">
+   <string>relative {, [, or empty for here</string>
+   <string>relative {, [, or empty for here</string>
+  </void>
+  <void method="put">
    <string>+</string>
    <string>+</string>
   </void>

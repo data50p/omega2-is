@@ -333,7 +333,7 @@ public class AnimRuntime {
             anim_canvas.initPlay();
             anim_canvas.setVisibilityMode(AnimCanvas.HIDE_PATH);
             System.gc();
-            a_ctxt.tl_player.setSpeed(a_ctxt.anim_speed);
+            a_ctxt.tl_player.speed = a_ctxt.anim_speed;
             anim_canvas.HIDDEN = false;
             anim_canvas.repaint();
             if (a_ctxt.tl_player.play(after))
@@ -351,7 +351,7 @@ public class AnimRuntime {
             anim_canvas.initPlay();
             anim_canvas.setVisibilityMode(AnimCanvas.HIDE_PATH);
             System.gc();
-            a_ctxt.tl_player.setSpeed(a_ctxt.anim_speed);
+            a_ctxt.tl_player.speed = a_ctxt.anim_speed;
             a_ctxt.tl_player.dry_play(after, 100);
         } catch (NullPointerException ex) {
             OmegaContext.sout_log.getLogger().info("ERR: " + "AnimRintime:234: Nullpointerexception " + ex);

@@ -586,7 +586,7 @@ public class TimeLinePanel extends JPanel {
                         mcol = normal_TSync_marker_color;
                     if (tm.isDeleteCandidate())
                         g.setColor(Color.red);
-                    else if (tm.isSelected())
+                    else if (tm.getSelected())
                         g.setColor(mcol.brighter().brighter());
                     else
                         g.setColor(mcol);

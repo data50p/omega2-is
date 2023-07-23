@@ -235,7 +235,7 @@ public class TimeLine implements Serializable {
 
     public void moveSelectedTimeMarker(int d, int grid) {
         for (TimeMarker tm : markers) {
-            if (tm.selected) {
+            if (tm.getSelected()) {
                 if (tm.type == TimeMarker.STOP)
                     size(d);
                 else if (tm.type == TimeMarker.START)
@@ -248,7 +248,7 @@ public class TimeLine implements Serializable {
 
     public TimeMarker getSelectedTimeMarker() {
         for (TimeMarker tm : markers) {
-            if (tm.selected) {
+            if (tm.getSelected()) {
                 return tm;
             }
         }

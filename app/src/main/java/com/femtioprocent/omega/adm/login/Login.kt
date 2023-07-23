@@ -12,7 +12,6 @@ abstract class Login internal constructor() {
     var teacher: PeopleTeacher
     var ready = false
 
-    var o = Any()
     val lock = ReentrantLock()
     val condition = lock.newCondition()
 
