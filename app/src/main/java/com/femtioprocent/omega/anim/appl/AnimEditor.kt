@@ -400,8 +400,8 @@ class AnimEditor : JFrame {
 	main_cpan.layout = BorderLayout()
 	arun = AnimRuntime(this)
 	a_ctxt!!.arun = arun
-	tlp = TimeLinePanel(a_ctxt!!.mtl)
-	tlc = TimeLineComponent(tlp)
+	tlp = TimeLinePanel(a_ctxt!!.mtl!!)
+	tlc = TimeLineComponent(tlp!!)
 	a_ctxt!!.tl_player!!.addPlayCtrlListener(tlc!!)
 	tlp!!.addTimeLinePanelListener(object : TimeLinePanelAdapter() {
 	    override fun event(evs: String?, o: Any?) {

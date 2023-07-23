@@ -12,6 +12,7 @@ import com.femtioprocent.omega.anim.cabaret.Hotspot.Companion.getType
 import com.femtioprocent.omega.anim.context.AnimContext
 import com.femtioprocent.omega.anim.panels.cabaret.CabaretPanel
 import com.femtioprocent.omega.anim.panels.path.PathProperties
+import com.femtioprocent.omega.anim.panels.timeline.TimeLinePanel
 import com.femtioprocent.omega.anim.tool.path.AllPath
 import com.femtioprocent.omega.anim.tool.path.Path
 import com.femtioprocent.omega.anim.tool.path.Probe
@@ -472,7 +473,7 @@ class AnimCanvas : Canvas {
 	val len = pa.length.toInt()
 	val tl = TimeLine(nid, 200, 5 * len)
 	tl.addMarker(TimeMarker.BEGIN, -tl.offset + 1)
-	tl.addMarker(TimeMarker.END, ae!!.tlp!!.playEnd - tl.offset)
+	tl.addMarker(TimeMarker.END, TimeLinePanel.playEnd - tl.offset)
 	a_ctxt.mtl!!.addTimeLine(tl)
 	ae!!.tlc!!.repaint()
 	val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanel(nid)

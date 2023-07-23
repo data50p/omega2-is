@@ -14,6 +14,10 @@
    <string>option7.omega_colors</string>
   </void>
   <void method="put">
+   <string>length = </string>
+   <string>length = </string>
+  </void>
+  <void method="put">
    <string>Sign Sentence Movie Scale</string>
    <string>Sign Sentence Movie Scale</string>
   </void>
@@ -50,8 +54,16 @@
    <string>Error while loading lesson: &quot;</string>
   </void>
   <void method="put">
+   <string>Path for timeline</string>
+   <string>Path for timeline</string>
+  </void>
+  <void method="put">
    <string>Scan and Add to Bundle</string>
    <string>Scan and Add to Bundle</string>
+  </void>
+  <void method="put">
+   <string>--unknown--</string>
+   <string>--unknown--</string>
   </void>
   <void method="put">
    <string>Omega - Message</string>
@@ -82,6 +94,10 @@
    <string>Lars</string>
   </void>
   <void method="put">
+   <string>Actor Image Name</string>
+   <string>Actor Image Name</string>
+  </void>
+  <void method="put">
    <string>Import Omega Bundle</string>
    <string>Import Omega Bundle</string>
   </void>
@@ -104,6 +120,10 @@
   <void method="put">
    <string>not found</string>
    <string>not found</string>
+  </void>
+  <void method="put">
+   <string>PeTask Nid</string>
+   <string>PeTask Nid</string>
   </void>
   <void method="put">
    <string>Show Sign after each word</string>
@@ -192,6 +212,10 @@
   <void method="put">
    <string>kotlin</string>
    <string>kotlin</string>
+  </void>
+  <void method="put">
+   <string>length</string>
+   <string>length</string>
   </void>
   <void method="put">
    <string>Nu such directory</string>

@@ -51,7 +51,7 @@ class TimeLine : Serializable {
 		    tm!!.setTriggerEvent(te, slot)
 		}
 	    }
-	    if (t == "}") TimeLinePanel.global_tick_stop = wl + offset // FIX
+	    if (t == "}") TimeLinePanel.playEnd = wl + offset // FIX
 	}
     }
 

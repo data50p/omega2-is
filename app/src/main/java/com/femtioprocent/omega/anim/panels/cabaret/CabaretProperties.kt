@@ -29,7 +29,7 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
     var image_name: JTextField? = null
     var image_petasknid: JTextField? = null
     var prim_scale: JTextField? = null
-    var prim_mirror: JComboBox<*>? = null
+    var prim_mirror: JComboBox<String?>? = null
     var hotspot: JTextField? = null
     var rhotspot: JTextField? = null
     var delete: JButton? = null
@@ -344,11 +344,11 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
 	}
 	Y++
 	pan.add(JLabel(t("Primary mirror")), gbcf.createL(0, Y, 1))
-	pan.add(JComboBox<Any?>().also { prim_mirror = it }, gbcf.create(1, Y))
-	prim_mirror!!.addItem(t("no mirror") as Nothing?)
-	prim_mirror!!.addItem(t("mirror X") as Nothing?)
-	prim_mirror!!.addItem(t("mirror Y") as Nothing?)
-	prim_mirror!!.addItem(t("mirror X and Y") as Nothing?)
+	pan.add(JComboBox<String?>().also { prim_mirror = it }, gbcf.create(1, Y))
+	prim_mirror!!.addItem(t("no mirror"))
+	prim_mirror!!.addItem(t("mirror X"))
+	prim_mirror!!.addItem(t("mirror Y"))
+	prim_mirror!!.addItem(t("mirror X and Y"))
 	prim_mirror!!.selectedIndex = 0
 	prim_mirror!!.addItemListener(myiteml)
 	Y++

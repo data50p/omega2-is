@@ -53,7 +53,7 @@ class TimeLineControlPanel(var tlp: TimeLinePanel) : JPanel(), ActionListener {
 	    tlp.repaint()
 	}
 	if (ev.source === xxx_b) {
-	    tlp.setLock(xxx_b.isSelected)
+	    tlp.lock = xxx_b.isSelected
 	}
 	if (ev.source === speed.down) {
 	    if (!TimeLinePlayer.getDefaultTimeLinePlayer_().adjustSpeed(0.8)) {
@@ -79,6 +79,6 @@ class TimeLineControlPanel(var tlp: TimeLinePanel) : JPanel(), ActionListener {
 
     fun setLock(b: Boolean) {
 	xxx_b.isSelected = b
-	tlp.setLock(xxx_b.isSelected)
+	tlp.lock = xxx_b.isSelected
     }
 }
