@@ -83,7 +83,7 @@ class T {
         fun fillFrom(fn: String, fn2: String, hm_: HashMap<String,String>?): Int {
             val who = IntArray(1)
             try {
-                var `in`: FileInputStream? = fopen(OmegaContext.t9n(fn), fn2, who) ?: return -1
+                var `in`: FileInputStream? = OmegaContext.t9n(fn)?.let { fopen(it, fn2, who) } ?: return -1
                 var ir = InputStreamReader(`in`)
                 var br = BufferedReader(ir)
                 var enc = br.readLine()
@@ -117,7 +117,7 @@ class T {
         fun fillFromXML(fn: String, fn2: String?, hm_: HashMap<String,String>?): Int {
             try {
                 val who = IntArray(1)
-                val `in` = fopen(OmegaContext.t9n("$fn.xml"), OmegaContext.t9n("$fn2.xml"), who) ?: return -1
+                val `in` = OmegaContext.t9n("$fn.xml")?.let { fopen(it, OmegaContext.t9n("$fn2.xml"), who) } ?: return -1
                 val ir = InputStreamReader(`in`)
                 val d = XMLDecoder(BufferedInputStream(`in`))
                 val result_ = d.readObject()

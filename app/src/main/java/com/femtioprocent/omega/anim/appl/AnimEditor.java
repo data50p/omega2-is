@@ -34,7 +34,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AnimEditor extends JFrame {
     JMenuBar mb;
@@ -512,7 +511,7 @@ public class AnimEditor extends JFrame {
 	mainp.add(main_cpan, BorderLayout.CENTER);
 
 	pack();
-	setSize(900, 700);
+	setSize(OmegaConfig.FRAME_WIDTH(65), OmegaConfig.FRAME_HEIGHT(65));
 
 	setVisible(true);
 

@@ -4179,8 +4179,8 @@ public class Lesson implements LessonCanvasListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	if (smaller) {
-	    d.width = OmegaConfig.SMALL_WIDTH;
-	    d.height = OmegaConfig.SMALL_HEIGHT;
+	    d.width = OmegaConfig.FRAME_WIDTH;
+	    d.height = OmegaConfig.FRAME_HEIGHT;
 	    window.setSize(d);
 	} else {
 	    window.setSize(d);
