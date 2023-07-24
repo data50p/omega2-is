@@ -22,8 +22,8 @@ class Anim_Repository {
 	name = null
     }
 
-    fun toURL(file: File?): String {
-	return Files.toURL(file)
+    fun toURL(file: File?): String? {
+	return Files.toURL(file!!)
     }
 
     fun getNameDlg(c: Component?, ask: Boolean, label: String?): String? {
@@ -36,7 +36,7 @@ class Anim_Repository {
 		if (rv == JFileChooser.APPROVE_OPTION) {
 		    val file = choose_af.selectedFile
 		    url_s = toURL(file)
-		    fn = if (url_s.startsWith("file:")) url_s.substring(5) else url_s
+		    fn = if (url_s!!.startsWith("file:")) url_s.substring(5) else url_s
 		    if (!fn.endsWith("." + ChooseAnimatorFile.ext)) fn = fn + "." + ChooseAnimatorFile.ext
 		} else return null
 	    }
@@ -47,7 +47,7 @@ class Anim_Repository {
 	if (fn.startsWith("/")) {
 	    val file = File(fn)
 	    val url_s = Files.toURL(file)
-	    val fnr = Files.mkRelFnameAlt(url_s, omegaAssets("."))
+	    val fnr = Files.mkRelFnameAlt(url_s!!, omegaAssets(".")!!)
 	    fn = fnr
 	}
 	return fn

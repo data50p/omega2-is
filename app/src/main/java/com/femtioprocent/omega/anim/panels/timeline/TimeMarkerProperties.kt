@@ -283,7 +283,7 @@ class TimeMarkerProperties(var a_ctxt: AnimContext, owner: JFrame?) : OmegaPrope
 		// 		if ( ! url_s.endsWith("." + ChooseAudioFile.ext) )
 // 		    url_s = url_s + "." + ChooseAudioFile.ext;
 //log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + url_s);
-		val fn = Files.mkRelFnameAlt(url_s, "media")
+		val fn = Files.mkRelFnameAlt(url_s!!, "media")
 		//log		OmegaContext.sout_log.getLogger().info(":--: " + "FILE " + fn);
 		val te = bound_tm!!.findTEvent("PlaySound")
 		te!!.arg = fn

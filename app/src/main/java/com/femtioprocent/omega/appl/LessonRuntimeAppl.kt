@@ -51,7 +51,7 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode
 
     companion object {
 	private fun toURL(file: File): String {
-	    return Files.toURL(file)
+	    return Files.toURL(file)!!
 	}
 
 	var last_logged = ct()

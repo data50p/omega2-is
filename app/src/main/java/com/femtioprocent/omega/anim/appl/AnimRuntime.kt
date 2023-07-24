@@ -344,7 +344,7 @@ class AnimRuntime {
     //  	}
     //      }
     fun setBackground(url_s: String) {
-	val ua: Array<String>? = Files.splitUrlString(url_s)
+	val ua: Array<String?>? = Files.splitUrlString(url_s)
 	if (ua != null) {
 	    aC!!.setBackground(ua.get(1), ArrayList())
 	    if (AnimContext.ae != null) {
@@ -517,8 +517,8 @@ class AnimRuntime {
 
     companion object {
 	var context: OmegaContext? = null
-	private fun toURL(file: File): String {
-	    return Files.toURL(file)
+	private fun toURL(file: File?): String? {
+	    return Files.toURL(file!!)
 	}
     }
 }

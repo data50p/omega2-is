@@ -491,9 +491,9 @@ class AnimCanvas : Canvas {
 	    perform(id, 1.0)
 	}
 
-	override fun genericEvent(gev: GenericEvent, a: Any) {
+	override fun genericEvent(gev: GenericEvent?, a: Any?) {
 	    val d = a as Double
-	    perform(gev.id, d)
+	    perform(gev!!.id, d)
 	}
 
 	fun perform(cmd: String, d: Double) {
@@ -676,7 +676,7 @@ class AnimCanvas : Canvas {
 	if (ae != null) {
 	    m = Mouse(this)
 	    key = Key(this)
-	    gem!!.addGenericEventListener(gel)
+	    gem!!.addGenericEventListener(gel!!)
 	    AnimContext.ae!!.cabaret_panel!!.addChangeListener { ev ->
 		val cabp = ev.source as CabaretPanel
 		for (i in 0 until OmegaConfig.TIMELINES_N) {

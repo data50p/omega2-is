@@ -505,7 +505,7 @@ class AnimEditor : JFrame {
 
     fun loadWing() {
 	val url_s = fileAsURLString
-	val ua = Files.splitUrlString(url_s)
+	val ua = Files.splitUrlString(url_s!!)
 	if (ua != null) {
 	    val w = a_ctxt!!.anim_canvas!!.createWing(ua[1], 100, 100, 4, 1.0, 0)
 	    val wing_nid = w.ord
@@ -516,7 +516,7 @@ class AnimEditor : JFrame {
     }
 
     fun loadActor(ix: Int, url_s: String?) {
-	val ua = Files.splitUrlString(url_s)
+	val ua = Files.splitUrlString(url_s!!)
 	if (ua != null) {
 	    a_ctxt!!.anim_canvas!!.loadActor(ix, ua[1])
 	    AnimContext.ae!!.isDirty = true
@@ -527,7 +527,7 @@ class AnimEditor : JFrame {
 
     fun replaceActor(cab_ixx: Int) {
 	val url_s = fileAsURLStringActor
-	val ua = Files.splitUrlString(url_s)
+	val ua = Files.splitUrlString(url_s!!)
 	if (ua != null) {
 	    xImage.invalidateCache()
 	    a_ctxt!!.anim_canvas!!.loadActor(cab_ixx, ua[1])
