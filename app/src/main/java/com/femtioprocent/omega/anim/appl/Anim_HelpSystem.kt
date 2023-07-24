@@ -4,7 +4,6 @@ import com.femtioprocent.omega.help.HelpSystem
 import com.femtioprocent.omega.swing.HtmlFrame
 
 class Anim_HelpSystem : HelpSystem() {
-    var html_fr: HtmlFrame? = null
     fun showManualL() {
 	show(mkFileName("lesson_manual"), 800, 600)
     }

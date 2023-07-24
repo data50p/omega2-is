@@ -80,7 +80,7 @@ class MpgAction : ActionI {
 
     fun prefetch(action_s: String?, winW: Int, winH: Int): Element? {
 	val el: Element? = null
-	mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, winW, winH)
+	mpg_player = MpgPlayer.createMpgPlayer(action_s!!, jpan, winW, winH)
 	return el
     }
 
@@ -108,7 +108,7 @@ class MpgAction : ActionI {
     }
 
     fun dispose() {
-	if (mpg_player != null) mpg_player!!.dispose(jpan)
+	if (mpg_player != null) mpg_player!!.dispose(jpan!!)
 	Log.getLogger().info(":--: " + "mpg disposed")
 	jpan!!.isVisible = false
 	mpg_player = null
@@ -121,14 +121,14 @@ class MpgAction : ActionI {
     val w: Int
 	get() {
 	    var w = -1
-	    if (mpg_player != null) w = mpg_player!!.fxp.mediaW
+	    if (mpg_player != null) w = mpg_player!!.fxp!!.mediaW
 	    Log.getLogger().info("Movie width: $w")
 	    return w
 	}
     val h: Int
 	get() {
 	    var h = -1
-	    if (mpg_player != null) h = mpg_player!!.fxp.mediaH
+	    if (mpg_player != null) h = mpg_player!!.fxp!!.mediaH
 	    Log.getLogger().info("Movie width: $h")
 	    return h
 	}
@@ -284,9 +284,9 @@ class MpgAction : ActionI {
 			 pathA: Array<String>,
 			 ord: Int,
 			 hook: Runnable) {
-	if (mpg_player == null) mpg_player = MpgPlayer.createMpgPlayer(action_s, jpan, window.width, window.height) else Log.getLogger().info("already created MpgPayer ... ")
+	if (mpg_player == null) mpg_player = MpgPlayer.createMpgPlayer(action_s!!, jpan, window.width, window.height) else Log.getLogger().info("already created MpgPayer ... ")
 	Log.getLogger().info(":--: " + "mpg created " + mpg_player!!.origW + ' ' + mpg_player!!.origH)
-	mpg_player!!.fxp.waitReady()
+	mpg_player!!.fxp!!.waitReady()
 	again_play2 = true
 	again_audio2 = true
 	//mpg_player.setSize(mpg_player.getOrigW(), mpg_player.getOrigH());
@@ -303,7 +303,7 @@ class MpgAction : ActionI {
 	    if (show_sentence) {
 		val colors = hm["colors"] as HashMap<String, ColorColors>?
 		showMsgFx(MsgItem("", sentence), colors)
-		while (isMsg && mpg_player!!.fxp.messageShown) {
+		while (isMsg && mpg_player!!.fxp!!.messageShown) {
 		    m_sleep(200)
 		    if (again_audio_request && again_audio2) {
 			hook.run()
@@ -332,17 +332,17 @@ class MpgAction : ActionI {
     }
 
     private fun showMsgFx(mi: MsgItem, colors: HashMap<String, ColorColors>?) {
-	val ww = mpg_player!!.visual.width
-	val hh = mpg_player!!.visual.height
-	mpg_player!!.fxp.showMsg(mi, ww, hh, colors)
-	mpg_player!!.visual.repaint()
-	mpg_player!!.fxp.messageShown = true
+	val ww = mpg_player!!.visual!!.width
+	val hh = mpg_player!!.visual!!.height
+	mpg_player!!.fxp!!.showMsg(mi, ww, hh, colors)
+	mpg_player!!.visual!!.repaint()
+	mpg_player!!.fxp!!.messageShown = true
 	isMsg = true
     }
 
     fun hideMsg(hide: Boolean) {
-	mpg_player!!.fxp.hideMsg(hide)
-	mpg_player!!.visual.repaint()
+	mpg_player!!.fxp!!.hideMsg(hide)
+	mpg_player!!.visual!!.repaint()
     }
 
     override fun clearScreen() {}
