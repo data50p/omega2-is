@@ -2637,6 +2637,7 @@ public class Lesson implements LessonCanvasListener {
 	    try {
 		le_canvas.getTarget().reloadComposite(test_txt);
 	    } catch (Exception ex) {
+		ex.printStackTrace();
 		global_skipF(true);
 		JOptionPane.showMessageDialog(ApplContext.top_frame,
 			T.t("Can't find test test ") + test_txt);

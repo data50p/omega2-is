@@ -182,6 +182,10 @@
    <string>&lt;Ny Elev&gt;</string>
   </void>
   <void method="put">
+   <string>Can&apos;t find test test </string>
+   <string>Can&apos;t find test test </string>
+  </void>
+  <void method="put">
    <string>Correct answer is :</string>
    <string>Correct answer is :</string>
   </void>

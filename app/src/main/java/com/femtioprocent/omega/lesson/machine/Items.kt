@@ -20,7 +20,7 @@ class Items {
 	}
     }
 
-    internal constructor(sa: Array<Array<String>>, tg: Target?) {      // text, lid,lid... 4 random target list
+    internal constructor(sa: MutableList<Array<String?>?>, tg: Target?) {      // text, lid,lid... 4 random target list
 	item_entry_list = ArrayList()
 	val item_entry = ItemEntry()
 	item_entry.tid = "X"
@@ -29,7 +29,7 @@ class Items {
 	item_entry_list.add(item_entry)
     }
 
-    internal constructor(sa: Array<Array<String>>, tg: Target?, dummy: Boolean) {      // text, lid,lid... 4 random target list
+    internal constructor(sa: MutableList<Array<String?>?>, tg: Target?, dummy: Boolean) {      // text, lid,lid... 4 random target list
 	item_entry_list = ArrayList()
 	val item_entry = ItemEntry()
 	item_entry.tid = "X"

@@ -107,7 +107,7 @@ public class LessonEditorPanel extends JPanel {
             if (v.id.equals("tid"))
                 tit.tid = v.getStr();
             else if (v.id.equals("lid"))
-                tit.lid = v.getStr();
+                tit.lID4TgOrNull_KeepVar_set(v.getStr());
             else if (v.id.equals("type"))
                 tit.type = v.getStr();
             le_canvas.repaint(tit);

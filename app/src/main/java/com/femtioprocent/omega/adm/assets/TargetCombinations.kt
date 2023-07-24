@@ -59,7 +59,7 @@ class TargetCombinations {
 
     var src_set: MutableSet<TCItem> = HashSet()
     var dep_set: MutableSet<TCItem> = HashSet()
-    var tg_set: Set<Target> = HashSet()
+    var tg_set: MutableSet<Target> = HashSet()
     private fun merge(tc: TargetCombinations) {
 	dep_set.addAll(tc.dep_set)
 	src_set.addAll(tc.src_set)

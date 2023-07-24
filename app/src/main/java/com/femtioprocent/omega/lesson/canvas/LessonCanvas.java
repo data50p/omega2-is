@@ -2301,7 +2301,7 @@ public class LessonCanvas extends BaseCanvas {
                                 g2.setColor(Color.black);
                                 g2.drawString(tit.tid, tgr.x + 15, tgr.y - 8);   // ordtyp
                                 int txtH = getCaH() / 30;
-                                if (tit.lid != null) {
+                                if (tit.lID4TgOrNull_KeepVar_() != null) {
                                     String ls = tit.getLID4TgOrNull();         // banid
                                     if (ls != null) {
                                         g2.drawString(ls, tgr.x + 15, tgr.y - 8 - txtH);

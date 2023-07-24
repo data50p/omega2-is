@@ -81,19 +81,19 @@ class ItemEntry {
 	all_items = items
     }
 
-    fun load(sa: Array<Array<String>>) {
+    fun load(sa: MutableList<Array<String?>?>) {
 	items = ArrayList<Item?>()
 	for (i in sa.indices) {
-	    val item = Item(sa[i][0], true)
-	    item.setActionFile(sa[i][2])
-	    item.setLid_Krull(sa[i][1])
+	    val item = Item(sa[i]!![0], true)
+	    item.setActionFile(sa[i]!![2]!!)
+	    item.setLid_Krull(sa[i]!![1]!!)
 	    item.it_ent = this
 	    item.ord = i
-	    item.setSound_Krull(sa[i][3])
-	    if (sa[i].size > 4) {
-		item.setVar(0, sa[i][4])
-		item.setVar(1, sa[i][4])
-		item.setVar(2, sa[i][4])
+	    item.setSound_Krull(sa[i]!![3]!!)
+	    if (sa[i]!!.size > 4) {
+		item.setVar(0, sa[i]!![4])
+		item.setVar(1, sa[i]!![4])
+		item.setVar(2, sa[i]!![4])
 	    }
 	    (items as ArrayList<Item?>).add(item)
 	}
