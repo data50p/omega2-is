@@ -50,7 +50,7 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
         var URL_BASE_AS_FILE = ""
 	var logon = !false
 	@JvmField
-        var def_log = Log()
+        var def_log = Log
 	@JvmField
         var sout_log = def_log
 	@JvmField

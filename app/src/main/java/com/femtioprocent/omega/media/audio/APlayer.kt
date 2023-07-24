@@ -111,7 +111,7 @@ class APlayer {
 			list = ListFilesURL.getMediaList(dir)
 			val ct1a = System.nanoTime()
 			dir_cache[dir] = list
-			Log.getLogger().info(":--: " + "===== " + dir + ' ' + (ct1a - ct0a))
+			Log.getLogger().info(":--: " + "===== " + dir + ' ' + (ct1a - ct0a) + ' ' + list)
 		    } catch (ex: Exception) {
 			Log.getLogger().info("ERR: Can't get file list $lang $name $attr $id")
 		    }
