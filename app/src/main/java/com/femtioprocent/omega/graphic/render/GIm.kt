@@ -62,10 +62,7 @@ abstract class GIm {
     }
 
     fun setAttribName(an: String?) {
-	var an = an
-	if (an != null && an.length == 0) an = null
-	//	OmegaContext.sout_log.getLogger().info(":--: " + "ATTR dep_set " + an);
-	xim.attrib = an
+	if (an != null && an.length == 0) xim.attrib = null else xim.attrib = an
 	initIm()
     }
 
@@ -77,10 +74,7 @@ abstract class GIm {
     }
 
     fun setAttribNameUncommited(an: String?) {
-	var an = an
-	if (an == null) an = "@@@ null @@@"
-	//	OmegaContext.sout_log.getLogger().info(":--: " + "ATTR dep_set delayed " + an);
-	delayed_id_attrib = an
+	delayed_id_attrib = an ?: "@@@ null @@@"
     }
 
     fun setMirror(m_x: Boolean, m_y: Boolean) {
@@ -126,8 +120,9 @@ abstract class GIm {
 	render(at)
     }
 
-    val fNBase: String
-	get() = xim.fnBase
+    fun fNBase(): String {
+	return xim.fNBase()
+    }
     val peTaskNid: String
 	get() = xim.peTaskNid
     val baseImage: Image

@@ -131,7 +131,7 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
 	bound_act = act
 	bound_act_ixx = ixx
 	if (act != null) {
-	    image_name!!.text = act.gimae.fNBase
+	    image_name!!.text = act.gimae.fNBase()
 	    image_petasknid!!.text = act.gimae.peTaskNid
 	    lesson_id!!.text = act.gimae.lessonId
 	    var1!!.text = act.gimae.getVariable(1)

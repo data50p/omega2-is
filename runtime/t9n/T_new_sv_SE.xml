@@ -54,6 +54,10 @@
    <string>Error while loading lesson: &quot;</string>
   </void>
   <void method="put">
+   <string>Can&apos;t find animation: anim/ActiveAnim/DancingAroundStone.omega_anim</string>
+   <string>Can&apos;t find animation: anim/ActiveAnim/DancingAroundStone.omega_anim</string>
+  </void>
+  <void method="put">
    <string>Path for timeline</string>
    <string>Path for timeline</string>
   </void>
@@ -68,6 +72,10 @@
   <void method="put">
    <string>Omega - Message</string>
    <string>Omega - Message</string>
+  </void>
+  <void method="put">
+   <string>Can&apos;t find animation: anim/ActiveAnim/B1.omega_anim</string>
+   <string>Can&apos;t find animation: anim/ActiveAnim/B1.omega_anim</string>
   </void>
   <void method="put">
    <string>relative {, [, or empty for here</string>
@@ -184,6 +192,10 @@
   <void method="put">
    <string>Can&apos;t find test test </string>
    <string>Can&apos;t find test test </string>
+  </void>
+  <void method="put">
+   <string>Can&apos;t find animation: anim/ActiveAnim/Swing.omega_anim</string>
+   <string>Can&apos;t find animation: anim/ActiveAnim/Swing.omega_anim</string>
   </void>
   <void method="put">
    <string>Correct answer is :</string>
