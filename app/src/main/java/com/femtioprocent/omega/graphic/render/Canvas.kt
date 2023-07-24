@@ -29,15 +29,14 @@ open class Canvas : JPanel(), ImageObserver {
     var wings: MutableList<Wing> = ArrayList()
     @JvmField
     var HIDDEN = false
+    
     fun resetBackground() {
 	setBackground(im_name, wings)
     }
 
-    open var background: String?
-	get() = "image_background" // TODO: super.getBackground()
-	set(im_name) {
-	    setBackground(im_name, null)
-	}
+    fun setBackground(im_name: String?) {
+	setBackground(im_name, null)
+    }
 
     fun setBackground(im_name: String?, wings: MutableList<Wing>?) {
 	var wings = wings

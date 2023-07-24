@@ -4,7 +4,6 @@ import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.canvas.LessonCanvas
 import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.rand
-import com.femtioprocent.omega.util.SundryUtils.scrambleArr
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.xml.Element
 import java.awt.Font
@@ -279,9 +278,7 @@ class ItemEntry {
     }
 
     fun mixList() {
-	val iA = items!!.toTypedArray<Item?>()
-	scrambleArr(iA)
-	//TODO: items = iA.asList()
+	items!!.shuffle()
 	reOrdItem()
 	Log.getLogger().info("mixList $items")
 	if (Tr) Log.getLogger().info(":--: mixList $items")

@@ -695,7 +695,7 @@ class AnimCanvas : Canvas {
 	get() = gel
 
     private fun initBG() {
-	background = "default/omega_splash.gif"
+	setBackground("default/omega_splash.gif")
 	centerBackground()
 	repaint()
     }

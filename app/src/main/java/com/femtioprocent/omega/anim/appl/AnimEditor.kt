@@ -42,11 +42,13 @@ class AnimEditor : JFrame {
     var c: Container? = null
     var toolbar_cmd: ToolBar_AnimEditor? = null
     var toolbar_top: ToolBar_AnimEditor? = null
+
     @JvmField
     var tlp: TimeLinePanel? = null
     var tlc: TimeLineComponent? = null
     var arun: AnimRuntime? = null
     var httpd: Server
+
     @JvmField
     var cabaret_panel: CabaretPanel? = null
     var wings_panel: WingsPanel? = null
@@ -74,7 +76,7 @@ class AnimEditor : JFrame {
 
     private fun maybeClose() {
 	Log.getLogger()
-	    .info("LessonRuntime want to close " + (ApplContext.top_frame === this) + ' ' + ApplContext.top_frame + '\n' + this)
+		.info("LessonRuntime want to close " + (ApplContext.top_frame === this) + ' ' + ApplContext.top_frame + '\n' + this)
 	if (ApplContext.top_frame === this) System.exit(0)
     }
 
@@ -89,19 +91,19 @@ class AnimEditor : JFrame {
 	if (e.id != WindowEvent.WINDOW_CLOSING) super.processEvent(e) else {
 	    var s = ""
 	    if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
-		"\n" + t("Changes not saved")
+		    "\n" + t("Changes not saved")
 	    if (exit_on_close) {
 		val sel = JOptionPane.showConfirmDialog(
-		    this@AnimEditor,
-		    t("Are you sure to exit Omega?") +
-			    s
+			this@AnimEditor,
+			t("Are you sure to exit Omega?") +
+				s
 		)
 		if (sel == 0) super.processEvent(e)
 	    } else {
 		val sel = JOptionPane.showConfirmDialog(
-		    this@AnimEditor,
-		    t("Are you sure to close Anim Editor?") +
-			    s
+			this@AnimEditor,
+			t("Are you sure to close Anim Editor?") +
+				s
 		)
 		if (sel == 0) {
 		    try {
@@ -144,20 +146,20 @@ class AnimEditor : JFrame {
 		if (("exit" == cmd)) {
 		    var s = ""
 		    if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
-			"\n" + t("Changes not saved")
+			    "\n" + t("Changes not saved")
 		    if (false && exit_on_close) {
 			val sel = JOptionPane.showConfirmDialog(
-			    this@AnimEditor,
-			    t("Are you sure to exit Omega?") +
-				    s
+				this@AnimEditor,
+				t("Are you sure to exit Omega?") +
+					s
 			)
 			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0) System.exit(0)
 		    } else {
 			val sel = JOptionPane.showConfirmDialog(
-			    this@AnimEditor,
-			    t("Are you sure to close Anim Editor?") +
-				    s
+				this@AnimEditor,
+				t("Are you sure to close Anim Editor?") +
+					s
 			)
 			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0) {
@@ -172,9 +174,9 @@ class AnimEditor : JFrame {
 		} else if (("new" == cmd)) {
 		    if (isDirty) {
 			val sel = JOptionPane.showConfirmDialog(
-			    this@AnimEditor,
-			    (t("Are you sure to start with a new animation") + "\n" +
-				    t("Changes are unsaved!"))
+				this@AnimEditor,
+				(t("Are you sure to start with a new animation") + "\n" +
+					t("Changes are unsaved!"))
 			)
 			if (sel == 0) initNew()
 		    } else {
@@ -187,9 +189,9 @@ class AnimEditor : JFrame {
 		} else if (("open" == cmd)) {
 		    if (isDirty) {
 			val sel = JOptionPane.showConfirmDialog(
-			    this@AnimEditor,
-			    (t("Are you sure to open an animation") + "\n" +
-				    t("Changes are unsaved!"))
+				this@AnimEditor,
+				(t("Are you sure to open an animation") + "\n" +
+					t("Changes are unsaved!"))
 			)
 			if (sel == 0) open()
 		    } else {
@@ -200,9 +202,9 @@ class AnimEditor : JFrame {
 		    if (fn != null) {
 			if (isDirty) {
 			    val sel = JOptionPane.showConfirmDialog(
-				this@AnimEditor,
-				(t("Are you sure to reopen the animation") + "\n" +
-					t("Changes are unsaved!"))
+				    this@AnimEditor,
+				    (t("Are you sure to reopen the animation") + "\n" +
+					    t("Changes are unsaved!"))
 			    )
 			    if (sel == 0) open(fn)
 			} else {
@@ -210,10 +212,10 @@ class AnimEditor : JFrame {
 			}
 		    } else {
 			JOptionPane.showMessageDialog(
-			    AnimContext.top_frame,
-			    t("No name, use open."),
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE
+				AnimContext.top_frame,
+				t("No name, use open."),
+				"Omega",
+				JOptionPane.INFORMATION_MESSAGE
 			)
 		    }
 		} else if (("resetstarter" == cmd)) {
@@ -230,7 +232,7 @@ class AnimEditor : JFrame {
 		    AnimContext.ae!!.wings_panel!!.popup(0)
 		} else if (("dep_set background" == cmd)) {
 		    val url_s: String? = fileAsURLString
-		    // TODO: this.background = url_s
+		    setBackground(url_s)
 		    wings_panel!!.removeAllWings()
 		    a_ctxt!!.anim_canvas!!.toolExecute!!.execute("fit")
 		} else if (("dep_set actor0" == cmd)) {
@@ -341,13 +343,13 @@ class AnimEditor : JFrame {
 	toolbar_cmd!!.add(tac)
 	jmpa.add(ToolAction(t("Delete segment"), "omega/PathDelete", "path_delete", ae_texec, true).also { tac = it })
 	jmpa.add(
-	    ToolAction(
-		t("Delete whole path and timeline"),
-		"omega/PathDeleteAll",
-		"path_delete_all",
-		ae_texec,
-		true
-	    ).also { tac = it })
+		ToolAction(
+			t("Delete whole path and timeline"),
+			"omega/PathDeleteAll",
+			"path_delete_all",
+			ae_texec,
+			true
+		).also { tac = it })
 	//toolbar_cmd.add(tac);
 	toolbar_cmd!!.addSeparator()
 	jmtl.add(ToolAction(t("Play"), "media/Play", "play", ae_texec).also { tac = it })
@@ -540,21 +542,19 @@ class AnimEditor : JFrame {
 	AnimContext.ae!!.isDirty = true
     }
 
-/*    var background: Color?
-	get() = super.getBackground()
-	set(url_s) {
-	    val ua = Files.splitUrlString(url_s.toString())
-	    if (ua != null) {
-		a_ctxt!!.anim_canvas!!.setBackground(ua[1], ArrayList())
-		if (wings_panel != null) {
-		    wings_panel!!.removeAllWings()
-		}
-	    } else {
-		Log.getLogger().info(":--: ERROR file: $url_s")
+    fun setBackground(url_s: String?) {
+	val ua = Files.splitUrlString(url_s.toString())
+	if (ua != null) {
+	    a_ctxt!!.anim_canvas!!.setBackground(ua[1], ArrayList())
+	    if (wings_panel != null) {
+		wings_panel!!.removeAllWings()
 	    }
-	    AnimContext.ae!!.isDirty = true
+	} else {
+	    Log.getLogger().info(":--: ERROR file: $url_s")
 	}
- */
+	AnimContext.ae!!.isDirty = true
+    }
+
     var is_dirty = false
     var editstate_listeners = EventListenerList()
     fun addEditStateListener(l: EditStateListener) {
