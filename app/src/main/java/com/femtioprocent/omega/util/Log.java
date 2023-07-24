@@ -35,6 +35,7 @@ public class Log {
             String s = record.getSourceClassName();
             s = s.substring(s.lastIndexOf('.') + 1);
             long ms = record.getMillis();
+            long th_id = record.getLongThreadID();
             Date dt = new Date(ms);
             String d = dformat.format(dt);
             int lt = (int) (ms - last);
@@ -42,6 +43,7 @@ public class Log {
             return "" +
                     SundryUtils.padRight("" + record.getLevel(), 10, ' ') +
                     d + ' ' +
+                    SundryUtils.padLeft("" + th_id, 12, ' ') + ' ' +
                     SundryUtils.padLeft("" + lt, 5, ' ') + ' ' +
                     SundryUtils.padRight("" + s, 23, ' ') + ' ' +
                     SundryUtils.padRight("" + record.getSourceMethodName(), 22, ' ') + ' ' +
