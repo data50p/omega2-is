@@ -210,7 +210,7 @@ class FxMoviePlayer internal constructor(var winW: Int, var winH: Int) {
 
     private fun getColor(colors: HashMap<String, ColorColors>?, key: String, def: Color): javafx.scene.paint.Color {
 	val c = if (colors != null) colors[key]!!.color else def
-	return javafx.scene.paint.Color.rgb(c.red, c.green, c.blue)
+	return javafx.scene.paint.Color.rgb(c!!.red, c!!.green, c!!.blue)
     }
 
     fun hideMsg(hide: Boolean) {

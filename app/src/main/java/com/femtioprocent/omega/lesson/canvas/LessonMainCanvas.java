@@ -58,7 +58,7 @@ public class LessonMainCanvas extends BaseCanvas {
         focus_list = new CycleList(-1);
     }
 
-    String getPanelName() {
+    public String getPanelName() {
         return "main";
     }
 
@@ -419,7 +419,7 @@ public class LessonMainCanvas extends BaseCanvas {
         last_focus_ord = ord;
     }
 
-    void setNextRed() {
+    public void setNextRed() {
         int how_many = howManyLessonButtons();
         int ord = last_focus_ord + 1;
         if (ord == how_many) {
@@ -439,7 +439,7 @@ public class LessonMainCanvas extends BaseCanvas {
         requestFocusOrd(ord);
     }
 
-    void setRed(int ix) {
+    public void setRed(int ix) {
         int ord = ix;
         if (ord > 9 || lesson[ord] == null || !lesson[ord].isVisible()) {
             return;
@@ -448,7 +448,7 @@ public class LessonMainCanvas extends BaseCanvas {
         requestFocusOrd(ord);
     }
 
-    void setPrevRed() {
+    public void setPrevRed() {
         int ord = last_focus_ord - 1;
         if (ord < 0)
             for (int i = 9; i > 0; i--) {
