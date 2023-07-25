@@ -237,7 +237,7 @@ class MpgAction : ActionI {
 		val ww = 4 * hh / 3
 		try {
 		    val img = ScaledImageIcon.createImageIcon(jpan,
-			    msg_item!!.image,
+			    msg_item!!.image!!,
 			    ww,
 			    hh)!!.image
 		    g2.drawImage(img, x, y + th + 2, null)
@@ -302,7 +302,7 @@ class MpgAction : ActionI {
 //	    dispose();
 	    if (show_sentence) {
 		val colors = hm["colors"] as HashMap<String, ColorColors>?
-		showMsgFx(MsgItem("", sentence), colors)
+		showMsgFx(MsgItem("", sentence!!), colors)
 		while (isMsg && mpg_player!!.fxp!!.messageShown) {
 		    m_sleep(200)
 		    if (again_audio_request && again_audio2) {
@@ -320,7 +320,7 @@ class MpgAction : ActionI {
 			    again_play2 = false
 			    again_play_request = false
 			    hideMsg(false)
-			    showMsg(MsgItem("", sentence))
+			    showMsg(MsgItem("", sentence!!))
 			} else {
 			    return
 			}
