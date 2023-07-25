@@ -487,8 +487,8 @@ class AnimCanvas : Canvas {
 	    offs_w == 0.0 && offs_h == 0.0 && sca == 1.0
 
     inner class GEL : GenericEventListener, ToolExecute {
-	override fun execute(id: String) {
-	    perform(id, 1.0)
+	override fun execute(id: String?) {
+	    perform(id!!, 1.0)
 	}
 
 	override fun genericEvent(gev: GenericEvent?, a: Any?) {

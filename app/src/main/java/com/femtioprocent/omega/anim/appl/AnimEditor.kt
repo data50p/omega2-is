@@ -141,7 +141,7 @@ class AnimEditor : JFrame {
 	    }
 	})
 	val ae_texec: ToolExecute = object : ToolExecute {
-	    override fun execute(cmd: String) {
+	    override fun execute(cmd: String?) {
 		if (OmegaConfig.T) Log.getLogger().info(":--: AnimEditor.texec: execute $cmd")
 		if (("exit" == cmd)) {
 		    var s = ""

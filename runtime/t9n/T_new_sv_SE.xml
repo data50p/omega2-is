@@ -118,6 +118,10 @@
    <string>Lesson lang:</string>
   </void>
   <void method="put">
+   <string>Scan</string>
+   <string>Scan</string>
+  </void>
+  <void method="put">
    <string>Show Sign after sentence</string>
    <string>Show Sign after sentence</string>
   </void>
