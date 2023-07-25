@@ -726,11 +726,11 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    }
 		}
 		if (edit) {
-		    var it: Iterator<*> = addBoxes!!.li.iterator()
+		    var it: Iterator<ShapeList.ShapeItem> = addBoxes!!.li.iterator()
 		    while (it.hasNext()) {
-			val oa = it.next() as Array<Any>
-			val id = oa[0] as String
-			val shp = oa[1] as Shape
+			val oa = it.next()
+			val id = oa.id
+			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
 			    if (id.length > 0) {
 				addItemEntry(id.toInt())
@@ -739,9 +739,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    }
 		    it = delBoxes!!.li.iterator()
 		    while (it.hasNext()) {
-			val oa = it.next() as Array<Any>
-			val id = oa[0] as String
-			val shp = oa[1] as Shape
+			val oa = it.next()
+			val id = oa.id
+			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
 			    if (id.length > 0) {
 				delItemEntry(id.toInt())
@@ -750,9 +750,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    }
 		    it = tgAddBoxes!!.li.iterator()
 		    while (it.hasNext()) {
-			val oa = it.next() as Array<Any>
-			val id = oa[0] as String
-			val shp = oa[1] as Shape
+			val oa = it.next()
+			val id = oa.id
+			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
 			    if (id.length > 0) {
 				if (this@LessonCanvas.target!!.get_howManyT_Items() < 6) {
@@ -763,9 +763,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    }
 		    it = tgDelBoxes!!.li.iterator()
 		    while (it.hasNext()) {
-			val oa = it.next() as Array<Any>
-			val id = oa[0] as String
-			val shp = oa[1] as Shape
+			val oa = it.next()
+			val id = oa.id
+			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
 			    if (id.length > 0) {
 				delTarget(id.toInt())

@@ -607,7 +607,7 @@ class AnimEditor : JFrame {
 	wings_panel!!.removeAllWings()
 	val el = anim_repository!!.open(a_ctxt, omegaAssets(fn))
 	anim_repository!!.load(a_ctxt, el)
-	httpd.hashMap["lesson:loaded resource "] = anim_repository!!.name
+	httpd.hm["lesson:loaded resource "] = anim_repository!!.name
 	a_ctxt!!.anim_canvas!!.toolExecute!!.execute("fit")
 	tlc!!.repaint()
 	anim_repository!!.name = fn
