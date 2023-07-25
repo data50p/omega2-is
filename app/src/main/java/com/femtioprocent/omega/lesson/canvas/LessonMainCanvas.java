@@ -324,7 +324,7 @@ public class LessonMainCanvas extends BaseCanvas {
         if (Lesson.skip_F)
             return true;
         if (OmegaConfig.isKeyESC(kc)) {
-            om_msg_mgr.fire("button main:quit");
+            getOm_msg_mgr().fire("button main:quit");
             return true;
         }
 

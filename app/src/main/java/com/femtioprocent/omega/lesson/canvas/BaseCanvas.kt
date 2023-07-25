@@ -25,8 +25,7 @@ import javax.swing.event.EventListenerList
 import javax.swing.event.MouseInputAdapter
 
 open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
-    @JvmField
-    var om_msg_mgr = Manager()
+    open var om_msg_mgr = Manager()
     @JvmField
     var lc_listeners: EventListenerList
     @JvmField

@@ -1381,10 +1381,10 @@ public class Lesson implements LessonCanvasListener {
 
 	// Server lessond = new Server();
 
-	sentence_canvas.om_msg_mgr.addListener(om_msg_li);
-	le_canvas.om_msg_mgr.addListener(om_msg_li);
-	lemain_canvas.om_msg_mgr.addListener(om_msg_li);
-	pupil_canvas.om_msg_mgr.addListener(om_msg_li);
+	sentence_canvas.getOm_msg_mgr().addListener(om_msg_li);
+	le_canvas.getOm_msg_mgr().addListener(om_msg_li);
+	lemain_canvas.getOm_msg_mgr().addListener(om_msg_li);
+	pupil_canvas.getOm_msg_mgr().addListener(om_msg_li);
 
 	restoreSettings();
     }
