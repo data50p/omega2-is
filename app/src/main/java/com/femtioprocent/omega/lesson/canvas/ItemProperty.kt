@@ -308,7 +308,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	}
     }
 
-    public override fun updTrigger(cb: JComboBox<*>) {
+    public override fun updTrigger(cb: JComboBox<*>?) {
 	try {
 	    var cbg: JComboBox<*>?
 
@@ -319,11 +319,11 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	    cbg = guimap["actors"] as JComboBox<*>?
 	    if (cb === cbg) {
 		val tf = guimap["lid"] as JTextField?
-		updTF(tf, cbg)
+		updTF(tf!!, cbg)
 	    }
 	    cbg = guimap["fnamelist"] as JComboBox<*>?
 	    if (cb === cbg) {
-		val s = cb.selectedItem as String
+		val s = cb!!.selectedItem as String
 		val fn: String?
 		fn = if (t("<Select file...>") == s) {
 		    fName
@@ -341,7 +341,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 //			cb2.setSelectedItem(s2);
 		    }
 		}
-		cb.selectedIndex = 0
+		cb!!.selectedIndex = 0
 	    }
 	} catch (ex: ClassCastException) {
 	    OmegaContext.sout_log.getLogger().info("ERR: CCE $ex")

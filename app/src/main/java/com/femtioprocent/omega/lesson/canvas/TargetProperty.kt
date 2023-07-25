@@ -144,12 +144,12 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
 	}
     }
 
-    public override fun updTrigger(cb: JComboBox<*>) {
+    override fun updTrigger(cb: JComboBox<*>?) {
 	try {
 	    var cbg: JComboBox<*>?
 	    cbg = guimap["type"] as JComboBox<*>?
 	    if (cb === cbg) {
-		val s = cb.selectedItem as String
+		val s = cb!!.selectedItem as String
 		//log  		OmegaContext.sout_log.getLogger().info(":--: " + "CB type " + cb);
 		/*
                   if ( s.equals("action") )
@@ -165,7 +165,7 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
 	    cbg = guimap["Slid"] as JComboBox<*>?
 	    if (cb === cbg) {
 		val tf = guimap["lid"] as JTextField?
-		updTF(tf, cbg)
+		updTF(tf!!, cbg)
 	    }
 	} catch (ex: ClassCastException) {
 	    OmegaContext.sout_log.getLogger().info("ERR: CCE $ex")

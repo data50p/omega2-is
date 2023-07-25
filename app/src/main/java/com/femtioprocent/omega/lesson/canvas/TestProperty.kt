@@ -220,7 +220,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 	}
     }
 
-    public override fun updTrigger(cb: JComboBox<*>) {
+    override fun updTrigger(cb: JComboBox<*>?) {
 	try {
 	    val cbg: JComboBox<*>?
 
@@ -238,7 +238,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 	    cbg = guimap["Slid"] as JComboBox<*>?
 	    if (cb === cbg) {
 		val tf = guimap["lid"] as JTextField?
-		updTF(tf, cbg)
+		updTF(tf!!, cbg)
 	    }
 	} catch (ex: ClassCastException) {
 	    OmegaContext.sout_log.getLogger().info("ERR: CCE $ex")
