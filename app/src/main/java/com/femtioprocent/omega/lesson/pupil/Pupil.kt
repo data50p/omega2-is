@@ -75,12 +75,12 @@ class Pupil(var name: String) {
     fun getImage(comp: Component?): Image? {
 	if (jparams == null) return null
 	val s = jparams!!["image"] as String? ?: return null
-	return ScaledImageIcon.createImageIcon(
-	    comp,
-	    s,
-	    100,
-	    80
-	).image
+	return ScaledImageIcon?.createImageIcon(
+		comp,
+		s,
+		100,
+		80
+	)!!.image
     }
 
     val imageName: String?

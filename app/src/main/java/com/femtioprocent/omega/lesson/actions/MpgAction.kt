@@ -52,7 +52,7 @@ class MpgAction : ActionI {
 	}
 
 	public override fun paintComponent(g: Graphics) {
-	    g.color = Lesson.omega_settings_dialog.action_movie_background.color
+	    g.color = Lesson.omega_settings_dialog.action_movie_background!!.color
 	    g.fillRect(0, 0, 2000, 2000)
 	    if (isMsg) msg_dlg.draw(g as Graphics2D)
 	    super.paintComponent(g)
@@ -239,7 +239,7 @@ class MpgAction : ActionI {
 		    val img = ScaledImageIcon.createImageIcon(jpan,
 			    msg_item!!.image,
 			    ww,
-			    hh).image
+			    hh)!!.image
 		    g2.drawImage(img, x, y + th + 2, null)
 		} catch (ex: Exception) {
 		}
@@ -249,9 +249,9 @@ class MpgAction : ActionI {
 		val ww = hh * 4
 		try {
 		    val img = ScaledImageIcon.createImageIcon(jpan,
-			    cont_image_fn,
+			    cont_image_fn!!,
 			    ww,
-			    hh).image
+			    hh)!!.image
 		    val imw = img.getWidth(null)
 		    g2.drawImage(img, x + w - imw - 3, y + h - hh - 3, null)
 		} catch (ex: Exception) {

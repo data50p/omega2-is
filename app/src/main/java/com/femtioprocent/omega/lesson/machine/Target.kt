@@ -728,7 +728,7 @@ class Target {
 	val list = ArrayList<String>()
 	for (i in t_items!!.indices) {
 	    val t_Item = getT_Item(i)
-	    val smfName = lmm.getSignMovieFileName(t_Item!!.item, this, i)
+	    val smfName = lmm.getSignMovieFileName(t_Item!!.item!!, this, i)
 	    if (smfName != null) {
 		list.add(smfName)
 	    } else {
