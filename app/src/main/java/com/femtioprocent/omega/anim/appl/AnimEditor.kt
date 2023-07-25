@@ -70,7 +70,7 @@ class AnimEditor : JFrame {
 	})
 	AnimContext.top_frame = this
 	init("Httpd", null)
-	httpd = ((getSubsystem("Httpd")) as Httpd?)!!.getHttpd()
+	httpd = Httpd.httpd!!
 	init(true, null)
     }
 
@@ -83,7 +83,7 @@ class AnimEditor : JFrame {
     constructor(fname: String) : super("Omega - " + t("Animator editor") + ": " + fname) {         // from lesson
 	AnimContext.top_frame = this
 	init("Httpd", null)
-	httpd = ((getSubsystem("Httpd")) as Httpd?)!!.getHttpd()
+	httpd = Httpd.httpd!!
 	init(false, fname)
     }
 

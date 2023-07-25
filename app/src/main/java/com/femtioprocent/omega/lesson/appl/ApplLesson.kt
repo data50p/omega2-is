@@ -17,7 +17,7 @@ open class ApplLesson internal constructor(title: String?, is_editor: Boolean) :
 	TOP_JFRAME = this
 	OmegaContext.init("Httpd", null)
 	val httpd_ = OmegaContext.getSubsystem("Httpd") as Httpd
-	httpd = Httpd.httpd
+	httpd = Httpd.httpd!!
 	if (OmegaConfig.fullScreen) {
 	    try {
 		val util = Class.forName("com.apple.eawt.FullScreenUtilities")

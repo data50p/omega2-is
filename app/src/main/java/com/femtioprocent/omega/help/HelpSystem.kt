@@ -38,7 +38,7 @@ open class HelpSystem {
     }
 
     private fun base(): String {
-	return if (ApplLesson.is_editor!!) "editor_manual" else "lesson_manual"
+	return if (ApplLesson.is_editor != null && ApplLesson.is_editor!!) "editor_manual" else "lesson_manual"
     }
 
     protected fun mkFileName(base_name: String): String {
@@ -47,7 +47,7 @@ open class HelpSystem {
     }
 
     fun showManualL(more: String?) {
-	if (ApplLesson.is_editor!!) show(
+	if (ApplLesson.is_editor != null && ApplLesson.is_editor!!) show(
 	    mkFileName(base()),
 	    800,
 	    600

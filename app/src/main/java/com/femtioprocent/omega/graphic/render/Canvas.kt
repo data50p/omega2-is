@@ -50,7 +50,7 @@ open class Canvas : JPanel(), ImageObserver {
 	this.bg = bg
 	updWings()
 	val httpd: Httpd = OmegaContext.getSubsystem("Httpd") as Httpd
-	Httpd.httpd.hashMap["lesson:background"] = imn
+	Httpd.httpd!!.hashMap["lesson:background"] = imn
 	repaint()
     }
 

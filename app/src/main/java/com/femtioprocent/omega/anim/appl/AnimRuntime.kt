@@ -57,7 +57,7 @@ class AnimRuntime {
 
     fun init1(ae: AnimEditor?) {
 	init("Httpd", null)
-	httpd = ((getSubsystem("Httpd")) as Httpd?)!!.getHttpd()
+	httpd = Httpd.httpd!!
 	anim_repository = Anim_Repository()
 	help = Anim_HelpSystem()
 
