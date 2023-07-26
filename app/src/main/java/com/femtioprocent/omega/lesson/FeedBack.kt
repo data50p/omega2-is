@@ -5,7 +5,7 @@ import javax.swing.JComponent
 import javax.swing.JPanel
 
 //import omega.lesson.test.*;
-internal abstract class FeedBack {
+abstract class FeedBack {
     @JvmField
     var mp: MpgPlayer? = null
     @JvmField

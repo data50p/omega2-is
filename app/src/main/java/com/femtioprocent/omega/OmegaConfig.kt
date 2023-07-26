@@ -28,7 +28,7 @@ object OmegaConfig {
     var key_select_1 = ' '.code
     var key_select_2 = '\r'.code
     var key_select_3 = '\n'.code
-    var LIU_Mode = false
+    var LIU_Mode = !false
     @JvmStatic
     fun isLIU_Mode(): Boolean {
 	Log.getLogger().info("is LIU_Mode: " + LIU_Mode)
