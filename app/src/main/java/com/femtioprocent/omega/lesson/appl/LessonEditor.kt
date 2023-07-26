@@ -188,6 +188,7 @@ $this"""
     }
 
     companion object {
+	var TOP_JFRAME: LessonEditor? = null
 	var title: String? = null
 	private var is_editor = false
 	private var is_dirty = false

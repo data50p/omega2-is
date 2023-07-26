@@ -227,9 +227,9 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
     fun setListData() {
 	try {
 	    val sa = register!!.getAllTestsAsName(null)
-	    if (cur_ix >= sa.size) cur_ix = sa.size - 1
+	    if (cur_ix >= sa!!.size) cur_ix = sa!!.size - 1
 	    val pup = register!!.pupil.name
-	    val res_name = register!!.rl.getFullFName(pup, sa[cur_ix])
+	    val res_name = register!!.rl.getFullFName(pup, sa!![cur_ix]!!)
 	    //log	OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 	    val rt = ResultTest(pup, "", "", res_name)
 	    var pa_n = if (filter[F_T]) rt.getEntrySize("test") else 0
@@ -283,10 +283,10 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
 
     fun upd() {
 	val sa = register!!.getAllTestsAsName(null)
-	if (cur_ix >= sa.size) cur_ix = sa.size - 1
-	setLessonName(sa[cur_ix])
+	if (cur_ix >= sa!!.size) cur_ix = sa!!.size - 1
+	setLessonName(sa!![cur_ix])
 	setListData()
-	stat!!.text = "" + (cur_ix + 1) + " / " + sa.size
+	stat!!.text = "" + (cur_ix + 1) + " / " + sa!!.size
 	pack()
 
 //  	    // make it bigger to accomodate scrollbar

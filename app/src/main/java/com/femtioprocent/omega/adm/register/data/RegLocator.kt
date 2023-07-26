@@ -41,7 +41,7 @@ class RegLocator {
 	    return removePrefix(removeSuffix(sa, PUPIL_SUF), aRegisterFbase() + File.separatorChar)
 	}
 
-    fun getAllResultsFName(pupil: String, with: Array<String>?): Array<String?>? {
+    fun getAllResultsFName(pupil: String, with: Array<String>): Array<String?>? {
 	return scanDir(aRegisterFbase() + File.separatorChar + pupil + PUPIL_SUF, FilenameFilterExt(testSuffix, with))
     }
 

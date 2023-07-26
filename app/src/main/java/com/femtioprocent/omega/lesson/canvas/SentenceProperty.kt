@@ -319,10 +319,10 @@ class SentenceProperty internal constructor(var owner: JFrame, @JvmField var l_c
 	val sa = l_ctxt.lessonCanvas.getAllTargetCombinationsEx(" ", false, '{')
 	tmm = l_ctxt.lesson.getTestMatrix(sa)
 	OmegaContext.sout_log.getLogger().info(":--: " + "Got sa sent " + a2s(sa))
-	val tmod = SenProp_TableModel(this, sa, tmm)
+	val tmod = SenProp_TableModel(this, sa, tmm!!)
 	val tsort = TableSorter(tmod)
 	table = JTable(tsort)
-	tsort.addMouseListenerToHeaderInTable(table)
+	tsort.addMouseListenerToHeaderInTable(table!!)
 	val jscr = JScrollPane(
 	    table,
 	    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,

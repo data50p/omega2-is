@@ -59,6 +59,6 @@ object LoadImage {
 
     @JvmStatic
     fun loadAndWaitFromResource(comp: Component?, im_name: String?): Image {
-	return OmegaSwingUtils.getImage(im_name)
+	return OmegaSwingUtils.getImage(im_name!!)
     }
 }

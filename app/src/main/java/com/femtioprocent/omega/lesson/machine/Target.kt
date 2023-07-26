@@ -1296,14 +1296,14 @@ class Target {
 	val tc = TargetCombinations()
 
 	// add lesson icons
-	val lln = lesson.loadedFName
+	val lln = lesson.loadedFName!!
 	val ix = lln.lastIndexOf("/")
 	if (ix != -1) {
 	    val llnBase = lln.substring(0, ix)
 	    addLessonIcon(tc, "$llnBase/image.png")
 	    addLessonIcon(tc, "$llnBase/image_enter.png")
 	}
-	val media = lesson.action_specific.media
+	val media = lesson.action_specific!!.media
 	for (s in media) tc.dep_set.add(TCItem(s!!))
 	val tg2 = this
 	val Tn = tg2.get_howManyT_Items()

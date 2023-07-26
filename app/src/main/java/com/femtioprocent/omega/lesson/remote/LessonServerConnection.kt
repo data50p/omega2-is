@@ -19,11 +19,11 @@ class LessonServerConnection internal constructor(var so: Socket, var server: Le
 		val chch = ch as Char
 		try {
 		    when (chch) {
-			'l' -> Lesson.le_canvas.gotoBoxRel(1, 0)
-			'h' -> Lesson.le_canvas.gotoBoxRel(-1, 0)
-			'k' -> Lesson.le_canvas.gotoBoxRel(0, -1)
-			'j' -> Lesson.le_canvas.gotoBoxRel(0, 1)
-			' ' -> Lesson.le_canvas.selectBox(false, ct())
+			'l' -> Lesson.le_canvas!!.gotoBoxRel(1, 0)
+			'h' -> Lesson.le_canvas!!.gotoBoxRel(-1, 0)
+			'k' -> Lesson.le_canvas!!.gotoBoxRel(0, -1)
+			'j' -> Lesson.le_canvas!!.gotoBoxRel(0, 1)
+			' ' -> Lesson.le_canvas!!.selectBox(false, ct())
 			'Q' -> break@LOOP
 		    }
 		} catch (ex: NullPointerException) {

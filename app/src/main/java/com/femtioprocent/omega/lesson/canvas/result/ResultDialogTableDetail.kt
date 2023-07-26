@@ -464,7 +464,7 @@ class ResultDialogTableDetail(var owner: Frame,
     fun setTableData() {
 	try {
 	    val sa = register!!.getAllTestsAsName(with)
-	    if (false && sa.size == 0) {
+	    if (false && sa!!.size == 0) {
 		val data = Array(1) { arrayOfNulls<String?>(8) }
 		data[0][0] = "---"
 		tmod!!.setData_(data)
@@ -477,7 +477,7 @@ class ResultDialogTableDetail(var owner: Frame,
 // 	    if ( cur_ix < 0 )
 // 		cur_ix = 0;
 	    val pup = register!!.pupil.name
-	    val res_name = register!!.rl.getFullFName(pup, sa[cur_ix])
+	    val res_name = register!!.rl.getFullFName(pup, sa!![cur_ix]!!)
 	    //log	    OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 
 // 	    if ( res_name.equals(last) )
@@ -585,10 +585,10 @@ class ResultDialogTableDetail(var owner: Frame,
 	stat_tf1!!.text = "?"
 	val sa = register!!.getAllTestsAsName(with)
 	if (cur_ix < 0) cur_ix = 0
-	if (cur_ix > sa.size - 1) cur_ix = sa.size - 1
-	setLessonName(sa[cur_ix])
+	if (cur_ix > sa!!.size - 1) cur_ix = sa!!.size - 1
+	setLessonName(sa!![cur_ix])
 	setTableData()
-	stat!!.text = "" + (cur_ix + 1) + " / " + sa.size
+	stat!!.text = "" + (cur_ix + 1) + " / " + sa!!.size
 	upd_stat()
 	//	pack();
 

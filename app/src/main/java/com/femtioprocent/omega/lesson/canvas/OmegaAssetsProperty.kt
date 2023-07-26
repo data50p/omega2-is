@@ -124,27 +124,27 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 		targetCombinationsBuilder = TargetCombinations.Builder()
 		//		targetCombinationsBuilder.add(latestTargetCombinations);
 		latestTargetCombinations = targetCombinationsBuilder.asOne()
-		tmod!!.update(latestTargetCombinations)
+		tmod!!.update(latestTargetCombinations!!)
 		oaBundleJB!!.text = t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()
 	    }
 	    if (s == "add bundle") {
 		targetCombinationsBuilder.add(latestTargetCombinations!!)
 		latestTargetCombinations = targetCombinationsBuilder.asOne()
-		tmod!!.update(latestTargetCombinations)
+		tmod!!.update(latestTargetCombinations!!)
 		oaBundleJB!!.text = t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()
 	    }
 	    if (s == "import bundle") {
 		importOmegaAssetsBundle(true)
-		tmod!!.update(latestTargetCombinations)
+		latestTargetCombinations?.let { tmod!!.update(it) }
 		oaBundleJB!!.text = t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()
 	    }
 	    if (s == "view bundle") {
 		importOmegaAssetsBundle(false)
-		tmod!!.update(latestTargetCombinations)
+		latestTargetCombinations?.let { tmod!!.update(it) }
 	    }
 	    if (s == "scan add bundle") {
 		scanAddOmegaAssetsBundle()
-		tmod!!.update(latestTargetCombinations)
+		latestTargetCombinations?.let { tmod!!.update(it) }
 		oaBundleJB!!.text = t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()
 	    }
 	    if (s == "close") {
@@ -172,10 +172,10 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 			l_ctxt.lesson.sendMsgWait("load", fn)
 			m_sleep(200)
 			latestTargetCombinations = l_ctxt.lessonCanvas.getAllTargetCombinationsEx2(false)
-			latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName))
+			latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName!!))
 			targetCombinationsBuilder.add(latestTargetCombinations!!)
 			latestTargetCombinations = targetCombinationsBuilder.asOne()
-			tmod!!.update(latestTargetCombinations)
+			tmod!!.update(latestTargetCombinations!!)
 			oaBundleJB!!.text = t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()
 		    }
 		} finally {
@@ -429,11 +429,11 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	Y++
 	X = 0
 	latestTargetCombinations = l_ctxt.lessonCanvas.getAllTargetCombinationsEx2(false)
-	latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName))
-	tmod = OmAssProp_TableModel(this, latestTargetCombinations, tmm)
-	val tsort = TableSorter(tmod)
+	latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName!!))
+	tmod = OmAssProp_TableModel(this, latestTargetCombinations!!, tmm!!)
+	val tsort = TableSorter(tmod!!)
 	table = JTable(tsort)
-	tsort.addMouseListenerToHeaderInTable(table)
+	tsort.addMouseListenerToHeaderInTable(table!!)
 	val jscr = JScrollPane(
 	    table,
 	    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,

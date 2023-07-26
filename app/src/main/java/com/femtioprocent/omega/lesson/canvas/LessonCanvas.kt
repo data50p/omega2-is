@@ -659,7 +659,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    val lessonName: String
+    val lessonName: String?
 	get() = if (lep == null) {
 	    lesson_name
 	} else {

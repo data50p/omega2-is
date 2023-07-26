@@ -199,7 +199,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	}
     }
 
-    val allTestAsName: Array<String>
+    val allTestAsName: Array<String?>?
 	get() = register!!.getAllTestsAsName(with)
 
     fun crBu(txt: String?, cmd: String?): JButton {
@@ -462,19 +462,19 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	try {
 	    if (register == null) return
 	    val sa = register!!.getAllTestsAsName(with)
-	    val data = Array<Array<String?>?>(sa.size) { arrayOfNulls(if (tmod!!.mode == 't') CO_MAX else 8) }
+	    val data = Array<Array<String?>?>(sa!!.size) { arrayOfNulls(if (tmod!!.mode == 't') CO_MAX else 8) }
 	    val dataLi: ArrayList<Array<String?>?> = ArrayList()
 	    val statval_tfm = StatValue()
 	    val statval_trm = StatValue()
 	    val statval_pro = StatValue()
 	    val statval_prm = StatValue()
 	    val stat_sl = StatValue()
-	    NEXT_LESSON@ for (i in sa.indices) {
-		val testName = sa[i]
-		if (cur_ix >= sa.size) cur_ix = sa.size - 1
+	    NEXT_LESSON@ for (i in sa!!.indices) {
+		val testName = sa!![i]
+		if (cur_ix >= sa!!.size) cur_ix = sa!!.size - 1
 		if (cur_ix < 0) cur_ix = 0
 		val pup = register!!.pupil.name
-		val res_name = register!!.rl.getFullFName(pup, sa[i])
+		val res_name = register!!.rl.getFullFName(pup, sa!![i]!!)
 		val rt = ResultTest(pup, "", "", res_name)
 		val n = rt.entrySize
 		val j = 0
@@ -642,8 +642,8 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	stat_tf1!!.text = "?"
 	val sa = register!!.getAllTestsAsName(with)
 	if (cur_ix < 0) cur_ix = 0
-	if (cur_ix > sa.size - 1) cur_ix = sa.size - 1
-	if (cur_ix > 0) setLessonName(sa[cur_ix])
+	if (cur_ix > sa!!.size - 1) cur_ix = sa!!.size - 1
+	if (cur_ix > 0) setLessonName(sa!![cur_ix])
 	setTableData()
 	upd_stat()
     }

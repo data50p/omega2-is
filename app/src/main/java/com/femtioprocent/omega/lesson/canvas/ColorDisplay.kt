@@ -34,7 +34,7 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 		val hm = Lesson.getColors(fn, who)
 		if (hm != null) {
 		    colors_orig = HashMap()
-		    for ((key, value) in hm) colors_orig[key] = ColorColors(value, null)
+		    for ((key, value) in hm) colors_orig[key!!] = ColorColors(value, null)
 		    repaint()
 		}
 	    }
