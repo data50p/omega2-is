@@ -86,9 +86,9 @@ class AnimAction : ActionI {
     override fun perform(window: Window,
 			 action_s: String?,
 			 actA: Array<String>,
-			 pathA: Array<String>,
+			 pathA: Array<String?>,
 			 ord: Int,
-			 hook: Runnable) {
+			 hook: Runnable?) {
 	rt!!.aC!!.setHidden(false)
 	rt!!.runAction(window, action_s, actA, pathA, hm, hook)
     }

@@ -6,7 +6,7 @@ import java.awt.Component
 import java.awt.Image
 
 class Pupil(var name: String) {
-    var jparams: HashMap<String,String>? = null
+    var jparams: HashMap<String?,String?>? = null
 
     init {
 	Log.getLogger().info("new Pupil $name")
@@ -16,7 +16,7 @@ class Pupil(var name: String) {
     val testId: String
 	get() = "pre_1"
 
-    fun setParams(hm: HashMap<String,String>?) {
+    fun setParams(hm: java.util.HashMap<String?, String?>?) {
 	jparams = hm
     }
 
@@ -43,7 +43,7 @@ class Pupil(var name: String) {
 		s.startsWith("J") || "true" == s || "T" == s
     }
 
-    fun getString(key: String, def: String): String {
+    fun getString(key: String, def: String?): String? {
 	if (jparams == null) return def
 	val s = jparams!![key] as String?
 	Log.getLogger().info("param String, $key $def $s")

@@ -110,9 +110,9 @@ class PrintMgr : Printable {
 
     @Throws(Exception::class)
     fun prepare(
-	title: String?,
-	sentences: ArrayList<String>?,
-	lesson_name: String?
+	    title: String?,
+	    sentences: java.util.ArrayList<String>?,
+	    lesson_name: String?
     ) {
 	this.sentences = sentences
 	this.lesson_name = lesson_name

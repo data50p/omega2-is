@@ -281,9 +281,9 @@ class MpgAction : ActionI {
     override fun perform(window: Window,
 			 action_s: String?,
 			 actA: Array<String>,
-			 pathA: Array<String>,
+			 pathA: Array<String?>,
 			 ord: Int,
-			 hook: Runnable) {
+			 hook: Runnable?) {
 	if (mpg_player == null) mpg_player = MpgPlayer.createMpgPlayer(action_s!!, jpan, window.width, window.height) else Log.getLogger().info("already created MpgPayer ... ")
 	Log.getLogger().info(":--: " + "mpg created " + mpg_player!!.origW + ' ' + mpg_player!!.origH)
 	mpg_player!!.fxp!!.waitReady()
@@ -306,7 +306,7 @@ class MpgAction : ActionI {
 		while (isMsg && mpg_player!!.fxp!!.messageShown) {
 		    m_sleep(200)
 		    if (again_audio_request && again_audio2) {
-			hook.run()
+			if (hook != null) hook.run()
 			again_audio2 = false
 		    }
 		    if (again_play_request) {

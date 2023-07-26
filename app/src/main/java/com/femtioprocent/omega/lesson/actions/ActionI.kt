@@ -9,9 +9,9 @@ interface ActionI {
     fun perform(window: Window,
 		action_s: String?,
 		actA: Array<String>,
-		pathA: Array<String>,
+		pathA: Array<String?>,
 		ord: Int,
-		hook: Runnable)
+		hook: Runnable?)
 
     fun show()
 

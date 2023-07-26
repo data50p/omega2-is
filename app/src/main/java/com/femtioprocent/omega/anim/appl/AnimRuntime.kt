@@ -1,7 +1,6 @@
 package com.femtioprocent.omega.anim.appl
 
 import com.femtioprocent.omega.OmegaContext
-import com.femtioprocent.omega.OmegaContext.Companion.getSubsystem
 import com.femtioprocent.omega.OmegaContext.Companion.init
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.anim.cabaret.Actor
@@ -387,12 +386,12 @@ class AnimRuntime {
     }
 
     fun runAction(
-	window: Window,
-	fn: String?,
-	actA: Array<String>,
-	pathA: Array<String>,
-	params: HashMap<String?, Any?>,
-	hook: Runnable?
+	    window: Window,
+	    fn: String?,
+	    actA: Array<String>,
+	    pathA: Array<String?>,
+	    params: HashMap<String?, Any?>,
+	    hook: Runnable?
     ) {
 	val win: Window = window
 	val fa_ctxt: AnimContext? = a_ctxt
@@ -417,10 +416,10 @@ class AnimRuntime {
 	    Log.getLogger().info(":--: " + "anim: Act  " + arrToString(lid_actors))
 	    val aaid: Array<String> = actA
 	    Log.getLogger().info(":--: " + "less: act  " + arrToString(aaid) + ' ' + aaid.size)
-	    val v_pa: Array<String> = pathA
+	    val v_pa: Array<String?> = pathA
 	    Log.getLogger().info(":--: " + "less: path " + arrToString(v_pa) + ' ' + v_pa.size)
 	    for (i in v_pa.indices) try {
-		val a: Int = v_pa.get(i).toInt()
+		val a: Int = v_pa.get(i)!!.toInt()
 		v_pa[i] = lid_timelines.get(a - 1)
 	    } catch (ex: NumberFormatException) {
 	    } catch (ex: Exception) {
@@ -438,7 +437,7 @@ class AnimRuntime {
 	    bindAllNoActor()
 	    for (i in aaid.indices) {
 		try {
-		    if (bindActor(aaid.get(i), v_pa.get(i))) ok = ok and true else ok = false
+		    if (bindActor(aaid.get(i), v_pa.get(i)!!)) ok = ok and true else ok = false
 		} catch (ex: Exception) {
 		    var ac_s: String = "?"
 		    var v_s: String = "?"

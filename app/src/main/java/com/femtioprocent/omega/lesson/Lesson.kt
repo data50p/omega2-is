@@ -254,13 +254,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     class SentenceList : Serializable {
-	var sentence_list: ArrayList<String?>
+	var sentence_list: ArrayList<String?>?
 	var asString: String? = null
 	var lesson_name: String
 
 	internal constructor(s: String?) {
 	    sentence_list = ArrayList()
-	    sentence_list.add(s)
+	    sentence_list!!.add(s)
 	    asString = s
 	    lesson_name = ""
 	}
@@ -718,7 +718,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    return tmm
 	}
 
-	fun setFromMatrix(sentA: Array<String>, tmm: Array<IntArray>) {
+	fun setFromMatrix(sentA: Array<String?>, tmm: Array<IntArray>) {
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### setFromMatrix");
 	    val len = tmm.size
 	    if (len > 0) {
@@ -836,7 +836,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    val pupil_name = pupil_canvas!!.pupilName
 	    if (current_pupil != null && pupil_name == current_pupil!!.name) {
-		return current_pupil
+		return current_pupil!!
 	    }
 	    current_pupil = Pupil(pupil_name)
 	    return current_pupil!!
@@ -855,17 +855,17 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    val sn = msg.substring(19)
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "Load lesson " + s);
 	    val ord = sn.toInt()
-	    val ima = lemain_canvas.lesson!![ord] ?: return
+	    val ima = lemain_canvas!!.lesson!![ord] ?: return
 	    litm = ima.o as LessonItem?
 	    if (litm == null) {
 	    } else if (litm!!.isDir) {
 		//log 		    OmegaContext.sout_log.getLogger().info(":--: " + "Load group " + s);
-		lemain_canvas.setRedPush(ord)
-		lemain_canvas.addLessonBase(litm!!.lessonName, ord)
-		lemain_canvas.requestFocusOrd(0)
+		lemain_canvas!!.setRedPush(ord)
+		lemain_canvas!!.addLessonBase(litm!!.lessonName, ord)
+		lemain_canvas!!.requestFocusOrd(0)
 	    } else {
-		lemain_canvas.setRedPush(ord)
-		lemain_canvas.tellLessonBase(litm!!.lessonName, ord)
+		lemain_canvas!!.setRedPush(ord)
+		lemain_canvas!!.tellLessonBase(litm!!.lessonName, ord)
 		val lesson_name = litm!!.defaultLessonFile
 		getLogger().info("Found lesson: $lesson_name")
 		if (lesson_name == null) {
@@ -928,8 +928,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	} finally {
 	    current_test_mode_group = mkTestModeGroup(current_test_mode)
-	    lemain_canvas.reload()
-	    lemain_canvas.setModeIsTest(current_test_mode_group == TMG_TEST)
+	    lemain_canvas!!.reload()
+	    lemain_canvas!!.setModeIsTest(current_test_mode_group == TMG_TEST)
 	}
     }
 
@@ -998,7 +998,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    msg_log.getLogger().info("====M=== message $msg")
 	    if (msg!!.startsWith("imarea main:")) {
 		act_performLesson(msg)
-		lemain_canvas.requestFocus()
+		lemain_canvas!!.requestFocus()
 		return
 	    }
 	    if (msg.startsWith("button main:quit")) {
@@ -1069,8 +1069,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	private fun act_pupil_test_p() {
 	    prepareTest("pupil_1")
 	    card_show("main")
-	    lemain_canvas.setRedClear()
-	    lemain_canvas.requestFocusOrd(0)
+	    lemain_canvas!!.setRedClear()
+	    lemain_canvas!!.requestFocusOrd(0)
 	}
 
 	private fun act_pupil_test_t() {
@@ -1104,22 +1104,22 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    prepareTest(choise2[a])
 	    //			OmegaContext.sout_log.getLogger().info(":--: " + "choosen test " + a + ' ' + choise[a]);
 	    card_show("main")
-	    lemain_canvas.setRedClear()
-	    lemain_canvas.requestFocusOrd(0)
+	    lemain_canvas!!.setRedClear()
+	    lemain_canvas!!.requestFocusOrd(0)
 	}
 
 	private fun act_pupil_create_t() {
 	    prepareTest("create")
 	    card_show("main")
-	    lemain_canvas.setRedClear()
-	    lemain_canvas.requestFocusOrd(0)
+	    lemain_canvas!!.setRedClear()
+	    lemain_canvas!!.requestFocusOrd(0)
 	}
 
 	private fun act_pupil_create_p() {
 	    prepareTest("create")
 	    card_show("main")
-	    lemain_canvas.setRedClear()
-	    lemain_canvas.requestFocusOrd(0)
+	    lemain_canvas!!.setRedClear()
+	    lemain_canvas!!.requestFocusOrd(0)
 	}
 
 	private fun act_pupil_settings() {
@@ -1132,7 +1132,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 
 	private fun act_main_quit() {
-	    val ds = lemain_canvas.lessonBase
+	    val ds = lemain_canvas!!.lessonBase
 	    if (ds == null) {
 		card_show("pupil")
 	    } else {
@@ -1141,14 +1141,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		if (ix != -1) {
 		    //log 				OmegaContext.sout_log.getLogger().info(":--: " + "--> " + ds.substring(0, ix));
 		    val lb = ds.substring(0, ix)
-		    val sel_ix = lemain_canvas.setLessonBase(lb)
+		    val sel_ix = lemain_canvas!!.setLessonBase(lb)
 		} else {
 		    //log 				OmegaContext.sout_log.getLogger().info(":--: " + "--> " + null);
-		    lemain_canvas.setLessonBase(null)
+		    lemain_canvas!!.setLessonBase(null)
 		}
-		lemain_canvas.requestFocus()
+		lemain_canvas!!.requestFocus()
 	    }
-	    val ord = lemain_canvas.setRedPop()
+	    val ord = lemain_canvas!!.setRedPop()
 	}
 
 	private fun act_pupil_pupil() {
@@ -1175,10 +1175,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else {
 		setSelectKey()
 	    }
-	    val pupil_lang: String = currentPupil.getStringNo0("languageSuffix", tryLessonLanguages(T.lang))
+	    val pupil_lang: String? = currentPupil.getStringNo0("languageSuffix", tryLessonLanguages(T.lang))
 	    OmegaContext.lesson_log.getLogger()
 		.info("Retr pupil_lang: " + pupil_lang + ' ' + tryLessonLanguages(T.lang) + ' ' + T.lang)
-	    OmegaContext.lessonLang = pupil_lang
+	    OmegaContext.lessonLang = pupil_lang!!
 	}
 
 	private fun act_exit_create() {
@@ -1194,8 +1194,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    register = null
 	    card_show("main", 2)
-	    lemain_canvas.setRedPop()
-	    lemain_canvas.requestFocus()
+	    lemain_canvas!!.setRedPop()
+	    lemain_canvas!!.requestFocus()
 	}
 
 	@Throws(HeadlessException::class)
@@ -1396,7 +1396,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     fun copySettings(from: String?, to: String?) {
 	val l1 = canvases[from]
 	val l2 = canvases[to]
-	l2!!.colors = l1!!.colors.clone() as HashMap<String?, ColorColors?>
+	l2!!.colors = l1!!.colors.clone() as HashMap<String, ColorColors>
     }
 
     @Synchronized
@@ -1546,7 +1546,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 	var rF = false
 	if (name == "main") {
-	    lemain_canvas.requestFocusOrd(last_ord)
+	    lemain_canvas!!.requestFocusOrd(last_ord)
 	    last_ord = -1
 	} else {
 	    rF = true
@@ -1697,8 +1697,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	var hmSign: HashMap<String?, String?>
 
 	init {
-	    hm = HashMap<Any?, Any?>()
-	    hmSign = HashMap<Any?, Any?>()
+	    hm = HashMap()
+	    hmSign = HashMap()
 	}
 
 	val media: List<String>
@@ -1896,7 +1896,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else if ("test_cont" == msg) {
 		test_index = exec_test_cont()
 	    } else if ("show_result_msg" == msg) {
-		OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + +' ' + register)
+		OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + ' ' + register)
 		if (register != null && register!!.has_shown == false && current_test_mode == TM_RAND) {
 		    le_canvas!!.showMsg(resultSummary_MsgItem)
 		    register!!.has_shown = true
@@ -3146,7 +3146,7 @@ target pos $tg_ix"""
     private fun performMpgAction(
 	all_text: String,
 	action_s: String?,
-	actA: Array<String?>,
+	actA: Array<String>,
 	pathA: Array<String?>,
 	tg: Target
     ): JPanel? {
@@ -3274,7 +3274,7 @@ target pos $tg_ix"""
     class PlayData internal constructor(
 	var lesson_name: String,
 	var action_s: String?,
-	var actA: Array<String?>,
+	var actA: Array<String>,
 	var actTextA: Array<String?>,
 	var sound_list: String?,
 	var pathA: Array<String?>,
@@ -3322,16 +3322,16 @@ target pos $tg_ix"""
 		null
 	    )
 	    saveRecastAction(
-		le_canvas!!.lessonName,
-		pd.action_s,
-		pd.actA,
-		pd.actTextA,
-		pd.sound_list,
-		pd.pathA,
-		false,
-		null,
-		pd.is_last,
-		pd.allText
+		    le_canvas!!.lessonName!!,
+		    pd.action_s,
+		    pd.actA,
+		    pd.actTextA,
+		    pd.sound_list,
+		    pd.pathA,
+		    false,
+		    null,
+		    pd.is_last,
+		    pd.allText
 	    )
 	}
     }
@@ -3341,7 +3341,7 @@ target pos $tg_ix"""
 	    try {
 		val pm = PrintMgr()
 		//	    pm.list(true);
-		val ss_li: ArrayList<String?> = ArrayList<Any?>()
+		val ss_li: ArrayList<String?> = ArrayList()
 		ss_li.add("Raden 1")
 		ss_li.add("Rad 2")
 		ss_li.add("Ldkfj lkdjf ldksjf ldksjf lkdsjf lsdkjf ldskjf ldskjf dslkjf sdlkfh sdkjfh dskjf hsdkfjhds SIST.")
@@ -3358,7 +3358,7 @@ target pos $tg_ix"""
 	card_show("sent")
 	sentence_canvas!!.showMsg(null)
 	val key = waitHitKey(1)
-	val al: ArrayList<String?> = ArrayList<Any?>()
+	val al: ArrayList<String> = ArrayList()
 	al.add("Den talande reven rev en annan rev")
 	al.add("")
 	al.add("Flamingon flyger lagom")
@@ -3486,16 +3486,16 @@ target pos $tg_ix"""
     }
 
     private fun saveRecastAction(
-	lesson_name: String,
-	action_s: String?,
-	actA: Array<String?>,
-	actTextA: Array<String?>,
-	sound_list: String?,
-	pathA: Array<String?>,
-	add_in_playlist: Boolean,
-	tg: Target?,
-	is_last: Boolean,
-	allText: String
+	    lesson_name: String,
+	    action_s: String?,
+	    actA: Array<String>,
+	    actTextA: Array<String?>,
+	    sound_list: String?,
+	    pathA: Array<String?>,
+	    add_in_playlist: Boolean,
+	    tg: Target?,
+	    is_last: Boolean,
+	    allText: String
     ) {
 	if (add_in_playlist) {
 	    val play_data = PlayData(lesson_name, action_s, actA, actTextA, sound_list, pathA, is_last, allText)
@@ -3704,7 +3704,7 @@ target pos $tg_ix"""
 				}
 			    }
 			    if ("main" == cc) {
-				ret = lemain_canvas.ownKeyCode(kc, e.isShiftDown)
+				ret = lemain_canvas!!.ownKeyCode(kc, e.isShiftDown)
 			    }
 			}
 		    }
@@ -3925,13 +3925,13 @@ target pos $tg_ix"""
 	canvases.put("pupil", pupil_canvas)
 	sentence_canvas!!.addLessonCanvasListener(this)
 	le_canvas!!.addLessonCanvasListener(this)
-	lemain_canvas.addLessonCanvasListener(this)
+	lemain_canvas!!.addLessonCanvasListener(this)
 	pupil_canvas!!.addLessonCanvasListener(this)
 
 	// Server lessond = new Server();
 	sentence_canvas!!.om_msg_mgr.addListener(om_msg_li)
 	le_canvas!!.om_msg_mgr.addListener(om_msg_li)
-	lemain_canvas.om_msg_mgr.addListener(om_msg_li)
+	lemain_canvas!!.om_msg_mgr.addListener(om_msg_li)
 	pupil_canvas!!.om_msg_mgr.addListener(om_msg_li)
 	restoreSettings()
     }
@@ -3986,7 +3986,7 @@ target pos $tg_ix"""
 	}
 
 	val isEditMode: Boolean
-	    get() = static_lesson.run_mode == 'e'.code
+	    get() = static_lesson!!.run_mode == 'e'.code
 
 	fun initColors(hm: HashMap<String?, Color?>) {
 	    hm["bg_t"] = Color(240, 220, 140)

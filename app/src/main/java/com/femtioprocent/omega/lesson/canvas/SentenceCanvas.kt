@@ -248,7 +248,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	var cnt_show = 0
 	var imic: ImageIcon? = null
 	var imic_done: ImageIcon? = null
-	fun set(li: ArrayList<String>?) {
+	fun set(li: java.util.ArrayList<String>?) {
 	    this.li = li
 	    cnt_show = 0
 	    repaint()
@@ -383,7 +383,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    var msg_dlg: MsgDialog = MsgDialog()
+    var msg_dlg: MsgDialog? = MsgDialog()
 
     inner class CellRenderer : JLabel(), ListCellRenderer<Any?> {
 	init {
@@ -487,18 +487,18 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    fun showMsg(sentences: ArrayList<String>?) {
+    fun showMsg(sentences: java.util.ArrayList<String>?) {
 	item_fo = null
-	msg_dlg.set(sentences)
+	msg_dlg!!.set(sentences)
     }
 
     fun showMsgMore() {
-	msg_dlg.cnt_show++
+	msg_dlg!!.cnt_show++
 	repaint()
     }
 
     fun hideMsg() {
-	msg_dlg.set(null)
+	msg_dlg!!.set(null)
     }
 
     override fun paintComponent(g: Graphics) {
@@ -511,8 +511,8 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	drawBG(g2)
 	g.setColor(Color.black)
 	val fo = g.getFont()
-	val bounding = msg_dlg.bounding
-	msg_dlg.draw(g2, bounding)
+	val bounding = msg_dlg!!.bounding
+	msg_dlg!!.draw(g2, bounding)
 	drawList(g2)
 	val ct1 = ct()
     }

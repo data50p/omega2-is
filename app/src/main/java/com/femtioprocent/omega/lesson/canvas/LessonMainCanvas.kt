@@ -72,7 +72,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     var lessonBase: String? = null
-    fun setLessonBase(bs: String): Int {
+    fun setLessonBase(bs: String?): Int {
 	lessonBase = bs
 	resized2()
 	val I = bs_hm["" + bs] ?: return 0
