@@ -25,7 +25,7 @@ class ResultTest : Result {
 	firstPerformDate = Date()
     }
 
-    constructor(pupil: String, l_id: String, type: String, fname: String?) {
+    constructor(pupil: String, l_id: String, type: String, fname: String) {
 	this.pupil = pupil
 	this.l_id = l_id
 	this.type = type
@@ -34,7 +34,7 @@ class ResultTest : Result {
 	load(fname)
     }
 
-    fun load(fname: String?) {
+    fun load(fname: String) {
 	val el = SAX_node.parse(fname, false)
 	if (el != null) {
 	    val ent = el.findElement("entries", 0)

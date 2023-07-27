@@ -83,7 +83,7 @@ class Path {
 	seg_l = ArrayList()
 	marker = ArrayList()
 	val nidp_s = el.findAttr("nid")
-	val nidp_i = nidp_s.toInt()
+	val nidp_i = nidp_s!!.toInt()
 	nid = nidp_i
 	for (i in 0..999) {
 	    val eq = el.findElement("q", i) ?: break
@@ -92,7 +92,7 @@ class Path {
 	    val p1_s = eq.findAttr("p1")
 	    val p2_s = eq.findAttr("p2")
 	    val pc_s = eq.findAttr("pc")
-	    val ord_i = ord_s.toInt()
+	    val ord_i = ord_s!!.toInt()
 	    val p1 = decode2D(p1_s)
 	    val p2 = decode2D(p2_s)
 	    val pc = decode2D(pc_s)
@@ -106,9 +106,9 @@ class Path {
 	    val id = em.findAttr("id")
 	    val type = em.findAttr("type")
 	    val where = em.findAttr("where")
-	    val iid = id.toInt()
+	    val iid = id!!.toInt()
 	    val wd = tD(where)
-	    addMarker(iid, type[0], wd)
+	    addMarker(iid, type!![0], wd)
 	}
 	rebuildGP()
     }

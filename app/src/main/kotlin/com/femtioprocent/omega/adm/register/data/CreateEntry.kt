@@ -22,13 +22,13 @@ class CreateEntry : Entry {
 //  	type = s;
 	type = "create"
 	var s = e.findAttr("sentence")
-	sentence = s
+	sentence = s!!
 	s = e.findAttr("ord")
-	ord = s.toInt()
+	ord = s!!.toInt()
 	s = e.findAttr("duration")
-	duration = s.toInt()
+	duration = s!!.toInt()
 	s = e.findAttr("l_id_list")
-	l_id_list = s
+	l_id_list = s!!
     }
 
     override val element: Element

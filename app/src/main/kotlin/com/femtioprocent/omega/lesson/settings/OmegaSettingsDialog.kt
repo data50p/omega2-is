@@ -130,7 +130,7 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		var coli = 256 * 256 * 40 + 256 * 40 + 100
 		try {
 		    val cols = fel.findAttr("color")
-		    coli = cols.toInt()
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -139,8 +139,8 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		feedback_movie_background!!.upd()
 		coli = 256 * 256 * 40 + 256 * 40 + 100
 		try {
-		    val cols = ael.findAttr("color")
-		    coli = cols.toInt()
+		    val cols = ael!!.findAttr("color")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -149,8 +149,8 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		action_movie_background!!.upd()
 		coli = 256 * 256 * 30 + 256 * 30 + 80
 		try {
-		    val cols = anel.findAttr("color")
-		    coli = cols.toInt()
+		    val cols = anel!!.findAttr("color")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -159,8 +159,8 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		anim_background!!.upd()
 		coli = 256 * 256 * 30 + 256 * 30 + 80
 		try {
-		    val cols = swel.findAttr("color")
-		    coli = cols.toInt()
+		    val cols = swel!!.findAttr("color")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -171,8 +171,8 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		}
 		coli = 256 * 256 * 30 + 256 * 30 + 80
 		try {
-		    val cols = ssel.findAttr("color")
-		    coli = cols.toInt()
+		    val cols = ssel!!.findAttr("color")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -183,32 +183,32 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 		}
 		coli = 65
 		try {
-		    val cols = swalel.findAttr("value")
-		    coli = cols.toInt()
+		    val cols = swalel!!.findAttr("value")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
 		if (signWord_alpha != null) signWord_alpha!!.value = coli
 		coli = 92
 		try {
-		    val cols = ssalel.findAttr("value")
-		    coli = cols.toInt()
+		    val cols = ssalel!!.findAttr("value")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
 		if (signWord_alpha != null) signSentence_alpha!!.value = coli
 		coli = 20
 		try {
-		    val cols = smwel.findAttr("value")
-		    coli = cols.toInt()
+		    val cols = smwel!!.findAttr("value")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
 		if (signMovieWord_scale != null) signMovieWord_scale!!.value = coli
 		coli = 40
 		try {
-		    val cols = smsel.findAttr("value")
-		    coli = cols.toInt()
+		    val cols = smsel!!.findAttr("value")
+		    coli = cols!!.toInt()
 		} catch (ex: NullPointerException) {
 		} catch (ex: NumberFormatException) {
 		}
@@ -219,7 +219,7 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 
     fun loadElement(): Element? {
 	return try {
-	    SAX_node.parse(omegaAssets(fname), false)
+	    SAX_node.parse(omegaAssets(fname)!!, false)
 	} catch (ex: Exception) {
 	    OmegaContext.sout_log.getLogger().info("ERR: Exception! Restore.restore(): $ex")
 	    null

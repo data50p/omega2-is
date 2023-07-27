@@ -67,7 +67,7 @@ object TriggerEventFactory {
 	val cmd = e.findAttr("cmd")
 	val arg = e.findAttr("arg")
 	val is_on = e.findAttr("isOn")
-	val te = createTriggerEvent(cmd)
+	val te = createTriggerEvent(cmd!!)
 	if (te != null) {
 	    if (te.hasSelections()) {
 		(te as TriggerEventSelections).setArgFromCmd(arg)

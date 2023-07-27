@@ -1200,7 +1200,7 @@ class AnimCanvas : Canvas {
 	val lel = eel.findElement("lesson", 0)
 	if (lel != null) {
 	    val verb = lel.findAttr("verb")
-	    lessonVerb = verb
+	    lessonVerb = verb!!
 	}
 	val aael = eel.findElement("AllActors", 0)
 	if (aael != null) {
@@ -1208,7 +1208,7 @@ class AnimCanvas : Canvas {
 	    for (i in 0 until OmegaConfig.CABARET_ACTOR_N) {
 		val acel = aael.findElement("Actor", i)
 		if (acel != null) {
-		    val ix = acel.findAttr("nid").toInt()
+		    val ix = acel.findAttr("nid")!!.toInt()
 		    val fn = acel.findAttr("name")
 		    val id = acel.findAttr("lesson_id")
 		    var var1 = acel.findAttr("var1")
@@ -1252,7 +1252,7 @@ class AnimCanvas : Canvas {
 	    for (i in 0 until OmegaConfig.WINGS_N) {
 		val wel = awel.findElement("Wing", i)
 		if (wel != null) {
-		    val ix = wel.findAttr("nid").toInt()
+		    val ix = wel.findAttr("nid")!!.toInt()
 		    val fn = wel.findAttr("name")
 		    var la = wel.findAttr("layer")
 		    var mi = wel.findAttr("mirror")

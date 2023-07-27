@@ -38,17 +38,17 @@ class TestEntry : Entry {
 	var s = e.findAttr("extra")
 	extra = s
 	s = e.findAttr("sentence")
-	sentence = s
+	sentence = s!!
 	s = e.findAttr("answer")
-	answer = s
+	answer = s!!
 	s = e.findAttr("ord")
-	ord = s.toInt()
+	ord = s!!.toInt()
 	s = e.findAttr("duration")
-	duration = s.toInt()
+	duration = s!!.toInt()
 	s = e.findAttr("cnt_correct_words")
-	cnt_correct_words = s // Integer.parseInt(s);
+	cnt_correct_words = s!! // Integer.parseInt(s);
 	s = e.findAttr("l_id_list")
-	l_id_list = s
+	l_id_list = s!!
     }
 
     public override val element: Element

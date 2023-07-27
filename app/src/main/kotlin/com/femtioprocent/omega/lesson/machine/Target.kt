@@ -187,14 +187,14 @@ class Target {
 	    t_items!!.add(T_Item(i, ty, tid, lid))
 	}
 	val its_el = el.findElement("items", 0)
-	items = Items(its_el, this, story_hm, dummy, mix)
+	items = Items(its_el!!, this, story_hm, dummy, mix)
 	story_next = null
 	val story_el = el.findElement("story", 0)
 	//log	    OmegaContext.sout_log.getLogger().info(":--: " + "FSt " + story_el);
 	if (story_el != null) {
 	    val ell = story_el.findElement("link", 0)
 	    //log		OmegaContext.sout_log.getLogger().info(":--: " + "FSt story/link " + ell);
-	    val next = ell.findAttr("next")
+	    val next = ell!!.findAttr("next")
 	    if (next != null) {
 		Log.getLogger().info(":--: FSt story/link[next] $next")
 		story_next = next

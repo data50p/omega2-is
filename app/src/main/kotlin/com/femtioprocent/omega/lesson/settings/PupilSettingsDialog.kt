@@ -972,10 +972,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	    }
 	    val vel = el.findElement("values", 0)
 	    for (i in 0..999) {
-		val el1 = vel.findElement("value", i) ?: break
+		val el1 = vel!!.findElement("value", i) ?: break
 		val key = el1.findAttr("key")
 		val `val` = el1.findAttr("val")
-		upd_jcomponent(key, `val`)
+		upd_jcomponent(key, `val`!!)
 	    }
 	} catch (ex: Exception) {
 	    loadDefault()

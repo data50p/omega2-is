@@ -67,7 +67,7 @@ class PathHelper(var dep_set: MutableSet<TCItem?>) {
 	var cntHelpAdded = 0
 	var cntHelpExist = 0
 	val el_ac = el.findFirstElement("AnimCanvas")
-	val el_ap = el_ac.findFirstElement("AllPath")
+	val el_ap = el_ac!!.findFirstElement("AllPath")
 	for (i in 0..9) {
 	    val el_tp = el.findElement("TPath", i) ?: continue
 	    cntTpath++

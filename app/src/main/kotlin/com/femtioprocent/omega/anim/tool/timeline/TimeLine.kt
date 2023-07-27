@@ -29,18 +29,18 @@ class TimeLine : Serializable {
 	markers = LinkedList()
 	val id = el.findAttr("lesson_id")
 	if (id != null) lessonId = id
-	nid = el.findAttr("nid").toInt()
-	offset = el.findAttr("offset").toInt()
-	duration = el.findAttr("duration").toInt()
+	nid = el.findAttr("nid")!!.toInt()
+	offset = el.findAttr("offset")!!.toInt()
+	duration = el.findAttr("duration")!!.toInt()
 	for (i in 0..99) {
 	    val me = el.findElement("TimeMarker", i) ?: break
 	    val t = me.findAttr("type")
 	    val w = me.findAttr("when")
 	    val d = me.findAttr("duration")
-	    val wl = w.toInt()
+	    val wl = w!!.toInt()
 	    var dl = 0
 	    if (d != null) dl = d.toInt()
-	    addMarker(t[0], wl, dl)
+	    addMarker(t!![0], wl, dl)
 	    val teel = me.findElement("T_Event", 0)
 	    if (teel != null) {
 		val tm = last_added_tm

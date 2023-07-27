@@ -24,15 +24,15 @@ class SelectEntry : Entry {
 //  	String s = e.findAttr("type");
 //  	type = s;
 	type = "select"
-	var s = e.findAttr("extra")
+	var s = e.findAttr("extra")!!
 	extra = s
-	s = e.findAttr("word")
+	s = e.findAttr("word")!!
 	word = s
-	s = e.findAttr("ord")
+	s = e.findAttr("ord")!!
 	ord = s.toInt()
-	s = e.findAttr("when")
+	s = e.findAttr("when")!!
 	`when` = s.toInt()
-	s = e.findAttr("l_id")
+	s = e.findAttr("l_id")!!
 	l_id = s
     }
 

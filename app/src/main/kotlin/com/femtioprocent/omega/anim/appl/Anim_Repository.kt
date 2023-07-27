@@ -103,13 +103,13 @@ $sbu $sbl"""
 		    xmlpw.put(el)
 		    xmlpw.popAll()
 		    xmlpw.flush()
-		    if (xmlpw.pw.checkError()) {
+		    if (xmlpw.pw!!.checkError()) {
 			JOptionPane.showMessageDialog(
-			    AnimContext.top_frame,
-			    """${t("FATAL IO ERROR 1!")}
+				AnimContext.top_frame,
+				"""${t("FATAL IO ERROR 1!")}
 ${t("Nothing saved")} ($fn)""",
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE
+				"Omega",
+				JOptionPane.INFORMATION_MESSAGE
 			)
 			err = true
 		    }
@@ -151,7 +151,7 @@ ${t("Nothing saved")} ($fn)""",
 //  	    JOptionPane.showMessageDialog(null, // a_ctxt.
 //  					  T.t("Can't open file ") + fn);
 //  	}
-	    return SAX_node.parse(fn, false)
+	    return SAX_node.parse(fn!!, false)
 	} catch (ex: Exception) {
 	}
 	return null
@@ -161,18 +161,18 @@ ${t("Nothing saved")} ($fn)""",
 	if (el == null) return null
 	a_ctxt!!.anim_canvas!!.load(el)
 	val mel = el.findElement("MTL", 0)
-	a_ctxt.mtl!!.load(mel)
+	a_ctxt.mtl!!.load(mel!!)
 	return el
     }
 
     fun loadAct(a_ctxt: AnimContext, fn: String?) {
-	val el = SAX_node.parse(fn, false)
-	val f_el_an = el.findElement("Anim", 0)
-	val fn_an = f_el_an.findAttr("ref")
+	val el = SAX_node.parse(fn!!, false)
+	val f_el_an = el!!.findElement("Anim", 0)
+	val fn_an = f_el_an!!.findAttr("ref")
 	val el_an = SAX_node.parse("anim/$fn_an", false)
-	a_ctxt.anim_canvas!!.load(el_an)
+	a_ctxt.anim_canvas!!.load(el_an!!)
 	val mel = el_an.findElement("MTL", 0)
-	a_ctxt.mtl!!.load(mel)
+	a_ctxt.mtl!!.load(mel!!)
     }
 
     fun getImageURL_Dlg(c: Component?): String? {

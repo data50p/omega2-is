@@ -18,7 +18,7 @@ object Restore {
 		omegaAssets(fname)
 	    }
 	    OmegaContext.sout_log.getLogger().info(":--: Restore from (~A) $fname -> (A) $aName")
-	    SAX_node.parse(aName, false)
+	    SAX_node.parse(aName!!, false)
 	} catch (ex: Exception) {
 	    OmegaContext.sout_log.getLogger().info("ERR: Exception! Restore.restore(): $ex")
 	    null

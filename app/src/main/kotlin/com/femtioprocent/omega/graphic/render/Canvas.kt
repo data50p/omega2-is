@@ -3,7 +3,6 @@ package com.femtioprocent.omega.graphic.render
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.anim.tool.timeline.TimeLine
 import com.femtioprocent.omega.graphic.util.LoadImage
-import com.femtioprocent.omega.servers.httpd.Server
 import com.femtioprocent.omega.subsystem.Httpd
 import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.rand

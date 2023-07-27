@@ -95,7 +95,7 @@ class Item {
 	action_type = el.findAttr("action-type")
 	val action_fname_ = el.findAttr("action-fname")
 	action_fname_orig = action_fname_
-	action_fname = krull(action_fname_)
+	action_fname = krull(action_fname_!!)
 	if (action_fname_ != null && action_fname_.length > 0) Log.getLogger().info(":--: " + "ACTION " + action_fname + ' ' + action_fname_)
     }
 
