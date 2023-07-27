@@ -1079,6 +1079,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		last_bix = bix
 	    }
 	} catch (ex: Exception) {
+	    ex.printStackTrace()
 	}
     }
 
@@ -1113,6 +1114,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		enterBox(bx)
 	    }
 	} catch (ex: NullPointerException) {
+	    ex.printStackTrace()
 	}
     }
 
@@ -1163,6 +1165,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    tg2.loadFromEl(l_ctxt.lesson.element, "", story_hm, dummy, false) // FIX nomix?
 	    tg2.getAllTargetCombinationsEx(sep, delim)
 	} catch (ex: Exception) {
+	    ex.printStackTrace()
 	    arrayOfNulls(0)
 	}
     }
@@ -1174,6 +1177,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    tg2.loadFromEl(l_ctxt.lesson.element, "", story_hm, dummy, false) // FIX nomix?
 	    tg2.getAllTargetCombinationsEx2(l_ctxt.lesson)
 	} catch (ex: Exception) {
+	    ex.printStackTrace()
 	    TargetCombinations()
 	}
     }
@@ -1186,6 +1190,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    tg2.loadFromEl(l_ctxt.lesson.element, "", story_hm, dummy, false) // FIX nomix?
 	    tg2.getAllTargetCombinationsEx2(l_ctxt.lesson)
 	} catch (ex: Exception) {
+	    ex.printStackTrace()
 	    TargetCombinations()
 	}
     }
@@ -1197,6 +1202,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    tg2.loadFromEl(l_ctxt.lesson.element, "", story_hm, dummy, false) // FIX nomix?
 	    tg2.getAllTargetCombinations(sep)
 	} catch (ex: Exception) {
+	    ex.printStackTrace()
 	    arrayOfNulls(0)
 	}
     }

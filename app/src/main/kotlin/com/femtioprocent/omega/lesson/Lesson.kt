@@ -45,6 +45,7 @@ import com.femtioprocent.omega.t9n.T
 import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files.mkRelativeCWD
 import com.femtioprocent.omega.util.Files.toURL
+import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.Log.getLogger
 import com.femtioprocent.omega.util.SundryUtils.a2s
 import com.femtioprocent.omega.util.SundryUtils.ct
@@ -706,15 +707,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    )
 	    for (i in 0..3) {
 		val t_mode = map[i]
-		val it = getNewIterator(t_mode) as ListIterator<String>?
-		while (it!!.hasNext()) {
-		    val sa = split(it.next(), ":")
-		    val ord = 1 + sa[0]!!.toInt()
-		    val txt = sa[1]
-		    val ix2 = where(txt, all_sentence)
-		    if (ix2 >= 0) {
-			tmm[ix2][i] = ord
+		val it = getNewIterator(t_mode) as ListIterator<String?>?
+		if ( it != null ) {
+		    while (it!!.hasNext()) {
+			val sa = split(it.next(), ":")
+			val ord = 1 + sa[0]!!.toInt()
+			val txt = sa[1]
+			val ix2 = where(txt, all_sentence)
+			if (ix2 >= 0) {
+			    tmm[ix2][i] = ord
+			}
 		    }
+		} else {
+		    Log.getLogger().info("NPE");
 		}
 	    }
 	    return tmm
@@ -784,8 +789,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    for (j in 0..1) {
 			val t_mode = 10 * (i + 1) + j
 			val li_ = getList(t_mode)
-			val li = li_!!.shuffled() as ArrayList<String> // why shuffle when we sort below
-			if (li != null && li.size > 0) {
+			if (li_ != null && li_.size > 0) {
+			    val li = li_!!.shuffled() as ArrayList<String> // why shuffle when we sort below
 			    val sa = li.toTypedArray<String>()
 			    Arrays.sort(sa)
 			    val te_el = Element("test_entry")
