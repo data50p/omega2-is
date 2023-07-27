@@ -388,7 +388,7 @@ class AnimRuntime {
     fun runAction(
 	    window: Window,
 	    fn: String?,
-	    actA: Array<String>,
+	    actA: Array<String?>,
 	    pathA: Array<String?>,
 	    params: HashMap<String?, Any?>,
 	    hook: Runnable?
@@ -414,7 +414,7 @@ class AnimRuntime {
 	    val lid_actors: Array<String> = lessonId_Actors
 	    Log.getLogger().info(":--: " + "anim: TL   " + arrToString(lid_timelines))
 	    Log.getLogger().info(":--: " + "anim: Act  " + arrToString(lid_actors))
-	    val aaid: Array<String> = actA
+	    val aaid: Array<String?> = actA
 	    Log.getLogger().info(":--: " + "less: act  " + arrToString(aaid) + ' ' + aaid.size)
 	    val v_pa: Array<String?> = pathA
 	    Log.getLogger().info(":--: " + "less: path " + arrToString(v_pa) + ' ' + v_pa.size)
@@ -437,7 +437,7 @@ class AnimRuntime {
 	    bindAllNoActor()
 	    for (i in aaid.indices) {
 		try {
-		    if (bindActor(aaid.get(i), v_pa.get(i)!!)) ok = ok and true else ok = false
+		    if (bindActor(aaid.get(i)!!, v_pa.get(i)!!)) ok = ok and true else ok = false
 		} catch (ex: Exception) {
 		    var ac_s: String = "?"
 		    var v_s: String = "?"

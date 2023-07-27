@@ -244,11 +244,11 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     var show_msg = false
 
     inner class MsgDialog {
-	var li: ArrayList<String>? = null
+	var li: ArrayList<String?>? = null
 	var cnt_show = 0
 	var imic: ImageIcon? = null
 	var imic_done: ImageIcon? = null
-	fun set(li: java.util.ArrayList<String>?) {
+	fun set(li: java.util.ArrayList<String?>?) {
 	    this.li = li
 	    cnt_show = 0
 	    repaint()
@@ -259,7 +259,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		var WW = 0
 		var HH = 0
 		if (li == null) return intArrayOf(500, 350)
-		val it: Iterator<String> = li!!.iterator()
+		val it: MutableIterator<String?> = li!!.iterator()
 		while (it.hasNext()) {
 		    val sent = it.next()
 		    val sh = getStringHeight(itemFont!!, sent)
@@ -487,7 +487,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    fun showMsg(sentences: java.util.ArrayList<String>?) {
+    fun showMsg(sentences: java.util.ArrayList<String?>?) {
 	item_fo = null
 	msg_dlg!!.set(sentences)
     }

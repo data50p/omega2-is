@@ -35,6 +35,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     @JvmField
     val lesson: Array<ImageAreaJB?>? = arrayOfNulls(10)
     var locator = Locator()
+    @JvmField
     var modeIsTest = false
     fun setModeIsTest(b: Boolean) {
 	modeIsTest = b
@@ -325,9 +326,9 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	super.leave()
     }
 
-    var red_stack: Stack<*> = Stack<Any?>()
+    var red_stack: Stack<Int> = Stack()
     fun setRedClear() {
-	red_stack = Stack<Any?>()
+	red_stack = Stack()
 	requestFocus()
 	requestFocusOrd(0)
     }
@@ -344,7 +345,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     fun setRedPush(ord: Int) {
-	red_stack.push(ord as Nothing?)
+	red_stack.push(ord)
     }
 
     var last_focus_ord = 0

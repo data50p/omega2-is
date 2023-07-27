@@ -22,10 +22,10 @@ class MsgItem {
 	type = '2'
     }
 
-    constructor(type: Char, title: String, txt: String, txt2: String?, image: String?, image2: String?, small_title: String?) {
+    constructor(type: Char, title: String, txt: String?, txt2: String?, image: String?, image2: String?, small_title: String?) {
 	this.type = type
 	this.title = title
-	text = txt
+	text = txt!!
 	text2 = txt2
 	this.image = image
 	this.image2 = image2

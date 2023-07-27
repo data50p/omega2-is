@@ -50,7 +50,7 @@ class PrintMgr : Printable {
     }
 
     var image2: RenderedImage? = null
-    var sentences: ArrayList<String>? = null
+    var sentences: ArrayList<String?>? = null
     var lesson_name: String? = null
     var item_fo: Font? = null
     var itemFont: Font?
@@ -85,10 +85,10 @@ class PrintMgr : Printable {
 
     @Throws(Exception::class)
     fun print(
-	print_service: PrintService,
-	title: String?,
-	sentences: ArrayList<String>?,
-	lesson_name: String?
+	    print_service: PrintService?,
+	    title: String?,
+	    sentences: java.util.ArrayList<String?>,
+	    lesson_name: String?
     ) {
 	this.sentences = sentences
 	this.lesson_name = lesson_name
@@ -96,7 +96,7 @@ class PrintMgr : Printable {
 	    val aset: PrintRequestAttributeSet = HashPrintRequestAttributeSet()
 	    aset.add(OrientationRequested.PORTRAIT)
 	    aset.add(JobName("Omega sentences", null))
-	    val pj = print_service.createPrintJob()
+	    val pj = print_service!!.createPrintJob()
 	    try {
 		val doc: Doc = PrintableDoc(this)
 		pj.print(doc, aset)
@@ -111,7 +111,7 @@ class PrintMgr : Printable {
     @Throws(Exception::class)
     fun prepare(
 	    title: String?,
-	    sentences: java.util.ArrayList<String>?,
+	    sentences: java.util.ArrayList<String?>?,
 	    lesson_name: String?
     ) {
 	this.sentences = sentences
@@ -137,11 +137,11 @@ class PrintMgr : Printable {
     }
 
     var gap = 4
-    fun getBounding(g2: Graphics2D, li: ArrayList<String>?): IntArray {
+    fun getBounding(g2: Graphics2D, li: ArrayList<String?>?): IntArray {
 	var WW = 0
 	var HH = 0
 	if (li == null) return intArrayOf(500, 350)
-	val it: Iterator<String> = li.iterator()
+	val it: MutableIterator<String?> = li.iterator()
 	while (it.hasNext()) {
 	    val sent = it.next()
 	    val sh = getStringHeight(g2, itemFont!!, sent)

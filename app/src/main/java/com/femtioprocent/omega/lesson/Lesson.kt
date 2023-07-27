@@ -66,9 +66,11 @@ import java.io.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.locks.ReentrantLock
 import java.util.prefs.Preferences
 import javax.print.PrintService
 import javax.swing.*
+import kotlin.concurrent.withLock
 
 // has UTF-8 ¬ß
 class Lesson(run_mode: Char) : LessonCanvasListener {
@@ -549,7 +551,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	var index = 0
 	var el: Element? = null
 	var rand_map: IntArray? = null
-	private var texts: HashMap<String?, ListAndIterator<String>?>
+	private var texts: HashMap<String?, ListAndIterator<String?>?>
 	var current: String?
 	var cnt_sent_correct = 0
 	var cnt_sent_wrong = 0
@@ -766,7 +768,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			    //log 			    OmegaContext.sout_log.getLogger().info(":--: " + "sent li " + li);
 			}
 			li = sortList(li)
-			texts[genKey(t_mode)] = ListAndIterator<String?>(li)
+			texts[genKey(t_mode)] = ListAndIterator(li)
 		    }
 		}
 		this.el = el
@@ -781,7 +783,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		for (i in 0..1) {
 		    for (j in 0..1) {
 			val t_mode = 10 * (i + 1) + j
-			val li = getList(t_mode)
+			val li_ = getList(t_mode)
+			var li = ArrayList<String>()
+			for(i in li_!!) li.add(i as String)
+			li.shuffled(); // TODO:
 			if (li != null && li.size > 0) {
 			    val sa = li.toTypedArray<String>()
 			    Arrays.sort(sa)
@@ -1309,7 +1314,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     fun restoreSettings() {
 	var fn = "default.omega_colors"
-	fn = currentPupil.getString("theme", fn)
+	fn = currentPupil.getString("theme", fn)!!
 	val el = restore(fn) ?: return
 	for (i in 0..99) {
 	    val fel = el.findElement("canvas", i) ?: return
@@ -1562,6 +1567,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     var msg_list: MutableList<Message> = ArrayList()
+    val msg_list_lock = ReentrantLock()
+    val msg_list_condition = msg_list_lock.newCondition()
+
     var stop_msg = false
     fun sendMsg(msg: String, o: Any?) {
 	sendMsg(msg, o, "")
@@ -1570,9 +1578,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     fun sendMsgWait(msg: String, o: Any?) {
 	wait_id[0] = "" + System.nanoTime()
 	sendMsg(msg, o, wait_id[0])
-	synchronized(wait_id) {
+	wait_id_lock.withLock {
 	    try {
-		wait_id.wait()
+		wait_id_condition.await()
 	    } catch (e: InterruptedException) {
 		e.printStackTrace()
 	    }
@@ -1582,19 +1590,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     private fun sendMsg(msg: String, o: Any?, id: String) {
 	val m = Message(msg, o, java.lang.Long.valueOf(ct()), id)
 	OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + msg + ' ' + ct() + ' ' + o + ' ' + id)
-	synchronized(msg_list) {
+	msg_list_lock.withLock {
 	    msg_list.add(m)
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
-	    msg_list.notify()
+	    msg_list_condition.signal()
 	}
     }
 
     private val msg: Message
 	private get() {
-	    synchronized(msg_list) {
+	    msg_list_lock.withLock {
 		while (msg_list.size == 0) {
 		    try {
-			msg_list.wait()
+			msg_list_condition.await()
 		    } catch (ec: InterruptedException) {
 		    }
 		}
@@ -1602,7 +1610,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		return msg_list.removeAt(0)
 	    }
 	}
-    var sa_lock = Any()
+
+    var sa_lock = ReentrantLock()
+    val sa_condition = sa_lock.newCondition()
+
     var say_all = false
     fun sayAll(tg: Target) {
 	try {
@@ -1625,19 +1636,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    OmegaContext.sout_log.getLogger().info("ERR: Exception! Lesson.sayAll(): $ex")
 	    ex.printStackTrace()
 	} finally {
-	    synchronized(sa_lock) {
+	    sa_lock.withLock {
 		say_all = false
-		sa_lock.notifyAll()
+		sa_condition.signalAll()
 	    }
 	}
 	//	APlayer.unloadAll("SA_[0-9]*");
     }
 
     private fun waitSayAll() {
-	synchronized(sa_lock) {
+	sa_lock.withLock {
 	    while (say_all) {
 		try {
-		    sa_lock.wait()
+		    sa_condition.await()
 		} catch (ex: InterruptedException) {
 		}
 	    }
@@ -1840,6 +1851,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     var wait_id = arrayOf("")
+    val wait_id_lock = ReentrantLock()
+    val wait_id_condition = wait_id_lock.newCondition()
+
     private var last_msg_time = ct()
     fun execLesson(fn: String?) {
 	val tg = Target(machine)
@@ -1860,7 +1874,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	var test_index: Set<Array<IntArray>>? = null
 	var last_id = "!"
 	while (true) {
-	    synchronized(wait_id) { if (last_id == wait_id[0]) wait_id.notify() }
+	    wait_id_lock.withLock { if (last_id == wait_id[0]) wait_id_condition.signal() }
 	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
 	    val m = msg
 	    val msg = m.msg
@@ -1979,7 +1993,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		sentence_canvas!!.hidePopup(3)
 		if (action == null) {
 		    action = AnimAction()
-		    card_panel!!.add(action.canvas, "anim1")
+		    card_panel!!.add(action!!.canvas, "anim1")
 		}
 		card_show("anim1")
 		hit_key = 0
@@ -2021,7 +2035,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		val fullname_2 = "$dir$fname.omega_story_replay"
 		try {
 		    PrintWriter(FileWriter(File(fullname))).use { pw ->
-			val it: Iterator<*> = ss_li.iterator()
+			val it: Iterator<*> = ss_li!!.iterator()
 			while (it.hasNext()) {
 			    val sent = it.next() as String
 			    pw.println(sent)
@@ -2465,7 +2479,7 @@ target pos $tg_ix"""
 					    if (say(lang, sitm!!.defaultFilledTTS, true)) break@PLAYSND
 					}
 					var sfn = sitm!!.soundD ?: break@PLAYSND
-					sfn = tg.fillVarHere(tg_ix, sfn)
+					sfn = tg.fillVarHere(tg_ix, sfn)!!
 					if (sfn == null || sfn.length == 0) {
 					    break@PLAYSND
 					}
@@ -2515,7 +2529,7 @@ target pos $tg_ix"""
 					if (action_s != null && action_s.length > 0) {
 					    if (false && action == null) { //--
 						action = AnimAction()
-						card_panel!!.add(action.canvas, "anim1")
+						card_panel!!.add(action!!.canvas, "anim1")
 					    }
 					    if (!false) {
 //--when pressed button						element_root = action.prefetch(action_s);
@@ -2722,10 +2736,7 @@ target pos $tg_ix"""
 						val msgitm = MsgItem(
 						    'R',
 						    t("Right answer"),
-						    if (t_b) currentPupil.getString(
-							"text",
-							t("Correct answer")
-						    ) else "",
+						    if (t_b) currentPupil.getString("text", t("Correct answer")) else "",
 						    "",
 						    if (i_b) currentPupil.imageName else null,
 						    null,
@@ -2733,8 +2744,8 @@ target pos $tg_ix"""
 						)
 						if (v_b) {
 						    val speech = currentPupil.getString("speech", "")
-						    if (speech.length > 0) {
-							sayS(speech)
+						    if (speech!!.length > 0) {
+							sayS(speech!!)
 						    }
 						}
 						if (t_b || i_b) {
@@ -2948,7 +2959,7 @@ target pos $tg_ix"""
 	    )
 	    if (action == null) {
 		action = AnimAction()
-		card_panel!!.add(action.canvas, "anim1")
+		card_panel!!.add(action!!.canvas, "anim1")
 	    }
 	    try {
 		for (anim_i in action_sa.indices) {
@@ -3041,7 +3052,7 @@ target pos $tg_ix"""
 			}
 			val allText = tg.allText
 			saveRecastAction(
-			    le_canvas!!.lessonName,
+			    le_canvas!!.lessonName!!,
 			    action_s,
 			    actA,
 			    actTextA,
@@ -3058,16 +3069,16 @@ target pos $tg_ix"""
 			all_text = tg.allText
 			//			OmegaContext.sout_log.getLogger().info(":--: " + "ALL TEXT2 " + all_text);
 			if (is_last) {
-			    ss_li.add(all_text)
+			    ss_li!!.add(all_text)
 			}
-			sent_li.lesson_name = le_canvas!!.lessonName
+			sent_li.lesson_name = le_canvas!!.lessonName!!
 			lesson_log.getLogger().info("SENTENCE $ss_li")
 			OmegaContext.story_log.getLogger().info(
 			    "added sent 2214 " + sent_li.lesson_name
 				    + ' ' + all_text
 			)
 			if (tg.storyNext == null) {
-			    if (ss_li.size <= 1) {
+			    if (ss_li!!.size <= 1) {
 				story_hm["sentence_list"] = SentenceList()
 				OmegaContext.story_log.getLogger().info("new sent_list 2214 $ss_li")
 			    } else {
@@ -3096,7 +3107,7 @@ target pos $tg_ix"""
 				)
 				OmegaContext.sout_log.getLogger().info(":--: Lesson: end_code_s $end_code_s")
 				if (end_code_s == "left") {
-				    action.perform(
+				    action!!.perform(
 					window!!,
 					action_s,
 					actA,
@@ -3146,7 +3157,7 @@ target pos $tg_ix"""
     private fun performMpgAction(
 	all_text: String,
 	action_s: String?,
-	actA: Array<String>,
+	actA: Array<String?>,
 	pathA: Array<String?>,
 	tg: Target
     ): JPanel? {
@@ -3274,7 +3285,7 @@ target pos $tg_ix"""
     class PlayData internal constructor(
 	var lesson_name: String,
 	var action_s: String?,
-	var actA: Array<String>,
+	var actA: Array<String?>,
 	var actTextA: Array<String?>,
 	var sound_list: String?,
 	var pathA: Array<String?>,
@@ -3358,7 +3369,7 @@ target pos $tg_ix"""
 	card_show("sent")
 	sentence_canvas!!.showMsg(null)
 	val key = waitHitKey(1)
-	val al: ArrayList<String> = ArrayList()
+	val al: ArrayList<String?> = ArrayList()
 	al.add("Den talande reven rev en annan rev")
 	al.add("")
 	al.add("Flamingon flyger lagom")
@@ -3488,7 +3499,7 @@ target pos $tg_ix"""
     private fun saveRecastAction(
 	    lesson_name: String,
 	    action_s: String?,
-	    actA: Array<String>,
+	    actA: Array<String?>,
 	    actTextA: Array<String?>,
 	    sound_list: String?,
 	    pathA: Array<String?>,
@@ -3554,7 +3565,7 @@ target pos $tg_ix"""
 
     fun runLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, smaller: Boolean) {
 	var smaller = smaller
-	this.edit = edit
+	Lesson.edit = edit
 	le_canvas!!.edit = edit
 	window = w
 	KeyboardFocusManager.setCurrentKeyboardFocusManager(object : DefaultKeyboardFocusManager() {
