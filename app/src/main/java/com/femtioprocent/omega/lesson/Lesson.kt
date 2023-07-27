@@ -784,9 +784,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    for (j in 0..1) {
 			val t_mode = 10 * (i + 1) + j
 			val li_ = getList(t_mode)
-			var li = ArrayList<String>()
-			for(i in li_!!) li.add(i as String)
-			li.shuffled(); // TODO:
+			val li = li_!!.shuffled() as ArrayList<String> // why shuffle when we sort below
 			if (li != null && li.size > 0) {
 			    val sa = li.toTypedArray<String>()
 			    Arrays.sort(sa)

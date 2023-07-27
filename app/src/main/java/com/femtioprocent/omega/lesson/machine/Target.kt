@@ -15,7 +15,6 @@ import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.a2s
 import com.femtioprocent.omega.util.SundryUtils.empty
 import com.femtioprocent.omega.util.SundryUtils.rand
-import com.femtioprocent.omega.util.SundryUtils.scrambleArr
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.xml.Element
