@@ -204,8 +204,7 @@ class ItemEntry {
 	resetItems()
 	if (current_correct_sentence == null) return 0
 	mixList()
-	var has_krull = false
-	if (current_correct_sentence.indexOf('{') != -1) has_krull = true
+	var has_krull = current_correct_sentence.indexOf('{') != -1
 	val free = ArrayList<Item>()
 	for(itm in items!!) {
 	    if (itm != null) {
