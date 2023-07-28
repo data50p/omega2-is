@@ -3,7 +3,6 @@ package com.femtioprocent.omega.util
 import java.awt.Color
 
 object RGB {
-    var hm: HashMap<String,Item>? = null
     var hmc: HashMap<String,Color>? = null
 
     //	! $XConsortium: rgb.txt,v 10.41 94/02/20 18:39:36 rws Exp $
@@ -767,22 +766,13 @@ object RGB {
     }
 
     fun getColor(name: String, def: Color): Color {
-        if (hm == null) {
-            hm = HashMap<String,Item>()
-            hmc = HashMap<String,Color>()
+        if (hmc == null) {
+            hmc = HashMap()
             for (i in item.indices) {
-                hm!![item[i].name] = item[i]
+                hmc!![item[i].name] = Color(item[i].r, item[i].g, item[i].b)
             }
         }
-        var col = hmc!![name] as Color?
-        if (col == null) {
-            val Ix = hm!![name] as Int ?: return def
-            col = Color(item[Ix].r,
-                    item[Ix].g,
-                    item[Ix].b)
-            hmc!![name] = col
-        }
-        return col
+        return hmc!![name] ?: Color(128, 128, 128)
     }
 
     class Item(var r: Int, var g: Int, var b: Int, var name: String)
