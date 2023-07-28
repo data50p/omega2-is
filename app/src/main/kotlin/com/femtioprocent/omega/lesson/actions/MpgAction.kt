@@ -18,7 +18,7 @@ import java.awt.geom.RoundRectangle2D
 import javax.swing.JPanel
 import javax.swing.event.MouseInputAdapter
 
-class MpgAction : ActionI {
+class MpgAction : Action {
     @JvmField
     var mpg_player: MpgPlayer? = null
     var jpan: MyPanel? = null

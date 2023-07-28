@@ -6,7 +6,7 @@ import com.femtioprocent.omega.xml.Element
 import java.awt.Window
 import javax.swing.JPanel
 
-class AnimAction : ActionI {
+class AnimAction : Action {
     @JvmField
     var rt: AnimRuntime? = AnimRuntime()
     override var hm: HashMap<String?, Any?> = HashMap()

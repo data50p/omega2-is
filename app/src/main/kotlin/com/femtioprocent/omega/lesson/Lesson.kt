@@ -15,7 +15,7 @@ import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.adm.register.data.*
 import com.femtioprocent.omega.appl.OmegaAppl.Companion.closeSplash
 import com.femtioprocent.omega.appl.Splash
-import com.femtioprocent.omega.lesson.actions.ActionI
+import com.femtioprocent.omega.lesson.actions.Action
 import com.femtioprocent.omega.lesson.actions.AnimAction
 import com.femtioprocent.omega.lesson.actions.MpgAction
 import com.femtioprocent.omega.lesson.appl.ApplContext
@@ -73,6 +73,7 @@ import java.util.prefs.Preferences
 import javax.print.PrintService
 import javax.swing.*
 import kotlin.concurrent.withLock
+import kotlin.time.measureTime
 
 // has UTF-8 ¬ß
 class Lesson(run_mode: Char) : LessonCanvasListener {
@@ -89,7 +90,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     var lep: LessonEditorPanel? = null
     var saved_name: String? = null
     var loadedFName: String? = null
-    var action: ActionI? = null
+    var action: Action? = null
     var mpg_action: MpgAction? = null
     var element_root: Element? = null
     var element_root2: Element? = null
@@ -1450,7 +1451,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     @Synchronized
-    fun addValues(vs: Values, action_: ActionI?) {
+    fun addValues(vs: Values, action_: Action?) {
 	//	OmegaContext.sout_log.getLogger().info(":--: " + "addValues " + vs);
 	if (action_ != null) {
 	    var s = action_.pathList
@@ -1475,7 +1476,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     var item_at_xy: Item? = null
     override fun hitItem(ix: Int, iy: Int, where: Int, type: Char) {
 	if (lep != null && type == 'p') {
-	    var action_: ActionI? = null
+	    var action_: Action? = null
 	    if (action != null) {
 		action_ = action
 	    }
@@ -3040,7 +3041,10 @@ target pos $tg_ix"""
 			// 						      getCurrentPupil().getBool("showSentence", true));
 			le_canvas!!.requestFocus()
 		    } else { // normal animation
-			element_root = action!!.prefetch(action_s)
+			val ti = measureTime {
+			    element_root = action!!.prefetch(action_s)
+			}
+			Log.getLogger().info("It took $ti")
 			if (element_root == null) {
 			    JOptionPane.showMessageDialog(
 				ApplContext.top_frame,
