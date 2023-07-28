@@ -9,11 +9,9 @@ import java.awt.Window
 import javax.swing.JFrame
 
 open class ApplLesson internal constructor(title: String?, is_editor: Boolean) : JFrame(title) {
-    private var is_editor: Boolean
     var httpd: Server
 
     init {
-	this.is_editor = is_editor
 	TOP_JFRAME = this
 	OmegaContext.init("Httpd", null)
 	val httpd_ = OmegaContext.getSubsystem("Httpd") as Httpd

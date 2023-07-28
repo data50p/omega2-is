@@ -64,6 +64,7 @@ import java.awt.event.KeyEvent
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import java.io.*
+import java.lang.IllegalArgumentException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -95,20 +96,45 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     var seq: Sequencer? = null
     var rdlg: ResultDialogTableSummary? = null
     var is_testing = false
-    private val TM_CREATE = 0
-    private val TM_RAND = 1
-    private val TM_PRE_1 = 10
-    private val TM_PRE_2 = 11
-    private val TM_POST_1 = 20
-    private val TM_POST_2 = 21
-    private val TMG_CREATE = 0
-    private val TMG_TEST = 1
-    private var current_test_mode = TM_CREATE
+    private var current_test_mode = TM.CREATE
     private var current_test_mode_group = mkTestModeGroup(current_test_mode)
     var litm: LessonItem? = null
     private var current_pupil: Pupil? = null
     var session_length_start = ct()
     var lessonLang: String? = null
+
+    enum class TM(val code: Int) {
+	CREATE(0),
+	RAND(1),
+	PRE_1(10),
+	PRE_2(11),
+	POST_1(20),
+	POST_2(21)
+    }
+    enum class TMG(val code: Int) {
+	CREATE(0),
+	TEST(1)
+    }
+
+    fun constructTM(t_mode: Int): TM {
+	when (t_mode) {
+	    TM.CREATE.code -> return TM.CREATE
+	    TM.RAND.code -> return TM.RAND
+	    TM.PRE_1.code -> return TM.PRE_1
+	    TM.PRE_2.code -> return TM.PRE_2
+	    TM.POST_1.code -> return TM.POST_1
+	    TM.POST_2.code -> return TM.POST_2
+	    else -> throw IllegalArgumentException("No such TM enum: " + t_mode)
+	}
+    }
+
+    fun constructTMG(t_mode_group: Int): TMG {
+	when (t_mode_group) {
+	    TMG.CREATE.code -> return TMG.CREATE
+	    TMG.TEST.code -> return TMG.TEST
+	    else -> throw IllegalArgumentException("No such TMG enum: " + t_mode_group)
+	}
+    }
 
     class Message(var msg: String, var obj: Any?, var msg_time: Long, var id: String)
     inner class PlayDataList {
@@ -298,7 +324,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    rt = null
 	}
 
-	internal constructor(pupil: Pupil, lesson_name: String, test_mode: Int) {
+	internal constructor(pupil: Pupil, lesson_name: String, test_mode: TM) {
 	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG created ");
 	    this.pupil = pupil
 	    this.lesson_name = lesson_name
@@ -315,14 +341,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + " STARTED ");
 	}
 
-	fun getTestModeString(test_mode: Int): String {
+	private fun getTestModeString(test_mode: TM): String {
 	    return when (test_mode) {
-		TM_CREATE -> "create"
-		TM_RAND -> "test"
-		TM_PRE_1 -> "pre1"
-		TM_PRE_2 -> "pre2"
-		TM_POST_1 -> "post1"
-		TM_POST_2 -> "post2"
+		TM.CREATE -> "create"
+		TM.RAND -> "test"
+		TM.PRE_1 -> "pre1"
+		TM.PRE_2 -> "pre2"
+		TM.POST_1 -> "post1"
+		TM.POST_2 -> "post2"
 		else -> "X"
 	    }
 	}
@@ -572,11 +598,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    return (if (b) "s 1" else "s 0") + ";w +" + cnt_wordlast_correct + " -" + cnt_wordlast_wrong
 	}
 
-	fun genKey(test_mode: Int): String {
+	fun genKey(test_mode: TM): String {
 	    return "" + test_mode
 	}
 
-	fun getTestText(test_mode: Int, full: Boolean): String? {
+	fun getTestText(test_mode: TM, full: Boolean): String? {
 	    val s = getTestText(test_mode)
 	    if (s == null) {
 		return s
@@ -586,7 +612,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else s.replace("\\{[^\\{\\}]*\\}".toRegex(), "")
 	}
 
-	fun getTestTextSet(txt: String?, test_mode: Int, full: Boolean): Set<String> {
+	fun getTestTextSet(txt: String?, test_mode: TM, full: Boolean): Set<String> {
 	    val set: MutableSet<String> = HashSet()
 	    var s = getTestText(test_mode)
 	    if (s == null) {
@@ -600,11 +626,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    return set
 	}
 
-	private fun getTestText(test_mode: Int): String? {
+	private fun getTestText(test_mode: TM): String? {
 	    if (current != null) {
 		return current
 	    }
-	    return if (test_mode == TM_RAND) {
+	    return if (test_mode == TM.RAND) {
 		val saAll = l_ctxt.lessonCanvas.allTargetCombinations
 		val sa = removeOff(action_specific, saAll)
 		if (rand_map == null || rand_map!!.size != sa.size) {
@@ -655,19 +681,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    return sa
 	}
 
-	fun getIterator(test_mode: Int): ListIterator<Any?>? {
+	fun getIterator(test_mode: TM): ListIterator<Any?>? {
 	    val key = genKey(test_mode)
 	    val lai = texts[key] as ListAndIterator<*>? ?: return null
 	    return lai.it
 	}
 
-	fun getNewIterator(test_mode: Int): ListIterator<Any?>? {
+	fun getNewIterator(test_mode: TM): ListIterator<Any?>? {
 	    val key = genKey(test_mode)
 	    val lai = texts[key] as ListAndIterator<*>? ?: return null
 	    return lai.list.listIterator()
 	}
 
-	fun getList(test_mode: Int): List<Any?>? {
+	fun getList(test_mode: TM): List<Any?>? {
 	    val key = genKey(test_mode)
 	    val lai = texts[key] as ListAndIterator<*>? ?: return null
 	    return lai.list
@@ -680,10 +706,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    current = null
 	}
 
-	fun next(test_mode: Int): Boolean {
+	fun next(test_mode: TM): Boolean {
 	    cnt_wordlast_wrong = 0
 	    cnt_wordlast_correct = 0
-	    if (test_mode == TM_RAND) {
+	    if (test_mode == TM.RAND) {
 		index++
 		return getTestText(test_mode, false) != null
 	    }
@@ -699,11 +725,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	fun getTestMatrix(all_sentence: Array<String?>): Array<IntArray> {
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### getTestMatrix");
 	    val tmm = Array(all_sentence.size) { IntArray(4) }
-	    val map = intArrayOf(
-		TM_PRE_1,
-		TM_PRE_2,
-		TM_POST_1,
-		TM_POST_2
+	    val map = arrayOf(
+		TM.PRE_1,
+		TM.PRE_2,
+		TM.POST_1,
+		TM.POST_2
 	    )
 	    for (i in 0..3) {
 		val t_mode = map[i]
@@ -732,6 +758,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		for (i in tmm[0].indices) {
 		    val li: MutableList<String> = ArrayList()
 		    val t_mode = (i / 2 + 1) * 10 + i % 2
+		    val t_mode_e = constructTM(t_mode)
 		    for (j in 0 until len) {
 			val ord = tmm[j][i]
 			if (ord > 0) {
@@ -742,7 +769,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			    li.add(genSeqKey(ord_i) + ':' + txt)
 			}
 		    }
-		    texts[genKey(t_mode)] = ListAndIterator(li)
+		    texts[genKey(t_mode_e)] = ListAndIterator(li)
 		}
 	    }
 	}
@@ -762,6 +789,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			val a_ord = ty_el.findAttr("ord") as String
 			var t_mode = if (a_type == t_id[0]) 10 else 20
 			t_mode += if (a_ord == "0") 0 else 1
+			val t_mode_e = constructTM(t_mode)
 			var li: MutableList<String?> = ArrayList()
 			for (ii in 0..99) {
 			    val s_el = ty_el.findElement("sentence", ii) ?: break
@@ -773,7 +801,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			    //log 			    OmegaContext.sout_log.getLogger().info(":--: " + "sent li " + li);
 			}
 			li = sortList(li)
-			texts[genKey(t_mode)] = ListAndIterator(li)
+			texts[genKey(t_mode_e)] = ListAndIterator(li)
 		    }
 		}
 		this.el = el
@@ -788,7 +816,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		for (i in 0..1) {
 		    for (j in 0..1) {
 			val t_mode = 10 * (i + 1) + j
-			val li_ = getList(t_mode)
+			val t_mode_e = constructTM(t_mode)
+			val li_ = getList(t_mode_e)
 			if (li_ != null && li_.size > 0) {
 			    val li = li_!!.shuffled() as ArrayList<String> // why shuffle when we sort below
 			    val sa = li.toTypedArray<String>()
@@ -893,15 +922,15 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    fun mkTestModeGroup(test_mode: Int): Int {
+    fun mkTestModeGroup(test_mode: TM): TMG {
 	when (test_mode) {
-	    TM_CREATE -> return TMG_CREATE
-	    TM_RAND, TM_PRE_1, TM_PRE_2, TM_POST_1, TM_POST_2 -> return TMG_TEST
+	    TM.CREATE -> return TMG.CREATE
+	    TM.RAND, TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> return TMG.TEST
 	}
 	throw Error("no TMG")
     }
 
-    fun isTestModeGroup(test_mode: Int, test_mode_group: Int): Boolean {
+    fun isTestModeGroup(test_mode: TM, test_mode_group: TMG): Boolean {
 	val tmg = mkTestModeGroup(test_mode)
 	return tmg == test_mode_group
     }
@@ -911,33 +940,33 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	//log 	OmegaContext.sout_log.getLogger().info(":--: " + "prepare test " + mode);
 	try {
 	    if ("create" == mode) {
-		current_test_mode = TM_CREATE
+		current_test_mode = TM.CREATE
 		return
 	    }
 	    if ("pupil_1" == mode) {
-		current_test_mode = TM_RAND
+		current_test_mode = TM.RAND
 		return
 	    }
 	    if ("pre_1" == mode) {
-		current_test_mode = TM_PRE_1
+		current_test_mode = TM.PRE_1
 		return
 	    }
 	    if ("pre_2" == mode) {
-		current_test_mode = TM_PRE_2
+		current_test_mode = TM.PRE_2
 		return
 	    }
 	    if ("post_1" == mode) {
-		current_test_mode = TM_POST_1
+		current_test_mode = TM.POST_1
 		return
 	    }
 	    if ("post_2" == mode) {
-		current_test_mode = TM_POST_2
+		current_test_mode = TM.POST_2
 		return
 	    }
 	} finally {
 	    current_test_mode_group = mkTestModeGroup(current_test_mode)
 	    lemain_canvas!!.reload()
-	    lemain_canvas!!.setModeIsTest(current_test_mode_group == TMG_TEST)
+	    lemain_canvas!!.setModeIsTest(current_test_mode_group == TMG.TEST)
 	}
     }
 
@@ -947,7 +976,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	register = RegisterProxy(currentPupil, fn, current_test_mode)
 	le_canvas!!.disposeOldLesson()
 	when (current_test_mode) {
-	    TM_CREATE -> {
+	    TM.CREATE -> {
 		card_show("words")
 		if (register != null) {
 		    register!!.restart()
@@ -955,12 +984,12 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		sendMsg("create", fn, "loadTest1")
 	    }
 
-	    TM_RAND -> {
+	    TM.RAND -> {
 		card_show("anim1")
 		sendMsg("new_test", fn, "loadTest2")
 	    }
 
-	    TM_PRE_1, TM_PRE_2, TM_POST_1, TM_POST_2 -> {
+	    TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> {
 		card_show("anim1")
 		sendMsg("new_test", fn, "loadTest3")
 	    }
@@ -1890,7 +1919,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    if ("load" == msg) {
 		exec_load(obj as String?, tg)
 		progress!!.dismiss()
-		if (current_test_mode_group == TMG_CREATE) {
+		if (current_test_mode_group == TMG.CREATE) {
 		    if (!last_story_flag) {
 			card_show("words")
 		    }
@@ -1914,7 +1943,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		test_index = exec_test_cont()
 	    } else if ("show_result_msg" == msg) {
 		OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + ' ' + register)
-		if (register != null && register!!.has_shown == false && current_test_mode == TM_RAND) {
+		if (register != null && register!!.has_shown == false && current_test_mode == TM.RAND) {
 		    le_canvas!!.showMsg(resultSummary_MsgItem)
 		    register!!.has_shown = true
 		    register!!.close()
@@ -2193,8 +2222,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    //	    audio_prefetch.prefetchAny(fn);
 	    var dummy = false
-	    if (current_test_mode == TM_POST_1
-		|| current_test_mode == TM_POST_2
+	    if (current_test_mode == TM.POST_1
+		|| current_test_mode == TM.POST_2
 	    ) {
 		dummy = true
 	    }
@@ -2204,10 +2233,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		action_specific!!.fill(el)
 		action_specific!!.fillSign(el)
 		element_root2 = el
-		if (current_test_mode == TM_CREATE) {
+		if (current_test_mode == TM.CREATE) {
 		    tg.loadFromEl(el, "", story_hm, false, false)
 		    seq = Sequencer(el)
-		} else if (current_test_mode == TM_RAND) {
+		} else if (current_test_mode == TM.RAND) {
 		    tg.loadFromEl(el, "", story_hm, false, true)
 		    seq = Sequencer(el)
 		    seq!!.dump()
@@ -2278,12 +2307,12 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var feedback_movie: FeedBackMovie? = null
     fun exec_test_cont(): Set<Array<IntArray>>? {
-	if (!edit && current_test_mode > TM_CREATE) {
+	if (!edit && current_test_mode > TM.CREATE) {
 	    val full_test_txt = seq!!.getTestText(current_test_mode, true)
 	    OmegaContext.sout_log.getLogger().info(":--: got this full_test_text: $full_test_txt")
 	    le_canvas!!.removeDummy()
-	    if (current_test_mode == TM_POST_1
-		|| current_test_mode == TM_POST_2
+	    if (current_test_mode == TM.POST_1
+		|| current_test_mode == TM.POST_2
 	    ) {
 		le_canvas!!.sowDummy(full_test_txt)
 	    }
@@ -2370,7 +2399,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			val i_y = hBox.o_y
 			val tg_ix: Int
 			val where = hBox.where
-			tg_ix = if (current_test_mode_group == TMG_CREATE) {
+			tg_ix = if (current_test_mode_group == TMG.CREATE) {
 			    tg.findNextFreeT_ItemIx(hBox.item!!, edit, where)
 			} else {
 			    tg.findNextFreeT_ItemIx()
@@ -2387,7 +2416,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			    le_canvas!!.renderTg()
 			} else {
 			    var was_wrong = true
-			    if (current_test_mode_group != TMG_CREATE) {
+			    if (current_test_mode_group != TMG.CREATE) {
 				val next_i_x = tg.findEntryIxMatchTargetIx(tg_ix)
 				for (test_index1 in test_index!!) {
 				    OmegaContext.sout_log.getLogger()
@@ -2409,7 +2438,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 				i_x,
 				i_y,
 				tg_ix,
-				current_test_mode_group != TMG_CREATE
+				current_test_mode_group != TMG.CREATE
 			    )
 			    if (itm == null) {
 				global_skipF(true)
@@ -2428,7 +2457,7 @@ target pos $tg_ix"""
 			    } else {
 				val t_word_ = tg.getTextAt(tg_ix)
 				val t_word = fixWithStar(t_word_)
-				if (current_test_mode == TM_CREATE) {
+				if (current_test_mode == TM.CREATE) {
 				    if (register != null) {
 					register!!.word(
 					    "create:build",
@@ -2506,7 +2535,7 @@ target pos $tg_ix"""
 				    }
 				}
 				val showSignWord = currentPupil.getBool("showSignWord", true)
-				if (current_test_mode == TM_CREATE && isLIU_Mode() && showSignWord && !edit) {
+				if (current_test_mode == TM.CREATE && isLIU_Mode() && showSignWord && !edit) {
 				    val lmm = signMoviePrepare(tg, tg_ix)
 				    if (lmm != null) {
 					try {
@@ -2556,7 +2585,7 @@ target pos $tg_ix"""
 
 				//				    OmegaContext.sout_log.getLogger().info(":--: " + "time prefetch " + (ct1-ct0));
 				if (tg.isTargetFilled && !edit) {
-				    if (current_test_mode == TM_CREATE) {
+				    if (current_test_mode == TM.CREATE) {
 					val l_id_list = tg.all_Tid_Item
 					if (register != null) {
 					    register!!.create(
@@ -2588,7 +2617,7 @@ target pos $tg_ix"""
 					}
 					le_canvas!!.setMarkTargetAll()
 					val showSignSentence = currentPupil.getBool("showSignSentence", true)
-					if (isLIU_Mode() && showSignSentence && !edit && current_test_mode == TM_CREATE) {
+					if (isLIU_Mode() && showSignSentence && !edit && current_test_mode == TM.CREATE) {
 					    playSignFile(tg, false)
 					}
 					le_canvas!!.setMarkTargetNo()
@@ -2887,7 +2916,7 @@ target pos $tg_ix"""
 				    } // test_mode
 				} // tg is filled
 				le_canvas!!.enableQuitButton(true)
-				if (current_test_mode != TM_CREATE) {
+				if (current_test_mode != TM.CREATE) {
 				    le_canvas!!.setNextMarkTarget()
 				}
 			    }
@@ -3101,7 +3130,7 @@ target pos $tg_ix"""
 			val myra = MyRA()
 			if (waiting) {
 			    OmegaContext.sout_log.getLogger().info(":--: waitReply? $is_last $current_test_mode")
-			    if (is_last && current_test_mode == TM_CREATE) {
+			    if (is_last && current_test_mode == TM.CREATE) {
 				var end_code_s = le_canvas!!.waitReplyAction(
 				    (action as AnimAction?)!!,
 				    all_text,
@@ -3147,7 +3176,7 @@ target pos $tg_ix"""
 		if (last_story_flag) {
 		    sentence_canvas!!.setRead(false)
 		    card_show("sent")
-		} else if (current_test_mode != TM_CREATE) {
+		} else if (current_test_mode != TM.CREATE) {
 		    card_show("words")
 		}
 	    } catch (ex: Exception) {
@@ -3210,7 +3239,7 @@ target pos $tg_ix"""
 	    val anim_twice = currentPupil.getBool("repeatanim", false)
 	    val show_sentence = currentPupil.getBool("showSentence", true)
 	    mpg_action!!.show_sentence = show_sentence
-	    if (current_test_mode_group == TMG_TEST) {
+	    if (current_test_mode_group == TMG.TEST) {
 		mpg_action!!.show_sentence = false
 	    }
 	    class MyRA : Runnable {
@@ -3880,7 +3909,7 @@ target pos $tg_ix"""
     }
 
     val isTestMode: Boolean
-	get() = current_test_mode_group == TMG_TEST
+	get() = current_test_mode_group == TMG.TEST
 
     fun showHelp(more: String?) {
 	ApplLesson.help!!.showManualL(null)
