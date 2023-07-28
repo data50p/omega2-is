@@ -646,21 +646,20 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else {
 		val it = getIterator(test_mode) as ListIterator<String>?: return null
 		val test_text: String?
-		test_text = if (it.hasNext()) ({
+		if (it.hasNext()) {
 		    val s = it.next()
 		    it.previous()
 		    //log 		    OmegaContext.sout_log.getLogger().info(":--: " + "test text " + s);
 		    val ix = s.indexOf(':')
 		    if (ix != -1) {
-			s.substring(ix + 1)
+			test_text = s.substring(ix + 1)
 		    } else {
-			s
+			test_text = s
 		    }
-		})?.toString()
-		else {
-		    null
+		} else {
+		    test_text = null
 		}
-		test_text
+		return test_text
 	    }
 	}
 
@@ -2312,9 +2311,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    val full_test_txt = seq!!.getTestText(current_test_mode, true)
 	    OmegaContext.sout_log.getLogger().info(":--: got this full_test_text: $full_test_txt")
 	    le_canvas!!.removeDummy()
-	    if (current_test_mode == TM.POST_1
-		|| current_test_mode == TM.POST_2
-	    ) {
+	    if (current_test_mode == TM.POST_1 || current_test_mode == TM.POST_2) {
 		le_canvas!!.sowDummy(full_test_txt)
 	    }
 	    if (full_test_txt == null) {
