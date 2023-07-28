@@ -4,7 +4,7 @@ import com.femtioprocent.omega.lesson.Lesson.SentenceList
 import com.femtioprocent.omega.xml.Element
 
 class Items {
-    var item_entry_list: MutableList<ItemEntry?>
+    var item_entry_list: MutableList<ItemEntry>
 
     internal constructor() {
 	item_entry_list = ArrayList()
@@ -39,10 +39,8 @@ class Items {
     }
 
     fun getItemEntryTid(tg_tid: String?): ItemEntry? {
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
-	    if (it_ent.tid == tg_tid) return it_ent
+	for(it_ent in item_entry_list) {
+	    if (it_ent!!.tid == tg_tid) return it_ent
 	    if (tg_tid!!.length == 1 && it_ent.tid!!.indexOf(tg_tid[0]) != -1) return it_ent
 	}
 	return null
@@ -51,9 +49,7 @@ class Items {
     fun getItemEntryTidAll(tg_tid: String?): Array<ItemEntry> { // ie v
 	val tg_choise = ",$tg_tid,"
 	val li = ArrayList<ItemEntry>()
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
+	item_entry_list.forEach { it_ent ->
 	    val item_choise = "," + it_ent.tid + ","
 	    if (item_choise.indexOf(tg_choise) != -1) // ie it_ent.tid s,v  -> match
 		li.add(it_ent)
@@ -68,12 +64,10 @@ class Items {
     fun getItemEntryVirtualList(tid: String?): ItemEntryVirtualList {
 	val tid2 = ",$tid,"
 	val ievli = ItemEntryVirtualList()
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
-	    val tid3 = "," + it_ent.tid + ","
+	item_entry_list.forEach {
+	    val tid3 = "," + it.tid + ","
 	    if (tid3.indexOf(tid2) != -1) // tid=s   it_ent.tid=s,o  true
-		ievli.items.addAll(it_ent.items!!)
+		ievli.items.addAll(it.items!!)
 	}
 	return ievli
     }
@@ -93,12 +87,7 @@ class Items {
     }
 
     fun reOrd() {
-	var ORD = 0
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
-	    it_ent.ord = ORD++
-	}
+	item_entry_list.forEachIndexed {index,it_ent -> it_ent.ord = index}
     }
 
     fun remove(ix: Int) {
@@ -107,29 +96,19 @@ class Items {
 
     fun sowDummy(current_correct_sentence: String?): Int {
 	var c = 0
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
-	    c += it_ent.sowDummy(current_correct_sentence)
-	}
+	item_entry_list.forEach {c += it.sowDummy(current_correct_sentence)}
 	return c
     }
 
     fun removeDummy() {
-	val it: Iterator<*> = item_entry_list.iterator()
-	while (it.hasNext()) {
-	    val it_ent = it.next() as ItemEntry
-	    it_ent.removeDummy()
-	}
+	item_entry_list.forEach {it.removeDummy()}
     }
 
     val element: Element
 	get() {
 	    val el = Element("items")
 	    var a = 0
-	    val it: Iterator<*> = item_entry_list.iterator()
-	    while (it.hasNext()) {
-		val it_ent = it.next() as ItemEntry
+	    for(it_ent in item_entry_list) {
 		val iel = Element("item-entry")
 		iel.addAttr("ord", "" + a++)
 		iel.addAttr("type", it_ent.type)

@@ -101,9 +101,7 @@ class ItemEntry {
     }
 
     fun setDummyExtra(src_itm: Item, ix: Int, free: ArrayList<Item>) {
-	val it: Iterator<Item?> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next()
+	for(itm in items!!) {
 	    if (itm!!.dummy_extra == ix) {  // OK, this is a free empty cell, I can use it
 		itm.setText_Krull(src_itm.dummyText!!)
 		itm.sound = src_itm.dummySound
@@ -123,10 +121,8 @@ class ItemEntry {
 
     fun reOrdItem() {
 	var a = 0
-	val it: Iterator<*> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next() as Item
-	    itm.ord = a++
+	for(itm in items!!) {
+	    itm!!.ord = a++
 	}
     }
 
@@ -136,8 +132,7 @@ class ItemEntry {
 
     @JvmOverloads
     fun addItemAt(ix: Int, txt: String? = "text") {
-	val itm: Item
-	itm = if (type == "action") {
+	val itm: Item = if (type == "action") {
 	    val aitm = Item(txt, true)
 	    //	    if ( txt.length() > 0 )
 	    aitm.setDefaultAction()
@@ -176,9 +171,7 @@ class ItemEntry {
     //     }
     fun maxStringWidth(): Int {
 	var mx = 0
-	val it: Iterator<*> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next() as Item?
+	for(itm in items!!) {
 	    if (itm != null) {
 		val txt = itm.defaultFilledText
 		if (txt!!.length > mx) mx = txt.length
@@ -211,12 +204,10 @@ class ItemEntry {
 	resetItems()
 	if (current_correct_sentence == null) return 0
 	mixList()
-	var it: Iterator<*> = items!!.iterator()
 	var has_krull = false
 	if (current_correct_sentence.indexOf('{') != -1) has_krull = true
 	val free = ArrayList<Item>()
-	while (it.hasNext()) {
-	    val itm = it.next() as Item?
+	for(itm in items!!) {
 	    if (itm != null) {
 		val extras = split(tid, ",")
 		var free_1: ArrayList<Item>? = ArrayList()
@@ -241,9 +232,7 @@ class ItemEntry {
 	}
 	if (Tr) Log.getLogger().info(":--: free is $free")
 	val used: MutableSet<String> = HashSet<String>()
-	it = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next()
+	for(itm in items!!) {
 	    if (itm != null) {
 		val extras = split(tid, ",")
 		for (jj in extras.indices) {
@@ -268,9 +257,7 @@ class ItemEntry {
 
     private fun removeStaleDummyProxy() {
 	val n_items: MutableList<Item?> = ArrayList()
-	val it: Iterator<Item?> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next()
+	for(itm in items!!) {
 	    if (itm!!.text!![0] == '@') ; else n_items.add(itm)
 	}
 	if (items!!.size != n_items.size) items = n_items

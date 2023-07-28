@@ -276,10 +276,8 @@ class Target {
     }
 
     fun isTidInTarget(ent_tid: String?): Boolean {
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    if (matchTid2(ent_tid, titm.tid)) return true
+	for(titm in t_items!!) {
+	    if (matchTid2(ent_tid, titm!!.tid)) return true
 	}
 	return false
     }
@@ -287,10 +285,8 @@ class Target {
     fun findNextFreeT_ItemIx(box_itm: Item, replace: Boolean, where: Int): Int {
 	var same = 0
 	run {
-	    val it: Iterator<*> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next() as T_Item
-		if (matchTid2(box_itm.it_ent!!.tid, titm.tid)) same++
+	    for(titm in t_items!!) {
+		if (matchTid2(box_itm.it_ent!!.tid, titm!!.tid)) same++
 	    }
 	}
 	if (same == 0) return -1
