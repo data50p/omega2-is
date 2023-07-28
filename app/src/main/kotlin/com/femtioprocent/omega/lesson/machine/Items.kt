@@ -95,7 +95,8 @@ class Items {
     }
 
     fun sowDummy(current_correct_sentence: String?): Int {
-	return item_entry_list.map { it_ent -> it_ent.sowDummy(current_correct_sentence) }.reduce {a, b -> a + b}
+	return item_entry_list.fold(0) { c, it_ent -> c + it_ent.sowDummy(current_correct_sentence) }
+//	return item_entry_list.map { it_ent -> it_ent.sowDummy(current_correct_sentence) }.reduce {a, b -> a + b}
     }
 
     fun removeDummy() {
