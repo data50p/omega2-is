@@ -17,8 +17,8 @@ shift $((OPTIND-1))
 
 
 if [ $version == 1 ]; then
-	sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname) ${1}§§/" app/src/main/java/com/femtioprocent/omega/OmegaVersion.kt > Z-OmegaVersion.kt
-	mv Z-OmegaVersion.kt  app/src/main/java/com/femtioprocent/omega/OmegaVersion.kt
+	sed "s/§§.*§§/§§$(date +%y-%m-%d_%H:%M:%S) $(hostname) ${1}§§/" app/src/main/kotlin/com/femtioprocent/omega/OmegaVersion.kt > Z-OmegaVersion.kt
+	mv Z-OmegaVersion.kt  app/src/main/kotlin/com/femtioprocent/omega/OmegaVersion.kt
 fi
 
 ./gradlew clean build installDist
