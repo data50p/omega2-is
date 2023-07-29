@@ -231,10 +231,8 @@ class Target {
     val targetElement: Element
 	get() {
 	    val el = Element("target")
-	    val it: Iterator<*> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next() as T_Item
-		val tel = titm.element
+	    t_items!!.forEach {titm ->
+		val tel = titm!!.element
 		el.add(tel)
 	    }
 	    return el
@@ -254,10 +252,8 @@ class Target {
     fun whatTargetMatchTid(ent_tid: String?): Int { // mask
 	var a = 0
 	var c = 0
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    if (matchTid2(ent_tid, titm.tid)) a = a or (1 shl c)
+	t_items!!.forEach {titm ->
+	    if (matchTid2(ent_tid, titm!!.tid)) a = a or (1 shl c)
 	    c++
 	}
 	return a
@@ -292,10 +288,8 @@ class Target {
 	if (same == 0) return -1
 	val d = where / 100.0
 	var skip = (d * same).toInt()
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    if (matchTid2(box_itm.it_ent!!.tid, titm.tid)) if (titm.item == null || replace && skip-- == 0) {
+	t_items!!.forEach {titm ->
+	    if (matchTid2(box_itm.it_ent!!.tid, titm!!.tid)) if (titm.item == null || replace && skip-- == 0) {
 		return titm.ord
 	    }
 	}
@@ -303,10 +297,8 @@ class Target {
     }
 
     fun findNextFreeT_ItemIx(): Int {
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    if (titm.item == null) return titm.ord
+	t_items!!.forEach {titm ->
+	    if (titm!!.item == null) return titm.ord
 	}
 	return -1
     }
@@ -361,10 +353,8 @@ class Target {
 
     fun reOrdT_Items() {
 	var o = 0
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    titm.ord = o++
+	t_items!!.forEach {titm ->
+	    titm!!.ord = o++
 	}
     }
 
@@ -396,10 +386,8 @@ class Target {
 
     val isTargetFilled: Boolean
 	get() {
-	    val it: Iterator<*> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next() as T_Item
-		if (titm.item == null) return false
+	    t_items!!.forEach {titm ->
+		if (titm!!.item == null) return false
 	    }
 	    return true
 	}
@@ -479,13 +467,7 @@ class Target {
 
     private val actionIx: Int
 	private get() {
-	    var c = 0
-	    val it: Iterator<*> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next() as T_Item
-		if (titm.type == "action") return c
-		c++
-	    }
+	    t_items!!.forEachIndexed {index, titm -> if (titm!!.type == "action") return index }
 	    return -1
 	}
 
@@ -552,11 +534,7 @@ class Target {
     }
 
     fun releaseAllT_Items() {
-	val it: Iterator<*> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next() as T_Item
-	    titm.clearText()
-	}
+	t_items!!.forEach {titm -> titm!!.clearText()}
 	Log.getLogger().info(":--: " + "target released")
     }
 
@@ -819,10 +797,8 @@ class Target {
     val allLessonBothArg: Array<String?>
 	get() {
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<*> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next() as T_Item
-		val s = titm.lIDText
+	    t_items!!.forEach {titm ->
+	    	val s = titm!!.lIDText
 		if (s != null && s.length > 0) li.add(s + ';' + titm.lID4TgOrNull_KeepVar)
 	    }
 	    return li.toTypedArray<String?>()
@@ -835,9 +811,8 @@ class Target {
     val all_Lid_Target: Array<String?>
 	get() {  // banor,banor...
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val s = it.next()!!.lID4TgOrNull
+	    t_items!!.forEach {titm ->
+		val s = titm!!.lID4TgOrNull
 		if (s != null && s.length > 0) {
 		    val sa = split(s, ",")
 		    addSA(li, sa)
@@ -848,9 +823,8 @@ class Target {
     val all_Lid_Target_KeepVar: Array<String?>
 	get() {  // banor,banor...
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val s = it.next()!!.lID4TgOrNull_KeepVar
+	    t_items!!.forEach {titm ->
+		val s = titm!!.lID4TgOrNull_KeepVar
 		if (s != null && s.length > 0) {
 		    val sa = split(s, ",")
 		    addSA(li, sa)
@@ -862,9 +836,7 @@ class Target {
 	get() {
 	    val li: MutableList<String?> = ArrayList()
 	    var ix = 0
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		if (titm != null && titm.item != null) {
 		    var s = titm.item!!.soundD
 		    s = fillVarHere(ix, s)
@@ -880,9 +852,7 @@ class Target {
     fun getSoundsAt(x: Int, y: Int): Array<String?> {
 	val li: MutableList<String?> = ArrayList()
 	var ix = 0
-	val it: Iterator<T_Item?> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next()
+	t_items!!.forEach {titm ->
 	    if (titm != null && titm.item != null) {
 		var s = titm.item!!.soundD
 		s = fillVarHere(ix, s)
@@ -898,9 +868,7 @@ class Target {
     val all_Lid_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		if (titm != null) {
 		    val s = titm.lIDOrNull
 		    if (s != null && s.length > 0) {
@@ -914,9 +882,7 @@ class Target {
     val all_Tid_Item: String
 	get() {  // ordgrupps id
 	    val sb = StringBuffer()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		if (titm != null) {
 		    val s = titm.tid
 		    if (sb.length > 0) sb.append(";")
@@ -928,10 +894,8 @@ class Target {
     val all_Text_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
-		if (titm != null) {
+	    t_items!!.forEach {titm ->
+	    	if (titm != null) {
 		    val sx = titm.textOrNull
 		    val s = titm.lIDOrNull
 		    if (s != null && s.length > 0) {
@@ -946,9 +910,8 @@ class Target {
 	get() {
 	    var s: String? = ""
 	    var ix = 0
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		var snd = it.next()!!.item!!.sound
+	    t_items!!.forEach {titm ->
+		var snd = titm!!.item!!.sound
 		snd = fillVarHere(ix, snd) // WHY-SundryUtil
 		if (s!!.length != 0) s += ','
 		s += snd
@@ -960,9 +923,7 @@ class Target {
 	get() {
 	    val li: MutableList<String?> = ArrayList()
 	    var ix = 0
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		var snd = titm!!.item!!.sound
 		snd = fillVarHere(ix, snd) // WHY-SundryUtil
 		if (!empty(snd)) fillHavingComma(li, snd)
@@ -988,9 +949,7 @@ class Target {
     val all_TextVars_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		if (titm != null) {
 		    val sx = titm.textVarsOrNull // text:v1:v2:v3:sound : is paragraph_
 		    //log		OmegaContext.sout_log.getLogger().info(":--: " + "tvvv = " + sx);
@@ -1005,9 +964,7 @@ class Target {
 	}
 
     fun putAll_TextVars_Item(hm: HashMap<String?, String?>) {
-	val it: Iterator<T_Item?> = t_items!!.iterator()
-	while (it.hasNext()) {
-	    val titm = it.next()
+	t_items!!.forEach {titm ->
 	    if (titm != null) {
 		val item = titm.item
 		var s = item!!.getVar(1)
@@ -1027,9 +984,7 @@ class Target {
     @get:Deprecated("")
     val actionFromTarget: String?
 	get() {
-	    val it: Iterator<T_Item?> = t_items!!.iterator()
-	    while (it.hasNext()) {
-		val titm = it.next()
+	    t_items!!.forEach {titm ->
 		if (titm != null) {
 		    if (titm.item != null && titm.item!!.isAction) return titm.item!!.actionFile
 		}
