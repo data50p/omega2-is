@@ -1026,6 +1026,7 @@ class Target {
 	tit.type = vs.getStr("type")
     }
 
+    @Deprecated("Not used any more")
     fun getAllTargetCombinations_old(sep: String?): Array<String?> {
 	val li: MutableList<String?> = ArrayList()
 	val tg2 = this
