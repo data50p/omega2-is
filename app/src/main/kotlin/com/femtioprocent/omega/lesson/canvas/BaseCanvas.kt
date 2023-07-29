@@ -12,8 +12,10 @@ import com.femtioprocent.omega.swing.ScaledImageIcon.createImageIcon
 import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.SundryUtils.empty
 import com.femtioprocent.omega.util.SundryUtils.formatDisplayText
+import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.xml.Element
+import javafx.application.Application.launch
 import java.awt.*
 import java.awt.event.*
 import java.awt.geom.Arc2D
@@ -53,6 +55,11 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     open var cmp_li: ComponentAdapter = object : ComponentAdapter() {
 	override fun componentResized(ev: ComponentEvent) {
 	    resized()
+	    val th = Thread() {
+		m_sleep(500)
+		this@BaseCanvas.resized()
+	    }
+	    th.start()
 	}
     }
     var act_li = ActionListener { ae ->

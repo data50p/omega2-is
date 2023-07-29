@@ -9,6 +9,7 @@ import java.io.File
 import java.io.IOException
 import javax.imageio.ImageIO
 import javax.swing.ImageIcon
+import kotlin.time.measureTime
 
 /**
  * Created by lars on 2017-02-18.
@@ -29,11 +30,14 @@ object OmegaSwingUtils {
 
     fun getImage(path: String): Image {
 	return try {
-	    val mt1 = MilliTimer()
-	    val url = OmegaSwingUtils::class.java.classLoader.getResource(path)
-	    val c = ImageIO.read(url)
-	    OmegaContext.sout_log.getLogger().info("IMAGE8: " + "load image res " + path + ' ' + mt1.string)
-	    c
+	    var c: Image? = null
+	    val theTime = measureTime {
+		val mt1 = MilliTimer()
+		val url = OmegaSwingUtils::class.java.classLoader.getResource(path)
+		c = ImageIO.read(url)
+	    }
+	    OmegaContext.sout_log.getLogger().info("load image res $path in $theTime $c")
+	    return c!!
 	} catch (e: Exception) {
 	    val cdir = File(".")
 	    try {

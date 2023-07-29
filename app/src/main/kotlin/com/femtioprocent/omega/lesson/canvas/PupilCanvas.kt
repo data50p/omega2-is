@@ -293,6 +293,7 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	//l.setFont(fo);
 	l.ensureIndexIsVisible(l.selectedIndex)
 	//	sp.setBorder(BorderFactory.createLineBorder(new Color(80, 80, 80), 5));
+	repaint()
     }
 
     var pupil_image_h = 0

@@ -96,7 +96,6 @@ class Item {
 	val action_fname_ = el.findAttr("action-fname")
 	action_fname_orig = action_fname_
 	action_fname = krull(action_fname_!!)
-	if (action_fname_ != null && action_fname_.length > 0) Log.getLogger().info(":--: " + "ACTION " + action_fname + ' ' + action_fname_)
     }
 
     fun setDefaultAction() {
@@ -132,8 +131,7 @@ class Item {
     protected fun krull(s: String): String {
 	try {
 	    val ix = s.indexOf('{')
-	    if (ix == -1) return s
-	    if (ix + 1 >= s.length) return s
+	    if (ix == -1 || ix + 1 >= s.length) return s
 	    if (!isAlpha(s[ix + 1])) {     // xxx{yy}zzz
 		val ix2 = s.indexOf('}')
 		if (ix2 == -1) return s
@@ -151,12 +149,12 @@ class Item {
 	    val story_hm = Lesson.story_hm ?: return s
 	    Log.getLogger().info("match $s from $story_hm")
 	    val s_li = story_hm[sa[0]]
-	    if ( s_li!!.asString == null ) {
+	    if (s_li!!.asString == null) {
 		val ns = if (sa.size > 1) sa[1] else ""
 		Log.getLogger().info("${s1 + ns + krull(s2)} -> $ks¶$s1¶$ns¶$s2")
 		return s1 + ns + krull(s2)
 	    }
-	    s_li!!.asString ?.let {
+	    s_li!!.asString?.let {
 		val ns = s_li.asString
 		Log.getLogger().info("-> $ks¶$s1¶$ns¶$s2")
 		return s1 + ns + krull(s2)
@@ -198,18 +196,16 @@ class Item {
     }
 
     fun fel(el: Element, key: String?): String {
-	var s = el.findAttr(key)
-	if (s == null) s = ""
-	return s
+	return el.findAttr(key) ?: ""
     }
 
     private fun load(el: Element) {
 	val raw_text = fel(el, "text")
-	var text = decode(raw_text)
+	val text = decode(raw_text)
 	val textid = fel(el, "textid")
 	text_Orig = java.lang.String(text) as String
 	val raw_dummytext = fel(el, "dummytext")
-	var dummytext = decode(raw_dummytext)
+	val dummytext = decode(raw_dummytext)
 	dummytext_orig = java.lang.String(dummytext) as String
 	val raw_tts = fel(el, "tts")
 	val tts = decode(raw_tts)
@@ -217,33 +213,22 @@ class Item {
 	var lid = el.findAttr("Lid")
 	lid_Orig = lid
 	if (lid == null) lid = ""
-	var sound = el.findAttr("sound")
-	if (sound == null) sound = ""
+	val sound = fel(el, "sound")
 	sound_Orig = sound
-	var dummysound = fel(el, "dummysound")
-	if (dummysound == null) dummysound = ""
+	val dummysound = fel(el, "dummysound")
 	dummysound_orig = dummysound
-	var sign = el.findAttr("sign")
-	if (sign == null) sign = ""
+	val sign = fel(el, "sign")
 	sign_Orig = sign
-	var dummysign = fel(el, "dummysign")
-	if (dummysign == null) dummysign = ""
+	val dummysign = fel(el, "dummysign")
 	dummysign_orig = dummysign
-	sound = krull(sound)
-	sign = krull(sign)
-	lid = krull(lid)
-	text = krull(text)
-	dummytext = krull(dummytext)
-	dummysound = krull(dummysound)
-	dummysign = krull(dummysign)
-	this.sound = sound
-	this.sign = sign
-	this.text = text
+	this.sound = krull(sound)
+	this.sign = krull(sign)
+	this.text = krull(text)
 	tTS = tts
-	this.lid = lid
-	dummyText = dummytext
-	dummySound = dummysound
-	dummySign = dummysign
+	this.lid = krull(lid)
+	dummyText = krull(dummytext)
+	dummySound = krull(dummysound)
+	dummySign = krull(dummysign)
 	saved_dummytext = dummytext
 	saved_dummysound = dummysound
 	saved_dummysign = dummysign
@@ -251,7 +236,7 @@ class Item {
 
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "NEW TXTXO " + text + ' ' + text_orig);
 	`var`.add("")
-	for(i in 1..5)
+	for (i in 1..5)
 	    `var`.add(el.findAttr("var-$i") ?: "")
     }
 
@@ -496,17 +481,17 @@ class Item {
     override fun toString(): String {
 	try {
 	    return "Item{" + ord +
-		    ", isdummy=" + isDummySpaceAllocated +
-		    ", text=" + text +
-		    ", dummytext=" + dummyText +
-		    ", text_orig=" + text_Orig +
-		    ", sound=" + sound +
-		    ", dummysound=" + dummySound +
-		    ", sign=" + sign +
-		    ", dummysign=" + dummySign +
-		    ", Lid=" + lid +
-		    ", var=" + `var` +
-		    ", tid'=" + it_ent?.tid ?: "null" +
+	    ", isdummy=" + isDummySpaceAllocated +
+	    ", text=" + text +
+	    ", dummytext=" + dummyText +
+	    ", text_orig=" + text_Orig +
+	    ", sound=" + sound +
+	    ", dummysound=" + dummySound +
+	    ", sign=" + sign +
+	    ", dummysign=" + dummySign +
+	    ", Lid=" + lid +
+	    ", var=" + `var` +
+	    ", tid'=" + it_ent?.tid ?: "null" +
 		    ", action_type=" + action_type +
 		    ", action_fname_orig=" + action_fname_orig +
 		    ", action_fname=" + action_fname +

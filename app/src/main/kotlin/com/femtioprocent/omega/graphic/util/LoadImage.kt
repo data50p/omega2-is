@@ -11,6 +11,7 @@ import java.awt.Image
 import java.awt.MediaTracker
 import java.awt.Toolkit
 import java.io.File
+import kotlin.time.measureTime
 
 object LoadImage {
     @JvmStatic
@@ -38,23 +39,26 @@ object LoadImage {
 
     @JvmStatic
     fun loadAndWaitFromFile(comp: Component?, im_name: String?): Image? {
-	val tk = Toolkit.getDefaultToolkit()
-	var im: Image? = null
-	im = try {
-	    val aImname = omegaAssets(im_name)
-	    Log.getLogger().info("load image: (A) $aImname")
-	    tk.createImage(aImname)
-	} catch (ex: Exception) {
-	    return null
+	val theTime = measureTime {
+	    val tk = Toolkit.getDefaultToolkit()
+	    var im: Image? = null
+	    im = try {
+		val aImname = omegaAssets(im_name)
+		Log.getLogger().info("load image: (A) $aImname")
+		tk.createImage(aImname)
+	    } catch (ex: Exception) {
+		return null
+	    }
+	    val mt = MediaTracker(comp)
+	    mt.addImage(im, 0)
+	    try {
+		mt.waitForID(0)
+	    } catch (e: InterruptedException) {
+		//	    im=null;
+	    }
+	    return im
 	}
-	val mt = MediaTracker(comp)
-	mt.addImage(im, 0)
-	try {
-	    mt.waitForID(0)
-	} catch (e: InterruptedException) {
-	    //	    im=null;
-	}
-	return im
+	Log.getLogger().info("It took $theTime to load $im_name")
     }
 
     @JvmStatic
