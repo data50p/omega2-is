@@ -1600,7 +1600,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var msg_list: MutableList<Message> = ArrayList()
     val msg_list_lock = ReentrantLock()
-    val msg_list_condition = msg_list_lock.newCondition()
+    val msg_list_condition = msg_list_lock.newCondition()!!
 
     var stop_msg = false
     fun sendMsg(msg: String, o: Any?) {
@@ -1644,7 +1644,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 
     var sa_lock = ReentrantLock()
-    val sa_condition = sa_lock.newCondition()
+    val sa_condition = sa_lock.newCondition()!!
 
     var say_all = false
     fun sayAll(tg: Target) {
@@ -1884,7 +1884,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var wait_id = arrayOf("")
     val wait_id_lock = ReentrantLock()
-    val wait_id_condition = wait_id_lock.newCondition()
+    val wait_id_condition = wait_id_lock.newCondition()!!
 
     private var last_msg_time = ct()
     fun execLesson(fn: String?) {

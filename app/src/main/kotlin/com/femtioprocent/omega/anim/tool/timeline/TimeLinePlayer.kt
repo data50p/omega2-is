@@ -26,7 +26,7 @@ class TimeLinePlayer : ActionListener {
     var timer: Timer
 
     val lock = ReentrantLock()
-    val condition = lock.newCondition()
+    val condition = lock.newCondition()!!
 
     var isRunning = false
     var after: Runnable? = null

@@ -16,9 +16,9 @@ class JPlayer(fn: String) : LineListener {
     var sdataline: SourceDataLine? = null
 
     val tlock = ReentrantLock()
-    val tcondition = tlock.newCondition()
+    val tcondition = tlock.newCondition()!!
     val lock = ReentrantLock()
-    val condition = lock.newCondition()
+    val condition = lock.newCondition()!!
 
     var started = false
     var eom = false

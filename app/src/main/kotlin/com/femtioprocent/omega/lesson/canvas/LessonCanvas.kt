@@ -991,9 +991,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     private fun useThisText(text: String?): Boolean {
 	if (text!!.length == 0) return false
-	return if (text.matches("[{]\\*[0-9]*:[}]".toRegex())) {
-	    false
-	} else true
+	return !text.matches("[{]\\*[0-9]*:[}]".toRegex())
     }
 
     fun ready() {
@@ -1071,7 +1069,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		bx = allBox!!.getBox(bix, current_iy)
 		val where = IntArray(1)
 		hitBox(
-		    bx!!.r.x.toInt(), bx!!.r.y.toInt(),
+		    bx!!.r.x.toInt(), bx.r.y.toInt(),
 		    'm',
 		    where
 		)
@@ -2644,11 +2642,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	val lel = el.findElement("lesson_canvas", 0)
 	show_wordbox = if (lel != null) {
 	    val s = lel.findAttr("show_wordbox")
-	    if (s != null && s == "true") {
-		true
-	    } else {
-		false
-	    }
+	    s != null && s == "true"
 	} else {
 	    true
 	}
@@ -2706,10 +2700,6 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	} else {
 	    gotoQuit()
 	}
-    }
-
-    override fun leave() {
-	super.leave()
     }
 
     fun setQuitState(s: String?, `val`: Int) {

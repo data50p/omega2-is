@@ -440,18 +440,18 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
     var gray40 = Color(100, 100, 100)
     var gray30 = Color(80, 80, 80)
     var outside_tl_color = Color(100, 100, 100)
-    var selected_tl_timeline_color = Color.orange.brighter()
-    var light_selected_tl_timeline_color = selected_tl_timeline_color.brighter()
-    var normal_tl_timeline_color = Color.orange.darker()
-    var light_normal_tl_timeline_color = normal_tl_timeline_color.brighter()
+    var selected_tl_timeline_color = Color.orange.brighter()!!
+    var light_selected_tl_timeline_color = selected_tl_timeline_color.brighter()!!
+    var normal_tl_timeline_color = Color.orange.darker()!!
+    var light_normal_tl_timeline_color = normal_tl_timeline_color.brighter()!!
     var vertical_tl_mousecursor_color = Color(100, 100, 100)
     var vertical_tl_cursor_color = Color(180, 80, 180)
-    var light_vertical_tl_cursor_color = vertical_tl_cursor_color.brighter()
+    var light_vertical_tl_cursor_color = vertical_tl_cursor_color.brighter()!!
     var normal_marker_color = Color(80, 180, 80)
     var normal_TSync_marker_color = Color(220, 80, 200)
     var yellow = Color(180, 180, 80)
     var cyan = Color(50, 180, 240)
-    var light_yellow = Color.yellow.brighter() // new Color(220, 220, 110);
+    var light_yellow = Color.yellow.brighter()!! // new Color(220, 220, 110);
     var TLOFF = 80
 
     init {
