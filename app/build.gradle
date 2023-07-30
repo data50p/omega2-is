@@ -31,7 +31,6 @@ jar {
 }
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
@@ -57,20 +56,14 @@ java {
 mainClassName = 'com.femtioprocent.omega.appl.Omega_IS'
 
 application {
-    mainClass = 'com.femtioprocent.omega.appl.Omega_IS'
+    mainClass = mainClassName
     File runningDir = new File('../runtime')
     runningDir.mkdirs()
     tasks.run.workingDir = runningDir
 }
 
 compileKotlin {
-    kotlinOptions {
-        jvmTarget = "20"
-    }
 }
 
 compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "20"
-    }
 }
