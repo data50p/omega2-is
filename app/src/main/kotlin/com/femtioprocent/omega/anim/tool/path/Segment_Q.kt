@@ -7,13 +7,11 @@ import java.awt.geom.*
 
 class Segment_Q {
     var nid: Int
-    @JvmField
     var path: Path? = null
     var q: QuadCurve2D
     var p1: Point2D
     var p2: Point2D
     var pc: Point2D
-    @JvmField
     var selectedPoint = -1
     var showHandle = true
 

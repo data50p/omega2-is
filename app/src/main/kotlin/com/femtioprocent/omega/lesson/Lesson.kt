@@ -446,7 +446,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	}
 
-	fun getAllTestsAsName(with: Array<String>?): Array<String?>? {
+	fun getAllTestsAsName(with: Array<String>?): Array<String>? {
 	    val sa = rl.getAllResultsFName(pupil.name, with!!)
 	    for (i in sa!!.indices) {
 		var s = sa[i]

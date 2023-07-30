@@ -71,8 +71,7 @@ class Path {
 	    }
     }
 
-    var marker // Mark
-	    : MutableList<Mark>
+    var marker: MutableList<Mark>
     var gp: GeneralPath? = null
     var seg_l: MutableList<Segment_Q>
     var lenA: DoubleArray? = null

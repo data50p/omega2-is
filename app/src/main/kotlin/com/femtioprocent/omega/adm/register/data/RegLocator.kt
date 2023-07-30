@@ -20,28 +20,23 @@ class RegLocator {
 	return fbase
     }
 
-    fun removeSuffix(sa: Array<String?>?, suf: String): Array<String?> {
-	if (sa == null) return arrayOfNulls(0)
-	val nsa = arrayOfNulls<String>(sa.size)
-	for (i in sa.indices) if (sa[i]!!.endsWith(suf)) nsa[i] =
-	    sa[i]!!.substring(0, sa[i]!!.length - suf.length) else nsa[i] = sa[i]
-	return nsa
+    fun removeSuffix(sa: Array<String>?, suf: String): Array<String> {
+	if (sa == null) return Array(0) {""}
+	return sa.map { if (it.endsWith(suf)) it.substring(0, it.length - suf.length) else it }.toTypedArray()
     }
 
-    fun removePrefix(sa: Array<String?>?, pre: String): Array<String?> {
-	if (sa == null) return arrayOfNulls(0)
-	val nsa = arrayOfNulls<String>(sa.size)
-	for (i in sa.indices) if (sa[i]!!.startsWith(pre)) nsa[i] = sa[i]!!.substring(pre.length) else nsa[i] = sa[i]
-	return nsa
+    fun removePrefix(sa: Array<String>?, pre: String): Array<String> {
+	if (sa == null) return Array(0 ) {""}
+	return sa.map { if (it.startsWith(pre)) it.substring(pre.length) else it }.toTypedArray()
     }
 
-    val allPupilsName: Array<String?>
+    val allPupilsName: Array<String>
 	get() {
 	    val sa = scanDir(aRegisterFbase(), FilenameFilterExt(PUPIL_SUF))
 	    return removePrefix(removeSuffix(sa, PUPIL_SUF), aRegisterFbase() + File.separatorChar)
 	}
 
-    fun getAllResultsFName(pupil: String, with: Array<String>): Array<String?>? {
+    fun getAllResultsFName(pupil: String, with: Array<String>): Array<String>? {
 	return scanDir(aRegisterFbase() + File.separatorChar + pupil + PUPIL_SUF, FilenameFilterExt(testSuffix, with))
     }
 
@@ -89,30 +84,15 @@ class RegLocator {
     }
 
     companion object {
-	var fbase = "register" // this is not inside the omega_assets
+	val fbase = "register" // this is not inside the omega_assets
 	var PUPIL_SUF = ".p"
 	val testSuffix = ".omega_result"
 
-	fun scanDir(dir: String, fnf: FilenameFilter): Array<String?>? {
+	fun scanDir(dir: String, fnf: FilenameFilter): Array<String>? {
 	    Log.getLogger().info(":--: scan $dir $fnf")
 	    val df = File(dir)
-	    val fa = df.listFiles(fnf)
-	    if (fa != null) {
-		val sa = arrayOfNulls<String>(fa.size)
-		for (i in fa.indices) sa[i] = dir + File.separatorChar + fa[i].name
-		Arrays.sort(sa)
-		return sa
-	    }
-	    return null
-	}
-
-	@JvmStatic
-	fun main(args: Array<String>) {
-	    val l = RegLocator()
-	    var sa: Array<String?>? = l.allPupilsName
-	    Log.getLogger().info(":--: " + "" + a2s(sa))
-	    sa = l.getAllResultsFName("Lars", arrayOf("test"))
-	    Log.getLogger().info(":--: " + "" + a2s(sa))
+	    val fa = df.listFiles(fnf) ?: return null
+	    return fa.map { f -> dir + File.separatorChar + f.name }.sorted().toTypedArray()
 	}
     }
 }

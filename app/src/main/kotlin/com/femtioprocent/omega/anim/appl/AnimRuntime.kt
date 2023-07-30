@@ -31,7 +31,6 @@ class AnimRuntime {
     var httpd: Server? = null
     var help: Anim_HelpSystem? = null
     var anim_repository: Anim_Repository? = null
-    @JvmField
     var a_ctxt: AnimContext?
     var aC: AnimCanvas? = null
 

@@ -42,14 +42,10 @@ class AnimEditor : JFrame {
     var c: Container? = null
     var toolbar_cmd: ToolBar_AnimEditor? = null
     var toolbar_top: ToolBar_AnimEditor? = null
-
-    @JvmField
     var tlp: TimeLinePanel? = null
     var tlc: TimeLineComponent? = null
     var arun: AnimRuntime? = null
     var httpd: Server
-
-    @JvmField
     var cabaret_panel: CabaretPanel? = null
     var wings_panel: WingsPanel? = null
     var anim_repository: Anim_Repository? = null

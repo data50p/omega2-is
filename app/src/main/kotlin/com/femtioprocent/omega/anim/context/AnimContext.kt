@@ -11,15 +11,10 @@ import javax.swing.JFrame
 
 //import omega.anim.config.*;
 class AnimContext : OmegaContext {
-    @JvmField
     var anim_canvas: AnimCanvas? = null
-    @JvmField
     var tl_player: TimeLinePlayer? = null
-    @JvmField
     var mtl: MasterTimeLine? = null
-    @JvmField
     var arun: AnimRuntime?
-    @JvmField
     var anim_speed = 1.0
 
     constructor(ae: AnimEditor) {
@@ -41,9 +36,7 @@ class AnimContext : OmegaContext {
     //  	mtl.save(xmlpw);
     //      }
     companion object {
-	@kotlin.jvm.JvmField
 	public var ae: AnimEditor? = null
-	@JvmField
         var top_frame: JFrame? = null
     }
 }

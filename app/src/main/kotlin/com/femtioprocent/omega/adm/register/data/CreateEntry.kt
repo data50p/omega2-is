@@ -21,14 +21,10 @@ class CreateEntry : Entry {
 //  	String s = e.findAttr("type");
 //  	type = s;
 	type = "create"
-	var s = e.findAttr("sentence")
-	sentence = s!!
-	s = e.findAttr("ord")
-	ord = s!!.toInt()
-	s = e.findAttr("duration")
-	duration = s!!.toInt()
-	s = e.findAttr("l_id_list")
-	l_id_list = s!!
+	sentence = e.findAttr("sentence")!!
+	ord = e.findAttr("ord")!!.toInt()
+	duration = e.findAttr("duration")!!.toInt()
+	l_id_list = e.findAttr("l_id_list")!!
     }
 
     override val element: Element
@@ -43,11 +39,6 @@ class CreateEntry : Entry {
 	}
 
     override fun toString(): String {
-	return "CreateEntry{" +
-		", sentence" + sentence +
-		", ord" + "" + ord +
-		", duration" + "" + duration +
-		", l_id_list" + "" + l_id_list +
-		"}"
+	return "CreateEntry{, sentence: $sentence, ord: $ord, duration: $duration, l_id_list: $l_id_list}"
     }
 }

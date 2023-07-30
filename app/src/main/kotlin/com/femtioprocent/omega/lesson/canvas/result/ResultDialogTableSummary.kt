@@ -199,7 +199,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	}
     }
 
-    val allTestAsName: Array<String?>?
+    val allTestAsName: Array<String>?
 	get() = register!!.getAllTestsAsName(with)
 
     fun crBu(txt: String?, cmd: String?): JButton {
