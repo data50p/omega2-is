@@ -9,15 +9,7 @@ import java.io.File
 import java.util.*
 import java.util.logging.Level
 
-open class OmegaContext  //    public static String getEditorLessonLang() {
-//	return lesson_lang_editor;
-//    }
-//
-//    public static void setEditorLessonLang(String s) {
-//        OmegaContext.lesson_log.getLogger().info("EditorLessonLang: old, new: " + lesson_lang_editor + ' ' + s);
-//	lesson_lang_editor = s;
-//    }
-{
+open class OmegaContext {
     class HelpStack {
 	var stack = Stack<String>()
 	fun push(s: String) {
@@ -44,43 +36,26 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	private var currentOmegaAssets = getDefaultOmegaAssets()
 	var lock = Any()
 	var subsystems = HashMap<String, Subsystem?>()
-	@JvmField
         var URL_BASE = "http://localhost:8089/"
-	@JvmField
         var URL_BASE_AS_FILE = ""
 	var logon = !false
-	@JvmField
         var def_log = Log
-	@JvmField
         var sout_log = def_log
-	@JvmField
         var serr_log = def_log
-	@JvmField
         var exc_log = def_log
-	@JvmField
         var story_log = def_log
-	@JvmField
         var lesson_log = def_log
 	var audio_log = def_log
 	private var lesson_lang = T.lang
 	private val lesson_lang_editor = T.lang
-	@JvmField
         var SPEED = ""
-	@JvmField
         var CACHE_FEW = false
-	@JvmField
         var COLOR_WARP = Color(0xe5, 0xe5, 0xe5) // transfer color from anim panel to mpg panel
-	@JvmField
         var COLOR_TEXT_WARP = Color(0, 0, 0) // transfer color from anim panel to mpg panel
-	@JvmField
         var extern_help_browser = true
-	@JvmField
         var variables: Map<*, *>? = null
-	@JvmField
         var DEMO = false
-	@JvmField
         var omega_lang: String? = null
-	@JvmField
         var small: String? = null
 
 	/**
@@ -89,7 +64,6 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	 * @param path
 	 * @return
 	 */
-        @JvmStatic
         fun omegaAssets(path: String?): String? {
 	    if (path == null) {
 		return null
@@ -115,7 +89,6 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    return currentOmegaAssets + '/' + path
 	}
 
-	@JvmStatic
         fun antiOmegaAssets(afn: String?): String? {
 	    if (afn == null || afn.length == 0) return afn
 	    if (afn.startsWith(omegaAssets("")!!)) {
@@ -126,7 +99,6 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    } else afn
 	}
 
-	@JvmStatic
         fun antiOmegaAssets(afns: Array<String?>?): Array<String?>? {
 	    if (afns == null || afns.size == 0) return afns
 	    val asa = arrayOfNulls<String>(afns.size)
@@ -137,7 +109,6 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    return asa
 	}
 
-	@JvmStatic
         fun omegaAssetsName(): String {
 	    return currentOmegaAssets
 	}
@@ -147,7 +118,7 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	 *
 	 * @param omega_assets_name null value restores default
 	 */
-	@JvmStatic
+
         @Throws(IllegalArgumentException::class)
 	fun setOmegaAssets(omega_assets_name: String?) {
 	    var omega_assets_name = omega_assets_name
@@ -169,7 +140,6 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    return if (false && isDeveloper) developerOmegaAssets else defaultOmegaAssets
 	}
 
-	@JvmStatic
         fun getMediaFile(name: String): String? {
 	    return omegaAssets("media/$name")
 	}
@@ -179,42 +149,37 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    return if (s.startsWith("t9n/")) s else "t9n/$s"
 	}
 
-	@JvmStatic
         fun omegaAssetsExist(fn: String?): Boolean {
 	    val of = omegaAssets(fn)
 	    val f = File(of)
 	    return f.exists() && f.canRead()
 	}
 
-	@JvmStatic
         fun media(): String {
 	    return "media/"
 	}
 
-	@JvmField
         var HELP_STACK = HelpStack()
-	@JvmStatic
+
         fun setLogon_(b: Boolean) {
 	    var b = b
 	    b = b or isDeveloper
 	    Log.getLogger().level = if (b) Level.ALL else Level.OFF
 	}
 
-	@JvmStatic
         var lessonLang: String
 	    get() = lesson_lang
 	    set(s) {
 		Log.getLogger().info("old, new: " + lesson_lang + ' ' + s)
 		lesson_lang = s
 	    }
-	@JvmStatic
+
         val isDeveloper: Boolean
 	    get() {
 		val f = File("../.git")
 		return !false && f.exists()
 	    }
 
-	@JvmStatic
         fun init(s: String, arg: Any?) {
 	    synchronized(lock) {
 		try {
@@ -229,12 +194,10 @@ open class OmegaContext  //    public static String getEditorLessonLang() {
 	    }
 	}
 
-	@JvmStatic
         fun getSubsystem(s: String): Subsystem? {
 	    return subsystems[s]
 	}
 
-	@JvmStatic
         val isMacOS: Boolean
 	    get() {
 		val s = System.getProperty("os.name").lowercase(Locale.getDefault())

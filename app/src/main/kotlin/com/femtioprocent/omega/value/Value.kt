@@ -1,7 +1,6 @@
 package com.femtioprocent.omega.value
 
 class Value {
-    @JvmField
     var id: String
     var obj: Any? = null
 

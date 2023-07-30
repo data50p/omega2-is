@@ -2,6 +2,7 @@ package com.femtioprocent.omega.appl;
 
 import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.OmegaVersion;
+import com.femtioprocent.omega.util.Log;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -83,7 +84,7 @@ public class Omega_IS extends JDialog {
     public static void main(String[] argv) {
 
         try {
-            OmegaContext.serr_log.getLogger().info("CWD: " + (new File(".")).getCanonicalPath());
+            Log.getLogger().info("CWD: " + (new File(".")).getCanonicalPath());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

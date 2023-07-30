@@ -13,7 +13,7 @@ object LicenseShowManager {
     private const val licShow = "licShow"
     private const val yes = "yes"
     private const val no = "no"
-    @JvmStatic
+
     fun showAndAccepted(): Boolean {
 	val pu = PreferenceUtil(LicenseShowManager::class.java)
 	val answer = pu.getObject(licShow, no) as String

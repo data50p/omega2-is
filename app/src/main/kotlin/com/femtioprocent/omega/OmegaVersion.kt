@@ -5,7 +5,6 @@ import java.util.*
 
 // DO NO CHANGE HERE
 object OmegaVersion {
-    @JvmStatic
     val omegaVersion: String
 	get() = getOmegaVersion(null)
 
@@ -15,11 +14,11 @@ object OmegaVersion {
 
     val detailedVersion: String
 	get() = version + "; build: " + buildDate
-    @JvmStatic
     val version: String
 	get() = OmegaVersion["Version"]
     val buildDate: String
 	get() = OmegaVersion["Date"]
+
     @JvmStatic
     val versionBlurb: String
 	get() = """
@@ -33,21 +32,17 @@ object OmegaVersion {
     operator fun get(item: String?): String {
 	return when (item) {
 	    "Version" -> "2.1.0"
-	    "Date" -> "§§23-07-30_23:40:43 apelsin.local §§".replace("§".toRegex(), "")
+	    "Date" -> "§§23-07-31_00:13:43 apelsin.local §§".replace("§".toRegex(), "")
 	    else -> "?"
 	}
     }
 
-    @JvmStatic
     val cWD: String
 	get() = System.getProperty("user.dir")
-    @JvmStatic
     val javaHome: String
 	get() = System.getProperty("java.home")
-    @JvmStatic
     val javaVendor: String
 	get() = System.getProperty("java.vendor")
-    @JvmStatic
     val javaVersion: String
 	get() = System.getProperty("java.version")
 }
