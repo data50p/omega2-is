@@ -19,5 +19,5 @@ abstract class Result internal constructor() {
 	get() = "generic"
     abstract val lessonName: String
     abstract val performDate: Date
-    abstract val firstPerformDate: Date
+    val firstPerformDate = Date()
 }

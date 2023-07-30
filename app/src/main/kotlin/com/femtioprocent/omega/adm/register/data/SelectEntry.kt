@@ -24,16 +24,11 @@ class SelectEntry : Entry {
 //  	String s = e.findAttr("type");
 //  	type = s;
 	type = "select"
-	var s = e.findAttr("extra")!!
-	extra = s
-	s = e.findAttr("word")!!
-	word = s
-	s = e.findAttr("ord")!!
-	ord = s.toInt()
-	s = e.findAttr("when")!!
-	`when` = s.toInt()
-	s = e.findAttr("l_id")!!
-	l_id = s
+	extra = e.findAttr("extra")!!
+	word = e.findAttr("word")!!
+	ord = e.findAttr("ord")!!.toInt()
+	`when` = e.findAttr("when")!!.toInt()
+	l_id = e.findAttr("l_id")!!
     }
 
     override val element: Element
