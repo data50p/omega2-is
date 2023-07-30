@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/sh
-
 OPTIND=1
 
 version=0
