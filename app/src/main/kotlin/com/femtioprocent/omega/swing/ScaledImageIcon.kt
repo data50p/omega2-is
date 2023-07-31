@@ -21,7 +21,7 @@ object ScaledImageIcon {
 	    comp,
 	    fn
 	) else loadAndWaitFromFile(comp, fn)
-	getLogger().config("Create ImageIcon from: $fn $im")
+	getLogger().info("Create ImageIcon from: $fn $im")
 	if (im == null) return null
 	var ww = max_w
 	var hh = max_h

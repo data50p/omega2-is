@@ -14,40 +14,39 @@ import java.io.File
 import kotlin.time.measureTime
 
 object LoadImage {
-    @JvmStatic
     fun loadAndWaitOrNull(comp: Component?, im_name: String, asNull: Boolean): Image? {
-	val tk = Toolkit.getDefaultToolkit()
 	var im: Image? = null
-	val mt1 = MilliTimer()
-	im = try {
-	    val fn = getMediaFile(im_name)
-	    val file = File(omegaAssets(fn))
-	    if (file != null && file.canRead()) tk.createImage(fn) else if (asNull) null else tk.createImage(fn)
-	} catch (ex: Exception) {
-	    Log.getLogger().info("IMAGE3: Can't load image $im_name\n$ex")
-	    return null
+	val theTime = measureTime {
+	    val tk = Toolkit.getDefaultToolkit()
+	    val mt1 = MilliTimer()
+	    im = try {
+		val fn = getMediaFile(im_name)
+		val file = File(omegaAssets(fn))
+		if (file != null && file.canRead()) tk.createImage(fn) else if (asNull) null else tk.createImage(fn)
+	    } catch (ex: Exception) {
+		Log.getLogger().info("IMAGE3: Can't load image $im_name\n$ex")
+		return null
+	    }
+	    val mt = MediaTracker(comp)
+	    mt.addImage(im, 0)
+	    try {
+		mt.waitForID(0)
+	    } catch (e: InterruptedException) {
+	    }
 	}
-	val mt = MediaTracker(comp)
-	mt.addImage(im, 0)
-	try {
-	    mt.waitForID(0)
-	} catch (e: InterruptedException) {
-	}
-	if (OmegaConfig.T) Log.getLogger()
-	    .info("IMAGE4: " + " loaded file name " + im_name + ' ' + mt1.string + ' ' + im)
+	Log.getLogger().info("It took $theTime to load $im_name")
 	return im
     }
 
-    @JvmStatic
     fun loadAndWaitFromFile(comp: Component?, im_name: String?): Image? {
+	var im: Image? = null
 	val theTime = measureTime {
 	    val tk = Toolkit.getDefaultToolkit()
-	    var im: Image? = null
 	    im = try {
 		val aImname = omegaAssets(im_name)
-		Log.getLogger().info("load image: (A) $aImname")
 		tk.createImage(aImname)
 	    } catch (ex: Exception) {
+		Log.getLogger().severe("Cannot load image $im_name/$ex")
 		return null
 	    }
 	    val mt = MediaTracker(comp)
@@ -57,12 +56,11 @@ object LoadImage {
 	    } catch (e: InterruptedException) {
 		//	    im=null;
 	    }
-	    return im
 	}
 	Log.getLogger().info("It took $theTime to load $im_name")
+	return im
     }
 
-    @JvmStatic
     fun loadAndWaitFromResource(comp: Component?, im_name: String?): Image {
 	return OmegaSwingUtils.getImage(im_name!!)
     }

@@ -10,6 +10,7 @@ import java.io.IOException
 import javax.imageio.ImageIO
 import javax.swing.ImageIcon
 import kotlin.time.measureTime
+import kotlin.time.measureTimedValue
 
 /**
  * Created by lars on 2017-02-18.
@@ -17,11 +18,8 @@ import kotlin.time.measureTime
 object OmegaSwingUtils {
     fun getImageIcon(path: String): ImageIcon? {
 	return try {
-	    val mt1 = MilliTimer()
 	    val im = getImage(path)
-	    val icon = ImageIcon(im)
-	    OmegaContext.sout_log.getLogger().info("IMAGE7: " + "load image icon " + path + ' ' + mt1.string)
-	    icon
+	    ImageIcon(im)
 	} catch (e: Exception) {
 	    getLogger().warning("Can't find ImageIcon for $path")
 	    null
@@ -30,14 +28,13 @@ object OmegaSwingUtils {
 
     fun getImage(path: String): Image {
 	return try {
-	    var c: Image? = null
-	    val theTime = measureTime {
-		val mt1 = MilliTimer()
+	    val theTime = measureTimedValue<Image?> {
 		val url = OmegaSwingUtils::class.java.classLoader.getResource(path)
-		c = ImageIO.read(url)
+		ImageIO.read(url)
 	    }
-	    OmegaContext.sout_log.getLogger().info("load image res $path in $theTime $c")
-	    return c!!
+	    theTime.duration
+	    OmegaContext.sout_log.getLogger().info("load image res $path in ${theTime.duration}: ${theTime.value}")
+	    return theTime.value!!
 	} catch (e: Exception) {
 	    val cdir = File(".")
 	    try {
