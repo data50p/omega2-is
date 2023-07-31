@@ -3994,16 +3994,9 @@ target pos $tg_ix"""
 	    OmegaContext.lesson_log.getLogger().info("Try scan lesson lang: T " + dir.name + ' ' + name)
 	    false
 	})
-	for (i in scanned_lang.indices) {
-	    val l = scanned_lang[i].substring(7)
-	    scanned_lang[i] = l
-	    if (l == s) {
-		OmegaContext.lesson_log.getLogger().info("return : $s")
-		return s
-	    }
-	}
-	OmegaContext.lesson_log.getLogger().info("return : " + "en")
-	return "en"
+	val selected_lang = if (scanned_lang.map { it.substring(7) }.contains(s)) s else "en"
+	Log.getLogger().info("I got scanned lang: $scanned_lang")
+	return selected_lang
     }
 
     companion object {
