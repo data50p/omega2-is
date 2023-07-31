@@ -2029,15 +2029,15 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	for (i in 0 until target!!.get_howManyT_Items()) {
 	    val rr = getTargetRectangle(i)
 	    li.add(java.lang.Double.valueOf(rr.getX()))
-	    li.add(java.lang.Double.valueOf(rr.getX() + rr.getWidth().also { d = it }))
+	    li.add(java.lang.Double.valueOf((rr.getX() + rr.getWidth()).also { d = it }))
 	}
-	li.add(java.lang.Double.valueOf(d + 20))
+	li.add(java.lang.Double.valueOf(d + 27))
 	addTgAddBox(naddBoxes, li.toTypedArray<Double?>(), r0.y + 4)
 	tgAddBoxes = naddBoxes
     }
 
     fun createTgDelBoxes() {
-	val naddBoxes = ShapeList()
+	val ndelBoxes = ShapeList()
 	val li: MutableList<Double?> = ArrayList()
 	val r0: Rectangle2D = targetRectangle
 	var d = 0.0
@@ -2047,8 +2047,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    li.add(java.lang.Double.valueOf(rr.getX() + rr.getWidth().also { d = it }))
 	}
 	val dh = (caW / 60).toDouble()
-	addTgDelBox(naddBoxes, li.toTypedArray<Double?>(), r0.y +  /*r0.getHeight() + */-dh - 4)
-	tgDelBoxes = naddBoxes
+	addTgDelBox(ndelBoxes, li.toTypedArray<Double?>(), r0.y +  /*r0.getHeight() + */-dh - 4)
+	tgDelBoxes = ndelBoxes
     }
 
     fun createDelBoxes() {
