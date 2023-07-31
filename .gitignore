@@ -15,7 +15,6 @@ SAVED-*
 *.omega_assets.zip
 *omega_bundle.manifest
 __*
-src/main/resources/version
 *.0.0
 local.properties
 
