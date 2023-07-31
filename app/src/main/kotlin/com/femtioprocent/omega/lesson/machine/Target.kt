@@ -1469,10 +1469,12 @@ class Target {
 	val fnNEx = fn.substring(0, ix) + "-"
 	val dir = fBase.parentFile
 	val files = dir.listFiles()
-	for (f in files) {
-	    if (f.name.startsWith(fnNEx)) {
-		val fn2 = f.path
-		li.add(TCItem(antiOmegaAssets(fn2)!!))
+	if (files != null ) {
+	    for (f in files) {
+		if (f.name.startsWith(fnNEx)) {
+		    val fn2 = f.path
+		    li.add(TCItem(antiOmegaAssets(fn2)!!))
+		}
 	    }
 	}
 	return li

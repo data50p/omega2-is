@@ -68,8 +68,8 @@ open class OmegaContext {
 	    if (path == null) {
 		return null
 	    }
-	    val noAssets = path != null && path.contains("toolbarButtonGraphics") || path.startsWith("register/")
-	    if (path != null && path.startsWith(currentOmegaAssets)) {
+	    val noAssets = path.contains("toolbarButtonGraphics") || path.startsWith("register/")
+	    if (path.startsWith(currentOmegaAssets)) {
 		//sout_log.getLogger().warning("currentOmegaAssets(): Already omega_assets: " + path);
 		return if (noAssets) antiOmegaAssets(path) else path
 	    }
@@ -101,12 +101,7 @@ open class OmegaContext {
 
 	fun antiOmegaAssets(afns: Array<String?>?): Array<String?>? {
 	    if (afns == null || afns.size == 0) return afns
-	    val asa = arrayOfNulls<String>(afns.size)
-	    var ix = 0
-	    for (s in afns) {
-		asa[ix++] = antiOmegaAssets(s)
-	    }
-	    return asa
+	    return afns.map { afn -> antiOmegaAssets(afn) }.toTypedArray()
 	}
 
 	fun omegaAssetsName(): String {

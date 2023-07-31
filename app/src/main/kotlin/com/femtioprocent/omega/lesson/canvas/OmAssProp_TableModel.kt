@@ -8,12 +8,10 @@ import javax.swing.table.AbstractTableModel
 
 class OmAssProp_TableModel internal constructor(
     var sprop: OmegaAssetsProperty,
-    var tc: TargetCombinations,
-    tmm: Array<IntArray>
+    var tc: TargetCombinations
 ) : AbstractTableModel() {
     var li_set0: MutableList<TCItem>
     var li_set: MutableList<TCItem>
-    var test_member_map: Array<IntArray>
     val TEST_MEM_OFFS = SentenceProperty.COL_TEST
     var hdn = arrayOf(
 	t("Source Files"),
@@ -27,7 +25,6 @@ class OmAssProp_TableModel internal constructor(
 	li_set.addAll(tc.dep_set)
 	li_set0 = ArrayList()
 	li_set0.addAll(tc.src_set)
-	test_member_map = tmm
     }
 
     override fun getColumnCount(): Int {

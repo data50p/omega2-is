@@ -44,7 +44,6 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
     var rb_act: JRadioButton? = null
     var rb_defSign: JRadioButton? = null
     var rb_actSign: JRadioButton? = null
-    var tmm: Array<IntArray>? = null
     var tmod: OmAssProp_TableModel? = null
     var latestTargetCombinations: TargetCombinations? = null
     private var oaBundleJB: JButton? = null
@@ -422,7 +421,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	X = 0
 	latestTargetCombinations = l_ctxt.lessonCanvas.getAllTargetCombinationsEx2(false)
 	latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName!!))
-	tmod = OmAssProp_TableModel(this, latestTargetCombinations!!, tmm!!)
+	tmod = OmAssProp_TableModel(this, latestTargetCombinations!!)
 	val tsort = TableSorter(tmod!!)
 	table = JTable(tsort)
 	tsort.addMouseListenerToHeaderInTable(table!!)
