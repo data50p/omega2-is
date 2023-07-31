@@ -19,6 +19,7 @@ class TimeLinePlayer : ActionListener {
     private val playctrl_listeners: EventListenerList
     var tick_start = 0
     var ct0: Long = 0
+
     @JvmField
     var speed = 1.0
     var MODE = OmegaConfig.RUN_MODE
@@ -26,7 +27,7 @@ class TimeLinePlayer : ActionListener {
     var timer: Timer
 
     val lock = ReentrantLock()
-    val condition = lock.newCondition()!!
+    val condition = lock.newCondition()
 
     var isRunning = false
     var after: Runnable? = null
@@ -185,7 +186,7 @@ class TimeLinePlayer : ActionListener {
 
     companion object {
 	fun getDefaultTimeLinePlayer_(): TimeLinePlayer {
-		return defaultTimeLinePlayer!!
+	    return defaultTimeLinePlayer!!
 	}
 
 	var defaultTimeLinePlayer: TimeLinePlayer? = null

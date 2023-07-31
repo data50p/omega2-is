@@ -11,12 +11,15 @@ interface Action {
     val hm: HashMap<String?, Any?>
 
     fun prefetch(action_s: String?): Element?
-    fun perform(window: Window,
-		action_s: String?,
-		actA: Array<String?>,
-		pathA: Array<String?>,
-		ord: Int,
-		hook: Runnable?)
+    fun perform(
+	window: Window,
+	action_s: String?,
+	actA: Array<String?>,
+	pathA: Array<String?>,
+	ord: Int,
+	hook: Runnable?
+    )
+
     fun show()
     fun clearScreen()
     fun clean()

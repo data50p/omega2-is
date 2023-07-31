@@ -54,7 +54,7 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 	    if (flag["T"] != null) OmegaConfig.T = true
 	    var s: String? = flag["t"]
 
-	    if (s != null) OmegaConfig.t_step = s!!.toInt()
+	    if (s != null) OmegaConfig.t_step = s.toInt()
 	    //log	OmegaContext.sout_log.getLogger().info(":--: " + "" + OmegaConfig.t_step);
 	    if (showAndAccepted()) {
 		val e = AnimEditorAppl(verbose)

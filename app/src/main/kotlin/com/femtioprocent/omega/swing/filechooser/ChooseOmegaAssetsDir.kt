@@ -14,7 +14,8 @@ import javax.swing.filechooser.FileView
 class ChooseOmegaAssetsDir : JFileChooser(File(".")) {
     init {
 	val jTextField = SwingUtils.getDescendantOfType(
-		JTextField::class.java, this, "Text", "")
+	    JTextField::class.java, this, "Text", ""
+	)
 	jTextField.isEditable = false
 	val list2 = SwingUtils.getDescendantOfType(JList::class.java, this, "Enabled", true)
 	if (list2 != null) {

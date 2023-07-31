@@ -537,7 +537,6 @@ object InvokeExternBrowser {
 			    }
 			}
 		    } catch (iare: IllegalArgumentException) {
-			browser = browser
 			errorMessage = iare.message
 			return null
 		    } catch (iae: IllegalAccessException) {
@@ -589,7 +588,6 @@ object InvokeExternBrowser {
 			    }
 			}
 		    } catch (iare: IllegalArgumentException) {
-			browser = browser
 			errorMessage = iare.message
 			return null
 		    } catch (iae: IllegalAccessException) {

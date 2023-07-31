@@ -14,8 +14,10 @@ class TimeLine : Serializable {
     var duration = 0
 	private set
     private var markers: MutableList<TimeMarker>
+
     @JvmField
     var nid: Int
+
     @JvmField
     var last_added_tm: TimeMarker? = null
     var lessonId = ""
@@ -70,9 +72,11 @@ class TimeLine : Serializable {
 	val it: Iterator<TimeMarker> = src.markers.iterator()
 	while (it.hasNext()) {
 	    val tm = it.next()
-	    val new_tm = addMarker(tm.type,
-		    tm.`when` - offset,
-		    tm.duration)
+	    val new_tm = addMarker(
+		tm.type,
+		tm.`when` - offset,
+		tm.duration
+	    )
 	    if (tm.t_event != null) {
 //		OmegaContext.sout_log.getLogger().info(":--: " + "t_ev " + tm.t_event.length);
 		for (i in tm.t_event!!.indices) {
@@ -201,7 +205,10 @@ class TimeLine : Serializable {
     fun moveSelectedTimeMarker(d: Int, grid: Int) {
 	for (tm in markers) {
 	    if (tm.selected) {
-		if (tm.type == TimeMarker.STOP) size(d) else if (tm.type == TimeMarker.START) move(d) else if (tm.isMoveAble) tm.move(d, grid)
+		if (tm.type == TimeMarker.STOP) size(d) else if (tm.type == TimeMarker.START) move(d) else if (tm.isMoveAble) tm.move(
+		    d,
+		    grid
+		)
 	    }
 	}
     }

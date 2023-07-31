@@ -21,7 +21,7 @@ object Save {
     private fun save(fname: String, el: Element, extension: String?) {
 	val stories = el.find("story")
 	if (stories != null && stories.size > 0) {
-	    val sel = stories[0] as Element
+	    val sel = stories[0]
 	    val isfirst = sel.findAttr("isfirst")
 	    if (isfirst != null) {
 		if (fname.contains("active")) {

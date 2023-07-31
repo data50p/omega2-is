@@ -13,6 +13,6 @@ class TriggerEventPlaySound : TriggerEvent {
     constructor() : super("")
     constructor(fname: String?) : super(fname)
 
-    override val files: Array<String>?
+    override val files: Array<String>
 	get() = arrayOf("au", "wav", "mp3")
 }

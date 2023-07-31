@@ -22,13 +22,16 @@ open class Canvas : JPanel(), ImageObserver {
     protected var off_im_wings: Image? = null
     protected var off_g2: Graphics2D? = null
     var im_size = Dimension(0, 0)
+
     @JvmField
     var allgim: AllGIm
+
     @JvmField
     var wings: MutableList<Wing> = ArrayList()
+
     @JvmField
     var HIDDEN = false
-    
+
     fun resetBackground() {
 	setBackground(im_name, wings)
     }

@@ -20,9 +20,11 @@ class SAX_node : DefaultHandler() {
 	// dump warnings too
 	@Throws(SAXParseException::class)
 	override fun warning(err: SAXParseException) {
-	    OmegaContext.sout_log.getLogger().info("** Warning"
-		    + ", line " + err.lineNumber
-		    + ", uri " + err.systemId)
+	    OmegaContext.sout_log.getLogger().info(
+		"** Warning"
+			+ ", line " + err.lineNumber
+			+ ", uri " + err.systemId
+	    )
 	    OmegaContext.sout_log.getLogger().info("   " + err.message)
 	}
     }
@@ -41,11 +43,14 @@ class SAX_node : DefaultHandler() {
     }
 
     var stack: Stack<Element> = Stack()
+
     @Throws(SAXException::class)
-    override fun startElement(namespaceURI: String,
-			      localName: String,
-			      qName: String,
-			      attrs: Attributes) {
+    override fun startElement(
+	namespaceURI: String,
+	localName: String,
+	qName: String,
+	attrs: Attributes
+    ) {
 	val el1 = Element(qName)
 	if (attrs != null) {
 	    for (i in 0 until attrs.length) {
@@ -90,8 +95,10 @@ class SAX_node : DefaultHandler() {
 	OmegaContext.sout_log.getLogger().info(":--: nD $name")
     }
 
-    override fun unparsedEntityDecl(name: String, publicId: String,
-				    systemId: String, notationName: String) {
+    override fun unparsedEntityDecl(
+	name: String, publicId: String,
+	systemId: String, notationName: String
+    ) {
 	OmegaContext.sout_log.getLogger().info("ERR: UeD $name")
     }
 
@@ -127,9 +134,11 @@ class SAX_node : DefaultHandler() {
 //	    parser.parse(uri);
 		return el
 	    } catch (err: SAXParseException) {
-		getLogger().info("** Parsing error"
-			+ ", line " + err.lineNumber
-			+ ", uri " + err.systemId)
+		getLogger().info(
+		    "** Parsing error"
+			    + ", line " + err.lineNumber
+			    + ", uri " + err.systemId
+		)
 		getLogger().info("   " + err.message)
 	    } catch (e: SAXException) {
 		var x: Exception = e

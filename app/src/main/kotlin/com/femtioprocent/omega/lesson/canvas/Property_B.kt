@@ -96,14 +96,14 @@ open class Property_B : JDialog {
 	    if (ix == 0) return
 	    if (ix == 1) {
 		tf.text = ""
-		cb!!.selectedIndex = 0
+		cb.selectedIndex = 0
 		return
 	    }
 	    val s = cb.selectedItem as String
 	    if (s != null && s.length > 0) {
 		val ss = tf.text
 		if (ss.length > 0) tf.text = "$ss,$s" else tf.text = s
-		cb!!.selectedIndex = 0
+		cb.selectedIndex = 0
 	    }
 	}
     }

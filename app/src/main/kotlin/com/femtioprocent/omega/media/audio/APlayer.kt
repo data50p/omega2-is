@@ -60,6 +60,7 @@ class APlayer {
 	var dir_cache: HashMap<String?, Array<String>?> = HashMap()
 	var T = true
 	var alwaysFxPlayer = false
+
 	@JvmStatic
 	fun createAPlayer(name: String?, attr: String?, id: String?): APlayer {
 	    var apl = load_(null, name, attr, id)

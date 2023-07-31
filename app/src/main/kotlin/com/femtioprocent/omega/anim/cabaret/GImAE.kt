@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 
 class GImAE : GIm {
-    val fnBase: String? = "FN_BASE"
+    val fnBase: String = "FN_BASE"
 
     // a + b * dt
     private var rot_a = 0.0
@@ -29,6 +29,7 @@ class GImAE : GIm {
     private var scale_b = 0.0
     private var scale_t = 0.0
     private var scale_lim = 1.0
+
     @JvmField
     var anim_speed = 0.2
 
@@ -53,10 +54,13 @@ class GImAE : GIm {
     private var can_eat = false
     private var can_bee_eaten = false
     var apa: AllPath
+
     @JvmField
     var nid: Int
+
     @JvmField
     var imw: Int
+
     @JvmField
     var imh: Int
     private var buffered_image: BufferedImage? = null

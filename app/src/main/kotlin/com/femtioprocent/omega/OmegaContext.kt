@@ -36,27 +36,27 @@ open class OmegaContext {
 	private var currentOmegaAssets = getDefaultOmegaAssets()
 	var lock = Any()
 	var subsystems = HashMap<String, Subsystem?>()
-        var URL_BASE = "http://localhost:8089/"
-        var URL_BASE_AS_FILE = ""
+	var URL_BASE = "http://localhost:8089/"
+	var URL_BASE_AS_FILE = ""
 	var logon = !false
-        var def_log = Log
-        var sout_log = def_log
-        var serr_log = def_log
-        var exc_log = def_log
-        var story_log = def_log
-        var lesson_log = def_log
+	var def_log = Log
+	var sout_log = def_log
+	var serr_log = def_log
+	var exc_log = def_log
+	var story_log = def_log
+	var lesson_log = def_log
 	var audio_log = def_log
 	private var lesson_lang = T.lang
 	private val lesson_lang_editor = T.lang
-        var SPEED = ""
-        var CACHE_FEW = false
-        var COLOR_WARP = Color(0xe5, 0xe5, 0xe5) // transfer color from anim panel to mpg panel
-        var COLOR_TEXT_WARP = Color(0, 0, 0) // transfer color from anim panel to mpg panel
-        var extern_help_browser = true
-        var variables: Map<*, *>? = null
-        var DEMO = false
-        var omega_lang: String? = null
-        var small: String? = null
+	var SPEED = ""
+	var CACHE_FEW = false
+	var COLOR_WARP = Color(0xe5, 0xe5, 0xe5) // transfer color from anim panel to mpg panel
+	var COLOR_TEXT_WARP = Color(0, 0, 0) // transfer color from anim panel to mpg panel
+	var extern_help_browser = true
+	var variables: Map<*, *>? = null
+	var DEMO = false
+	var omega_lang: String? = null
+	var small: String? = null
 
 	/**
 	 * Get the full path for current omega assets
@@ -64,7 +64,7 @@ open class OmegaContext {
 	 * @param path
 	 * @return
 	 */
-        fun omegaAssets(path: String?): String? {
+	fun omegaAssets(path: String?): String? {
 	    if (path == null) {
 		return null
 	    }
@@ -89,7 +89,7 @@ open class OmegaContext {
 	    return currentOmegaAssets + '/' + path
 	}
 
-        fun antiOmegaAssets(afn: String?): String? {
+	fun antiOmegaAssets(afn: String?): String? {
 	    if (afn == null || afn.length == 0) return afn
 	    if (afn.startsWith(omegaAssets("")!!)) {
 		return afn.substring(omegaAssets("")!!.length)
@@ -99,7 +99,7 @@ open class OmegaContext {
 	    } else afn
 	}
 
-        fun antiOmegaAssets(afns: Array<String?>?): Array<String?>? {
+	fun antiOmegaAssets(afns: Array<String?>?): Array<String?>? {
 	    if (afns == null || afns.size == 0) return afns
 	    val asa = arrayOfNulls<String>(afns.size)
 	    var ix = 0
@@ -109,7 +109,7 @@ open class OmegaContext {
 	    return asa
 	}
 
-        fun omegaAssetsName(): String {
+	fun omegaAssetsName(): String {
 	    return currentOmegaAssets
 	}
 
@@ -119,17 +119,18 @@ open class OmegaContext {
 	 * @param omega_assets_name null value restores default
 	 */
 
-        @Throws(IllegalArgumentException::class)
+	@Throws(IllegalArgumentException::class)
 	fun setOmegaAssets(omega_assets_name: String?) {
 	    var omega_assets_name = omega_assets_name
 	    if (empty(omega_assets_name)) {
 		currentOmegaAssets = getDefaultOmegaAssets()
 		Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets)
 	    } else {
-		if (!omega_assets_name?.endsWith(OMEGA_ASSETS_SUFFIX)!!) omega_assets_name = omega_assets_name + OMEGA_ASSETS_SUFFIX
+		if (!omega_assets_name?.endsWith(OMEGA_ASSETS_SUFFIX)!!) omega_assets_name =
+		    omega_assets_name + OMEGA_ASSETS_SUFFIX
 		if (File(omega_assets_name).exists()) {
 		    Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets + " -> " + omega_assets_name)
-		    currentOmegaAssets = omega_assets_name!!
+		    currentOmegaAssets = omega_assets_name
 		    return
 		}
 		Log.getLogger().info("setOmegaAssets: unable to set omega assets, keep old! " + currentOmegaAssets)
@@ -140,7 +141,7 @@ open class OmegaContext {
 	    return if (false && isDeveloper) developerOmegaAssets else defaultOmegaAssets
 	}
 
-        fun getMediaFile(name: String): String? {
+	fun getMediaFile(name: String): String? {
 	    return omegaAssets("media/$name")
 	}
 
@@ -149,38 +150,38 @@ open class OmegaContext {
 	    return if (s.startsWith("t9n/")) s else "t9n/$s"
 	}
 
-        fun omegaAssetsExist(fn: String?): Boolean {
+	fun omegaAssetsExist(fn: String?): Boolean {
 	    val of = omegaAssets(fn)
 	    val f = File(of)
 	    return f.exists() && f.canRead()
 	}
 
-        fun media(): String {
+	fun media(): String {
 	    return "media/"
 	}
 
-        var HELP_STACK = HelpStack()
+	var HELP_STACK = HelpStack()
 
-        fun setLogon_(b: Boolean) {
+	fun setLogon_(b: Boolean) {
 	    var b = b
 	    b = b or isDeveloper
 	    Log.getLogger().level = if (b) Level.ALL else Level.OFF
 	}
 
-        var lessonLang: String
+	var lessonLang: String
 	    get() = lesson_lang
 	    set(s) {
 		Log.getLogger().info("old, new: " + lesson_lang + ' ' + s)
 		lesson_lang = s
 	    }
 
-        val isDeveloper: Boolean
+	val isDeveloper: Boolean
 	    get() {
 		val f = File("../.git")
 		return !false && f.exists()
 	    }
 
-        fun init(s: String, arg: Any?) {
+	fun init(s: String, arg: Any?) {
 	    synchronized(lock) {
 		try {
 		    if (subsystems[s] != null) return
@@ -194,11 +195,11 @@ open class OmegaContext {
 	    }
 	}
 
-        fun getSubsystem(s: String): Subsystem? {
+	fun getSubsystem(s: String): Subsystem? {
 	    return subsystems[s]
 	}
 
-        val isMacOS: Boolean
+	val isMacOS: Boolean
 	    get() {
 		val s = System.getProperty("os.name").lowercase(Locale.getDefault())
 		return s.indexOf("mac") >= 0

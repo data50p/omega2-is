@@ -86,8 +86,8 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
 	}
 
 	private fun fldState(e: MouseEvent) {
-	    fld_state_id = if (e.y > IMSIZE &&
-		    e.y < IMSIZE + 20) true else false
+	    fld_state_id = e.y > IMSIZE &&
+		e.y < IMSIZE + 20
 	}
 
 	override fun mousePressed(e: MouseEvent) {
@@ -253,46 +253,71 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
 		    val tl = ae!!.a_ctxt!!.mtl!!.getTimeLine(tl_nid)
 		    var ID = ""
 		    if (tl != null) ID = tl.lessonId
-		    g2.drawString("" + (tl_nid + 1) + ": " + ID,
-			    5 + i * IMSIZE,
-			    IMSIZE + 16)
+		    g2.drawString(
+			"" + (tl_nid + 1) + ": " + ID,
+			5 + i * IMSIZE,
+			IMSIZE + 16
+		    )
 		}
 		g2.color = Color(35, 35, 110)
 		g2.drawLine(i * IMSIZE, IMSIZE, i * IMSIZE, IMSIZE + 20)
 	    }
 	}
 	if (EMPTY != selected_src_fld &&
-		EMPTY != selected_dst_fld) drawArrFld(g2, selected_src_fld, selected_dst_fld)
+	    EMPTY != selected_dst_fld
+	) drawArrFld(g2, selected_src_fld, selected_dst_fld)
     }
 
     private fun drawArrFld(g2: Graphics2D, src: Int, dst: Int) {
 	g2.color = Color.black
 	val h = IMSIZE + 10
 	if (src == dst) {
-	    g2.drawLine(src * IMSIZE, h,
-		    (dst + 1) * IMSIZE, h)
-	    g2.drawLine(dst * IMSIZE, h,
-		    dst * IMSIZE + 5, h - 5)
-	    g2.drawLine(dst * IMSIZE, h,
-		    dst * IMSIZE + 5, h + 5)
-	    g2.drawLine((dst + 1) * IMSIZE, h,
-		    (dst + 1) * IMSIZE - 5, h - 5)
-	    g2.drawLine((dst + 1) * IMSIZE, h,
-		    (dst + 1) * IMSIZE - 5, h + 5)
+	    g2.drawLine(
+		src * IMSIZE, h,
+		(dst + 1) * IMSIZE, h
+	    )
+	    g2.drawLine(
+		dst * IMSIZE, h,
+		dst * IMSIZE + 5, h - 5
+	    )
+	    g2.drawLine(
+		dst * IMSIZE, h,
+		dst * IMSIZE + 5, h + 5
+	    )
+	    g2.drawLine(
+		(dst + 1) * IMSIZE, h,
+		(dst + 1) * IMSIZE - 5, h - 5
+	    )
+	    g2.drawLine(
+		(dst + 1) * IMSIZE, h,
+		(dst + 1) * IMSIZE - 5, h + 5
+	    )
 	} else if (src < dst) {
-	    g2.drawLine(src * IMSIZE, h,
-		    dst * IMSIZE, h)
-	    g2.drawLine(dst * IMSIZE, h,
-		    dst * IMSIZE - 5, h - 5)
-	    g2.drawLine(dst * IMSIZE, h,
-		    dst * IMSIZE - 5, h + 5)
+	    g2.drawLine(
+		src * IMSIZE, h,
+		dst * IMSIZE, h
+	    )
+	    g2.drawLine(
+		dst * IMSIZE, h,
+		dst * IMSIZE - 5, h - 5
+	    )
+	    g2.drawLine(
+		dst * IMSIZE, h,
+		dst * IMSIZE - 5, h + 5
+	    )
 	} else {
-	    g2.drawLine(src * IMSIZE, h,
-		    dst * IMSIZE + 15, h)
-	    g2.drawLine(dst * IMSIZE + 15, h,
-		    dst * IMSIZE + 15 + 5, h - 5)
-	    g2.drawLine(dst * IMSIZE + 15, h,
-		    dst * IMSIZE + 15 + 5, h + 5)
+	    g2.drawLine(
+		src * IMSIZE, h,
+		dst * IMSIZE + 15, h
+	    )
+	    g2.drawLine(
+		dst * IMSIZE + 15, h,
+		dst * IMSIZE + 15 + 5, h - 5
+	    )
+	    g2.drawLine(
+		dst * IMSIZE + 15, h,
+		dst * IMSIZE + 15 + 5, h + 5
+	    )
 	}
     }
 

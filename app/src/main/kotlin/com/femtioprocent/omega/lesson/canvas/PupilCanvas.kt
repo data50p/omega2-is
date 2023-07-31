@@ -146,10 +146,6 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	}
     }
 
-    override fun leave() {
-	super.leave()
-    }
-
     override fun resized() {
 	greeting_ic = null
 	item_fo = null
@@ -223,7 +219,7 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	var selected_pupil: PupilItem? = null
 	for (i in 0 until pA.size - if (new_pupil) 1 else 0) {
 	    val pn = sa[i]
-	    pA[i] = PupilItem(this, pn!!)
+	    pA[i] = PupilItem(this, pn)
 	    if (pn == selected_name) selected_pupil = pA[i]
 	}
 	if (new_pupil) pA[pA.size - 1] = PupilItem(this, t("<New Pupil>"))
@@ -272,7 +268,7 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	    names!!.setCellRenderer(pcr)
 	    names!!.addListSelectionListener(this)
 	    names!!.setFocusTraversalKeysEnabled(false)
-	    names!!.setRequestFocusEnabled(false)
+	    names!!.isRequestFocusEnabled = false
 	    names!!.setFocusable(false)
 	    // 	    names.setForeground(getColor("bg_tx"));
 	    names!!.setBackground(getColor("bg_frbg"))

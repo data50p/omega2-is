@@ -51,14 +51,6 @@ class SentenceProperty internal constructor(var owner: JFrame, @JvmField var l_c
 	return Dimension(d.getWidth().toInt() + 100, d.getHeight().toInt())
     }
 
-    override fun getMinimumSize(): Dimension {
-	return super.getMinimumSize()
-    }
-
-    override fun getMaximumSize(): Dimension {
-	return super.getMaximumSize()
-    }
-
     inner class myActionListener : ActionListener {
 	operator fun set(what: String, value: String?) {
 	    var value = value
@@ -389,7 +381,7 @@ class SentenceProperty internal constructor(var owner: JFrame, @JvmField var l_c
 	}
     }
 
-    public override fun updTrigger(doc: Document) {
+    override fun updTrigger(doc: Document) {
 	val it: Iterator<*> = guimap.keys.iterator()
 	while (it.hasNext()) {
 	    val key = it.next() as String

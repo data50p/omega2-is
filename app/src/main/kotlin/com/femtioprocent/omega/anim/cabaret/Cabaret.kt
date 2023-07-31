@@ -8,15 +8,17 @@ import com.femtioprocent.omega.xml.Element
 class Cabaret(var a_ctxt: AnimContext) {
     val ACT_N = OmegaConfig.CABARET_ACTOR_N
     val EMPTY = -1
+
     @JvmField
     var actA = ActA()
 
     inner class ActA internal constructor() {
 	inner class Act internal constructor(var ord: Int) {
 	    @JvmField
-            var ac: Actor? = null
+	    var ac: Actor? = null
+
 	    @JvmField
-            var tl_nid: Int
+	    var tl_nid: Int
 
 	    init {
 		tl_nid = EMPTY
@@ -24,7 +26,7 @@ class Cabaret(var a_ctxt: AnimContext) {
 	}
 
 	@JvmField
-        var arr: Array<Act?>
+	var arr: Array<Act?>
 
 	init {
 	    arr = arrayOfNulls(ACT_N)
@@ -117,7 +119,7 @@ class Cabaret(var a_ctxt: AnimContext) {
     }
 
     private fun match(s1: String, s2: String?): Boolean {
-	return if (s1 == s2) true else false
+	return s1 == s2
     }
 
     fun findActorByLessonId(s1: String): GImAE? {  // reduce x:y:z to x:y while not match

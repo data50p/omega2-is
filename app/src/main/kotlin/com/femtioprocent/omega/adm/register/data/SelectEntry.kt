@@ -5,10 +5,13 @@ import com.femtioprocent.omega.xml.Element
 class SelectEntry : Entry {
     @JvmField
     var extra: String
+
     @JvmField
     var word: String
+
     @JvmField
     var `when`: Int
+
     @JvmField
     var l_id: String
 

@@ -7,7 +7,6 @@ import com.femtioprocent.omega.util.SundryUtils.empty
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.xml.Element
-import java.lang.NullPointerException
 
 class Item {
     var it_ent: ItemEntry? = null
@@ -146,7 +145,7 @@ class Item {
 	    val s2 = s.substring(ix2 + 1)
 	    val ks = s.substring(ix + 1, ix2)
 	    val sa = split(ks, ":")
-	    val story_hm = Lesson.story_hm ?: return s
+	    val story_hm = Lesson.story_hm
 	    Log.getLogger().info("match $s from $story_hm")
 	    val s_li = story_hm[sa[0]]
 	    if (s_li!!.asString == null) {
@@ -154,7 +153,7 @@ class Item {
 		Log.getLogger().info("${s1 + ns + krull(s2)} -> $ks¶$s1¶$ns¶$s2")
 		return s1 + ns + krull(s2)
 	    }
-	    s_li!!.asString?.let {
+	    s_li.asString?.let {
 		val ns = s_li.asString
 		Log.getLogger().info("-> $ks¶$s1¶$ns¶$s2")
 		return s1 + ns + krull(s2)
@@ -264,7 +263,14 @@ class Item {
 	    if (ItemEntry.isPeTask(s) && Lesson.edit) {
 		return s
 	    }
-	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(ix3 + 1, ix2) + getDefaultFilledText(s.substring(ix2 + 1)) else s.substring(0, ix) + getDefaultFilledText(s.substring(ix2 + 1))
+	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(
+		ix3 + 1,
+		ix2
+	    ) + getDefaultFilledText(s.substring(ix2 + 1)) else s.substring(0, ix) + getDefaultFilledText(
+		s.substring(
+		    ix2 + 1
+		)
+	    )
 	} catch (ex: Exception) {
 	    ""
 	}
@@ -276,7 +282,9 @@ class Item {
 	    if (ix == -1) return s
 	    val ix2 = s.indexOf('}')
 	    val ix3 = s.indexOf(':')
-	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(ix3 + 1, ix2) + getDefaultFilledTTS(s.substring(ix2 + 1)) else s.substring(0, ix) + getDefaultFilledTTS(s.substring(ix2 + 1))
+	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(ix3 + 1, ix2) + getDefaultFilledTTS(
+		s.substring(ix2 + 1)
+	    ) else s.substring(0, ix) + getDefaultFilledTTS(s.substring(ix2 + 1))
 	} catch (ex: Exception) {
 	    ""
 	}
@@ -491,15 +499,11 @@ class Item {
 	    ", dummysign=" + dummySign +
 	    ", Lid=" + lid +
 	    ", var=" + `var` +
-	    ", tid'=" + it_ent?.tid ?: "null" +
-		    ", action_type=" + action_type +
-		    ", action_fname_orig=" + action_fname_orig +
-		    ", action_fname=" + action_fname +
-		    "}"
+	    ", tid'=" + it_ent?.tid
 	} catch (e: NullPointerException) {
 	    Log.getLogger().info("While toString " + e)
-	    e.printStackTrace();
-	    return "Item{" + e + "}";
+	    e.printStackTrace()
+	    return "Item{" + e + "}"
 	}
     }
 }

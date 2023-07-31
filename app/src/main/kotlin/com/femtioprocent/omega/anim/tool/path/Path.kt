@@ -118,19 +118,25 @@ class Path {
 	marker = ArrayList()
 	val dx = ep.x - sp.x
 	val dy = ep.y - sp.y
-	val sq = Segment_Q(seg_l.size,
-		sp,
-		Point2D.Double(sp.x + dx / 2,
-			sp.y + dy / 2),
-		ep)
+	val sq = Segment_Q(
+	    seg_l.size,
+	    sp,
+	    Point2D.Double(
+		sp.x + dx / 2,
+		sp.y + dy / 2
+	    ),
+	    ep
+	)
 	sq.path = this
 	seg_l.add(sq)
 	rebuildGP()
     }
 
     fun move(p: Point2D, offx: Int, offy: Int): Point2D {
-	return Point2D.Double(p.x + offx,
-		p.y + offy)
+	return Point2D.Double(
+	    p.x + offx,
+	    p.y + offy
+	)
     }
 
     constructor(nid: Int, pa_src: Path, offx: Int, offy: Int) {
@@ -140,10 +146,12 @@ class Path {
 	var it: Iterator<*> = pa_src.seg_l.iterator()
 	while (it.hasNext()) {
 	    val sq = it.next() as Segment_Q
-	    val sq_c = Segment_Q(nid,
-		    move(sq.p1, offx, offy),
-		    move(sq.pc, offx, offy),
-		    move(sq.p2, offx, offy))
+	    val sq_c = Segment_Q(
+		nid,
+		move(sq.p1, offx, offy),
+		move(sq.pc, offx, offy),
+		move(sq.p2, offx, offy)
+	    )
 	    sq_c.path = this
 	    seg_l.add(sq_c)
 	}
@@ -175,10 +183,12 @@ class Path {
 	val lp = lastPoint
 	val dx = np.x - lp.x
 	val dy = np.y - lp.y
-	val sq = Segment_Q(seg_l.size,
-		lp,
-		Point2D.Double(lp.x + dx / 2, lp.y + dy / 2),
-		np)
+	val sq = Segment_Q(
+	    seg_l.size,
+	    lp,
+	    Point2D.Double(lp.x + dx / 2, lp.y + dy / 2),
+	    np
+	)
 	sq.path = this
 	seg_l.add(sq)
 	rebuildGP()
@@ -377,7 +387,8 @@ class Path {
 		da[1] = length
 	    } else {
 		da[0] = 0.0
-		for (i in da.indices) if (i == 0) da[i] = 0.0 else if (i == 1) da[i] = marker[i - 1].where else if (i == da.size - 1) da[i] = length else da[i] = marker[i - 1].where
+		for (i in da.indices) if (i == 0) da[i] = 0.0 else if (i == 1) da[i] =
+		    marker[i - 1].where else if (i == da.size - 1) da[i] = length else da[i] = marker[i - 1].where
 	    }
 	    return da
 	}
@@ -405,8 +416,10 @@ class Path {
 	val frac = df / d_1
 	val p_1 = if (i == 0) point2D!![i] else point2D!![i - 1]
 	val p = point2D!![i]
-	return Point2D.Double(p_1.x + (p.x - p_1.x) * frac,
-		p_1.y + (p.y - p_1.y) * frac)
+	return Point2D.Double(
+	    p_1.x + (p.x - p_1.x) * frac,
+	    p_1.y + (p.y - p_1.y) * frac
+	)
 	// 	    }
 // 	}
 	//return hide_after ? new Point2D.Double(-11100.0, -11100.0) : pointA[pointA.length-1];
@@ -525,9 +538,13 @@ class Path {
     }
 
     private fun drawSmallBox(g2: Graphics2D, p: Point2D, w: Int) {
-	g2.draw(Rectangle2D.Double(p.x - w / 2.0,
+	g2.draw(
+	    Rectangle2D.Double(
+		p.x - w / 2.0,
 		p.y - w / 2.0,
-		w.toDouble(), w.toDouble()))
+		w.toDouble(), w.toDouble()
+	    )
+	)
     }
 
     private fun drawMarker(g2: Graphics2D) {
@@ -590,7 +607,7 @@ class Path {
 	}
 
     companion object {
-	@kotlin.jvm.JvmField
+	@JvmField
 	var global_selected: Path? = null
 
 	fun tD(s: String?): Double {

@@ -5,10 +5,8 @@ import com.femtioprocent.omega.lesson.appl.ApplContext
 import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files
 import com.femtioprocent.omega.util.Log
-import com.femtioprocent.omega.util.SundryUtils.a2s
 import java.io.File
 import java.io.FilenameFilter
-import java.util.*
 import javax.swing.JOptionPane
 
 class RegLocator {
@@ -21,12 +19,12 @@ class RegLocator {
     }
 
     fun removeSuffix(sa: Array<String>?, suf: String): Array<String> {
-	if (sa == null) return Array(0) {""}
+	if (sa == null) return Array(0) { "" }
 	return sa.map { if (it.endsWith(suf)) it.substring(0, it.length - suf.length) else it }.toTypedArray()
     }
 
     fun removePrefix(sa: Array<String>?, pre: String): Array<String> {
-	if (sa == null) return Array(0 ) {""}
+	if (sa == null) return Array(0) { "" }
 	return sa.map { if (it.startsWith(pre)) it.substring(pre.length) else it }.toTypedArray()
     }
 

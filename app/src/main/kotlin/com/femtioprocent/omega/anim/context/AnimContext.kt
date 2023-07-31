@@ -23,7 +23,7 @@ class AnimContext : OmegaContext {
     }
 
     constructor(arun: AnimRuntime?) {
-	AnimContext.ae = null
+	ae = null
 	this.arun = arun
     }
 
@@ -36,7 +36,7 @@ class AnimContext : OmegaContext {
     //  	mtl.save(xmlpw);
     //      }
     companion object {
-	public var ae: AnimEditor? = null
-        var top_frame: JFrame? = null
+	var ae: AnimEditor? = null
+	var top_frame: JFrame? = null
     }
 }

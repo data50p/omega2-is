@@ -8,18 +8,25 @@ import javax.swing.JPanel
 abstract class FeedBack {
     @JvmField
     var mp: MpgPlayer? = null
+
     @JvmField
     var canvas: JPanel? = null
+
     @JvmField
     var my_own: JPanel? = null
+
     @JvmField
     var comp: JComponent? = null
+
     @JvmField
     var w = 0
+
     @JvmField
     var h = 0
+
     @JvmField
     var vw = 0
+
     @JvmField
     var vh = 0
     fun getW(): Int {

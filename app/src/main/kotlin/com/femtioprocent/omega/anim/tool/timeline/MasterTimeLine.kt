@@ -282,7 +282,7 @@ class MasterTimeLine(@JvmField var a_ctxt: AnimContext) : PlayCtrlListener {
 
     companion object {
 	@JvmStatic
-        val maxTimeLineIndex: Int
+	val maxTimeLineIndex: Int
 	    get() = OmegaConfig.TIMELINES_N
     }
 }

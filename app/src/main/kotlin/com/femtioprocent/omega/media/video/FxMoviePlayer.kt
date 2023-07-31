@@ -210,7 +210,7 @@ class FxMoviePlayer internal constructor(var winW: Int, var winH: Int) {
 
     private fun getColor(colors: HashMap<String, ColorColors>?, key: String, def: Color): javafx.scene.paint.Color {
 	val c = if (colors != null) colors[key]!!.color else def
-	return javafx.scene.paint.Color.rgb(c!!.red, c!!.green, c!!.blue)
+	return javafx.scene.paint.Color.rgb(c!!.red, c.green, c.blue)
     }
 
     fun hideMsg(hide: Boolean) {
@@ -320,6 +320,7 @@ class FxMoviePlayer internal constructor(var winW: Int, var winH: Int) {
 	var frame: JFrame? = null
 	private val MEDIA_FN = getMediaFile("feedback/film1/feedback1.mp4")
 	private val MEDIA_FN2 = getMediaFile("feedback/film1/feedback2.mp4")
+
 	@JvmStatic
 	fun main(args: Array<String>) {
 	    val fxp = FxMoviePlayer(800, 600)

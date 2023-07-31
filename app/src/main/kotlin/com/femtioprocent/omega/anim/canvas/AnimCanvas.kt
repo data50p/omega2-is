@@ -65,11 +65,14 @@ class AnimCanvas : Canvas {
     var arun: AnimRuntime?
     private var pa_offs = 10
     var lessonVerb = "jagar"
+
     @JvmField
     var cab: Cabaret
     var actA_animated = arrayOfNulls<Actor>(OmegaConfig.TIMELINES_N)
+
     @JvmField
     var background_color = Color(30, 30, 90)
+
     @JvmField
     var colors = HashMap<String, ColorColors>()
     var hidden_ = false
@@ -157,7 +160,7 @@ class AnimCanvas : Canvas {
 //  				    pa_prop.setObject(prb.seg.path);
 				prb.seg!!.selectedPoint = prb.sel
 				prb.seg!!.path!!.draw(graphics2D)
-				ae!!.selectTimeLine(prb!!.seg!!.path!!)
+				ae!!.selectTimeLine(prb.seg!!.path!!)
 			    }
 			}
 		    }
@@ -200,7 +203,8 @@ class AnimCanvas : Canvas {
 				    prb.seg!!.selectedPoint = prb.sel
 				    prb.seg!!.path!!.draw(graphics2D)
 				    if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+					prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)
+				    ) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 				    ae!!.selectTimeLine(prb.seg!!.path!!)
 				    setM_Tool(M_TOOL_PATH)
 				} else {
@@ -245,7 +249,8 @@ class AnimCanvas : Canvas {
 				    prb.seg!!.selectedPoint = prb.sel
 				    prb.seg!!.path!!.draw(graphics2D)
 				    if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+					prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)
+				    ) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 				    ae!!.selectTimeLine(prb.seg!!.path!!)
 				    setM_Tool(M_TOOL_PATH)
 				} else {
@@ -346,7 +351,10 @@ class AnimCanvas : Canvas {
 
 	fun updCursor() {
 	    cursor = when (m_tool) {
-		M_TOOL_IMAGE -> if (m_tool_sub == MT_EXTEND) Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR) else Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)
+		M_TOOL_IMAGE -> if (m_tool_sub == MT_EXTEND) Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR) else Cursor.getPredefinedCursor(
+		    Cursor.HAND_CURSOR
+		)
+
 		M_TOOL_MARKER -> Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)
 		M_TOOL_PATH -> Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR)
 		else -> Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)
@@ -452,11 +460,13 @@ class AnimCanvas : Canvas {
 	    return
 	}
 	var p_p: Point2D?
-	val pa = Path(nid,
-		Point2D.Double(10.0, nid * 5 + 10.0).also {
-		    p_p = it
-		},
-		Point2D.Double(300.0, nid * 5 + 10.0))
+	val pa = Path(
+	    nid,
+	    Point2D.Double(10.0, nid * 5 + 10.0).also {
+		p_p = it
+	    },
+	    Point2D.Double(300.0, nid * 5 + 10.0)
+	)
 	ap.add(pa)
 	ap.deselectAll(graphics2D)
 	val prb = ap.findNearest(p_p)
@@ -467,7 +477,8 @@ class AnimCanvas : Canvas {
 	prb.seg!!.path!!.draw(graphics2D)
 	ae!!.selectTimeLine(prb.seg!!.path!!)
 	if (prb.seg == prb.seg!!.path!!.getSq(0) ||
-		prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+	    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)
+	) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 	selected_prb = prb
 	repaint()
 	val len = pa.length.toInt()
@@ -483,7 +494,7 @@ class AnimCanvas : Canvas {
 
     val isCanvasNormal: Boolean
 	get() = //  	    offs_x == 0 &&
-		//  	    offs_y == 0 &&
+	    //  	    offs_y == 0 &&
 	    offs_w == 0.0 && offs_h == 0.0 && sca == 1.0
 
     inner class GEL : GenericEventListener, ToolExecute {
@@ -561,23 +572,27 @@ class AnimCanvas : Canvas {
 	    }
 	    if (cmd == "path_create") {
 		if (a_ctxt.mtl!!.freeTLIndex == -1) {
-		    JOptionPane.showMessageDialog(this@AnimCanvas,
-			    t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE)
+		    JOptionPane.showMessageDialog(
+			this@AnimCanvas,
+			t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
+			"Omega",
+			JOptionPane.INFORMATION_MESSAGE
+		    )
 		} else {
 		    createNewPath()
 		}
 	    } else if (cmd == "path_duplicate") {
 		if (a_ctxt.mtl!!.freeTLIndex == -1) {
-		    JOptionPane.showMessageDialog(this@AnimCanvas,
-			    t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE)
+		    JOptionPane.showMessageDialog(
+			this@AnimCanvas,
+			t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
+			"Omega",
+			JOptionPane.INFORMATION_MESSAGE
+		    )
 		} else {
 		    m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
 		    if (selected_prb != null) {
-			val nid = a_ctxt!!.mtl!!.freeTLIndex
+			val nid = a_ctxt.mtl!!.freeTLIndex
 			if (nid == -1) {
 			    return
 			}
@@ -722,11 +737,14 @@ class AnimCanvas : Canvas {
     }
 
     fun deleteAllNid(nid: Int) {
-	if (JOptionPane.showConfirmDialog(AnimContext.ae,
-			t("Delete whole path and timeline no") + ' ' +
-				(nid + 1) + "?",
-			"Omega",
-			JOptionPane.YES_NO_OPTION) == 0) {
+	if (JOptionPane.showConfirmDialog(
+		AnimContext.ae,
+		t("Delete whole path and timeline no") + ' ' +
+			(nid + 1) + "?",
+		"Omega",
+		JOptionPane.YES_NO_OPTION
+	    ) == 0
+	) {
 	    allgim[null] = nid
 	    ap.removePath(nid)
 	    selected_prb = null
@@ -967,11 +985,7 @@ class AnimCanvas : Canvas {
 	}
 
 	fun set(msg: MsgItem2?) {
-	    if (msg == null) {
-		isMsg = false
-	    } else {
-		isMsg = true
-	    }
+	    isMsg = msg != null
 	    val g2: Graphics2D = graphics2D
 	    draw(g2)
 	    msg_item = msg
@@ -1004,7 +1018,14 @@ class AnimCanvas : Canvas {
 	    val r = gX(0.02)
 	    val col = getColor("sn_bg", Color(0xe5, 0xe5, 0xe5))
 	    OmegaContext.COLOR_WARP = col
-	    val fr: RoundRectangle2D = RoundRectangle2D.Double(x.toDouble(), y.toDouble(), w.toDouble(), h.toDouble(), r.toDouble(), r.toDouble())
+	    val fr: RoundRectangle2D = RoundRectangle2D.Double(
+		x.toDouble(),
+		y.toDouble(),
+		w.toDouble(),
+		h.toDouble(),
+		r.toDouble(),
+		r.toDouble()
+	    )
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
 	    g2.color = col
 	    g2.fill(fr)
@@ -1021,9 +1042,11 @@ class AnimCanvas : Canvas {
 	    OmegaContext.COLOR_TEXT_WARP = getColor("sn_tx", Color.black)
 	    g2.font = fo
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f)
-	    g2.drawString(msg_item!!.text,
-		    x + w / 2 - sw / 2,
-		    y + h - 2 * txtH / 5)
+	    g2.drawString(
+		msg_item!!.text,
+		x + w / 2 - sw / 2,
+		y + h - 2 * txtH / 5
+	    )
 	    g2.color = col
 	    g2.font = titleFont
 	    g2.drawString(msg_item!!.title, x + 1 * w / 10, (y + gY(0.042)))
@@ -1034,7 +1057,14 @@ class AnimCanvas : Canvas {
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.08f)
 	    g2.color = Color(15, 15, 15)
 	    for (i in 0..6) {
-		val frs: RoundRectangle2D = RoundRectangle2D.Double((x + 10 - i).toDouble(), (y + 10 - i).toDouble(), w.toDouble(), h.toDouble(), r.toDouble(), r.toDouble())
+		val frs: RoundRectangle2D = RoundRectangle2D.Double(
+		    (x + 10 - i).toDouble(),
+		    (y + 10 - i).toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    r.toDouble(),
+		    r.toDouble()
+		)
 		g2.fill(frs)
 	    }
 	    val stroke = BasicStroke(caH / 200f)
@@ -1267,8 +1297,10 @@ class AnimCanvas : Canvas {
 		    val da = doubleArrayOf(d1, d2)
 		    var sc_d = 1.0
 		    if (sc != null) sc_d = tD(sc)
-		    val w = createWing(fn, d1.toInt(), d2.toInt(), la.toInt(),
-			    sc_d, mi.toInt())
+		    val w = createWing(
+			fn, d1.toInt(), d2.toInt(), la.toInt(),
+			sc_d, mi.toInt()
+		    )
 		    val wing_nid = w.ord
 		    if (AnimContext.ae != null) AnimContext.ae!!.wings_panel!!.setWing(w, wing_nid)
 		    resetBackground()

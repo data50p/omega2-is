@@ -24,12 +24,16 @@ import javax.swing.JSlider
 class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
     @JvmField
     var feedback_movie_background: ColorButton? = null
+
     @JvmField
     var action_movie_background: ColorButton? = null
+
     @JvmField
     var anim_background: ColorButton? = null
+
     @JvmField
     var signWord_background: ColorButton? = null
+
     @JvmField
     var signSentence_background: ColorButton? = null
     var color_theme: JComboBox<*>? = null
@@ -37,15 +41,20 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
     var color_theme_pupil: JButton? = null
     var color_theme_words: JButton? = null
     var color_theme_sent: JButton? = null
+
     @JvmField
     var signWord_alpha: JSlider? = null
+
     @JvmField
     var signSentence_alpha: JSlider? = null
+
     @JvmField
     var signMovieWord_scale: JSlider? = null
+
     @JvmField
     var signMovieSentence_scale: JSlider? = null
     private val fname = "omega_settings.xml"
+
     @JvmField
     var lesson: Lesson? = null
 
@@ -74,7 +83,7 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	}
     }
 
-    public override fun save(): Boolean {
+    override fun save(): Boolean {
 	val el = Element("omega-settings")
 	val fel = Element("feedback_movie_background")
 	fel.addAttr("color", "" + feedback_movie_background!!.color.rgb)
@@ -114,7 +123,7 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	return true
     }
 
-    public override fun load() {
+    override fun load() {
 	val el = loadElement()
 	if (el != null) {
 	    val fel = el.findElement("feedback_movie_background", 0)
@@ -261,34 +270,39 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	var X = 0
 	var Y = 0
 	top.add(JLabel(t("Action Movie Background")),
-		ColorButton(Color(40, 40, 100)).also {
-		    action_movie_background = it
-		}, Y, ++X)
+	    ColorButton(Color(40, 40, 100)).also {
+		action_movie_background = it
+	    }, Y, ++X
+	)
 	X = 0
 	Y++
 	top.add(JLabel(t("Feedback Movie Background")),
-		ColorButton(Color(80, 80, 120)).also {
-		    feedback_movie_background = it
-		}, Y, ++X)
+	    ColorButton(Color(80, 80, 120)).also {
+		feedback_movie_background = it
+	    }, Y, ++X
+	)
 	X = 0
 	Y++
 	top.add(JLabel(t("Animation Background")),
-		ColorButton(Color(30, 30, 80)).also {
-		    anim_background = it
-		}, Y, ++X)
+	    ColorButton(Color(30, 30, 80)).also {
+		anim_background = it
+	    }, Y, ++X
+	)
 	if (isLIU_Mode()) {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Background")),
-		    ColorButton(Color(30, 30, 80)).also {
-			signWord_background = it
-		    }, Y, ++X)
+		ColorButton(Color(30, 30, 80)).also {
+		    signWord_background = it
+		}, Y, ++X
+	    )
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Transparence")),
-		    JSlider(0, 100).also {
-			signWord_alpha = it
-		    }, Y, ++X)
+		JSlider(0, 100).also {
+		    signWord_alpha = it
+		}, Y, ++X
+	    )
 	    signWord_alpha!!.majorTickSpacing = 20
 	    signWord_alpha!!.minorTickSpacing = 5
 	    signWord_alpha!!.paintTicks = true
@@ -296,9 +310,10 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Movie Scale")),
-		    JSlider(0, 100).also {
-			signMovieWord_scale = it
-		    }, Y, ++X)
+		JSlider(0, 100).also {
+		    signMovieWord_scale = it
+		}, Y, ++X
+	    )
 	    signMovieWord_scale!!.majorTickSpacing = 20
 	    signMovieWord_scale!!.minorTickSpacing = 5
 	    signMovieWord_scale!!.paintTicks = true
@@ -306,15 +321,17 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Background")),
-		    ColorButton(Color(30, 30, 80)).also {
-			signSentence_background = it
-		    }, Y, ++X)
+		ColorButton(Color(30, 30, 80)).also {
+		    signSentence_background = it
+		}, Y, ++X
+	    )
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Transparence")),
-		    JSlider(0, 100).also {
-			signSentence_alpha = it
-		    }, Y, ++X)
+		JSlider(0, 100).also {
+		    signSentence_alpha = it
+		}, Y, ++X
+	    )
 	    signSentence_alpha!!.majorTickSpacing = 20
 	    signSentence_alpha!!.minorTickSpacing = 5
 	    signSentence_alpha!!.paintTicks = true
@@ -322,9 +339,10 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Movie Scale")),
-		    JSlider(0, 100).also {
-			signMovieSentence_scale = it
-		    }, Y, ++X)
+		JSlider(0, 100).also {
+		    signMovieSentence_scale = it
+		}, Y, ++X
+	    )
 	    signMovieSentence_scale!!.majorTickSpacing = 20
 	    signMovieSentence_scale!!.minorTickSpacing = 5
 	    signMovieSentence_scale!!.paintTicks = true
@@ -338,9 +356,7 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 
     companion object {
 	var fnf = FilenameFilter { dir, fname ->
-	    if (fname.endsWith(".omega_colors")) {
-		true
-	    } else false
+	    fname.endsWith(".omega_colors")
 	}
     }
 }

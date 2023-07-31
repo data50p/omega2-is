@@ -22,8 +22,9 @@ object Log {
 
     @JvmStatic
     fun getLogger(): Logger {
-    	return getLogger(Omega_IS::class.java)
+	return getLogger(Omega_IS::class.java)
     }
+
     fun getLogger(clazz: Class<*>): Logger {
 	try {
 	    var logger = myMap[clazz.name]

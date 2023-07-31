@@ -10,7 +10,8 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.Socket
 
-class LessonServerConnection internal constructor(var so: Socket, var server: LessonServer) : Thread("lessond.Connection") {
+class LessonServerConnection internal constructor(var so: Socket, var server: LessonServer) :
+    Thread("lessond.Connection") {
     fun serve(`is`: InputStream, dos: DataOutputStream?) { // BufferedReader rd, DataOutputStream dos) {
 	try {
 	    LOOP@ while (true) {

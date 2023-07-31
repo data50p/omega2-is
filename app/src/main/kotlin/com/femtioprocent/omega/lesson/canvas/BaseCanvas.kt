@@ -15,7 +15,6 @@ import com.femtioprocent.omega.util.SundryUtils.formatDisplayText
 import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.xml.Element
-import javafx.application.Application.launch
 import java.awt.*
 import java.awt.event.*
 import java.awt.geom.Arc2D
@@ -28,12 +27,16 @@ import javax.swing.event.MouseInputAdapter
 
 open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     open var om_msg_mgr = Manager()
+
     @JvmField
     var lc_listeners: EventListenerList
+
     @JvmField
     var l_ctxt: LessonContext
+
     @JvmField
     var colors = HashMap<String, ColorColors>()
+
     @JvmField
     var fo: Font? = null
 
@@ -55,7 +58,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     open var cmp_li: ComponentAdapter = object : ComponentAdapter() {
 	override fun componentResized(ev: ComponentEvent) {
 	    resized()
-	    val th = Thread() {
+	    val th = Thread {
 		m_sleep(500)
 		this@BaseCanvas.resized()
 	    }
@@ -219,8 +222,9 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	var im_enter_n: String? = null
 	var im_ic: ImageIcon? = null
 	var im_enter_ic: ImageIcon? = null
+
 	@JvmField
-        var o: Any? = null
+	var o: Any? = null
 	fun setNew(txt: String?, im_n: String?, im_enter_n: String?, o: Any?, dispName: String?) {
 	    text = dispName ?: formatDisplayText(txt!!)
 	    this.im_n = im_n

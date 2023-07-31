@@ -167,13 +167,13 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    story_list!!.setBackground(getColor("bg_frbg"))
 	    story_list!!.addListSelectionListener(lsl)
 	    story_list!!.setFocusTraversalKeysEnabled(false)
-	    story_list!!.setRequestFocusEnabled(false)
+	    story_list!!.isRequestFocusEnabled = false
 	    story_list!!.setFocusable(false)
 	    story_list_sp!!.isVisible = false
 	    val mouseListener: MouseListener = object : MouseAdapter() {
 		override fun mouseClicked(e: MouseEvent) {
 		    val index = story_list!!.locationToIndex(e.point)
-		    val ix = story_list!!.getSelectedIndex()
+		    val ix = story_list!!.selectedIndex
 		    if (0 == selected_index) story_list_sp!!.isVisible = false
 		    selected_index = 0
 		    OmegaContext.sout_log.getLogger().info(":--: Clicked on Item $index $ix")
@@ -298,7 +298,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    val y = gY(0.05)
 	    val r = gX(0.02)
 	    while (bounding[0] > txw - 10 || bounding[1] > txh - 15) {
-		val size: Int = itemFont!!.getSize()
+		val size: Int = itemFont!!.size
 		itemFont = Font("Arial", Font.PLAIN, (size * 0.9).toInt())
 		bounding = this.bounding
 	    }
@@ -520,10 +520,6 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     override fun enter() {
 	super.enter()
 	setRed(6)
-    }
-
-    override fun leave() {
-	super.leave()
     }
 
     fun setStoryData(playDataList: PlayDataList) {

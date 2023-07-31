@@ -26,8 +26,10 @@ class MpgAction : Action {
     private var item_fo: Font? = null
     var pW = 100
     var pH = 100
+
     @JvmField
     var sentence: String? = null
+
     @JvmField
     var show_sentence = true
     private var again_play_request = false
@@ -173,11 +175,7 @@ class MpgAction : Action {
 	}
 
 	fun set(msg: MsgItem?) {
-	    if (msg == null) {
-		isMsg = false
-	    } else {
-		isMsg = true
-	    }
+	    isMsg = msg != null
 	    msg_item = msg
 	    jpan!!.repaint()
 	}
@@ -203,7 +201,14 @@ class MpgAction : Action {
 	    val y = gY(0.92)
 	    val r = gX(0.02)
 	    val col = OmegaContext.COLOR_WARP
-	    val fr: RoundRectangle2D = RoundRectangle2D.Double(x.toDouble(), y.toDouble(), w.toDouble(), h.toDouble(), r.toDouble(), r.toDouble())
+	    val fr: RoundRectangle2D = RoundRectangle2D.Double(
+		x.toDouble(),
+		y.toDouble(),
+		w.toDouble(),
+		h.toDouble(),
+		r.toDouble(),
+		r.toDouble()
+	    )
 	    Log.getLogger().info(":--: MPG draw: $w $sw $text")
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
 	    g2.color = col
@@ -226,9 +231,11 @@ class MpgAction : Action {
 	    g2.font = item_fo
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f)
 	    Log.getLogger().info(":--: MPG text: $x $y $h $item_fo $text")
-	    g2.drawString(text,
-		    x + 5,
-		    y + 2 * h / 3)
+	    g2.drawString(
+		text,
+		x + 5,
+		y + 2 * h / 3
+	    )
 	    g2.color = col
 	    // 	    g2.setFont(item_fo);
 // 	    g2.drawString(msg_item.title, x + 1 * w / 10, (int)(y + gY(0.03)));
@@ -236,10 +243,12 @@ class MpgAction : Action {
 		val hh = (h * 0.7).toInt()
 		val ww = 4 * hh / 3
 		try {
-		    val img = ScaledImageIcon.createImageIcon(jpan,
-			    msg_item!!.image!!,
-			    ww,
-			    hh)!!.image
+		    val img = ScaledImageIcon.createImageIcon(
+			jpan,
+			msg_item!!.image!!,
+			ww,
+			hh
+		    )!!.image
 		    g2.drawImage(img, x, y + th + 2, null)
 		} catch (ex: Exception) {
 		}
@@ -248,10 +257,12 @@ class MpgAction : Action {
 		val hh = (h * 0.25).toInt()
 		val ww = hh * 4
 		try {
-		    val img = ScaledImageIcon.createImageIcon(jpan,
-			    cont_image_fn!!,
-			    ww,
-			    hh)!!.image
+		    val img = ScaledImageIcon.createImageIcon(
+			jpan,
+			cont_image_fn!!,
+			ww,
+			hh
+		    )!!.image
 		    val imw = img.getWidth(null)
 		    g2.drawImage(img, x + w - imw - 3, y + h - hh - 3, null)
 		} catch (ex: Exception) {
@@ -264,7 +275,14 @@ class MpgAction : Action {
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.08f)
 	    g2.color = Color(15, 15, 15)
 	    for (i in 0..6) {
-		val frs: RoundRectangle2D = RoundRectangle2D.Double((x + 10 - i).toDouble(), (y + 10 - i).toDouble(), w.toDouble(), h.toDouble(), r.toDouble(), r.toDouble())
+		val frs: RoundRectangle2D = RoundRectangle2D.Double(
+		    (x + 10 - i).toDouble(),
+		    (y + 10 - i).toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    r.toDouble(),
+		    r.toDouble()
+		)
 		g2.fill(frs)
 	    }
 	}
@@ -278,13 +296,17 @@ class MpgAction : Action {
 	msg_dlg.set(null)
     }
 
-    override fun perform(window: Window,
-			 action_s: String?,
-			 actA: Array<String?>,
-			 pathA: Array<String?>,
-			 ord: Int,
-			 hook: Runnable?) {
-	if (mpg_player == null) mpg_player = MpgPlayer.createMpgPlayer(action_s!!, jpan, window.width, window.height) else Log.getLogger().info("already created MpgPayer ... ")
+    override fun perform(
+	window: Window,
+	action_s: String?,
+	actA: Array<String?>,
+	pathA: Array<String?>,
+	ord: Int,
+	hook: Runnable?
+    ) {
+	if (mpg_player == null) mpg_player =
+	    MpgPlayer.createMpgPlayer(action_s!!, jpan, window.width, window.height) else Log.getLogger()
+	    .info("already created MpgPayer ... ")
 	Log.getLogger().info(":--: " + "mpg created " + mpg_player!!.origW + ' ' + mpg_player!!.origH)
 	mpg_player!!.fxp!!.waitReady()
 	again_play2 = true

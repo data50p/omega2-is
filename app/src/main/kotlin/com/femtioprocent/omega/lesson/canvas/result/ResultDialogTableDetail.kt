@@ -25,14 +25,16 @@ import javax.swing.event.ListSelectionListener
 import javax.swing.table.AbstractTableModel
 import javax.swing.table.TableModel
 
-class ResultDialogTableDetail(var owner: Frame,
-	//     JLabel[] leftA = new JLabel[5];
-	//     JTextField[] leftBA = new JTextField[5];
-			      var pupil_name_s: String,
-			      var lesson_file: String,
-			      cur_ix: Int,
-			      mode: Char,
-			      register: RegisterProxy?) : JDialog(owner, t("Omega - Results Detail"), true), ListSelectionListener, ActionListener, ChangeListener {
+class ResultDialogTableDetail(
+    var owner: Frame,
+    //     JLabel[] leftA = new JLabel[5];
+    //     JTextField[] leftBA = new JTextField[5];
+    var pupil_name_s: String,
+    var lesson_file: String,
+    cur_ix: Int,
+    mode: Char,
+    register: RegisterProxy?
+) : JDialog(owner, t("Omega - Results Detail"), true), ListSelectionListener, ActionListener, ChangeListener {
     var results_sp: JScrollPane? = null
     var lesson_name: JTextField? = null
     var pupil_name: JTextField? = null
@@ -53,19 +55,21 @@ class ResultDialogTableDetail(var owner: Frame,
 
     inner class Result_TableModel : AbstractTableModel() {
 	var data: Array<Array<String?>>
-	var hdn_c = arrayOf(t("Selection"),
-		t("Sentence"),
-		t("Time"),
-		t("Type")
+	var hdn_c = arrayOf(
+	    t("Selection"),
+	    t("Sentence"),
+	    t("Time"),
+	    t("Type")
 	)
-	var hdn_t = arrayOf(t("Selection"),
-		t("Written Sentence"),
-		t("Time"),
-		t("Type"),
-		t("Correct Sentence"),
-		t("NCS"),
-		t("NCW"),
-		t("NWW")
+	var hdn_t = arrayOf(
+	    t("Selection"),
+	    t("Written Sentence"),
+	    t("Time"),
+	    t("Type"),
+	    t("Correct Sentence"),
+	    t("NCS"),
+	    t("NCW"),
+	    t("NWW")
 	)
 	val hDN: Array<String>
 	    get() = if (mode == 'c') hdn_c else hdn_t
@@ -477,7 +481,7 @@ class ResultDialogTableDetail(var owner: Frame,
 // 	    if ( cur_ix < 0 )
 // 		cur_ix = 0;
 	    val pup = register!!.pupil.name
-	    val res_name = register!!.rl.getFullFName(pup, sa!![cur_ix]!!)
+	    val res_name = register!!.rl.getFullFName(pup, sa!![cur_ix])
 	    //log	    OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 
 // 	    if ( res_name.equals(last) )
@@ -505,7 +509,8 @@ class ResultDialogTableDetail(var owner: Frame,
 		if (ent.type == "select" && filter[F_W]) { // word
 		    val sel = ent as SelectEntry
 		    if (filter[F_T] && sel.extra.startsWith("test") ||
-			    filter[F_C] && sel.extra.startsWith("create")) {
+			filter[F_C] && sel.extra.startsWith("create")
+		    ) {
 			nn++
 		    }
 		}
@@ -534,7 +539,8 @@ class ResultDialogTableDetail(var owner: Frame,
 		if (ent.type == "select" && filter[F_W]) { // word
 		    val sel = ent as SelectEntry
 		    if (filter[F_T] && sel.extra.startsWith("test") ||
-			    filter[F_C] && sel.extra.startsWith("create")) {
+			filter[F_C] && sel.extra.startsWith("create")
+		    ) {
 			if (filter[F_T] && sel.extra == "test:build:OK") {
 			    data[nn_ix][CO_RO] = "1"
 			    data[nn_ix][CO_FO] = "0"
@@ -585,10 +591,10 @@ class ResultDialogTableDetail(var owner: Frame,
 	stat_tf1!!.text = "?"
 	val sa = register!!.getAllTestsAsName(with)
 	if (cur_ix < 0) cur_ix = 0
-	if (cur_ix > sa!!.size - 1) cur_ix = sa!!.size - 1
-	setLessonName(sa!![cur_ix])
+	if (cur_ix > sa!!.size - 1) cur_ix = sa.size - 1
+	setLessonName(sa[cur_ix])
 	setTableData()
-	stat!!.text = "" + (cur_ix + 1) + " / " + sa!!.size
+	stat!!.text = "" + (cur_ix + 1) + " / " + sa.size
 	upd_stat()
 	//	pack();
 
@@ -609,8 +615,9 @@ class ResultDialogTableDetail(var owner: Frame,
 	} else return
 	try {
 	    val pw = createPrintWriter(fn)
-	    pw!!.println("Pupil:," + register!!.pupil.name + ',' +
-		    "Lesson Name:," + lesson_name!!.text
+	    pw!!.println(
+		"Pupil:," + register!!.pupil.name + ',' +
+			"Lesson Name:," + lesson_name!!.text
 	    )
 	    for (j in 0 until tmod!!.columnCount) {
 		val col_name = tmod!!.getColumnName(j)

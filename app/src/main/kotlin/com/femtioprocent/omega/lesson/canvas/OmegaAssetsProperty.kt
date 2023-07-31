@@ -58,14 +58,6 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	return Dimension(d.getWidth().toInt() + 100, d.getHeight().toInt())
     }
 
-    override fun getMinimumSize(): Dimension {
-	return super.getMinimumSize()
-    }
-
-    override fun getMaximumSize(): Dimension {
-	return super.getMaximumSize()
-    }
-
     inner class myActionListener : ActionListener {
 	operator fun set(what: String, value: String?) {
 	    var value = value
@@ -459,7 +451,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	oaBundleJB!!.text = t("Import Omega Bundle") + " " + targetCombinationsBuilder.srcSize()
     }
 
-    public override fun updTrigger(doc: Document) {
+    override fun updTrigger(doc: Document) {
 	val it: Iterator<*> = guimap.keys.iterator()
 	while (it.hasNext()) {
 	    val key = it.next() as String
@@ -487,7 +479,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	}
     }
 
-    public override fun updTrigger(cb: JComboBox<*>?) {
+    override fun updTrigger(cb: JComboBox<*>?) {
 	try {
 	    val cbg: JComboBox<*>?
 

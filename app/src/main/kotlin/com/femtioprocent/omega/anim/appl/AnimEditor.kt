@@ -5,7 +5,6 @@ import com.femtioprocent.omega.OmegaConfig.FRAME_HEIGHT
 import com.femtioprocent.omega.OmegaConfig.FRAME_WIDTH
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.OmegaContext.Companion.antiOmegaAssets
-import com.femtioprocent.omega.OmegaContext.Companion.getSubsystem
 import com.femtioprocent.omega.OmegaContext.Companion.init
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.anim.context.AnimContext
@@ -29,7 +28,10 @@ import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files
 import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.split
-import java.awt.*
+import java.awt.AWTEvent
+import java.awt.BorderLayout
+import java.awt.CardLayout
+import java.awt.Container
 import java.awt.event.InputEvent
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
@@ -72,7 +74,7 @@ class AnimEditor : JFrame {
 
     private fun maybeClose() {
 	Log.getLogger()
-		.info("LessonRuntime want to close " + (ApplContext.top_frame === this) + ' ' + ApplContext.top_frame + '\n' + this)
+	    .info("LessonRuntime want to close " + (ApplContext.top_frame === this) + ' ' + ApplContext.top_frame + '\n' + this)
 	if (ApplContext.top_frame === this) System.exit(0)
     }
 
@@ -87,19 +89,19 @@ class AnimEditor : JFrame {
 	if (e.id != WindowEvent.WINDOW_CLOSING) super.processEvent(e) else {
 	    var s = ""
 	    if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
-		    "\n" + t("Changes not saved")
+		"\n" + t("Changes not saved")
 	    if (exit_on_close) {
 		val sel = JOptionPane.showConfirmDialog(
-			this@AnimEditor,
-			t("Are you sure to exit Omega?") +
-				s
+		    this@AnimEditor,
+		    t("Are you sure to exit Omega?") +
+			    s
 		)
 		if (sel == 0) super.processEvent(e)
 	    } else {
 		val sel = JOptionPane.showConfirmDialog(
-			this@AnimEditor,
-			t("Are you sure to close Anim Editor?") +
-				s
+		    this@AnimEditor,
+		    t("Are you sure to close Anim Editor?") +
+			    s
 		)
 		if (sel == 0) {
 		    try {
@@ -142,20 +144,20 @@ class AnimEditor : JFrame {
 		if (("exit" == cmd)) {
 		    var s = ""
 		    if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
-			    "\n" + t("Changes not saved")
+			"\n" + t("Changes not saved")
 		    if (false && exit_on_close) {
 			val sel = JOptionPane.showConfirmDialog(
-				this@AnimEditor,
-				t("Are you sure to exit Omega?") +
-					s
+			    this@AnimEditor,
+			    t("Are you sure to exit Omega?") +
+				    s
 			)
 			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0) System.exit(0)
 		    } else {
 			val sel = JOptionPane.showConfirmDialog(
-				this@AnimEditor,
-				t("Are you sure to close Anim Editor?") +
-					s
+			    this@AnimEditor,
+			    t("Are you sure to close Anim Editor?") +
+				    s
 			)
 			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
 			if (sel == 0) {
@@ -170,9 +172,9 @@ class AnimEditor : JFrame {
 		} else if (("new" == cmd)) {
 		    if (isDirty) {
 			val sel = JOptionPane.showConfirmDialog(
-				this@AnimEditor,
-				(t("Are you sure to start with a new animation") + "\n" +
-					t("Changes are unsaved!"))
+			    this@AnimEditor,
+			    (t("Are you sure to start with a new animation") + "\n" +
+				    t("Changes are unsaved!"))
 			)
 			if (sel == 0) initNew()
 		    } else {
@@ -185,9 +187,9 @@ class AnimEditor : JFrame {
 		} else if (("open" == cmd)) {
 		    if (isDirty) {
 			val sel = JOptionPane.showConfirmDialog(
-				this@AnimEditor,
-				(t("Are you sure to open an animation") + "\n" +
-					t("Changes are unsaved!"))
+			    this@AnimEditor,
+			    (t("Are you sure to open an animation") + "\n" +
+				    t("Changes are unsaved!"))
 			)
 			if (sel == 0) open()
 		    } else {
@@ -198,9 +200,9 @@ class AnimEditor : JFrame {
 		    if (fn != null) {
 			if (isDirty) {
 			    val sel = JOptionPane.showConfirmDialog(
-				    this@AnimEditor,
-				    (t("Are you sure to reopen the animation") + "\n" +
-					    t("Changes are unsaved!"))
+				this@AnimEditor,
+				(t("Are you sure to reopen the animation") + "\n" +
+					t("Changes are unsaved!"))
 			    )
 			    if (sel == 0) open(fn)
 			} else {
@@ -208,10 +210,10 @@ class AnimEditor : JFrame {
 			}
 		    } else {
 			JOptionPane.showMessageDialog(
-				AnimContext.top_frame,
-				t("No name, use open."),
-				"Omega",
-				JOptionPane.INFORMATION_MESSAGE
+			    AnimContext.top_frame,
+			    t("No name, use open."),
+			    "Omega",
+			    JOptionPane.INFORMATION_MESSAGE
 			)
 		    }
 		} else if (("resetstarter" == cmd)) {
@@ -339,13 +341,13 @@ class AnimEditor : JFrame {
 	toolbar_cmd!!.add(tac)
 	jmpa.add(ToolAction(t("Delete segment"), "omega/PathDelete", "path_delete", ae_texec, true).also { tac = it })
 	jmpa.add(
-		ToolAction(
-			t("Delete whole path and timeline"),
-			"omega/PathDeleteAll",
-			"path_delete_all",
-			ae_texec,
-			true
-		).also { tac = it })
+	    ToolAction(
+		t("Delete whole path and timeline"),
+		"omega/PathDeleteAll",
+		"path_delete_all",
+		ae_texec,
+		true
+	    ).also { tac = it })
 	//toolbar_cmd.add(tac);
 	toolbar_cmd!!.addSeparator()
 	jmtl.add(ToolAction(t("Play"), "media/Play", "play", ae_texec).also { tac = it })
@@ -564,7 +566,7 @@ class AnimEditor : JFrame {
     var isDirty: Boolean
 	get() = is_dirty
 	set(d) {
-	    var fn: String? = this.anim_repository!!?.name ?: return
+	    var fn: String? = this.anim_repository!!.name ?: return
 	    is_dirty = d
 	    val lia = editstate_listeners.listenerList
 	    var i = 0
@@ -627,6 +629,7 @@ class AnimEditor : JFrame {
 
     companion object {
 	var context: OmegaContext? = null
+
 	@JvmField
 	var help: Anim_HelpSystem? = null
     }

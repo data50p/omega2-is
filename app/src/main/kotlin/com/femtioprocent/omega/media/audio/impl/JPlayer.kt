@@ -16,9 +16,9 @@ class JPlayer(fn: String) : LineListener {
     var sdataline: SourceDataLine? = null
 
     val tlock = ReentrantLock()
-    val tcondition = tlock.newCondition()!!
+    val tcondition = tlock.newCondition()
     val lock = ReentrantLock()
-    val condition = lock.newCondition()!!
+    val condition = lock.newCondition()
 
     var started = false
     var eom = false
@@ -42,7 +42,7 @@ class JPlayer(fn: String) : LineListener {
 	try {
 	    val file = File(fn)
 	    ais = AudioSystem.getAudioInputStream(file)
-	    aformat = ais!!.getFormat()
+	    aformat = ais!!.format
 	    sdataline = getSourceDataLine(aformat)
 	    sdataline!!.addLineListener(this)
 	    Log.getLogger().info("<init>: JPlayer0: $ais $aformat $sdataline")
@@ -87,7 +87,7 @@ class JPlayer(fn: String) : LineListener {
 			s_pe(">D>")
 			sdataline!!.drain()
 		    }
-		    if ( ais != null ) {
+		    if (ais != null) {
 			ais!!.close()
 		    } else {
 			Log.getLogger().info("ais is null")

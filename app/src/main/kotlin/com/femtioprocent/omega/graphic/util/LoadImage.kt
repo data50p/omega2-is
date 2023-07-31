@@ -33,7 +33,8 @@ object LoadImage {
 	    mt.waitForID(0)
 	} catch (e: InterruptedException) {
 	}
-	if (OmegaConfig.T) Log.getLogger().info("IMAGE4: " + " loaded file name " + im_name + ' ' + mt1.string + ' ' + im)
+	if (OmegaConfig.T) Log.getLogger()
+	    .info("IMAGE4: " + " loaded file name " + im_name + ' ' + mt1.string + ' ' + im)
 	return im
     }
 

@@ -12,9 +12,9 @@ class TriggerEventSetLayer : TriggerEventSelections {
 	get() = t("dep_set Layer")
     override val help: String
 	get() = t("Z order")
-    override val selections_cmd: Array<String>?
+    override val selections_cmd: Array<String>
 	get() = st_selections_cmd
-    override val selections_human: Array<String>?
+    override val selections_human: Array<String>
 	get() = st_selections_human
     val argInt: Int
 	get() {
@@ -24,18 +24,18 @@ class TriggerEventSetLayer : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-		"Behind",
-		"Back",
-		"Middle",
-		"Front",
-		"Top"
+	    "Behind",
+	    "Back",
+	    "Middle",
+	    "Front",
+	    "Top"
 	)
 	var st_selections_human = arrayOf(
-		t("Behind all"),
-		t("Back"),
-		t("Middle"),
-		t("Front"),
-		t("On Top")
+	    t("Behind all"),
+	    t("Back"),
+	    t("Middle"),
+	    t("Front"),
+	    t("On Top")
 	)
 
 	fun getIx(s: String?): Int {

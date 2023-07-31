@@ -32,9 +32,11 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     private val trgtA_fo = Font("Arial", Font.PLAIN, ( /*h*/20 * 0.5).toInt())
     var title: JLabel? = null
     var parent: JLabel? = null
+
     @JvmField
-    val lesson: Array<ImageAreaJB?>? = arrayOfNulls(10)
+    val lesson: Array<ImageAreaJB?> = arrayOfNulls(10)
     var locator = Locator()
+
     @JvmField
     var modeIsTest = false
     fun setModeIsTest(b: Boolean) {
@@ -319,11 +321,6 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	super.enter()
 	val I = bs_hm["" + lessonBase]
 	setNoRed(0)
-    }
-
-    override fun leave() {
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "LeMa-Leave");
-	super.leave()
     }
 
     var red_stack: Stack<Int> = Stack()

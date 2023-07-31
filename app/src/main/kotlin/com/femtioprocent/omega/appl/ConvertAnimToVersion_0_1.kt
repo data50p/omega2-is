@@ -80,6 +80,7 @@ class ConvertAnimToVersion_0_1 internal constructor(fn: File) {
 	var flags: HashMap<String, String>? = null
 	var argl: List<String>? = null
 	var flatness = OmegaConfig.FLATNESS
+
 	@JvmStatic
 	fun main(args: Array<String>) {
 	    if (args.size == 0) {

@@ -13,16 +13,16 @@ class MilliTimer {
      * Create an instance and start the timer
      */
     init {
-        ct0 = System.nanoTime()
+	ct0 = System.nanoTime()
     }
 
     val string: String
-        /**
-         * Return the timeout value in ms and reset to timer.
-         *
-         * @return
-         */
-        get() = getString("", "")
+	/**
+	 * Return the timeout value in ms and reset to timer.
+	 *
+	 * @return
+	 */
+	get() = getString("", "")
 
     /**
      * Return timeout value with an prefix and default suffix " ms"
@@ -31,7 +31,7 @@ class MilliTimer {
      * @return
      */
     fun getString(prefix: String): String {
-        return getString(prefix, " ms")
+	return getString(prefix, " ms")
     }
 
     /**
@@ -42,31 +42,31 @@ class MilliTimer {
      * @return
      */
     fun getString(prefix: String, suffix: String): String {
-        val ct1 = System.nanoTime()
-        return try {
-            val `val` = 0.000001 * (ct1 - ct0)
-            prefix + String.format("%.6f", `val`) + suffix
-        } finally {
-            ct0 = ct1
-        }
+	val ct1 = System.nanoTime()
+	return try {
+	    val `val` = 0.000001 * (ct1 - ct0)
+	    prefix + String.format("%.6f", `val`) + suffix
+	} finally {
+	    ct0 = ct1
+	}
     }
 
     val value: Double
-        /**
-         * Get the timer value in ms
-         *
-         * @return
-         */
-        get() {
-            val ct1 = System.nanoTime()
-            val `val` = 0.000001 * (ct1 - ct0)
-            ct0 = ct1
-            return `val`
-        }
+	/**
+	 * Get the timer value in ms
+	 *
+	 * @return
+	 */
+	get() {
+	    val ct1 = System.nanoTime()
+	    val `val` = 0.000001 * (ct1 - ct0)
+	    ct0 = ct1
+	    return `val`
+	}
 
     fun pollValue(): Double {
-        val ct1 = System.nanoTime()
-        return 0.000001 * (ct1 - ct0)
+	val ct1 = System.nanoTime()
+	return 0.000001 * (ct1 - ct0)
     }
 
     /**
@@ -76,7 +76,7 @@ class MilliTimer {
      * @return
      */
     fun isExpired(expireValue: Long): Boolean {
-        return isExpired(expireValue, null)
+	return isExpired(expireValue, null)
     }
 
     /**
@@ -87,11 +87,11 @@ class MilliTimer {
      * @return
      */
     fun isExpired(expireValue: Long, status: Array<String?>?): Boolean {
-        val ct1 = System.nanoTime()
-        val `val` = 0.000001 * (ct1 - ct0)
-        val f = SundryUtils.formatMilliTime((ct1 - ct0) / 1000000, 0, true, false)
-        val e = SundryUtils.formatMilliTime(expireValue, 0, true, false)
-        if (status != null) status[0] = "" + (`val` >= expireValue) + ' ' + f + ' ' + e
-        return `val` >= expireValue
+	val ct1 = System.nanoTime()
+	val `val` = 0.000001 * (ct1 - ct0)
+	val f = SundryUtils.formatMilliTime((ct1 - ct0) / 1000000, 0, true, false)
+	val e = SundryUtils.formatMilliTime(expireValue, 0, true, false)
+	if (status != null) status[0] = "" + (`val` >= expireValue) + ' ' + f + ' ' + e
+	return `val` >= expireValue
     }
 }

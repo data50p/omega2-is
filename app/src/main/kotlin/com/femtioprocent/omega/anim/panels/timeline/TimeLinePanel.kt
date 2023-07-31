@@ -562,6 +562,5 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 	private const val HITM_NORMAL = 0
 	private const val HITM_scan_object = 1
 	var playEnd = 5000
-	    get() = field
     }
 }

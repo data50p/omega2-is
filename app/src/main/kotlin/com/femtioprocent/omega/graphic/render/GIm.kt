@@ -10,8 +10,10 @@ import java.awt.geom.Rectangle2D
 abstract class GIm {
     protected val fid: String
     protected var delayed_id_attrib: String? = null
+
     @JvmField
     var layer = 2
+
     @JvmField
     var reset_sequence = 0
     protected var acomp = AlphaComposite.getInstance(
@@ -19,10 +21,11 @@ abstract class GIm {
 	1.0f
     )
     protected var ca: Canvas
+
     @JvmField
     var xim: xImage
     protected var bounding_rect: Rectangle2D = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)
-    private val prev_bounding_rect: Rectangle2D? = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)
+    private val prev_bounding_rect: Rectangle2D = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)
     private var maxW = 0.0
     private var maxH = 0.0
     private var maxWH = 0.0
@@ -123,6 +126,7 @@ abstract class GIm {
     fun fNBase(): String {
 	return xim.fNBase()
     }
+
     val peTaskNid: String
 	get() = xim.peTaskNid
     val baseImage: Image

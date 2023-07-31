@@ -61,50 +61,61 @@ class XML_PW : AutoCloseable {
 
     var dtd_sb: StringBuffer? = null
     private var lastE = true
+
     @JvmOverloads
     fun addDTD_E(tag: String, def: String? = null, cmnt: String? = null) {
 	if (!lastE) addDTD("\n")
-	addDTD("	<!ELEMENT " +
-		tag +
-		' ' +
-		(def ?: "EMPTY") +
-		">" +
-		if (cmnt == null) "\n" else "  <!-- $cmnt -->\n")
+	addDTD(
+	    "	<!ELEMENT " +
+		    tag +
+		    ' ' +
+		    (def ?: "EMPTY") +
+		    ">" +
+		    if (cmnt == null) "\n" else "  <!-- $cmnt -->\n"
+	)
 	lastE = true
     }
 
     @JvmOverloads
     fun addDTD_A(tag: String, attr: String, req: Boolean = true, cmnt: String? = null) {
-	addDTD("	<!ATTLIST " +
-		tag + ' ' +
-		attr + ' ' +
-		"CDATA " +
-		(if (req) "#REQUIRED" else "#IMPLIED") +
-		">" +
-		if (cmnt == null) "\n" else "  <!-- $cmnt -->\n")
+	addDTD(
+	    "	<!ATTLIST " +
+		    tag + ' ' +
+		    attr + ' ' +
+		    "CDATA " +
+		    (if (req) "#REQUIRED" else "#IMPLIED") +
+		    ">" +
+		    if (cmnt == null) "\n" else "  <!-- $cmnt -->\n"
+	)
 	lastE = false
     }
 
     fun addDTD_A(tag: String, attr: String, kind: String, req: Boolean, cmnt: String?) {
-	addDTD("	<!ATTLIST " +
-		tag + ' ' +
-		attr + ' ' +
-		kind + ' ' +
-		(if (req) "#REQUIRED" else "#IMPLIED") +
-		">" +
-		if (cmnt == null) "\n" else "  <!-- $cmnt -->\n")
+	addDTD(
+	    "	<!ATTLIST " +
+		    tag + ' ' +
+		    attr + ' ' +
+		    kind + ' ' +
+		    (if (req) "#REQUIRED" else "#IMPLIED") +
+		    ">" +
+		    if (cmnt == null) "\n" else "  <!-- $cmnt -->\n"
+	)
 	lastE = false
     }
 
     @JvmOverloads
     fun addDTD_A(tag: String, attr: String, `val`: Array<String>, def: String, cmnt: String? = null) {
-	addDTD("	<!ATTLIST " +
-		tag + ' ' +
-		attr + ' ' +
-		" (")
+	addDTD(
+	    "	<!ATTLIST " +
+		    tag + ' ' +
+		    attr + ' ' +
+		    " ("
+	)
 	for (i in `val`.indices) addDTD((if (i == 0) "" else " | ") + `val`[i])
-	addDTD(") \"" + def + "\">" +
-		if (cmnt == null) "\n" else "  <!-- $cmnt -->\n")
+	addDTD(
+	    ") \"" + def + "\">" +
+		    if (cmnt == null) "\n" else "  <!-- $cmnt -->\n"
+	)
 	lastE = false
     }
 
@@ -125,7 +136,9 @@ class XML_PW : AutoCloseable {
 	    if (pw == null) ensurePW(tag)
 	    pw!!.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
 	    val dtd = dTD
-	    if (dtd == null) if (use_dtd) pw!!.println("<!DOCTYPE $tag SYSTEM \"$tag.dtd\">") else pw!!.println("<!DOCTYPE $tag >") else pw!!.println("<!DOCTYPE $tag  [\n$dtd]>")
+	    if (dtd == null) if (use_dtd) pw!!.println("<!DOCTYPE $tag SYSTEM \"$tag.dtd\">") else pw!!.println("<!DOCTYPE $tag >") else pw!!.println(
+		"<!DOCTYPE $tag  [\n$dtd]>"
+	    )
 	    pw!!.println("")
 	    if (dtd == null && use_dtd) ensureDTD(tag)
 	    first_done = true

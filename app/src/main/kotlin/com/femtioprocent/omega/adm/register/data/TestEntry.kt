@@ -4,14 +4,19 @@ import com.femtioprocent.omega.xml.Element
 
 class TestEntry : Entry {
     var extra: String? = null
+
     @JvmField
     var sentence: String
+
     @JvmField
     var answer: String
+
     @JvmField
     var duration: Int
+
     @JvmField
     var cnt_correct_words: String
+
     @JvmField
     var l_id_list: String
 
@@ -51,7 +56,7 @@ class TestEntry : Entry {
 	l_id_list = s!!
     }
 
-    public override val element: Element
+    override val element: Element
 	get() {
 	    val el = Element("entry")
 	    el.addAttr("type", type)

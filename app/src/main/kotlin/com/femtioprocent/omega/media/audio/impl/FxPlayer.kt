@@ -95,6 +95,7 @@ class FxPlayer(val realy_name: String) {
     companion object {
 	private var once = false
 	var z: JFXPanel? = null
+
 	@Synchronized
 	private fun initFxFramework() {
 	    if (z == null) {

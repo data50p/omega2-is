@@ -70,8 +70,10 @@ open class SettingsDialog(title: String?) : JDialog(ApplContext.top_frame, title
 	val cmd = e.actionCommand
 	//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + cmd);
 	if ("OK" == cmd) {
-	    if (save() == false) JOptionPane.showMessageDialog(ApplContext.top_frame,
-		    "Can't save")
+	    if (save() == false) JOptionPane.showMessageDialog(
+		ApplContext.top_frame,
+		"Can't save"
+	    )
 	    isVisible = false
 	}
 	if ("cancel" == cmd) {

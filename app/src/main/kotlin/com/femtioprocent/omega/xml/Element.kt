@@ -3,7 +3,7 @@ package com.femtioprocent.omega.xml
 import java.util.*
 
 class Element(var name: String) : Node(), Cloneable {
-    var attr: SortedMap<String,String>
+    var attr: SortedMap<String, String>
     var content: MutableList<Node?>
     var hasSubElement = false
     var nx_ix = 0
@@ -199,7 +199,7 @@ class Element(var name: String) : Node(), Cloneable {
     }
 
     fun findAttr(an: String?): String? {
-	return attr[an] as String?
+	return attr[an]
     }
 
     fun findPCDATA(): String? {
@@ -220,7 +220,9 @@ class Element(var name: String) : Node(), Cloneable {
 	val l = s.length
 	for (i in 0 until l) {
 	    val ch = s[i]
-	    if (ch == '&') sb.append("&#x26;") else if (ch == '<') sb.append("&#x3C;") else if (ch == '"') sb.append("&#x22;") else sb.append(ch)
+	    if (ch == '&') sb.append("&#x26;") else if (ch == '<') sb.append("&#x3C;") else if (ch == '"') sb.append("&#x22;") else sb.append(
+		ch
+	    )
 	}
 	return sb.toString()
     }
@@ -242,7 +244,7 @@ class Element(var name: String) : Node(), Cloneable {
 		    sbu.append(" ")
 		    sbu.append(s)
 		    sbu.append("=\"")
-		    sbu.append(encode(attr[s] as String?))
+		    sbu.append(encode(attr[s]))
 		    sbu.append("\"")
 		}
 	    }

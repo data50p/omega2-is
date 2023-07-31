@@ -12,9 +12,9 @@ class TriggerEventDinner : TriggerEventSelections {
 	get() = t("image eat/eaten")
     override val help: String
 	get() = t("Eat images")
-    override val selections_cmd: Array<String>?
+    override val selections_cmd: Array<String>
 	get() = st_selections_cmd
-    override val selections_human: Array<String>?
+    override val selections_human: Array<String>
 	get() = st_selections_human
     val argInt: Int
 	get() {
@@ -24,14 +24,14 @@ class TriggerEventDinner : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-		"",
-		"eat",
-		"eaten"
+	    "",
+	    "eat",
+	    "eaten"
 	)
 	var st_selections_human = arrayOf(
-		t("none"),
-		t("Can eat"),
-		t("Can bee eaten")
+	    t("none"),
+	    t("Can eat"),
+	    t("Can bee eaten")
 	)
 
 	fun getIx(s: String?): Int {

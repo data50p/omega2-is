@@ -2,12 +2,14 @@ package com.femtioprocent.omega.lesson.canvas
 
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.lesson.Lesson
-import com.femtioprocent.omega.lesson.appl.LessonEditor
 import com.femtioprocent.omega.lesson.canvas.BaseCanvas.ColorColors
 import com.femtioprocent.omega.swing.ColorChooser.select
 import com.femtioprocent.omega.t9n.T.Companion.t
 import java.awt.*
-import java.awt.event.*
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
+import java.awt.event.ItemEvent
+import java.awt.event.ItemListener
 import java.awt.geom.Rectangle2D
 import java.awt.geom.RoundRectangle2D
 import java.io.File
@@ -16,11 +18,13 @@ import javax.swing.*
 
 class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: String) :
     JDialog(), ActionListener {
-//    JDialog(LessonEditor.TOP_JFRAME, true), ActionListener {
+    //    JDialog(LessonEditor.TOP_JFRAME, true), ActionListener {
     var WW = 700
     var HH = 500
+
     @JvmField
     var colors: HashMap<String, ColorColors>? = null
+
     @JvmField
     var select = false
     var color_file: JComboBox<String>? = null
@@ -189,7 +193,7 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
     }
 
     var can: Canvas? = null
-    fun getColor(id: String): Color? {
+    fun getColor(id: String): Color {
 	return colors_orig[id]!!.color as Color
     }
 
@@ -217,7 +221,6 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 	    return
 	}
 	if (cmd == "restore") {
-	    colors_orig = colors_orig
 	    //	    color_file.setSelectedIndex(0);
 	    repaint()
 	    return
@@ -306,6 +309,6 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
     }
 
     companion object {
-	var fnf = FilenameFilter { dir, fname -> if (fname.endsWith(".omega_colors")) true else false }
+	var fnf = FilenameFilter { dir, fname -> fname.endsWith(".omega_colors") }
     }
 }

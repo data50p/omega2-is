@@ -105,11 +105,11 @@ $sbu $sbl"""
 		    xmlpw.flush()
 		    if (xmlpw.pw!!.checkError()) {
 			JOptionPane.showMessageDialog(
-				AnimContext.top_frame,
-				"""${t("FATAL IO ERROR 1!")}
+			    AnimContext.top_frame,
+			    """${t("FATAL IO ERROR 1!")}
 ${t("Nothing saved")} ($fn)""",
-				"Omega",
-				JOptionPane.INFORMATION_MESSAGE
+			    "Omega",
+			    JOptionPane.INFORMATION_MESSAGE
 			)
 			err = true
 		    }

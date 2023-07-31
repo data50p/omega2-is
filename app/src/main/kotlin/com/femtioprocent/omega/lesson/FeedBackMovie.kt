@@ -93,7 +93,7 @@ class FeedBackMovie : FeedBack {
 	val mpg_dir = mpg_file.parentFile
 	val other = mpg_dir.listFiles { f ->
 	    val name = f.name
-	    if (name.endsWith(".mpg")) true else false
+	    name.endsWith(".mpg")
 	}
 	fix++
 	rsrs = path + "/" + other[fix % other.size].name
@@ -106,7 +106,7 @@ class FeedBackMovie : FeedBack {
 	val mpg_dir = File(omegaAssets(rsrs))
 	val other = mpg_dir.listFiles { f ->
 	    val name = f.name
-	    if (name.endsWith(".mpg")) true else false
+	    name.endsWith(".mpg")
 	}
 	if (other.size == 0) return null
 	val r = Random()

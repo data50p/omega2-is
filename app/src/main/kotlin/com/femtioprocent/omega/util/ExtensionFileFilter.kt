@@ -149,7 +149,7 @@ class ExtensionFileFilter : FileFilter {
 	    }
 	    val extension = getExtension(f)
 	    if (extension != null && filters!![getExtension(f)] != null) {
-		return if (only_ && fileNameHas(f, '-')) false else true
+		return !(only_ && fileNameHas(f, '-'))
 	    }
 	}
 	return false
@@ -177,7 +177,7 @@ class ExtensionFileFilter : FileFilter {
 	if (f != null) {
 	    val filename = f.name
 	    if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: try $filename $ch")
-	    return if (filename.indexOf(ch) != -1) true else false
+	    return filename.indexOf(ch) != -1
 	}
 	return false
     }

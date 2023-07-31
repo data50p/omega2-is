@@ -9,6 +9,7 @@ object OmegaStartManager {
     private const val START_OBJECT = "start"
     private const val SELECTION_ITEM = "selection"
     private val pu = PreferenceUtil(OmegaStartManager::class.java)
+
     @JvmStatic
     fun fromAutoStart(): Int? {
 	return null

@@ -37,8 +37,9 @@ class Target {
 
     inner class T_Item//	    this.tg = tg; //	T_Item(Target tg, int ord, String type, String tid, String lid) {
     internal constructor(//	Target tg;
-	    var ord: Int, @JvmField var type: String?, @JvmField var tid: String?, //fillVarHere(ord, lid);
-	    var lID4TgOrNull_KeepVar: String?) {
+	var ord: Int, @JvmField var type: String?, @JvmField var tid: String?, //fillVarHere(ord, lid);
+	var lID4TgOrNull_KeepVar: String?
+    ) {
 
 	@JvmField
 	var item: Item? = null
@@ -85,7 +86,7 @@ class Target {
 	}
 
 	fun lID4TgOrNull_KeepVar_(): String? {
-		return lID4TgOrNull_KeepVar
+	    return lID4TgOrNull_KeepVar
 	}
 
 	fun lID4TgOrNull_KeepVar_set(str: String?) {
@@ -108,11 +109,13 @@ class Target {
     }
 
     @Throws(Exception::class)
-    fun loadCompositeFromEl(el: Element?,
-			    test_txt: String,
-			    story_hm: HashMap<String?, SentenceList?>?,
-			    dummy: Boolean,
-			    mix: Boolean) {
+    fun loadCompositeFromEl(
+	el: Element?,
+	test_txt: String,
+	story_hm: HashMap<String?, SentenceList?>?,
+	dummy: Boolean,
+	mix: Boolean
+    ) {
 	iam_composite = true
 	iam_dummy = dummy
 	init()
@@ -167,11 +170,13 @@ class Target {
     }
 
     @Throws(Exception::class)
-    fun loadFromEl(el: Element?,
-		   test_txt: String?,
-		   story_hm: HashMap<String?, SentenceList?>?,
-		   dummy: Boolean,
-		   mix: Boolean) {
+    fun loadFromEl(
+	el: Element?,
+	test_txt: String?,
+	story_hm: HashMap<String?, SentenceList?>?,
+	dummy: Boolean,
+	mix: Boolean
+    ) {
 	iam_composite = false
 	iam_dummy = dummy
 	init()
@@ -209,7 +214,7 @@ class Target {
 	val sa: MutableList<Array<String?>?>? = saved_sa
 	val saD = saved_saD
 	var five = 5
-	if (sa!!.size < 5) five = sa!!.size
+	if (sa!!.size < 5) five = sa.size
 	sa.shuffle() //scrambleArr(sa)
 	saD!!.shuffle() //scrambleArr(saD)
 	var riktig: Array<String?>? = null
@@ -220,7 +225,7 @@ class Target {
 	val sa5: MutableList<Array<String?>?> = ArrayList()
 	repeat(five) { sa5.add(null) }
 	for (i in sa5.indices)  // fem blandade med dummy
-	    sa5[i] = if (iam_dummy) saD!![i] else sa[i]
+	    sa5[i] = if (iam_dummy) saD[i] else sa[i]
 	var finns = false
 	for (i in sa5.indices) if (sa5[i]!![0] == test_txt) finns = true // test finns redan
 	if (finns == false) // put test
@@ -231,7 +236,7 @@ class Target {
     val targetElement: Element
 	get() {
 	    val el = Element("target")
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		val tel = titm!!.element
 		el.add(tel)
 	    }
@@ -252,7 +257,7 @@ class Target {
     fun whatTargetMatchTid(ent_tid: String?): Int { // mask
 	var a = 0
 	var c = 0
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    if (matchTid2(ent_tid, titm!!.tid)) a = a or (1 shl c)
 	    c++
 	}
@@ -272,7 +277,7 @@ class Target {
     }
 
     fun isTidInTarget(ent_tid: String?): Boolean {
-	for(titm in t_items!!) {
+	for (titm in t_items!!) {
 	    if (matchTid2(ent_tid, titm!!.tid)) return true
 	}
 	return false
@@ -281,14 +286,14 @@ class Target {
     fun findNextFreeT_ItemIx(box_itm: Item, replace: Boolean, where: Int): Int {
 	var same = 0
 	run {
-	    for(titm in t_items!!) {
+	    for (titm in t_items!!) {
 		if (matchTid2(box_itm.it_ent!!.tid, titm!!.tid)) same++
 	    }
 	}
 	if (same == 0) return -1
 	val d = where / 100.0
 	var skip = (d * same).toInt()
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    if (matchTid2(box_itm.it_ent!!.tid, titm!!.tid)) if (titm.item == null || replace && skip-- == 0) {
 		return titm.ord
 	    }
@@ -297,7 +302,7 @@ class Target {
     }
 
     fun findNextFreeT_ItemIx(): Int {
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    if (titm!!.item == null) return titm.ord
 	}
 	return -1
@@ -353,7 +358,7 @@ class Target {
 
     fun reOrdT_Items() {
 	var o = 0
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    titm!!.ord = o++
 	}
     }
@@ -386,7 +391,7 @@ class Target {
 
     val isTargetFilled: Boolean
 	get() {
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm!!.item == null) return false
 	    }
 	    return true
@@ -433,7 +438,7 @@ class Target {
 		try {
 		    var_val = t_items!![ord + a]!!.item!!.getVar(var_ix) // the H4 bug, item is null
 		    if (var_val == null) var_val = def
-		    if (var_val!!.contains("{")) {
+		    if (var_val.contains("{")) {
 			if (max > 0) {
 			    val var_val2 = apply(max - 1, ord + a, var_val)
 			    //OmegaContext.sout_log.getLogger().info("apply: " + max + ',' + ord + ',' + txt + " -> " + var_val + " -> " + var_val2);
@@ -467,7 +472,7 @@ class Target {
 
     private val actionIx: Int
 	private get() {
-	    t_items!!.forEachIndexed {index, titm -> if (titm!!.type == "action") return index }
+	    t_items!!.forEachIndexed { index, titm -> if (titm!!.type == "action") return index }
 	    return -1
 	}
 
@@ -485,7 +490,7 @@ class Target {
 	    val ix = actionIx
 	    return if (ix >= 0) {
 		val ss = fillActionLid(ix, getT_Item(ix)!!.item)
-			?: return null
+		    ?: return null
 		val sa = split(ss, ",")
 		sa[0]
 	    } else null
@@ -534,7 +539,7 @@ class Target {
     }
 
     fun releaseAllT_Items() {
-	t_items!!.forEach {titm -> titm!!.clearText()}
+	t_items!!.forEach { titm -> titm!!.clearText() }
 	Log.getLogger().info(":--: " + "target released")
     }
 
@@ -797,8 +802,8 @@ class Target {
     val allLessonBothArg: Array<String?>
 	get() {
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
-	    	val s = titm!!.lIDText
+	    t_items!!.forEach { titm ->
+		val s = titm!!.lIDText
 		if (s != null && s.length > 0) li.add(s + ';' + titm.lID4TgOrNull_KeepVar)
 	    }
 	    return li.toTypedArray<String?>()
@@ -811,7 +816,7 @@ class Target {
     val all_Lid_Target: Array<String?>
 	get() {  // banor,banor...
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		val s = titm!!.lID4TgOrNull
 		if (s != null && s.length > 0) {
 		    val sa = split(s, ",")
@@ -823,7 +828,7 @@ class Target {
     val all_Lid_Target_KeepVar: Array<String?>
 	get() {  // banor,banor...
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		val s = titm!!.lID4TgOrNull_KeepVar
 		if (s != null && s.length > 0) {
 		    val sa = split(s, ",")
@@ -836,7 +841,7 @@ class Target {
 	get() {
 	    val li: MutableList<String?> = ArrayList()
 	    var ix = 0
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm != null && titm.item != null) {
 		    var s = titm.item!!.soundD
 		    s = fillVarHere(ix, s)
@@ -852,7 +857,7 @@ class Target {
     fun getSoundsAt(x: Int, y: Int): Array<String?> {
 	val li: MutableList<String?> = ArrayList()
 	var ix = 0
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    if (titm != null && titm.item != null) {
 		var s = titm.item!!.soundD
 		s = fillVarHere(ix, s)
@@ -868,7 +873,7 @@ class Target {
     val all_Lid_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val s = titm.lIDOrNull
 		    if (s != null && s.length > 0) {
@@ -882,7 +887,7 @@ class Target {
     val all_Tid_Item: String
 	get() {  // ordgrupps id
 	    val sb = StringBuffer()
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val s = titm.tid
 		    if (sb.length > 0) sb.append(";")
@@ -894,8 +899,8 @@ class Target {
     val all_Text_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
-	    	if (titm != null) {
+	    t_items!!.forEach { titm ->
+		if (titm != null) {
 		    val sx = titm.textOrNull
 		    val s = titm.lIDOrNull
 		    if (s != null && s.length > 0) {
@@ -910,7 +915,7 @@ class Target {
 	get() {
 	    var s: String? = ""
 	    var ix = 0
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		var snd = titm!!.item!!.sound
 		snd = fillVarHere(ix, snd) // WHY-SundryUtil
 		if (s!!.length != 0) s += ','
@@ -923,7 +928,7 @@ class Target {
 	get() {
 	    val li: MutableList<String?> = ArrayList()
 	    var ix = 0
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		var snd = titm!!.item!!.sound
 		snd = fillVarHere(ix, snd) // WHY-SundryUtil
 		if (!empty(snd)) fillHavingComma(li, snd)
@@ -949,7 +954,7 @@ class Target {
     val all_TextVars_Item: Array<String?>
 	get() {  // actor,actor...
 	    val li: MutableList<String?> = ArrayList()
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val sx = titm.textVarsOrNull // text:v1:v2:v3:sound : is paragraph_
 		    //log		OmegaContext.sout_log.getLogger().info(":--: " + "tvvv = " + sx);
@@ -964,7 +969,7 @@ class Target {
 	}
 
     fun putAll_TextVars_Item(hm: HashMap<String?, String?>) {
-	t_items!!.forEach {titm ->
+	t_items!!.forEach { titm ->
 	    if (titm != null) {
 		val item = titm.item
 		var s = item!!.getVar(1)
@@ -984,7 +989,7 @@ class Target {
     @get:Deprecated("")
     val actionFromTarget: String?
 	get() {
-	    t_items!!.forEach {titm ->
+	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    if (titm.item != null && titm.item!!.isAction) return titm.item!!.actionFile
 		}
@@ -1255,7 +1260,7 @@ class Target {
 	    addLessonIcon(tc, "$llnBase/image_enter.png")
 	}
 	val media = lesson.action_specific!!.media
-	for (s in media) tc.dep_set.add(TCItem(s!!))
+	for (s in media) tc.dep_set.add(TCItem(s))
 	val tg2 = this
 	val Tn = tg2.get_howManyT_Items()
 	val set: Set<String> = HashSet()
@@ -1478,11 +1483,12 @@ class Target {
     fun gDta(tg2: Target): Array<String?> {
 	val sndA = tg2.allSounds
 	val snd = a2s(sndA)
-	return arrayOf(tg2.allText,
-		a2s(tg2.all_Lid_Item),
-		tg2.getActionFileName(99),  // all
-		snd,
-		a2s(tg2.all_Lid_Target)
+	return arrayOf(
+	    tg2.allText,
+	    a2s(tg2.all_Lid_Item),
+	    tg2.getActionFileName(99),  // all
+	    snd,
+	    a2s(tg2.all_Lid_Target)
 	)
     }
 
@@ -1596,26 +1602,67 @@ class Target {
 						    for (i5 in 0 until ie_n5) {
 							tg2.pickItemAtEx(A_getX(it_ent5, i5), A_getY(it_ent5, i5), 5)
 							val s = tg2.allText
-							if (eq(txt, s)) return arrayOf(intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)), intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)), intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)), intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)), intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4)), intArrayOf(i5, A_getX(it_ent5, i5), A_getY(it_ent5, i5)))
+							if (eq(txt, s)) return arrayOf(
+							    intArrayOf(
+								i0,
+								A_getX(it_ent0, i0),
+								A_getY(it_ent0, i0)
+							    ),
+							    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+							    intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+							    intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
+							    intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4)),
+							    intArrayOf(i5, A_getX(it_ent5, i5), A_getY(it_ent5, i5))
+							)
 						    }
 						} else {
 						    val s = tg2.allText
-						    if (eq(txt, s)) return arrayOf(intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)), intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)), intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)), intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)), intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4)))
+						    if (eq(txt, s)) return arrayOf(
+							intArrayOf(
+							    i0,
+							    A_getX(it_ent0, i0),
+							    A_getY(it_ent0, i0)
+							),
+							intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+							intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+							intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
+							intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4))
+						    )
 						}
 					    }
 					} else {
 					    val s = tg2.allText
-					    if (eq(txt, s)) return arrayOf(intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)), intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)), intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)), intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)))
+					    if (eq(txt, s)) return arrayOf(
+						intArrayOf(
+						    i0,
+						    A_getX(it_ent0, i0),
+						    A_getY(it_ent0, i0)
+						),
+						intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+						intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+						intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3))
+					    )
 					}
 				    }
 				} else {
 				    val s = tg2.allText
-				    if (eq(txt, s)) return arrayOf(intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)), intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)), intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)))
+				    if (eq(txt, s)) return arrayOf(
+					intArrayOf(
+					    i0,
+					    A_getX(it_ent0, i0),
+					    A_getY(it_ent0, i0)
+					),
+					intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+					intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2))
+				    )
 				}
 			    }
 			} else {
 			    val s = tg2.allText
-			    if (eq(txt, s)) return arrayOf(intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)), intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)))
+			    if (eq(txt, s)) return arrayOf(
+				intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)),
+				intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1))
+			    )
 			}
 		    }
 		} else {
@@ -1681,7 +1728,10 @@ class Target {
     val storyNext: String?
 	get() {
 	    var s = story_next ?: return null
-	    s = s.replace("lesson-[a-zA-Z]*/active".toRegex(), omegaAssets("lesson-" + lessonLang + "/active")!!) // LESSON-DIR-A
+	    s = s.replace(
+		"lesson-[a-zA-Z]*/active".toRegex(),
+		omegaAssets("lesson-" + lessonLang + "/active")!!
+	    ) // LESSON-DIR-A
 	    return s
 	}
 

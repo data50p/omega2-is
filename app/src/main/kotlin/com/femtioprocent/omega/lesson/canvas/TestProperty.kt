@@ -192,7 +192,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 	}
     }
 
-    public override fun updTrigger(doc: Document) {
+    override fun updTrigger(doc: Document) {
 	val it: Iterator<*> = guimap.keys.iterator()
 	while (it.hasNext()) {
 	    val key = it.next() as String

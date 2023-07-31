@@ -41,7 +41,7 @@ class AllGIm internal constructor(var ca: Canvas) {
 	    val gim = arr[i]
 	    if (gim != null) {
 		gim.restoreBackground()
-		rl.add(gim.prevBoundingRect!!)
+		rl.add(gim.prevBoundingRect)
 		val bounding_rect: Rectangle2D = Rectangle2D.Double(10000.0, 10000.0, 0.0, 0.0)
 		gim.prevBoundingRect = bounding_rect
 	    }
@@ -56,7 +56,7 @@ class AllGIm internal constructor(var ca: Canvas) {
 	    gim.restoreBackground()
 	    val bounding_rect: Rectangle2D = Rectangle2D.Double(10000.0, 10000.0, 0.0, 0.0)
 	    gim.prevBoundingRect = bounding_rect
-	    rl.add(gim.prevBoundingRect!!)
+	    rl.add(gim.prevBoundingRect)
 	    ca.off_upd(rl.rl.toTypedArray<Rectangle2D>())
 	}
     }
@@ -97,8 +97,8 @@ class AllGIm internal constructor(var ca: Canvas) {
 			    val at = gim.getAffineTransformAtTime(dt, tlA as Array<TimeLine>, bounding_rect)
 			    if (at != null) {
 //				gim.render(at);
-				(gim as GImAE).render(at)
-				rl.add(bounding_rect!!)
+				gim.render(at)
+				rl.add(bounding_rect)
 				gim.prevBoundingRect = bounding_rect
 			    } else {
 				bounding_rect = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)

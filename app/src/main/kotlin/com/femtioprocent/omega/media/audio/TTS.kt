@@ -8,6 +8,7 @@ import com.femtioprocent.omega.media.audio.impl.TTS_mac
  */
 object TTS {
     private var tts_mac: TTS_mac? = null
+
     @JvmStatic
     fun say(lang: String?, s: String?, wait: Boolean): Boolean {
 	if (tts_mac == null && isMacOS) {

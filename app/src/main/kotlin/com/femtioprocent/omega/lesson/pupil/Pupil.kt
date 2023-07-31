@@ -6,7 +6,7 @@ import java.awt.Component
 import java.awt.Image
 
 class Pupil(var name: String) {
-    var jparams: HashMap<String?,String?>? = null
+    var jparams: HashMap<String?, String?>? = null
 
     init {
 	Log.getLogger().info("new Pupil $name")
@@ -27,7 +27,7 @@ class Pupil(var name: String) {
     fun getInt(key: String?, def: Int): Int {
 	return try {
 	    if (jparams == null) return def
-	    val s = jparams!![key] as String? ?: return def
+	    val s = jparams!![key] ?: return def
 	    s.toInt()
 	} catch (ex: Exception) {
 	    def
@@ -36,7 +36,7 @@ class Pupil(var name: String) {
 
     fun getBool(key: String?, def: Boolean): Boolean {
 	if (jparams == null) return def
-	val s = jparams!![key] as String? ?: return def
+	val s = jparams!![key] ?: return def
 	return s.startsWith("y") ||
 		s.startsWith("Y") ||
 		s.startsWith("j") ||
@@ -45,7 +45,7 @@ class Pupil(var name: String) {
 
     fun getString(key: String, def: String?): String? {
 	if (jparams == null) return def
-	val s = jparams!![key] as String?
+	val s = jparams!![key]
 	Log.getLogger().info("param String, $key $def $s")
 	return s ?: def
     }
@@ -55,7 +55,7 @@ class Pupil(var name: String) {
 	    Log.getLogger().info("param NULL, $key $def")
 	    return def
 	}
-	val s = jparams!![key] as String?
+	val s = jparams!![key]
 	val ret = if (s == null || s.length == 0) def else s
 	Log.getLogger().info(":--: Pupil -> $ret $def")
 	Log.getLogger().info("OK $ret")
@@ -65,7 +65,7 @@ class Pupil(var name: String) {
     fun getSpeed(`val`: Int): Int {
 	val dA = doubleArrayOf(0.6, 1.0, 1.5)
 	if (jparams == null) return `val`
-	var s = jparams!!["speed"] as String?
+	var s = jparams!!["speed"]
 	if (s == null) s = "1"
 	val ix = s.toInt()
 	val f = dA[ix]
@@ -74,19 +74,19 @@ class Pupil(var name: String) {
 
     fun getImage(comp: Component?): Image? {
 	if (jparams == null) return null
-	val s = jparams!!["image"] as String? ?: return null
-	return ScaledImageIcon?.createImageIcon(
-		comp,
-		s,
-		100,
-		80
+	val s = jparams!!["image"] ?: return null
+	return ScaledImageIcon.createImageIcon(
+	    comp,
+	    s,
+	    100,
+	    80
 	)!!.image
     }
 
     val imageName: String?
-	get() = if (jparams == null) null else jparams!!["image"] as String?
+	get() = if (jparams == null) null else jparams!!["image"]
     val imageNameWrongAnswer: String?
-	get() = if (jparams == null) null else jparams!!["image_wrong"] as String?
+	get() = if (jparams == null) null else jparams!!["image_wrong"]
 
     override fun toString(): String {
 	return "Pupil:" + name // + ':' + params;

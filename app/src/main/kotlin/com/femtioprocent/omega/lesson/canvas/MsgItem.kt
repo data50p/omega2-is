@@ -3,16 +3,22 @@ package com.femtioprocent.omega.lesson.canvas
 class MsgItem {
     @JvmField
     var title: String
+
     @JvmField
     var text: String
+
     @JvmField
     var text2: String? = null
+
     @JvmField
     var image: String? = null
+
     @JvmField
     var image2: String? = null
+
     @JvmField
     var small_title: String? = null
+
     @JvmField
     var type: Char
 
@@ -22,7 +28,15 @@ class MsgItem {
 	type = '2'
     }
 
-    constructor(type: Char, title: String, txt: String?, txt2: String?, image: String?, image2: String?, small_title: String?) {
+    constructor(
+	type: Char,
+	title: String,
+	txt: String?,
+	txt2: String?,
+	image: String?,
+	image2: String?,
+	small_title: String?
+    ) {
 	this.type = type
 	this.title = title
 	text = txt!!

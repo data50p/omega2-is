@@ -9,7 +9,7 @@ class FilenameFilterExt @JvmOverloads internal constructor(var ext: String, var 
 	if (fname.endsWith(ext)) {
 	    if (with == null) return true
 	    for (i in with!!.indices) {
-		if (fname.indexOf(with!![i]!!) != -1) return true
+		if (fname.indexOf(with!![i]) != -1) return true
 	    }
 	    return false
 	}

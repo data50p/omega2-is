@@ -12,16 +12,20 @@ import javax.swing.JComponent
 class MpgPlayer(player: Any?, title: String?) {
     @JvmField
     var vw = 0
+
     @JvmField
     var vh = 0
     var origW = 0
     var origH = 0
+
     @JvmField
     var aspect = 1.0
     private val prefetch_done = false
     private var ready = false
+
     @JvmField
     var visual: Component? = null
+
     @JvmField
     var fxp: FxMoviePlayer? = null
 

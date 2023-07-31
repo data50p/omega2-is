@@ -219,7 +219,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
     }
 
     // when text changes
-    public override fun updTrigger(doc: Document) {
+    override fun updTrigger(doc: Document) {
 	val it: Iterator<*> = guimap.keys.iterator()
 	while (it.hasNext()) {
 	    val key = it.next() as String
@@ -308,7 +308,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	}
     }
 
-    public override fun updTrigger(cb: JComboBox<*>?) {
+    override fun updTrigger(cb: JComboBox<*>?) {
 	try {
 	    var cbg: JComboBox<*>?
 
@@ -341,7 +341,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 //			cb2.setSelectedItem(s2);
 		    }
 		}
-		cb!!.selectedIndex = 0
+		cb.selectedIndex = 0
 	    }
 	} catch (ex: ClassCastException) {
 	    OmegaContext.sout_log.getLogger().info("ERR: CCE $ex")

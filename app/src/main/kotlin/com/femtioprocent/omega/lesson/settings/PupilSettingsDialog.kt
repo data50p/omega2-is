@@ -82,6 +82,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
     var secure_warning: JLabel? = null
     var pupim_jl: JLabel? = null
     var pupim_jb: JButton? = null
+
     @JvmField
     var was_deleted = false
     var active = false
@@ -158,10 +159,12 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		    val tfn = mkRelativeCWD(url_s)
 		    val f = File(tfn)
 		    if (!f.exists()) {
-			JOptionPane.showMessageDialog(AnimContext.top_frame,
-				t("Invalid directory name."),
-				"Omega",
-				JOptionPane.WARNING_MESSAGE)
+			JOptionPane.showMessageDialog(
+			    AnimContext.top_frame,
+			    t("Invalid directory name."),
+			    "Omega",
+			    JOptionPane.WARNING_MESSAGE
+			)
 			return
 		    }
 		    val tfno = tfn
@@ -274,10 +277,12 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
     }
 
     fun createImageIcon(fn: String?, max_w: Int, max_h: Int): ImageIcon? {
-	return ScaledImageIcon.createImageIcon(this,
-		fn!!,
-		max_w,
-		max_h)
+	return ScaledImageIcon.createImageIcon(
+	    this,
+	    fn!!,
+	    max_w,
+	    max_h
+	)
     }
 
     fun update_movie_on() {
@@ -588,9 +593,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	Y = 1
 	if (true) {
 	    cp_admin.add(JLabel(t("Pupil Image")).also { pupim_jl = it },
-		    JButton(t("Set Pupil Image...")).also {
-			pupim_jb = it
-		    }, Y, ++X)
+		JButton(t("Set Pupil Image...")).also {
+		    pupim_jb = it
+		}, Y, ++X
+	    )
 	    val `val` = "register/" + "Guest" + ".p/id.png"
 	    val imc2 = createImageIcon(`val`, 80, 60)
 	    pupim_jl!!.icon = imc2
@@ -605,14 +611,18 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	secure_jb!!.addActionListener(but_al)
 	X = 0
 	Y++
-	cp_admin.add(JLabel(t("")),
-		JLabel("<html><h3>" + t("Warning!!!") + "</h3>"
+	cp_admin.add(
+	    JLabel(t("")),
+	    JLabel(
+		"<html><h3>" + t("Warning!!!") + "</h3>"
 			+ t("The pupil data will ramain in the file system.<br>")
-			+ "</html>").also {
-		    secure_warning = it
-		},
-		Y,
-		++X)
+			+ "</html>"
+	    ).also {
+		secure_warning = it
+	    },
+	    Y,
+	    ++X
+	)
 	X = 0
 	Y++
 	cp_admin.add(JLabel(t("")), JButton(t("Delete pupil")).also { secure_delete_jb = it }, Y, ++X)
@@ -839,9 +849,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	    val inlocale = Locale(T.lang)
 	    val dot = File(omegaAssets("."))
 	    val scanned_lang = dot.list { dir, name ->
-		if (name.startsWith("lesson-")) {
-		    true
-		} else false
+		name.startsWith("lesson-")
 	    }
 	    val lA = arrayOfNulls<Locale>(scanned_lang.size)
 	    for (i in lA.indices) {
@@ -880,9 +888,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	get() {
 	    val dot = File(omegaAssets("."))
 	    val scanned_themes = dot.list { dir, name ->
-		if (name.endsWith(".omega_colors")) {
-		    true
-		} else false
+		name.endsWith(".omega_colors")
 	    }
 	    val v: Vector<MultiString> = Vector()
 	    v.add(MultiString(t("Default Theme"), arrayOf<String?>("default.omega_colors")))
@@ -941,7 +947,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	upd_jcomponent("sign_movie", "")
     }
 
-    public override fun save(): Boolean {
+    override fun save(): Boolean {
 	val dir = getPupilDir(pupil_)
 	if (empty(dir)) {
 	    return false
@@ -961,7 +967,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	return false
     }
 
-    public override fun load() {
+    override fun load() {
 	val fname = getPupilDir(pupil_) + "/pupil_settings.xml"
 	loadDefault()
 	try {
@@ -1050,6 +1056,6 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 
     val selectedColorFile: String?
 	get() = (theme_cb!!.selectedItem as MultiString).sa[0]
-    val selectedColorFileLabel: String?
+    val selectedColorFileLabel: String
 	get() = (theme_cb!!.selectedItem as MultiString).s
 }

@@ -7,10 +7,14 @@ import javax.swing.JFileChooser
 
 class ChooseMovieFile : JFileChooser(File("media")) {
     init {
-	val fi = ExtensionFileFilter(arrayOf("mpg",
+	val fi = ExtensionFileFilter(
+	    arrayOf(
+		"mpg",
 		"mpeg",
 		"mov",
-		"avi"))
+		"avi"
+	    )
+	)
 	fileFilter = fi
 	approveButtonText = t("Select")
     }

@@ -11,6 +11,7 @@ class ResultTest : Result {
     var l_id: String
     var created: Date? = null
     var pupil: String
+
     @JvmField
     var session_length: Long = 0
     var entries: MutableList<Entry>
@@ -38,7 +39,7 @@ class ResultTest : Result {
 	    if (ent != null) {
 		val s = ent.findAttr("session_length")
 		if (s != null) session_length = s.toLong()
-		run loop@ {
+		run loop@{
 		    generateSequence(0) { it + 1 }.forEach {
 			val entry = ent.findElement("entry", it) ?: return@loop
 			val e = Entry.create(entry)

@@ -14,15 +14,15 @@ class TriggerEventPanel1 internal constructor(te: TriggerEvent) : TriggerEventPa
 	cb = JCheckBox()
     }
 
-    public override fun setEC(o: Any?) {
+    override fun setEC(o: Any?) {
 	(cell_edit as JComboBox<*>).selectedItem = o
     }
 
-    public override fun setEC_TF(s: String?) {
+    override fun setEC_TF(s: String?) {
 	(cell_edit as JTextField).text = s
     }
 
-    public override fun setArg(s: String?) {
+    override fun setArg(s: String?) {
 	tf!!.text = s
     }
 }

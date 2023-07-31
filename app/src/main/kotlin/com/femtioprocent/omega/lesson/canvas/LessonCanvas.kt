@@ -52,6 +52,7 @@ kvittera med TAB Enter
  */
 class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     override var om_msg_mgr = Manager()
+
     @JvmField
     var lep: LessonEditorPanel? = null
 
@@ -64,6 +65,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     private var active_item_action_box: Box? = null
     private var active_item_box: Box? = null
     var active_titem_ix = -1
+
     @JvmField
     var edit = false
     var tgAddBoxes: ShapeList? = null
@@ -284,22 +286,24 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     inner class Box internal constructor(
-        var itm_ent: ItemEntry?,
-        var x: Int,
-        var y: Int,
-        var w: Int,
-        var h: Int,
-        @JvmField var o_x: Int,
-        @JvmField var o_y: Int
+	var itm_ent: ItemEntry?,
+	var x: Int,
+	var y: Int,
+	var w: Int,
+	var h: Int,
+	@JvmField var o_x: Int,
+	@JvmField var o_y: Int
     ) {
 	var r: RoundRectangle2D
 	var state = BooleanArray(BOX_MAXSTATE)
 	var stroke: Stroke
+
 	@JvmField
-        var where = 0
+	var where = 0
 	var marked = false
+
 	@JvmField
-        var when_hit: Long = 0
+	var when_hit: Long = 0
 	fun noNewBox(itm_ent: ItemEntry?, x: Int, y: Int, w: Int, h: Int, o_x: Int, o_y: Int) {
 	    this.itm_ent = itm_ent
 	    this.x = x
@@ -412,9 +416,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    if (item_fo == null || last_h != h || last_w != w) {
 		setItemFont(
 		    Font(
-		    	"Arial",
-		    	Font.PLAIN,
-		    	getSize(caW.toDouble() / caH, h)
+			"Arial",
+			Font.PLAIN,
+			getSize(caW.toDouble() / caH, h)
 		    )
 		)
 		setItemFont2(
@@ -947,6 +951,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     var m: Mouse = Mouse(this)
     var last_bx: Box? = null
+
     @Synchronized
     fun enterBox(bx: Box?) {
 	if (bx == null) {

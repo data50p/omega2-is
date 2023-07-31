@@ -19,7 +19,8 @@ import javax.swing.event.ChangeListener
 import javax.swing.event.ListSelectionEvent
 import javax.swing.event.ListSelectionListener
 
-class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListSelectionListener, ActionListener, ChangeListener {
+class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListSelectionListener, ActionListener,
+    ChangeListener {
     var results_sp: JScrollPane? = null
     var results: JList<RegisterPanel>? = null
     var lesson_name: JTextField? = null
@@ -185,7 +186,13 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
 	    isOpaque = true
 	}
 
-	override fun getListCellRendererComponent(list: JList<out Any?>?, value: Any?, index: Int, isSelected: Boolean, cellHasFocus: Boolean): Component? {
+	override fun getListCellRendererComponent(
+	    list: JList<out Any?>?,
+	    value: Any?,
+	    index: Int,
+	    isSelected: Boolean,
+	    cellHasFocus: Boolean
+	): Component {
 	    return value as RegisterPanel
 	}
     }
@@ -227,9 +234,9 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
     fun setListData() {
 	try {
 	    val sa = register!!.getAllTestsAsName(null)
-	    if (cur_ix >= sa!!.size) cur_ix = sa!!.size - 1
+	    if (cur_ix >= sa!!.size) cur_ix = sa.size - 1
 	    val pup = register!!.pupil.name
-	    val res_name = register!!.rl.getFullFName(pup, sa!![cur_ix]!!)
+	    val res_name = register!!.rl.getFullFName(pup, sa[cur_ix])
 	    //log	OmegaContext.sout_log.getLogger().info(":--: " + "RESULT " + res_name);
 	    val rt = ResultTest(pup, "", "", res_name)
 	    var pa_n = if (filter[F_T]) rt.getEntrySize("test") else 0
@@ -253,7 +260,8 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
 		    if (ent.type == "select" && filter[F_W]) { // word
 			val sel = ent as SelectEntry
 			if (filter[F_T] && sel.extra.startsWith("test") ||
-				filter[F_C] && sel.extra.startsWith("create")) {
+			    filter[F_C] && sel.extra.startsWith("create")
+			) {
 			    var rp: SelectRegisterPanel
 			    rp = SelectRegisterPanel()
 			    pA[j++] = rp
@@ -283,10 +291,10 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
 
     fun upd() {
 	val sa = register!!.getAllTestsAsName(null)
-	if (cur_ix >= sa!!.size) cur_ix = sa!!.size - 1
-	setLessonName(sa!![cur_ix])
+	if (cur_ix >= sa!!.size) cur_ix = sa.size - 1
+	setLessonName(sa[cur_ix])
 	setListData()
-	stat!!.text = "" + (cur_ix + 1) + " / " + sa!!.size
+	stat!!.text = "" + (cur_ix + 1) + " / " + sa.size
 	pack()
 
 //  	    // make it bigger to accomodate scrollbar

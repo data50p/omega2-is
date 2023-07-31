@@ -17,7 +17,7 @@ class CreateRegisterPanel internal constructor() : RegisterPanel() {
 	background = Color(240, 200, 240)
     }
 
-    public override fun populate() {
+    override fun populate() {
 	val pan: JPanel = this
 	type = JLabel("")
 	lduration = JLabel("Time: ")

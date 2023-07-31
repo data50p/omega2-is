@@ -47,7 +47,7 @@ class Locator {
 	    else omegaAssets("lesson-" + lessonLang + "/active") // LESSON-DIR-A
 	var fnf_dir = FilenameFilter { dir, fname ->
 	    val f = File(dir, fname)
-	    if (f.isDirectory && f.name != ".svn") true else false
+	    f.isDirectory && f.name != ".svn"
 	}
 	var fnf_se = FilenameFilter { dir, fname -> fname.endsWith(".omega_selector") }
 	var fnf_le = FilenameFilter { dir, fname -> fname.endsWith(".omega_lesson") }

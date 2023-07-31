@@ -17,6 +17,6 @@ class TriggerEventSetAnimSpeed : TriggerEvent {
     val argDouble: Double
 	get() {
 	    val s = argString
-	    return tD(s!!.trim { it <= ' ' })
+	    return tD(s.trim { it <= ' ' })
 	}
 }

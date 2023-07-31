@@ -9,17 +9,22 @@ import java.io.Serializable
 class TimeMarker : Serializable {
     @JvmField
     var tl: TimeLine
+
     @JvmField
     var type: Char
+
     @JvmField
     var `when`: Int
+
     @JvmField
     var duration = 0
     var tltl: TimeLine? = null
     var selected = false
+
     @JvmField
     var t_event: Array<TriggerEvent?>? = null
     var isDeleteCandidate = false
+
     @JvmField
     var ord = 0
 
@@ -89,7 +94,11 @@ class TimeMarker : Serializable {
     }
 
     fun doAllAction(tea: TriggerEventAction, dry: Boolean) {
-	if (t_event != null) for (i in t_event!!.indices) if (t_event!![i] != null) if (t_event!![i]!!.is_on) if (t_event!![i]!!.cmd.length > 0) tea.doAction(t_event!![i], this, dry)
+	if (t_event != null) for (i in t_event!!.indices) if (t_event!![i] != null) if (t_event!![i]!!.is_on) if (t_event!![i]!!.cmd.length > 0) tea.doAction(
+	    t_event!![i],
+	    this,
+	    dry
+	)
     }
 
     override fun toString(): String {
@@ -153,16 +162,17 @@ class TimeMarker : Serializable {
 	const val TRIGGER = 't'
 	const val TIMELINE = 'T'
 	val typeString = arrayOf(
-		"{Begin",
-		"}End",
-		"[Start",
-		"]Stop",
-		"^TimeSync",
-		"tTrigger",
-		"TTimeLine"
+	    "{Begin",
+	    "}End",
+	    "[Start",
+	    "]Stop",
+	    "^TimeSync",
+	    "tTrigger",
+	    "TTimeLine"
 	)
+
 	@JvmStatic
-        var comparator: Comparator<TimeMarker>? = null
+	var comparator: Comparator<TimeMarker>? = null
 	    get() {
 		if (field == null) field = object : Comparator<TimeMarker> {
 		    override fun compare(o1: TimeMarker?, o2: TimeMarker?): Int {

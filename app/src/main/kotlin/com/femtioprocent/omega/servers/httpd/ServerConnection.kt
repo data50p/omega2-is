@@ -11,6 +11,7 @@ import java.util.*
 
 class ServerConnection internal constructor(var so: Socket, var server: Server) : Thread("httpd.ServerConnection") {
     var prefix = "."
+
     @Throws(IOException::class)
     fun gHd(rd: BufferedReader): List<String?> {
 	val li: MutableList<String?> = ArrayList()
@@ -70,7 +71,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 	    val it: Iterator<*> = server.hm.keys.iterator()
 	    while (it.hasNext()) {
 		val key = it.next() as String
-		val `val` = server.hm[key] as String?
+		val `val` = server.hm[key]
 		if (key.startsWith("lesson:")) {
 		    val lkey = key.substring(7)
 		    if (lkey == "background") {

@@ -192,6 +192,7 @@ $this"""
 	var title: String? = null
 	private var is_editor = false
 	private var is_dirty = false
+
 	@JvmStatic
 	fun setDirty() {
 	    if (is_editor) {

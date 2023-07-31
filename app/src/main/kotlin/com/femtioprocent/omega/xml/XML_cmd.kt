@@ -32,7 +32,7 @@ object XML_cmd {
 	    val li = el!!.find(tag)
 	    val eel = Element("extract")
 	    eel.addAttr("found_tag", tag)
-	    eel.addAttr("found_items", "" + li!!.size)
+	    eel.addAttr("found_items", "" + li.size)
 	    try {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)
@@ -79,15 +79,15 @@ object XML_cmd {
 	    if (argl.size > 3) a = argl[3]
 	    val fa = a
 	    val li = el!!.find(tag)
-	    val oa = li!!.toTypedArray<Element?>()
+	    val oa = li.toTypedArray<Element?>()
 	    Arrays.sort<Element?>(oa) { o1, o2 ->
 		val e1 = o1 as Element
 		val e2 = o2 as Element
 		val s1: String?
 		val s2: String?
 		if (fa != null) {
-		    s1 = e1.attr[fa] as String?
-		    s2 = e2.attr[fa] as String?
+		    s1 = e1.attr[fa]
+		    s2 = e2.attr[fa]
 		} else {
 		    val sb1 = StringBuffer()
 		    val sb2 = StringBuffer()

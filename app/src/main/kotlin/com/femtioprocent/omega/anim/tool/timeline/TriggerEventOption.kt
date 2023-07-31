@@ -10,9 +10,9 @@ class TriggerEventOption : TriggerEventSelections {
 	get() = "option"
     override val help: String
 	get() = "Options"
-    override val selections_cmd: Array<String>?
+    override val selections_cmd: Array<String>
 	get() = st_selections_cmd
-    override val selections_human: Array<String>?
+    override val selections_human: Array<String>
 	get() = st_selections_human
     val argInt: Int
 	get() {
@@ -22,10 +22,10 @@ class TriggerEventOption : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-		""
+	    ""
 	)
 	var st_selections_human = arrayOf(
-		"normal"
+	    "normal"
 	)
 
 	fun getIx(s: String?): Int {

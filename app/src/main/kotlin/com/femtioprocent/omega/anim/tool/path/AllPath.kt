@@ -1,17 +1,11 @@
 package com.femtioprocent.omega.anim.tool.path
 
 import com.femtioprocent.omega.graphic.render.Canvas
-import com.femtioprocent.omega.util.SundryUtils.argAsList
-import com.femtioprocent.omega.util.SundryUtils.flagAsMap
-import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.xml.Element
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
-import java.awt.event.MouseEvent
 import java.awt.geom.Point2D
-import javax.swing.JFrame
-import javax.swing.event.MouseInputAdapter
 
 class AllPath {
     var li: MutableList<Path?> = ArrayList()
@@ -20,7 +14,7 @@ class AllPath {
     }
 
     operator fun get(nid: Int): Path? {
-	li.forEach {pa -> if (pa!!.nid == nid) return pa }
+	li.forEach { pa -> if (pa!!.nid == nid) return pa }
 	return null
     }
 
@@ -30,7 +24,7 @@ class AllPath {
     }
 
     fun deselectAll(g2: Graphics2D?) {
-	li.forEach {pa ->
+	li.forEach { pa ->
 	    pa!!.selected = false
 	    if (g2 != null) pa.draw(g2)
 	}
@@ -38,7 +32,7 @@ class AllPath {
 
     fun findNearest(p: Point2D?): Probe? {
 	var nearest: Probe? = null
-	li.forEach {pa ->
+	li.forEach { pa ->
 	    val n1 = pa!!.findNearest(p)
 	    if (nearest == null) nearest = n1 else {
 		if (nearest!!.dist > n1.dist) {
@@ -52,7 +46,7 @@ class AllPath {
     fun findNearestMarker(p: Point2D?): Path.Mark? {
 	var fpm: Path.Mark? = null
 	var dist = 9999999.0
-	li.forEach {pa ->
+	li.forEach { pa ->
 	    if (true || pa!!.isSelected()) {
 		val fmk = pa!!.findNearestMarker(p)
 		if (fmk != null) {
@@ -68,17 +62,17 @@ class AllPath {
     }
 
     fun find(nid: Int): Path? {
-	li.forEach {pa -> if (pa!!.nid == nid) return pa }
+	li.forEach { pa -> if (pa!!.nid == nid) return pa }
 	return null
     }
 
     fun findSelected(): Path? {
-	li.forEach {pa -> if (pa!!.isSelected()) return pa }
+	li.forEach { pa -> if (pa!!.isSelected()) return pa }
 	return null
     }
 
     fun redraw(g2: Graphics2D?) {
-	li.forEach {pa -> pa!!.draw(g2!!) }
+	li.forEach { pa -> pa!!.draw(g2!!) }
     }
 
     internal inner class P_Canvas : Canvas() {

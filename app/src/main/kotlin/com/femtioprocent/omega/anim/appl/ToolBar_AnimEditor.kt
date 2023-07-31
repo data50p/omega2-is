@@ -26,19 +26,19 @@ class ToolBar_AnimEditor : ToolBar_Base, ActionListener {
 	jp.setLayout(BoxLayout(jp, BoxLayout.Y_AXIS))
 	var b: JButton
 	jp.add(JButton(t("Actor")).also({ b = it }))
-	b.setActionCommand("actor")
+	b.actionCommand = "actor"
 	b.addActionListener(this)
 	jp.add(JButton(t("Wings")).also({ b = it }))
-	b.setActionCommand("wings")
+	b.actionCommand = "wings"
 	b.addActionListener(this)
 	add(jp)
 	jp.add(JButton(t("Prop...")).also({ b = it }))
-	b.setActionCommand("prop")
+	b.actionCommand = "prop"
 	b.addActionListener(this)
 	add(jp)
     }
 
-    public override fun enable_path(mask: Int) {
+    override fun enable_path(mask: Int) {
 	val ba: BooleanArray = msk_bool.get(mask)
 	for (i in s.indices) {
 	    val ss: String = s.get(i)
@@ -48,16 +48,16 @@ class ToolBar_AnimEditor : ToolBar_Base, ActionListener {
     var card_pan: Container? = null
     var card: CardLayout? = null
     var who_act: Boolean = true
-    public override fun actionPerformed(ae: ActionEvent) {
-	if ((ae.getActionCommand() == "actor")) {
+    override fun actionPerformed(ae: ActionEvent) {
+	if ((ae.actionCommand == "actor")) {
 	    card!!.show(card_pan, "actor")
 	    who_act = true
 	    texec!!.execute("prop_act_show")
-	} else if ((ae.getActionCommand() == "wings")) {
+	} else if ((ae.actionCommand == "wings")) {
 	    card!!.show(card_pan, "wings")
 	    who_act = false
 	    texec!!.execute("prop_wing_show")
-	} else if ((ae.getActionCommand() == "prop")) {
+	} else if ((ae.actionCommand == "prop")) {
 	    texec!!.execute(if (who_act) "prop_act" else "prop_wing")
 	}
     }

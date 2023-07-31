@@ -64,7 +64,6 @@ import java.awt.event.KeyEvent
 import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import java.io.*
-import java.lang.IllegalArgumentException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -112,6 +111,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	POST_1(20),
 	POST_2(21)
     }
+
     enum class TMG(val code: Int) {
 	CREATE(0),
 	TEST(1)
@@ -446,11 +446,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	}
 
-	fun getAllTestsAsName(with: Array<String>?): Array<String>? {
+	fun getAllTestsAsName(with: Array<String>?): Array<String> {
 	    val sa = rl.getAllResultsFName(pupil.name, with!!)
 	    for (i in sa!!.indices) {
 		var s = sa[i]
-		s = s!!.replace('\\', '/')
+		s = s.replace('\\', '/')
 		s = s.substring(0, s.lastIndexOf('.'))
 		s = s.substring(s.lastIndexOf('/') + 1)
 		sa[i] = s
@@ -620,7 +620,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		//return s;
 	    }
 	    if (full) {
-		s = s
 	    }
 	    s = s!!.replace("\\{[^\\{\\}]*\\}".toRegex(), "")
 	    set.add(s)
@@ -644,7 +643,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		}
 		null
 	    } else {
-		val it = getIterator(test_mode) as ListIterator<String>?: return null
+		val it = getIterator(test_mode) as ListIterator<String>
 		val test_text: String?
 		if (it.hasNext()) {
 		    val s = it.next()
@@ -734,8 +733,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    for (i in 0..3) {
 		val t_mode = map[i]
 		val it = getNewIterator(t_mode) as ListIterator<String?>?
-		if ( it != null ) {
-		    while (it!!.hasNext()) {
+		if (it != null) {
+		    while (it.hasNext()) {
 			val sa = split(it.next(), ":")
 			val ord = 1 + sa[0]!!.toInt()
 			val txt = sa[1]
@@ -745,7 +744,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			}
 		    }
 		} else {
-		    Log.getLogger().info("NPE");
+		    getLogger().info("NPE")
 		}
 	    }
 	    return tmm
@@ -819,7 +818,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			val t_mode_e = constructTM(t_mode)
 			val li_ = getList(t_mode_e)
 			if (li_ != null && li_.size > 0) {
-			    val li = li_!!.shuffled() as ArrayList<String> // why shuffle when we sort below
+			    val li = li_.shuffled() as ArrayList<String> // why shuffle when we sort below
 			    val sa = li.toTypedArray<String>()
 			    Arrays.sort(sa)
 			    val te_el = Element("test_entry")
@@ -892,7 +891,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    val sn = msg.substring(19)
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "Load lesson " + s);
 	    val ord = sn.toInt()
-	    val ima = lemain_canvas!!.lesson!![ord] ?: return
+	    val ima = lemain_canvas!!.lesson[ord] ?: return
 	    litm = ima.o as LessonItem?
 	    if (litm == null) {
 	    } else if (litm!!.isDir) {
@@ -1600,7 +1599,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var msg_list: MutableList<Message> = ArrayList()
     val msg_list_lock = ReentrantLock()
-    val msg_list_condition = msg_list_lock.newCondition()!!
+    val msg_list_condition = msg_list_lock.newCondition()
 
     var stop_msg = false
     fun sendMsg(msg: String, o: Any?) {
@@ -1644,7 +1643,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 
     var sa_lock = ReentrantLock()
-    val sa_condition = sa_lock.newCondition()!!
+    val sa_condition = sa_lock.newCondition()
 
     var say_all = false
     fun sayAll(tg: Target) {
@@ -1884,7 +1883,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var wait_id = arrayOf("")
     val wait_id_lock = ReentrantLock()
-    val wait_id_condition = wait_id_lock.newCondition()!!
+    val wait_id_condition = wait_id_lock.newCondition()
 
     private var last_msg_time = ct()
     fun execLesson(fn: String?) {
@@ -2104,9 +2103,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			lesson_log.getLogger().info("get it from $dir")
 			val dir_file = File(dir)
 			val files = dir_file.list { dir, name ->
-			    if (name.endsWith(".omega_story_replay")) {
-				true
-			    } else false
+			    name.endsWith(".omega_story_replay")
 			}
 			if (files.size > 0) {
 			    sentence_canvas!!.showMsg(null)
@@ -2766,7 +2763,10 @@ target pos $tg_ix"""
 						val msgitm = MsgItem(
 						    'R',
 						    t("Right answer"),
-						    if (t_b) currentPupil.getString("text", t("Correct answer")) else "",
+						    if (t_b) currentPupil.getString(
+							"text",
+							t("Correct answer")
+						    ) else "",
 						    "",
 						    if (i_b) currentPupil.imageName else null,
 						    null,
@@ -2775,7 +2775,7 @@ target pos $tg_ix"""
 						if (v_b) {
 						    val speech = currentPupil.getString("speech", "")
 						    if (speech!!.length > 0) {
-							sayS(speech!!)
+							sayS(speech)
 						    }
 						}
 						if (t_b || i_b) {
@@ -2933,7 +2933,7 @@ target pos $tg_ix"""
 	}
     }
 
-    private fun fixWithStar(t_word: String?): String? {
+    private fun fixWithStar(t_word: String?): String {
 	if (t_word!!.contains("*")) {
 	    if (t_word.contains(":")) {
 		val sa = t_word.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -3041,7 +3041,7 @@ target pos $tg_ix"""
 			val ti = measureTime {
 			    element_root = action!!.prefetch(action_s)
 			}
-			Log.getLogger().info("It took $ti")
+			getLogger().info("It took $ti")
 			if (element_root == null) {
 			    JOptionPane.showMessageDialog(
 				ApplContext.top_frame,
@@ -3366,16 +3366,16 @@ target pos $tg_ix"""
 		null
 	    )
 	    saveRecastAction(
-		    le_canvas!!.lessonName!!,
-		    pd.action_s,
-		    pd.actA,
-		    pd.actTextA,
-		    pd.sound_list,
-		    pd.pathA,
-		    false,
-		    null,
-		    pd.is_last,
-		    pd.allText
+		le_canvas!!.lessonName!!,
+		pd.action_s,
+		pd.actA,
+		pd.actTextA,
+		pd.sound_list,
+		pd.pathA,
+		false,
+		null,
+		pd.is_last,
+		pd.allText
 	    )
 	}
     }
@@ -3530,16 +3530,16 @@ target pos $tg_ix"""
     }
 
     private fun saveRecastAction(
-	    lesson_name: String,
-	    action_s: String?,
-	    actA: Array<String?>,
-	    actTextA: Array<String?>,
-	    sound_list: String?,
-	    pathA: Array<String?>,
-	    add_in_playlist: Boolean,
-	    tg: Target?,
-	    is_last: Boolean,
-	    allText: String
+	lesson_name: String,
+	action_s: String?,
+	actA: Array<String?>,
+	actTextA: Array<String?>,
+	sound_list: String?,
+	pathA: Array<String?>,
+	add_in_playlist: Boolean,
+	tg: Target?,
+	is_last: Boolean,
+	allText: String
     ) {
 	if (add_in_playlist) {
 	    val play_data = PlayData(lesson_name, action_s, actA, actTextA, sound_list, pathA, is_last, allText)
@@ -3984,9 +3984,7 @@ target pos $tg_ix"""
 	val dot = File(omegaAssets("."))
 	val scanned_lang = dot.list(FilenameFilter { dir, name ->
 	    if (CnT == 0) {
-		return@FilenameFilter if (name.startsWith("lesson-")) {                         // LESSON_DIR
-		    true
-		} else false
+		return@FilenameFilter name.startsWith("lesson-")
 	    }
 	    CnT--
 	    if (name.startsWith("lesson-")) {                         // LESSON_DIR

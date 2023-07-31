@@ -5,8 +5,10 @@ import com.femtioprocent.omega.xml.Element
 class CreateEntry : Entry {
     @JvmField
     var sentence: String
+
     @JvmField
     var duration: Int
+
     @JvmField
     var l_id_list: String
 

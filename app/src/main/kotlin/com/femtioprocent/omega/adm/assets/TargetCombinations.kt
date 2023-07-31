@@ -10,8 +10,8 @@ import com.femtioprocent.omega.util.SundryUtils
  */
 class TargetCombinations {
     class TCItem @JvmOverloads constructor(var fn: String, var originalExtention: String? = null) {
-	@kotlin.jvm.JvmField
-	public var exist: Boolean = false
+	@JvmField
+	var exist: Boolean = false
 
 	init {
 	    exist = OmegaContext.omegaAssetsExist(fn)

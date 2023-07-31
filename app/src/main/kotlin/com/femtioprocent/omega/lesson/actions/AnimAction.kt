@@ -83,12 +83,14 @@ class AnimAction : Action {
     override val canvas: JPanel?
 	get() = rt!!.aC
 
-    override fun perform(window: Window,
-			 action_s: String?,
-			 actA: Array<String?>,
-			 pathA: Array<String?>,
-			 ord: Int,
-			 hook: Runnable?) {
+    override fun perform(
+	window: Window,
+	action_s: String?,
+	actA: Array<String?>,
+	pathA: Array<String?>,
+	ord: Int,
+	hook: Runnable?
+    ) {
 	rt!!.aC!!.setHidden(false)
 	rt!!.runAction(window, action_s, actA, pathA, hm, hook)
     }

@@ -4,6 +4,7 @@ import com.femtioprocent.omega.xml.Element
 
 abstract class Entry {
     var ord = 0
+
     @JvmField
     var type: String? = null
     abstract val element: Element

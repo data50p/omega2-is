@@ -183,7 +183,7 @@ class xImage {
 	    sa[EXT] = fn.substring(ix + 1)
 	    fnL = fn.substring(0, ix)
 	}
-	val ix_sl = fnL!!.lastIndexOf('/')
+	val ix_sl = fnL.lastIndexOf('/')
 	ix = fnL.lastIndexOf('-')
 	var dash_ok = true
 	if (ix != -1 && ix_sl != -1 && ix > ix_sl) dash_ok = false
@@ -289,7 +289,7 @@ class xImage {
 		return im!!
 	    }
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "¤¤¤¤¤ loading " + key);
-	    im = loadAndWaitOrNull(comp, key!!, false)
+	    im = loadAndWaitOrNull(comp, key, false)
 	    putEntry(key, im)
 	}
 	return im!!
@@ -299,7 +299,7 @@ class xImage {
 
     fun fNBase(): String {
 	if (last_b == null) last_b = "$dir/$base.$ext"
-	    return last_b!!
+	return last_b!!
     }
 
     var last_seq = -2
@@ -347,7 +347,7 @@ class xImage {
     // ff-aa-00  ff-aa-01
     private fun scanInnerAnimIndex(): Int {
 	val key = fN_noSeq()
-	val I = cache_seqLen[key] as Int?
+	val I = cache_seqLen[key]
 	if (I != null) return I
 
 //	OmegaContext.sout_log.getLogger().info(":--: " + "scanInner " + toString());

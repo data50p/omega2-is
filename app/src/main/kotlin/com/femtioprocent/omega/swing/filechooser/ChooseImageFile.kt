@@ -8,10 +8,14 @@ import javax.swing.JFileChooser
 
 class ChooseImageFile : JFileChooser(File(omegaAssets("media"))) {
     init {
-	val fi = ExtensionFileFilter(arrayOf("gif",
+	val fi = ExtensionFileFilter(
+	    arrayOf(
+		"gif",
 		"jpg",
 		"jpeg",
-		"png"))
+		"png"
+	    )
+	)
 	fileFilter = fi
 	approveButtonText = t("Select")
     }

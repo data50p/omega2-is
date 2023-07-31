@@ -14,6 +14,7 @@ import java.util.*
 class ItemEntry {
     @JvmField
     var type: String? = null
+
     @JvmField
     var tid: String? = null
     var items: MutableList<Item?>?
@@ -101,7 +102,7 @@ class ItemEntry {
     }
 
     fun setDummyExtra(src_itm: Item, ix: Int, free: ArrayList<Item>) {
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    if (itm!!.dummy_extra == ix) {  // OK, this is a free empty cell, I can use it
 		itm.setText_Krull(src_itm.dummyText!!)
 		itm.sound = src_itm.dummySound
@@ -121,7 +122,7 @@ class ItemEntry {
 
     fun reOrdItem() {
 	var a = 0
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    itm!!.ord = a++
 	}
     }
@@ -171,7 +172,7 @@ class ItemEntry {
     //     }
     fun maxStringWidth(): Int {
 	var mx = 0
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    if (itm != null) {
 		val txt = itm.defaultFilledText
 		if (txt!!.length > mx) mx = txt.length
@@ -191,8 +192,8 @@ class ItemEntry {
 
     fun maxStringWidth(fo: Font, g2: Graphics2D): Int {
 	var mx = 0
-	for(itm in items!!) {
-	    val txt = itm!!?.defaultFilledText
+	for (itm in items!!) {
+	    val txt = itm!!.defaultFilledText
 	    val gsw = getStringWidth(fo, g2, txt)
 	    if (gsw > mx) mx = gsw
 	}
@@ -206,7 +207,7 @@ class ItemEntry {
 	mixList()
 	var has_krull = current_correct_sentence.indexOf('{') != -1
 	val free = ArrayList<Item>()
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    if (itm != null) {
 		val extras = split(tid, ",")
 		var free_1: ArrayList<Item>? = ArrayList()
@@ -214,7 +215,9 @@ class ItemEntry {
 		    val extra = if (has_krull) "{" + extras[jj] + '}' else ""
 		    val s = itm.text + extra // current item + {tid}
 		    if (Tr) Log.getLogger().info(":--: try locate $s")
-		    if (current_correct_sentence.lowercase(Locale.getDefault()).indexOf(s.lowercase(Locale.getDefault())) == -1) {
+		    if (current_correct_sentence.lowercase(Locale.getDefault())
+			    .indexOf(s.lowercase(Locale.getDefault())) == -1
+		    ) {
 			if (!itm.isDummySpaceAllocated) {
 			    free_1?.add(itm)
 			    if (Tr) Log.getLogger().info(":--: free_1 added $itm")
@@ -231,14 +234,16 @@ class ItemEntry {
 	}
 	if (Tr) Log.getLogger().info(":--: free is $free")
 	val used: MutableSet<String> = HashSet<String>()
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    if (itm != null) {
 		val extras = split(tid, ",")
 		for (jj in extras.indices) {
 		    val extra = if (has_krull) "{" + extras[jj] + '}' else ""
 		    val s = itm.text + extra // current item + {tid}
 		    if (Tr) Log.getLogger().info(":--: try locate' $s")
-		    if (current_correct_sentence.lowercase(Locale.getDefault()).indexOf(s.lowercase(Locale.getDefault())) == -1) {
+		    if (current_correct_sentence.lowercase(Locale.getDefault())
+			    .indexOf(s.lowercase(Locale.getDefault())) == -1
+		    ) {
 			// this word not in correct sent
 		    } else {  // we have this item as one of the correct
 			if (Tr) Log.getLogger().info(":--: use?y $s $used")
@@ -256,7 +261,7 @@ class ItemEntry {
 
     private fun removeStaleDummyProxy() {
 	val n_items: MutableList<Item?> = ArrayList()
-	for(itm in items!!) {
+	for (itm in items!!) {
 	    if (itm!!.text!![0] == '@') ; else n_items.add(itm)
 	}
 	if (items!!.size != n_items.size) items = n_items

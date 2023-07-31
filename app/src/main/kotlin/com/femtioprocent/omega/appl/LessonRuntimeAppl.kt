@@ -55,6 +55,7 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode
 	}
 
 	var last_logged = ct()
+
 	@JvmStatic
 	fun main(argv: Array<String>) {
 	    Log.getLogger().info("started")

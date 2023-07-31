@@ -10,7 +10,13 @@ class Items {
 	item_entry_list = ArrayList()
     }
 
-    internal constructor(el: Element, tg: Target, story_hm: HashMap<String?, SentenceList?>?, dummy: Boolean, mix: Boolean) {
+    internal constructor(
+	el: Element,
+	tg: Target,
+	story_hm: HashMap<String?, SentenceList?>?,
+	dummy: Boolean,
+	mix: Boolean
+    ) {
 	item_entry_list = ArrayList()
 	for (i in 0..99) {
 	    val il_el = el.findElement("item-entry", i) ?: break
@@ -29,7 +35,11 @@ class Items {
 	item_entry_list.add(item_entry)
     }
 
-    internal constructor(sa: MutableList<Array<String?>?>, tg: Target?, dummy: Boolean) {      // text, lid,lid... 4 random target list
+    internal constructor(
+	sa: MutableList<Array<String?>?>,
+	tg: Target?,
+	dummy: Boolean
+    ) {      // text, lid,lid... 4 random target list
 	item_entry_list = ArrayList()
 	val item_entry = ItemEntry()
 	item_entry.tid = "X"
@@ -39,8 +49,8 @@ class Items {
     }
 
     fun getItemEntryTid(tg_tid: String?): ItemEntry? {
-	for(it_ent in item_entry_list) {
-	    if (it_ent!!.tid == tg_tid) return it_ent
+	for (it_ent in item_entry_list) {
+	    if (it_ent.tid == tg_tid) return it_ent
 	    if (tg_tid!!.length == 1 && it_ent.tid!!.indexOf(tg_tid[0]) != -1) return it_ent
 	}
 	return null
@@ -87,7 +97,7 @@ class Items {
     }
 
     fun reOrd() {
-	item_entry_list.forEachIndexed {index,it_ent -> it_ent.ord = index}
+	item_entry_list.forEachIndexed { index, it_ent -> it_ent.ord = index }
     }
 
     fun remove(ix: Int) {
@@ -100,14 +110,14 @@ class Items {
     }
 
     fun removeDummy() {
-	item_entry_list.forEach {it.removeDummy()}
+	item_entry_list.forEach { it.removeDummy() }
     }
 
     val element: Element
 	get() {
 	    val el = Element("items")
 	    var a = 0
-	    for(it_ent in item_entry_list) {
+	    for (it_ent in item_entry_list) {
 		val iel = Element("item-entry")
 		iel.addAttr("ord", "" + a++)
 		iel.addAttr("type", it_ent.type)

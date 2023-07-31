@@ -116,7 +116,7 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
 	}
     }
 
-    public override fun updTrigger(doc: Document) {
+    override fun updTrigger(doc: Document) {
 	val it: Iterator<String> = guimap.keys.iterator()
 	while (it.hasNext()) {
 	    val key = it.next()

@@ -30,7 +30,8 @@ class LiuMovieManager(var window: Window, le_canvas: LessonCanvas) : Manager("Li
     var le_canvas: LessonCanvas
     fun prepare(prefix: String, movieNameBase: String, init: Boolean): Boolean {
 	if (!isLIU_Mode()) return false
-	OmegaContext.sout_log.getLogger().info("LiuMovieManager:: prepare play movie: (~A) $prefix $movieNameBase $init")
+	OmegaContext.sout_log.getLogger()
+	    .info("LiuMovieManager:: prepare play movie: (~A) $prefix $movieNameBase $init")
 	return if (init) prepare(prefix + movieNameBase) else prepareAgain(prefix + movieNameBase)
     }
 
@@ -159,6 +160,6 @@ class LiuMovieManager(var window: Window, le_canvas: LessonCanvas) : Manager("Li
 
     companion object {
 	@JvmField
-        var repeat_mode = RepeatMode.CAN_REPEAT
+	var repeat_mode = RepeatMode.CAN_REPEAT
     }
 }

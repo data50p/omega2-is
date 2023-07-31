@@ -11,16 +11,22 @@ class Wing(comp: Component?, @JvmField var name: String, x: Int, y: Int, @JvmFie
     @JvmField
     var im: Image
     var dim: Dimension
+
     @JvmField
     var pos: Point
+
     @JvmField
     var ord: Int
+
     @JvmField
     var mirror = 0
+
     @JvmField
     var scale = 1.0
+
     @JvmField
     var width: Int
+
     @JvmField
     var height: Int
 

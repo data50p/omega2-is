@@ -22,7 +22,8 @@ import com.femtioprocent.omega.util.SundryUtils.ct
 import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.xml.Element
-import java.awt.*
+import java.awt.Color
+import java.awt.Window
 import java.awt.geom.Point2D
 import java.io.File
 import javax.swing.JOptionPane
@@ -79,8 +80,7 @@ class AnimRuntime {
 
     // ${<banid>:<variable#>}
     private fun hasVar(s: String): Boolean {
-	if (s.indexOf('$') == -1) return false
-	return true
+	return s.indexOf('$') != -1
     }
 
     fun composeVar(anam: String?): String {
@@ -122,8 +122,8 @@ class AnimRuntime {
 	val tl_player: TimeLinePlayer = TimeLinePlayer()
 	tl_player.addPlayCtrlListener(a_ctxt!!.mtl!!)
 	a_ctxt!!.tl_player = tl_player
-	class MTEA() : TriggerEventAction() {
-	    public override fun doAction(te: TriggerEvent?, tm: TimeMarker?, dry: Boolean) {
+	class MTEA : TriggerEventAction() {
+	    override fun doAction(te: TriggerEvent?, tm: TimeMarker?, dry: Boolean) {
 		try {
 		    val cmd: String = te!!.cmd
 		    val ac: Actor? = aC!!.getAnimatedActor(tm!!.tl.nid)
@@ -210,7 +210,7 @@ class AnimRuntime {
 
 	val mtea: MTEA = MTEA()
 	a_ctxt!!.mtl!!.addPlayListener(object : PlayListener {
-	    public override fun actionAtTime(tlA: Array<TimeLine?>?, t: Int, attr: Int, dry: Boolean) {
+	    override fun actionAtTime(tlA: Array<TimeLine?>?, t: Int, attr: Int, dry: Boolean) {
 		if (AnimContext.ae != null) if (!aC!!.isCanvasNormal) {
 		    val gel: ToolExecute? = aC!!.toolExecute
 		    if (gel != null) gel.execute("upper_left")
@@ -218,7 +218,7 @@ class AnimRuntime {
 		if (!dry) aC!!.updateAtTime(t, (tlA)!!)
 	    }
 
-	    public override fun actionMarkerAtTime(tm: TimeMarker?, t: Int, dry: Boolean) {
+	    override fun actionMarkerAtTime(tm: TimeMarker?, t: Int, dry: Boolean) {
 		if (tm!!.type == TimeMarker.BEGIN) {
 		    val ac: Actor? = aC!!.getAnimatedActor(tm.tl.nid)
 		    if (ac != null) {
@@ -385,12 +385,12 @@ class AnimRuntime {
     }
 
     fun runAction(
-	    window: Window,
-	    fn: String?,
-	    actA: Array<String?>,
-	    pathA: Array<String?>,
-	    params: HashMap<String?, Any?>,
-	    hook: Runnable?
+	window: Window,
+	fn: String?,
+	actA: Array<String?>,
+	pathA: Array<String?>,
+	params: HashMap<String?, Any?>,
+	hook: Runnable?
     ) {
 	val win: Window = window
 	val fa_ctxt: AnimContext? = a_ctxt
@@ -467,7 +467,7 @@ class AnimRuntime {
 //   		a_ctxt.anim_canvas.repaint();
 		val drct0: Long = ct()
 		dry_playAnimation(object : Runnable {
-		    public override fun run() {
+		    override fun run() {
 			Log.getLogger().info(":--: " + "Dry Running done " + (ct() - drct0))
 		    }
 		})
@@ -481,7 +481,7 @@ class AnimRuntime {
 		val rct0: Long = ct()
 		aC!!.HIDDEN = false
 		playAnimation(object : Runnable {
-		    public override fun run() {
+		    override fun run() {
 			Log.getLogger().info(":--: " + "Running done " + (ct() - rct0))
 			//fa_ctxt.anim_canvas.hideActors(); // LAST
 			val end_code_s: String = fa_ctxt.anim_canvas!!.endCode
