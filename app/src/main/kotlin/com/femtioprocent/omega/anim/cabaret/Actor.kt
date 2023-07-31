@@ -4,7 +4,7 @@ import com.femtioprocent.omega.anim.context.AnimContext
 import com.femtioprocent.omega.util.SundryUtils.empty
 import com.femtioprocent.omega.xml.Element
 
-class Actor(var anim_ctxt: AnimContext, @JvmField val gimae: GImAE) {
+class Actor(var anim_ctxt: AnimContext, val gimae: GImAE) {
     fun hide() {
 	gimae.hide()
     }

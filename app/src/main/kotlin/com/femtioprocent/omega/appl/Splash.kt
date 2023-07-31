@@ -70,7 +70,6 @@ class Splash internal constructor() : JWindow() {
     }
 
     companion object {
-	@JvmField
 	var keep: Boolean? = null
     }
 }

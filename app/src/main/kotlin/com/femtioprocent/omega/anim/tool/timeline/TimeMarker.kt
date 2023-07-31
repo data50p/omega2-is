@@ -54,7 +54,6 @@ class TimeMarker : Serializable {
     val isMoveAble: Boolean
 	get() = !(type == BEGIN || type == END)
 
-    @JvmOverloads
     fun move(d: Int, grid: Int = 1) {
 	`when` += d
 	`when` = grid(`when`, grid)

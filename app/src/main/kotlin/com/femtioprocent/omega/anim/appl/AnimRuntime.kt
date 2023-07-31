@@ -289,7 +289,6 @@ class AnimRuntime {
     // 	}
     // 	return bA;
     //     }
-    @JvmOverloads
     fun playAnimation(after: Runnable? = null) {
 	try {
 	    clean()

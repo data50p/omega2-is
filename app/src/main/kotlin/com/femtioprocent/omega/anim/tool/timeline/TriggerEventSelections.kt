@@ -1,6 +1,6 @@
 package com.femtioprocent.omega.anim.tool.timeline
 
-open class TriggerEventSelections @JvmOverloads constructor(arg: String? = null) : TriggerEvent(arg) {
+open class TriggerEventSelections(arg: String? = null) : TriggerEvent(arg) {
     init {
 	setArgFromCmd(arg)
     }

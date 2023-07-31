@@ -2,7 +2,7 @@ package com.femtioprocent.omega.anim.tool.timeline
 
 import com.femtioprocent.omega.xml.Element
 
-open class TriggerEvent @JvmOverloads constructor(var arg: String? = null) {
+open class TriggerEvent(var arg: String? = null) {
     var name: String? = null
     var arg_human: String?
     var is_on = false

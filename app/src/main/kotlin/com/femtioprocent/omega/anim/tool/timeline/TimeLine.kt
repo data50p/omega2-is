@@ -91,7 +91,6 @@ class TimeLine : Serializable {
 	}
     }
 
-    @JvmOverloads
     fun addMarker(type: Char, `when`: Int, duration: Int = 0): TimeMarker? {
 	val tm = TimeMarker(this, type, offset + `when`, duration)
 	markers.add(tm)

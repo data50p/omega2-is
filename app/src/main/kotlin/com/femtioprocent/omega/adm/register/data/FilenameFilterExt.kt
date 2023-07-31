@@ -3,7 +3,7 @@ package com.femtioprocent.omega.adm.register.data
 import java.io.File
 import java.io.FilenameFilter
 
-class FilenameFilterExt @JvmOverloads internal constructor(var ext: String, var with: Array<String>? = null) :
+class FilenameFilterExt internal constructor(var ext: String, var with: Array<String>? = null) :
     FilenameFilter {
     override fun accept(dir: File, fname: String): Boolean {
 	if (fname.endsWith(ext)) {
