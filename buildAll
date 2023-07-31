@@ -21,6 +21,6 @@ fi
 
 ./gradlew clean build installDist
 
-mkdir -f runtime/lib
-mkdir -f runtime/omega_assets
+mkdir -p runtime/lib
+mkdir -p runtime/omega_assets
 rsync --delete -uvarHl app/build/install/app/lib/ runtime/lib
