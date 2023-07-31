@@ -5,7 +5,6 @@ import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssetsExist
 import com.femtioprocent.omega.anim.context.AnimContext
-import com.femtioprocent.omega.appl.OmegaStartManager.enableStarter
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.pupil.Pupil
 import com.femtioprocent.omega.swing.ScaledImageIcon
@@ -75,15 +74,12 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
     var cp_anim: FormPanel
     var cp_feedb: FormPanel
     var cp_admin: FormPanel
-
     //    SecureButton secure_jb;
     var secure_jb: JButton? = null
     var secure_delete_jb: JButton? = null
     var secure_warning: JLabel? = null
     var pupim_jl: JLabel? = null
     var pupim_jb: JButton? = null
-
-    @JvmField
     var was_deleted = false
     var active = false
     fun updColors(fname: String?) {
@@ -247,9 +243,6 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		    OmegaContext.sout_log.getLogger().info("ERR: ex $ex")
 		    ex.printStackTrace()
 		}
-	    }
-	    if ("resetStarter" == cmd) {
-		enableStarter()
 	    }
 	}
     }

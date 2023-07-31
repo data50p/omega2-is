@@ -24,9 +24,9 @@ class Actor(var anim_ctxt: AnimContext, @JvmField val gimae: GImAE) {
 	    el.addAttr("var1", gimae.getVariable(1))
 	    el.addAttr("var2", gimae.getVariable(2))
 	    el.addAttr("var3", gimae.getVariable(3))
-	    for (ih in 0 until Hotspot.Companion.HOTSPOT_N) {
+	    for (ih in 0 until Hotspot.HOTSPOT_N) {
 		el.addAttr(
-		    "hotspot_" + Hotspot.Companion.getType(ih),
+		    "hotspot_" + Hotspot.getType(ih),
 		    "" + gimae.hotspot.getX(ih) + ' ' + gimae.hotspot.getY(ih)
 		)
 	    }

@@ -159,7 +159,6 @@ class LiuMovieManager(var window: Window, le_canvas: LessonCanvas) : Manager("Li
     }
 
     companion object {
-	@JvmField
 	var repeat_mode = RepeatMode.CAN_REPEAT
     }
 }

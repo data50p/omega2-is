@@ -13,7 +13,6 @@ object Save {
 	save(fname, el, extension)
     }
 
-    @JvmStatic
     fun save(fname: String, el: Element) {
 	save(fname, el, null)
     }

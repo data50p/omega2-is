@@ -12,10 +12,7 @@ import java.awt.RenderingHints
 import java.util.*
 
 class ItemEntry {
-    @JvmField
     var type: String? = null
-
-    @JvmField
     var tid: String? = null
     var items: MutableList<Item?>?
     var all_items: MutableList<Item?>? = null

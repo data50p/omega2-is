@@ -8,7 +8,6 @@ import com.femtioprocent.omega.anim.cabaret.Actor
 import com.femtioprocent.omega.anim.cabaret.Cabaret
 import com.femtioprocent.omega.anim.cabaret.GImAE
 import com.femtioprocent.omega.anim.cabaret.Hotspot
-import com.femtioprocent.omega.anim.cabaret.Hotspot.Companion.getType
 import com.femtioprocent.omega.anim.context.AnimContext
 import com.femtioprocent.omega.anim.panels.cabaret.CabaretPanel
 import com.femtioprocent.omega.anim.panels.path.PathProperties
@@ -46,7 +45,6 @@ import javax.swing.JOptionPane
 import javax.swing.event.MouseInputAdapter
 
 class AnimCanvas : Canvas {
-    @JvmField
     var ap = AllPath()
     var m: Mouse? = null
     var key: Key? = null
@@ -65,15 +63,9 @@ class AnimCanvas : Canvas {
     var arun: AnimRuntime?
     private var pa_offs = 10
     var lessonVerb = "jagar"
-
-    @JvmField
     var cab: Cabaret
     var actA_animated = arrayOfNulls<Actor>(OmegaConfig.TIMELINES_N)
-
-    @JvmField
     var background_color = Color(30, 30, 90)
-
-    @JvmField
     var colors = HashMap<String, ColorColors>()
     var hidden_ = false
     override val offsX: Double
@@ -90,7 +82,6 @@ class AnimCanvas : Canvas {
 	repaint()
     }
 
-    @JvmField
     var hook: MouseInputAdapter? = null
 
     open inner class Mouse(var anim_canvas: AnimCanvas) : MouseInputAdapter() {
@@ -1260,7 +1251,7 @@ class AnimCanvas : Canvas {
 			act.gimae.setHotSpotIx(0, hs)
 		    }
 		    for (ih in 0 until Hotspot.HOTSPOT_N) {
-			hs = acel.findAttr("hotspot_" + getType(ih))
+			hs = acel.findAttr("hotspot_" + Hotspot.getType(ih))
 			if (hs == null) {
 			    for (ih2 in 1 until Hotspot.HOTSPOT_N) act.gimae.setHotSpotIxSame(ih2)
 			    break

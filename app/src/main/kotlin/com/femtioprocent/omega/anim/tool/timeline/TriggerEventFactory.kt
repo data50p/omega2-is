@@ -22,7 +22,6 @@ object TriggerEventFactory {
 	return null
     }
 
-    @JvmStatic
     fun getSlot(name: String): Int {
 	if ("PlaySound" == name) return 0
 	if ("Rotate" == name) return 1
@@ -37,11 +36,9 @@ object TriggerEventFactory {
 	return if ("ResetSequence" == name) 10 else -1
     }
 
-    @JvmStatic
     val size: Int
 	get() = allAsStringA.size
 
-    @JvmStatic
     fun createTriggerEvent(name: String): TriggerEvent? {
 	try {
 	    val cl = Class.forName("com.femtioprocent.omega.anim.tool.timeline.TriggerEvent$name")
@@ -62,7 +59,6 @@ object TriggerEventFactory {
 	return null
     }
 
-    @JvmStatic
     fun createTriggerEvent(e: Element): TriggerEvent? {
 	val cmd = e.findAttr("cmd")
 	val arg = e.findAttr("arg")
@@ -77,7 +73,6 @@ object TriggerEventFactory {
 	return te
     }
 
-    @JvmStatic
     val allAsStringA: Array<String?>
 	get() {
 	    val l: MutableList<String?> = ArrayList()
@@ -101,7 +96,6 @@ object TriggerEventFactory {
 	    return l.toTypedArray<String?>()
 	}
 
-    @JvmStatic
     operator fun get(ix: Int): TriggerEvent? {
 	val cl = getTriggerEvent(ix)
 	if (cl != null) try {

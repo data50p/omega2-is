@@ -216,8 +216,6 @@ class AnimEditor : JFrame {
 			    JOptionPane.INFORMATION_MESSAGE
 			)
 		    }
-		} else if (("resetstarter" == cmd)) {
-		    OmegaStartManager.enableStarter()
 		} else if (("about" == cmd)) {
 		    help!!.showAbout()
 		} else if (("aboutAE" == cmd)) {
@@ -629,8 +627,6 @@ class AnimEditor : JFrame {
 
     companion object {
 	var context: OmegaContext? = null
-
-	@JvmField
 	var help: Anim_HelpSystem? = null
     }
 }

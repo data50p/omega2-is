@@ -21,11 +21,7 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
     //    JDialog(LessonEditor.TOP_JFRAME, true), ActionListener {
     var WW = 700
     var HH = 500
-
-    @JvmField
     var colors: HashMap<String, ColorColors>? = null
-
-    @JvmField
     var select = false
     var color_file: JComboBox<String>? = null
 

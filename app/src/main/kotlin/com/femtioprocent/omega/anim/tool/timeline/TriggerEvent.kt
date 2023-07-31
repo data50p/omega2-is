@@ -5,8 +5,6 @@ import com.femtioprocent.omega.xml.Element
 open class TriggerEvent @JvmOverloads constructor(var arg: String? = null) {
     var name: String? = null
     var arg_human: String?
-
-    @JvmField
     var is_on = false
 
     init {

@@ -10,19 +10,13 @@ import java.awt.geom.Rectangle2D
 abstract class GIm {
     protected val fid: String
     protected var delayed_id_attrib: String? = null
-
-    @JvmField
     var layer = 2
-
-    @JvmField
     var reset_sequence = 0
     protected var acomp = AlphaComposite.getInstance(
 	AlphaComposite.SRC_OVER,
 	1.0f
     )
     protected var ca: Canvas
-
-    @JvmField
     var xim: xImage
     protected var bounding_rect: Rectangle2D = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)
     private val prev_bounding_rect: Rectangle2D = Rectangle2D.Double(0.0, 0.0, 0.0, 0.0)
@@ -88,10 +82,6 @@ abstract class GIm {
     fun setPrimMirror(m_x: Boolean, m_y: Boolean) {
 	prim_mirror_x = m_x
 	prim_mirror_y = m_y
-    }
-
-    fun setLayer(a: Int) {
-	layer = a
     }
 
     fun setVisibility(percent: Int) {

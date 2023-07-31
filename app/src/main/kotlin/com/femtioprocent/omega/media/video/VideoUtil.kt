@@ -24,7 +24,6 @@ object VideoUtil {
      * @param fname
      * @return
      */
-    @JvmStatic
     fun findSupportedFname(fname: String): String? {
 	val altFname = fname
 	    .replace("\\.[mM][pP][gG]$".toRegex(), ".mp4")

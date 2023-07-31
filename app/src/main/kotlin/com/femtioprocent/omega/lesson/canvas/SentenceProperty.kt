@@ -29,9 +29,8 @@ import javax.swing.event.ListSelectionListener
 import javax.swing.table.TableModel
 import javax.swing.text.Document
 
-class SentenceProperty internal constructor(var owner: JFrame, @JvmField var l_ctxt: LessonContext) :
+class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: LessonContext) :
     Property_B(owner, t("Omega - Sentence Property")) {
-    @JvmField
     var guimap = HashMap<String, JComponent>()
     var table: JTable? = null
     var set_act_b: JButton? = null

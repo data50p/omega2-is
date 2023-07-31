@@ -115,7 +115,6 @@ class Settings internal constructor() {
 	var args: List<String>? = null
 	var default_settings: Settings? = null
 
-	@JvmStatic
 	fun getSettings(): Settings? {
 	    if (default_settings == null) {
 		default_settings = Settings()

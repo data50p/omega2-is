@@ -7,7 +7,6 @@ import java.awt.Window
 import javax.swing.JPanel
 
 class AnimAction : Action {
-    @JvmField
     var rt: AnimRuntime? = AnimRuntime()
     override var hm: HashMap<String?, Any?> = HashMap()
     override fun prefetch(action_s: String?): Element? {

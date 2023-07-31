@@ -1,11 +1,9 @@
 package com.femtioprocent.omega.appl;
 
-import com.femtioprocent.omega.OmegaContext;
 import com.femtioprocent.omega.OmegaVersion;
 import com.femtioprocent.omega.util.Log;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import javafx.embed.swing.JFXPanel;
 
 import javax.swing.*;
@@ -88,10 +86,15 @@ public class Omega_IS extends JDialog {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Integer selection = OmegaStartManager.fromAutoStart();
-        if (selection == null)
-            selection = OmegaStartManager.fromPU(argv, selection);
 
+        Integer selection = OmegaStartManager.askForIt(argv);
+
+        while (selection == null) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+        }
         switch (selection) {
             case 1:
                 LessonEditorAppl.main(argv);

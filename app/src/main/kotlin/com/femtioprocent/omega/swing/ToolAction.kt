@@ -6,8 +6,6 @@ import javax.swing.Icon
 
 class ToolAction : AbstractAction {
     var command: String?
-
-    @JvmField
     var texec: ToolExecute? = null
 
     constructor(text: String?, cmd: String?, texec: ToolExecute?) : super(text) {

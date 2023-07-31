@@ -9,16 +9,11 @@ import java.io.Serializable
 import java.util.*
 
 class TimeLine : Serializable {
-    @JvmField
     var offset = 0
     var duration = 0
 	private set
     private var markers: MutableList<TimeMarker>
-
-    @JvmField
     var nid: Int
-
-    @JvmField
     var last_added_tm: TimeMarker? = null
     var lessonId = ""
 

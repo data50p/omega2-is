@@ -6,7 +6,6 @@ import java.awt.Rectangle
 import java.awt.geom.Rectangle2D
 
 class RectList internal constructor() {
-    @JvmField
     var rl: List<Rectangle2D>
     var nr: Rectangle2D
 
@@ -48,36 +47,6 @@ class RectList internal constructor() {
 
 	fun ma(a: Double, b: Double): Double {
 	    return if (a > b) a else b
-	}
-
-	@JvmStatic
-	fun main(argv: Array<String>) {
-	    val flag = flagAsMap(argv)
-	    val argl = argAsList(argv)
-	    var rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(150.0, 150.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(50.0, 50.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(150.0, 150.0, 10.0, 10.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(150.0, 50.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(50.0, 150.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(300.0, 300.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(150.0, 300.0, 100.0, 100.0))
-	    rl = RectList()
-	    rl.add(Rectangle2D.Double(150.0, 300.0, 100.0, 100.0))
-	    rl.add(Rectangle2D.Double(100.0, 100.0, 100.0, 100.0))
 	}
 
 	fun intersect(

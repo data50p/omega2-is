@@ -3,16 +3,9 @@ package com.femtioprocent.omega.adm.register.data
 import com.femtioprocent.omega.xml.Element
 
 class SelectEntry : Entry {
-    @JvmField
     var extra: String
-
-    @JvmField
     var word: String
-
-    @JvmField
     var `when`: Int
-
-    @JvmField
     var l_id: String
 
     constructor(extra: String, word: String, `when`: Int, l_id: String) {

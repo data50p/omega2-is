@@ -25,7 +25,6 @@ class ChooseLessonFile : JFileChooser {
     }
 
     companion object {
-	@JvmField
 	var ext = "omega_lesson"
 	private var lastFile: File? = null
 	private fun getDir(dirStep: Int): String? {

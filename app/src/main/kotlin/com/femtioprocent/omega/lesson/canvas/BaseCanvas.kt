@@ -27,20 +27,10 @@ import javax.swing.event.MouseInputAdapter
 
 open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     open var om_msg_mgr = Manager()
-
-    @JvmField
     var lc_listeners: EventListenerList
-
-    @JvmField
     var l_ctxt: LessonContext
-
-    @JvmField
     var colors = HashMap<String, ColorColors>()
-
-    @JvmField
     var fo: Font? = null
-
-    @JvmRecord
     data class ColorColors(val color: Color?, val colors: HashMap<String, Color>?) {
 	companion object {
 	    fun create(r: Int, g: Int, b: Int): ColorColors {
@@ -52,8 +42,6 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	    }
 	}
     }
-
-    @JvmField
     var ignore_press = false
     open var cmp_li: ComponentAdapter = object : ComponentAdapter() {
 	override fun componentResized(ev: ComponentEvent) {
@@ -222,8 +210,6 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	var im_enter_n: String? = null
 	var im_ic: ImageIcon? = null
 	var im_enter_ic: ImageIcon? = null
-
-	@JvmField
 	var o: Any? = null
 	fun setNew(txt: String?, im_n: String?, im_enter_n: String?, o: Any?, dispName: String?) {
 	    text = dispName ?: formatDisplayText(txt!!)
@@ -531,8 +517,6 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
 	fun dump() {}
     }
-
-    @JvmField
     var focus_list: CycleList? = null
 
     inner class MyButton(txt: String?) : JButton(txt) {
@@ -590,7 +574,6 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	}
     }
 
-    @JvmField
     var buttons = arrayOfNulls<MyButton>(5)
     var buttons_enabled = true
     fun togglePopup(ix: Int) {

@@ -221,7 +221,6 @@ object SundryUtils {
 	return whichMethod(1, true)
     }
 
-    @JvmOverloads
     fun whichMethod(offs: Int = 1, withClass: Boolean = false): String {
 	val stackTrace = Thread.currentThread().stackTrace
 	return stackTrace[3 + offs].className + ':' + stackTrace[3 + offs].methodName
@@ -287,7 +286,6 @@ object SundryUtils {
 	return s?.trim { it <= ' ' }
     }
 
-    @JvmStatic
     fun empty(s: String?): Boolean {
 	return s == null || s.length == 0
     }
@@ -356,12 +354,10 @@ object SundryUtils {
 	return s != null && s.length > 0 && s != "0"
     }
 
-    @JvmStatic
     fun formatDisplayText(txt: String): String {
 	return txt.replace("_", " ")
     }
 
-    @JvmStatic
     @Throws(IOException::class)
     fun copyFile(sourceFile: File?, destFile: File) {
 	if (!destFile.exists()) {
@@ -379,7 +375,6 @@ object SundryUtils {
 	}
     }
 
-    @JvmStatic
     fun m_sleep(a: Int) {
 	var a = a
 	try {
@@ -390,13 +385,10 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmOverloads
-    @JvmStatic
     fun createPrintWriter(fn: String?, append: Boolean = false): PrintWriter? {
 	return createPrintWriterUTF8(fn, append)
     }
 
-    @JvmStatic
     fun createPrintWriter(os: OutputStream?): PrintWriter? {
 	var pw: PrintWriter? = null
 	pw = try {
@@ -408,8 +400,6 @@ object SundryUtils {
 	return pw
     }
 
-    @JvmOverloads
-    @JvmStatic
     fun createPrintWriterUTF8(fn: String?, append: Boolean = false): PrintWriter? {
 	return try {
 	    PrintWriter(OutputStreamWriter(BufferedOutputStream(FileOutputStream(fn, append)), "UTF-8"))
@@ -420,8 +410,6 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
-    @JvmOverloads
     fun pL(a: Int, w: Int, pad: Char = ' '): String {
 	val s = "" + a
 	val n = w - s.length
@@ -430,7 +418,6 @@ object SundryUtils {
 	return ss + s
     }
 
-    @JvmStatic
     fun padLeft(s: String, len: Int, ch: Char): String {
 	if (s.length < len) {
 	    var ps = ""
@@ -440,7 +427,6 @@ object SundryUtils {
 	return s
     }
 
-    @JvmStatic
     fun padRight(s: String, len: Int, ch: Char): String {
 	if (s.length < len) {
 	    var ps = ""
@@ -451,13 +437,11 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
     fun ct(): Long {
 	return System.currentTimeMillis()
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
     fun split(str: String?, split: String?): Array<String?> {
 	val t = StringTokenizer(str, split)
 	val n = t.countTokens()
@@ -475,7 +459,6 @@ object SundryUtils {
 	return arrToString(o, ",", w, ' ')
     }
 
-    @JvmStatic
     fun a2s(o: Any?): String? {
 	return arrToString(o, ",", 0, ' ')
     }
@@ -488,8 +471,6 @@ object SundryUtils {
 	return arrToString(o, delim, w, pad)
     }
 
-    @JvmOverloads
-    @JvmStatic
     fun arrToString(o: Any?, delim: String? = ",", w: Int = 0, pad: Char = ' '): String? {
 	if (o == null) return "null"
 	val s = StringBuffer()
@@ -666,7 +647,6 @@ object SundryUtils {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
     var scrN = 5
 
-    @JvmStatic
     fun scrambleArr(a: Any?) {
 	if (a == null) return
 	val cls: Class<*> = a.javaClass
@@ -749,7 +729,6 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
     fun tD(s: String?): Double {
 	return try {
 	    val dval = java.lang.Double.valueOf(s)
@@ -760,7 +739,6 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
     fun upTo(a: Int): IntArray {
 	return fromTo(0, a)
     }
@@ -779,7 +757,6 @@ object SundryUtils {
 	ia[b] = c
     }
 
-    @JvmStatic
     fun getFileContent(fn: String?): String? {
 	val f = File(OmegaContext.omegaAssets(fn))
 	if (!f.exists() || !f.canRead()) return null
@@ -790,7 +767,6 @@ object SundryUtils {
 	return null
     }
 
-    @JvmStatic
     fun createUniq(max: Int): Uniq {
 	return Uniq(max)
     }
@@ -798,14 +774,12 @@ object SundryUtils {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
     private val randG = Random()
 
-    @JvmStatic
     fun rand(a: Int): Int {
 	val r = 0x7fffffff and randG.nextInt()
 	return r % a
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    @JvmStatic
     fun flagAsMap(argv: Array<String>): HashMap<String, String> {
 	val argl: MutableList<String?> = Arrays.asList(*argv)
 	val flag: HashMap<String, String> = HashMap()
@@ -830,7 +804,6 @@ object SundryUtils {
 	return flag
     }
 
-    @JvmStatic
     fun argAsList(argv: Array<String>): List<String> {
 	var argl: List<String> = LinkedList()
 	for (av in argv) {

@@ -147,7 +147,7 @@ class AnimRuntime {
 			val v: Int = (te as TriggerEventSetMirror?)!!.argInt
 			gimae.setMirror((v and 1) == 1, (v and 2) == 2)
 		    }
-		    if ((cmd == "SetLayer")) gimae.setLayer((te as TriggerEventSetLayer?)!!.argInt)
+		    if ((cmd == "SetLayer")) gimae.layer = (te as TriggerEventSetLayer?)!!.argInt
 		    if ((cmd == "Rotate")) {
 			var d: Double = (te as TriggerEventRotate?)!!.argDouble
 			var d2: Double = (te as TriggerEventRotate?)!!.argDouble2nd

@@ -13,8 +13,6 @@ import java.awt.image.BufferedImage
 import javax.swing.ImageIcon
 
 object ScaledImageIcon {
-    @JvmStatic
-    @JvmOverloads
     fun createImageIcon(comp: Component?, fn: String, max_w: Int, max_h: Int, no_bigger: Boolean = true): ImageIcon? {
 	val im: Image?
 	im = if (fn.startsWith("toolbarButtonGraphics/")) loadAndWaitFromResource(

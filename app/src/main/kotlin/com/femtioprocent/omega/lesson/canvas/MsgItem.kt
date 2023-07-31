@@ -1,25 +1,12 @@
 package com.femtioprocent.omega.lesson.canvas
 
 class MsgItem {
-    @JvmField
     var title: String
-
-    @JvmField
     var text: String
-
-    @JvmField
     var text2: String? = null
-
-    @JvmField
     var image: String? = null
-
-    @JvmField
     var image2: String? = null
-
-    @JvmField
     var small_title: String? = null
-
-    @JvmField
     var type: Char
 
     constructor(title: String, txt: String) {

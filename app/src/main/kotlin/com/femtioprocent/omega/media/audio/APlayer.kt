@@ -61,14 +61,12 @@ class APlayer {
 	var T = true
 	var alwaysFxPlayer = false
 
-	@JvmStatic
 	fun createAPlayer(name: String?, attr: String?, id: String?): APlayer {
 	    var apl = load_(null, name, attr, id)
 	    if (apl == null && attr != null) apl = load_(null, name, null, id)
 	    return apl ?: APlayer()
 	}
 
-	@JvmStatic
 	fun createAPlayer(lang: String?, name: String?, attr: String?, id: String?): APlayer {
 	    var apl = load_(lang, name, attr, id)
 	    if (apl == null && attr != null) apl = load_(lang, name, null, id)

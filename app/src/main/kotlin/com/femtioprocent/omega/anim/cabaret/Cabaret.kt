@@ -8,24 +8,17 @@ import com.femtioprocent.omega.xml.Element
 class Cabaret(var a_ctxt: AnimContext) {
     val ACT_N = OmegaConfig.CABARET_ACTOR_N
     val EMPTY = -1
-
-    @JvmField
     var actA = ActA()
 
     inner class ActA internal constructor() {
 	inner class Act internal constructor(var ord: Int) {
-	    @JvmField
 	    var ac: Actor? = null
-
-	    @JvmField
 	    var tl_nid: Int
 
 	    init {
 		tl_nid = EMPTY
 	    }
 	}
-
-	@JvmField
 	var arr: Array<Act?>
 
 	init {

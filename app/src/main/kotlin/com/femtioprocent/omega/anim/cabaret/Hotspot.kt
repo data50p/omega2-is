@@ -64,7 +64,6 @@ class Hotspot {
 	const val HOTSPOT_N = 3
 	val allTypes = arrayOf("rotate", "begin", "end")
 
-	@JvmStatic
 	fun getType(ix: Int): String {
 	    return allTypes[ix]
 	}

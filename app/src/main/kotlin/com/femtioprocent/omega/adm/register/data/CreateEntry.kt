@@ -3,13 +3,8 @@ package com.femtioprocent.omega.adm.register.data
 import com.femtioprocent.omega.xml.Element
 
 class CreateEntry : Entry {
-    @JvmField
     var sentence: String
-
-    @JvmField
     var duration: Int
-
-    @JvmField
     var l_id_list: String
 
     constructor(sentence: String, duration: Int, l_id_list: String) {

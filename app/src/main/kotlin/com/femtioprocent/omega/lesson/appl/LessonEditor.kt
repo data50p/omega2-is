@@ -3,7 +3,6 @@ package com.femtioprocent.omega.lesson.appl
 import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.OmegaContext.Companion.lessonLang
-import com.femtioprocent.omega.appl.OmegaStartManager.enableStarter
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.ToolBar_LessonEditor
 import com.femtioprocent.omega.swing.ToolAction
@@ -73,8 +72,6 @@ $this"""
 	} else if ("save" == cmd) {
 	    le!!.mact_Save()
 	    unsetDirty()
-	} else if ("resetstarter" == cmd) {
-	    enableStarter()
 	} else if ("saveas" == cmd) {
 	    le!!.mact_SaveAs()
 	    unsetDirty()
@@ -193,7 +190,6 @@ $this"""
 	private var is_editor = false
 	private var is_dirty = false
 
-	@JvmStatic
 	fun setDirty() {
 	    if (is_editor) {
 		is_dirty = true

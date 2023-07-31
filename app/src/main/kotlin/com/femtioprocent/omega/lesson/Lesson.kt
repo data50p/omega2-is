@@ -965,7 +965,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	} finally {
 	    current_test_mode_group = mkTestModeGroup(current_test_mode)
 	    lemain_canvas!!.reload()
-	    lemain_canvas!!.setModeIsTest(current_test_mode_group == TMG.TEST)
+	    lemain_canvas!!.modeIsTest = current_test_mode_group == TMG.TEST
 	}
     }
 
@@ -2826,8 +2826,8 @@ target pos $tg_ix"""
 						    m_pan!!.layout = null
 						    m_pan.background =
 							omega_settings_dialog.feedback_movie_background!!.color
-						    val v_w = feedback_movie!!.getW()
-						    val v_h = feedback_movie!!.getH()
+						    val v_w = feedback_movie!!.w
+						    val v_h = feedback_movie!!.h
 						    val c_w = card_panel!!.width
 						    val c_h = card_panel!!.height
 						    val wwd = 0.81415926535897932 * (c_w * 1.0 / v_w)

@@ -7,25 +7,14 @@ import com.femtioprocent.omega.xml.Element
 import java.io.Serializable
 
 class TimeMarker : Serializable {
-    @JvmField
     var tl: TimeLine
-
-    @JvmField
     var type: Char
-
-    @JvmField
     var `when`: Int
-
-    @JvmField
     var duration = 0
     var tltl: TimeLine? = null
     var selected = false
-
-    @JvmField
     var t_event: Array<TriggerEvent?>? = null
     var isDeleteCandidate = false
-
-    @JvmField
     var ord = 0
 
     internal constructor(tl: TimeLine, type: Char, `when`: Int) {
@@ -171,7 +160,6 @@ class TimeMarker : Serializable {
 	    "TTimeLine"
 	)
 
-	@JvmStatic
 	var comparator: Comparator<TimeMarker>? = null
 	    get() {
 		if (field == null) field = object : Comparator<TimeMarker> {

@@ -1,7 +1,6 @@
 package com.femtioprocent.omega.appl
 
 open class OmegaAppl(name: String) {
-    @JvmField
     protected var name: String
 
     init {
@@ -14,7 +13,6 @@ open class OmegaAppl(name: String) {
 	var propHashMap = HashMap<String, String>()
 	var splash: Splash? = Splash()
 
-	@JvmStatic
 	fun closeSplash() {
 	    if (splash == null) return
 	    splash!!.isVisible = false

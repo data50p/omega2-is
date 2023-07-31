@@ -37,11 +37,9 @@ class Target {
 
     inner class T_Item//	    this.tg = tg; //	T_Item(Target tg, int ord, String type, String tid, String lid) {
     internal constructor(//	Target tg;
-	var ord: Int, @JvmField var type: String?, @JvmField var tid: String?, //fillVarHere(ord, lid);
+	var ord: Int, var type: String?, var tid: String?, //fillVarHere(ord, lid);
 	var lID4TgOrNull_KeepVar: String?
     ) {
-
-	@JvmField
 	var item: Item? = null
 
 	val filledText: String?

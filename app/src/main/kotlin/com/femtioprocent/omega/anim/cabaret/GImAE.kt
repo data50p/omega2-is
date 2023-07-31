@@ -29,8 +29,6 @@ class GImAE : GIm {
     private var scale_b = 0.0
     private var scale_t = 0.0
     private var scale_lim = 1.0
-
-    @JvmField
     var anim_speed = 0.2
 
     //    private boolean use_alt_hotspot = false;
@@ -38,7 +36,6 @@ class GImAE : GIm {
     //      public double hotspot_fy = 0.5;
     //      public double hotspotAlt_fx = 0.5;
     //      public double hotspotAlt_fy = 0.5;
-    @JvmField
     var hotspot = Hotspot()
 
     //      public void setAlternative(int arg) {
@@ -54,14 +51,8 @@ class GImAE : GIm {
     private var can_eat = false
     private var can_bee_eaten = false
     var apa: AllPath
-
-    @JvmField
     var nid: Int
-
-    @JvmField
     var imw: Int
-
-    @JvmField
     var imh: Int
     private var buffered_image: BufferedImage? = null
     private val at = AffineTransform()

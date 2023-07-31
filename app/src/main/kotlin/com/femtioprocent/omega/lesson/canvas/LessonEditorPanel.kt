@@ -34,7 +34,7 @@ import javax.swing.event.ChangeListener
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
 
-class LessonEditorPanel(@JvmField var le_canvas: LessonCanvas) : JPanel() {
+class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
     var gbcf = GBC_Factory()
 
     //      JComboBox bgcol;

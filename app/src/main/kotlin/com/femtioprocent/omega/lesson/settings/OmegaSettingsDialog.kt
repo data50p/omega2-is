@@ -22,43 +22,24 @@ import javax.swing.JLabel
 import javax.swing.JSlider
 
 class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
-    @JvmField
     var feedback_movie_background: ColorButton? = null
-
-    @JvmField
     var action_movie_background: ColorButton? = null
-
-    @JvmField
     var anim_background: ColorButton? = null
-
-    @JvmField
     var signWord_background: ColorButton? = null
-
-    @JvmField
     var signSentence_background: ColorButton? = null
     var color_theme: JComboBox<*>? = null
     var color_theme_main: JButton? = null
     var color_theme_pupil: JButton? = null
     var color_theme_words: JButton? = null
     var color_theme_sent: JButton? = null
-
-    @JvmField
     var signWord_alpha: JSlider? = null
-
-    @JvmField
     var signSentence_alpha: JSlider? = null
-
-    @JvmField
     var signMovieWord_scale: JSlider? = null
-
-    @JvmField
     var signMovieSentence_scale: JSlider? = null
     private val fname = "omega_settings.xml"
-
-    @JvmField
     var lesson: Lesson? = null
 
-    inner class ColorButton internal constructor(@JvmField var color: Color) : JButton(), ActionListener {
+    inner class ColorButton internal constructor(var color: Color) : JButton(), ActionListener {
 	init {
 	    upd()
 	    addActionListener(this)

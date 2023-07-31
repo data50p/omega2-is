@@ -32,17 +32,13 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     private val trgtA_fo = Font("Arial", Font.PLAIN, ( /*h*/20 * 0.5).toInt())
     var title: JLabel? = null
     var parent: JLabel? = null
-
-    @JvmField
     val lesson: Array<ImageAreaJB?> = arrayOfNulls(10)
     var locator = Locator()
-
-    @JvmField
     var modeIsTest = false
-    fun setModeIsTest(b: Boolean) {
-	modeIsTest = b
-	updLessons()
-    }
+	set(value) {
+	    field = value
+	    updLessons()
+	}
 
     fun updLessons() {
 	for (i in lesson!!.indices) {

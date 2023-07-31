@@ -4,7 +4,6 @@ import java.awt.Color
 import javax.swing.JColorChooser
 
 object ColorChooser {
-    @JvmStatic
     fun select(col: Color?): Color {
 	return JColorChooser.showDialog(null, "Select color", col)
     }

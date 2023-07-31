@@ -199,20 +199,5 @@ class ToString {
 		s
 	    } else s.substring(ix + 1)
 	}
-
-	/**
-	 * Print out "ToString{nominalInt=123, nominalString=nominal value}"
-	 *
-	 * @param args
-	 */
-	@JvmStatic
-	fun main(args: Array<String>) {
-	    var args = args
-	    if (args.size == 0) args = arrayOf("-.*Foo.*", "-nominal123.*", "=foobar")
-	    val s1 = toString(ToString())
-	    getLogger().info("" + s1)
-	    val s2 = toString(ToString(), *args)
-	    getLogger().info("" + s2)
-	}
     }
 }

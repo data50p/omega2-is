@@ -34,7 +34,6 @@ object Files {
 	return sa
     }
 
-    @JvmStatic
     fun mkRelativeCWD(fn: String): String? {
 	try {
 	    val fi = File(".")
@@ -62,7 +61,6 @@ object Files {
 	return null
     }
 
-    @JvmStatic
     fun mkRelFname1(url_s: String): String? {
 	val fi = File(omegaAssets(".")) // ".");
 	var cdu: String? = null
@@ -84,7 +82,6 @@ object Files {
 	return sa[1]
     }
 
-    @JvmStatic
     fun mkRelFname(url_s: String): String? {
 	val fi = File(omegaAssets(".")) // ".");
 	var cdu: String? = null
@@ -106,7 +103,6 @@ object Files {
 	return sa[1]
     }
 
-    @JvmStatic
     fun mkRelFnameAlt(url_s: String, prefix: String): String? {
 	val fi = File(omegaAssets(prefix))
 	var cdu: String? = null
@@ -135,7 +131,6 @@ INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD        
 INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD          :--: +++ fault.omega_assets/lesson-sv/active/F-b_3-ord/F-b1/SpraySoapDry.omega_lesson
 
      */
-    @JvmStatic
     fun toURL(file: File): String? {
 	var url_s: String? = null
 	//log	OmegaContext.sout_log.getLogger().info(":--: " + "got file " + file);
@@ -160,7 +155,6 @@ INFO      29/05 09:27:32.391     0 Files                   mkRelativeCWD        
 	return p
     }
 
-    @JvmStatic
     fun fileCopy(from: File?, to: File?) {
 	try {
 	    val fr = FileInputStream(from)

@@ -8,7 +8,7 @@ import java.beans.PropertyChangeSupport
 import java.util.*
 import javax.swing.event.EventListenerList
 
-class MasterTimeLine(@JvmField var a_ctxt: AnimContext) : PlayCtrlListener {
+class MasterTimeLine(var a_ctxt: AnimContext) : PlayCtrlListener {
     private val pr_ch: PropertyChangeSupport
     private var timelines: Array<TimeLine?>
     private val play_listeners: EventListenerList
@@ -281,7 +281,6 @@ class MasterTimeLine(@JvmField var a_ctxt: AnimContext) : PlayCtrlListener {
     }
 
     companion object {
-	@JvmStatic
 	val maxTimeLineIndex: Int
 	    get() = OmegaConfig.TIMELINES_N
     }

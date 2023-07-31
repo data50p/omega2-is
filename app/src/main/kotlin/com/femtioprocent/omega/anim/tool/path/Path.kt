@@ -607,7 +607,6 @@ class Path {
 	}
 
     companion object {
-	@JvmField
 	var global_selected: Path? = null
 
 	fun tD(s: String?): Double {
@@ -635,47 +634,10 @@ class Path {
 	    return sb.toString()
 	}
 
-	@JvmStatic
-	fun main(argv: Array<String>) {
-	    val flag: HashMap<String, String> = flagAsMap(argv)
-	    val argl = argAsList(argv)
-	    val f = JFrame("Path - test")
-	    val c = f.contentPane
-	    val ca = Canvas()
-	    if (flag["g"] != null);
-	    c.add(ca)
-	    f.pack()
-	    f.setSize(870, 640)
-	    f.isVisible = true
-	    //ca.setBackground("developer.omega_assets/media/background/Barn1.jpg");
-	    m_sleep(300)
-	    val sp: Point2D = Point2D.Double(100.0, 100.0)
-	    val ep: Point2D = Point2D.Double(200.0, 300.0)
-	    val pa = Path(1, sp, ep)
-	    pa.selected = true
-	    pa.draw(ca.graphics as Graphics2D)
-	    pa.extendSegment(Point2D.Double(300.0, 100.0))
-	    pa.draw(ca.graphics as Graphics2D)
-	    val sp2: Point2D = Point2D.Double(300.0, 200.0)
-	    val ep2: Point2D = Point2D.Double(400.0, 500.0)
-	    val pa2 = Path(2, sp2, ep2)
-	    pa2.draw(ca.graphics as Graphics2D)
-	    pa2.extendSegment(Point2D.Double(350.0, 300.0))
-	    pa2.draw(ca.graphics as Graphics2D)
-
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(0.0));
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(10.0));
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.0));
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(100.2));
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + pa.getPointAt(pa.getLength()));
-	}
-
-	@JvmStatic
 	fun format_(lenArr: DoubleArray): String {
 	    return "" + lenArr
 	}
 
-	@JvmStatic
 	fun format_(point2d: Array<Point2D>): String {
 	    return "" + point2d
 	}

@@ -7,27 +7,14 @@ import java.awt.Dimension
 import java.awt.Image
 import java.awt.Point
 
-class Wing(comp: Component?, @JvmField var name: String, x: Int, y: Int, @JvmField var layer: Int, ord: Int) {
-    @JvmField
+class Wing(comp: Component?, var name: String, x: Int, y: Int, var layer: Int, ord: Int) {
     var im: Image
     var dim: Dimension
-
-    @JvmField
     var pos: Point
-
-    @JvmField
     var ord: Int
-
-    @JvmField
     var mirror = 0
-
-    @JvmField
     var scale = 1.0
-
-    @JvmField
     var width: Int
-
-    @JvmField
     var height: Int
 
     //    public int mirror;

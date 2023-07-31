@@ -24,16 +24,4 @@ object ListFilesURL {
 	val ret = li.toTypedArray<String?>() as Array<String>
 	return ret
     }
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-	for (i in 0..9) {
-	    val ct0 = ct()
-	    Log.getLogger().info(":--: " + "" + a2s(getMediaList("actor")))
-	    val ct1 = ct()
-	    Log.getLogger().info(":--: " + "" + (ct1 - ct0))
-	    m_sleep(200)
-	    System.gc()
-	}
-    }
 }

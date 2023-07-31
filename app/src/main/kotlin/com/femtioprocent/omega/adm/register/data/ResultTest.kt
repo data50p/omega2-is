@@ -11,8 +11,6 @@ class ResultTest : Result {
     var l_id: String
     var created: Date? = null
     var pupil: String
-
-    @JvmField
     var session_length: Long = 0
     var entries: MutableList<Entry>
 

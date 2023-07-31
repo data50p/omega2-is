@@ -7,7 +7,6 @@ import com.femtioprocent.omega.xml.Element
 import com.femtioprocent.omega.xml.SAX_node
 
 object Restore {
-    @JvmStatic
     fun restore(fname: String): Element? {
 	return try {
 	    val aName: String?

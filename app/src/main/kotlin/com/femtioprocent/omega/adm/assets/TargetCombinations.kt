@@ -9,8 +9,7 @@ import com.femtioprocent.omega.util.SundryUtils
  * Created by lars on 2017-02-12.
  */
 class TargetCombinations {
-    class TCItem @JvmOverloads constructor(var fn: String, var originalExtention: String? = null) {
-	@JvmField
+    class TCItem constructor(var fn: String, var originalExtention: String? = null) {
 	var exist: Boolean = false
 
 	init {

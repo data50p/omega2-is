@@ -137,7 +137,6 @@ class OmegaFxAppl : Application() {
     companion object {
 	lateinit var args: Array<String>
 
-	@JvmStatic
 	fun main(args: Array<String>) {
 	    Companion.args = args
 	    launch(*args)

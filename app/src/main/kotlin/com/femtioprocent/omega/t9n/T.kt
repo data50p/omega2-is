@@ -51,10 +51,7 @@ class T {
     }
 
     companion object {
-	@JvmField
 	var lang = "en"
-
-	@JvmField
 	var hm: HashMap<String, String>? = null
 	var hm_new: HashMap<String, String>? = null
 	var lang_country = "en_US"
@@ -169,7 +166,6 @@ class T {
 
 	var mythread: MyThread? = null
 
-	@JvmStatic
 	fun t(s: String): String {
 	    init()
 	    if (hm == null) return s

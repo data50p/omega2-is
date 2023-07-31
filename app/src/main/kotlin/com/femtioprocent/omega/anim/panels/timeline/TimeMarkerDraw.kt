@@ -4,7 +4,6 @@ import com.femtioprocent.omega.anim.tool.timeline.TimeMarker
 import java.awt.Graphics
 
 object TimeMarkerDraw {
-    @JvmStatic
     fun draw(g: Graphics, tm: TimeMarker, x: Int, y: Int, w: Int) {
 	when (tm.type) {
 	    TimeMarker.BEGIN -> {

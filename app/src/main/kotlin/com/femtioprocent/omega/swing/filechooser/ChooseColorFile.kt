@@ -14,7 +14,6 @@ class ChooseColorFile : JFileChooser(File(omegaAssets("."))) {
     }
 
     companion object {
-	@JvmField
 	var ext = "omega_colors"
     }
 }

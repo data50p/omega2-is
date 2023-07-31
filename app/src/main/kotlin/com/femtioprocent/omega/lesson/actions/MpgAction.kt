@@ -19,18 +19,13 @@ import javax.swing.JPanel
 import javax.swing.event.MouseInputAdapter
 
 class MpgAction : Action {
-    @JvmField
     var mpg_player: MpgPlayer? = null
     var jpan: MyPanel? = null
     override var hm = HashMap<String?, Any?>()
     private var item_fo: Font? = null
     var pW = 100
     var pH = 100
-
-    @JvmField
     var sentence: String? = null
-
-    @JvmField
     var show_sentence = true
     private var again_play_request = false
     private var again_play2 = false

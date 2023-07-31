@@ -437,11 +437,5 @@ class xImage {
 	    }
 	    checkNow = ct() + 20 * 1000
 	}
-
-	@JvmStatic
-	fun main(args: Array<String>) {
-	    val i = xImage("image.gif")
-	    i.attrib = "a"
-	}
     }
 }

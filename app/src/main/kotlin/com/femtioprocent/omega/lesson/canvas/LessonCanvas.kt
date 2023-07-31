@@ -52,10 +52,7 @@ kvittera med TAB Enter
  */
 class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     override var om_msg_mgr = Manager()
-
-    @JvmField
     var lep: LessonEditorPanel? = null
-
     //    public Target tg;
     private var target_standout_msk = 0 // mask
     private var mark_more = false
@@ -65,8 +62,6 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     private var active_item_action_box: Box? = null
     private var active_item_box: Box? = null
     var active_titem_ix = -1
-
-    @JvmField
     var edit = false
     var tgAddBoxes: ShapeList? = null
     var tgDelBoxes: ShapeList? = null
@@ -109,8 +104,6 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	fireExit(1)
 	m_sleep(300)
     }
-
-    @JvmField
     var skip_keycode = false
     override fun ownKeyCode(kc: Int, is_shift: Boolean): Boolean {
 	if (edit) {
@@ -291,18 +284,14 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	var y: Int,
 	var w: Int,
 	var h: Int,
-	@JvmField var o_x: Int,
-	@JvmField var o_y: Int
+	var o_x: Int,
+	var o_y: Int
     ) {
 	var r: RoundRectangle2D
 	var state = BooleanArray(BOX_MAXSTATE)
 	var stroke: Stroke
-
-	@JvmField
 	var where = 0
 	var marked = false
-
-	@JvmField
 	var when_hit: Long = 0
 	fun noNewBox(itm_ent: ItemEntry?, x: Int, y: Int, w: Int, h: Int, o_x: Int, o_y: Int) {
 	    this.itm_ent = itm_ent

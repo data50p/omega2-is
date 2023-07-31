@@ -38,16 +38,9 @@ open class ApplLesson internal constructor(title: String?, is_editor: Boolean) :
     }
 
     companion object {
-	@JvmField
 	var TOP_JFRAME: JFrame? = null
-
-	@JvmField
 	var help: HelpSystem? = null
-
-	@JvmField
 	var is_editor: Boolean? = null
-
-	@JvmField
 	var isMac = false
     }
 }

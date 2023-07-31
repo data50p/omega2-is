@@ -19,8 +19,6 @@ class TimeLinePlayer : ActionListener {
     private val playctrl_listeners: EventListenerList
     var tick_start = 0
     var ct0: Long = 0
-
-    @JvmField
     var speed = 1.0
     var MODE = OmegaConfig.RUN_MODE
     var state = NULL
