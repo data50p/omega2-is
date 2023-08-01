@@ -164,7 +164,7 @@ open class Canvas : JPanel(), ImageObserver {
     fun drawImage(im: Image?, at: AffineTransform?, acomp: AlphaComposite?) {
 	var acomp = acomp
 	if (acomp == null) acomp =
-	    AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.0.toFloat()) else off_g2!!.composite = acomp
+		AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.0.toFloat()) else off_g2!!.composite = acomp
 	off_g2!!.drawImage(im, at, null)
 	off_g2!!.composite = AlphaComposite.SrcOver
     }
@@ -191,8 +191,8 @@ open class Canvas : JPanel(), ImageObserver {
 	val offs_x = offsX
 	val offs_y = offsY
 	val gg = graphics.create(
-	    x + offs_x.toInt(),
-	    y + offs_y.toInt(), w, h
+		x + offs_x.toInt(),
+		y + offs_y.toInt(), w, h
 	) as Graphics2D
 	gg.drawImage(off_im, -x, -y, this) // Rxy
 	gg.dispose()
@@ -244,10 +244,10 @@ open class Canvas : JPanel(), ImageObserver {
 	    if (trace_wing < wings.size) {
 		if (trace_wing_drag) g2.color = Color.red else g2.color = Color.yellow
 		g2.drawRect(
-		    getWing(trace_wing).pos.getX().toInt() + trace_wing_dx,
-		    getWing(trace_wing).pos.getY().toInt() + trace_wing_dy,
-		    (getWing(trace_wing).scale * getWing(trace_wing).im.getWidth(null)).toInt(),
-		    (getWing(trace_wing).scale * getWing(trace_wing).im.getHeight(null)).toInt()
+			getWing(trace_wing).pos.getX().toInt() + trace_wing_dx,
+			getWing(trace_wing).pos.getY().toInt() + trace_wing_dy,
+			(getWing(trace_wing).scale * getWing(trace_wing).im.getWidth(null)).toInt(),
+			(getWing(trace_wing).scale * getWing(trace_wing).im.getHeight(null)).toInt()
 		)
 	    }
 	}

@@ -25,11 +25,11 @@ object SundryUtils {
 	val free2 = Runtime.getRuntime().freeMemory()
 	val ctg = System.currentTimeMillis()
 	Log.getLogger().info(
-	    "count (max total free) used -> used [freed] gc: " + count + " (" + Runtime.getRuntime()
-		.maxMemory() * 0.000001 + ' ' + Runtime.getRuntime()
-		.totalMemory() * 0.000001 + ' ' + free2 * 0.000001 + ") " + (Runtime.getRuntime()
-		.totalMemory() - free1) * 0.000001 + " -> " + ((Runtime.getRuntime().totalMemory() - free2)
-		    * 0.000001) + " [" + (free1 - free2) * 0.000001 + "] " + (ctg - ct) + " ms " + msg
+		"count (max total free) used -> used [freed] gc: " + count + " (" + Runtime.getRuntime()
+			.maxMemory() * 0.000001 + ' ' + Runtime.getRuntime()
+			.totalMemory() * 0.000001 + ' ' + free2 * 0.000001 + ") " + (Runtime.getRuntime()
+			.totalMemory() - free1) * 0.000001 + " -> " + ((Runtime.getRuntime().totalMemory() - free2)
+			* 0.000001) + " [" + (free1 - free2) * 0.000001 + "] " + (ctg - ct) + " ms " + msg
 	)
     }
 
@@ -96,8 +96,8 @@ object SundryUtils {
 	    val stack = ex.stackTrace
 	    val i = 1
 	    Log.getLogger().info(
-		"STACK: " + i + "java:" + stack[i].lineNumber + " = jsp+" + (stack[i].lineNumber - jsp_line) + " jsp:"
-			+ jsp_line + " file: " + stack[i].fileName
+		    "STACK: " + i + "java:" + stack[i].lineNumber + " = jsp+" + (stack[i].lineNumber - jsp_line) + " jsp:"
+			    + jsp_line + " file: " + stack[i].fileName
 	    )
 	}
     }
@@ -318,17 +318,17 @@ object SundryUtils {
 
     fun crypt(s: String): String {
 	return mix(
-	    s,
-	    xr35e + jbvg4 + oef62xc + rete4 + tetge5 + mv34,
-	    sklvnj34 + opiwehfg + nmdb + a + nmsovf + q1 + djlfb53 + svo
+		s,
+		xr35e + jbvg4 + oef62xc + rete4 + tetge5 + mv34,
+		sklvnj34 + opiwehfg + nmdb + a + nmsovf + q1 + djlfb53 + svo
 	)
     }
 
     fun decrypt(s: String): String {
 	return mix(
-	    s,
-	    sklvnj34 + opiwehfg + nmdb + a + nmsovf + q1 + djlfb53 + svo,
-	    xr35e + jbvg4 + oef62xc + rete4 + tetge5 + mv34
+		s,
+		sklvnj34 + opiwehfg + nmdb + a + nmsovf + q1 + djlfb53 + svo,
+		xr35e + jbvg4 + oef62xc + rete4 + tetge5 + mv34
 	)
     }
 
@@ -481,8 +481,8 @@ object SundryUtils {
 		return if (clsc.isArray) {
 		    val oa = o as Array<Any>
 		    for (i in oa.indices) s.append(
-			(if (i == 0) "" else delim) +
-				"[" + arrToString(oa[i]) + "]"
+			    (if (i == 0) "" else delim) +
+				    "[" + arrToString(oa[i]) + "]"
 		    )
 		    s.toString()
 		} else {
@@ -494,11 +494,11 @@ object SundryUtils {
 	    if (clsc.name == "int") {
 		val ia = o as IntArray
 		for (i in ia.indices) if (w == 0) s.append((if (i == 0) "" else delim) + ia[i]) else s.append(
-		    (if (i == 0) "" else delim) + pL(
-			ia[i],
-			w,
-			pad
-		    )
+			(if (i == 0) "" else delim) + pL(
+				ia[i],
+				w,
+				pad
+			)
 		)
 		return s.toString()
 	    }

@@ -37,8 +37,8 @@ class Target {
 
     inner class T_Item//	    this.tg = tg; //	T_Item(Target tg, int ord, String type, String tid, String lid) {
     internal constructor(//	Target tg;
-	var ord: Int, var type: String?, var tid: String?, //fillVarHere(ord, lid);
-	var lID4TgOrNull_KeepVar: String?
+	    var ord: Int, var type: String?, var tid: String?, //fillVarHere(ord, lid);
+	    var lID4TgOrNull_KeepVar: String?
     ) {
 	var item: Item? = null
 
@@ -108,11 +108,11 @@ class Target {
 
     @Throws(Exception::class)
     fun loadCompositeFromEl(
-	el: Element?,
-	test_txt: String,
-	story_hm: HashMap<String?, SentenceList?>?,
-	dummy: Boolean,
-	mix: Boolean
+	    el: Element?,
+	    test_txt: String,
+	    story_hm: HashMap<String?, SentenceList?>?,
+	    dummy: Boolean,
+	    mix: Boolean
     ) {
 	iam_composite = true
 	iam_dummy = dummy
@@ -169,11 +169,11 @@ class Target {
 
     @Throws(Exception::class)
     fun loadFromEl(
-	el: Element?,
-	test_txt: String?,
-	story_hm: HashMap<String?, SentenceList?>?,
-	dummy: Boolean,
-	mix: Boolean
+	    el: Element?,
+	    test_txt: String?,
+	    story_hm: HashMap<String?, SentenceList?>?,
+	    dummy: Boolean,
+	    mix: Boolean
     ) {
 	iam_composite = false
 	iam_dummy = dummy
@@ -488,7 +488,7 @@ class Target {
 	    val ix = actionIx
 	    return if (ix >= 0) {
 		val ss = fillActionLid(ix, getT_Item(ix)!!.item)
-		    ?: return null
+			?: return null
 		val sa = split(ss, ",")
 		sa[0]
 	    } else null
@@ -1469,7 +1469,7 @@ class Target {
 	val fnNEx = fn.substring(0, ix) + "-"
 	val dir = fBase.parentFile
 	val files = dir.listFiles()
-	if (files != null ) {
+	if (files != null) {
 	    for (f in files) {
 		if (f.name.startsWith(fnNEx)) {
 		    val fn2 = f.path
@@ -1484,11 +1484,11 @@ class Target {
 	val sndA = tg2.allSounds
 	val snd = a2s(sndA)
 	return arrayOf(
-	    tg2.allText,
-	    a2s(tg2.all_Lid_Item),
-	    tg2.getActionFileName(99),  // all
-	    snd,
-	    a2s(tg2.all_Lid_Target)
+		tg2.allText,
+		a2s(tg2.all_Lid_Item),
+		tg2.getActionFileName(99),  // all
+		snd,
+		a2s(tg2.all_Lid_Target)
 	)
     }
 
@@ -1603,65 +1603,65 @@ class Target {
 							tg2.pickItemAtEx(A_getX(it_ent5, i5), A_getY(it_ent5, i5), 5)
 							val s = tg2.allText
 							if (eq(txt, s)) return arrayOf(
-							    intArrayOf(
-								i0,
-								A_getX(it_ent0, i0),
-								A_getY(it_ent0, i0)
-							    ),
-							    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
-							    intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
-							    intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
-							    intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4)),
-							    intArrayOf(i5, A_getX(it_ent5, i5), A_getY(it_ent5, i5))
+								intArrayOf(
+									i0,
+									A_getX(it_ent0, i0),
+									A_getY(it_ent0, i0)
+								),
+								intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+								intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+								intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
+								intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4)),
+								intArrayOf(i5, A_getX(it_ent5, i5), A_getY(it_ent5, i5))
 							)
 						    }
 						} else {
 						    val s = tg2.allText
 						    if (eq(txt, s)) return arrayOf(
-							intArrayOf(
-							    i0,
-							    A_getX(it_ent0, i0),
-							    A_getY(it_ent0, i0)
-							),
-							intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
-							intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
-							intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
-							intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4))
+							    intArrayOf(
+								    i0,
+								    A_getX(it_ent0, i0),
+								    A_getY(it_ent0, i0)
+							    ),
+							    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+							    intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+							    intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3)),
+							    intArrayOf(i4, A_getX(it_ent4, i4), A_getY(it_ent4, i4))
 						    )
 						}
 					    }
 					} else {
 					    val s = tg2.allText
 					    if (eq(txt, s)) return arrayOf(
-						intArrayOf(
-						    i0,
-						    A_getX(it_ent0, i0),
-						    A_getY(it_ent0, i0)
-						),
-						intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
-						intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
-						intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3))
+						    intArrayOf(
+							    i0,
+							    A_getX(it_ent0, i0),
+							    A_getY(it_ent0, i0)
+						    ),
+						    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+						    intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2)),
+						    intArrayOf(i3, A_getX(it_ent3, i3), A_getY(it_ent3, i3))
 					    )
 					}
 				    }
 				} else {
 				    val s = tg2.allText
 				    if (eq(txt, s)) return arrayOf(
-					intArrayOf(
-					    i0,
-					    A_getX(it_ent0, i0),
-					    A_getY(it_ent0, i0)
-					),
-					intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
-					intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2))
+					    intArrayOf(
+						    i0,
+						    A_getX(it_ent0, i0),
+						    A_getY(it_ent0, i0)
+					    ),
+					    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1)),
+					    intArrayOf(i2, A_getX(it_ent2, i2), A_getY(it_ent2, i2))
 				    )
 				}
 			    }
 			} else {
 			    val s = tg2.allText
 			    if (eq(txt, s)) return arrayOf(
-				intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)),
-				intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1))
+				    intArrayOf(i0, A_getX(it_ent0, i0), A_getY(it_ent0, i0)),
+				    intArrayOf(i1, A_getX(it_ent1, i1), A_getY(it_ent1, i1))
 			    )
 			}
 		    }
@@ -1729,8 +1729,8 @@ class Target {
 	get() {
 	    var s = story_next ?: return null
 	    s = s.replace(
-		"lesson-[a-zA-Z]*/active".toRegex(),
-		omegaAssets("lesson-" + lessonLang + "/active")!!
+		    "lesson-[a-zA-Z]*/active".toRegex(),
+		    omegaAssets("lesson-" + lessonLang + "/active")!!
 	    ) // LESSON-DIR-A
 	    return s
 	}

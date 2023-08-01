@@ -83,9 +83,9 @@ class TimeMarker : Serializable {
 
     fun doAllAction(tea: TriggerEventAction, dry: Boolean) {
 	if (t_event != null) for (i in t_event!!.indices) if (t_event!![i] != null) if (t_event!![i]!!.is_on) if (t_event!![i]!!.cmd.length > 0) tea.doAction(
-	    t_event!![i],
-	    this,
-	    dry
+		t_event!![i],
+		this,
+		dry
 	)
     }
 
@@ -150,13 +150,13 @@ class TimeMarker : Serializable {
 	const val TRIGGER = 't'
 	const val TIMELINE = 'T'
 	val typeString = arrayOf(
-	    "{Begin",
-	    "}End",
-	    "[Start",
-	    "]Stop",
-	    "^TimeSync",
-	    "tTrigger",
-	    "TTimeLine"
+		"{Begin",
+		"}End",
+		"[Start",
+		"]Stop",
+		"^TimeSync",
+		"tTrigger",
+		"TTimeLine"
 	)
 
 	var comparator: Comparator<TimeMarker>? = null

@@ -31,7 +31,7 @@ class LiuMovieManager(var window: Window, le_canvas: LessonCanvas) : Manager("Li
     fun prepare(prefix: String, movieNameBase: String, init: Boolean): Boolean {
 	if (!isLIU_Mode()) return false
 	OmegaContext.sout_log.getLogger()
-	    .info("LiuMovieManager:: prepare play movie: (~A) $prefix $movieNameBase $init")
+		.info("LiuMovieManager:: prepare play movie: (~A) $prefix $movieNameBase $init")
 	return if (init) prepare(prefix + movieNameBase) else prepareAgain(prefix + movieNameBase)
     }
 

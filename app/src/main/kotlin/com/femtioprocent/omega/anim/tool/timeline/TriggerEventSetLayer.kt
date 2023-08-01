@@ -24,18 +24,18 @@ class TriggerEventSetLayer : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-	    "Behind",
-	    "Back",
-	    "Middle",
-	    "Front",
-	    "Top"
+		"Behind",
+		"Back",
+		"Middle",
+		"Front",
+		"Top"
 	)
 	var st_selections_human = arrayOf(
-	    t("Behind all"),
-	    t("Back"),
-	    t("Middle"),
-	    t("Front"),
-	    t("On Top")
+		t("Behind all"),
+		t("Back"),
+		t("Middle"),
+		t("Front"),
+		t("On Top")
 	)
 
 	fun getIx(s: String?): Int {

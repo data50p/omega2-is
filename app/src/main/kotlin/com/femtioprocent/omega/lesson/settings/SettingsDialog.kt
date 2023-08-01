@@ -71,8 +71,8 @@ open class SettingsDialog(title: String?) : JDialog(ApplContext.top_frame, title
 	//log	OmegaContext.sout_log.getLogger().info(":--: " + "" + cmd);
 	if ("OK" == cmd) {
 	    if (save() == false) JOptionPane.showMessageDialog(
-		ApplContext.top_frame,
-		"Can't save"
+		    ApplContext.top_frame,
+		    "Can't save"
 	    )
 	    isVisible = false
 	}

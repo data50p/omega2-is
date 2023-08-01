@@ -111,13 +111,13 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     var frame_state = FrameState()
 
     inner class ImageArea internal constructor(
-	txt: String?,
-	var ord: Int,
-	var im_n: String,
-	var im_enter_n: String,
-	var w: Int,
-	var h: Int,
-	var o: Any
+	    txt: String?,
+	    var ord: Int,
+	    var im_n: String,
+	    var im_enter_n: String,
+	    var w: Int,
+	    var h: Int,
+	    var o: Any
     ) : JLabel(txt) {
 	var im_ic: ImageIcon? = null
 	var im_enter_ic: ImageIcon? = null
@@ -181,10 +181,10 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
 	fun createImageIcon(fn: String?, max_w: Int, max_h: Int): ImageIcon? {
 	    return createImageIcon(
-		this@BaseCanvas,
-		fn!!,
-		max_w,
-		max_h
+		    this@BaseCanvas,
+		    fn!!,
+		    max_w,
+		    max_h
 	    )
 	}
 
@@ -199,13 +199,13 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     }
 
     inner class ImageAreaJB internal constructor(
-	txt: String?,
-	var ord: Int,
-	var w: Int,
-	var h: Int,
-	dispName: String?
+	    txt: String?,
+	    var ord: Int,
+	    var w: Int,
+	    var h: Int,
+	    dispName: String?
     ) : JButton(
-	dispName ?: txt
+	    dispName ?: txt
     ), ActionListener {
 	var im_n: String? = null
 	var im_enter_n: String? = null
@@ -303,10 +303,10 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
 	fun createImageIcon(fn: String?, max_w: Int, max_h: Int): ImageIcon? {
 	    return createImageIcon(
-		this@BaseCanvas,
-		fn!!,
-		max_w,
-		max_h
+		    this@BaseCanvas,
+		    fn!!,
+		    max_w,
+		    max_h
 	    )
 	}
 
@@ -434,10 +434,10 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	    if (w == 0) w = 20
 	    if (h == 0) h = 20
 	    val imic = createImageIcon(
-		b,
-		fn,
-		w,
-		h
+		    b,
+		    fn,
+		    w,
+		    h
 	    )
 	    b.icon = imic
 	    setJBROIcon(b, fn.replace("\\.png".toRegex(), "-over.png"))
@@ -450,10 +450,10 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	val w = (b!!.width * 0.75).toInt()
 	val h = (b.height * 0.75).toInt()
 	val imic = createImageIcon(
-	    b,
-	    fn,
-	    w,
-	    h
+		b,
+		fn,
+		w,
+		h
 	)
 	if (imic != null) {
 	    b.rolloverIcon = imic
@@ -518,6 +518,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
 	fun dump() {}
     }
+
     var focus_list: CycleList? = null
 
     inner class MyButton(txt: String?) : JButton(txt) {
@@ -590,9 +591,9 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	val mb = focus_list!!.get()
 	if (mb != null) {
 	    if (b) mb.border = BorderFactory.createLineBorder(Color(0, 0, 120), 5) else mb.border =
-		BorderFactory.createLineBorder(
-		    Color(242, 80, 80), 5
-		)
+		    BorderFactory.createLineBorder(
+			    Color(242, 80, 80), 5
+		    )
 	}
     }
 
@@ -892,14 +893,14 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     fun drawBG(g2: Graphics2D) {
 	val hh = (0.23 * caH).toInt()
 	var pa = GradientPaint(
-	    0.0f, 0.0f, getColor("bg_t"),
-	    0.0f, hh.toFloat(), getColor("bg_m")
+		0.0f, 0.0f, getColor("bg_t"),
+		0.0f, hh.toFloat(), getColor("bg_m")
 	)
 	g2.paint = pa
 	g2.fill(Rectangle(0, 0, caW, hh))
 	pa = GradientPaint(
-	    0.0f, hh.toFloat(), getColor("bg_m"),
-	    0.0f, caH.toFloat(), getColor("bg_b")
+		0.0f, hh.toFloat(), getColor("bg_m"),
+		0.0f, caH.toFloat(), getColor("bg_b")
 	)
 	g2.paint = pa
 	g2.fill(Rectangle(0, hh - 1, caW, caH - hh + 1))
@@ -920,12 +921,12 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 //		    10, 10, 0, 360, 0));
 	    g2.color = Color(200, 0, 165, 255)
 	    g2.fill(
-		Arc2D.Double(
-		    ((mRect.getX() + mRect.getWidth()).toInt() + 5).toDouble(),
-		    (
-			    mRect.getY().toInt() + 20).toDouble(),
-		    10.0, 10.0, 0.0, 360.0, 0
-		)
+		    Arc2D.Double(
+			    ((mRect.getX() + mRect.getWidth()).toInt() + 5).toDouble(),
+			    (
+				    mRect.getY().toInt() + 20).toDouble(),
+			    10.0, 10.0, 0.0, 360.0, 0
+		    )
 	    )
 	}
     }
@@ -992,11 +993,11 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 			    val ca = c.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 			    for (c1 in ca) {
 				val ca2 = c1.split("#".toRegex()).dropLastWhile { it.isEmpty() }
-				    .toTypedArray()
+					.toTypedArray()
 				if (ca2.size == 2) {
 				    var rgb: Int
 				    rgb = if (ca2[1].length == 9) ca2[1].substring(3).toInt(16) else ca2[1].substring(0)
-					.toInt(16)
+					    .toInt(16)
 				    cols[ca2[0]] = Color(rgb)
 				}
 			    }
@@ -1014,8 +1015,8 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	    ex.printStackTrace()
 	    Lesson.global_skipF(true)
 	    JOptionPane.showMessageDialog(
-		ApplContext.top_frame,
-		"Can't create from file\n$ex"
+		    ApplContext.top_frame,
+		    "Can't create from file\n$ex"
 	    )
 	    Lesson.global_skipF(false)
 	    ex.printStackTrace()
@@ -1046,9 +1047,9 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	while (it.hasNext()) {
 	    val mb = it.next() as MyButton
 	    if (mb !== mbcur) mb.border = BorderFactory.createBevelBorder(BevelBorder.RAISED) else mb.border =
-		BorderFactory.createLineBorder(
-		    Color(242, 80, 80), 5
-		)
+		    BorderFactory.createLineBorder(
+			    Color(242, 80, 80), 5
+		    )
 	}
     }
 

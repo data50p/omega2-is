@@ -106,7 +106,7 @@ class FxMoviePlayer internal constructor(var winW: Int, var winH: Int) {
 	// This method is invoked on the JavaFX thread
 	this.root = Group()
 	val scene =
-	    Scene(this.root, winW.toDouble(), winH.toDouble(), javafx.scene.paint.Color(0.24, 0.44, 0.84, 0.184))
+		Scene(this.root, winW.toDouble(), winH.toDouble(), javafx.scene.paint.Color(0.24, 0.44, 0.84, 0.184))
 	this.scene = scene
 	scene.onMousePressed = EventHandler {
 	    Log.getLogger().info("Mouse pressed")
@@ -276,30 +276,30 @@ class FxMoviePlayer internal constructor(var winW: Int, var winH: Int) {
 
     private fun plotXY(x: Double, y: Double, col: javafx.scene.paint.Color): Node {
 	return plotIt(
-	    x, y,
-	    -10.0, -10.0,
-	    10.0, 10.0,
-	    col
+		x, y,
+		-10.0, -10.0,
+		10.0, 10.0,
+		col
 	)
     }
 
     private fun plotWH(x: Double, y: Double, w: Double, h: Double, col: javafx.scene.paint.Color): Node {
 	return plotIt(
-	    x + w, y + h,
-	    -20 * Math.signum(w), -20 * Math.signum(h),
-	    0 * Math.signum(w), 0 * Math.signum(h),
-	    col
+		x + w, y + h,
+		-20 * Math.signum(w), -20 * Math.signum(h),
+		0 * Math.signum(w), 0 * Math.signum(h),
+		col
 	)
     }
 
     private fun plotIt(
-	x: Double,
-	y: Double,
-	ax: Double,
-	ay: Double,
-	a2x: Double,
-	a2y: Double,
-	col: javafx.scene.paint.Color
+	    x: Double,
+	    y: Double,
+	    ax: Double,
+	    ay: Double,
+	    a2x: Double,
+	    a2y: Double,
+	    col: javafx.scene.paint.Color
     ): Node {
 	val n1 = Line(x + ax, y, x + a2x, y)
 	val n2 = Line(x, y + ay, x, y + a2y)

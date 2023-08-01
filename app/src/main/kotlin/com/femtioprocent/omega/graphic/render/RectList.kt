@@ -1,7 +1,5 @@
 package com.femtioprocent.omega.graphic.render
 
-import com.femtioprocent.omega.util.SundryUtils.argAsList
-import com.femtioprocent.omega.util.SundryUtils.flagAsMap
 import java.awt.Rectangle
 import java.awt.geom.Rectangle2D
 
@@ -50,9 +48,9 @@ class RectList internal constructor() {
 	}
 
 	fun intersect(
-	    src1: Rectangle2D,
-	    src2: Rectangle2D,
-	    dest: Rectangle2D
+		src1: Rectangle2D,
+		src2: Rectangle2D,
+		dest: Rectangle2D
 	) {
 	    val x1 = Math.max(src1.minX, src2.minX)
 	    val y1 = Math.max(src1.minY, src2.minY)

@@ -14,16 +14,16 @@ class ToolAction : AbstractAction {
     }
 
     constructor(text: String?, icons: String?, cmd: String?, texec: ToolExecute?) : super(
-	text,
-	OmegaSwingUtils.getImageIcon("toolbarButtonGraphics/" + icons + "24.gif")
+	    text,
+	    OmegaSwingUtils.getImageIcon("toolbarButtonGraphics/" + icons + "24.gif")
     ) {
 	command = cmd
 	this.texec = texec
     }
 
     constructor(text: String?, icons: String, cmd: String?, texec: ToolExecute?, _b: Boolean) : super(
-	text,
-	OmegaSwingUtils.getImageIcon("toolbarButtonGraphics/" + icons + "24.png")
+	    text,
+	    OmegaSwingUtils.getImageIcon("toolbarButtonGraphics/" + icons + "24.png")
     ) {
 	command = cmd
 	this.texec = texec

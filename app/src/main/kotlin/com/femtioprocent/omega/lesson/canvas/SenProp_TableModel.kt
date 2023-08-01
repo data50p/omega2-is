@@ -4,22 +4,22 @@ import com.femtioprocent.omega.t9n.T.Companion.t
 import javax.swing.table.AbstractTableModel
 
 class SenProp_TableModel internal constructor(
-    var sprop: SentenceProperty,
-    var sa: Array<String?>,
-    var test_member_map: Array<IntArray>
+	var sprop: SentenceProperty,
+	var sa: Array<String?>,
+	var test_member_map: Array<IntArray>
 ) : AbstractTableModel() {
     val TEST_MEM_OFFS = SentenceProperty.COL_TEST
     var hdn = arrayOf(
-	t("Sentence"),
-	t("Action File"),
-	t("Sign movie"),
-	t("Pre 1"),
-	t("Pre 2"),
-	t("Post 1"),
-	t("Post 2") //  					     T.t("<html>Test <b>Pre 1</B></html>"),
-	//  					     T.t("<html>Test <b>Pre 2</B></html>"),
-	//  					     T.t("<html>Test <b>Post 1</B></html>"),
-	//  					     T.t("<html>Test <b>Post 2</B></html>")
+	    t("Sentence"),
+	    t("Action File"),
+	    t("Sign movie"),
+	    t("Pre 1"),
+	    t("Pre 2"),
+	    t("Post 1"),
+	    t("Post 2") //  					     T.t("<html>Test <b>Pre 1</B></html>"),
+	    //  					     T.t("<html>Test <b>Pre 2</B></html>"),
+	    //  					     T.t("<html>Test <b>Post 1</B></html>"),
+	    //  					     T.t("<html>Test <b>Post 2</B></html>")
     )
 
     override fun getColumnCount(): Int {

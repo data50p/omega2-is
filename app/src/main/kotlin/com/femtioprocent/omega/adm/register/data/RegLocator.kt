@@ -60,14 +60,14 @@ class RegLocator {
 	val f = File(aRegisterFbase() + "/" + name + ".p")
 	if (f.exists()) {
 	    JOptionPane.showMessageDialog(
-		ApplContext.top_frame,
-		t("Pupil exist already")
+		    ApplContext.top_frame,
+		    t("Pupil exist already")
 	    )
 	}
 	if (f_old.exists()) {
 	    JOptionPane.showMessageDialog(
-		ApplContext.top_frame,
-		t("Pupil reinstalled")
+		    ApplContext.top_frame,
+		    t("Pupil reinstalled")
 	    )
 	    f_old.renameTo(f)
 	} else {

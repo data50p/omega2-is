@@ -16,7 +16,7 @@ import javax.swing.*
 import javax.swing.text.Document
 
 class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContext) :
-    Property_B(owner, t("Omega - Test Property")) {
+	Property_B(owner, t("Omega - Test Property")) {
     var guimap: HashMap<String?, JComponent?> = HashMap()
     fun refresh() {}
     inner class myActionListener : ActionListener {

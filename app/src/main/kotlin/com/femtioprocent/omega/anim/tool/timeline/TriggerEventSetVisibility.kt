@@ -25,34 +25,34 @@ class TriggerEventSetVisibility : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-	    "100",
-	    "0",
-	    "5",
-	    "10",
-	    "30",
-	    "50",
-	    "70",
-	    "90"
+		"100",
+		"0",
+		"5",
+		"10",
+		"30",
+		"50",
+		"70",
+		"90"
 	)
 	var st_selections_human = arrayOf(
-	    t("Visible"),
-	    t("Invisible"),
-	    t(" 5% visible"),
-	    t("10% visible"),
-	    t("30% visible"),
-	    t("50% visible"),
-	    t("70% visible"),
-	    t("90% visible")
+		t("Visible"),
+		t("Invisible"),
+		t(" 5% visible"),
+		t("10% visible"),
+		t("30% visible"),
+		t("50% visible"),
+		t("70% visible"),
+		t("90% visible")
 	)
 	var tab = intArrayOf(
-	    100,
-	    0,
-	    5,
-	    10,
-	    30,
-	    50,
-	    70,
-	    90
+		100,
+		0,
+		5,
+		10,
+		30,
+		50,
+		70,
+		90
 	)
 
 	fun getIx(sa: Array<String>, s: String?): Int {

@@ -44,8 +44,8 @@ class LessonItem(var lessonLongName: String) {
     fun getLessonFileContent(fName: String, lessonLang: String?): String? {
 	val fn = lessonFileNameBase + '/' + lessonName + "/" + fName + if (lessonLang == null) "" else "-$lessonLang"
 	return if (!omegaAssetsExist(fn)) if (lessonLang == null) null else getLessonFileContent(
-	    fName,
-	    null
+		fName,
+		null
 	) else getFileContent(fn)
     }
 

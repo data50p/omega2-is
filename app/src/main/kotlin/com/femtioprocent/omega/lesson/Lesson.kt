@@ -265,19 +265,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     private fun startMovieAndWait(
-	lmm: LiuMovieManager,
-	tgr: Rectangle,
-	bgCol: Color,
-	alphaCol: Int,
-	scale: Int,
-	mistMode: Int
+	    lmm: LiuMovieManager,
+	    tgr: Rectangle,
+	    bgCol: Color,
+	    alphaCol: Int,
+	    scale: Int,
+	    mistMode: Int
     ) {
 	mistNoMouse = true
 	le_canvas!!.setMist(mistMode, tgr, bgCol, alphaCol)
 	val mRect = lmm.start(
-	    (tgr.getX() + tgr.getWidth() / 2).toInt(),
-	    (tgr.getY() + tgr.getHeight()).toInt(),
-	    (100 / scale).toDouble()
+		(tgr.getX() + tgr.getWidth() / 2).toInt(),
+		(tgr.getY() + tgr.getHeight()).toInt(),
+		(100 / scale).toDouble()
 	)
 	le_canvas!!.signMovieRectangle = mRect
 	lmm.wait((tgr.getX() + tgr.getWidth() / 2).toInt(), (tgr.getY() + tgr.getHeight()).toInt(), 100.0 / scale)
@@ -381,24 +381,24 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 
 	fun test(
-	    mode: String,
-	    when_ct: Long,
-	    sentence: String?,
-	    answer: String,
-	    correct_words: String?,
-	    l_id_list: String?
+		mode: String,
+		when_ct: Long,
+		sentence: String?,
+		answer: String,
+		correct_words: String?,
+		l_id_list: String?
 	) {
 	    //log OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + answer);
 	    val `when` = (when_ct - started).toInt()
 	    rt!!.add(
-		TestEntry(
-		    mode,
-		    sentence!!,
-		    answer,
-		    `when`,
-		    correct_words!!,
-		    l_id_list!!
-		)
+		    TestEntry(
+			    mode,
+			    sentence!!,
+			    answer,
+			    `when`,
+			    correct_words!!,
+			    l_id_list!!
+		    )
 	    )
 	    register_log.getLogger().info("test: $mode $answer $sentence")
 	    //	    semiclose();
@@ -406,11 +406,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 
 	fun create(
-	    mode: String,
-	    when_ct: Long,
-	    sentence: String,
-	    duration: Int,
-	    l_id_list: String?
+		mode: String,
+		when_ct: Long,
+		sentence: String,
+		duration: Int,
+		l_id_list: String?
 	) {
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "PUPIL REG " + mode + ' ' + sentence + ' ' + duration);
 	    val `when` = (when_ct - started).toInt()
@@ -431,15 +431,15 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		rt!!.session_length = ct() - session_length_start
 		if (sr.save(rl.mkResultsFName(pupil.name, rt!!.mkFname(currentPupil.name)), rt!!) == false) {
 		    register_log.getLogger().info(
-			"failed saved: " + rl.mkResultsFName(
-			    pupil.name, rt!!.mkFname(
-				currentPupil.name
+			    "failed saved: " + rl.mkResultsFName(
+				    pupil.name, rt!!.mkFname(
+				    currentPupil.name
 			    )
-			)
+			    )
 		    )
 		} else {
 		    register_log.getLogger()
-			.info("saved: " + rl.mkResultsFName(pupil.name, rt!!.mkFname(currentPupil.name)))
+			    .info("saved: " + rl.mkResultsFName(pupil.name, rt!!.mkFname(currentPupil.name)))
 		}
 	    } else {
 		register_log.getLogger().info("saved: -empty-")
@@ -725,10 +725,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "###### getTestMatrix");
 	    val tmm = Array(all_sentence.size) { IntArray(4) }
 	    val map = arrayOf(
-		TM.PRE_1,
-		TM.PRE_2,
-		TM.POST_1,
-		TM.POST_2
+		    TM.PRE_1,
+		    TM.PRE_2,
+		    TM.POST_1,
+		    TM.POST_2
 	    )
 	    for (i in 0..3) {
 		val t_mode = map[i]
@@ -906,8 +906,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		getLogger().info("Found lesson: $lesson_name")
 		if (lesson_name == null) {
 		    JOptionPane.showMessageDialog(
-			ApplContext.top_frame,
-			t("Can't find lesson file")
+			    ApplContext.top_frame,
+			    t("Can't find lesson file")
 		    )
 		    return
 		}
@@ -1002,28 +1002,28 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    OmegaContext.sout_log.getLogger().info(":--: getRslt $register")
 	    if (register != null && register!!.has_shown) {
 		OmegaContext.sout_log.getLogger()
-		    .info(":--: " + "2006: register " + register + ' ' + if (register != null) register!!.has_shown else false)
+			.info(":--: " + "2006: register " + register + ' ' + if (register != null) register!!.has_shown else false)
 		return null
 	    }
 	    return try {
 		MsgItem(
-		    'S',
-		    t("Test Statistics"),
-		    t("Correct") + ": "
-			    + seq!!.cnt_sent_correct + " "
-			    + fixSP(t("sentence "), t("sentences"), seq!!.cnt_sent_correct)
-			    + " ("
-			    + seq!!.cnt_word_correct + " "
-			    + fixSP(t("word"), t("words"), seq!!.cnt_word_correct) + ")",
-		    t("Wrong") + ": "
-			    + seq!!.cnt_sent_wrong + " "
-			    + fixSP(t("sentence "), t("sentences"), seq!!.cnt_sent_wrong)
-			    + " ("
-			    + seq!!.cnt_word_wrong + " "
-			    + fixSP(t("word"), t("words"), seq!!.cnt_word_wrong) + ")",
-		    currentPupil.imageName,
-		    currentPupil.imageNameWrongAnswer,
-		    null
+			'S',
+			t("Test Statistics"),
+			t("Correct") + ": "
+				+ seq!!.cnt_sent_correct + " "
+				+ fixSP(t("sentence "), t("sentences"), seq!!.cnt_sent_correct)
+				+ " ("
+				+ seq!!.cnt_word_correct + " "
+				+ fixSP(t("word"), t("words"), seq!!.cnt_word_correct) + ")",
+			t("Wrong") + ": "
+				+ seq!!.cnt_sent_wrong + " "
+				+ fixSP(t("sentence "), t("sentences"), seq!!.cnt_sent_wrong)
+				+ " ("
+				+ seq!!.cnt_word_wrong + " "
+				+ fixSP(t("word"), t("words"), seq!!.cnt_word_wrong) + ")",
+			currentPupil.imageName,
+			currentPupil.imageNameWrongAnswer,
+			null
 		)
 	    } catch (ex: Exception) {
 		null
@@ -1111,31 +1111,31 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
 	private fun act_pupil_test_t() {
 	    val choise = arrayOf(
-		t("Pre test 1"),
-		t("Pre test 2"),
-		t("Post test 1"),
-		t("Post test 2")
+		    t("Pre test 1"),
+		    t("Pre test 2"),
+		    t("Post test 1"),
+		    t("Post test 2")
 	    )
 	    global_skipF(true)
 	    val a = JOptionPane.showOptionDialog(
-		ApplContext.top_frame,
-		t("What kind of test?"),
-		t("Omega - Test mode"),
-		JOptionPane.OK_OPTION,
-		JOptionPane.QUESTION_MESSAGE,
-		null,
-		choise,
-		choise[0]
+		    ApplContext.top_frame,
+		    t("What kind of test?"),
+		    t("Omega - Test mode"),
+		    JOptionPane.OK_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    choise,
+		    choise[0]
 	    )
 	    global_skipF(false)
 	    if (a == JOptionPane.CLOSED_OPTION) {
 		return
 	    }
 	    val choise2 = arrayOf(
-		"pre_1",
-		"pre_2",
-		"post_1",
-		"post_2"
+		    "pre_1",
+		    "pre_2",
+		    "post_1",
+		    "post_2"
 	    )
 	    prepareTest(choise2[a])
 	    //			OmegaContext.sout_log.getLogger().info(":--: " + "choosen test " + a + ' ' + choise[a]);
@@ -1213,7 +1213,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    val pupil_lang: String? = currentPupil.getStringNo0("languageSuffix", tryLessonLanguages(T.lang))
 	    OmegaContext.lesson_log.getLogger()
-		.info("Retr pupil_lang: " + pupil_lang + ' ' + tryLessonLanguages(T.lang) + ' ' + T.lang)
+		    .info("Retr pupil_lang: " + pupil_lang + ' ' + tryLessonLanguages(T.lang) + ' ' + T.lang)
 	    OmegaContext.lessonLang = pupil_lang!!
 	}
 
@@ -1252,8 +1252,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		ex.printStackTrace()
 		global_skipF(true)
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame,
-		    t("Can't find pupil result data")
+			ApplContext.top_frame,
+			t("Can't find pupil result data")
 		)
 		global_skipF(false)
 	    } finally {
@@ -1544,7 +1544,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     var current_card: String? = null
     private fun card_show(name: String?, id: Int = 0) {
 	OmegaContext.sout_log.getLogger()
-	    .info(":--: " + "**************** change " + current_card + " > " + id + ' ' + Date() + ' ' + name)
+		.info(":--: " + "**************** change " + current_card + " > " + id + ' ' + Date() + ' ' + name)
 	if (name == "anim1") {
 	}
 	if (current_card != null) {
@@ -2084,8 +2084,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    ex.printStackTrace()
 		    global_skipF(true)
 		    JOptionPane.showMessageDialog(
-			ApplContext.top_frame,
-			t("File") + ' ' + fullname + ' ' + t("not saved") + '.'
+			    ApplContext.top_frame,
+			    t("File") + ' ' + fullname + ' ' + t("not saved") + '.'
 		    )
 		    global_skipF(false)
 		    OmegaContext.sout_log.getLogger().info(":--: $ex")
@@ -2121,8 +2121,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			} else {
 			    global_skipF(true)
 			    JOptionPane.showMessageDialog(
-				ApplContext.top_frame,
-				t("Can't find any saved story")
+				    ApplContext.top_frame,
+				    t("Can't find any saved story")
 			    )
 			    global_skipF(false)
 			}
@@ -2220,7 +2220,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    //	    audio_prefetch.prefetchAny(fn);
 	    var dummy = false
 	    if (current_test_mode == TM.POST_1
-		|| current_test_mode == TM.POST_2
+		    || current_test_mode == TM.POST_2
 	    ) {
 		dummy = true
 	    }
@@ -2245,8 +2245,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    if (test_txt == null) {
 			global_skipF(true)
 			JOptionPane.showMessageDialog(
-			    ApplContext.top_frame,
-			    t("Can't find any test text")
+				ApplContext.top_frame,
+				t("Can't find any test text")
 			)
 			global_skipF(false)
 			card_show("main", 0)
@@ -2281,8 +2281,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else {
 		global_skipF(true)
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame, t("Can't load lessonfile ")
-			    + fn
+			ApplContext.top_frame, t("Can't load lessonfile ")
+			+ fn
 		)
 		global_skipF(false)
 	    }
@@ -2293,9 +2293,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    global_skipF(true)
 	    if (fn != "new.omega_lesson") {
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame,
-		    t("Error while loading lesson: \"")
-			    + fn + "\""
+			ApplContext.top_frame,
+			t("Error while loading lesson: \"")
+				+ fn + "\""
 		)
 	    }
 	    global_skipF(false)
@@ -2314,8 +2314,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    if (full_test_txt == null) {
 		global_skipF(true)
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame,
-		    t("Test text empty (null)")
+			ApplContext.top_frame,
+			t("Test text empty (null)")
 		)
 		global_skipF(false)
 		card_show("main", 4)
@@ -2329,8 +2329,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		ex.printStackTrace()
 		global_skipF(true)
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame,
-		    t("Can't find test test ") + test_txt
+			ApplContext.top_frame,
+			t("Can't find test test ") + test_txt
 		)
 		global_skipF(false)
 		card_show("main", 4)
@@ -2345,7 +2345,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		} else {
 		    for (s in allCorrect) {
 			val test_index1 = le_canvas!!.target!!.getAllTargetCombinationsIndexes(
-			    s
+				s
 			)
 			test_index.add(test_index1)
 		    }
@@ -2354,8 +2354,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		if (test_index.size == 0) {
 		    global_skipF(true)
 		    JOptionPane.showMessageDialog(
-			ApplContext.top_frame,
-			t("Can't find sentence ") + test_txt
+			    ApplContext.top_frame,
+			    t("Can't find sentence ") + test_txt
 		    )
 		    global_skipF(false)
 		    card_show("main", 3)
@@ -2366,8 +2366,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else {
 		global_skipF(true)
 		JOptionPane.showMessageDialog(
-		    ApplContext.top_frame,
-		    t("Can't run test ") + current_test_mode
+			ApplContext.top_frame,
+			t("Can't run test ") + current_test_mode
 		)
 		global_skipF(false)
 		card_show("main", 4)
@@ -2402,10 +2402,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			if (tg_ix == -1) {
 			    if (register != null) {
 				register!!.word(
-				    ":again",
-				    exec_hbox_time,
-				    hBox.item!!.text,
-				    hBox.item!!.it_ent!!.tid
+					":again",
+					exec_hbox_time,
+					hBox.item!!.text,
+					hBox.item!!.it_ent!!.tid
 				)
 			    }
 			    le_canvas!!.renderTg()
@@ -2415,13 +2415,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 				val next_i_x = tg.findEntryIxMatchTargetIx(tg_ix)
 				for (test_index1 in test_index!!) {
 				    OmegaContext.sout_log.getLogger()
-					.info(":--: " + "!!! using test index: " + a2s(test_index) + ' ' + tg_ix)
+					    .info(":--: " + "!!! using test index: " + a2s(test_index) + ' ' + tg_ix)
 				    val next_i_y = test_index1[tg_ix][0]
 				    val next_i_x_ = test_index1[tg_ix][1]
 				    val next_i_y_ = test_index1[tg_ix][2]
 				    // next 0 8    i_ 1 0
 				    OmegaContext.sout_log.getLogger()
-					.info(":--: HERE:  $i_x $i_y    next $next_i_x $next_i_y   next_  $next_i_x_ $next_i_y_")
+					    .info(":--: HERE:  $i_x $i_y    next $next_i_x $next_i_y   next_  $next_i_x_ $next_i_y_")
 				    if (next_i_x_ == i_x && next_i_y_ == i_y) {
 					was_wrong = false
 				    } else {
@@ -2430,22 +2430,22 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 				}
 			    }
 			    val itm = tg.pickItemAt(
-				i_x,
-				i_y,
-				tg_ix,
-				current_test_mode_group != TMG.CREATE
+				    i_x,
+				    i_y,
+				    tg_ix,
+				    current_test_mode_group != TMG.CREATE
 			    )
 			    if (itm == null) {
 				global_skipF(true)
 				JOptionPane.showMessageDialog(
-				    ApplContext.top_frame,
-				    """Internal error when picking
+					ApplContext.top_frame,
+					"""Internal error when picking
 item pos (xy)$i_x $i_y
 target pos $tg_ix"""
 				)
 				global_skipF(false)
 				OmegaContext.sout_log.getLogger().info(
-				    """:--: Internal error when picking
+					""":--: Internal error when picking
 item pos (xy)$i_x $i_y
 target pos $tg_ix"""
 				)
@@ -2455,29 +2455,29 @@ target pos $tg_ix"""
 				if (current_test_mode == TM.CREATE) {
 				    if (register != null) {
 					register!!.word(
-					    "create:build",
-					    exec_hbox_time,
-					    t_word,
-					    tg.getTidAt(tg_ix)
+						"create:build",
+						exec_hbox_time,
+						t_word,
+						tg.getTidAt(tg_ix)
 					)
 				    }
 				} else {
 				    if (register != null) {
 					if (was_wrong) {
 					    register!!.word(
-						"test:build:wrong",
-						exec_hbox_time,
-						t_word,
-						hBox.item!!.entryTid
+						    "test:build:wrong",
+						    exec_hbox_time,
+						    t_word,
+						    hBox.item!!.entryTid
 					    )
 					    seq!!.cnt_word_wrong++
 					    seq!!.cnt_wordlast_wrong++
 					} else {
 					    register!!.word(
-						"test:build:OK",
-						exec_hbox_time,
-						t_word,
-						hBox.item!!.entryTid
+						    "test:build:OK",
+						    exec_hbox_time,
+						    t_word,
+						    hBox.item!!.entryTid
 					    ) // tg.getTidAt(tg_ix));
 					    seq!!.cnt_word_correct++
 					    seq!!.cnt_wordlast_correct++
@@ -2516,10 +2516,10 @@ target pos $tg_ix"""
 					for (i in sndA.indices) {
 					    val s = sndA[i]
 					    aplayerA[i] = createAPlayer(
-						currentPupil.getStringNo0("languageSuffix", null),
-						s,
-						null,
-						"Box$i"
+						    currentPupil.getStringNo0("languageSuffix", null),
+						    s,
+						    null,
+						    "Box$i"
 					    )
 					}
 					//				    waitBoxPlay();
@@ -2584,11 +2584,11 @@ target pos $tg_ix"""
 					val l_id_list = tg.all_Tid_Item
 					if (register != null) {
 					    register!!.create(
-						":correct",
-						exec_hbox_time,
-						tg.allText,
-						1,
-						l_id_list
+						    ":correct",
+						    exec_hbox_time,
+						    tg.allText,
+						    1,
+						    l_id_list
 					    )
 					}
 					val do_repeat_whole = tg.get_howManyT_Items() > 1
@@ -2643,28 +2643,28 @@ target pos $tg_ix"""
 					    }
 					}
 					OmegaContext.sout_log.getLogger().info(
-					    "TestEval: " + "" + correct_text + " <- " + allCorrect + " -> " + correctBool + " | " + all_text.equals(
-						correct_text,
-						ignoreCase = true
-					    )
+						"TestEval: " + "" + correct_text + " <- " + allCorrect + " -> " + correctBool + " | " + all_text.equals(
+							correct_text,
+							ignoreCase = true
+						)
 					)
 					if (correctBool || all_text.equals(correct_text, ignoreCase = true)) {
 					    seq!!.cnt_sent_correct++
 					    if (register != null) {
 						register!!.test(
-						    ":correct",
-						    exec_hbox_time,
-						    seq!!.getTestText(current_test_mode, false),
-						    tg.allText,
-						    seq!!.getStat(true),
-						    tg.all_Tid_Item
+							":correct",
+							exec_hbox_time,
+							seq!!.getTestText(current_test_mode, false),
+							tg.allText,
+							seq!!.getStat(true),
+							tg.all_Tid_Item
 						)
 					    }
 					    var do_prepare = false
 					    if (currentPupil.getBool(
-						    "movie_on",
-						    false
-						) || currentPupil.getBool("sign_movie_on", false)
+							    "movie_on",
+							    false
+						    ) || currentPupil.getBool("sign_movie_on", false)
 					    ) {
 						try {
 						    var do_it = false
@@ -2678,13 +2678,13 @@ target pos $tg_ix"""
 						    //						OmegaContext.sout_log.getLogger().info(":--: " + "+++++ do_it " + do_it);
 						    if (do_it && feedback_movie == null) {
 							feedback_movie =
-							    FeedBackMovie(currentPupil.getBool("sign_movie_on", false))
+								FeedBackMovie(currentPupil.getBool("sign_movie_on", false))
 							val mn = currentPupil.getString(
-							    if (currentPupil.getBool(
-								    "sign_movie_on",
-								    false
-								)
-							    ) "sign_movie" else "movie", null
+								if (currentPupil.getBool(
+										"sign_movie_on",
+										false
+									)
+								) "sign_movie" else "movie", null
 							)
 							feedback_movie!!.prepare(mn, null)
 						    }
@@ -2693,7 +2693,7 @@ target pos $tg_ix"""
 							    val m_pan = feedback_movie!!.canvas
 							    m_pan!!.layout = null
 							    m_pan.background =
-								omega_settings_dialog.feedback_movie_background!!.color
+								    omega_settings_dialog.feedback_movie_background!!.color
 							    val v_w = feedback_movie!!.mp!!.vw //getW();
 							    val v_h = feedback_movie!!.mp!!.vh //getH();
 							    var asp = feedback_movie!!.mp!!.aspect
@@ -2716,23 +2716,23 @@ target pos $tg_ix"""
 							    val o_h = ((c_h - nhhh) / 2)
 							    feedback_movie!!.mp!!.setSize(nwww, nhhh)
 							    feedback_movie!!.mp!!.setLocation(
-								o_w,
-								(o_h * 0.851415926535897932384626).toInt()
+								    o_w,
+								    (o_h * 0.851415926535897932384626).toInt()
 							    )
 							    OmegaContext.lesson_log.getLogger().warning(
-								"movie feedback size: "
-									+ v_w + ' '
-									+ v_h + ' '
-									+ c_w + ' '
-									+ c_h + ' '
-									+ wwd + ' '
-									+ hhd + ' '
-									+ www + ' '
-									+ hhh + ' '
-									+ o_w + ' '
-									+ o_h + ' '
-									+ asp
-									+ ""
+								    "movie feedback size: "
+									    + v_w + ' '
+									    + v_h + ' '
+									    + c_w + ' '
+									    + c_h + ' '
+									    + wwd + ' '
+									    + hhd + ' '
+									    + www + ' '
+									    + hhh + ' '
+									    + o_w + ' '
+									    + o_h + ' '
+									    + asp
+									    + ""
 							    )
 							    //  1 1 1445 1026 1176.460138443725 835.3274062583127 3 3 721 511
 							    m_pan.isVisible = true
@@ -2749,7 +2749,7 @@ target pos $tg_ix"""
 							    do_prepare = true
 							} catch (ex: Exception) {
 							    OmegaContext.lesson_log.getLogger()
-								.warning("movie feedback failed: $ex")
+								    .warning("movie feedback failed: $ex")
 							}
 						    }
 						} finally {
@@ -2761,16 +2761,16 @@ target pos $tg_ix"""
 						val i_b = currentPupil.getBool("image_on", true)
 						val v_b = currentPupil.getBool("speech_on", false)
 						val msgitm = MsgItem(
-						    'R',
-						    t("Right answer"),
-						    if (t_b) currentPupil.getString(
-							"text",
-							t("Correct answer")
-						    ) else "",
-						    "",
-						    if (i_b) currentPupil.imageName else null,
-						    null,
-						    ""
+							'R',
+							t("Right answer"),
+							if (t_b) currentPupil.getString(
+								"text",
+								t("Correct answer")
+							) else "",
+							"",
+							if (i_b) currentPupil.imageName else null,
+							null,
+							""
 						)
 						if (v_b) {
 						    val speech = currentPupil.getString("speech", "")
@@ -2803,12 +2803,12 @@ target pos $tg_ix"""
 					    seq!!.cnt_sent_wrong++
 					    if (register != null) {
 						register!!.test(
-						    ":wrong",
-						    exec_hbox_time,
-						    seq!!.getTestText(current_test_mode, false),
-						    tg.allText,
-						    seq!!.getStat(false),
-						    tg.all_Tid_Item
+							":wrong",
+							exec_hbox_time,
+							seq!!.getTestText(current_test_mode, false),
+							tg.allText,
+							seq!!.getStat(false),
+							tg.all_Tid_Item
 						)
 					    }
 					    val t_b = currentPupil.getBool("text_on", true)
@@ -2825,7 +2825,7 @@ target pos $tg_ix"""
 						    val m_pan = feedback_movie!!.canvas
 						    m_pan!!.layout = null
 						    m_pan.background =
-							omega_settings_dialog.feedback_movie_background!!.color
+							    omega_settings_dialog.feedback_movie_background!!.color
 						    val v_w = feedback_movie!!.w
 						    val v_h = feedback_movie!!.h
 						    val c_w = card_panel!!.width
@@ -2840,8 +2840,8 @@ target pos $tg_ix"""
 						    val hhh = (ffd * v_h).toInt()
 						    feedback_movie!!.mp!!.setSize(www, hhh)
 						    feedback_movie!!.mp!!.setLocation(
-							((c_w - www) / 2),
-							(((c_h - hhh) / 2) * 0.851415926535897932384626).toInt()
+							    ((c_w - www) / 2),
+							    (((c_h - hhh) / 2) * 0.851415926535897932384626).toInt()
 						    )
 						    m_pan.isVisible = true
 						    card_panel!!.add(m_pan, "feedback_movie")
@@ -2855,17 +2855,17 @@ target pos $tg_ix"""
 						    le_canvas!!.showMsg(null)
 						} catch (ex: Exception) {
 						    OmegaContext.lesson_log.getLogger()
-							.warning("movie feedback failed: $ex")
+							    .warning("movie feedback failed: $ex")
 						}
 					    } else {
 						val msgitm = MsgItem(
-						    'W',
-						    t("Sorry, wrong answer"),
-						    (if (allCorrect.size == 0) correct_text else allCorrect.toString())!!,  //correct_text,
-						    "",
-						    if (i_b) currentPupil.imageNameWrongAnswer else null,
-						    null,
-						    t("Correct answer is" + (if (allCorrect.size == 0) "" else " one of") + " :")
+							'W',
+							t("Sorry, wrong answer"),
+							(if (allCorrect.size == 0) correct_text else allCorrect.toString())!!,  //correct_text,
+							"",
+							if (i_b) currentPupil.imageNameWrongAnswer else null,
+							null,
+							t("Correct answer is" + (if (allCorrect.size == 0) "" else " one of") + " :")
 						)
 						if (t_b || i_b) {
 						    mistNoMouse = false
@@ -2980,12 +2980,12 @@ target pos $tg_ix"""
 	    val sound_list = tg.all_Sound_Item // sound,sound...
 	    val pathA = tg.all_Lid_Target
 	    lesson_log.getLogger().info(
-		"ANIMDATA is actA="
-			+ a2s(actA) + " actTextA="
-			+ a2s(actTextA) + " pathA="
-			+ a2s(pathA) + " sound="
-			+ sound_list + " action_A="
-			+ a2s(action_sa)
+		    "ANIMDATA is actA="
+			    + a2s(actA) + " actTextA="
+			    + a2s(actTextA) + " pathA="
+			    + a2s(pathA) + " sound="
+			    + sound_list + " action_A="
+			    + a2s(action_sa)
 	    )
 	    if (action == null) {
 		action = AnimAction()
@@ -3044,8 +3044,8 @@ target pos $tg_ix"""
 			getLogger().info("It took $ti")
 			if (element_root == null) {
 			    JOptionPane.showMessageDialog(
-				ApplContext.top_frame,
-				t("Can't find animation: $action_s")
+				    ApplContext.top_frame,
+				    t("Can't find animation: $action_s")
 			    )
 			    continue
 			}
@@ -3063,38 +3063,38 @@ target pos $tg_ix"""
 			val anim_twice = currentPupil.getBool("repeatanim", false)
 			card_show("anim1")
 			action!!.perform(
-			    window!!,
-			    action_s,
-			    actA,
-			    pathA,
-			    if (anim_twice) 1 else 0,
-			    Runnable { //card_show("anim1");
-				OmegaContext.sout_log.getLogger().info(":--: " + "start hook")
-			    }
-			)
-			if (anim_twice) {
-			    m_sleep(currentPupil.getSpeed(800))
-			    action!!.perform(
 				window!!,
 				action_s,
 				actA,
 				pathA,
-				0,
-				null
+				if (anim_twice) 1 else 0,
+				Runnable { //card_show("anim1");
+				    OmegaContext.sout_log.getLogger().info(":--: " + "start hook")
+				}
+			)
+			if (anim_twice) {
+			    m_sleep(currentPupil.getSpeed(800))
+			    action!!.perform(
+				    window!!,
+				    action_s,
+				    actA,
+				    pathA,
+				    0,
+				    null
 			    )
 			}
 			val allText = tg.allText
 			saveRecastAction(
-			    le_canvas!!.lessonName!!,
-			    action_s,
-			    actA,
-			    actTextA,
-			    sound_list,
-			    pathA,
-			    true,
-			    tg,
-			    is_last,
-			    allText
+				le_canvas!!.lessonName!!,
+				action_s,
+				actA,
+				actTextA,
+				sound_list,
+				pathA,
+				true,
+				tg,
+				is_last,
+				allText
 			)
 			val sent_li = story_hm["sentence_list"]
 			val ss_li = sent_li!!.sentence_list
@@ -3107,8 +3107,8 @@ target pos $tg_ix"""
 			sent_li.lesson_name = le_canvas!!.lessonName!!
 			lesson_log.getLogger().info("SENTENCE $ss_li")
 			OmegaContext.story_log.getLogger().info(
-			    "added sent 2214 " + sent_li.lesson_name
-				    + ' ' + all_text
+				"added sent 2214 " + sent_li.lesson_name
+					+ ' ' + all_text
 			)
 			if (tg.storyNext == null) {
 			    if (ss_li!!.size <= 1) {
@@ -3133,26 +3133,26 @@ target pos $tg_ix"""
 			    OmegaContext.sout_log.getLogger().info(":--: waitReply? $is_last $current_test_mode")
 			    if (is_last && current_test_mode == TM.CREATE) {
 				var end_code_s = le_canvas!!.waitReplyAction(
-				    (action as AnimAction?)!!,
-				    all_text,
-				    currentPupil.getBool("showSentence", true),
-				    myra
-				)
-				OmegaContext.sout_log.getLogger().info(":--: Lesson: end_code_s $end_code_s")
-				if (end_code_s == "left") {
-				    action!!.perform(
-					window!!,
-					action_s,
-					actA,
-					pathA,
-					0,
-					null
-				    )
-				    end_code_s = le_canvas!!.waitReplyAction(
 					(action as AnimAction?)!!,
 					all_text,
 					currentPupil.getBool("showSentence", true),
 					myra
+				)
+				OmegaContext.sout_log.getLogger().info(":--: Lesson: end_code_s $end_code_s")
+				if (end_code_s == "left") {
+				    action!!.perform(
+					    window!!,
+					    action_s,
+					    actA,
+					    pathA,
+					    0,
+					    null
+				    )
+				    end_code_s = le_canvas!!.waitReplyAction(
+					    (action as AnimAction?)!!,
+					    all_text,
+					    currentPupil.getBool("showSentence", true),
+					    myra
 				    )
 				    OmegaContext.sout_log.getLogger().info(":--: Lesson: end_code_s2 $end_code_s")
 				}
@@ -3188,11 +3188,11 @@ target pos $tg_ix"""
     }
 
     private fun performMpgAction(
-	all_text: String,
-	action_s: String?,
-	actA: Array<String?>,
-	pathA: Array<String?>,
-	tg: Target
+	    all_text: String,
+	    action_s: String?,
+	    actA: Array<String?>,
+	    pathA: Array<String?>,
+	    tg: Target
     ): JPanel? {
 	var pan: JPanel? = null
 	try {
@@ -3254,23 +3254,23 @@ target pos $tg_ix"""
 	    val scan = canvases["words"]
 	    mpg_action!!.hm["colors"] = scan!!.colors
 	    mpg_action!!.perform(
-		window!!,
-		action_s,
-		actA,
-		pathA,
-		if (anim_twice) 1 else 0,
-		myra
+		    window!!,
+		    action_s,
+		    actA,
+		    pathA,
+		    if (anim_twice) 1 else 0,
+		    myra
 	    )
 	    m_sleep(currentPupil.getSpeed(400))
 	    if (anim_twice) {
 		mpg_action!!.reset()
 		mpg_action!!.perform(
-		    window!!,
-		    action_s,
-		    actA,
-		    pathA,
-		    0,
-		    myra
+			window!!,
+			action_s,
+			actA,
+			pathA,
+			0,
+			myra
 		)
 	    }
 	    mpg_action!!.stop()
@@ -3284,21 +3284,21 @@ target pos $tg_ix"""
 
     private fun testDialog() {
 	val choise = arrayOf(
-	    "Printer",
-	    "Story",
-	    "Anim message",
-	    "Words message"
+		"Printer",
+		"Story",
+		"Anim message",
+		"Words message"
 	)
 	global_skipF(true)
 	val a = JOptionPane.showOptionDialog(
-	    ApplContext.top_frame,
-	    t("What kind of test?"),
-	    t("Omega - System Test"),
-	    JOptionPane.OK_OPTION,
-	    JOptionPane.QUESTION_MESSAGE,
-	    null,
-	    choise,
-	    choise[0]
+		ApplContext.top_frame,
+		t("What kind of test?"),
+		t("Omega - System Test"),
+		JOptionPane.OK_OPTION,
+		JOptionPane.QUESTION_MESSAGE,
+		null,
+		choise,
+		choise[0]
 	)
 	global_skipF(false)
 	if (a == JOptionPane.CLOSED_OPTION) {
@@ -3316,14 +3316,14 @@ target pos $tg_ix"""
     }
 
     class PlayData internal constructor(
-	var lesson_name: String,
-	var action_s: String?,
-	var actA: Array<String?>,
-	var actTextA: Array<String?>,
-	var sound_list: String?,
-	var pathA: Array<String?>,
-	var is_last: Boolean,
-	val allText: String
+	    var lesson_name: String,
+	    var action_s: String?,
+	    var actA: Array<String?>,
+	    var actTextA: Array<String?>,
+	    var sound_list: String?,
+	    var pathA: Array<String?>,
+	    var is_last: Boolean,
+	    val allText: String
     ) : Serializable {
 	fun theWord(): String {
 	    return allText
@@ -3358,24 +3358,24 @@ target pos $tg_ix"""
 	    val pd = it.next() as PlayData
 	    action!!.prefetch(pd.action_s)
 	    action!!.perform(
-		window!!,
-		pd.action_s,
-		pd.actA,
-		pd.pathA,
-		0,
-		null
+		    window!!,
+		    pd.action_s,
+		    pd.actA,
+		    pd.pathA,
+		    0,
+		    null
 	    )
 	    saveRecastAction(
-		le_canvas!!.lessonName!!,
-		pd.action_s,
-		pd.actA,
-		pd.actTextA,
-		pd.sound_list,
-		pd.pathA,
-		false,
-		null,
-		pd.is_last,
-		pd.allText
+		    le_canvas!!.lessonName!!,
+		    pd.action_s,
+		    pd.actA,
+		    pd.actTextA,
+		    pd.sound_list,
+		    pd.pathA,
+		    false,
+		    null,
+		    pd.is_last,
+		    pd.allText
 	    )
 	}
     }
@@ -3415,15 +3415,15 @@ target pos $tg_ix"""
     fun TEST_anim() {
 	card_show("anim1")
 	le_canvas!!.showMsg(
-	    MsgItem(
-		'S',
-		"Test Statistics",
-		"Correct",
-		"Wrong",
-		"XX",
-		"YY",
-		null
-	    )
+		MsgItem(
+			'S',
+			"Test Statistics",
+			"Correct",
+			"Wrong",
+			"XX",
+			"YY",
+			null
+		)
 	)
 	m_sleep(2000)
     }
@@ -3484,7 +3484,7 @@ target pos $tg_ix"""
     }
 
     fun listenFromDataList(
-	playDataList: PlayDataList /*
+	    playDataList: PlayDataList /*
 	     * , ListenListener lili
              */
     ) {
@@ -3510,10 +3510,10 @@ target pos $tg_ix"""
 		for (i in soundA.indices) {
 		    val sound = soundA[i]
 		    val ap = createAPlayer(
-			currentPupil.getStringNo0("languageSuffix", null),
-			sound,
-			null,
-			"SA_$i"
+			    currentPupil.getStringNo0("languageSuffix", null),
+			    sound,
+			    null,
+			    "SA_$i"
 		    )
 		    m_sleep(50)
 		    ap.playWait()
@@ -3530,16 +3530,16 @@ target pos $tg_ix"""
     }
 
     private fun saveRecastAction(
-	lesson_name: String,
-	action_s: String?,
-	actA: Array<String?>,
-	actTextA: Array<String?>,
-	sound_list: String?,
-	pathA: Array<String?>,
-	add_in_playlist: Boolean,
-	tg: Target?,
-	is_last: Boolean,
-	allText: String
+	    lesson_name: String,
+	    action_s: String?,
+	    actA: Array<String?>,
+	    actTextA: Array<String?>,
+	    sound_list: String?,
+	    pathA: Array<String?>,
+	    add_in_playlist: Boolean,
+	    tg: Target?,
+	    is_last: Boolean,
+	    allText: String
     ) {
 	if (add_in_playlist) {
 	    val play_data = PlayData(lesson_name, action_s, actA, actTextA, sound_list, pathA, is_last, allText)
@@ -3572,10 +3572,10 @@ target pos $tg_ix"""
     }
 
     fun putDynamic(
-	thisLessonName: String,
-	actor_lid: String?,
-	actor_text: String?,  // § separated    ////    UTF-8
-	timeline_lid: String?
+	    thisLessonName: String,
+	    actor_lid: String?,
+	    actor_text: String?,  // § separated    ////    UTF-8
+	    timeline_lid: String?
     ) {
 	try {
 	    val sa = actor_text!!.split("§".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray() ////    UTF-8
@@ -3617,8 +3617,8 @@ target pos $tg_ix"""
 		var was_first = false
 		var do_it = false
 		if (e.id == KeyEvent.KEY_PRESSED && (isKeySelect(kc)
-			    || isKeyESC(kc)
-			    || isKeyNext(kc))
+				|| isKeyESC(kc)
+				|| isKeyNext(kc))
 		) {
 		    hit_key = kc
 		    cnt_hit_keyOrButton++
@@ -3631,8 +3631,8 @@ target pos $tg_ix"""
 		    if (e.id == KeyEvent.KEY_PRESSED) {
 			if (P) {
 			    OmegaContext.sout_log.getLogger().info(
-				":--: " + "KEY: P " + current_card + ' ' + e.id
-					+ " '" + ch + "' " + kc + "" + ' ' + state + last_state
+				    ":--: " + "KEY: P " + current_card + ' ' + e.id
+					    + " '" + ch + "' " + kc + "" + ' ' + state + last_state
 			    )
 			}
 			if (state == 'r') {
@@ -3680,7 +3680,7 @@ target pos $tg_ix"""
 		    if (e.id == KeyEvent.KEY_TYPED) {
 			if (P) {
 			    OmegaContext.sout_log.getLogger()
-				.info(":--: " + "KEY: T " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
+				    .info(":--: " + "KEY: T " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
 			}
 			state = 't'
 			if (first_tr == false) {
@@ -3693,7 +3693,7 @@ target pos $tg_ix"""
 			state = 'r'
 			if (P) {
 			    OmegaContext.sout_log.getLogger()
-				.info(":--: " + "KEY: R " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
+				    .info(":--: " + "KEY: R " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
 			}
 			first_tr = false
 		    }
@@ -3719,8 +3719,8 @@ target pos $tg_ix"""
 			    }
 			}
 			if (isKeyNext(kc)
-			    || isKeySelect(kc)
-			    || isKeyESC(kc)
+				|| isKeySelect(kc)
+				|| isKeyESC(kc)
 			) {
 			    if ("anim1" == cc) {
 				dispatch = true
@@ -3812,7 +3812,7 @@ target pos $tg_ix"""
 		    val getApplication = appClass.getMethod("getApplication", *params)
 		    val application = getApplication.invoke(appClass)
 		    val requestToggleFulLScreen =
-			application.javaClass.getMethod("requestToggleFullScreen", Window::class.java)
+			    application.javaClass.getMethod("requestToggleFullScreen", Window::class.java)
 		    requestToggleFulLScreen.invoke(application, window)
 		    //		    Application.getApplication().requestToggleFullScreen(window);
 		} catch (e: Exception) {
@@ -3932,9 +3932,9 @@ target pos $tg_ix"""
 	l_ctxt = LessonContext(this)
 	if (true) {
 	    val ap = createAPlayer(
-		"audio/greeting.wav",
-		null,
-		null
+		    "audio/greeting.wav",
+		    null,
+		    null
 	    )
 	    ap.play()
 	} else {
@@ -3944,9 +3944,9 @@ target pos $tg_ix"""
 	}
 	if (true) {
 	    val ap = createAPlayer(
-		"audio/greeting2.mp3",
-		null,
-		null
+		    "audio/greeting2.mp3",
+		    null,
+		    null
 	    )
 	    ap.play()
 	}
@@ -3995,7 +3995,7 @@ target pos $tg_ix"""
 	    false
 	})
 	val selected_lang = if (scanned_lang.map { it.substring(7) }.contains(s)) s else "en"
-	Log.getLogger().info("I got scanned lang: $scanned_lang")
+	getLogger().info("I got scanned lang: $scanned_lang")
 	return selected_lang
     }
 
@@ -4078,8 +4078,8 @@ target pos $tg_ix"""
 		    } catch (ex: Exception) {
 			global_skipF(true)
 			JOptionPane.showMessageDialog(
-			    ApplContext.top_frame,
-			    """
+				ApplContext.top_frame,
+				"""
 			    	${t("Can't create from file ")}
 			    	$ex
 			    	""".trimIndent()

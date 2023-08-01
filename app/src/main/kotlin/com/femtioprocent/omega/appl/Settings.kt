@@ -55,9 +55,9 @@ class Settings internal constructor() {
 		    var B = false
 		    val s = tf.text
 		    if ("true".equals(s, ignoreCase = true) ||
-			"t".equals(s, ignoreCase = true) ||
-			"ja".equals(s, ignoreCase = true) ||
-			"yes".equals(s, ignoreCase = true)
+			    "t".equals(s, ignoreCase = true) ||
+			    "ja".equals(s, ignoreCase = true) ||
+			    "yes".equals(s, ignoreCase = true)
 		    ) B = true
 		    settingsHashMap[la.text] = B
 		} else {

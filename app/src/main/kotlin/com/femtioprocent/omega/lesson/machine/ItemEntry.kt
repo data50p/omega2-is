@@ -213,7 +213,7 @@ class ItemEntry {
 		    val s = itm.text + extra // current item + {tid}
 		    if (Tr) Log.getLogger().info(":--: try locate $s")
 		    if (current_correct_sentence.lowercase(Locale.getDefault())
-			    .indexOf(s.lowercase(Locale.getDefault())) == -1
+				    .indexOf(s.lowercase(Locale.getDefault())) == -1
 		    ) {
 			if (!itm.isDummySpaceAllocated) {
 			    free_1?.add(itm)
@@ -239,7 +239,7 @@ class ItemEntry {
 		    val s = itm.text + extra // current item + {tid}
 		    if (Tr) Log.getLogger().info(":--: try locate' $s")
 		    if (current_correct_sentence.lowercase(Locale.getDefault())
-			    .indexOf(s.lowercase(Locale.getDefault())) == -1
+				    .indexOf(s.lowercase(Locale.getDefault())) == -1
 		    ) {
 			// this word not in correct sent
 		    } else {  // we have this item as one of the correct

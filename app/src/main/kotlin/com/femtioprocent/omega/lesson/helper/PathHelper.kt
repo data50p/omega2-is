@@ -53,7 +53,7 @@ class PathHelper(var dep_set: MutableSet<TCItem?>) {
 		    Log.getLogger().info("Saved: $el")
 		}
 		Log.getLogger()
-		    .info("status: " + (if (modify) "upd" else "dry") + ' ' + version + ' ' + status + ' ' + fname)
+			.info("status: " + (if (modify) "upd" else "dry") + ' ' + version + ' ' + status + ' ' + fname)
 	    } catch (ex: Exception) {
 		Log.getLogger().info("***Exception: $ex")
 	    }
@@ -81,14 +81,14 @@ class PathHelper(var dep_set: MutableSet<TCItem?>) {
 	    val point2d = p.point2D
 	    Log.getLogger().info("flatness " + i + ": " + OmegaConfig.FLATNESS)
 	    Log.getLogger().info(
-		"len " + i + ": " + lenArr!!.size + ' ' + format_(
-		    lenArr
-		)
+		    "len " + i + ": " + lenArr!!.size + ' ' + format_(
+			    lenArr
+		    )
 	    )
 	    Log.getLogger().info(
-		"seg " + i + ": " + point2d!!.size + ' ' + format_(
-		    point2d
-		)
+		    "seg " + i + ": " + point2d!!.size + ' ' + format_(
+			    point2d
+		    )
 	    )
 	    var el_i = el_tp.findElement("info", 0)
 	    if (el_i == null) {

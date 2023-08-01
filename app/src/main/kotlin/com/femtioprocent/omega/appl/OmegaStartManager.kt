@@ -1,7 +1,5 @@
 package com.femtioprocent.omega.appl
 
-import com.femtioprocent.omega.util.PreferenceUtil
-
 /**
  * Created by lars on 2017-03-27.
  */

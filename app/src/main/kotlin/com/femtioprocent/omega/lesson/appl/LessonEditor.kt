@@ -20,7 +20,7 @@ class LessonEditor(title: String?, fn: String?) : ApplLesson(title, true) {
     var le: Lesson? = null
     fun maybeClose() {
 	Log.getLogger().info(
-	    """LessonEditor want to close ${ApplContext.top_frame === this@LessonEditor} ${ApplContext.top_frame}
+		"""LessonEditor want to close ${ApplContext.top_frame === this@LessonEditor} ${ApplContext.top_frame}
 $this"""
 	)
 	if (ApplContext.top_frame === this@LessonEditor) System.exit(0)
@@ -29,8 +29,8 @@ $this"""
     public override fun processEvent(e: AWTEvent) {
 	if (e.id != WindowEvent.WINDOW_CLOSING) super.processEvent(e) else {
 	    val sel = JOptionPane.showConfirmDialog(
-		this@LessonEditor,
-		t("Are you sure to exit Omega?")
+		    this@LessonEditor,
+		    t("Are you sure to exit Omega?")
 	    )
 	    if (sel == 0) super.processEvent(e)
 	}
@@ -40,9 +40,9 @@ $this"""
 	if (OmegaConfig.T) Log.getLogger().info(":--: LessonEditor.texec: execute $cmd")
 	if ("exit" == cmd) {
 	    val sel = JOptionPane.showConfirmDialog(
-		this@LessonEditor,
-		t("Are you sure to exit Omega?") +
-			if (is_dirty) """
+		    this@LessonEditor,
+		    t("Are you sure to exit Omega?") +
+			    if (is_dirty) """
  	
  	${t("Changes are unsaved!")}
  	""".trimIndent() else ""
@@ -57,8 +57,8 @@ $this"""
 	    var do_open = false
 	    if (is_dirty) {
 		val sel = JOptionPane.showConfirmDialog(
-		    this@LessonEditor,
-		    """
+			this@LessonEditor,
+			"""
 		     	${t("Are you sure to open?")}
 		     	${t("Changes are unsaved!")}
 		     	""".trimIndent()
@@ -79,8 +79,8 @@ $this"""
 	    var do_open = false
 	    if (is_dirty) {
 		val sel = JOptionPane.showConfirmDialog(
-		    this@LessonEditor,
-		    """
+			this@LessonEditor,
+			"""
 		     	${t("Are you sure to open?")}
 		     	${t("Changes are unsaved!")}
 		     	""".trimIndent()

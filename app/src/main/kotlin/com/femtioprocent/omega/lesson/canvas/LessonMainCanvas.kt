@@ -41,7 +41,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
     fun updLessons() {
-	for (i in lesson!!.indices) {
+	for (i in lesson.indices) {
 	    if (lesson[i] != null) {
 		val litm = lesson[i]!!.o as LessonItem?
 		lesson[i]!!.isEnabled = !(modeIsTest && litm!!.isStory)
@@ -53,7 +53,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	get() = "main"
 
     override fun resized() {
-	for (i in lesson!!.indices) {
+	for (i in lesson.indices) {
 	    if (lesson[i] != null) {
 		remove(lesson[i])
 		lesson[i] = null
@@ -97,8 +97,8 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	val lb = lessonBase
 	val file: File
 	file =
-	    if (lb == null) File( /*Locator.fbase + */omegaAssets("lesson-" + lessonLang + "/active/story")) // LESSON-DIR-A
-	    else File( /*Locator.fbase + */omegaAssets("lesson-" + lessonLang + "/active/" + lb + "/story")) // LESSON-DIR-A
+		if (lb == null) File( /*Locator.fbase + */omegaAssets("lesson-" + lessonLang + "/active/story")) // LESSON-DIR-A
+		else File( /*Locator.fbase + */omegaAssets("lesson-" + lessonLang + "/active/" + lb + "/story")) // LESSON-DIR-A
 	return file.exists()
     }
 
@@ -107,10 +107,10 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun mkButtons() {
 	if (isStory) populateButtons(
-	    arrayOf("Finish", "", "", "", "Load Story"),
-	    arrayOf("quit", "", "", "", "read_story")
+		arrayOf("Finish", "", "", "", "Load Story"),
+		arrayOf("quit", "", "", "", "read_story")
 	) else populateButtons(
-	    arrayOf("Finish", "", "", "", ""), arrayOf("quit", "", "", "", "")
+		arrayOf("Finish", "", "", "", ""), arrayOf("quit", "", "", "", "")
 	)
 	updLeftButton()
     }
@@ -151,15 +151,15 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "base is " + bs);
 	val lessons_name: Array<String?>?
 	lessons_name = if (lessonBase == null) locator.allLessonsInDir else locator.getAllLessonsInDir(
-	    lessonBase!!
+		lessonBase!!
 	)
 	val w = caW / 2
 	val h = caH / 5
 	val imic = createImageIcon(
-	    this,
-	    "toolbarButtonGraphics/omega/omega_title.png",
-	    w,
-	    h
+		this,
+		"toolbarButtonGraphics/omega/omega_title.png",
+		w,
+		h
 	) ?: return
 	if (imic != null) {
 	    title!!.setSize(imic.image.getWidth(null), imic.image.getHeight(null))
@@ -185,27 +185,27 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		if (i == 0) {
 		    var imn = litm.getLessonParentImage("_parent")
 		    var imicp = createImageIcon(
-			this,
-			imn,
-			w / 5,
-			h
-		    )
-		    if (imicp == null) {
-			imn = litm.getLessonParentImage("_enter")
-			imicp = createImageIcon(
 			    this,
 			    imn,
 			    w / 5,
 			    h
+		    )
+		    if (imicp == null) {
+			imn = litm.getLessonParentImage("_enter")
+			imicp = createImageIcon(
+				this,
+				imn,
+				w / 5,
+				h
 			)
 		    }
 		    if (imicp == null) {
 			imn = litm.getLessonParentImage("")
 			imicp = createImageIcon(
-			    this,
-			    imn,
-			    w / 5,
-			    h
+				this,
+				imn,
+				w / 5,
+				h
 			)
 		    }
 		    OmegaContext.sout_log.getLogger().info(":--: PARENT $i $imn $imicp")
@@ -223,33 +223,33 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		var l: ImageAreaJB
 		if (lesson[i] == null) {
 		    lesson[i] = ImageAreaJB(
-			"",
-			i,
-			bw,
-			bh - 20,
-			dispName
+			    "",
+			    i,
+			    bw,
+			    bh - 20,
+			    dispName
 		    )
 		    add(lesson[i])
 		}
 		if (litm.isDir) {
 		    lesson[i]!!.setNew( /*T.t("Lesson") + ' ' + */litm.lessonShortName,
-			litm.lessonImageFileName,
-			litm.getLessonImageFileName("_enter"),
-			litm,
-			dispName
+			    litm.lessonImageFileName,
+			    litm.getLessonImageFileName("_enter"),
+			    litm,
+			    dispName
 		    )
 		} else {
 		    lesson[i]!!.setNew( /*T.t("Lesson") + ' ' + */litm.lessonShortName,
-			litm.lessonImageFileName,
-			litm.getLessonImageFileName("_enter"),
-			litm,
-			dispName
+			    litm.lessonImageFileName,
+			    litm.getLessonImageFileName("_enter"),
+			    litm,
+			    dispName
 		    )
 		}
 		lesson[i]!!.isEnabled = !(modeIsTest && litm.isStory)
 	    }
 	}
-	for (i in lesson!!.indices) {
+	for (i in lesson.indices) {
 	    if (lesson[i] != null) {
 		val l = lesson[i]
 		l!!.setSize(bw - 15, bh)
@@ -290,9 +290,9 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    return true
 	}
 	if (isKeySelect(kc)) {
-	    if (last_focus_ord >= 0 && last_focus_ord <= 9) lesson!![last_focus_ord]!!.doClick() else super.ownKeyCode(
-		kc,
-		is_shift
+	    if (last_focus_ord >= 0 && last_focus_ord <= 9) lesson[last_focus_ord]!!.doClick() else super.ownKeyCode(
+		    kc,
+		    is_shift
 	    )
 	    return true
 	}
@@ -351,7 +351,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     // 5 6 7 8 9
     // 10     11
     fun requestFocusOrd(ord: Int) {
-	for (i in 0..9) if (lesson!![i] != null) if (ord == i) {
+	for (i in 0..9) if (lesson[i] != null) if (ord == i) {
 	    lesson[ord]!!.border = BorderFactory.createLineBorder(Color(242, 80, 80), 5)
 	    lesson[ord]!!.showEnter()
 	} else if (i == last_focus_ord) {
@@ -374,7 +374,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    requestFocusOrd(11)
 	    return
 	}
-	if (ord > 9 || lesson!![ord] == null || !lesson[ord]!!.isVisible) {
+	if (ord > 9 || lesson[ord] == null || !lesson[ord]!!.isVisible) {
 	    ord = 0
 	}
 	setAllNoRed()
@@ -382,7 +382,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     override fun setRed(ix: Int) {
-	if (ix > 9 || lesson!![ix] == null || !lesson[ix]!!.isVisible) {
+	if (ix > 9 || lesson[ix] == null || !lesson[ix]!!.isVisible) {
 	    return
 	}
 	setNoRed(0)
@@ -392,7 +392,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     override fun setPrevRed() {
 	var ord = last_focus_ord - 1
 	if (ord < 0) for (i in 9 downTo 1) {
-	    if (lesson!![i] != null || lesson[i]!!.isVisible) {
+	    if (lesson[i] != null || lesson[i]!!.isVisible) {
 		ord = i
 		break
 	    }
@@ -402,7 +402,7 @@ class LessonMainCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     fun howManyLessonButtons(): Int {
-	for (i in lesson!!.indices) {
+	for (i in lesson.indices) {
 	    if (lesson[i] == null || !lesson[i]!!.isVisible) return i
 	}
 	return lesson.size

@@ -16,8 +16,8 @@ object ScaledImageIcon {
     fun createImageIcon(comp: Component?, fn: String, max_w: Int, max_h: Int, no_bigger: Boolean = true): ImageIcon? {
 	val im: Image?
 	im = if (fn.startsWith("toolbarButtonGraphics/")) loadAndWaitFromResource(
-	    comp,
-	    fn
+		comp,
+		fn
 	) else loadAndWaitFromFile(comp, fn)
 	getLogger().info("Create ImageIcon from: $fn $im")
 	if (im == null) return null
@@ -39,8 +39,8 @@ object ScaledImageIcon {
 	var imd: BufferedImage? = null
 	try {
 	    imd = BufferedImage(
-		(imw / f).toInt(), (imh / f).toInt(),
-		BufferedImage.TYPE_INT_ARGB
+		    (imw / f).toInt(), (imh / f).toInt(),
+		    BufferedImage.TYPE_INT_ARGB
 	    )
 	    // createImage((int)(imw / f), (int)(imh / f));
 	} catch (_ex: IllegalArgumentException) {

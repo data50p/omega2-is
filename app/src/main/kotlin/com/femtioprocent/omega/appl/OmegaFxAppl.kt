@@ -42,17 +42,17 @@ class OmegaFxAppl : Application() {
 	val prefsItem = MenuItem("Preferences...")
 	prefsItem.onAction = EventHandler { event: ActionEvent? -> Log.getLogger().info("prefs clicked") }
 	appMenu.items.addAll(
-	    aboutItem, SeparatorMenuItem(), prefsItem, SeparatorMenuItem(),
-	    tk.createHideMenuItem(appName), tk.createHideOthersMenuItem(), tk.createUnhideAllMenuItem(),
-	    SeparatorMenuItem(), tk.createQuitMenuItem(appName)
+		aboutItem, SeparatorMenuItem(), prefsItem, SeparatorMenuItem(),
+		tk.createHideMenuItem(appName), tk.createHideOthersMenuItem(), tk.createUnhideAllMenuItem(),
+		SeparatorMenuItem(), tk.createQuitMenuItem(appName)
 	)
 
 	// File Menu (items TBD)
 	val fileMenu = Menu("File")
 	val newItem = MenuItem("New...")
 	fileMenu.items.addAll(
-	    newItem, SeparatorMenuItem(), tk.createCloseWindowMenuItem(),
-	    SeparatorMenuItem(), MenuItem("TBD")
+		newItem, SeparatorMenuItem(), tk.createCloseWindowMenuItem(),
+		SeparatorMenuItem(), MenuItem("TBD")
 	)
 
 	// Edit (items TBD)
@@ -71,8 +71,8 @@ class OmegaFxAppl : Application() {
 	// TBD standard window menu items
 	val windowMenu = Menu("Window")
 	windowMenu.items.addAll(
-	    tk.createMinimizeMenuItem(), tk.createZoomMenuItem(), tk.createCycleWindowsItem(),
-	    SeparatorMenuItem(), tk.createBringAllToFrontItem()
+		tk.createMinimizeMenuItem(), tk.createZoomMenuItem(), tk.createCycleWindowsItem(),
+		SeparatorMenuItem(), tk.createBringAllToFrontItem()
 	)
 
 	// Help Menu (items TBD)

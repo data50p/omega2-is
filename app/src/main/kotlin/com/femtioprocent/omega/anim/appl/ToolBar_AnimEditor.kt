@@ -64,15 +64,15 @@ class ToolBar_AnimEditor : ToolBar_Base, ActionListener {
 
     companion object {
 	private val msk_bool: Array<BooleanArray> = arrayOf(
-	    booleanArrayOf(true, false, false, false),
-	    booleanArrayOf(true, true, true, true),
-	    booleanArrayOf(true, false, true, true)
+		booleanArrayOf(true, false, false, false),
+		booleanArrayOf(true, true, true, true),
+		booleanArrayOf(true, false, true, true)
 	)
 	private val s: Array<String> = arrayOf(
-	    "path_create",
-	    "path_extend",
-	    "path_split",
-	    "path_delete"
+		"path_create",
+		"path_extend",
+		"path_split",
+		"path_delete"
 	)
     }
 }

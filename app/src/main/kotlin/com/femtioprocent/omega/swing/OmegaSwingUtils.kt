@@ -2,14 +2,12 @@ package com.femtioprocent.omega.swing
 
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.util.Log.getLogger
-import com.femtioprocent.omega.util.MilliTimer
 import java.awt.Image
 import java.awt.Toolkit
 import java.io.File
 import java.io.IOException
 import javax.imageio.ImageIO
 import javax.swing.ImageIcon
-import kotlin.time.measureTime
 import kotlin.time.measureTimedValue
 
 /**

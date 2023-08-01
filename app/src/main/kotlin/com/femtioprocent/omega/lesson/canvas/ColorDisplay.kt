@@ -17,7 +17,7 @@ import java.io.FilenameFilter
 import javax.swing.*
 
 class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: String) :
-    JDialog(), ActionListener {
+	JDialog(), ActionListener {
     //    JDialog(LessonEditor.TOP_JFRAME, true), ActionListener {
     var WW = 700
     var HH = 500
@@ -64,21 +64,21 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 	    g2.setRenderingHints(rh)
 	    val hh = gW(0.3)
 	    var pa = GradientPaint(
-		0.0f, 0.0f, getColor("bg_t"),
-		0.0f, hh.toFloat(), getColor("bg_m")
+		    0.0f, 0.0f, getColor("bg_t"),
+		    0.0f, hh.toFloat(), getColor("bg_m")
 	    )
 	    g2.paint = pa
 	    g2.fill(Rectangle(0, 0, caW, hh))
 	    pa = GradientPaint(
-		0.0f, hh.toFloat(), getColor("bg_m"),
-		0.0f, caH.toFloat(), getColor("bg_b")
+		    0.0f, hh.toFloat(), getColor("bg_m"),
+		    0.0f, caH.toFloat(), getColor("bg_b")
 	    )
 	    g2.paint = pa
 	    g2.fill(Rectangle(0, hh - 1, caW, caH - hh + 1))
 	    if (who == "selector") {
 		val pa2 = GradientPaint(
-		    0.0f, gH(0.01).toFloat(), getColor("bg_b"),
-		    0.0f, gH(0.98).toFloat(), getColor("bg_t")
+			0.0f, gH(0.01).toFloat(), getColor("bg_b"),
+			0.0f, gH(0.98).toFloat(), getColor("bg_t")
 		)
 		g2.paint = pa2
 		g2.fill(Rectangle(gW(0.25), gH(0.1), gW(0.7), gH(0.8)))
@@ -95,12 +95,12 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 		val rad = 15
 		if (who != "main") {
 		    val rr: RoundRectangle2D = RoundRectangle2D.Double(
-			l1.toDouble(),
-			t1.toDouble(),
-			w1.toDouble(),
-			h1.toDouble(),
-			rad.toDouble(),
-			rad.toDouble()
+			    l1.toDouble(),
+			    t1.toDouble(),
+			    w1.toDouble(),
+			    h1.toDouble(),
+			    rad.toDouble(),
+			    rad.toDouble()
 		    )
 		    g2.color = getColor("bg_frbg")
 		    g2.fill(rr)
@@ -127,10 +127,10 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 		    g2.color = getColor("sn_bg")
 		    g2.fill(r)
 		    r = Rectangle2D.Double(
-			l1_1.toDouble(),
-			(t1 + h1lowoffs).toDouble(),
-			w1_1.toDouble(),
-			h1low.toDouble()
+			    l1_1.toDouble(),
+			    (t1 + h1lowoffs).toDouble(),
+			    w1_1.toDouble(),
+			    h1low.toDouble()
 		    )
 		    g2.color = getColor("sn_hi")
 		    g2.fill(r)
@@ -152,7 +152,7 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 		    val h1 = (0.15 * caH).toInt()
 		    val ra = 15.0
 		    val r: RoundRectangle2D =
-			RoundRectangle2D.Double(l1.toDouble(), t1.toDouble(), w1.toDouble(), h1.toDouble(), ra, ra)
+			    RoundRectangle2D.Double(l1.toDouble(), t1.toDouble(), w1.toDouble(), h1.toDouble(), ra, ra)
 		    g2.color = getColor(if (i == 1) "bt_hi" else if (i == 2) "bt_hs" else "bt_bg")
 		    g2.fill(r)
 		    g2.color = getColor(if (i == 1) "bt_fr_hi" else if (i == 2) "bt_fr_hs" else "bt_fr")
@@ -170,7 +170,7 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 		    val w = (0.48 * caW).toInt()
 		    val h = (0.3 * caH).toInt()
 		    val r: RoundRectangle2D =
-			RoundRectangle2D.Double(x.toDouble(), y.toDouble(), w.toDouble(), h.toDouble(), 15.0, 15.0)
+			    RoundRectangle2D.Double(x.toDouble(), y.toDouble(), w.toDouble(), h.toDouble(), 15.0, 15.0)
 		    g2.color = getColor("bg_frbg")
 		    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
 		    g2.fill(r)

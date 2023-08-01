@@ -24,16 +24,16 @@ class TriggerEventSetMirror : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-	    "",
-	    "X",
-	    "Y",
-	    "X and Y"
+		"",
+		"X",
+		"Y",
+		"X and Y"
 	)
 	var st_selections_human = arrayOf(
-	    t("none"),
-	    t("X only"),
-	    t("Y only "),
-	    t("both X and Y")
+		t("none"),
+		t("X only"),
+		t("Y only "),
+		t("both X and Y")
 	)
 
 	fun getIx(s: String?): Int {

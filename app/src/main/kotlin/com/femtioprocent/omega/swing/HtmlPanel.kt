@@ -44,8 +44,8 @@ class HtmlPanel(s: String?) : JPanel(), HyperlinkListener {
 		URL(s)
 	    } catch (exc: MalformedURLException) {
 		OmegaContext.sout_log.getLogger().info(
-		    "ERR: " + "Attempted to open example.html "
-			    + "with a bad URL: " + url
+			"ERR: " + "Attempted to open example.html "
+				+ "with a bad URL: " + url
 		)
 		null
 	    }
@@ -102,8 +102,8 @@ class HtmlPanel(s: String?) : JPanel(), HyperlinkListener {
 	    URL(s)
 	} catch (exc: MalformedURLException) {
 	    OmegaContext.sout_log.getLogger().info(
-		"ERR: " + "Attempted to open example.html "
-			+ "with a bad URL: " + url
+		    "ERR: " + "Attempted to open example.html "
+			    + "with a bad URL: " + url
 	    )
 	    null
 	}

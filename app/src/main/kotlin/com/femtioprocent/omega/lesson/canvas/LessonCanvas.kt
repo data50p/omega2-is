@@ -13,7 +13,6 @@ import com.femtioprocent.omega.lesson.machine.ItemEntry
 import com.femtioprocent.omega.lesson.machine.Target
 import com.femtioprocent.omega.lesson.machine.Target.T_Item
 import com.femtioprocent.omega.lesson.managers.movie.LiuMovieManager
-import com.femtioprocent.omega.message.Manager
 import com.femtioprocent.omega.swing.GetOption
 import com.femtioprocent.omega.swing.ScaledImageIcon.createImageIcon
 import com.femtioprocent.omega.t9n.T.Companion.t

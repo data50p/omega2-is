@@ -125,7 +125,7 @@ class APlayer {
 		    }
 		}
 		if (nname == null && isIn(if (isTL) splice(base, OmegaContext.SPEED) else base, list)) nname =
-		    if (isTL) splice(base, OmegaContext.SPEED) else base
+			if (isTL) splice(base, OmegaContext.SPEED) else base
 		if (nname == null && isIn(base, list)) nname = base
 		if (nname == null) return null
 		nname = "$dir/$nname"

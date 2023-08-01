@@ -28,7 +28,7 @@ import javax.swing.table.TableModel
 
 // has UTF-8
 class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Results Summary"), true),
-    ListSelectionListener, ActionListener, ChangeListener {
+	ListSelectionListener, ActionListener, ChangeListener {
     var results_sp: JScrollPane? = null
     var lesson_name = JTextField("___")
     var pupil_name: JTextField? = null
@@ -67,28 +67,28 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	var mode = 't'
 	var data = Array<Array<String?>?>(0) { arrayOfNulls(0) }
 	var hdn_t = arrayOf(
-	    t("Dat"),
-	    t("L#"),
-	    t("Lt"),
-	    t("CS"),
-	    t("WS"),
-	    t("%CS"),
-	    t("CW"),
-	    t("WW"),
-	    t("%CW"),
-	    t("TCS"),
-	    t("TWS"),
-	    t("SL")
+		t("Dat"),
+		t("L#"),
+		t("Lt"),
+		t("CS"),
+		t("WS"),
+		t("%CS"),
+		t("CW"),
+		t("WW"),
+		t("%CW"),
+		t("TCS"),
+		t("TWS"),
+		t("SL")
 	)
 	var hdn_c = arrayOf(
-	    t("Dat"),
-	    t("L#"),  //
-	    t("NS"),  //fm
-	    //prm
-	    t("NW"),  //fo
-	    //pfo
-	    t("TS"),  //
-	    t("SL")
+		t("Dat"),
+		t("L#"),  //
+		t("NS"),  //fm
+		//prm
+		t("NW"),  //fo
+		//pfo
+		t("TS"),  //
+		t("SL")
 	)
 	val hDN: Array<String>
 	    get() = if (mode == 'c') hdn_c else hdn_t
@@ -136,11 +136,11 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
     var tmod: Result_TableModel? = null
     val with: Array<String>
 	get() = if (tmod!!.mode == 't') arrayOf(
-	    "-test.",
-	    "-pre1.",
-	    "-post1.",
-	    "-pre2.",
-	    "-post2."
+		"-test.",
+		"-pre1.",
+		"-post1.",
+		"-pre2.",
+		"-post2."
 	) else arrayOf("-create.")
 
     override fun valueChanged(e: ListSelectionEvent) {
@@ -190,12 +190,12 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	}
 	if (ae.source === details) {
 	    val rdt = ResultDialogTableDetail(
-		owner,
-		pupil_name!!.text,
-		lesson_name.text,
-		cur_ix,
-		tmod!!.mode,
-		register
+		    owner,
+		    pupil_name!!.text,
+		    lesson_name.text,
+		    cur_ix,
+		    tmod!!.mode,
+		    register
 	    )
 	    OmegaContext.HELP_STACK.push("result_detail")
 	    rdt.isVisible = true
@@ -210,7 +210,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	}
     }
 
-    val allTestAsName: Array<String>?
+    val allTestAsName: Array<String>
 	get() = register!!.getAllTestsAsName(with)
 
     fun crBu(txt: String?, cmd: String?): JButton {
@@ -252,11 +252,11 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	    Y++
 	    pan.add(JLabel(t("Select Type:")), JLabel(""), Y, X)
 	    pan.add(
-		JRadioButton(t("test")).also { test_tb = it },
-		JRadioButton(t("create")).also {
-		    create_tb = it
-		},
-		Y, X
+		    JRadioButton(t("test")).also { test_tb = it },
+		    JRadioButton(t("create")).also {
+			create_tb = it
+		    },
+		    Y, X
 	    )
 	    val bg = ButtonGroup()
 	    bg.add(test_tb)
@@ -475,7 +475,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	try {
 	    if (register == null) return
 	    val sa = register!!.getAllTestsAsName(with)
-	    val data = Array<Array<String?>?>(sa!!.size) { arrayOfNulls(if (tmod!!.mode == 't') CO_MAX else 8) }
+	    val data = Array<Array<String?>?>(sa.size) { arrayOfNulls(if (tmod!!.mode == 't') CO_MAX else 8) }
 	    val dataLi: ArrayList<Array<String?>?> = ArrayList()
 	    val statval_tfm = StatValue()
 	    val statval_trm = StatValue()
@@ -510,8 +510,8 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 		data[i]!![map(CO_sl)] = "" + asHMS(1.0 * rt.session_length)
 		if (tmod!!.mode == 't') {
 		    if (data[i]!![map(CO_t)] == "test" || data[i]!![map(CO_t)] == "pre1" || data[i]!![map(CO_t)] == "pre2" || data[i]!![map(
-			    CO_t
-			)] == "post1" || data[i]!![map(CO_t)] == "post2"
+				    CO_t
+			    )] == "post1" || data[i]!![map(CO_t)] == "post2"
 		    ) dataLi.add(data[i]) else continue@NEXT_LESSON
 		}
 		if (tmod!!.mode == 'c') {
@@ -603,8 +603,8 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 		    t("TCS") + " " + statval_trm.getAvg_1000("", "") + "   " +
 		    t("TWS") + " " + statval_tfm.getAvg_1000("", "") + "   " +
 		    t("SL") + " " + asHMS(stat_sl.avg1) else stat_tf1!!.text =
-		t("TS") + " " + statval_trm.getAvg_1000("", "") + "   " +
-			t("SL") + " " + stat_sl.getAvg_1000("", "")
+		    t("TS") + " " + statval_trm.getAvg_1000("", "") + "   " +
+			    t("SL") + " " + stat_sl.getAvg_1000("", "")
 	    tmod!!.setData_(dataLi.toTypedArray<Array<String?>?>())
 	    table!!.doLayout()
 	    val column = table!!.columnModel.getColumn(map(CO_dat))
@@ -630,8 +630,8 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	try {
 	    val pw = createPrintWriter(fn)
 	    pw!!.println(
-		"Pupil:," + register!!.pupil.name + ',' +
-			"Lesson Name:," + lesson_name.text
+		    "Pupil:," + register!!.pupil.name + ',' +
+			    "Lesson Name:," + lesson_name.text
 	    )
 	    for (j in 0 until tmod!!.columnCount) {
 		val col_name = tmod!!.getColumnName(j)
@@ -660,7 +660,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	stat_tf1!!.text = "?"
 	val sa = register!!.getAllTestsAsName(with)
 	if (cur_ix < 0) cur_ix = 0
-	if (cur_ix > sa!!.size - 1) cur_ix = sa.size - 1
+	if (cur_ix > sa.size - 1) cur_ix = sa.size - 1
 	if (cur_ix > 0) setLessonName(sa[cur_ix])
 	setTableData()
 	upd_stat()

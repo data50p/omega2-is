@@ -122,7 +122,7 @@ open class OmegaContext {
 		Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets)
 	    } else {
 		if (!omega_assets_name?.endsWith(OMEGA_ASSETS_SUFFIX)!!) omega_assets_name =
-		    omega_assets_name + OMEGA_ASSETS_SUFFIX
+			omega_assets_name + OMEGA_ASSETS_SUFFIX
 		if (File(omega_assets_name).exists()) {
 		    Log.getLogger().info("setOmegaAssets: " + currentOmegaAssets + " -> " + omega_assets_name)
 		    currentOmegaAssets = omega_assets_name

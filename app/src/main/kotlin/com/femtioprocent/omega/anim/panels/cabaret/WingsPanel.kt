@@ -102,7 +102,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 
 	private fun fldState(e: MouseEvent) {
 	    fld_state_id = e.y > IMSIZE &&
-		e.y < IMSIZE + 20
+		    e.y < IMSIZE + 20
 	}
 
 	override fun mousePressed(e: MouseEvent) {
@@ -242,12 +242,12 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	    var dx: Double
 	    var dy: Double
 	    ca.traceWing(ixx,
-		p.getX() - p_p!!.x.also {
-		    dx = it
-		},
-		p.getY() - p_p!!.y.also {
-		    dy = it
-		}, true
+		    p.getX() - p_p!!.x.also {
+			dx = it
+		    },
+		    p.getY() - p_p!!.y.also {
+			dy = it
+		    }, true
 	    )
 	    if (prop != null) prop!!.updPos(wingA.arr[ixx]!!.wing, dx.toInt(), dy.toInt())
 	}
@@ -341,9 +341,9 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 		    val im = wingA.getIm(i)
 		    val ID = ""
 		    g2.drawString(
-			"" + (nid + 1) + ": " + ID,
-			5 + i * IMSIZE,
-			IMSIZE + 16
+			    "" + (nid + 1) + ": " + ID,
+			    5 + i * IMSIZE,
+			    IMSIZE + 16
 		    )
 		}
 		g2.color = Color(35, 35, 110)
@@ -351,7 +351,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	    }
 	}
 	if (EMPTY != wingA.selected_src_fld &&
-	    EMPTY != wingA.selected_dst_fld
+		EMPTY != wingA.selected_dst_fld
 	) drawArrFld(g2, wingA.selected_src_fld, wingA.selected_dst_fld)
     }
 
@@ -360,50 +360,50 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	val h = IMSIZE + 10
 	if (src == dst) {
 	    g2.drawLine(
-		src * IMSIZE, h,
-		(dst + 1) * IMSIZE, h
+		    src * IMSIZE, h,
+		    (dst + 1) * IMSIZE, h
 	    )
 	    g2.drawLine(
-		dst * IMSIZE, h,
-		dst * IMSIZE + 5, h - 5
+		    dst * IMSIZE, h,
+		    dst * IMSIZE + 5, h - 5
 	    )
 	    g2.drawLine(
-		dst * IMSIZE, h,
-		dst * IMSIZE + 5, h + 5
+		    dst * IMSIZE, h,
+		    dst * IMSIZE + 5, h + 5
 	    )
 	    g2.drawLine(
-		(dst + 1) * IMSIZE, h,
-		(dst + 1) * IMSIZE - 5, h - 5
+		    (dst + 1) * IMSIZE, h,
+		    (dst + 1) * IMSIZE - 5, h - 5
 	    )
 	    g2.drawLine(
-		(dst + 1) * IMSIZE, h,
-		(dst + 1) * IMSIZE - 5, h + 5
+		    (dst + 1) * IMSIZE, h,
+		    (dst + 1) * IMSIZE - 5, h + 5
 	    )
 	} else if (src < dst) {
 	    g2.drawLine(
-		src * IMSIZE, h,
-		dst * IMSIZE, h
+		    src * IMSIZE, h,
+		    dst * IMSIZE, h
 	    )
 	    g2.drawLine(
-		dst * IMSIZE, h,
-		dst * IMSIZE - 5, h - 5
+		    dst * IMSIZE, h,
+		    dst * IMSIZE - 5, h - 5
 	    )
 	    g2.drawLine(
-		dst * IMSIZE, h,
-		dst * IMSIZE - 5, h + 5
+		    dst * IMSIZE, h,
+		    dst * IMSIZE - 5, h + 5
 	    )
 	} else {
 	    g2.drawLine(
-		src * IMSIZE, h,
-		dst * IMSIZE + 15, h
+		    src * IMSIZE, h,
+		    dst * IMSIZE + 15, h
 	    )
 	    g2.drawLine(
-		dst * IMSIZE + 15, h,
-		dst * IMSIZE + 15 + 5, h - 5
+		    dst * IMSIZE + 15, h,
+		    dst * IMSIZE + 15 + 5, h - 5
 	    )
 	    g2.drawLine(
-		dst * IMSIZE + 15, h,
-		dst * IMSIZE + 15 + 5, h + 5
+		    dst * IMSIZE + 15, h,
+		    dst * IMSIZE + 15 + 5, h + 5
 	    )
 	}
     }

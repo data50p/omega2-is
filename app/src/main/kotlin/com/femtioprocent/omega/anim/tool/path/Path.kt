@@ -1,12 +1,8 @@
 package com.femtioprocent.omega.anim.tool.path
 
 import com.femtioprocent.omega.OmegaConfig
-import com.femtioprocent.omega.graphic.render.Canvas
 import com.femtioprocent.omega.util.DelimitedStringBuilder
 import com.femtioprocent.omega.util.Log
-import com.femtioprocent.omega.util.SundryUtils.argAsList
-import com.femtioprocent.omega.util.SundryUtils.flagAsMap
-import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.xml.Element
 import java.awt.Color
@@ -17,7 +13,6 @@ import java.awt.geom.PathIterator
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 import java.util.*
-import javax.swing.JFrame
 
 class Path {
     var selected: Boolean = false
@@ -119,13 +114,13 @@ class Path {
 	val dx = ep.x - sp.x
 	val dy = ep.y - sp.y
 	val sq = Segment_Q(
-	    seg_l.size,
-	    sp,
-	    Point2D.Double(
-		sp.x + dx / 2,
-		sp.y + dy / 2
-	    ),
-	    ep
+		seg_l.size,
+		sp,
+		Point2D.Double(
+			sp.x + dx / 2,
+			sp.y + dy / 2
+		),
+		ep
 	)
 	sq.path = this
 	seg_l.add(sq)
@@ -134,8 +129,8 @@ class Path {
 
     fun move(p: Point2D, offx: Int, offy: Int): Point2D {
 	return Point2D.Double(
-	    p.x + offx,
-	    p.y + offy
+		p.x + offx,
+		p.y + offy
 	)
     }
 
@@ -147,10 +142,10 @@ class Path {
 	while (it.hasNext()) {
 	    val sq = it.next() as Segment_Q
 	    val sq_c = Segment_Q(
-		nid,
-		move(sq.p1, offx, offy),
-		move(sq.pc, offx, offy),
-		move(sq.p2, offx, offy)
+		    nid,
+		    move(sq.p1, offx, offy),
+		    move(sq.pc, offx, offy),
+		    move(sq.p2, offx, offy)
 	    )
 	    sq_c.path = this
 	    seg_l.add(sq_c)
@@ -184,10 +179,10 @@ class Path {
 	val dx = np.x - lp.x
 	val dy = np.y - lp.y
 	val sq = Segment_Q(
-	    seg_l.size,
-	    lp,
-	    Point2D.Double(lp.x + dx / 2, lp.y + dy / 2),
-	    np
+		seg_l.size,
+		lp,
+		Point2D.Double(lp.x + dx / 2, lp.y + dy / 2),
+		np
 	)
 	sq.path = this
 	seg_l.add(sq)
@@ -388,7 +383,7 @@ class Path {
 	    } else {
 		da[0] = 0.0
 		for (i in da.indices) if (i == 0) da[i] = 0.0 else if (i == 1) da[i] =
-		    marker[i - 1].where else if (i == da.size - 1) da[i] = length else da[i] = marker[i - 1].where
+			marker[i - 1].where else if (i == da.size - 1) da[i] = length else da[i] = marker[i - 1].where
 	    }
 	    return da
 	}
@@ -417,8 +412,8 @@ class Path {
 	val p_1 = if (i == 0) point2D!![i] else point2D!![i - 1]
 	val p = point2D!![i]
 	return Point2D.Double(
-	    p_1.x + (p.x - p_1.x) * frac,
-	    p_1.y + (p.y - p_1.y) * frac
+		p_1.x + (p.x - p_1.x) * frac,
+		p_1.y + (p.y - p_1.y) * frac
 	)
 	// 	    }
 // 	}
@@ -539,11 +534,11 @@ class Path {
 
     private fun drawSmallBox(g2: Graphics2D, p: Point2D, w: Int) {
 	g2.draw(
-	    Rectangle2D.Double(
-		p.x - w / 2.0,
-		p.y - w / 2.0,
-		w.toDouble(), w.toDouble()
-	    )
+		Rectangle2D.Double(
+			p.x - w / 2.0,
+			p.y - w / 2.0,
+			w.toDouble(), w.toDouble()
+		)
 	)
     }
 

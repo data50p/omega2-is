@@ -217,9 +217,9 @@ class TableSorter : TableMap {
         for partially ordered lists but some analysis is needed to
         find out how the performance drops to Nlog(N) as the initial
         order diminishes - it may drop very quickly.  */if (high - low >= 4 && compare(
-		from[middle - 1],
-		from[middle]
-	    ) <= 0
+			from[middle - 1],
+			from[middle]
+		) <= 0
 	) {
 	    for (i in low until high) {
 		to[i] = from[i]

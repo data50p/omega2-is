@@ -57,14 +57,14 @@ class Splash internal constructor() : JWindow() {
 	g.drawString(omegaVersion, 5, yoff + 20 * line++)
 	g.drawString("CWD: " + cWD, 5, yoff + 20 * line++)
 	g.drawString(
-	    "Version: java " + javaVersion + ",   javafx " + VersionInfo.getRuntimeVersion(),
-	    5,
-	    yoff + 20 * line++
+		"Version: java " + javaVersion + ",   javafx " + VersionInfo.getRuntimeVersion(),
+		5,
+		yoff + 20 * line++
 	)
 	g.drawString(
-	    "Java Vendor: " + javaVendor + "; OS name: " + System.getProperty("os.name").lowercase(Locale.getDefault()),
-	    5,
-	    yoff + 20 * line++
+		"Java Vendor: " + javaVendor + "; OS name: " + System.getProperty("os.name").lowercase(Locale.getDefault()),
+		5,
+		yoff + 20 * line++
 	)
 	g.drawString("java home: " + javaHome, 5, yoff + 20 * line++)
     }

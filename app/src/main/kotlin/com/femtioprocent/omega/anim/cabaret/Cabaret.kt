@@ -19,6 +19,7 @@ class Cabaret(var a_ctxt: AnimContext) {
 		tl_nid = EMPTY
 	    }
 	}
+
 	var arr: Array<Act?>
 
 	init {

@@ -24,14 +24,14 @@ class TriggerEventDinner : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-	    "",
-	    "eat",
-	    "eaten"
+		"",
+		"eat",
+		"eaten"
 	)
 	var st_selections_human = arrayOf(
-	    t("none"),
-	    t("Can eat"),
-	    t("Can bee eaten")
+		t("none"),
+		t("Can eat"),
+		t("Can bee eaten")
 	)
 
 	fun getIx(s: String?): Int {

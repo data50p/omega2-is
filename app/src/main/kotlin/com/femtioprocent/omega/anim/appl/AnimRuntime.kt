@@ -256,11 +256,11 @@ class AnimRuntime {
 	Log.getLogger().info(":--: " + "BINDING " + actor_lid + " -> " + timeline_lid)
 	if (!aC!!.bindActor(actor_lid, timeline_lid)) {
 	    JOptionPane.showMessageDialog(
-		a_ctxt!!.anim_canvas,
-		(t("Can't bind actor with timeline; '") +
-			actor_lid + "' '" + timeline_lid + "'"),
-		"Omega",
-		JOptionPane.INFORMATION_MESSAGE
+		    a_ctxt!!.anim_canvas,
+		    (t("Can't bind actor with timeline; '") +
+			    actor_lid + "' '" + timeline_lid + "'"),
+		    "Omega",
+		    JOptionPane.INFORMATION_MESSAGE
 	    )
 	    return false
 	}
@@ -384,12 +384,12 @@ class AnimRuntime {
     }
 
     fun runAction(
-	window: Window,
-	fn: String?,
-	actA: Array<String?>,
-	pathA: Array<String?>,
-	params: HashMap<String?, Any?>,
-	hook: Runnable?
+	    window: Window,
+	    fn: String?,
+	    actA: Array<String?>,
+	    pathA: Array<String?>,
+	    params: HashMap<String?, Any?>,
+	    hook: Runnable?
     ) {
 	val win: Window = window
 	val fa_ctxt: AnimContext? = a_ctxt
@@ -422,10 +422,10 @@ class AnimRuntime {
 	    } catch (ex: NumberFormatException) {
 	    } catch (ex: Exception) {
 		JOptionPane.showMessageDialog(
-		    fa_ctxt.anim_canvas,
-		    t("No named timeline (lesson id)"),
-		    "Omega",
-		    JOptionPane.ERROR_MESSAGE
+			fa_ctxt.anim_canvas,
+			t("No named timeline (lesson id)"),
+			"Omega",
+			JOptionPane.ERROR_MESSAGE
 		)
 		System.exit(1)
 	    }
@@ -445,11 +445,11 @@ class AnimRuntime {
 		    } catch (ex2: Exception) {
 		    }
 		    JOptionPane.showMessageDialog(
-			fa_ctxt.anim_canvas,
-			(t("Can't bind path and actor") + '\n' +
-				"" + ac_s + " -> " + v_s),
-			"Omega",
-			JOptionPane.INFORMATION_MESSAGE
+			    fa_ctxt.anim_canvas,
+			    (t("Can't bind path and actor") + '\n' +
+				    "" + ac_s + " -> " + v_s),
+			    "Omega",
+			    JOptionPane.INFORMATION_MESSAGE
 		    )
 		    ok = false
 		}

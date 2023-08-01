@@ -22,10 +22,10 @@ class TriggerEventOption : TriggerEventSelections {
 
     companion object {
 	var st_selections_cmd = arrayOf(
-	    ""
+		""
 	)
 	var st_selections_human = arrayOf(
-	    "normal"
+		"normal"
 	)
 
 	fun getIx(s: String?): Int {

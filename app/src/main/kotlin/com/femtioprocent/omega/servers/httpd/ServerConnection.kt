@@ -38,7 +38,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 		if (l[i] == ".") continue
 		if (l[i] == "..") continue
 		if (t == 'a') sb.append(l[i] + "<a href=" + l[i] + "><br>\n") else if (t == 'i') sb.append(l[i] + "<img src=" + l[i] + "><br>\n") else sb.append(
-		    l[i] + '\n'
+			l[i] + '\n'
 		)
 	    }
 	    sb.toString()
@@ -215,7 +215,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 	    val q = fixQ(sa[1])
 	    sa[1] = fixFN(sa[1], q)
 	    if (OmegaConfig.T) OmegaContext.sout_log.getLogger()
-		.info(":--: " + "serve " + arrToString(sa) + ' ' + sL + ' ' + rd + ' ' + dos)
+		    .info(":--: " + "serve " + arrToString(sa) + ' ' + sL + ' ' + rd + ' ' + dos)
 	    if ("GET" == sa[0]) doGet(sa, q, sL, rd, dos)
 	    if ("POST" == sa[0]) doPost(sa, q, sL, rd, dos)
 	} catch (ex: IOException) {
@@ -335,16 +335,16 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 
     companion object {
 	var mimeT = arrayOf(
-	    arrayOf("text/html", ".html"),
-	    arrayOf("text/html", ".iws.html"),
-	    arrayOf("text/html", ".ihtml"),
-	    arrayOf("audio/x-wav", ".wav"),
-	    arrayOf("audio/MP3", ".mp3"),
-	    arrayOf("audio/x-au", ".au"),
-	    arrayOf("image/gif", ".gif"),
-	    arrayOf("image/png", ".png"),
-	    arrayOf("image/jpeg", ".jpg"),
-	    arrayOf("image/jpeg", ".jpeg")
+		arrayOf("text/html", ".html"),
+		arrayOf("text/html", ".iws.html"),
+		arrayOf("text/html", ".ihtml"),
+		arrayOf("audio/x-wav", ".wav"),
+		arrayOf("audio/MP3", ".mp3"),
+		arrayOf("audio/x-au", ".au"),
+		arrayOf("image/gif", ".gif"),
+		arrayOf("image/png", ".png"),
+		arrayOf("image/jpeg", ".jpg"),
+		arrayOf("image/jpeg", ".jpeg")
 	)
 	var r_cnt = 0
     }

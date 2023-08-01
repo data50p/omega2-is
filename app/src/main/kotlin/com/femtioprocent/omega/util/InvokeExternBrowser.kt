@@ -172,7 +172,7 @@ object InvokeExternBrowser {
      * The framework to reference on Mac OS X
      */
     private const val JDirect_MacOSX =
-	"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/HIToolbox"
+	    "/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/HIToolbox"
 
     /**
      * JVM constant for MRJ 2.0
@@ -319,33 +319,33 @@ object InvokeExternBrowser {
 		val aeClass = Class.forName("com.apple.MacOS.ae")
 		aeDescClass = Class.forName("com.apple.MacOS.AEDesc")
 		aeTargetConstructor = aeTargetClass.getDeclaredConstructor(
-		    *arrayOf<Class<*>?>(
-			Int::class.javaPrimitiveType
-		    )
+			*arrayOf<Class<*>?>(
+				Int::class.javaPrimitiveType
+			)
 		)
 		appleEventConstructor = appleEventClass.getDeclaredConstructor(
-		    *arrayOf(
-			Int::class.javaPrimitiveType,
-			Int::class.javaPrimitiveType,
-			aeTargetClass,
-			Int::class.javaPrimitiveType,
-			Int::class.javaPrimitiveType
-		    )
+			*arrayOf(
+				Int::class.javaPrimitiveType,
+				Int::class.javaPrimitiveType,
+				aeTargetClass,
+				Int::class.javaPrimitiveType,
+				Int::class.javaPrimitiveType
+			)
 		)
 		aeDescConstructor = aeDescClass!!.getDeclaredConstructor(
-		    *arrayOf<Class<*>>(
-			String::class.java
-		    )
+			*arrayOf<Class<*>>(
+				String::class.java
+			)
 		)
 		makeOSType = osUtilsClass.getDeclaredMethod(
-		    "makeOSType", *arrayOf<Class<*>>(
+			"makeOSType", *arrayOf<Class<*>>(
 			String::class.java
-		    )
+		)
 		)
 		putParameter = appleEventClass.getDeclaredMethod(
-		    "putParameter", *arrayOf(
+			"putParameter", *arrayOf(
 			Int::class.javaPrimitiveType, aeDescClass
-		    )
+		)
 		)
 		sendNoReply = appleEventClass.getDeclaredMethod("sendNoReply", *arrayOf())
 		val keyDirectObjectField = aeClass.getDeclaredField("keyDirectObject")
@@ -375,14 +375,14 @@ object InvokeExternBrowser {
 		kSystemFolderType = systemFolderField[null]
 		findFolder = mrjFileUtilsClass!!.getDeclaredMethod("findFolder", *arrayOf(mrjOSTypeClass))
 		getFileCreator = mrjFileUtilsClass!!.getDeclaredMethod(
-		    "getFileCreator", *arrayOf<Class<*>>(
+			"getFileCreator", *arrayOf<Class<*>>(
 			File::class.java
-		    )
+		)
 		)
 		getFileType = mrjFileUtilsClass!!.getDeclaredMethod(
-		    "getFileType", *arrayOf<Class<*>>(
+			"getFileType", *arrayOf<Class<*>>(
 			File::class.java
-		    )
+		)
 		)
 	    } catch (cnfe: ClassNotFoundException) {
 		errorMessage = cnfe.message
@@ -404,9 +404,9 @@ object InvokeExternBrowser {
 	    MRJ_3_0 -> try {
 		val linker = Class.forName("com.apple.mrj.jdirect.Linker")
 		val constructor = linker.getConstructor(
-		    *arrayOf<Class<*>>(
-			Class::class.java
-		    )
+			*arrayOf<Class<*>>(
+				Class::class.java
+			)
 		)
 		linkage = constructor.newInstance(*arrayOf<Any>(InvokeExternBrowser::class.java))
 	    } catch (cnfe: ClassNotFoundException) {
@@ -429,9 +429,9 @@ object InvokeExternBrowser {
 	    MRJ_3_1 -> try {
 		mrjFileUtilsClass = Class.forName("com.apple.mrj.MRJFileUtils")
 		openURL = mrjFileUtilsClass!!.getDeclaredMethod(
-		    "openURL", *arrayOf<Class<*>>(
+			"openURL", *arrayOf<Class<*>>(
 			String::class.java
-		    )
+		)
 		)
 	    } catch (cnfe: ClassNotFoundException) {
 		errorMessage = cnfe.message
@@ -463,14 +463,14 @@ object InvokeExternBrowser {
 	    MRJ_2_0 -> {
 		return try {
 		    val finderCreatorCode = makeOSType!!.invoke(
-			null,
-			*arrayOf<Any>(FINDER_CREATOR)
+			    null,
+			    *arrayOf<Any>(FINDER_CREATOR)
 		    ) as Int
 		    val aeTarget =
-			aeTargetConstructor!!.newInstance(*arrayOf<Any>(finderCreatorCode))
+			    aeTargetConstructor!!.newInstance(*arrayOf<Any>(finderCreatorCode))
 		    val gurlType = makeOSType!!.invoke(
-			null,
-			*arrayOf<Any>(GURL_EVENT)
+			    null,
+			    *arrayOf<Any>(GURL_EVENT)
 		    ) as Int
 		    // Don't dep_set browser = appleEvent because then the next time we call
 		    // locateBrowser(), we'll get the same AppleEvent, to which we'll already have
@@ -478,11 +478,11 @@ object InvokeExternBrowser {
 		    // There's probably a way to do this better; if any has any ideas, please let
 		    // me know.
 		    appleEventConstructor!!.newInstance(
-			gurlType,
-			gurlType,
-			aeTarget,
-			kAutoGenerateReturnID,
-			kAnyTransactionID
+			    gurlType,
+			    gurlType,
+			    aeTarget,
+			    kAutoGenerateReturnID,
+			    kAnyTransactionID
 		    )
 		} catch (iae: IllegalAccessException) {
 		    browser = null
@@ -625,7 +625,7 @@ object InvokeExternBrowser {
 	    throw IOException("Exception in finding browser: " + errorMessage)
 	}
 	var browser: Any? = locateBrowser()
-	    ?: throw IOException("Unable to locate browser: " + errorMessage)
+		?: throw IOException("Unable to locate browser: " + errorMessage)
 	when (jvm) {
 	    MRJ_2_0 -> {
 		var aeDesc: Any? = null
@@ -654,9 +654,9 @@ object InvokeExternBrowser {
 		    val urlBytes = url.toByteArray()
 		    val selectionEnd = intArrayOf(urlBytes.size)
 		    result = ICLaunchURL(
-			instance[0], byteArrayOf(0), urlBytes,
-			urlBytes.size, selectionStart,
-			selectionEnd
+			    instance[0], byteArrayOf(0), urlBytes,
+			    urlBytes.size, selectionStart,
+			    selectionEnd
 		    )
 		    if (result == 0) {
 			// Ignore the return value; the URL was launched successfully
@@ -682,13 +682,13 @@ object InvokeExternBrowser {
 		// Add quotes around the URL to allow ampersands and other special
 		// characters to work.
 		val process = Runtime.getRuntime().exec(
-		    arrayOf(
-			browser as String,
-			FIRST_WINDOWS_PARAMETER,
-			SECOND_WINDOWS_PARAMETER,
-			THIRD_WINDOWS_PARAMETER,
-			'"'.toString() + url + '"'
-		    )
+			arrayOf(
+				browser as String,
+				FIRST_WINDOWS_PARAMETER,
+				SECOND_WINDOWS_PARAMETER,
+				THIRD_WINDOWS_PARAMETER,
+				'"'.toString() + url + '"'
+			)
 		)
 		// This avoids a memory leak on some versions of Java on Windows.
 		// That's hinted at in <http://developer.java.sun.com/developer/qow/archive/68/>.
@@ -705,13 +705,13 @@ object InvokeExternBrowser {
 
 		// First, attempt to open the URL in a currently running session of Netscape
 		val process = Runtime.getRuntime().exec(
-		    arrayOf<String>(
-			browser as String,
-			NETSCAPE_REMOTE_PARAMETER,
-			NETSCAPE_OPEN_PARAMETER_START +
-				url +
-				NETSCAPE_OPEN_PARAMETER_END
-		    )
+			arrayOf<String>(
+				browser as String,
+				NETSCAPE_REMOTE_PARAMETER,
+				NETSCAPE_OPEN_PARAMETER_START +
+					url +
+					NETSCAPE_OPEN_PARAMETER_END
+			)
 		)
 		try {
 		    val exitCode: Int = process.waitFor()
@@ -735,8 +735,8 @@ object InvokeExternBrowser {
     private external fun ICStart(instance: IntArray, signature: Int): Int
     private external fun ICStop(instance: IntArray): Int
     private external fun ICLaunchURL(
-	instance: Int, hint: ByteArray, data: ByteArray, len: Int,
-	selectionStart: IntArray, selectionEnd: IntArray
+	    instance: Int, hint: ByteArray, data: ByteArray, len: Int,
+	    selectionStart: IntArray, selectionEnd: IntArray
     ): Int
 
     fun show_if(url_s: String): Boolean {

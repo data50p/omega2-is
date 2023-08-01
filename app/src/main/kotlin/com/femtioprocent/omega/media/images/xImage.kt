@@ -234,14 +234,14 @@ class xImage {
 	    } catch (ex: Exception) {
 		Log.getLogger().info(":--: === $ex $dir")
 		JOptionPane.showMessageDialog(
-		    null, arrayOf(
+			null, arrayOf(
 			"""
 		    	${t("Nu such directory")}!
 		    	${t("File is")}: $dir
 		    	""".trimIndent()
-		    ),
-		    t("Omega - Message"),
-		    JOptionPane.INFORMATION_MESSAGE
+		),
+			t("Omega - Message"),
+			JOptionPane.INFORMATION_MESSAGE
 		)
 	    }
 	    //	    list_hm.put(dir, list);

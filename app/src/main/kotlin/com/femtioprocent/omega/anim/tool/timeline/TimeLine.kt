@@ -68,9 +68,9 @@ class TimeLine : Serializable {
 	while (it.hasNext()) {
 	    val tm = it.next()
 	    val new_tm = addMarker(
-		tm.type,
-		tm.`when` - offset,
-		tm.duration
+		    tm.type,
+		    tm.`when` - offset,
+		    tm.duration
 	    )
 	    if (tm.t_event != null) {
 //		OmegaContext.sout_log.getLogger().info(":--: " + "t_ev " + tm.t_event.length);
@@ -200,8 +200,8 @@ class TimeLine : Serializable {
 	for (tm in markers) {
 	    if (tm.selected) {
 		if (tm.type == TimeMarker.STOP) size(d) else if (tm.type == TimeMarker.START) move(d) else if (tm.isMoveAble) tm.move(
-		    d,
-		    grid
+			d,
+			grid
 		)
 	    }
 	}

@@ -7,17 +7,17 @@ import com.femtioprocent.omega.t9n.T.Companion.t
 import javax.swing.table.AbstractTableModel
 
 class OmAssProp_TableModel internal constructor(
-    var sprop: OmegaAssetsProperty,
-    var tc: TargetCombinations
+	var sprop: OmegaAssetsProperty,
+	var tc: TargetCombinations
 ) : AbstractTableModel() {
     var li_set0: MutableList<TCItem>
     var li_set: MutableList<TCItem>
     val TEST_MEM_OFFS = SentenceProperty.COL_TEST
     var hdn = arrayOf(
-	t("Source Files"),
-	t("Dependent Files"),
-	t("Exist"),
-	t("specified")
+	    t("Source Files"),
+	    t("Dependent Files"),
+	    t("Exist"),
+	    t("specified")
     )
 
     init {

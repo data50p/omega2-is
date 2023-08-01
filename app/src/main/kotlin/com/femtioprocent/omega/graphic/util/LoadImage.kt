@@ -1,6 +1,5 @@
 package com.femtioprocent.omega.graphic.util
 
-import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.OmegaContext.Companion.getMediaFile
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.swing.OmegaSwingUtils

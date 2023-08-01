@@ -81,16 +81,16 @@ class Segment_Q {
 
     fun moveAllBy(p: Point2D) {
 	p1.setLocation(
-	    p1.x + p.x,
-	    p1.y + p.y
+		p1.x + p.x,
+		p1.y + p.y
 	)
 	p2.setLocation(
-	    p2.x + p.x,
-	    p2.y + p.y
+		p2.x + p.x,
+		p2.y + p.y
 	)
 	pc.setLocation(
-	    pc.x + p.x,
-	    pc.y + p.y
+		pc.x + p.x,
+		pc.y + p.y
 	)
 	q.setCurve(p1, pc, p2)
     }
@@ -124,40 +124,40 @@ class Segment_Q {
 
     fun drawSmallBox(g2: Graphics2D, p: Point2D?, w: Int) {
 	g2.draw(
-	    Rectangle2D.Double(
-		p!!.x - w / 2.0,
-		p.y - w / 2.0,
-		w.toDouble(), w.toDouble()
-	    )
+		Rectangle2D.Double(
+			p!!.x - w / 2.0,
+			p.y - w / 2.0,
+			w.toDouble(), w.toDouble()
+		)
 	)
     }
 
     fun drawSmallCross(g2: Graphics2D, p: Point2D?, w: Int) {
 	g2.draw(
-	    Line2D.Double(
-		p!!.x - w / 2.0,
-		p.y - w / 2.0,
-		p.x + w / 2.0,
-		p.y + w / 2.0
-	    )
+		Line2D.Double(
+			p!!.x - w / 2.0,
+			p.y - w / 2.0,
+			p.x + w / 2.0,
+			p.y + w / 2.0
+		)
 	)
 	g2.draw(
-	    Line2D.Double(
-		p.x + w / 2.0,
-		p.y - w / 2.0,
-		p.x - w / 2.0,
-		p.y + w / 2.0
-	    )
+		Line2D.Double(
+			p.x + w / 2.0,
+			p.y - w / 2.0,
+			p.x - w / 2.0,
+			p.y + w / 2.0
+		)
 	)
     }
 
     fun fillSmallBox(g2: Graphics2D, p: Point2D?, w: Int) {
 	g2.fill(
-	    Rectangle2D.Double(
-		p!!.x - w / 2.0,
-		p.y - w / 2.0,
-		w.toDouble(), w.toDouble()
-	    )
+		Rectangle2D.Double(
+			p!!.x - w / 2.0,
+			p.y - w / 2.0,
+			w.toDouble(), w.toDouble()
+		)
 	)
     }
 

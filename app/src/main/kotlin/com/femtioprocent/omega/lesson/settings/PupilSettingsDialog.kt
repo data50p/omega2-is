@@ -74,6 +74,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
     var cp_anim: FormPanel
     var cp_feedb: FormPanel
     var cp_admin: FormPanel
+
     //    SecureButton secure_jb;
     var secure_jb: JButton? = null
     var secure_delete_jb: JButton? = null
@@ -156,10 +157,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		    val f = File(tfn)
 		    if (!f.exists()) {
 			JOptionPane.showMessageDialog(
-			    AnimContext.top_frame,
-			    t("Invalid directory name."),
-			    "Omega",
-			    JOptionPane.WARNING_MESSAGE
+				AnimContext.top_frame,
+				t("Invalid directory name."),
+				"Omega",
+				JOptionPane.WARNING_MESSAGE
 			)
 			return
 		    }
@@ -271,10 +272,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 
     fun createImageIcon(fn: String?, max_w: Int, max_h: Int): ImageIcon? {
 	return ScaledImageIcon.createImageIcon(
-	    this,
-	    fn!!,
-	    max_w,
-	    max_h
+		this,
+		fn!!,
+		max_w,
+		max_h
 	)
     }
 
@@ -586,9 +587,9 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	Y = 1
 	if (true) {
 	    cp_admin.add(JLabel(t("Pupil Image")).also { pupim_jl = it },
-		JButton(t("Set Pupil Image...")).also {
-		    pupim_jb = it
-		}, Y, ++X
+		    JButton(t("Set Pupil Image...")).also {
+			pupim_jb = it
+		    }, Y, ++X
 	    )
 	    val `val` = "register/" + "Guest" + ".p/id.png"
 	    val imc2 = createImageIcon(`val`, 80, 60)
@@ -605,16 +606,16 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	X = 0
 	Y++
 	cp_admin.add(
-	    JLabel(t("")),
-	    JLabel(
-		"<html><h3>" + t("Warning!!!") + "</h3>"
-			+ t("The pupil data will ramain in the file system.<br>")
-			+ "</html>"
-	    ).also {
-		secure_warning = it
-	    },
-	    Y,
-	    ++X
+		JLabel(t("")),
+		JLabel(
+			"<html><h3>" + t("Warning!!!") + "</h3>"
+				+ t("The pupil data will ramain in the file system.<br>")
+				+ "</html>"
+		).also {
+		    secure_warning = it
+		},
+		Y,
+		++X
 	)
 	X = 0
 	Y++

@@ -27,7 +27,7 @@ import javax.swing.*
 import javax.swing.text.Document
 
 class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("Omega - Item property")),
-    ActionListener {
+	ActionListener {
     var guimap: HashMap<String?, JComponent?> = HashMap()
     var skip_dirty = false
     var text_tf: JTextField? = null
@@ -125,10 +125,10 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	Y++
 	X = 0
 	fpan.add(
-	    JLabelL(t("(Post Test Dummy Sound):")).also { jl = it },
-	    JTextField("", WW - 5).also { tf = it },
-	    Y,
-	    ++X
+		JLabelL(t("(Post Test Dummy Sound):")).also { jl = it },
+		JTextField("", WW - 5).also { tf = it },
+		Y,
+		++X
 	)
 	tf.document.addDocumentListener(mydocl)
 	tf.background = Color(220, 220, 220)
@@ -141,10 +141,10 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	Y++
 	X = 0
 	fpan.add(
-	    JLabelL(t("(Post Test Dummy Sign):")).also { jl = it },
-	    JTextField("", WW - 5).also { tf = it },
-	    Y,
-	    ++X
+		JLabelL(t("(Post Test Dummy Sign):")).also { jl = it },
+		JTextField("", WW - 5).also { tf = it },
+		Y,
+		++X
 	)
 	tf.document.addDocumentListener(mydocl)
 	tf.background = Color(220, 220, 220)
@@ -182,7 +182,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 	cb.addItem(t("<Select file...>"))
 	val loc = Locator()
 	var sa: Array<String?>? =
-	    loc.getAllActiveFiles(omegaAssets("lesson-" + lessonLang + "/active")!!, "omega_anim") // LESSON-DIR-A
+		loc.getAllActiveFiles(omegaAssets("lesson-" + lessonLang + "/active")!!, "omega_anim") // LESSON-DIR-A
 	sa = antiOmegaAssets(sa)
 	for (i in sa!!.indices) cb.addItem(sa[i])
 	cb.addItemListener(myiteml)

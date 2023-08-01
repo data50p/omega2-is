@@ -89,23 +89,23 @@ class WingsProperties(owner: JFrame?, wings_pan: WingsPanel) : OmegaProperties(o
 	if (doc === scale!!.document) {
 	    if (timer == null) {
 		timer = Timer(1000,
-		    object : ActionListener {
-			override fun actionPerformed(ae: ActionEvent) {
-			    val fbound_wing: Wing = boundWing!!
-			    if (fbound_wing != null) {
-				fbound_wing.scale = tD(scale!!.text)
-				if (fbound_wing.scale == 0.0) {
-				    fbound_wing.scale = 1.0
-				    scale!!.foreground = Color.red
-				} else {
-				    scale!!.foreground = Color.black
+			object : ActionListener {
+			    override fun actionPerformed(ae: ActionEvent) {
+				val fbound_wing: Wing = boundWing!!
+				if (fbound_wing != null) {
+				    fbound_wing.scale = tD(scale!!.text)
+				    if (fbound_wing.scale == 0.0) {
+					fbound_wing.scale = 1.0
+					scale!!.foreground = Color.red
+				    } else {
+					scale!!.foreground = Color.black
+				    }
+				    wings_pan.ae.a_ctxt!!.anim_canvas!!.updWings()
+				    wings_pan.ae.a_ctxt!!.anim_canvas!!.resetBackground()
+				    timer!!.stop()
 				}
-				wings_pan.ae.a_ctxt!!.anim_canvas!!.updWings()
-				wings_pan.ae.a_ctxt!!.anim_canvas!!.resetBackground()
-				timer!!.stop()
 			    }
-			}
-		    })
+			})
 		timer!!.isCoalesce = true
 	    }
 	    timer!!.start()
@@ -257,10 +257,10 @@ class WingsProperties(owner: JFrame?, wings_pan: WingsPanel) : OmegaProperties(o
 	}
 	if (ev.actionCommand == "delete") {
 	    val rsp = JOptionPane.showConfirmDialog(
-		this,
-		t("Are you sure to delete the Wing?"),
-		"Omega",
-		JOptionPane.YES_NO_OPTION
+		    this,
+		    t("Are you sure to delete the Wing?"),
+		    "Omega",
+		    JOptionPane.YES_NO_OPTION
 	    )
 	    //log	    OmegaContext.sout_log.getLogger().info(":--: " + "*******) " + rsp);
 	    if (rsp == 0) {

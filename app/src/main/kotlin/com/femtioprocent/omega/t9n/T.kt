@@ -100,7 +100,7 @@ class T {
 			val sa = s.split("[\\]\\[]+".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 			if (cnt < 10) Log.getLogger().info(":--: " + "got T_ " + sa.size + ' ' + SundryUtils.a2s(sa))
 			if (sa.size == 3) hm_!![sa[1]] = sa[2] else Log.getLogger()
-			    .info(":--: " + "t9n.T.t strange " + SundryUtils.a2s(sa))
+				.info(":--: " + "t9n.T.t strange " + SundryUtils.a2s(sa))
 			cnt++
 		    }
 		    br.close()
@@ -116,7 +116,7 @@ class T {
 	    try {
 		val who = IntArray(1)
 		val `in` =
-		    OmegaContext.t9n("$fn.xml")?.let { fopen(it, OmegaContext.t9n("$fn2.xml"), who) } ?: return -1
+			OmegaContext.t9n("$fn.xml")?.let { fopen(it, OmegaContext.t9n("$fn2.xml"), who) } ?: return -1
 		val ir = InputStreamReader(`in`)
 		val d = XMLDecoder(BufferedInputStream(`in`))
 		val result_ = d.readObject()

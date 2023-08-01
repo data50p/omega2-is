@@ -11,12 +11,12 @@ class TestEntry : Entry {
     var l_id_list: String
 
     constructor(
-	extra: String?,
-	sentence: String,
-	answer: String,
-	duration: Int,
-	cnt_correct_words: String,
-	l_id_list: String
+	    extra: String?,
+	    sentence: String,
+	    answer: String,
+	    duration: Int,
+	    cnt_correct_words: String,
+	    l_id_list: String
     ) {
 	this.sentence = sentence
 	this.answer = answer

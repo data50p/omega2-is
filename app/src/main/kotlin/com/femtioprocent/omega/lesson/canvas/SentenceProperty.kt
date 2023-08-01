@@ -30,7 +30,7 @@ import javax.swing.table.TableModel
 import javax.swing.text.Document
 
 class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: LessonContext) :
-    Property_B(owner, t("Omega - Sentence Property")) {
+	Property_B(owner, t("Omega - Sentence Property")) {
     var guimap = HashMap<String, JComponent>()
     var table: JTable? = null
     var set_act_b: JButton? = null
@@ -254,7 +254,7 @@ class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: Lesso
 	X = 0
 	var rb: JRadioButton
 	fpan.add(JLabel(t("Type:")), JRadioButton(t("Default, as dep_set in word prop")).also { rb_def = it }
-	    .also { rb = it }, Y, ++X)
+		.also { rb = it }, Y, ++X)
 	val bgr = ButtonGroup()
 	bgr.add(rb)
 	rb.actionCommand = "isDef"
@@ -283,7 +283,7 @@ class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: Lesso
 	X = 0
 	var rbS: JRadioButton
 	fpan.add(JLabel(t("Type:")), JRadioButton(t("Automatic, play each separate word")).also { rb_defSign = it }
-	    .also { rbS = it }, Y, ++X)
+		.also { rbS = it }, Y, ++X)
 	val bgrS = ButtonGroup()
 	bgrS.add(rbS)
 	rbS.actionCommand = "isDefSign"
@@ -315,9 +315,9 @@ class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: Lesso
 	table = JTable(tsort)
 	tsort.addMouseListenerToHeaderInTable(table!!)
 	val jscr = JScrollPane(
-	    table,
-	    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-	    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+		table,
+		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
 	)
 	for (i in 0 until table!!.columnModel.columnCount) {
 	    val tcol = table!!.columnModel.getColumn(i)

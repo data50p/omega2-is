@@ -88,8 +88,8 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 //log		OmegaContext.sout_log.getLogger().info(":--: " + "=00= val list " + v);
 	    val tit = le_canvas.target!!.getT_Item(active_target_ix) ?: return
 	    if (v!!.id == "tid") tit.tid =
-		v.str else if (v.id == "lid") tit.lID4TgOrNull_KeepVar_set(v.str) else if (v.id == "type") tit.type =
-		v.str
+		    v.str else if (v.id == "lid") tit.lID4TgOrNull_KeepVar_set(v.str) else if (v.id == "type") tit.type =
+		    v.str
 	    le_canvas.repaint(tit)
 	}
     }
@@ -212,17 +212,17 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 			    return
 			}
 			val sentence =
-			    if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
+				if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
 			val tg2 = Target()
 			val story_hm = Lesson.story_hm
 			tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
 			val allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(
-			    sentence!!
+				sentence!!
 			)
 			var ixTg = 0
 			for (ixArr in allTargetCombinationsIndexes) {
 			    OmegaContext.sout_log.getLogger()
-				.info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
+				    .info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
 			    le_canvas.l_ctxt.lesson.l_ctxt.target!!.pickItemAt(ixArr[1], ixArr[2], ixTg)
 			    ixTg++
 			}
@@ -255,9 +255,9 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 		getLogger().info(":--: MANY? $fn")
 		if (fn == null || fn.length == 0) {
 		    JOptionPane.showMessageDialog(
-			LessonEditor.TOP_JFRAME,  //le_canvas.l_ctxt.top_frame,
-			t("Can't find lesson file: ") +
-				fn
+			    LessonEditor.TOP_JFRAME,  //le_canvas.l_ctxt.top_frame,
+			    t("Can't find lesson file: ") +
+				    fn
 		    )
 		} else {
 		    if (anim_editor == null) {
@@ -378,8 +378,8 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 	setAssets!!.actionCommand = "setassets"
 	setAssets!!.addActionListener(myactl)
 	add(
-	    JButton("Assets Bundle...").also { getOmegaAssetsDependenciec = it }.also { b = it },
-	    gbcf.createL(X++, Y, 1)
+		JButton("Assets Bundle...").also { getOmegaAssetsDependenciec = it }.also { b = it },
+		gbcf.createL(X++, Y, 1)
 	)
 	b.actionCommand = "getOmegaAssetsDependenciec"
 	b.addActionListener(myactl)

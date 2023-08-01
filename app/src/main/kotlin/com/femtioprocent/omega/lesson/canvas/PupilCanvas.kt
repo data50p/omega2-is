@@ -48,11 +48,11 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	}
 
 	override fun getListCellRendererComponent(
-	    list: JList<*>?,
-	    value: Any?,
-	    index: Int,
-	    isSelected: Boolean,
-	    cellHasFocus: Boolean
+		list: JList<*>?,
+		value: Any?,
+		index: Int,
+		isSelected: Boolean,
+		cellHasFocus: Boolean
 	): Component {
 	    val pi = value as PupilItem?
 	    //		setIcon(pi.im_ic);
@@ -80,18 +80,18 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	    w = caH / 7
 	    val h = (w * 1.3).toInt()
 	    im_ic = createImageIcon(
-		component,
-		im_name,
-		w,
-		h
-	    )
-	    if (im_ic == null) {
-		im_name = "register/" + "Guest" + ".p/" + "id.jpg"
-		im_ic = createImageIcon(
 		    component,
 		    im_name,
 		    w,
 		    h
+	    )
+	    if (im_ic == null) {
+		im_name = "register/" + "Guest" + ".p/" + "id.jpg"
+		im_ic = createImageIcon(
+			component,
+			im_name,
+			w,
+			h
 		)
 	    }
 	}
@@ -160,8 +160,8 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 		if (pi.name == "<New Pupil>" || pi.name == t("<New Pupil>")) {
 		    var pn: String? = null
 		    pn = JOptionPane.showInputDialog(
-			ApplContext.top_frame,
-			t("What is the new pupils name?")
+			    ApplContext.top_frame,
+			    t("What is the new pupils name?")
 		    )
 		    if (pn != null && pn.length > 0) {
 			val loc = RegLocator()
@@ -198,13 +198,13 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
     fun mkButtons() {
 	if (behaviour == BH_ADMINISTRATOR) {
 	    populateButtons(
-		arrayOf("Quit", "Pupil", "", "Test", "Result"),
-		arrayOf("quit", "pupil", "", "test_t", "result")
+		    arrayOf("Quit", "Pupil", "", "Test", "Result"),
+		    arrayOf("quit", "pupil", "", "test_t", "result")
 	    )
 	} else if (behaviour == BH_PUPIL) {
 	    populateButtons(
-		arrayOf("Quit", "", "Create sentence", "Test", ""),
-		arrayOf("quit", "", "create_p", "test_p", "")
+		    arrayOf("Quit", "", "Create sentence", "Test", ""),
+		    arrayOf("quit", "", "create_p", "test_p", "")
 	    )
 	}
     }
@@ -299,18 +299,18 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	var imic: ImageIcon? = null
 	try {
 	    imic = createImageIcon(
-		this,
-		"register/$name.p/id.jpg",
-		w,
-		h,
-		false
+		    this,
+		    "register/$name.p/id.jpg",
+		    w,
+		    h,
+		    false
 	    )
 	    if (imic == null) imic = createImageIcon(
-		this,
-		omegaAssets("media/default/pupil.jpg")!!,
-		w,
-		h,
-		false
+		    this,
+		    omegaAssets("media/default/pupil.jpg")!!,
+		    w,
+		    h,
+		    false
 	    )
 	} catch (_ex: Exception) {
 	}
@@ -366,10 +366,10 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	drawBG(g2)
 	if (greeting_ic == null) {
 	    greeting_ic = createImageIcon(
-		this,
-		"media/default/pupil_greeting.png",
-		gX(0.8),
-		gY(0.1)
+		    this,
+		    "media/default/pupil_greeting.png",
+		    gX(0.8),
+		    gY(0.1)
 	    )
 	}
 	if (greeting_ic != null) {

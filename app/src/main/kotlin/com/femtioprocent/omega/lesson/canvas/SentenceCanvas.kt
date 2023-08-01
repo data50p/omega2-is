@@ -186,16 +186,16 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun mkButtons() {
 	if (read_mode) populateButtons(
-	    arrayOf(
-		"Quit",
-		"Read and Listen",
-		"Replay",
-		"Printer...§Print§Select Printer",
-		"Select"
-	    ), arrayOf("quit", "read", "replay", "print§print_print§print_select", "select")
+		arrayOf(
+			"Quit",
+			"Read and Listen",
+			"Replay",
+			"Printer...§Print§Select Printer",
+			"Select"
+		), arrayOf("quit", "read", "replay", "print§print_print§print_select", "select")
 	) else populateButtons(
-	    arrayOf("Quit", "Read and Listen", "Replay", "Printer...§Print§Select Printer", "Save"),
-	    arrayOf("quit", "read", "replay", "print§print_print§print_select", "save")
+		arrayOf("Quit", "Read and Listen", "Replay", "Printer...§Print§Select Printer", "Save"),
+		arrayOf("quit", "read", "replay", "print§print_print§print_select", "save")
 	)
     }
 
@@ -275,18 +275,18 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    if (li == null || li!!.size == 0) return
 	    if (gX(0.02) > 0 && gY(0.02) > 0) {
 		imic = createImageIcon(
-		    this@SentenceCanvas,
-		    "media/default/story-listen-continue.png",
-		    gX(0.035),
-		    gY(0.035),
-		    false
+			this@SentenceCanvas,
+			"media/default/story-listen-continue.png",
+			gX(0.035),
+			gY(0.035),
+			false
 		)
 		imic_done = createImageIcon(
-		    this@SentenceCanvas,
-		    "media/default/story-listen-done.png",
-		    gX(0.035),
-		    gY(0.035),
-		    false
+			this@SentenceCanvas,
+			"media/default/story-listen-done.png",
+			gX(0.035),
+			gY(0.035),
+			false
 		)
 	    }
 	    val txw = gX(0.85)
@@ -304,12 +304,12 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    }
 	    val col = getColor("bg_frbg") // new Color(0xe5, 0xe5, 0xe5);
 	    val fr: RoundRectangle2D = RoundRectangle2D.Double(
-		x.toDouble(),
-		y.toDouble(),
-		w.toDouble(),
-		h.toDouble(),
-		r.toDouble(),
-		r.toDouble()
+		    x.toDouble(),
+		    y.toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    r.toDouble(),
+		    r.toDouble()
 	    )
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
 	    g2.color = col
@@ -339,9 +339,9 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    while (it.hasNext()) {
 		val sent = it.next() as String
 		if (cnt < cnt_show) g2.drawString(
-		    sent,
-		    x + w / 20,
-		    y + th + row
+			sent,
+			x + w / 20,
+			y + th + row
 		)
 		//		sh = getStringHeight(getItemFont(), sent);
 		row += sh + gap
@@ -349,15 +349,15 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    }
 	    val cnt_max = li!!.size + 1
 	    if (imic != null && imic_done != null) if (cnt_show >= cnt_max) g2.drawImage(
-		imic_done!!.image,
-		x + gX(0.015),
-		y + gY(0.013) + (sh + gap) * cnt_max,
-		null
+		    imic_done!!.image,
+		    x + gX(0.015),
+		    y + gY(0.013) + (sh + gap) * cnt_max,
+		    null
 	    ) else g2.drawImage(
-		imic!!.image,
-		x + gX(0.015),
-		y + gY(0.013) + (sh + gap) * cnt_show,
-		null
+		    imic!!.image,
+		    x + gX(0.015),
+		    y + gY(0.013) + (sh + gap) * cnt_show,
+		    null
 	    )
 	    g2.color = col
 	    g2.font = titleFont
@@ -370,12 +370,12 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    g2.color = Color(15, 15, 15)
 	    for (i in 0..6) {
 		val frs: RoundRectangle2D = RoundRectangle2D.Double(
-		    (x + 10 - i).toDouble(),
-		    (y + 10 - i).toDouble(),
-		    w.toDouble(),
-		    h.toDouble(),
-		    r.toDouble(),
-		    r.toDouble()
+			(x + 10 - i).toDouble(),
+			(y + 10 - i).toDouble(),
+			w.toDouble(),
+			h.toDouble(),
+			r.toDouble(),
+			r.toDouble()
 		)
 		g2.fill(frs)
 	    }
@@ -395,11 +395,11 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	override fun getListCellRendererComponent(
-	    list: JList<*>?,
-	    value: Any?,
-	    index: Int,
-	    isSelected: Boolean,
-	    cellHasFocus: Boolean
+		list: JList<*>?,
+		value: Any?,
+		index: Int,
+		isSelected: Boolean,
+		cellHasFocus: Boolean
 	): Component {
 	    val `val` = value as String?
 	    verticalTextPosition = CENTER
@@ -438,12 +438,12 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    val r = 15
 	    val col = getColor("bg_frbg") // new Color(0xe5, 0xe5, 0xe5);
 	    val fr: RoundRectangle2D = RoundRectangle2D.Double(
-		x.toDouble(),
-		y.toDouble(),
-		w.toDouble(),
-		h.toDouble(),
-		r.toDouble(),
-		r.toDouble()
+		    x.toDouble(),
+		    y.toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    r.toDouble(),
+		    r.toDouble()
 	    )
 	    val story_r = story_list_sp!!.bounds
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
@@ -473,12 +473,12 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    g2.color = Color(15, 15, 15)
 	    for (i in 0..6) {
 		val frs: RoundRectangle2D = RoundRectangle2D.Double(
-		    (x + 10 - i).toDouble(),
-		    (y + 10 - i).toDouble(),
-		    w.toDouble(),
-		    h.toDouble(),
-		    r.toDouble(),
-		    r.toDouble()
+			(x + 10 - i).toDouble(),
+			(y + 10 - i).toDouble(),
+			w.toDouble(),
+			h.toDouble(),
+			r.toDouble(),
+			r.toDouble()
 		)
 		g2.fill(frs)
 	    }

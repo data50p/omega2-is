@@ -221,7 +221,7 @@ class Element(var name: String) : Node(), Cloneable {
 	for (i in 0 until l) {
 	    val ch = s[i]
 	    if (ch == '&') sb.append("&#x26;") else if (ch == '<') sb.append("&#x3C;") else if (ch == '"') sb.append("&#x22;") else sb.append(
-		ch
+		    ch
 	    )
 	}
 	return sb.toString()

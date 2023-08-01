@@ -26,8 +26,8 @@ class Actor(var anim_ctxt: AnimContext, val gimae: GImAE) {
 	    el.addAttr("var3", gimae.getVariable(3))
 	    for (ih in 0 until Hotspot.HOTSPOT_N) {
 		el.addAttr(
-		    "hotspot_" + Hotspot.getType(ih),
-		    "" + gimae.hotspot.getX(ih) + ' ' + gimae.hotspot.getY(ih)
+			"hotspot_" + Hotspot.getType(ih),
+			"" + gimae.hotspot.getX(ih) + ' ' + gimae.hotspot.getY(ih)
 		)
 	    }
 	    el.addAttr("prim_scale", "" + gimae.primScale)

@@ -206,11 +206,11 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 
     fun popup_maction(e: MouseEvent, tl: TimeLine) {
 	val choice = arrayOf(
-	    t("Marker properties"),
-	    t("Add timesync"),
-	    t("Add trigger"),
-	    "",
-	    t("Cancel")
+		t("Marker properties"),
+		t("Add timesync"),
+		t("Add trigger"),
+		"",
+		t("Cancel")
 	)
 	val pop = Popup(this@TimeLinePanel)
 	pop.popup(t("Marker"), choice, e.x, e.y) { ev ->
@@ -255,10 +255,10 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 	    if (tm != null) {
 		tm.selected = true
 		val choice = arrayOf(
-		    t("Marker properties"),
-		    t("Marker delete"),
-		    "",
-		    t("Cancel")
+			t("Marker properties"),
+			t("Marker delete"),
+			"",
+			t("Cancel")
 		)
 		val pop = Popup(this@TimeLinePanel)
 		pop.popup("Marker", choice, e.x, e.y) { ev -> // REWRITE THIS
@@ -291,11 +291,11 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 				    tm.isDeleteCandidate = true
 				    repaint()
 				    if (JOptionPane.showConfirmDialog(
-					    AnimContext.ae,
-					    t("Delete selected red timesync?"),
-					    "Omega",
-					    JOptionPane.YES_NO_OPTION
-					) == 0
+						    AnimContext.ae,
+						    t("Delete selected red timesync?"),
+						    "Omega",
+						    JOptionPane.YES_NO_OPTION
+					    ) == 0
 				    ) {
 					tm.tl.removeMarker(tm)
 					AnimContext.ae!!.isDirty = true
@@ -317,11 +317,11 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 				    tm.isDeleteCandidate = true
 				    repaint()
 				    if (JOptionPane.showConfirmDialog(
-					    AnimContext.ae,
-					    t("Delete selected red trigger?"),
-					    "Omega",
-					    JOptionPane.YES_NO_OPTION
-					) == 0
+						    AnimContext.ae,
+						    t("Delete selected red trigger?"),
+						    "Omega",
+						    JOptionPane.YES_NO_OPTION
+					    ) == 0
 				    ) {
 					tm.tl.removeMarker(tm)
 					AnimContext.ae!!.isDirty = true
@@ -499,7 +499,7 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 		g.drawLine(start, y, stop, y)
 		if (t_x > start) {
 		    if (i == selected_tl) g.setColor(light_selected_tl_timeline_color) else g.setColor(
-			light_normal_tl_timeline_color
+			    light_normal_tl_timeline_color
 		    )
 		    g.drawLine(start, y, t_x, y)
 		}
@@ -519,7 +519,7 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 		    var mcol = normal_marker_color
 		    if (tm.type == TimeMarker.TSYNC) mcol = normal_TSync_marker_color
 		    if (tm.isDeleteCandidate) g.setColor(Color.red) else if (tm.selected) g.setColor(
-			mcol.brighter().brighter()
+			    mcol.brighter().brighter()
 		    ) else g.setColor(mcol)
 		    draw(g, tm, xx, y, dd)
 		}

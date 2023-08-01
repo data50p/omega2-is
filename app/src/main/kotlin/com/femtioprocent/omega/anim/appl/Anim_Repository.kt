@@ -57,13 +57,13 @@ class Anim_Repository {
 	var fn = fn
 	if (fn == null) {
 	    JOptionPane.showMessageDialog(
-		AnimContext.top_frame,
-		"""
+		    AnimContext.top_frame,
+		    """
 			${t("Invalid filename.")}
 			${t("Current data NOT saved to file.")}
 			""".trimIndent(),
-		"Omega",
-		JOptionPane.INFORMATION_MESSAGE
+		    "Omega",
+		    JOptionPane.INFORMATION_MESSAGE
 	    )
 	    return
 	}
@@ -78,7 +78,7 @@ class Anim_Repository {
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "EEEEEE " + sbu + ' ' + sbl);
 	var ppw = createPrintWriterUTF8("SAVED-omega_anim.dump")
 	ppw!!.println(
-	    """<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+		"""<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!DOCTYPE omega >
 
 $sbu $sbl"""
@@ -88,13 +88,13 @@ $sbu $sbl"""
 	if (sbu.length == 0 || sbl.length == 0) {
 	    fn += "_DUMP"
 	    JOptionPane.showMessageDialog(
-		AnimContext.top_frame,
-		"""
+		    AnimContext.top_frame,
+		    """
 			Can't get data to save.
 			Current data saved to file: $fn
 			""".trimIndent(),
-		"Omega",
-		JOptionPane.INFORMATION_MESSAGE
+		    "Omega",
+		    JOptionPane.INFORMATION_MESSAGE
 	    )
 	} else {
 	    var err = false
@@ -105,11 +105,11 @@ $sbu $sbl"""
 		    xmlpw.flush()
 		    if (xmlpw.pw!!.checkError()) {
 			JOptionPane.showMessageDialog(
-			    AnimContext.top_frame,
-			    """${t("FATAL IO ERROR 1!")}
+				AnimContext.top_frame,
+				"""${t("FATAL IO ERROR 1!")}
 ${t("Nothing saved")} ($fn)""",
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE
+				"Omega",
+				JOptionPane.INFORMATION_MESSAGE
 			)
 			err = true
 		    }

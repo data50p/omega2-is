@@ -264,12 +264,12 @@ class Item {
 		return s
 	    }
 	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(
-		ix3 + 1,
-		ix2
+		    ix3 + 1,
+		    ix2
 	    ) + getDefaultFilledText(s.substring(ix2 + 1)) else s.substring(0, ix) + getDefaultFilledText(
-		s.substring(
-		    ix2 + 1
-		)
+		    s.substring(
+			    ix2 + 1
+		    )
 	    )
 	} catch (ex: Exception) {
 	    ""
@@ -283,7 +283,7 @@ class Item {
 	    val ix2 = s.indexOf('}')
 	    val ix3 = s.indexOf(':')
 	    if (ix3 != -1 && ix3 < ix2 && ix2 > 0) s.substring(0, ix) + s.substring(ix3 + 1, ix2) + getDefaultFilledTTS(
-		s.substring(ix2 + 1)
+		    s.substring(ix2 + 1)
 	    ) else s.substring(0, ix) + getDefaultFilledTTS(s.substring(ix2 + 1))
 	} catch (ex: Exception) {
 	    ""
@@ -489,17 +489,17 @@ class Item {
     override fun toString(): String {
 	try {
 	    return "Item{" + ord +
-	    ", isdummy=" + isDummySpaceAllocated +
-	    ", text=" + text +
-	    ", dummytext=" + dummyText +
-	    ", text_orig=" + text_Orig +
-	    ", sound=" + sound +
-	    ", dummysound=" + dummySound +
-	    ", sign=" + sign +
-	    ", dummysign=" + dummySign +
-	    ", Lid=" + lid +
-	    ", var=" + `var` +
-	    ", tid'=" + it_ent?.tid
+		    ", isdummy=" + isDummySpaceAllocated +
+		    ", text=" + text +
+		    ", dummytext=" + dummyText +
+		    ", text_orig=" + text_Orig +
+		    ", sound=" + sound +
+		    ", dummysound=" + dummySound +
+		    ", sign=" + sign +
+		    ", dummysign=" + dummySign +
+		    ", Lid=" + lid +
+		    ", var=" + `var` +
+		    ", tid'=" + it_ent?.tid
 	} catch (e: NullPointerException) {
 	    Log.getLogger().info("While toString " + e)
 	    e.printStackTrace()

@@ -21,9 +21,9 @@ class SAX_node : DefaultHandler() {
 	@Throws(SAXParseException::class)
 	override fun warning(err: SAXParseException) {
 	    OmegaContext.sout_log.getLogger().info(
-		"** Warning"
-			+ ", line " + err.lineNumber
-			+ ", uri " + err.systemId
+		    "** Warning"
+			    + ", line " + err.lineNumber
+			    + ", uri " + err.systemId
 	    )
 	    OmegaContext.sout_log.getLogger().info("   " + err.message)
 	}
@@ -46,10 +46,10 @@ class SAX_node : DefaultHandler() {
 
     @Throws(SAXException::class)
     override fun startElement(
-	namespaceURI: String,
-	localName: String,
-	qName: String,
-	attrs: Attributes
+	    namespaceURI: String,
+	    localName: String,
+	    qName: String,
+	    attrs: Attributes
     ) {
 	val el1 = Element(qName)
 	if (attrs != null) {
@@ -96,8 +96,8 @@ class SAX_node : DefaultHandler() {
     }
 
     override fun unparsedEntityDecl(
-	name: String, publicId: String,
-	systemId: String, notationName: String
+	    name: String, publicId: String,
+	    systemId: String, notationName: String
     ) {
 	OmegaContext.sout_log.getLogger().info("ERR: UeD $name")
     }
@@ -135,9 +135,9 @@ class SAX_node : DefaultHandler() {
 		return el
 	    } catch (err: SAXParseException) {
 		getLogger().info(
-		    "** Parsing error"
-			    + ", line " + err.lineNumber
-			    + ", uri " + err.systemId
+			"** Parsing error"
+				+ ", line " + err.lineNumber
+				+ ", uri " + err.systemId
 		)
 		getLogger().info("   " + err.message)
 	    } catch (e: SAXException) {

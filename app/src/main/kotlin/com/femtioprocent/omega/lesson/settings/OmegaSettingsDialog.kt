@@ -251,38 +251,38 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	var X = 0
 	var Y = 0
 	top.add(JLabel(t("Action Movie Background")),
-	    ColorButton(Color(40, 40, 100)).also {
-		action_movie_background = it
-	    }, Y, ++X
+		ColorButton(Color(40, 40, 100)).also {
+		    action_movie_background = it
+		}, Y, ++X
 	)
 	X = 0
 	Y++
 	top.add(JLabel(t("Feedback Movie Background")),
-	    ColorButton(Color(80, 80, 120)).also {
-		feedback_movie_background = it
-	    }, Y, ++X
+		ColorButton(Color(80, 80, 120)).also {
+		    feedback_movie_background = it
+		}, Y, ++X
 	)
 	X = 0
 	Y++
 	top.add(JLabel(t("Animation Background")),
-	    ColorButton(Color(30, 30, 80)).also {
-		anim_background = it
-	    }, Y, ++X
+		ColorButton(Color(30, 30, 80)).also {
+		    anim_background = it
+		}, Y, ++X
 	)
 	if (isLIU_Mode()) {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Background")),
-		ColorButton(Color(30, 30, 80)).also {
-		    signWord_background = it
-		}, Y, ++X
+		    ColorButton(Color(30, 30, 80)).also {
+			signWord_background = it
+		    }, Y, ++X
 	    )
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Transparence")),
-		JSlider(0, 100).also {
-		    signWord_alpha = it
-		}, Y, ++X
+		    JSlider(0, 100).also {
+			signWord_alpha = it
+		    }, Y, ++X
 	    )
 	    signWord_alpha!!.majorTickSpacing = 20
 	    signWord_alpha!!.minorTickSpacing = 5
@@ -291,9 +291,9 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Word Movie Scale")),
-		JSlider(0, 100).also {
-		    signMovieWord_scale = it
-		}, Y, ++X
+		    JSlider(0, 100).also {
+			signMovieWord_scale = it
+		    }, Y, ++X
 	    )
 	    signMovieWord_scale!!.majorTickSpacing = 20
 	    signMovieWord_scale!!.minorTickSpacing = 5
@@ -302,16 +302,16 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Background")),
-		ColorButton(Color(30, 30, 80)).also {
-		    signSentence_background = it
-		}, Y, ++X
+		    ColorButton(Color(30, 30, 80)).also {
+			signSentence_background = it
+		    }, Y, ++X
 	    )
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Transparence")),
-		JSlider(0, 100).also {
-		    signSentence_alpha = it
-		}, Y, ++X
+		    JSlider(0, 100).also {
+			signSentence_alpha = it
+		    }, Y, ++X
 	    )
 	    signSentence_alpha!!.majorTickSpacing = 20
 	    signSentence_alpha!!.minorTickSpacing = 5
@@ -320,9 +320,9 @@ class OmegaSettingsDialog : SettingsDialog("Omega - Settings") {
 	    X = 0
 	    Y++
 	    top.add(JLabel(t("Sign Sentence Movie Scale")),
-		JSlider(0, 100).also {
-		    signMovieSentence_scale = it
-		}, Y, ++X
+		    JSlider(0, 100).also {
+			signMovieSentence_scale = it
+		    }, Y, ++X
 	    )
 	    signMovieSentence_scale!!.majorTickSpacing = 20
 	    signMovieSentence_scale!!.minorTickSpacing = 5

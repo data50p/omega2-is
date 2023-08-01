@@ -5,6 +5,6 @@ import java.io.File
 import javax.swing.JFileChooser
 
 class ChooseGenericFile internal constructor(runtime: Boolean) :
-    JFileChooser(File(omegaAssets(if (runtime) ".." else "."))) {
+	JFileChooser(File(omegaAssets(if (runtime) ".." else "."))) {
     constructor() : this(false)
 }

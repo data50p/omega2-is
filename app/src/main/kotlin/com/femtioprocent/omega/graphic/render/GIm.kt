@@ -13,8 +13,8 @@ abstract class GIm {
     var layer = 2
     var reset_sequence = 0
     protected var acomp = AlphaComposite.getInstance(
-	AlphaComposite.SRC_OVER,
-	1.0f
+	    AlphaComposite.SRC_OVER,
+	    1.0f
     )
     protected var ca: Canvas
     var xim: xImage
@@ -86,8 +86,8 @@ abstract class GIm {
 
     fun setVisibility(percent: Int) {
 	acomp = if (percent == 0) AlphaComposite.getInstance(
-	    AlphaComposite.SRC_OVER,
-	    0.0.toFloat()
+		AlphaComposite.SRC_OVER,
+		0.0.toFloat()
 	) else AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (percent / 100.0).toFloat())
     }
 
@@ -154,10 +154,8 @@ abstract class GIm {
 
     var prevBoundingRect: Rectangle2D
 	get() = prev_bounding_rect
-	    ?: //log	    OmegaContext.sout_log.getLogger().info(":--: " + "======================= pbr null ====");
-	    bounding_rect
 	set(br) {
-	    prev_bounding_rect!!.setRect(br)
+	    prev_bounding_rect.setRect(br)
 	}
 
     abstract fun getAffineTransformAtTime(dt: Int, tl: TimeLine, bounding_rect: Rectangle2D): AffineTransform?

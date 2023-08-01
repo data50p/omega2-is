@@ -4,7 +4,7 @@ import java.io.File
 import java.io.FilenameFilter
 
 class FilenameFilterExt internal constructor(var ext: String, var with: Array<String>? = null) :
-    FilenameFilter {
+	FilenameFilter {
     override fun accept(dir: File, fname: String): Boolean {
 	if (fname.endsWith(ext)) {
 	    if (with == null) return true

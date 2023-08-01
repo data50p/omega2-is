@@ -256,11 +256,11 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
     private fun drawHS(ix: Int, g2: Graphics2D, hx: Int, hy: Int) {
 	drawHS(ix, g2, hx + 1, hy + if (ix == 2) 0 else 1, Color.black)
 	drawHS(
-	    ix,
-	    g2,
-	    hx,
-	    hy,
-	    if (hotspot_click == ix) Color.red else if (hotspot_near == ix) Color.yellow else Color.green
+		ix,
+		g2,
+		hx,
+		hy,
+		if (hotspot_click == ix) Color.red else if (hotspot_near == ix) Color.yellow else Color.green
 	)
     }
 
@@ -281,9 +281,9 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
     }
 
     private fun drawL(
-	g2: Graphics2D,
-	hx: Int, hy: Int,
-	hx2: Int, hy2: Int
+	    g2: Graphics2D,
+	    hx: Int, hy: Int,
+	    hx2: Int, hy2: Int
     ) {
 	g2.drawLine(hx, hy, hx2, hy2)
     }
@@ -422,10 +422,10 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
 	}
 	if (ev.actionCommand == "delete") {
 	    val rsp = JOptionPane.showConfirmDialog(
-		this,
-		t("Are you sure to delete the Actor?"),
-		"Omega",
-		JOptionPane.YES_NO_OPTION
+		    this,
+		    t("Are you sure to delete the Actor?"),
+		    "Omega",
+		    JOptionPane.YES_NO_OPTION
 	    )
 	    //log	    OmegaContext.sout_log.getLogger().info(":--: " + "*******) " + rsp);
 	    if (rsp == 0) cabp.deleteActor(bound_act_ixx)

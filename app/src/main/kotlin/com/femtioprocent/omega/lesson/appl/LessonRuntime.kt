@@ -21,17 +21,17 @@ class LessonRuntime(title: String?, fn: String?, with_frame: Boolean, run_mode: 
 	})
 	val le = Lesson(run_mode)
 	le.runLessons(
-	    wi,
-	    f.contentPane as JPanel,
-	    fn,
-	    false,
-	    with_frame
+		wi,
+		f.contentPane as JPanel,
+		fn,
+		false,
+		with_frame
 	)
     }
 
     private fun maybeClose() {
 	Log.getLogger().info(
-	    """LessonRuntime want to close ${ApplContext.top_frame === this} ${ApplContext.top_frame}
+		"""LessonRuntime want to close ${ApplContext.top_frame === this} ${ApplContext.top_frame}
 $this"""
 	)
 	if (ApplContext.top_frame === this) System.exit(0)

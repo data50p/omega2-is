@@ -35,7 +35,7 @@ import javax.swing.table.TableModel
 import javax.swing.text.Document
 
 class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: LessonContext) :
-    Property_B(owner, t("Omega - Assets Bundle Dialog")) {
+	Property_B(owner, t("Omega - Assets Bundle Dialog")) {
     var guimap = HashMap<String, JComponent>()
     var table: JTable? = null
     var set_act_b: JButton? = null
@@ -80,7 +80,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 		if (rv == JFileChooser.APPROVE_OPTION) {
 		    var file = choose_f.selectedFile
 		    if (!file.name.endsWith(OmegaConfig.OMEGA_BUNDLE_EXTENSION)) file =
-			File(file.path + OmegaConfig.OMEGA_BUNDLE_EXTENSION)
+			    File(file.path + OmegaConfig.OMEGA_BUNDLE_EXTENSION)
 		    try {
 			val manifest: MutableList<String> = ArrayList()
 			for (s2 in targetCombinationsBuilder.asOne().src_set) {
@@ -193,7 +193,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 
     private fun importOmegaAssetsBundle(unpack: Boolean) {
 	latestTargetCombinations =
-	    if (latestTargetCombinations == null || unpack) TargetCombinations() else latestTargetCombinations
+		if (latestTargetCombinations == null || unpack) TargetCombinations() else latestTargetCombinations
 	val choose_f = ChooseOmegaBundleFile()
 	val url_s: String? = null
 	val rv = choose_f.showDialog(ApplContext.top_frame, t(if (unpack) "Import" else "List"))
@@ -241,7 +241,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 				    if (obManifest) {
 					val infoText = String(buffer, 0, len)
 					val sa = infoText.split("\n".toRegex()).dropLastWhile { it.isEmpty() }
-					    .toTypedArray()
+						.toTypedArray()
 					for (s in sa) {
 					    if (s.startsWith("info: ")) infoTF!!.text = s.substring(6)
 					}
@@ -390,10 +390,10 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	jb.actionCommand = "new bundle"
 	jb.addActionListener(myactl)
 	fpan.add(
-	    JLabel(""),
-	    JButton(t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()).also { jb = it },
-	    Y,
-	    ++X
+		JLabel(""),
+		JButton(t("Add Omega Assets to Bundle") + " " + targetCombinationsBuilder.srcSize()).also { jb = it },
+		Y,
+		++X
 	)
 	jb.actionCommand = "add bundle"
 	jb.addActionListener(myactl)
@@ -426,9 +426,9 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 	table = JTable(tsort)
 	tsort.addMouseListenerToHeaderInTable(table!!)
 	val jscr = JScrollPane(
-	    table,
-	    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-	    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+		table,
+		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
 	)
 	for (i in 0 until table!!.columnModel.columnCount) {
 	    val tcol = table!!.columnModel.getColumn(i)

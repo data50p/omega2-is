@@ -136,8 +136,8 @@ class TimeMarkerProperties(var a_ctxt: AnimContext, owner: JFrame?) : OmegaPrope
 		    var jlb: JLabel?
 		    pp.add(JLabel(t("Event")).also { jlb = it }, c.create(0, 0))
 		    pp.add(
-			JLabel(t("Argument") + "               ").also { jlb = it },
-			c.create(1, 0)
+			    JLabel(t("Argument") + "               ").also { jlb = it },
+			    c.create(1, 0)
 		    )
 		    pp.add(JLabel(t("Note/Description")).also { jlb = it }, c.create(2, 0))
 		    pp.add(JLabel(t("is On")).also { jlb = it }, c.create(3, 0))

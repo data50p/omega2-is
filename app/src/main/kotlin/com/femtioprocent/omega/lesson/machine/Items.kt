@@ -11,11 +11,11 @@ class Items {
     }
 
     internal constructor(
-	el: Element,
-	tg: Target,
-	story_hm: HashMap<String?, SentenceList?>?,
-	dummy: Boolean,
-	mix: Boolean
+	    el: Element,
+	    tg: Target,
+	    story_hm: HashMap<String?, SentenceList?>?,
+	    dummy: Boolean,
+	    mix: Boolean
     ) {
 	item_entry_list = ArrayList()
 	for (i in 0..99) {
@@ -36,9 +36,9 @@ class Items {
     }
 
     internal constructor(
-	sa: MutableList<Array<String?>?>,
-	tg: Target?,
-	dummy: Boolean
+	    sa: MutableList<Array<String?>?>,
+	    tg: Target?,
+	    dummy: Boolean
     ) {      // text, lid,lid... 4 random target list
 	item_entry_list = ArrayList()
 	val item_entry = ItemEntry()

@@ -26,10 +26,10 @@ object VideoUtil {
      */
     fun findSupportedFname(fname: String): String? {
 	val altFname = fname
-	    .replace("\\.[mM][pP][gG]$".toRegex(), ".mp4")
-	    .replace("\\.[mM][oO][vV]$".toRegex(), ".mp4")
-	    .replace("\\.[mM][pP][eE][gG]$".toRegex(), ".mp4")
-	    .replace("\\.[aA][vV][iI]$".toRegex(), ".mp4")
+		.replace("\\.[mM][pP][gG]$".toRegex(), ".mp4")
+		.replace("\\.[mM][oO][vV]$".toRegex(), ".mp4")
+		.replace("\\.[mM][pP][eE][gG]$".toRegex(), ".mp4")
+		.replace("\\.[aA][vV][iI]$".toRegex(), ".mp4")
 	Log.getLogger().info("alt file name: $fname -> $altFname")
 	if (fileExist(altFname)) return altFname
 	val f = File(altFname)

@@ -76,10 +76,10 @@ class Pupil(var name: String) {
 	if (jparams == null) return null
 	val s = jparams!!["image"] ?: return null
 	return ScaledImageIcon.createImageIcon(
-	    comp,
-	    s,
-	    100,
-	    80
+		comp,
+		s,
+		100,
+		80
 	)!!.image
     }
 

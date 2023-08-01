@@ -222,7 +222,7 @@ class GImAE : GIm {
 
     fun getHotSpotAsString(ix: Int): String {
 	return if (ix == 0) "" + fix2(hotspot.x) + ' ' + fix2(hotspot.y) else ("" + fix2(hotspot.getX(1)) + ' ' + fix2(
-	    hotspot.getY(1)
+		hotspot.getY(1)
 	) + " ->"
 		+ " " + fix2(hotspot.getX(2)) + ' ' + fix2(hotspot.getY(2)) + "")
     }
@@ -264,9 +264,9 @@ class GImAE : GIm {
     var affineTransform: AffineTransform? = null
 
     override fun getAffineTransformAtTime(
-	dt: Int,
-	tl: TimeLine,
-	bounding_rect: Rectangle2D
+	    dt: Int,
+	    tl: TimeLine,
+	    bounding_rect: Rectangle2D
     ): AffineTransform? {
 	try {
 	    rot = rotAt(dt)
@@ -323,9 +323,9 @@ class GImAE : GIm {
 		at.translate(scale * -hotsp_x * imw, scale * -hotsp_y * imh)
 		at.translate(po.x, po.y)
 		at.rotate(
-		    rot,
-		    scale * hotspot.getX(0) * imw,
-		    scale * hotspot.getY(0) * imh
+			rot,
+			scale * hotspot.getX(0) * imw,
+			scale * hotspot.getY(0) * imh
 		)
 		if (prim_mirror_x xor mirror_x) {
 		    at.translate(scale * imw, 0.0)
@@ -337,8 +337,8 @@ class GImAE : GIm {
 		}
 		at.scale(scale, scale)
 		val rT: Rectangle2D = Rectangle2D.Double(
-		    0.0, 0.0,
-		    imw.toDouble(), imh.toDouble()
+			0.0, 0.0,
+			imw.toDouble(), imh.toDouble()
 		)
 		val sh = at.createTransformedShape(rT)
 		if (bounding_rect != null) {
@@ -363,17 +363,17 @@ class GImAE : GIm {
 
     fun expand(r: Rectangle2D): Rectangle2D {
 	return Rectangle2D.Double(
-	    r.x,
-	    r.y,
-	    r.width + 2,
-	    r.height + 2
+		r.x,
+		r.y,
+		r.width + 2,
+		r.height + 2
 	)
     }
 
     override fun getAffineTransformAtTime(
-	dt: Int,
-	tlA: Array<TimeLine>,
-	bounding_rect: Rectangle2D
+	    dt: Int,
+	    tlA: Array<TimeLine>,
+	    bounding_rect: Rectangle2D
     ): AffineTransform? {
 	if (nid < tlA.size) {
 	    val tl = tlA[nid]
@@ -390,9 +390,9 @@ class GImAE : GIm {
 	if ((mask == null || xim.getImage(ca) !== current_mask_image) && can_eat) {
 	    mask = this
 	    mask!!.buffered_image = BufferedImage(
-		width,
-		height,
-		BufferedImage.TYPE_INT_ARGB
+		    width,
+		    height,
+		    BufferedImage.TYPE_INT_ARGB
 	    )
 	    val gb = mask!!.buffered_image!!.graphics as Graphics2D
 	    val at2 = AffineTransform()
@@ -400,9 +400,9 @@ class GImAE : GIm {
 	}
 	if (buffered_image == null && can_bee_eaten) {
 	    buffered_image = BufferedImage(
-		width,
-		height,
-		BufferedImage.TYPE_INT_ARGB
+		    width,
+		    height,
+		    BufferedImage.TYPE_INT_ARGB
 	    )
 	    val gb = buffered_image!!.graphics as Graphics2D
 	    gb.drawImage(xim.getImage(ca), 0, 0, null)
@@ -419,9 +419,9 @@ class GImAE : GIm {
 	    }
 	}
 	if (buffered_image != null) ca.drawImage(buffered_image, at, acomp) else ca.drawImage(
-	    xim.getImage(ca),
-	    at,
-	    acomp
+		xim.getImage(ca),
+		at,
+		acomp
 	)
     }
 

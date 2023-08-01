@@ -35,13 +35,13 @@ class TimeLineStatusPanel(var tlp: TimeLinePanel) : JPanel() {
 	p.background = Color(180, 180, 180)
 	val ins = Insets(0, 0, 0, 0)
 	val con = GridBagConstraints(
-	    0, 0,
-	    1, 1,
-	    1.0, 1.0,
-	    GridBagConstraints.CENTER,
-	    GridBagConstraints.HORIZONTAL,
-	    ins,
-	    0, 0
+		0, 0,
+		1, 1,
+		1.0, 1.0,
+		GridBagConstraints.CENTER,
+		GridBagConstraints.HORIZONTAL,
+		ins,
+		0, 0
 	)
 	info = JLabel(t("Info:") + "                                       ")
 	info.border = BevelBorder(BevelBorder.LOWERED)

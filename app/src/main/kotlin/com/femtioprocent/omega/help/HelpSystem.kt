@@ -48,9 +48,9 @@ open class HelpSystem {
 
     fun showManualL(more: String?) {
 	if (ApplLesson.is_editor != null && ApplLesson.is_editor!!) show(
-	    mkFileName(base()),
-	    800,
-	    600
+		mkFileName(base()),
+		800,
+		600
 	) else if (more != null) show(mkFileName(base() + '-' + more), 800, 600) else show(mkFileName(base()), 800, 600)
     }
 
