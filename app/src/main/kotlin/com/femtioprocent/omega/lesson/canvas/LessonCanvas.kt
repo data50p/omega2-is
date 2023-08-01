@@ -51,8 +51,8 @@ kvittera med TAB Enter
 
  */
 class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
-    override var om_msg_mgr = Manager()
     var lep: LessonEditorPanel? = null
+
     //    public Target tg;
     private var target_standout_msk = 0 // mask
     private var mark_more = false
@@ -104,6 +104,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	fireExit(1)
 	m_sleep(300)
     }
+
     var skip_keycode = false
     override fun ownKeyCode(kc: Int, is_shift: Boolean): Boolean {
 	if (edit) {
@@ -258,11 +259,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     inner class ShapeList internal constructor() {
 	inner class ShapeItem(var id: String, var shp: Shape, var col: Color)
 
-	var li: MutableList<ShapeItem>
-
-	init {
-	    li = ArrayList()
-	}
+	var li = mutableListOf<ShapeItem>()
 
 	fun add(id: String, shp: Shape, col: Color) {
 	    li.add(ShapeItem(id, shp, col))
@@ -279,13 +276,13 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     inner class Box internal constructor(
-	var itm_ent: ItemEntry?,
-	var x: Int,
-	var y: Int,
-	var w: Int,
-	var h: Int,
-	var o_x: Int,
-	var o_y: Int
+	    var itm_ent: ItemEntry?,
+	    var x: Int,
+	    var y: Int,
+	    var w: Int,
+	    var h: Int,
+	    var o_x: Int,
+	    var o_y: Int
     ) {
 	var r: RoundRectangle2D
 	var state = BooleanArray(BOX_MAXSTATE)
@@ -302,12 +299,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    this.o_x = o_x
 	    this.o_y = o_y
 	    r = RoundRectangle2D.Double(
-		x.toDouble(),
-		y.toDouble(),
-		w.toDouble(),
-		h.toDouble(),
-		(caH / 48).toDouble(),
-		(caW / 64).toDouble()
+		    x.toDouble(),
+		    y.toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    (caH / 48).toDouble(),
+		    (caW / 64).toDouble()
 	    )
 	    stroke = BasicStroke(caH / 300f)
 	}
@@ -327,12 +324,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
 	init {
 	    r = RoundRectangle2D.Double(
-		x.toDouble(),
-		y.toDouble(),
-		w.toDouble(),
-		h.toDouble(),
-		(caH / 48).toDouble(),
-		(caW / 64).toDouble()
+		    x.toDouble(),
+		    y.toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    (caH / 48).toDouble(),
+		    (caW / 64).toDouble()
 	    )
 	    stroke = BasicStroke(caH / 300f)
 	}
@@ -403,20 +400,16 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    }
 	    val ss = if (s.length == 0) " " else s
 	    if (item_fo == null || last_h != h || last_w != w) {
-		setItemFont(
-		    Font(
+		setItemFont(Font(
 			"Arial",
 			Font.PLAIN,
 			getSize(caW.toDouble() / caH, h)
-		    )
-		)
-		setItemFont2(
-		    Font(
+		))
+		setItemFont2(Font(
 			"Arial",
 			Font.PLAIN,
 			getSize(caW.toDouble() / (2 * caH), h)
-		    )
-		)
+		))
 	    }
 	    last_h = h
 	    last_w = w
@@ -450,8 +443,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    for (i in 1 until how_many) {
 			if (ink) {
 			    g2.drawLine(
-				x + dw * i, y,
-				x + dw * i, y + h
+				    x + dw * i, y,
+				    x + dw * i, y + h
 			    )
 			}
 		    }
@@ -576,13 +569,13 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    while (it.hasNext()) {
 		val bx = it.next() as Box
 		if (bx.o_x == ix
-		    && bx.o_y == iy
+			&& bx.o_y == iy
 		) {
 		    return Rectangle2D.Double(
-			bx.r.x,
-			bx.r.y,
-			bx.r.width,
-			bx.r.height
+			    bx.r.x,
+			    bx.r.y,
+			    bx.r.width,
+			    bx.r.height
 		    )
 		}
 	    }
@@ -594,7 +587,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    while (it.hasNext()) {
 		val bx = it.next() as Box
 		if (bx.o_x == ix
-		    && bx.o_y == iy
+			&& bx.o_y == iy
 		) {
 		    return bx
 		}
@@ -813,7 +806,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		last_hbx = hbx
 	    }
 	    if (hitQuitButton(e.x, e.y)
-		|| hitExtraQuitButton(e.x, e.y)
+		    || hitExtraQuitButton(e.x, e.y)
 	    ) {
 		if (hitQuitButton(e.x, e.y)) {
 		    if (quit_state == 0) {
@@ -1046,9 +1039,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		current_ix = bix
 		val where = IntArray(1)
 		hitBox(
-		    bx.r.x.toInt(), bx.r.y.toInt(),
-		    'm',
-		    where
+			bx.r.x.toInt(), bx.r.y.toInt(),
+			'm',
+			where
 		)
 		enterBox(bx)
 	    } else {
@@ -1063,9 +1056,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		bx = allBox!!.getBox(bix, current_iy)
 		val where = IntArray(1)
 		hitBox(
-		    bx!!.r.x.toInt(), bx.r.y.toInt(),
-		    'm',
-		    where
+			bx!!.r.x.toInt(), bx.r.y.toInt(),
+			'm',
+			where
 		)
 		enterBox(bx)
 		last_bix = bix
@@ -1099,9 +1092,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		current_ix = nix
 		val where = IntArray(1)
 		hitBox(
-		    bx.r.x.toInt(), bx.r.y.toInt(),
-		    'm',
-		    where
+			bx.r.x.toInt(), bx.r.y.toInt(),
+			'm',
+			where
 		)
 		enterBox(bx)
 	    }
@@ -1116,9 +1109,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	current_iy += dy
 	val where = IntArray(1)
 	hitBox(
-	    bx.r.x.toInt(), bx.r.y.toInt(),
-	    'm',
-	    where
+		bx.r.x.toInt(), bx.r.y.toInt(),
+		'm',
+		where
 	)
 	enterBox(bx)
     }
@@ -1128,9 +1121,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    val bx = allBox!!.getBox(current_ix, current_iy)
 	    val where = IntArray(1)
 	    hitBox(
-		bx!!.r.x.toInt(), bx.r.y.toInt(),
-		'p',
-		where
+		    bx!!.r.x.toInt(), bx.r.y.toInt(),
+		    'p',
+		    where
 	    )
 	    selectBox(bx, with_mouse, when_hit)
 	} catch (ex: NullPointerException) {
@@ -1207,24 +1200,24 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    def = sa[0]
 	}
 	return JOptionPane.showInputDialog(
-	    owner,
-	    t("Select a sentence"),
-	    "Omega - Option",
-	    JOptionPane.QUESTION_MESSAGE,
-	    null,
-	    sa,
-	    def
+		owner,
+		t("Select a sentence"),
+		"Omega - Option",
+		JOptionPane.QUESTION_MESSAGE,
+		null,
+		sa,
+		def
 	) as String
     }
 
     fun addTarget(where: Int) {
 	val sa = arrayOf(
-	    t("Cancel"),
-	    t("Add new target")
+		t("Cancel"),
+		t("Add new target")
 	)
 	val sel = GetOption.getOption(
-	    t("Adding the target area"),
-	    sa
+		t("Adding the target area"),
+		sa
 	)
 	if (sel > 0) {
 	    target!!.addT_Item(where)
@@ -1235,12 +1228,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun delTarget(where: Int) {
 	val sa = arrayOf(
-	    t("Cancel"),
-	    t("Delete target")
+		t("Cancel"),
+		t("Delete target")
 	)
 	val sel = GetOption.getOption(
-	    t("Deleting the target area"),
-	    sa
+		t("Deleting the target area"),
+		sa
 	)
 	if (sel > 0) {
 	    target!!.delT_Item(where)
@@ -1251,12 +1244,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun addItemEntry(ix: Int) {
 	val sa = arrayOf(
-	    t("Cancel"),
-	    t("Add new column")
+		t("Cancel"),
+		t("Add new column")
 	)
 	val sel = GetOption.getOption(
-	    t("Add a new column"),
-	    sa
+		t("Add a new column"),
+		sa
 	)
 	if (sel > 0) {
 	    target!!.addItemEntry(ix, 0)
@@ -1282,12 +1275,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun delItemEntry(ix: Int) {
 	val sa = arrayOf(
-	    t("Cancel"),
-	    t("Delete column")
+		t("Cancel"),
+		t("Delete column")
 	)
 	val sel = GetOption.getOption(
-	    t("Delete selected column"),
-	    sa
+		t("Delete selected column"),
+		sa
 	)
 	if (sel > 0) {
 	    target!!.delItemEntry(ix, 0)
@@ -1369,13 +1362,13 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    if (itm != null) {
 			if (obx == null) {
 			    bx = Box(
-				itm.it_ent,
-				x + xx,
-				y + yi * (hh + hhh),
-				sww,
-				hh,
-				xi,
-				o_y
+				    itm.it_ent,
+				    x + xx,
+				    y + yi * (hh + hhh),
+				    sww,
+				    hh,
+				    xi,
+				    o_y
 			    )
 			} else {
 			    bx = obx
@@ -1387,13 +1380,13 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 			itm = target!!.getItemAt(xi, yi)
 			if (obx == null) {
 			    bx = Box(
-				itm!!.it_ent,
-				x + xx,
-				y + yi * (hh + hhh),
-				sww,
-				hh,
-				xi,
-				o_y
+				    itm!!.it_ent,
+				    x + xx,
+				    y + yi * (hh + hhh),
+				    sww,
+				    hh,
+				    xi,
+				    o_y
 			    )
 			} else {
 			    bx = obx
@@ -1403,14 +1396,14 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    if (bx != null) {
 			if (active_item_box != null) {
 			    if (active_item_box!!.o_x == bx.o_x
-				&& active_item_box!!.o_y == bx.o_y
+				    && active_item_box!!.o_y == bx.o_y
 			    ) {
 				active_item_box = bx
 			    }
 			}
 			if (active_item_action_box != null) {
 			    if (active_item_action_box!!.o_x == bx.o_x
-				&& active_item_action_box!!.o_y == bx.o_y
+				    && active_item_action_box!!.o_y == bx.o_y
 			    ) {
 				active_item_action_box = bx
 			    }
@@ -1493,10 +1486,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     var anim_action_patch: AnimAction? = null
     fun waitReplyAction(
-	anim_action: AnimAction,
-	text: String?,
-	show: Boolean,
-	myra: Runnable?
+	    anim_action: AnimAction,
+	    text: String?,
+	    show: Boolean,
+	    myra: Runnable?
     ): String? {
 	var end_code_s: String? = null
 	anim_action_patch = anim_action
@@ -1569,8 +1562,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     fun setTargetFontAlt(f: Double) {
 	val h = (caH * tgH / 100.0).toInt()
 	trgtA_fo = Font(
-	    "Arial",
-	    Font.PLAIN, (f * getSize(caW.toDouble() / caH, (h * 0.65).toInt())).toInt()
+		"Arial",
+		Font.PLAIN, (f * getSize(caW.toDouble() / caH, (h * 0.65).toInt())).toInt()
 	)
     }
 
@@ -1578,8 +1571,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	get() {
 	    val h = (caH * tgH / 100.0).toInt()
 	    return Font(
-		"Arial",
-		Font.PLAIN, (0.8 * getSize(caW.toDouble() / caH, (h * 0.65).toInt())).toInt()
+		    "Arial",
+		    Font.PLAIN, (0.8 * getSize(caW.toDouble() / caH, (h * 0.65).toInt())).toInt()
 	    )
 	}
     val targetFontAlt: Font?
@@ -1655,10 +1648,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	val w_s = getStringWidth(targetFont!!, s)
 	val r = targetRectangle
 	return Rectangle(
-	    r.x + (if (edit) 30 else 10) + w_left,
-	    r.y + 2,
-	    w_s,
-	    r.height - 4
+		r.x + (if (edit) 30 else 10) + w_left,
+		r.y + 2,
+		w_s,
+		r.height - 4
 	)
     }
 
@@ -1862,30 +1855,30 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	return -1
     }
 
-    fun addTgAddBox(sbl: ShapeList, da: Array<Double?>, y: Double) {
+    fun addTgAddBox(sbl: ShapeList, da: List<Double>, y: Double) {
 	val d = (caW / 60).toDouble()
 	val col = Color(150, 150, 150)
 	var i = 0
 	while (i < da.size) {
 	    val r: RoundRectangle2D = RoundRectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - d / 2 + 0.5,
-		y + 0.5,
-		d + 0.5,
-		d + 0.5,
-		d / 4 + 0.5,
-		d / 4 + 0.5
+		    (da[i] + da[i + 1]) / 2 - d / 2 + 0.5,
+		    y + 0.5,
+		    d + 0.5,
+		    d + 0.5,
+		    d / 4 + 0.5,
+		    d / 4 + 0.5
 	    )
 	    val rs: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.35 * d + 0.5,
-		y + 0.4 * d + 0.5,
-		0.7 * d + 0.5,
-		0.2 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.35 * d + 0.5,
+		    y + 0.4 * d + 0.5,
+		    0.7 * d + 0.5,
+		    0.2 * d + 0.5
 	    )
 	    val rt: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.1 * d + 0.5,
-		y + 0.15 * d + 0.5,
-		0.2 * d + 0.5,
-		0.7 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.1 * d + 0.5,
+		    y + 0.15 * d + 0.5,
+		    0.2 * d + 0.5,
+		    0.7 * d + 0.5
 	    )
 	    sbl.add("" + i / 2, r, col)
 	    val a = Area(rs)
@@ -1897,24 +1890,24 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    fun addTgDelBox(sbl: ShapeList, da: Array<Double?>, y: Double) {
+    fun addTgDelBox(sbl: ShapeList, da: List<Double>, y: Double) {
 	val d = (caW / 60).toDouble()
 	val col = Color(150, 150, 150)
 	var i = 0
 	while (i < da.size) {
 	    val r: RoundRectangle2D = RoundRectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - d / 2 + 0.5,
-		y + 0.5,
-		d + 0.5,
-		d + 0.5,
-		d / 4 + 0.5,
-		d / 4 + 0.5
+		    (da[i] + da[i + 1]) / 2 - d / 2 + 0.5,
+		    y + 0.5,
+		    d + 0.5,
+		    d + 0.5,
+		    d / 4 + 0.5,
+		    d / 4 + 0.5
 	    )
 	    val rs: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.35 * d + 0.5,
-		y + 0.4 * d + 0.5,
-		0.7 * d + 0.5,
-		0.2 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.35 * d + 0.5,
+		    y + 0.4 * d + 0.5,
+		    0.7 * d + 0.5,
+		    0.2 * d + 0.5
 	    )
 	    //  	    Rectangle2D rt = new Rectangle2D.Double((da[i].doubleValue() + da[i+1].doubleValue()) / 2 - 0.1 * d + 0.5,
 //  						    y + 0.15 * d + 0.5,
@@ -1928,30 +1921,30 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    fun addAddBox(sbl: ShapeList, da: Array<Double?>, y: Double) {
+    fun addAddBox(sbl: ShapeList, da: List<Double>, y: Double) {
 	val d = (caW / 60).toDouble()
 	val col = Color(150, 150, 150)
 	var i = 0
 	while (i < da.size) {
 	    val r: RoundRectangle2D = RoundRectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - d / 2 + 0.5,
-		y + 0.5,
-		d + 0.5,
-		d + 0.5,
-		d / 4 + 0.5,
-		d / 4 + 0.5
+		    (da[i] + da[i + 1]) / 2 - d / 2 + 0.5,
+		    y + 0.5,
+		    d + 0.5,
+		    d + 0.5,
+		    d / 4 + 0.5,
+		    d / 4 + 0.5
 	    )
 	    val rs: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.35 * d + 0.5,
-		y + 0.4 * d + 0.5,
-		0.7 * d + 0.5,
-		0.2 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.35 * d + 0.5,
+		    y + 0.4 * d + 0.5,
+		    0.7 * d + 0.5,
+		    0.2 * d + 0.5
 	    )
 	    val rt: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.1 * d + 0.5,
-		y + 0.15 * d + 0.5,
-		0.2 * d + 0.5,
-		0.7 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.1 * d + 0.5,
+		    y + 0.15 * d + 0.5,
+		    0.2 * d + 0.5,
+		    0.7 * d + 0.5
 	    )
 	    sbl.add("" + i / 2, r, col)
 	    val a = Area(rs)
@@ -1961,24 +1954,24 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
     }
 
-    fun addDelBox(sbl: ShapeList, da: Array<Double?>, day: Array<Double?>, ba: BooleanArray) {
+    fun addDelBox(sbl: ShapeList, da: List<Double>, day: List<Double>, ba: BooleanArray) {
 	val d = (caW / 60).toDouble()
 	val col = Color(150, 150, 150)
 	var i = 0
 	while (i < da.size) {
 	    val r: RoundRectangle2D = RoundRectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - d / 2 + 0.5,
-		day[i / 2]!! + 0.5,
-		d + 0.5,
-		d + 0.5,
-		d / 4 + 0.5,
-		d / 4 + 0.5
+		    (da[i] + da[i + 1]) / 2 - d / 2 + 0.5,
+		    day[i / 2] + 0.5,
+		    d + 0.5,
+		    d + 0.5,
+		    d / 4 + 0.5,
+		    d / 4 + 0.5
 	    )
 	    val rs: Rectangle2D = Rectangle2D.Double(
-		(da[i]!! + da[i + 1]!!) / 2 - 0.35 * d + 0.5,
-		day[i / 2]!! + d * 0.4 + 0.5,
-		0.7 * d + 0.5,
-		0.2 * d + 0.5
+		    (da[i] + da[i + 1]) / 2 - 0.35 * d + 0.5,
+		    day[i / 2] + d * 0.4 + 0.5,
+		    0.7 * d + 0.5,
+		    0.2 * d + 0.5
 	    )
 	    if (ba[i / 2]) {
 		sbl.add("" + i / 2, r, col)
@@ -2002,7 +1995,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun createAddBoxes() {
 	val naddBoxes = ShapeList()
-	val li: MutableList<Double?> = ArrayList()
+	val li: MutableList<Double> = ArrayList()
 	li.add(java.lang.Double.valueOf(0.0))
 	var y = 0.0
 	for (i in 0..19) {
@@ -2015,14 +2008,14 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	li.add(java.lang.Double.valueOf(caW.toDouble()))
 	val bx = allBox!!.getBox(0, 0)
 	if (bx != null) {
-	    addAddBox(naddBoxes, li.toTypedArray<Double?>(), bx.r.y)
+	    addAddBox(naddBoxes, li, bx.r.y)
 	}
 	addBoxes = naddBoxes
     }
 
     fun createTgAddBoxes() {
 	val naddBoxes = ShapeList()
-	val li: MutableList<Double?> = ArrayList()
+	val li = mutableListOf<Double>()
 	val r0: Rectangle2D = targetRectangle
 	li.add(java.lang.Double.valueOf(r0.x))
 	var d = 0.0
@@ -2032,13 +2025,13 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    li.add(java.lang.Double.valueOf((rr.getX() + rr.getWidth()).also { d = it }))
 	}
 	li.add(java.lang.Double.valueOf(d + 27))
-	addTgAddBox(naddBoxes, li.toTypedArray<Double?>(), r0.y + 4)
+	addTgAddBox(naddBoxes, li, r0.y + 4)
 	tgAddBoxes = naddBoxes
     }
 
     fun createTgDelBoxes() {
 	val ndelBoxes = ShapeList()
-	val li: MutableList<Double?> = ArrayList()
+	val li = mutableListOf<Double>()
 	val r0: Rectangle2D = targetRectangle
 	var d = 0.0
 	for (i in 0 until target!!.get_howManyT_Items()) {
@@ -2047,15 +2040,15 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    li.add(java.lang.Double.valueOf(rr.getX() + rr.getWidth().also { d = it }))
 	}
 	val dh = (caW / 60).toDouble()
-	addTgDelBox(ndelBoxes, li.toTypedArray<Double?>(), r0.y +  /*r0.getHeight() + */-dh - 4)
+	addTgDelBox(ndelBoxes, li, r0.y +  /*r0.getHeight() + */-dh - 4)
 	tgDelBoxes = ndelBoxes
     }
 
     fun createDelBoxes() {
 	val ndelBoxes = ShapeList()
 	val ba = BooleanArray(20)
-	val li: MutableList<Double?> = ArrayList()
-	val liy: MutableList<Double?> = ArrayList()
+	val li = mutableListOf<Double>()
+	val liy = mutableListOf<Double>()
 	var hasmore1 = true
 	var bx = allBox!!.getBox(1, 0)
 	if (bx == null) {
@@ -2083,7 +2076,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 	bx = allBox!!.getBox(0, 0)
 	if (bx != null) {
-	    addDelBox(ndelBoxes, li.toTypedArray<Double?>(), liy.toTypedArray<Double?>(), ba)
+	    addDelBox(ndelBoxes, li, liy, ba)
 	}
 	delBoxes = ndelBoxes
     }
@@ -2199,12 +2192,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    val ww = 0.1 * caW
 	    val hh = 0.04 * caH
 	    val r: RoundRectangle2D = RoundRectangle2D.Double(
-		xx,
-		yy,
-		ww,
-		hh,
-		d / 4 + 0.5,
-		d / 4 + 0.5
+		    xx,
+		    yy,
+		    ww,
+		    hh,
+		    d / 4 + 0.5,
+		    d / 4 + 0.5
 	    )
 	    g2.color = getColor("bt_bg")
 	    g2.fill(r)
@@ -2241,12 +2234,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		val hh = 0.04 * caH
 		xx += ww + hh / 2
 		val r: RoundRectangle2D = RoundRectangle2D.Double(
-		    xx,
-		    yy,
-		    ww,
-		    hh,
-		    d / 4 + 0.5,
-		    d / 4 + 0.5
+			xx,
+			yy,
+			ww,
+			hh,
+			d / 4 + 0.5,
+			d / 4 + 0.5
 		)
 		g2.color = getColor("bt_bg")
 		g2.fill(r)
@@ -2363,12 +2356,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		x = gX(0.2)
 	    }
 	    val fr: RoundRectangle2D = RoundRectangle2D.Double(
-		x.toDouble(),
-		y.toDouble(),
-		w.toDouble(),
-		h.toDouble(),
-		r.toDouble(),
-		r.toDouble()
+		    x.toDouble(),
+		    y.toDouble(),
+		    w.toDouble(),
+		    h.toDouble(),
+		    r.toDouble(),
+		    r.toDouble()
 	    )
 	    g2.color = getColor("bg_frbg")
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.95f)
@@ -2405,9 +2398,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		}
 		g2.font = item_fot
 		g2.drawString(
-		    msg_item!!.text,
-		    x + f(4, w, 50),
-		    y + f(6, h, 10)
+			msg_item!!.text,
+			x + f(4, w, 50),
+			y + f(6, h, 10)
 		)
 	    } else if (msg_item!!.type == 'W') {
 		val yy = 0
@@ -2425,14 +2418,14 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		}
 		g2.font = item_fot
 		g2.drawString(
-		    msg_item!!.small_title,
-		    x + f(12, w, 50),
-		    y + f(3, h, 10)
+			msg_item!!.small_title,
+			x + f(12, w, 50),
+			y + f(3, h, 10)
 		)
 		g2.drawString(
-		    msg_item!!.text,
-		    x + f(4, w, 50),
-		    y + f(6, h, 10)
+			msg_item!!.text,
+			x + f(4, w, 50),
+			y + f(6, h, 10)
 		)
 	    } else if (msg_item!!.type == 'S') {
 		var f_f = 30 //item_fo.getSize();
@@ -2449,14 +2442,14 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		}
 		g2.font = item_fot
 		g2.drawString(
-		    msg_item!!.text,
-		    x + f(12, w, 50),
-		    y + f(3, h, 10)
+			msg_item!!.text,
+			x + f(12, w, 50),
+			y + f(3, h, 10)
 		)
 		g2.drawString(
-		    msg_item!!.text2,
-		    x + f(12, w, 50),
-		    y + f(6, h, 10)
+			msg_item!!.text2,
+			x + f(12, w, 50),
+			y + f(6, h, 10)
 		)
 	    } else if (msg_item!!.type == 'R') {
 		var f_f = 30 //item_fo.getSize();
@@ -2473,9 +2466,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		}
 		g2.font = item_fot
 		g2.drawString(
-		    msg_item!!.text,
-		    x + f(2, w, 5),
-		    y + f(17, h, 30)
+			msg_item!!.text,
+			x + f(2, w, 5),
+			y + f(17, h, 30)
 		)
 	    }
 	    g2.color = getColor("bg_tx")
@@ -2487,10 +2480,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		val ww = 4 * hh / 3
 		try {
 		    val img = createImageIcon(
-			this@LessonCanvas,
-			msg_item!!.image!!,
-			ww,
-			hh
+			    this@LessonCanvas,
+			    msg_item!!.image!!,
+			    ww,
+			    hh
 		    )!!.image
 		    HH = img.getHeight(null)
 		    g2.drawImage(img, x + 3, y + th + 3, null)
@@ -2502,10 +2495,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		val ww = 4 * hh / 3
 		try {
 		    val img = createImageIcon(
-			this@LessonCanvas,
-			msg_item!!.image2!!,
-			ww,
-			hh
+			    this@LessonCanvas,
+			    msg_item!!.image2!!,
+			    ww,
+			    hh
 		    )!!.image
 		    g2.drawImage(img, x + 3, y + th + 3 + HH + 5, null)
 		} catch (ex: Exception) {
@@ -2516,10 +2509,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		val ww = hh * 4
 		try {
 		    val img = createImageIcon(
-			this@LessonCanvas,
-			cont_image_fn!!,
-			ww,
-			hh
+			    this@LessonCanvas,
+			    cont_image_fn!!,
+			    ww,
+			    hh
 		    )!!.image
 		    val imw = img.getWidth(null)
 		    g2.drawImage(img, x + w - imw - 3, y + h - hh - 3, null)
@@ -2534,12 +2527,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    g2.color = Color(15, 15, 15)
 	    for (i in 0..6) {
 		val frs: RoundRectangle2D = RoundRectangle2D.Double(
-		    (x + 10 - i).toDouble(),
-		    (y + 10 - i).toDouble(),
-		    w.toDouble(),
-		    h.toDouble(),
-		    r.toDouble(),
-		    r.toDouble()
+			(x + 10 - i).toDouble(),
+			(y + 10 - i).toDouble(),
+			w.toDouble(),
+			h.toDouble(),
+			r.toDouble(),
+			r.toDouble()
 		)
 		g2.fill(frs)
 	    }
@@ -2609,12 +2602,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	if (mist_mode > 0) {
 	    if (signMovieRectangle != null);
 	    drawMist(
-		g2,
-		if (LiuMovieManager.repeat_mode === LiuMovieManager.RepeatMode.DO_REPEAT) 2 else 1,
-		mist_blueSky,
-		mistBgCol!!,
-		mistAlpha,
-		signMovieRectangle!!
+		    g2,
+		    if (LiuMovieManager.repeat_mode === LiuMovieManager.RepeatMode.DO_REPEAT) 2 else 1,
+		    mist_blueSky,
+		    mistBgCol!!,
+		    mistAlpha,
+		    signMovieRectangle!!
 	    )
 	}
 	val ct1 = ct()

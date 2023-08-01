@@ -26,22 +26,11 @@ import javax.swing.event.EventListenerList
 import javax.swing.event.MouseInputAdapter
 
 open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
-    open var om_msg_mgr = Manager()
+    var om_msg_mgr = Manager()
     var lc_listeners: EventListenerList
     var l_ctxt: LessonContext
     var colors = HashMap<String, ColorColors>()
     var fo: Font? = null
-    data class ColorColors(val color: Color?, val colors: HashMap<String, Color>?) {
-	companion object {
-	    fun create(r: Int, g: Int, b: Int): ColorColors {
-		return ColorColors(Color(r, g, b), null)
-	    }
-
-	    fun create(rgb: Int): ColorColors {
-		return ColorColors(Color(rgb), null)
-	    }
-	}
-    }
     var ignore_press = false
     open var cmp_li: ComponentAdapter = object : ComponentAdapter() {
 	override fun componentResized(ev: ComponentEvent) {
@@ -68,6 +57,18 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 	    mb.border = BorderFactory.createLineBorder(Color(242, 80, 80), 5)
 	}
 	OmegaContext.def_log.getLogger().info("Fired $ac")
+    }
+
+    data class ColorColors(val color: Color?, val colors: HashMap<String, Color>?) {
+	companion object {
+	    fun create(r: Int, g: Int, b: Int): ColorColors {
+		return ColorColors(Color(r, g, b), null)
+	    }
+
+	    fun create(rgb: Int): ColorColors {
+		return ColorColors(Color(rgb), null)
+	    }
+	}
     }
 
     inner class FrameState {
