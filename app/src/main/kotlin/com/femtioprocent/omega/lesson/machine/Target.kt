@@ -209,12 +209,12 @@ class Target {
     fun reloadComposite(test_txt: String) {
 	if (!iam_composite) return
 	if (saved_sa == null) return
-	val sa: MutableList<Array<String?>?>? = saved_sa
-	val saD = saved_saD
+	val sa = saved_sa!!
+	val saD = saved_saD!!
 	var five = 5
-	if (sa!!.size < 5) five = sa.size
+	if (sa.size < 5) five = sa.size
 	sa.shuffle() //scrambleArr(sa)
-	saD!!.shuffle() //scrambleArr(saD)
+	saD.shuffle() //scrambleArr(saD)
 	var riktig: Array<String?>? = null
 	for (i in sa.indices) {
 	    if (sa[i]!![0] == test_txt) riktig = sa[i]!!
