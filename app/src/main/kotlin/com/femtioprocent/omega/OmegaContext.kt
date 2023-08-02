@@ -132,7 +132,7 @@ open class OmegaContext {
 	}
 
 	private fun getDefaultOmegaAssets(): String {
-	    return if (false && isDeveloper) developerOmegaAssets else defaultOmegaAssets
+	    return if (isDeveloper) developerOmegaAssets else defaultOmegaAssets
 	}
 
 	fun getMediaFile(name: String): String? {
@@ -171,7 +171,7 @@ open class OmegaContext {
 
 	val isDeveloper: Boolean
 	    get() {
-		val f = File("../.git")
+		val f = File("DEVELOPER")
 		return !false && f.exists()
 	    }
 
