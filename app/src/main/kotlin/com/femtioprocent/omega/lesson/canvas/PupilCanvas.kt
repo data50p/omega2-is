@@ -12,6 +12,7 @@ import com.femtioprocent.omega.lesson.pupil.Pupil
 import com.femtioprocent.omega.lesson.settings.PupilSettingsDialog
 import com.femtioprocent.omega.swing.ScaledImageIcon.createImageIcon
 import com.femtioprocent.omega.t9n.T.Companion.t
+import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.xml.Element
 import java.awt.*
@@ -153,34 +154,38 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
     }
 
     override fun valueChanged(e: ListSelectionEvent) {
-	val l = e.source as JList<*>
-	if (l === names) {
-	    val pi = l.selectedValue as PupilItem
-	    if (pi != null) {
-		if (pi.name == "<New Pupil>" || pi.name == t("<New Pupil>")) {
-		    var pn: String? = null
-		    pn = JOptionPane.showInputDialog(
-			    ApplContext.top_frame,
-			    t("What is the new pupils name?")
-		    )
-		    if (pn != null && pn.length > 0) {
-			val loc = RegLocator()
-			loc.createPupilName(pn)
-			var pupil_settings_dialog: PupilSettingsDialog? = PupilSettingsDialog(Lesson.static_lesson)
-			pupil_settings_dialog!!.setPupil(Pupil(pn))
-			pupil_settings_dialog.isVisible = true
-			OmegaContext.def_log.getLogger().info("hidden +++++++++++++?")
-			pupil_settings_dialog = null
-			mkList(pn)
+	try {
+	    val l = e.source as JList<*>
+	    if (l === names) {
+		val pi = l.selectedValue as PupilItem?
+		if (pi != null) {
+		    if (pi.name == "<New Pupil>" || pi.name == t("<New Pupil>")) {
+			var pn: String? = null
+			pn = JOptionPane.showInputDialog(
+				ApplContext.top_frame,
+				t("What is the new pupils name?")
+			)
+			if (pn != null && pn.length > 0) {
+			    val loc = RegLocator()
+			    loc.createPupilName(pn)
+			    var pupil_settings_dialog: PupilSettingsDialog? = PupilSettingsDialog(Lesson.static_lesson)
+			    pupil_settings_dialog!!.setPupil(Pupil(pn))
+			    pupil_settings_dialog.isVisible = true
+			    OmegaContext.def_log.getLogger().info("hidden +++++++++++++?")
+			    pupil_settings_dialog = null
+			    mkList(pn)
+			}
+			return
 		    }
-		    return
+		    pupilName = pi.name
+		    setPupil(pupilName)
+		    val fpname = pupilName
+		    SwingUtilities.invokeLater { l_ctxt.lesson.setPupil(fpname) }
+		    //		mkButtons();
 		}
-		pupilName = pi.name
-		setPupil(pupilName)
-		val fpname = pupilName
-		SwingUtilities.invokeLater { l_ctxt.lesson.setPupil(fpname) }
-		//		mkButtons();
 	    }
+	} catch (ex: Exception) {
+	    Log.getLogger().severe("::: " + ex)
 	}
     }
 

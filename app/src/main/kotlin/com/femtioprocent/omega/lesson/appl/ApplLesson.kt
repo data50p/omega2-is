@@ -5,6 +5,7 @@ import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.help.HelpSystem
 import com.femtioprocent.omega.servers.httpd.Server
 import com.femtioprocent.omega.subsystem.Httpd
+import com.femtioprocent.omega.util.Log
 import java.awt.Window
 import javax.swing.JFrame
 
@@ -24,7 +25,7 @@ open class ApplLesson internal constructor(title: String?, is_editor: Boolean) :
 		method.invoke(util, this, true)
 		isMac = true
 	    } catch (ex: Exception) {
-		ex.printStackTrace()
+		Log.getLogger().warning("Cannot enter full screen display mode: " + ex)
 	    }
 	    //	getRootPane().putClientProperty("apple.awt.fullscreenable", Boolean.valueOf(true));
 	    /*

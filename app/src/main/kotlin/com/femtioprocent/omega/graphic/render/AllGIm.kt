@@ -9,6 +9,11 @@ import java.awt.geom.Rectangle2D
 
 class AllGIm internal constructor(var ca: Canvas) {
     var arr = arrayOfNulls<GIm>(OmegaConfig.TIMELINES_N)
+
+    operator fun get(nid: Int): GIm? {
+	return if (nid < arr.size) arr[nid] else null
+    }
+
     operator fun set(gim: GIm?, ix: Int) {
 	if (ix >= arr.size) return
 	hideActor(ix)
@@ -21,10 +26,6 @@ class AllGIm internal constructor(var ca: Canvas) {
 	    hideActor(i)
 	    arr[i] = null
 	}
-    }
-
-    operator fun get(nid: Int): GIm? {
-	return if (nid < arr.size) arr[nid] else null
     }
 
     fun initPlay(o: Any?) {
