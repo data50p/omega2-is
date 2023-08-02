@@ -30,18 +30,17 @@ class Target {
     var t_items: MutableList<T_Item?>? = null
     var items: Items? = null
     var story_next: String? = null
-    var hBox = arrayOfNulls<LessonCanvas.Box>(1)
     var iam_composite = false
     var iam_dummy = false
     var Tr = false
 
-    inner class T_Item//	    this.tg = tg; //	T_Item(Target tg, int ord, String type, String tid, String lid) {
-    internal constructor(//	Target tg;
-	    var ord: Int, var type: String?, var tid: String?, //fillVarHere(ord, lid);
+    inner class T_Item internal constructor(
+	    var ord: Int,
+	    var type: String?,
+	    var tid: String?, //fillVarHere(ord, lid);
 	    var lID4TgOrNull_KeepVar: String?
     ) {
 	var item: Item? = null
-
 	val filledText: String?
 	    get() = if (item == null) "               " else fillVarHere(ord, item!!.textD)
 	val filledTTS: String?
@@ -60,8 +59,6 @@ class Target {
 		    "§_" + item!!.getVar(2) +  //// UTF-8
 		    "§_" + item!!.getVar(3) +  //// UTF-8
 		    "§_" + fillVarHere(ord, item!!.sound)
-
-	// AUDIO                              //// UTF-8
 	val lID4TgOrNull: String?
 	    get() = fillVarHere(ord, lID4TgOrNull_KeepVar)
 
@@ -136,9 +133,7 @@ class Target {
 	saved_saD = saD
 	var five = 5
 	if (sa.size < 5) five = sa.size
-	//scrambleArr(sa)
 	sa.shuffle()
-	//scrambleArr(saD)
 	saD.shuffle()
 
 	// first find the correct sentence
