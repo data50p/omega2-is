@@ -456,11 +456,7 @@ class Target {
     }
 
     fun fillVarHere(ix: Int, s: String?): String? {
-// 	SundryUtils.pe_("fillV " + ix + ' ' + s );
-	var s = s ?: return null
-	if (hasVar(s)) s = apply(4, ix, s)
-	//	OmegaContext.sout_log.getLogger().info(":--: " + " " + s );
-	return s
+	return if (s != null && hasVar(s)) return apply(4, ix, s) else s
     }
 
     private val actionIx: Int
