@@ -126,7 +126,7 @@ $this"""
 	val mpan = init()
 	le = Lesson('e')
 	le!!.mact_New()
-	le!!.runLessons(this, mpan, fn, true, OmegaContext.small != null)
+	le!!.runLessons(this, mpan, fn, true, OmegaContext.small != null)   // // // This never return
 	Log.getLogger().info("LessonEditor done $globalExit2")
     }
 
