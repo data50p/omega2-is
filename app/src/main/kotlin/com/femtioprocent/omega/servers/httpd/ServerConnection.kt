@@ -224,7 +224,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
     }
 
     @Throws(IOException::class)
-    fun doPost(sa: Array<String?>, q: String?, sL: List<String?>, rd: BufferedReader, dos: DataOutputStream) {
+    fun doPost(sa: Array<String>, q: String?, sL: List<String?>, rd: BufferedReader, dos: DataOutputStream) {
 	val fn = sa[1]
 	if (fn == null) {
 	    val cmd = sa[0]
@@ -250,7 +250,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
     }
 
     @Throws(IOException::class)
-    fun doGet(sa: Array<String?>, q: String, sL: List<String?>?, rd: BufferedReader?, dos: DataOutputStream) {
+    fun doGet(sa: Array<String>, q: String, sL: List<String?>?, rd: BufferedReader?, dos: DataOutputStream) {
 	if (OmegaConfig.T) OmegaContext.sout_log.getLogger().info(":--: " + "GET " + arrToString(sa) + ',' + q)
 	val fn = sa[1]
 	if (fn == null) {

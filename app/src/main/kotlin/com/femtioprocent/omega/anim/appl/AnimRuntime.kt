@@ -84,11 +84,11 @@ class AnimRuntime {
     }
 
     fun composeVar(anam: String?): String {
-	val sa: Array<String?> = split(anam, "\${}")
+	val sa: Array<String> = split(anam, "\${}")
 	val sb: StringBuffer = StringBuffer()
 	for (i in sa.indices) {
-	    val s1: String? = sa.get(i)
-	    val ix: Int = s1!!.indexOf(':')
+	    val s1: String = sa.get(i)
+	    val ix: Int = s1.indexOf(':')
 	    if (ix != -1) {
 		try {
 		    val banid: String = s1.substring(0, ix) // if [0] == '@' -> target id
@@ -99,7 +99,7 @@ class AnimRuntime {
 			val target_id: String = banid.substring(1)
 			val sv: String? = OmegaContext.variables!!.get(target_id + ':' + varix) as String?
 			Log.getLogger().info(":--: " + "GOT TARGET REF:: " + target_id + ':' + varix + " = " + sv)
-			sa[i] = sv
+			sa[i] = sv!!
 		    } else {
 			// get variable from the actor (actorlist in animator)
 			val ac2: Actor? = aC!!.getAnimatedActor(banid)
@@ -326,7 +326,7 @@ class AnimRuntime {
     }
 
     fun decode2D(s: String?): Point2D {
-	val sa: Array<String?> = split(s, ",")
+	val sa: Array<String> = split(s, ",")
 	val a: Float = sa.get(0)!!.toFloat()
 	val b: Float = sa.get(1)!!.toFloat()
 	return Point2D.Float(a, b)
@@ -386,8 +386,8 @@ class AnimRuntime {
     fun runAction(
 	    window: Window,
 	    fn: String?,
-	    actA: Array<String?>,
-	    pathA: Array<String?>,
+	    actA: Array<String>,
+	    pathA: Array<String>,
 	    params: HashMap<String?, Any?>,
 	    hook: Runnable?
     ) {
@@ -412,9 +412,9 @@ class AnimRuntime {
 	    val lid_actors: Array<String> = lessonId_Actors
 	    Log.getLogger().info(":--: " + "anim: TL   " + arrToString(lid_timelines))
 	    Log.getLogger().info(":--: " + "anim: Act  " + arrToString(lid_actors))
-	    val aaid: Array<String?> = actA
+	    val aaid = actA
 	    Log.getLogger().info(":--: " + "less: act  " + arrToString(aaid) + ' ' + aaid.size)
-	    val v_pa: Array<String?> = pathA
+	    val v_pa = pathA
 	    Log.getLogger().info(":--: " + "less: path " + arrToString(v_pa) + ' ' + v_pa.size)
 	    for (i in v_pa.indices) try {
 		val a: Int = v_pa.get(i)!!.toInt()

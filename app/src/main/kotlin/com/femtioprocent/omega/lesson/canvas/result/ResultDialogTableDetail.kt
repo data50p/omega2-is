@@ -437,7 +437,7 @@ class ResultDialogTableDetail(
 	return df.format(d)
     }
 
-    fun parseCCS(ccw: String?): Array<String?> {  // s +1; w +2 -3
+    fun parseCCS(ccw: String?): Array<String> {  // s +1; w +2 -3
 	return try {
 	    val sa = split(ccw, " ;+-")
 	    val ss = sa[4]

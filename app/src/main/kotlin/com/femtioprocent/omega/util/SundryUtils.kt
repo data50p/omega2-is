@@ -442,16 +442,18 @@ object SundryUtils {
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    fun split(str: String?, split: String?): Array<String?> {
+    fun split(str: String?, split: String): Array<String> {
+	if (str == null)
+	    return arrayOf()
 	val t = StringTokenizer(str, split)
 	val n = t.countTokens()
 	var i = 0
-	val arr = arrayOfNulls<String>(n)
+	val li = mutableListOf<String>()
 	while (t.hasMoreTokens()) {
 	    val word = t.nextToken()
-	    arr[i++] = word
+	    li.add(word)
 	}
-	return arr
+	return li.toTypedArray()
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - -

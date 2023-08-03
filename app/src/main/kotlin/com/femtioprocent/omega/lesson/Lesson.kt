@@ -2510,8 +2510,7 @@ target pos $tg_ix"""
 					if (sfn == null || sfn.length == 0) {
 					    break@PLAYSND
 					}
-					val sndA: Array<String?>
-					sndA = split(sfn, ",")
+					val sndA = split(sfn, ",")
 					val aplayerA = arrayOfNulls<APlayer>(sndA.size)
 					for (i in sndA.indices) {
 					    val s = sndA[i]
@@ -3190,8 +3189,8 @@ target pos $tg_ix"""
     private fun performMpgAction(
 	    all_text: String,
 	    action_s: String?,
-	    actA: Array<String?>,
-	    pathA: Array<String?>,
+	    actA: Array<String>,
+	    pathA: Array<String>,
 	    tg: Target
     ): JPanel? {
 	var pan: JPanel? = null
@@ -3318,10 +3317,10 @@ target pos $tg_ix"""
     class PlayData internal constructor(
 	    var lesson_name: String,
 	    var action_s: String?,
-	    var actA: Array<String?>,
-	    var actTextA: Array<String?>,
+	    var actA: Array<String>,
+	    var actTextA: Array<String>,
 	    var sound_list: String?,
-	    var pathA: Array<String?>,
+	    var pathA: Array<String>,
 	    var is_last: Boolean,
 	    val allText: String
     ) : Serializable {
@@ -3532,10 +3531,10 @@ target pos $tg_ix"""
     private fun saveRecastAction(
 	    lesson_name: String,
 	    action_s: String?,
-	    actA: Array<String?>,
-	    actTextA: Array<String?>,
+	    actA: Array<String>,
+	    actTextA: Array<String>,
 	    sound_list: String?,
-	    pathA: Array<String?>,
+	    pathA: Array<String>,
 	    add_in_playlist: Boolean,
 	    tg: Target?,
 	    is_last: Boolean,

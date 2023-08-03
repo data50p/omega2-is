@@ -14,8 +14,8 @@ interface Action {
     fun perform(
 	    window: Window,
 	    action_s: String?,
-	    actA: Array<String?>,
-	    pathA: Array<String?>,
+	    actA: Array<String>,
+	    pathA: Array<String>,
 	    ord: Int,
 	    hook: Runnable?
     )

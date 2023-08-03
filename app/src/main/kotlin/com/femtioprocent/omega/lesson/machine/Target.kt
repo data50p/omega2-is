@@ -798,13 +798,13 @@ class Target {
 	    return li.toTypedArray<String?>()
 	}
 
-    fun addSA(li: MutableList<String?>, sa: Array<String?>) {
+    fun addSA(li: MutableList<String>, sa: Array<String>) {
 	for (i in sa.indices) li.add(sa[i])
     }
 
-    val all_Lid_Target: Array<String?>
+    val all_Lid_Target: Array<String>
 	get() {  // banor,banor...
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<String> = ArrayList()
 	    t_items!!.forEach { titm ->
 		val s = titm!!.lID4TgOrNull
 		if (s != null && s.length > 0) {
@@ -812,11 +812,11 @@ class Target {
 		    addSA(li, sa)
 		}
 	    }
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<String>()
 	}
-    val all_Lid_Target_KeepVar: Array<String?>
+    val all_Lid_Target_KeepVar: Array<String>
 	get() {  // banor,banor...
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<String> = ArrayList()
 	    t_items!!.forEach { titm ->
 		val s = titm!!.lID4TgOrNull_KeepVar
 		if (s != null && s.length > 0) {
@@ -824,7 +824,7 @@ class Target {
 		    addSA(li, sa)
 		}
 	    }
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<String>()
 	}
     val allSounds: Array<String?>
 	get() {
@@ -859,9 +859,9 @@ class Target {
 	return li.toTypedArray<String?>()
     }
 
-    val all_Lid_Item: Array<String?>
+    val all_Lid_Item: Array<String>
 	get() {  // actor,actor...
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<String> = ArrayList()
 	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val s = titm.lIDOrNull
@@ -871,7 +871,7 @@ class Target {
 		    }
 		}
 	    }
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<String>()
 	}
     val all_Tid_Item: String
 	get() {  // ordgrupps id
@@ -885,9 +885,9 @@ class Target {
 	    }
 	    return sb.toString()
 	}
-    val all_Text_Item: Array<String?>
+    val all_Text_Item: Array<String>
 	get() {  // actor,actor...
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<String> = ArrayList()
 	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val sx = titm.textOrNull
@@ -898,7 +898,7 @@ class Target {
 		    }
 		}
 	    }
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<String>()
 	}
     val all_Sound_Item: String?
 	get() {
@@ -940,9 +940,9 @@ class Target {
 	}
     }
 
-    val all_TextVars_Item: Array<String?>
+    val all_TextVars_Item: Array<String>
 	get() {  // actor,actor...
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<String> = ArrayList()
 	    t_items!!.forEach { titm ->
 		if (titm != null) {
 		    val sx = titm.textVarsOrNull // text:v1:v2:v3:sound : is paragraph_
@@ -954,7 +954,7 @@ class Target {
 		    }
 		}
 	    }
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<String>()
 	}
 
     fun putAll_TextVars_Item(hm: HashMap<String?, String?>) {

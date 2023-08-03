@@ -78,7 +78,7 @@ class Element(var name: String) : Node(), Cloneable {
 	return li
     }
 
-    private fun isIn(s: String, sa: Array<String?>): Boolean {
+    private fun isIn(s: String, sa: Array<String>): Boolean {
 	for (i in sa.indices) if (s == sa[i]) return true
 	return false
     }
@@ -109,7 +109,7 @@ class Element(var name: String) : Node(), Cloneable {
 	return null
     }
 
-    fun remove(names: Array<String?>): Element? {
+    fun remove(names: Array<String>): Element? {
 	if (isIn(name, names)) return null
 	val nv: MutableList<Node?> = ArrayList()
 	val it: Iterator<Node?> = content.iterator()
