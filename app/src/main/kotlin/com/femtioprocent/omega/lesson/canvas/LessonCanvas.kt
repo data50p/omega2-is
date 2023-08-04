@@ -2599,8 +2599,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	drawQuitButton(g2)
 	drawExtraQuitButton(g2)
 	if (mist_mode > 0) {
-	    if (signMovieRectangle != null);
-	    drawMist(
+	    if (signMovieRectangle != null)
+	        drawMist(
 		    g2,
 		    if (LiuMovieManager.repeat_mode === LiuMovieManager.RepeatMode.DO_REPEAT) 2 else 1,
 		    mist_blueSky,
