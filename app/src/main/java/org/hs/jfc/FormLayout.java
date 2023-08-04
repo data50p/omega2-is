@@ -108,8 +108,6 @@ public class FormLayout implements LayoutManager, ComponentListener {
      *
      * @param internalHGap the amount of space to reserve along the x-axis between components.
      * @param internalVGap the amount of space to reserve along the y-axis between components.
-     * @param externalHGap the amount of space along the x-axis between the leftmost and rightmost components and the edge of the container (the left and right insets).
-     * @param externalVGap the amount of space along the y-axis between the topmost and bottommost components and the edge of the container (the top and bottom insets).
      */
     public FormLayout(int internalHGap, int internalVGap) {
         m_hgap = internalHGap;

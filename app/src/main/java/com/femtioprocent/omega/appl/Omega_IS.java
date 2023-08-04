@@ -79,6 +79,16 @@ public class Omega_IS extends JDialog {
         });
     }
 
+    public Integer waitForSelection() {
+        while (selection == null || selection == 0) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+            }
+        }
+        return selection;
+    }
+
     public static void main(String[] argv) {
 
         try {
@@ -164,15 +174,5 @@ public class Omega_IS extends JDialog {
      */
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
-    }
-
-    public Integer waitForSelection() {
-        while (selection == null || selection == 0) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-            }
-        }
-        return selection;
     }
 }
