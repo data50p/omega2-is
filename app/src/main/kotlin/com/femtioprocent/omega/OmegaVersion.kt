@@ -5,12 +5,15 @@ import java.util.*
 
 // DO NO CHANGE HERE
 object OmegaVersion {
-    val omegaVersion: String
-	get() = getOmegaVersion(null)
+    val theOmegaVersion: String
+	get() = "Ω, version: " + detailedVersion
+    val theLangVersion: String
+	get() = "Versions: java $javaVersion,   kotlin: ${KotlinVersion.CURRENT},    javafx ${VersionInfo.getRuntimeVersion()}"
+    val theVendorVersion: String
+	get() = "Java Vendor: $javaVendor; OS name: ${System.getProperty("os.name").lowercase(Locale.getDefault())}"
+    val theJjavaHome: String
+	get() = "Java home: $javaHome"
 
-    fun getOmegaVersion(s: String?): String {
-	return if (s != null) s + ' ' + "Ω, version: " + detailedVersion else "Ω, version: " + detailedVersion
-    }
 
     val detailedVersion: String
 	get() = version + "; build: " + buildDate
@@ -22,11 +25,11 @@ object OmegaVersion {
     @JvmStatic
     val versionBlurb: String
 	get() = """
-	 	$omegaVersion
+	 	$theOmegaVersion
 	 	CWD: $cwd
-	 	Version: java $javaVersion,   javafx ${VersionInfo.getRuntimeVersion()}
-	 	Java Vendor: $javaVendor; OS name: ${System.getProperty("os.name").lowercase(Locale.getDefault())}
-	 	java home: $javaHome
+	 	$theLangVersion
+	 	$theVendorVersion
+	 	$theJjavaHome
 	 	""".trimIndent()
 
     operator fun get(item: String?): String {

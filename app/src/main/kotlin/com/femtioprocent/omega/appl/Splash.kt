@@ -2,18 +2,16 @@ package com.femtioprocent.omega.appl
 
 import com.femtioprocent.omega.OmegaContext.Companion.media
 import com.femtioprocent.omega.OmegaVersion.cwd
-import com.femtioprocent.omega.OmegaVersion.javaHome
-import com.femtioprocent.omega.OmegaVersion.javaVendor
-import com.femtioprocent.omega.OmegaVersion.javaVersion
-import com.femtioprocent.omega.OmegaVersion.omegaVersion
+import com.femtioprocent.omega.OmegaVersion.theJjavaHome
+import com.femtioprocent.omega.OmegaVersion.theLangVersion
+import com.femtioprocent.omega.OmegaVersion.theOmegaVersion
+import com.femtioprocent.omega.OmegaVersion.theVendorVersion
 import com.femtioprocent.omega.graphic.util.LoadImage.loadAndWaitFromFile
-import com.sun.javafx.runtime.VersionInfo
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Image
 import java.awt.Toolkit
 import java.awt.event.MouseEvent
-import java.util.*
 import javax.swing.JWindow
 import javax.swing.event.MouseInputAdapter
 
@@ -54,21 +52,24 @@ class Splash internal constructor() : JWindow() {
 	g.color = Color.yellow
 	var line = 0
 	val yoff = 324
-	g.drawString(omegaVersion, 5, yoff + 20 * line++)
+	g.drawString(theOmegaVersion, 5, yoff + 20 * line++)
 	g.drawString("CWD: " + cwd, 5, yoff + 20 * line++)
 	g.drawString(
-		"Version: java " + javaVersion + ",   javafx " + VersionInfo.getRuntimeVersion(),
-		5,
-		yoff + 20 * line++
+	    theLangVersion,
+	    5,
+	    yoff + 20 * line++
 	)
 	g.drawString(
-		"Java Vendor: " + javaVendor + "; OS name: " + System.getProperty("os.name").lowercase(Locale.getDefault()),
-		5,
-		yoff + 20 * line++
+	    theVendorVersion,
+	    5,
+	    yoff + 20 * line++
 	)
-	g.drawString("Java home: " + javaHome, 5, yoff + 20 * line++)
+	g.drawString(
+	    theJjavaHome,
+	    5,
+	    yoff + 20 * line++
+	)
     }
-
 
     companion object {
 	var keep: Boolean? = null
