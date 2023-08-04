@@ -11,41 +11,41 @@ object OmegaVersion {
 	get() = "Versions: java $javaVersion,   kotlin: ${KotlinVersion.CURRENT},    javafx ${VersionInfo.getRuntimeVersion()}"
     val theVendorVersion: String
 	get() = "Java Vendor: $javaVendor; OS name: ${System.getProperty("os.name").lowercase(Locale.getDefault())}"
-    val theJjavaHome: String
+    val theJavaHome: String
 	get() = "Java home: $javaHome"
+    val theCWD: String
+	get() = "CWD: $cwd"
 
-
-    val detailedVersion: String
+    private val cwd: String
+	get() = System.getProperty("user.dir")
+    private val javaHome: String
+	get() = System.getProperty("java.home")
+    private val javaVendor: String
+	get() = System.getProperty("java.vendor")
+    private val javaVersion: String
+	get() = System.getProperty("java.version")
+    private val detailedVersion: String
 	get() = version + "; build: " + buildDate
-    val version: String
+    private val version: String
 	get() = OmegaVersion["Version"]
-    val buildDate: String
+    private val buildDate: String
 	get() = OmegaVersion["Date"]
 
     @JvmStatic
     val versionBlurb: String
 	get() = """
 	 	$theOmegaVersion
-	 	CWD: $cwd
+	 	$theCWD
 	 	$theLangVersion
 	 	$theVendorVersion
-	 	$theJjavaHome
+	 	$theJavaHome
 	 	""".trimIndent()
 
-    operator fun get(item: String?): String {
+    private operator fun get(item: String): String {
 	return when (item) {
 	    "Version" -> "2.1.0"
 	    "Date" -> "§§23-08-04_12:53:51 hallon.local §§".replace("§".toRegex(), "")
 	    else -> "?"
 	}
     }
-
-    val cwd: String
-	get() = System.getProperty("user.dir")
-    val javaHome: String
-	get() = System.getProperty("java.home")
-    val javaVendor: String
-	get() = System.getProperty("java.vendor")
-    val javaVersion: String
-	get() = System.getProperty("java.version")
 }

@@ -3,7 +3,7 @@ package com.femtioprocent.omega.lesson.canvas
 import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
-import com.femtioprocent.omega.OmegaVersion.version
+import com.femtioprocent.omega.OmegaVersion
 import com.femtioprocent.omega.adm.assets.TargetCombinations
 import com.femtioprocent.omega.adm.assets.TargetCombinations.TCItem
 import com.femtioprocent.omega.lesson.LessonContext
@@ -94,7 +94,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 			val out = ZipOutputStream(FileOutputStream(file))
 			val sb = StringBuilder()
 			sb.append("type: omega-assets\n")
-			sb.append("version: " + version + "\n")
+			sb.append("version: " + OmegaVersion.theOmegaVersion + "\n")
 			sb.append("saved: " + Date() + "\n")
 			sb.append("user: " + System.getProperty("user.name") + "\n")
 			sb.append("info: " + infoTF!!.text + "\n")
