@@ -23,7 +23,7 @@ object OmegaVersion {
     val versionBlurb: String
 	get() = """
 	 	$omegaVersion
-	 	CWD: $cWD
+	 	CWD: $cwd
 	 	Version: java $javaVersion,   javafx ${VersionInfo.getRuntimeVersion()}
 	 	Java Vendor: $javaVendor; OS name: ${System.getProperty("os.name").lowercase(Locale.getDefault())}
 	 	java home: $javaHome
@@ -37,7 +37,7 @@ object OmegaVersion {
 	}
     }
 
-    val cWD: String
+    val cwd: String
 	get() = System.getProperty("user.dir")
     val javaHome: String
 	get() = System.getProperty("java.home")

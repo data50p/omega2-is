@@ -1,7 +1,7 @@
 package com.femtioprocent.omega.appl
 
 import com.femtioprocent.omega.OmegaContext.Companion.media
-import com.femtioprocent.omega.OmegaVersion.cWD
+import com.femtioprocent.omega.OmegaVersion.cwd
 import com.femtioprocent.omega.OmegaVersion.javaHome
 import com.femtioprocent.omega.OmegaVersion.javaVendor
 import com.femtioprocent.omega.OmegaVersion.javaVersion
@@ -55,7 +55,7 @@ class Splash internal constructor() : JWindow() {
 	var line = 0
 	val yoff = 324
 	g.drawString(omegaVersion, 5, yoff + 20 * line++)
-	g.drawString("CWD: " + cWD, 5, yoff + 20 * line++)
+	g.drawString("CWD: " + cwd, 5, yoff + 20 * line++)
 	g.drawString(
 		"Version: java " + javaVersion + ",   javafx " + VersionInfo.getRuntimeVersion(),
 		5,
@@ -66,8 +66,9 @@ class Splash internal constructor() : JWindow() {
 		5,
 		yoff + 20 * line++
 	)
-	g.drawString("java home: " + javaHome, 5, yoff + 20 * line++)
+	g.drawString("Java home: " + javaHome, 5, yoff + 20 * line++)
     }
+
 
     companion object {
 	var keep: Boolean? = null
