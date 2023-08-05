@@ -59,8 +59,7 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 	    if (showAndAccepted()) {
 		val e = AnimEditorAppl(verbose)
 		m_sleep(3000)
-		while (Splash.keep != null && Splash.keep!!) m_sleep(300)
-		closeSplash()
+		waitAndCloseSplash()
 	    } else {
 		System.exit(1)
 	    }

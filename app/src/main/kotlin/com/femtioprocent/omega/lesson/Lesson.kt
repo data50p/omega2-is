@@ -13,8 +13,6 @@ import com.femtioprocent.omega.OmegaContext.Companion.getMediaFile
 import com.femtioprocent.omega.OmegaContext.Companion.media
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.adm.register.data.*
-import com.femtioprocent.omega.appl.OmegaAppl.Companion.closeSplash
-import com.femtioprocent.omega.appl.Splash
 import com.femtioprocent.omega.lesson.actions.Action
 import com.femtioprocent.omega.lesson.actions.AnimAction
 import com.femtioprocent.omega.lesson.actions.MpgAction
@@ -45,7 +43,6 @@ import com.femtioprocent.omega.t9n.T
 import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files.mkRelativeCWD
 import com.femtioprocent.omega.util.Files.toURL
-import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.Log.getLogger
 import com.femtioprocent.omega.util.SundryUtils.a2s
 import com.femtioprocent.omega.util.SundryUtils.ct
@@ -73,6 +70,7 @@ import javax.print.PrintService
 import javax.swing.*
 import kotlin.concurrent.withLock
 import kotlin.time.measureTime
+import com.femtioprocent.omega.appl.OmegaAppl.Companion.waitAndCloseSplash
 
 // has UTF-8 ¬ß
 class Lesson(run_mode: Char) : LessonCanvasListener {
@@ -1896,8 +1894,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	action = null
 	//	window.setVisible(true);
 	le_canvas!!.populateGUI()
-	while (Splash.keep != null && Splash.keep!!) m_sleep(300)
-	closeSplash()
+	waitAndCloseSplash()
 	if (fn != null) {
 	    card_show("words")
 	    sendMsg("load", fn, "execLesson")

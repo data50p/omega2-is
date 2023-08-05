@@ -7,6 +7,7 @@ import com.femtioprocent.omega.OmegaVersion.theLangVersion
 import com.femtioprocent.omega.OmegaVersion.theOmegaVersion
 import com.femtioprocent.omega.OmegaVersion.theVendorVersion
 import com.femtioprocent.omega.graphic.util.LoadImage.loadAndWaitFromFile
+import com.femtioprocent.omega.util.SundryUtils
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Image
@@ -40,7 +41,7 @@ class Splash internal constructor() : JWindow() {
 	}
 
 	override fun mousePressed(e: MouseEvent) {
-	    keep = if (keep == null) true else !keep!!
+	    keep = !(keep ?: false)
 	}
 
 	override fun mouseMoved(e: MouseEvent) {}
@@ -60,6 +61,10 @@ class Splash internal constructor() : JWindow() {
     }
 
     companion object {
-	var keep: Boolean? = null
+	fun waitForIt() {
+	    while (Splash.keep ?: false) SundryUtils.m_sleep(300)
+	}
+
+	private var keep: Boolean? = null
     }
 }

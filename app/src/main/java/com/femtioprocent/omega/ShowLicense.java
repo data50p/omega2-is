@@ -1,11 +1,13 @@
 package com.femtioprocent.omega;
 
+import com.femtioprocent.omega.util.Log;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.Semaphore;
 
 public class ShowLicense extends JDialog {
     private JPanel contentPane;
@@ -37,10 +39,13 @@ public class ShowLicense extends JDialog {
             "If you accept all the terms of the agreement, choose I accept... to continue.\n" +
             "You must accept the agreement to install Omega-is.";
 
-    Boolean accepted = null;
+    Boolean accepted = false;
+    Semaphore semaphore;
 
-    public ShowLicense() {
+    public ShowLicense(Semaphore semaphore) {
         try {
+            this.semaphore = semaphore;
+            semaphore.acquire();
             setContentPane(contentPane);
             setModal(true);
             getRootPane().setDefaultButton(buttonOK);
@@ -73,25 +78,34 @@ public class ShowLicense extends JDialog {
                 }
             }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         } catch (Exception ex) {
-
+            semaphore.release();
+            Log.getLogger().severe("I got: " + ex);
         }
     }
 
     private void onOK() {
         accepted = true;
         dispose();
+        semaphore.release();
     }
 
     private void onCancel() {
         accepted = false;
         dispose();
+        semaphore.release();
     }
 
     public static void main(String[] args) {
-        ShowLicense dialog = new ShowLicense();
+        Semaphore semaphore = new Semaphore(1);
+        ShowLicense dialog = new ShowLicense(semaphore);
         dialog.pack();
         dialog.setVisible(true);
-        System.exit(0);
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.exit(dialog.accepted ? 0 : 1);
     }
 
     {
