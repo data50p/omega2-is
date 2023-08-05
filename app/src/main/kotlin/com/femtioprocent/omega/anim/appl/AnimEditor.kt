@@ -454,7 +454,18 @@ class AnimEditor : JFrame {
 	main_cpan.add(tlc, BorderLayout.SOUTH)
 	mainp.add(main_cpan, BorderLayout.CENTER)
 	pack()
-	setSize(FRAME_WIDTH(65), FRAME_HEIGHT(65))
+
+	val percent: Int
+	when (OmegaContext.winSize) {
+	    OmegaConfig.WinSize.DEFAULT -> percent = 100
+	    OmegaConfig.WinSize.SMALL -> percent = 85
+	    OmegaConfig.WinSize.SMALLER -> percent = 65
+	    OmegaConfig.WinSize.SMALLEST -> percent = 42
+	    OmegaConfig.WinSize.FULLSCREEN -> percent = 165
+	}
+	setSize(FRAME_WIDTH(percent), FRAME_HEIGHT(percent))
+
+
 	isVisible = true
 	try {
 	    var ap = APlayer.createAPlayer("audio/greeting.wav", null as String?, null as String?)
