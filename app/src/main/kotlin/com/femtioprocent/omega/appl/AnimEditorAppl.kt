@@ -41,6 +41,9 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 	fun main(argv: Array<String>) {
 	    val flag: HashMap<String, String> = flagAsMap(argv)
 	    val argl = argAsList(argv)
+
+	    OmegaContext.setWindowSize(flag)
+
 	    OmegaContext.omega_lang = flag["omega_lang"]
 	    Log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang)
 	    try {

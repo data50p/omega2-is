@@ -8,6 +8,7 @@ import java.awt.Color
 import java.io.File
 import java.util.*
 import java.util.logging.Level
+import kotlin.collections.HashMap
 
 open class OmegaContext {
     class HelpStack {
@@ -56,7 +57,7 @@ open class OmegaContext {
 	var variables: Map<*, *>? = null
 	var DEMO = false
 	var omega_lang: String? = null
-	var small: String? = null
+	var winSize: OmegaConfig.WinSize = OmegaConfig.WinSize.DEFAULT
 
 	/**
 	 * Get the full path for current omega assets
@@ -191,6 +192,12 @@ open class OmegaContext {
 
 	fun getSubsystem(s: String): Subsystem? {
 	    return subsystems[s]
+	}
+
+	fun setWindowSize(flag: HashMap<String, String>) {
+	    if (flag["small"] != null) winSize = OmegaConfig.WinSize.SMALL
+	    if (flag["smaller"] != null) winSize = OmegaConfig.WinSize.SMALLER
+	    if (flag["smallest"] != null) winSize = OmegaConfig.WinSize.SMALLEST
 	}
 
 	val isMacOS: Boolean

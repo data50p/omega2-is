@@ -23,6 +23,14 @@ object OmegaConfig {
     var key_select_3 = '\n'.code
     var LIU_Mode = !false
 
+    enum class WinSize {
+	DEFAULT,
+	SMALL,
+	SMALLER,
+	SMALLEST,
+	FULLSCREEN
+    }
+
     fun isLIU_Mode(): Boolean {
 	Log.getLogger().info("is LIU_Mode: " + LIU_Mode)
 	return LIU_Mode

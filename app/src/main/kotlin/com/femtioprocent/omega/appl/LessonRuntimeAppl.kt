@@ -17,7 +17,7 @@ import java.io.File
 import javax.swing.JFileChooser
 import javax.swing.UIManager
 
-class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode: Char) : OmegaAppl("Lesson runtime") {
+class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize, run_mode: Char) : OmegaAppl("Lesson runtime") {
     var le_rt: LessonRuntime
     var ask: Boolean
 
@@ -46,7 +46,7 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode
 	    }
 	} else {
 	}
-	le_rt = LessonRuntime(name, fn, with_frame, run_mode)
+	le_rt = LessonRuntime(name, fn, winSize, run_mode)
     }
 
     companion object {
@@ -61,6 +61,9 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode
 	    Log.getLogger().info("started")
 	    val flag: HashMap<String, String> = flagAsMap(argv)
 	    val argl = argAsList(argv)
+
+	    OmegaContext.setWindowSize(flag)
+
 	    OmegaContext.omega_lang = flag["omega_lang"]
 	    Log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang)
 	    try {
@@ -102,7 +105,7 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, with_frame: Boolean, run_mode
 		ch = 'a'
 	    }
 	    if (showAndAccepted()) {
-		val rt = LessonRuntimeAppl(fn, ask, with_frame, ch)
+		val rt = LessonRuntimeAppl(fn, ask, OmegaContext.winSize, ch)
 	    } else {
 		System.exit(1)
 	    }

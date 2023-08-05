@@ -3592,8 +3592,8 @@ target pos $tg_ix"""
 	}
     }
 
-    fun runLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, smaller: Boolean) {
-	var smaller = smaller
+    fun runLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, winSize: OmegaConfig.WinSize) {
+	var winSize= winSize
 	Lesson.edit = edit
 	le_canvas!!.edit = edit
 	window = w
@@ -3784,22 +3784,44 @@ target pos $tg_ix"""
 	pan.add(pupil_canvas, "pupil")
 	pan.add(sentence_canvas, "sent")
 	window!!.isVisible = true
-	smaller = smaller or OmegaConfig.smaller
+	if (OmegaContext.isDeveloper) winSize = OmegaConfig.WinSize.SMALLER
 	val d = Toolkit.getDefaultToolkit().screenSize
-	if (smaller) {
-	    d.width = OmegaConfig.FRAME_WIDTH
-	    d.height = OmegaConfig.FRAME_HEIGHT
-	    window!!.size = d
-	} else {
-	    window!!.size = d
-	    window!!.setLocation(0, 0)
+	when (winSize) {
+	    OmegaConfig.WinSize.DEFAULT -> {
+		window!!.size = d
+		window!!.setLocation(0, 0)
+	    }
+
+	    OmegaConfig.WinSize.SMALL -> {
+		d.width = OmegaConfig.FRAME_WIDTH
+		d.height = OmegaConfig.FRAME_HEIGHT
+		window!!.size = d
+	    }
+
+	    OmegaConfig.WinSize.SMALLER -> {
+		d.width = OmegaConfig.FRAME_WIDTH(50)
+		d.height = OmegaConfig.FRAME_HEIGHT(50)
+		window!!.size = d
+	    }
+
+	    OmegaConfig.WinSize.SMALLEST -> {
+		d.width = OmegaConfig.FRAME_WIDTH(25)
+		d.height = OmegaConfig.FRAME_HEIGHT(25)
+		window!!.size = d
+	    }
+
+	    OmegaConfig.WinSize.FULLSCREEN -> {
+		d.width = OmegaConfig.FRAME_WIDTH
+		d.height = OmegaConfig.FRAME_HEIGHT
+		window!!.size = d
+	    }
 	}
 	if (edit) {
 	    card_show("words")
 	} else {
 	    card_show("pupil")
 	}
-	if (smaller == false && window is JFrame) {
+	if (winSize == OmegaConfig.WinSize.FULLSCREEN && window is JFrame) {
 	    (window as JFrame).extendedState = JFrame.MAXIMIZED_BOTH
 	    if (ApplLesson.isMac) {
 		try {

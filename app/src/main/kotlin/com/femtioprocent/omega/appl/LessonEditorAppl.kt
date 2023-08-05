@@ -36,7 +36,9 @@ class LessonEditorAppl(fn: String?) : OmegaAppl("Lesson editor") {
 	    setOmegaAssets(flag["omega_assets"])
 	    OmegaContext.omega_lang = flag["omega_lang"]
 	    Log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang)
-	    OmegaContext.small = flag["small"]
+
+	    OmegaContext.setWindowSize(flag)
+
 	    try {
 		UIManager.setLookAndFeel("javax.swing.plaf.MetalLookAndFeel")
 		//	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

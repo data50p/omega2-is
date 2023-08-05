@@ -1,5 +1,6 @@
 package com.femtioprocent.omega.lesson.appl
 
+import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.util.Log
 import java.awt.Window
@@ -8,7 +9,7 @@ import java.awt.event.WindowEvent
 import javax.swing.JFrame
 import javax.swing.JPanel
 
-class LessonRuntime(title: String?, fn: String?, with_frame: Boolean, run_mode: Char) : ApplLesson(title, false) {
+class LessonRuntime(title: String?, fn: String?, winSize: OmegaConfig.WinSize, run_mode: Char) : ApplLesson(title, false) {
     init {
 	val wi: Window
 	val f: JFrame = this
@@ -25,7 +26,7 @@ class LessonRuntime(title: String?, fn: String?, with_frame: Boolean, run_mode: 
 		f.contentPane as JPanel,
 		fn,
 		false,
-		with_frame
+		winSize
 	)   // // // This never return
     }
 
