@@ -213,11 +213,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		return
 	    }
 	    synchronized(allbox_sy) {
-		val it: Iterator<*> = allBox!!.all.values.iterator()
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.state[state] && bx !== bx0) {
-			bx.setState(state, false)
+		allBox!!.all.values.forEach {bx ->
+		    if (bx!!.state[state] && bx !== bx0) {
+			bx!!.setState(state, false)
 		    }
 		}
 	    }
@@ -228,15 +226,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		return
 	    }
 	    synchronized(allbox_sy) {
-		val it: Iterator<*> = allBox!!.all.values.iterator()
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.o_x == col) {
-			bx.setState(state, true)
-		    } else {
-			bx.setState(state, false)
-		    }
-		}
+		allBox!!.all.values.forEach { it!!.setState(state, it!!.o_x == col) }
 	    }
 	}
 
@@ -265,9 +255,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	fun draw(g2: Graphics2D) {
-	    val it: Iterator<ShapeItem> = li.iterator()
-	    while (it.hasNext()) {
-		val sh = it.next()
+	    li.forEach {sh ->
 		g2.color = sh.col
 		g2.fill(sh.shp)
 	    }
@@ -564,12 +552,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	fun getBound(ix: Int, iy: Int): Rectangle2D? {
-	    val it: Iterator<*> = all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
-		if (bx.o_x == ix
-			&& bx.o_y == iy
-		) {
+	    all.values.forEach {bx ->
+	    	if (bx!!.o_x == ix && bx.o_y == iy) {
 		    return Rectangle2D.Double(
 			    bx.r.x,
 			    bx.r.y,
@@ -582,14 +566,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	fun getBox(ix: Int, iy: Int): Box? {
-	    val it: Iterator<*> = all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
-		if (bx.o_x == ix
-			&& bx.o_y == iy
-		) {
-		    return bx
-		}
+	    all.values.forEach {bx ->
+	    	if (bx!!.o_x == ix && bx.o_y == iy) return bx
 	    }
 	    return null
 	}
@@ -609,10 +587,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
 	fun getLastIy(ix: Int): Int {
 	    var max = -1
-	    val it: Iterator<*> = all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
-		if (bx.o_x == ix && bx.o_y > max) {
+	    all.values.forEach {bx->
+		if (bx!!.o_x == ix && bx.o_y > max) {
 		    max = bx.o_y
 		}
 	    }
@@ -624,10 +600,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	fun mark_All() {
-	    val it: Iterator<*> = all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
-		bx.marked = true
+	    all.values.forEach {bx ->
+		bx!!.marked = true
 	    }
 	}
 
@@ -645,23 +619,11 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     }
 
     val lessonName: String?
-	get() = if (lep == null) {
-	    lesson_name
-	} else {
-	    lep!!.lessonName
-	}
+	get() = lep?.lessonName ?: lesson_name
     val lessonLinkNext: String?
-	get() = if (lep == null) {
-	    lesson_link_next
-	} else {
-	    lep!!.lessonLinkNext
-	}
+	get() = lep?.lessonLinkNext ?: lesson_link_next
     val lessonIsFirst: Boolean
-	get() = if (lep == null) {
-	    lesson_is_first
-	} else {
-	    lep!!.lessonIsFirst
-	}
+	get() = lep?.lessonIsFirst ?: lesson_is_first
     var allBox: AllBox? = null
     var allbox_sy = Any()
 
@@ -711,9 +673,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    }
 		}
 		if (edit) {
-		    var it: Iterator<ShapeList.ShapeItem> = addBoxes!!.li.iterator()
-		    while (it.hasNext()) {
-			val oa = it.next()
+		    addBoxes!!.li.forEach {oa ->
 			val id = oa.id
 			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
@@ -722,9 +682,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 			    }
 			}
 		    }
-		    it = delBoxes!!.li.iterator()
-		    while (it.hasNext()) {
-			val oa = it.next()
+		    delBoxes!!.li.forEach { oa->
 			val id = oa.id
 			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
@@ -733,9 +691,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 			    }
 			}
 		    }
-		    it = tgAddBoxes!!.li.iterator()
-		    while (it.hasNext()) {
-			val oa = it.next()
+		    tgAddBoxes!!.li.forEach {oa ->
 			val id = oa.id
 			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
@@ -746,9 +702,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 			    }
 			}
 		    }
-		    it = tgDelBoxes!!.li.iterator()
-		    while (it.hasNext()) {
-			val oa = it.next()
+		    tgDelBoxes!!.li.forEach {oa ->
 			val id = oa.id
 			val shp = oa.shp
 			if (shp.contains(mpress_p)) {
