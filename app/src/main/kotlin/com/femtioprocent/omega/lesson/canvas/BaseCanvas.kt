@@ -644,7 +644,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 		val textA = split(text[i], "§")
 		val cmdA = split(cmd[i], "§")
 		if (cmdA.size > 1) {
-		    buttons[i] = MyButton(t(textA[0]!!))
+		    buttons[i] = MyButton(t(textA[0]))
 		    b = buttons[i]
 		    b!!.isRequestFocusEnabled = false
 		    b.focusTraversalKeysEnabled = false
@@ -655,7 +655,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 		    if (cmdA[0] == "") b.isVisible = false
 		    val bA = arrayOfNulls<MyButton>(cmdA.size - 1)
 		    for (ii in 1 until cmdA.size) {
-			bA[ii - 1] = MyButton(t(textA[ii]!!))
+			bA[ii - 1] = MyButton(t(textA[ii]))
 			b = bA[ii - 1]
 			b!!.isRequestFocusEnabled = false
 			b.focusTraversalKeysEnabled = false

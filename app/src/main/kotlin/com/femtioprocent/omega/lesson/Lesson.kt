@@ -13,6 +13,7 @@ import com.femtioprocent.omega.OmegaContext.Companion.getMediaFile
 import com.femtioprocent.omega.OmegaContext.Companion.media
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.adm.register.data.*
+import com.femtioprocent.omega.appl.OmegaAppl.Companion.waitAndCloseSplash
 import com.femtioprocent.omega.lesson.actions.Action
 import com.femtioprocent.omega.lesson.actions.AnimAction
 import com.femtioprocent.omega.lesson.actions.MpgAction
@@ -70,7 +71,6 @@ import javax.print.PrintService
 import javax.swing.*
 import kotlin.concurrent.withLock
 import kotlin.time.measureTime
-import com.femtioprocent.omega.appl.OmegaAppl.Companion.waitAndCloseSplash
 
 // has UTF-8 ¬ß
 class Lesson(run_mode: Char) : LessonCanvasListener {
@@ -734,7 +734,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		if (it != null) {
 		    while (it.hasNext()) {
 			val sa = split(it.next(), ":")
-			val ord = 1 + sa[0]!!.toInt()
+			val ord = 1 + sa[0].toInt()
 			val txt = sa[1]
 			val ix2 = where(txt, all_sentence)
 			if (ix2 >= 0) {
@@ -825,7 +825,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			    for (ii in sa.indices) {
 				val s = sa[ii]
 				val sa2 = split(s, ":")
-				val ord = sa2[0]!!.toInt()
+				val ord = sa2[0].toInt()
 				val txt = sa2[1]
 				val s_el = Element("sentence")
 				s_el.addAttr("ord", "" + ord)

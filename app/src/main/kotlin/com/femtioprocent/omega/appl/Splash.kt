@@ -62,7 +62,7 @@ class Splash internal constructor() : JWindow() {
 
     companion object {
 	fun waitForIt() {
-	    while (Splash.keep ?: false) SundryUtils.m_sleep(300)
+	    while (keep == true) SundryUtils.m_sleep(300)
 	}
 
 	private var keep: Boolean? = null

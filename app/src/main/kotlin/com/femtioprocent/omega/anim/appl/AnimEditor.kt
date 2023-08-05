@@ -493,8 +493,8 @@ class AnimEditor : JFrame {
 
     fun decode2D(s: String?): Point2D {
 	val sa = split(s, ",")
-	val a = sa[0]!!.toFloat()
-	val b = sa[1]!!.toFloat()
+	val a = sa[0].toFloat()
+	val b = sa[1].toFloat()
 	return Point2D.Float(a, b)
     }
 

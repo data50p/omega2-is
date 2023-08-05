@@ -12,7 +12,6 @@ import java.awt.geom.AffineTransform
 import java.awt.geom.Rectangle2D
 import java.awt.image.ImageObserver
 import javax.swing.JPanel
-import kotlin.time.measureTime
 
 open class Canvas : JPanel(), ImageObserver {
     private var im_name: String? = null

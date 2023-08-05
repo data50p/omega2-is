@@ -124,7 +124,7 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 	val sa = split(li[0], " ")
 	var fn = sa[1]
 	var q: String? = null
-	val ix = fn!!.indexOf('?')
+	val ix = fn.indexOf('?')
 	return if (ix != -1) {
 	    fn = prefix + fn.substring(0, ix)
 	    q = fn.substring(ix + 1)

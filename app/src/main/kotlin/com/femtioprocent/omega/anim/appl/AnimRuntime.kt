@@ -327,8 +327,8 @@ class AnimRuntime {
 
     fun decode2D(s: String?): Point2D {
 	val sa: Array<String> = split(s, ",")
-	val a: Float = sa.get(0)!!.toFloat()
-	val b: Float = sa.get(1)!!.toFloat()
+	val a: Float = sa.get(0).toFloat()
+	val b: Float = sa.get(1).toFloat()
 	return Point2D.Float(a, b)
     }
 
@@ -417,7 +417,7 @@ class AnimRuntime {
 	    val v_pa = pathA
 	    Log.getLogger().info(":--: " + "less: path " + arrToString(v_pa) + ' ' + v_pa.size)
 	    for (i in v_pa.indices) try {
-		val a: Int = v_pa.get(i)!!.toInt()
+		val a: Int = v_pa.get(i).toInt()
 		v_pa[i] = lid_timelines.get(a - 1)
 	    } catch (ex: NumberFormatException) {
 	    } catch (ex: Exception) {
@@ -435,7 +435,7 @@ class AnimRuntime {
 	    bindAllNoActor()
 	    for (i in aaid.indices) {
 		try {
-		    if (bindActor(aaid.get(i)!!, v_pa.get(i)!!)) ok = ok and true else ok = false
+		    if (bindActor(aaid.get(i), v_pa.get(i))) ok = ok and true else ok = false
 		} catch (ex: Exception) {
 		    var ac_s: String = "?"
 		    var v_s: String = "?"

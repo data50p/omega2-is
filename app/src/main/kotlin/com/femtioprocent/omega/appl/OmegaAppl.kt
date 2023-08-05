@@ -1,7 +1,5 @@
 package com.femtioprocent.omega.appl
 
-import com.femtioprocent.omega.util.SundryUtils.m_sleep
-
 open class OmegaAppl(name: String) {
     protected var name: String
 

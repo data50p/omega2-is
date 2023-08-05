@@ -2601,12 +2601,12 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	if (mist_mode > 0) {
 	    signMovieRectangle?.let {
 		drawMist(
-		    g2,
-		    if (LiuMovieManager.repeat_mode === LiuMovieManager.RepeatMode.DO_REPEAT) 2 else 1,
-		    mist_blueSky,
-		    mistBgCol!!,
-		    mistAlpha,
-		    it
+			g2,
+			if (LiuMovieManager.repeat_mode === LiuMovieManager.RepeatMode.DO_REPEAT) 2 else 1,
+			mist_blueSky,
+			mistBgCol!!,
+			mistAlpha,
+			it
 		)
 	    }
 	}

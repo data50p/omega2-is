@@ -157,7 +157,7 @@ class PupilCanvas(l_ctxt: LessonContext?, pname: String) : BaseCanvas(l_ctxt!!),
 	try {
 	    val l = e.source as JList<*>
 	    if (l === names) {
-		val pi = l.selectedValue as PupilItem?
+		val pi = l.selectedValue
 		if (pi != null) {
 		    if (pi.name == "<New Pupil>" || pi.name == t("<New Pupil>")) {
 			var pn: String? = null

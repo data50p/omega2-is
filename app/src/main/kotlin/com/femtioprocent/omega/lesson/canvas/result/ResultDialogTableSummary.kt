@@ -454,7 +454,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	var s = s
 	s = s.replace('m', ' ').replace('s', ' ').replace('h', ' ')
 	val sa = split(s, " ")
-	return if (sa.size == 2) sa[1]!!.toInt() + sa[0]!!.toInt() * 60 else sa[2]!!.toInt() + sa[1]!!.toInt() * 60 + sa[0]!!.toInt() * 60 * 60
+	return if (sa.size == 2) sa[1].toInt() + sa[0].toInt() * 60 else sa[2].toInt() + sa[1].toInt() * 60 + sa[0].toInt() * 60 * 60
     }
 
     var last = ""
@@ -500,7 +500,7 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 		data[i]!![map(CO_fn)] = testName
 		try {
 		    val tname = split(testName, "-") // pupil-date_clock-TID-type.omegaresult
-		    data[i]!![map(CO_dat)] = tname[1]!!.substring(0, 8)
+		    data[i]!![map(CO_dat)] = tname[1].substring(0, 8)
 		    data[i]!![map(CO_l)] = tname[2]
 		    data[i]!![map(CO_t)] = tname[3]
 		} catch (ex: Exception) {
@@ -551,8 +551,8 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 				    wrong_sent.add("1")
 				    wrong_sent_time.add("" + tent.duration)
 				}
-				correct_word.add(sat[3]!!)
-				wrong_word.add(sat[4]!!)
+				correct_word.add(sat[3])
+				wrong_word.add(sat[4])
 			    }
 			} catch (ex: ArrayIndexOutOfBoundsException) {
 			}

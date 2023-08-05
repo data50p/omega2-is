@@ -16,7 +16,7 @@ object StackTrace {
 	return bos.toString()
     }
 
-    fun trace1(): String? {
+    fun trace1(): String {
 	val s = trace()
 	val sa = split(s, "\n")
 	return sa[3]

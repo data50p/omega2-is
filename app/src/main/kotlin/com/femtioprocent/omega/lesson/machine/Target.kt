@@ -9,7 +9,6 @@ import com.femtioprocent.omega.adm.assets.TargetCombinations.TCItem
 import com.femtioprocent.omega.anim.appl.Anim_Repository
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.Lesson.SentenceList
-import com.femtioprocent.omega.lesson.canvas.LessonCanvas
 import com.femtioprocent.omega.lesson.managers.movie.LiuMovieManager
 import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils.a2s
@@ -398,7 +397,7 @@ class Target {
 	    var a = 0
 	    var aa = 0
 	    var isVar = false
-	    for (j in 0 until s!!.length) {
+	    for (j in 0 until s.length) {
 		isVar = if (s[j] == '-') {
 		    a--
 		    aa++
@@ -415,8 +414,8 @@ class Target {
 		}
 	    }
 	    if (isVar == false) { // a == 0 )
-		if (sa[i]!!.contains("*")) {
-		    val ss = sa[i]!!.replace("\\*[0-9]+:?".toRegex(), "")
+		if (sa[i].contains("*")) {
+		    val ss = sa[i].replace("\\*[0-9]+:?".toRegex(), "")
 		    sa[i] = ss
 		}
 		sb.append(sa[i])
