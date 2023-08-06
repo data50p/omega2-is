@@ -80,46 +80,45 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
     }
 
     fun updValues(vs: Values) {
-	val it = vs.iterator() as Iterator<Value?>
-	while (it.hasNext()) {
-	    val v = it.next()
-
+	run label@ {
+	    val it = vs.hm.values.forEach { v ->
 //log	    OmegaContext.sout_log.getLogger().info(":--: " + "V " + v);
-	    if (v!!.id == "pathlist") {         // banor
-		val cb = guimap["Slid"] as JComboBox<String>?
-		val ss = v.str
-		if (ss != null) {
-		    val sa = split(ss, ",")
-		    cb!!.removeAllItems()
-		    cb.addItem(t("(Select in list)"))
-		    cb.addItem(t("(Clear data)"))
-		    for (i in sa.indices) cb.addItem("" + sa[i])
-		    //  		    for(int i = 0; i < sa.length; i++)
+		if (v!!.id == "pathlist") {         // banor
+		    val cb = guimap["Slid"] as JComboBox<String>?
+		    val ss = v.str
+		    if (ss != null) {
+			val sa = split(ss, ",")
+			cb!!.removeAllItems()
+			cb.addItem(t("(Select in list)"))
+			cb.addItem(t("(Clear data)"))
+			for (i in sa.indices) cb.addItem("" + sa[i])
+			//  		    for(int i = 0; i < sa.length; i++)
 //  			cb.addItem("+ " + sa[i]);
-		    cb.selectedIndex = 0
-		    pack()
-		    continue
-		} else OmegaContext.sout_log.getLogger().info(":--: ss is null $v")
-	    }
-	    var gui: Any? = guimap[v.id]
-	    if (gui is JTextField) {
-		gui.text = v.str
-	    }
-	    if (gui is JComboBox<*>) {
-		gui.selectedItem = v.str
-	    }
-	    gui = guimap["L" + v.id]
-	    if (gui is JLabel) {
-		val jl = gui
-		//		jl.setText(v.getId());
+			cb.selectedIndex = 0
+			pack()
+		    } else {
+			OmegaContext.sout_log.getLogger().info(":--: ss is null $v")
+		    }
+		} else {
+		    var gui: Any? = guimap[v.id]
+		    if (gui is JTextField) {
+			gui.text = v.str
+		    }
+		    if (gui is JComboBox<*>) {
+			gui.selectedItem = v.str
+		    }
+		    gui = guimap["L" + v.id]
+		    if (gui is JLabel) {
+			val jl = gui
+			//		jl.setText(v.getId());
+		    }
+		}
 	    }
 	}
     }
 
     override fun updTrigger(doc: Document) {
-	val it: Iterator<String> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next()
+	guimap.keys.forEach {key ->
 	    val o: Any? = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
@@ -132,9 +131,7 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
     }
 
     fun setLabel(id: String, txt: String?) {
-	val it: Iterator<String> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next()
+	guimap.keys.forEach {key ->
 	    if (key == id) {
 		val o: Any? = guimap[key]
 		if (o is JLabel) {

@@ -141,9 +141,7 @@ class PrintMgr : Printable {
 	var WW = 0
 	var HH = 0
 	if (li == null) return intArrayOf(500, 350)
-	val it: MutableIterator<String?> = li.iterator()
-	while (it.hasNext()) {
-	    val sent = it.next()
+	li.forEach {sent ->
 	    val sh = getStringHeight(g2, itemFont!!, sent)
 	    val sw = getStringWidth(g2, itemFont!!, sent)
 	    HH += sh + gap
@@ -189,14 +187,12 @@ class PrintMgr : Printable {
 		g2.font = itemFont
 		val x = 0
 		var y = 0
-		val it: Iterator<*> = sentences!!.iterator()
 		val cnt = 0
 		val sh = getStringHeight(g2, itemFont!!, "Aj")
 		y += sh + 5
 		g2.drawString(lesson_name, x, y)
 		y += sh + sh + gap * 2
-		while (it.hasNext()) {
-		    val sent = it.next() as String
+		sentences!!.forEach {sent ->
 		    g2.drawString(sent, x, y)
 		    y += sh + gap
 		}

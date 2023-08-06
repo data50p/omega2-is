@@ -220,16 +220,14 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 
     // when text changes
     override fun updTrigger(doc: Document) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    val o: Any? = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
 		if (doc === tf.document) {
 		    val txt = tf.text
 		    OmegaContext.sout_log.getLogger().info(":--: updTrigger: $txt $tf")
-		    fireValueChanged(Value(key, txt))
+		    fireValueChanged(Value(key!!, txt))
 		    if (!skip_dirty) setDirty()
 		}
 	    }
@@ -352,9 +350,7 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
     fun updValues(vs: Values) {
 	skip_dirty = true
 	val ct0 = ct()
-	val it = vs.iterator()
-	while (it.hasNext()) {
-	    val v = it.next() as Value
+	vs.hm.values.forEach {v ->
 	    if (v.id == "actorlist") {
 		val cb = guimap["actors"] as JComboBox<String>?
 		val sc = v.str
@@ -376,7 +372,6 @@ class ItemProperty internal constructor(owner: JFrame?) : Property_B(owner, t("O
 //  		    cb.setSelectedIndex(0);
 //  		    pack();
 		}
-		continue
 	    }
 	    var gui: Any? = guimap[v.id]
 	    if (gui is JTextField) {

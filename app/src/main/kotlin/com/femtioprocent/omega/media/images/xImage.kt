@@ -96,15 +96,10 @@ class xImage {
 	if (ct() < checkNow) return
 	synchronized(cache_imf) {
 	    val li = ArrayList<String?>()
-	    var it: Iterator<String?>
-	    it = cache_imf.keys.iterator()
-	    while (it.hasNext()) {
-		val k = it.next()
+	    cache_imf.keys.forEach {k ->
 		if (cache_imf[k]!!.isOld) li.add(k)
 	    }
-	    it = li.iterator()
-	    while (it.hasNext()) {
-		val k = it.next()
+	    li.forEach {k ->
 		val ent = cache_imf[k]
 		ent?.getIm_()?.flush()
 		cache_imf.remove(k)
@@ -419,16 +414,11 @@ class xImage {
 	fun removeAllEntry() {
 	    synchronized(cache_imf) {
 		val li: ArrayList<String?> = ArrayList()
-		var it: Iterator<String?>
-		it = cache_imf.keys.iterator()
-		while (it.hasNext()) {
-		    val k = it.next()
+		cache_imf.keys.forEach {k ->
 		    val e = cache_imf[k]
 		    if (true) li.add(k)
 		}
-		it = li.iterator()
-		while (it.hasNext()) {
-		    val k = it.next()
+		li.forEach { k ->
 		    val ent = cache_imf[k]
 		    ent?.getIm_()?.flush()
 		    cache_imf.remove(k)

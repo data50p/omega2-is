@@ -475,7 +475,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    hm = HashMap()
 	}
 
-	fun keySet(): Set<*> {
+	fun keySet(): Set<String?> {
 	    return hm.keys
 	}
 
@@ -561,6 +561,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     // 	}
     //     }
     //     private AudioPrefetch audio_prefetch = new AudioPrefetch();
+
     fun genSeqKey(a: Int): String {
 	return pL(a, 6, '0')
     }
@@ -1413,12 +1414,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	get() {
 	    val el = Element("omega_settings")
 	    el.addAttr("version", "0.0")
-	    val it = canvases.keySet().iterator()
-	    while (it.hasNext()) {
-		val k = it.next() as String
-		val lbc = canvases[k]
+	    canvases.keySet().forEach {k ->
+		val lbc = canvases[k!!]
 		val lbc_el = Element("canvas")
-		lbc_el.addAttr("name", k)
+		lbc_el.addAttr("name", k!! as String)
 		lbc!!.fillElement(lbc_el)
 		el.add(lbc_el)
 	    }
@@ -3476,7 +3475,7 @@ target pos $tg_ix"""
 	sentence_canvas!!.buttonsEnable(false)
 	try {
 	    OmegaContext.story_log.getLogger().info("listened 2411 " + playDataList.arr)
-	    val it: Iterator<*> = playDataList.arr.iterator()
+	    val it: Iterator<*> = playDataList.arr.iterator() // has continue
 	    while (it.hasNext()) {
 		sentence_canvas!!.showMsgMore()
 		val key = waitHitKey(1)

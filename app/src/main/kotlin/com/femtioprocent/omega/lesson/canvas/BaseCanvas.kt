@@ -941,9 +941,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     }
 
     fun fillElement(el: Element) {
-	val it: Iterator<String> = colors.keys.iterator()
-	while (it.hasNext()) {
-	    val k = it.next()
+	colors.keys.forEach { k ->
 	    if (colors[k]!!.color != null) {
 		el.addAttr("color_$k", "#" + Integer.toHexString(0xffffff and colors[k]!!.color!!.rgb))
 	    } else {
@@ -952,9 +950,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
     }
 
     fun fillSettingsElement(el: Element) {
-	val it: Iterator<String> = colors.keys.iterator()
-	while (it.hasNext()) {
-	    val k = it.next()
+	colors.keys.forEach {k ->
 	    if (colors[k]!!.color != null) {
 		el.addAttr("color_$k", "#" + Integer.toHexString(0xffffff and colors[k]!!.color!!.rgb))
 	    } else {
@@ -1043,13 +1039,13 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
     fun setCurrentRed() {
 	val mbcur = focus_list!!.get()
-	val it: Iterator<*> = focus_list!!.li.iterator()
-	while (it.hasNext()) {
-	    val mb = it.next() as MyButton
-	    if (mb !== mbcur) mb.border = BorderFactory.createBevelBorder(BevelBorder.RAISED) else mb.border =
-		    BorderFactory.createLineBorder(
-			    Color(242, 80, 80), 5
-		    )
+	focus_list!!.li.forEach { mb ->
+	    if (mb != null) {
+		if (mb !== mbcur)
+		    mb.border = BorderFactory.createBevelBorder(BevelBorder.RAISED)
+		else
+		    mb.border = BorderFactory.createLineBorder(Color(242, 80, 80), 5)
+	    }
 	}
     }
 

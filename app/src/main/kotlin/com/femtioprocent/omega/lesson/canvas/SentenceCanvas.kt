@@ -259,9 +259,7 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		var WW = 0
 		var HH = 0
 		if (li == null) return intArrayOf(500, 350)
-		val it: MutableIterator<String?> = li!!.iterator()
-		while (it.hasNext()) {
-		    val sent = it.next()
+		li!!.forEach {sent ->
 		    val sh = getStringHeight(itemFont!!, sent)
 		    val sw = getStringWidth(itemFont!!, sent)
 		    HH += sh + 5
@@ -333,11 +331,9 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    g2.color = getColor("bg_tx")
 	    val sh = getStringHeight(itemFont!!, "ABC")
 	    var row = sh + 2
-	    val it: Iterator<*> = li!!.iterator()
 	    var cnt = 0
 	    val gap = 0
-	    while (it.hasNext()) {
-		val sent = it.next() as String
+	    li!!.forEach {sent ->
 		if (cnt < cnt_show) g2.drawString(
 			sent,
 			x + w / 20,

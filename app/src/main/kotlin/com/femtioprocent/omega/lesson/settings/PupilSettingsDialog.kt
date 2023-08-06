@@ -743,9 +743,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
     val elements: Element
 	get() {
 	    val el = Element("values")
-	    val it: Iterator<String?> = jcomponent_hm.keys.iterator()
-	    while (it.hasNext()) {
-		val key = it.next()
+	    jcomponent_hm.keys.forEach {key ->
 		val com = jcomponent_hm[key]
 		if (com === lang_cb) {
 		    val lang = (lang_cb!!.selectedItem as MultiString).sa[0]

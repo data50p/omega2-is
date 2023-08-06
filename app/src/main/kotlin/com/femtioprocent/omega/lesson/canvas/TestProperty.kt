@@ -157,9 +157,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
     }
 
     fun updValues(vs: Values) {
-	val it = vs.iterator()
-	while (it.hasNext()) {
-	    val v = it.next() as Value
+	val it = vs.hm.values.forEach { v ->
 
 //  	    if ( v.getId().equals("pathlist") ) {         // banor
 //  		JComboBox cb = (JComboBox)guimap.get("Slid");
@@ -193,24 +191,20 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
     }
 
     override fun updTrigger(doc: Document) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    val o: Any? = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
 		if (doc === tf.document) {
 		    val txt = tf.text
-		    fireValueChanged(Value(key, txt))
+		    fireValueChanged(Value(key!!, txt))
 		}
 	    }
 	}
     }
 
     fun setLabel(id: String, txt: String?) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    if (key == id) {
 		val o: Any? = guimap[key]
 		if (o is JLabel) {

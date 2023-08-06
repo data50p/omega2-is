@@ -274,9 +274,7 @@ class ItemEntry {
 
     fun removeDummy() {
 	resetItems()
-	val it: Iterator<*> = items!!.iterator()
-	while (it.hasNext()) {
-	    val itm = it.next() as Item?
+	items!!.forEach {itm ->
 	    itm?.restoreSavedDummy()
 	}
     }

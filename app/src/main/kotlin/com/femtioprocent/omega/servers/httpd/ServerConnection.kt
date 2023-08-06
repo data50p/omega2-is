@@ -68,11 +68,9 @@ class ServerConnection internal constructor(var so: Socket, var server: Server) 
 	    return s.length
 	}
 	if (cmd == "lesson") {
-	    val it: Iterator<*> = server.hm.keys.iterator()
-	    while (it.hasNext()) {
-		val key = it.next() as String
+	    server.hm.keys.forEach {key ->
 		val `val` = server.hm[key]
-		if (key.startsWith("lesson:")) {
+		if (key!!.startsWith("lesson:")) {
 		    val lkey = key.substring(7)
 		    if (lkey == "background") {
 			s = "<p>$lkey = $`val`  <IMG src=\"$`val`\"/>\n"

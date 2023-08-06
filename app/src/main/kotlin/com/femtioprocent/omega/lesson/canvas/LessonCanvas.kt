@@ -575,10 +575,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	val lastIx: Int
 	    get() {
 		var max = -1
-		val it: Iterator<*> = all.values.iterator()
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.o_x > max) {
+		all.values.forEach {bx ->
+		    if (bx!!.o_x > max) {
 			max = bx.o_x
 		    }
 		}
@@ -606,10 +604,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	}
 
 	fun delAllMarked() {
-	    val it: Iterator<*> = all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
-		if (bx.marked) {
+	    all.values.forEach {bx ->
+		if (bx!!.marked) {
 		    all.remove("" + bx.o_x + ':' + bx.o_y)
 		    delAllMarked()
 		    return
@@ -1565,10 +1561,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     // -- //
     fun getBox(itm: Item): Box? {
-	val it: Iterator<*> = allBox!!.all.values.iterator()
-	while (it.hasNext()) {
-	    val bx = it.next() as Box
-	    if (bx.item == itm) {
+	allBox!!.all.values.forEach {bx ->
+	    if (bx!!.item == itm) {
 		return bx
 	    }
 	}
@@ -1773,11 +1767,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
     var box_state = BoxState()
     fun hitBox(x: Int, y: Int, type: Char, where: IntArray): Box? {
 	if (allBox != null) {
-	    val it: Iterator<*> = allBox!!.all.values.iterator()
-	    while (it.hasNext()) {
-		val bx = it.next() as Box
+	    allBox!!.all.values.forEach {bx ->
 		var bhit: Int
-		if (bx.hitBox(x, y).also { bhit = it } >= 0) {
+		if (bx!!.hitBox(x, y).also { bhit = it } >= 0) {
 		    where[0] = bhit
 		    if (type == 'm') {
 			box_state.setState(bx, SELECTED, true)
@@ -2040,10 +2032,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    if (allBox != null) {
 		wantRP = 1.0
 		var o_x = 0
-		var it: Iterator<*> = allBox!!.all.values.iterator()
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.o_x > o_x) {
+		allBox!!.all.values.forEach {bx ->
+		    if (bx!!.o_x > o_x) {
 			o_x = bx.o_x
 		    }
 		    bx.drawNull(g2)
@@ -2056,10 +2046,8 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 		    repaint()
 		    return
 		}
-		it = allBox!!.all.values.iterator()
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.o_x > o_x) {
+		allBox!!.all.values.forEach {bx ->
+		    if (bx!!.o_x > o_x) {
 			o_x = bx.o_x
 		    }
 		    bx.draw(g2)
@@ -2083,7 +2071,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	g2.color = Color(111, 111, 111)
 	if (allBox != null) {
 	    synchronized(allbox_sy) {
-		val it: Iterator<*> = allBox!!.all.values.iterator()
+		val it: Iterator<*> = allBox!!.all.values.iterator()  // continue used
 		while (it.hasNext()) {
 		    val bx = it.next() as Box
 		    if (bx.o_y == 0) {

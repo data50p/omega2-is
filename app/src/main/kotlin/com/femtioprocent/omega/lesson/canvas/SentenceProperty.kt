@@ -373,17 +373,8 @@ class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: Lesso
 	return null
     }
 
-    fun updValues(vs: Values) {
-	val it = vs.iterator()
-	while (it.hasNext()) {
-	    val v = it.next() as Value
-	}
-    }
-
     override fun updTrigger(doc: Document) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    val o: Any? = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
@@ -396,9 +387,7 @@ class SentenceProperty internal constructor(var owner: JFrame, var l_ctxt: Lesso
     }
 
     fun setLabel(id: String, txt: String?) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    if (key == id) {
 		val o: Any? = guimap[key]
 		if (o is JLabel) {

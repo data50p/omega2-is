@@ -32,10 +32,6 @@ class RectList internal constructor() {
 	rl = nrl
     }
 
-    operator fun iterator(): Iterator<*> {
-	return rl.iterator()
-    }
-
     companion object {
 	fun mi(a: Double, b: Double): Double {
 	    return if (a < b) a else b

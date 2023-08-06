@@ -7,10 +7,6 @@ class Values {
 	hm = HashMap()
     }
 
-    operator fun iterator(): Iterator<*> {
-	return hm.values.iterator()
-    }
-
     fun getValue(id: String): Value {
 	var v = hm[id]
 	if (v == null) {

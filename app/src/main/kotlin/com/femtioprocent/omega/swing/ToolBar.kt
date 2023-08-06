@@ -25,11 +25,9 @@ open class ToolBar : JToolBar {
 
     fun add(tbg: ToolActionGroup, texec: ToolExecute?): Array<JButton?> {
 	val jba = arrayOfNulls<JButton>(tbg.size())
-	val it = tbg.iterator()
 	var ix = 0
-	while (it.hasNext()) {
-	    val ta = it.next() as ToolAction
-	    if (ta.command == null) addSeparator() else {
+	val it = tbg.li.forEach {ta ->
+	    if (ta!!.command == null) addSeparator() else {
 		ta.texec = texec
 		val jb = add(ta)
 		jb.actionCommand = ta.command

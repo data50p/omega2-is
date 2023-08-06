@@ -451,9 +451,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
     }
 
     override fun updTrigger(doc: Document) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    val o: Any? = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
@@ -466,9 +464,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
     }
 
     fun setLabel(id: String, txt: String?) {
-	val it: Iterator<*> = guimap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	guimap.keys.forEach {key ->
 	    if (key == id) {
 		val o: Any? = guimap[key]
 		if (o is JLabel) {
