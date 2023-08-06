@@ -92,10 +92,8 @@ class AllPath {
     val element: Element
 	get() {
 	    val el = Element("AllPath")
-	    val it: Iterator<*> = li.iterator()
-	    while (it.hasNext()) {
-		val pa = it.next() as Path
-		val pel = pa.element
+	    li.forEach {pa ->
+		val pel = pa!!.element
 		el.add(pel)
 	    }
 	    return el

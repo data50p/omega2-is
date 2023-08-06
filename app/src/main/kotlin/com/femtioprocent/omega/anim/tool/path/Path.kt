@@ -21,11 +21,7 @@ class Path {
 	    if (field) {
 		global_selected = this
 	    }
-	    val it: Iterator<*> = seg_l.iterator()
-	    while (it.hasNext()) {
-		val sq = it.next() as Segment_Q
-		sq.selectedPoint = -1
-	    }
+	    seg_l.forEach {sq -> sq.selectedPoint = -1 }
 	}
 
     var nid: Int
@@ -138,9 +134,7 @@ class Path {
 	this.nid = nid
 	seg_l = ArrayList()
 	marker = ArrayList()
-	var it: Iterator<*> = pa_src.seg_l.iterator()
-	while (it.hasNext()) {
-	    val sq = it.next() as Segment_Q
+	seg_l.forEach {sq ->
 	    val sq_c = Segment_Q(
 		    nid,
 		    move(sq.p1, offx, offy),
@@ -150,11 +144,7 @@ class Path {
 	    sq_c.path = this
 	    seg_l.add(sq_c)
 	}
-	it = pa_src.marker.iterator()
-	while (it.hasNext()) {
-	    val mk = it.next()
-	    addMarker(mk.id, mk.type, mk.where)
-	}
+	pa_src.marker.forEach {mk -> addMarker(mk.id, mk.type, mk.where) }
 	rebuildGP()
     }
 
@@ -166,11 +156,7 @@ class Path {
     }
 
     fun moveAll(dx: Double, dy: Double) {
-	val it: Iterator<*> = seg_l.iterator()
-	while (it.hasNext()) {
-	    val sq = it.next() as Segment_Q
-	    sq.moveAllBy(dx, dy)
-	}
+	seg_l.forEach { sq -> sq.moveAllBy(dx, dy) }
 	rebuildGP()
     }
 
@@ -198,9 +184,7 @@ class Path {
     fun splitSegment() {
 	val nseg_l: MutableList<Segment_Q> = ArrayList()
 	var b = false
-	val it: Iterator<Segment_Q> = seg_l.iterator()
-	while (it.hasNext()) {
-	    val sq = it.next()
+	seg_l.forEach {sq ->
 	    if (sq.selectedPoint >= 0) {
 		val nsq = sq.split()
 		nsq.path = this
@@ -220,9 +204,7 @@ class Path {
     fun removeSegment() {
 	val nseg_l: MutableList<Segment_Q> = ArrayList()
 	var b = false
-	val it: Iterator<Segment_Q> = seg_l.iterator()
-	while (it.hasNext()) {
-	    val sq = it.next()
+	seg_l.forEach {sq ->
 	    if (sq.selectedPoint >= 0) {
 		b = true
 	    } else {
@@ -430,9 +412,7 @@ class Path {
 
     fun findNearest(p: Point2D?): Probe {
 	var nearest = Probe()
-	val it: Iterator<*> = seg_l.iterator()
-	while (it.hasNext()) {
-	    val sq = it.next() as Segment_Q
+	seg_l.forEach {sq ->
 	    val n = sq.findNearest(p)
 	    if (n.dist < nearest.dist) {
 		nearest = n
@@ -445,9 +425,7 @@ class Path {
     fun findNearestMarker(p: Point2D?): Mark? {
 	var mk: Mark? = null
 	var dist = 0.0
-	val it: Iterator<*> = marker.iterator()
-	while (it.hasNext()) {
-	    val mk2 = it.next() as Mark
+	marker.forEach {mk2 ->
 	    val d = getPointAt(mk2.where).distance(p)
 	    if (mk == null || d < dist) {
 		dist = d
@@ -511,9 +489,7 @@ class Path {
 	var selected_sq: Segment_Q? = null
 	if (true /*active*/) {
 	    val col = if (selected) Color.orange else Color.orange.darker()
-	    val it: Iterator<*> = seg_l.iterator()
-	    while (it.hasNext()) {
-		val sq = it.next() as Segment_Q
+	    seg_l.forEach {sq ->
 		if (sq.selectedPoint >= 0) selected_sq = sq else {
 		    g2.color = col
 		    sq.draw(g2)
@@ -521,9 +497,9 @@ class Path {
 	    }
 	    if (selected_sq != null) {
 		g2.color = Color.gray
-		selected_sq.drawConnector(g2)
+		selected_sq!!.drawConnector(g2)
 		g2.color = Color.orange.brighter()
-		selected_sq.draw(g2)
+		selected_sq!!.draw(g2)
 	    }
 	} else {
 	    g2.color = Color.green
@@ -543,9 +519,7 @@ class Path {
     }
 
     private fun drawMarker(g2: Graphics2D) {
-	val it: Iterator<*> = marker.iterator()
-	while (it.hasNext()) {
-	    val mk = it.next() as Mark
+	marker.forEach {mk ->
 	    val pp = getPointAt(mk.where)
 	    if (pp != null) {
 		g2.color = Color.magenta.brighter()

@@ -57,8 +57,6 @@ class ResultTest : Result {
 	return entries.size
     }
 
-    val allTestEntries: Iterator<*>
-	get() = entries.iterator()
     override val lessonName: String
 	get() = "$l_id-$type"
     override val performDate: Date
@@ -77,11 +75,7 @@ class ResultTest : Result {
 
     fun getEntrySize(type: String): Int {
 	var c = 0
-	val it: Iterator<*> = entries.iterator()
-	while (it.hasNext()) {
-	    val e = it.next() as Entry
-	    if (e.type == type) c++
-	}
+	entries.forEach {e -> if (e.type == type) c++ }
 	return c
     }
 
@@ -94,9 +88,7 @@ class ResultTest : Result {
 	    el.addAttr("created_date", fixString("" + df.format(created)))
 	    val eel = Element("entries")
 	    eel.addAttr("session_length", "" + session_length)
-	    val it: Iterator<*> = entries.iterator()
-	    while (it.hasNext()) {
-		val e = it.next() as Entry
+	    entries.forEach {e ->
 		val e1 = e.element
 		eel.add(e1)
 	    }
@@ -107,10 +99,6 @@ class ResultTest : Result {
     fun dump() {
 	Log.getLogger().info(":--: sl-$session_length")
 	Log.getLogger().info(":--: ty-$type")
-	val it: Iterator<*> = entries.iterator()
-	while (it.hasNext()) {
-	    val e = it.next() as Entry
-	    Log.getLogger().info(":--: ==  $e")
-	}
+	entries.forEach {e -> Log.getLogger().info(":--: ==  $e") }
     }
 }

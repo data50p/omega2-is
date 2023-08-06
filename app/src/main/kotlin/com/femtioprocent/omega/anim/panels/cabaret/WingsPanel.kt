@@ -85,11 +85,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
     }
 
     fun fireStateChange() {
-	val it: Iterator<ChangeListener> = cLiLi.iterator()
-	while (it.hasNext()) {
-	    val cli = it.next()
-	    cli.stateChanged(ChangeEvent(this))
-	}
+	cLiLi.forEach {cli -> cli.stateChanged(ChangeEvent(this)) }
     }
 
     internal inner class Mouse : MouseInputAdapter() {
@@ -184,10 +180,7 @@ class WingsPanel(var ae: AnimEditor) : JPanel() {
 	val li = ae.a_ctxt!!.anim_canvas!!.removeWing(ix)
 	if (li != null) {
 	    var cnt = 0
-	    val it = li.iterator()
-	    while (it.hasNext()) {
-		setWing(it.next(), cnt++)
-	    }
+	    li.forEach { setWing(it, cnt++) }
 	}
 	repaint()
     }

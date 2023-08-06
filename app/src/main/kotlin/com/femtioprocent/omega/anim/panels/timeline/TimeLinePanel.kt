@@ -509,9 +509,7 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 		}
 		g.setColor(outside_tl_color)
 		g.drawLine(stop, y, 2000, y)
-		var it: Iterator<*> = tl.getMarkersAbs(-1, 999999, true).iterator()
-		while (it.hasNext()) {
-		    val tm = it.next() as TimeMarker
+		tl.getMarkersAbs(-1, 999999, true).forEach {tm ->
 		    val xx = (tm.`when` / scale)
 		    val dd = (tm.duration / scale)
 		    g.setColor(gray30)
@@ -523,10 +521,8 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 		    ) else g.setColor(mcol)
 		    draw(g, tm, xx, y, dd)
 		}
-		it = tl.getMarkersAbs(t_x_ * scale, t_x * scale).iterator()
 		g.setColor(light_yellow)
-		while (it.hasNext()) {
-		    val tm = it.next()
+		tl.getMarkersAbs(t_x_ * scale, t_x * scale).forEach {tm ->
 		    draw(g, tm, (tm.`when` / scale), y, (tm.duration / scale))
 		}
 

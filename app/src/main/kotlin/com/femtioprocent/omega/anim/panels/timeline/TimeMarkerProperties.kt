@@ -131,7 +131,7 @@ class TimeMarkerProperties(var a_ctxt: AnimContext, owner: JFrame?) : OmegaPrope
 	    val pp = JPanel()
 	    pp.layout = GridBagLayout()
 	    val c = GBC_Factory()
-	    for (i in -1 until tm.t_event!!.size) {
+	    for (i in -1 until (tm.t_event?.size ?: 0)) {
 		if (i == -1) {
 		    var jlb: JLabel?
 		    pp.add(JLabel(t("Event")).also { jlb = it }, c.create(0, 0))

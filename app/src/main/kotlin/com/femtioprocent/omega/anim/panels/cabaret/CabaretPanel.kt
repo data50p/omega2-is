@@ -70,11 +70,7 @@ class CabaretPanel(var ae: AnimEditor?) : JPanel() {
     }
 
     fun fireStateChange() {
-	val it: Iterator<ChangeListener> = cLiLi.iterator()
-	while (it.hasNext()) {
-	    val cli = it.next()
-	    cli.stateChanged(ChangeEvent(this))
-	}
+	cLiLi.forEach {cli -> cli.stateChanged(ChangeEvent(this)) }
     }
 
     internal inner class Mouse : MouseInputAdapter() {
