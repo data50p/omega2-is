@@ -83,7 +83,7 @@ class TargetProperty internal constructor(owner: JFrame?) : Property_B(owner, t(
 	run label@ {
 	    val it = vs.hm.values.forEach { v ->
 //log	    OmegaContext.sout_log.getLogger().info(":--: " + "V " + v);
-		if (v!!.id == "pathlist") {         // banor
+		if (v!!.id == "pathlist") {         // banor, vad är detta ?
 		    val cb = guimap["Slid"] as JComboBox<String>?
 		    val ss = v.str
 		    if (ss != null) {
