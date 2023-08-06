@@ -604,11 +604,11 @@ class Path {
 	}
 
 	fun format_(lenArr: DoubleArray): String {
-	    return "" + lenArr
+	    return "" + lenArr.toList().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",", ";")
 	}
 
 	fun format_(point2d: Array<Point2D>): String {
-	    return "" + point2d
+	    return "" + point2d.toList().toString().replace("],", ";").replace("Point2D.Double[", "").replace("[", "").replace("]", "").replace(" ", "")
 	}
     }
 }

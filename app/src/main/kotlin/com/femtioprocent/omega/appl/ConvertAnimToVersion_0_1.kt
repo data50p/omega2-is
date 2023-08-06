@@ -32,8 +32,9 @@ class ConvertAnimToVersion_0_1 internal constructor(fn: File) {
     fun start() {
 	val dep_set: MutableSet<TCItem?> = HashSet()
 	if (baseDir != null) {
-	    fill(dep_set)
-	    keep(dep_set, ".omega_anim")
+	    val dep_set2: MutableSet<TCItem?> = HashSet()
+	    fill(dep_set2)
+	    dep_set.addAll(keep(dep_set2, ".omega_anim"))
 	} else {
 	    val tci = createTCI(theFile)
 	    dep_set.add(tci)
@@ -43,13 +44,16 @@ class ConvertAnimToVersion_0_1 internal constructor(fn: File) {
 	if (flags!!["status"] != null) ph.performStatus() else ph.perform(doBackup)
     }
 
-    private fun keep(dep_set: MutableSet<TCItem?>, s: String) {
+    private fun keep(dep_set: MutableSet<TCItem?>, s: String) : MutableSet<TCItem?> {
+	return dep_set.filter { it!!.fn.endsWith(s) }.toMutableSet()
+/*
 	val it = dep_set.iterator()
 	while (it.hasNext()) {
 	    val next = it.next()
 	    if (next!!.fn.endsWith(s)) continue
 	    it.remove()
 	}
+ */
     }
 
     private fun fill(dep_set: MutableSet<TCItem?>, dir: File? = baseDir) {
@@ -81,6 +85,7 @@ class ConvertAnimToVersion_0_1 internal constructor(fn: File) {
 	var argl: List<String>? = null
 	var flatness = OmegaConfig.FLATNESS
 
+	@JvmStatic
 	fun main(args: Array<String>) {
 	    if (args.size == 0) {
 		Log.getLogger().info("-b=<backupExt> -d=dir -status -flatness=value example.omega_anim,...")
