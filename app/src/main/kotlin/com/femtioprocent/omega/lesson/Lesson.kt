@@ -523,45 +523,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     var progress: Progress? = null
 
-    //     private class AudioPrefetch {
-    // 	private HashMap prfHM;
-    // 	private ObjectCache audio_prefetch_cache = new ObjectCache("audioPrefetch");
-    // 	AudioPrefetch() {
-    // 	    loadit();
-    // 	}
-    // 	private void prefetchAny(String id) {
-    // 	    String[] sa = (String[])prfHM.get(id);
-    // 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "prefetched " + sa);
-    // 	    if ( sa == null )
-    // 		return;
-    // 	    for(int i = 0; i < sa.length;i++) {
-    // 		String as = sa[i];
-    // 		APlayer.prefetch(as);
-    // 		//		OmegaContext.sout_log.getLogger().info(":--: " + "prefetched " + as);
-    // 	    }
-    // 	}
-    // 	public void saveit(String lesson_fn, String[] used_file) {
-    // 	    fpdo.sundry.Timer tm = new fpdo.sundry.Timer();
-    // 	    prfHM.put(lesson_fn, used_file);
-    // 	    audio_prefetch_cache.save(prfHM);
-    // 	    audio_log.getLogger().info("saveit: " + prfHM + ' ' + tm.get());
-    // 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "saveit " + prfHM + ' ' + tm.get());
-    // 	}
-    // 	private void loadit() {
-    // 	    prfHM = (HashMap)audio_prefetch_cache.load();
-    // 	    if ( prfHM == null )
-    // 		prfHM = new HashMap();
-    // 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "PREFETCH CACHE " + prfHM);
-    // 	    Iterator it = prfHM.keySet().iterator();
-    // 	    while(it.hasNext()) {
-    // 		String id = (String)it.next();
-    // 		String[] afn = (String[])prfHM.get(id);
-    // 		//		OmegaContext.sout_log.getLogger().info(":--: " + "PC " + id + ' ' + SundryUtils.a2s(afn));
-    // 	    }
-    // 	}
-    //     }
-    //     private AudioPrefetch audio_prefetch = new AudioPrefetch();
-
     fun genSeqKey(a: Int): String {
 	return pL(a, 6, '0')
     }
@@ -3475,18 +3436,16 @@ target pos $tg_ix"""
 	sentence_canvas!!.buttonsEnable(false)
 	try {
 	    OmegaContext.story_log.getLogger().info("listened 2411 " + playDataList.arr)
-	    val it: Iterator<*> = playDataList.arr.iterator() // has continue
-	    while (it.hasNext()) {
+	    playDataList.arr.forEach loop@{pd ->
 		sentence_canvas!!.showMsgMore()
 		val key = waitHitKey(1)
 		if (key == '\u001b'.code) {
 		    sentence_canvas!!.showMsg(null)
 		    return
 		}
-		val pd = it.next() as PlayData
 		if (OmegaConfig.tts) {
 		    val lang = OmegaContext.lessonLang
-		    if (say(lang, pd.theWord(), true)) continue
+		    if (say(lang, pd.theWord(), true)) return@loop
 		}
 		OmegaContext.story_log.getLogger().info("PD is $pd")
 		val soundA = split(pd.sound_list, ",")

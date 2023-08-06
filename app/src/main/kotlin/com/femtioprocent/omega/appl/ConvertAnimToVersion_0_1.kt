@@ -46,14 +46,6 @@ class ConvertAnimToVersion_0_1 internal constructor(fn: File) {
 
     private fun keep(dep_set: MutableSet<TCItem?>, s: String) : MutableSet<TCItem?> {
 	return dep_set.filter { it!!.fn.endsWith(s) }.toMutableSet()
-/*
-	val it = dep_set.iterator()
-	while (it.hasNext()) {
-	    val next = it.next()
-	    if (next!!.fn.endsWith(s)) continue
-	    it.remove()
-	}
- */
     }
 
     private fun fill(dep_set: MutableSet<TCItem?>, dir: File? = baseDir) {

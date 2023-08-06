@@ -2071,11 +2071,9 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	g2.color = Color(111, 111, 111)
 	if (allBox != null) {
 	    synchronized(allbox_sy) {
-		val it: Iterator<*> = allBox!!.all.values.iterator()  // continue used
-		while (it.hasNext()) {
-		    val bx = it.next() as Box
-		    if (bx.o_y == 0) {
-			val itm = bx.item ?: continue
+		allBox!!.all.values.forEach loop@{bx ->
+		    if (bx!!.o_y == 0) {
+			val itm = bx.item ?: return@loop
 			val msk = target!!.whatTargetMatchTid(itm.entryTid)
 			val how_many = howManyBits(msk)
 			var msk_cnt = 0
