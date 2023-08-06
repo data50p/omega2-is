@@ -15,9 +15,7 @@ class RectList internal constructor() {
     fun add(r: Rectangle2D) {
 	var r = r
 	val nrl: MutableList<Rectangle2D> = ArrayList()
-	val it = rl.iterator()
-	while (it.hasNext()) {
-	    val r1 = it.next()
+	rl.forEach {r1 ->
 	    intersect(r, r1, nr)
 	    if (r1.contains(r.x, r.y, r.width, r.height)) {
 		return

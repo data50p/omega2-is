@@ -64,9 +64,7 @@ class TimeLine : Serializable {
 	this.nid = nid
 	offset = src.offset
 	duration = src.duration
-	val it: Iterator<TimeMarker> = src.markers.iterator()
-	while (it.hasNext()) {
-	    val tm = it.next()
+	markers.forEach {tm ->
 	    val new_tm = addMarker(
 		    tm.type,
 		    tm.`when` - offset,
@@ -155,16 +153,12 @@ class TimeLine : Serializable {
 
     fun getAllTimeMarkerType(t: Char): Array<TimeMarker?> {
 	var c = 0
-	var it: Iterator<TimeMarker> = markers.iterator()
-	while (it.hasNext()) {
-	    val tm = it.next()
+	markers.forEach {tm ->
 	    if (tm.type == t) c++
 	}
 	val ta = arrayOfNulls<TimeMarker>(c)
 	c = 0
-	it = markers.iterator()
-	while (it.hasNext()) {
-	    val tm = it.next()
+	markers.forEach {tm ->
 	    if (tm.type == t) ta[c++] = tm
 	}
 	Arrays.sort(ta) { o1, o2 -> o1!!.`when` - o2!!.`when` }
@@ -266,10 +260,8 @@ class TimeLine : Serializable {
     }
 
     fun getMarkerAtIndexType(ix: Int, type: Char): TimeMarker? {
-	val it: Iterator<TimeMarker> = markers.iterator()
-	var c = 0
-	while (it.hasNext()) {
-	    val tm = it.next()
+	markers.forEach {tm ->
+	    var c = 0
 	    if (tm.type == type) if (c == ix) return tm else c++
 	}
 	return null

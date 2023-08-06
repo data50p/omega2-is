@@ -102,9 +102,7 @@ class MasterTimeLine(var a_ctxt: AnimContext) : PlayCtrlListener {
 
     fun fireEventMarkerAtTime(from: Int, to: Int) {
 	val l = getMarkersAbs(from, to)
-	val it = l.iterator()
-	while (it.hasNext()) {
-	    val tm = it.next()
+	l.forEach {tm ->
 	    val lia = play_listeners.listenerList
 	    var i = 0
 	    while (i < lia.size) {

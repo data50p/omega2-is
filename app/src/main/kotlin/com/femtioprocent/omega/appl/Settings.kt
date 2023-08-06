@@ -79,9 +79,7 @@ class Settings internal constructor() {
 	val exitB = JButton("Save & Exit")
 	exitB.addActionListener(MyActionListener())
 	c.add(exitB, BorderLayout.SOUTH)
-	val it: Iterator<*> = settingsHashMap.keys.iterator()
-	while (it.hasNext()) {
-	    val key = it.next() as String
+	settingsHashMap.keys.forEach {key ->
 	    val `val` = settingsHashMap[key].toString()
 	    var la: JLabel
 	    var tf: JTextField

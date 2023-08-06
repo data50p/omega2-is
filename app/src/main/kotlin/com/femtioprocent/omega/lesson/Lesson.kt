@@ -1348,10 +1348,8 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	for (i in 0..99) {
 	    val fel = el.findElement("canvas", i) ?: return
 	    val name = fel.findAttr("name")
-	    val it = canvases.keySet().iterator()
-	    while (it.hasNext()) {
-		val k = it.next() as String
-		val lbc = canvases[k]
+	    canvases.keySet().forEach {k ->
+		val lbc = canvases[k as String]
 		if (k == name) {
 		    lbc!!.setSettingsFromElement(fel)
 		}
@@ -1796,9 +1794,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	val element: Element
 	    get() {
 		val el = Element("action_specific")
-		val it: Iterator<String?> = hm.keys.iterator()
-		while (it.hasNext()) {
-		    val key = it.next()
+		hm.keys.forEach {key ->
 		    val `val` = hm[key]
 		    if (!empty(`val`)) {
 			val el1 = Element("value")
@@ -1812,9 +1808,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	val signElement: Element
 	    get() {
 		val el = Element("sign_specific")
-		val it: Iterator<String?> = hmSign.keys.iterator()
-		while (it.hasNext()) {
-		    val key = it.next()
+		hmSign.keys.forEach {key ->
 		    val `val` = hmSign[key]
 		    if (!empty(`val`)) {
 			val el1 = Element("value")
@@ -2063,11 +2057,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		val fullname_2 = "$dir$fname.omega_story_replay"
 		try {
 		    PrintWriter(FileWriter(File(fullname))).use { pw ->
-			val it: Iterator<*> = ss_li!!.iterator()
-			while (it.hasNext()) {
-			    val sent = it.next() as String
-			    pw.println(sent)
-			}
+			ss_li!!.forEach {sent -> pw.println(sent) }
 		    }
 		    ObjectOutputStream(FileOutputStream(fullname_2)).use { oo ->
 			oo.writeObject(sent_li)
@@ -3346,12 +3336,10 @@ target pos $tg_ix"""
 	action!!.hm["anim_background"] = omega_settings_dialog.anim_background!!.color
 	action!!.hm["anim_colors"] = le_canvas!!.colors
 	action!!.hm["colors"] = canvases["words"]!!.colors
-	val it: Iterator<*> = al.iterator()
-	while (it.hasNext()) {
+	al.forEach {pd ->
 	    if (hit_key == '\u001b'.code) {
 		return
 	    }
-	    val pd = it.next() as PlayData
 	    action!!.prefetch(pd.action_s)
 	    action!!.perform(
 		    window!!,
@@ -4071,10 +4059,7 @@ target pos $tg_ix"""
 		    try {
 			val hm: HashMap<String?, Color?> = HashMap()
 			initColors(hm)
-			val it: Iterator<*> = hm.keys.iterator()
-			while (it.hasNext()) {
-			    val k = it.next() as String
-			    if (hm[k] !is Color) continue
+			hm.keys.forEach {k ->
 			    val col = hm[k]
 			    val c = fel.findAttr("color_$k")
 
