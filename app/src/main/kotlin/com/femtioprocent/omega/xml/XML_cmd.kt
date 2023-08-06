@@ -37,10 +37,7 @@ object XML_cmd {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)
 		    xmlpw.put("\n")
-		    val it: Iterator<Element?> = li.iterator()
-		    while (it.hasNext()) {
-			xmlpw.put(it.next())
-		    }
+		    li.forEach { xmlpw.put(it) }
 		    xmlpw.pop()
 		}
 	    } catch (ex: Exception) {
@@ -110,10 +107,7 @@ object XML_cmd {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)
 		    xmlpw.put("\n")
-		    val it: Iterator<Element?> = sli.iterator()
-		    while (it.hasNext()) {
-			xmlpw.put(it.next())
-		    }
+		    sli.forEach { xmlpw.put(it) }
 		    xmlpw.pop()
 		}
 	    } catch (ex: Exception) {

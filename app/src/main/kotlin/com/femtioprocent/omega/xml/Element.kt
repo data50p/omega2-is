@@ -30,7 +30,7 @@ class Element(var name: String) : Node(), Cloneable {
 
     fun add(s: String?) {
 	if (ro) throw RuntimeException("Element readonly")
-	content.add(PCDATA(s))
+	if ( s!= null && s.length > 0 ) content.add(PCDATA(s))
     }
 
     fun addAttr(key: String?, `val`: String?) {
@@ -52,9 +52,7 @@ class Element(var name: String) : Node(), Cloneable {
     @Synchronized
     fun addAttr_nx(ht: Hashtable<*, *>) {
 	if (ro) throw RuntimeException("Element readonly")
-	val it: Iterator<*> = ht.keys.iterator()
-	while (it.hasNext()) {
-	    val k = it.next() as String
+	ht.keys.forEach {k ->
 	    val v = ht[k] as String?
 	    attr["n" + nx_ix++] = "$k=$v"
 	}
@@ -62,9 +60,7 @@ class Element(var name: String) : Node(), Cloneable {
 
     fun find(nm: String): List<Element> {
 	val li: MutableList<Element> = ArrayList()
-	val it: Iterator<Node?> = content.iterator()
-	while (it.hasNext()) {
-	    val n = it.next()
+	content.forEach { n ->
 	    if (n is Element) {
 		val e = n
 		if (e.name == nm) {
@@ -86,9 +82,7 @@ class Element(var name: String) : Node(), Cloneable {
     fun remove(nm: String): Element? { // <Element>
 	if (name == nm) return null
 	val nv: MutableList<Node?> = ArrayList()
-	val it: Iterator<Node?> = content.iterator()
-	while (it.hasNext()) {
-	    val n = it.next()
+	content.forEach {n ->
 	    if (n is Element) {
 		var e = n as Element?
 		if (e!!.name == nm) {
@@ -112,9 +106,7 @@ class Element(var name: String) : Node(), Cloneable {
     fun remove(names: Array<String>): Element? {
 	if (isIn(name, names)) return null
 	val nv: MutableList<Node?> = ArrayList()
-	val it: Iterator<Node?> = content.iterator()
-	while (it.hasNext()) {
-	    val n = it.next()
+	content.forEach { n ->
 	    if (n is Element) {
 		var e = n as Element?
 		if (isIn(e!!.name, names)) {
@@ -178,9 +170,7 @@ class Element(var name: String) : Node(), Cloneable {
 
     fun findElement(nm: String, ix: Int): Element? {
 	var ix = ix
-	val it: Iterator<Node?> = content.iterator()
-	while (it.hasNext()) {
-	    val n = it.next()
+	content.forEach {n ->
 	    if (n is Element) {
 		val e = n
 		if (e.name == nm) {
@@ -203,9 +193,7 @@ class Element(var name: String) : Node(), Cloneable {
     }
 
     fun findPCDATA(): String? {
-	val it: Iterator<Node?> = content.iterator()
-	while (it.hasNext()) {
-	    val n = it.next()
+	content.forEach { n ->
 	    if (n is PCDATA) {
 		return n.pcdata.toString()
 	    }
@@ -238,9 +226,7 @@ class Element(var name: String) : Node(), Cloneable {
 	try {
 	    sbu.append("<$name")
 	    if (!attr.isEmpty()) {
-		val it: Iterator<*> = attr.keys.iterator()
-		while (it.hasNext()) {
-		    val s = it.next() as String
+		attr.keys.forEach {s ->
 		    sbu.append(" ")
 		    sbu.append(s)
 		    sbu.append("=\"")
@@ -251,11 +237,7 @@ class Element(var name: String) : Node(), Cloneable {
 	    if (sbl == null && content.isEmpty()) sbu.append("/>\n") else {
 		sbu.append(">")
 		if (hasSubElement) sbu.append("\n")
-		val it: Iterator<*> = content.iterator()
-		while (it.hasNext()) {
-		    val xn = it.next() as Node
-		    xn.render(sbu)
-		}
+		content.forEach {xn -> xn!!.render(sbu) }
 		if (sbl == null) sbu.append("</$name>\n") else sbl.append("</$name>\n")
 	    }
 	} catch (ex: NullPointerException) {

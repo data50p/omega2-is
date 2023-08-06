@@ -78,7 +78,8 @@ class SAX_node : DefaultHandler() {
 	var len = len
 	val e = stack.peek() as Element
 	if (buf[offset + len - 1] == '\n') len--
-	e.add(PCDATA(String(buf, offset, len)))
+	val s = String(buf, offset, len)
+	if ( s.length > 0) e.add(PCDATA(s))
     }
 
     @Throws(SAXException::class)
