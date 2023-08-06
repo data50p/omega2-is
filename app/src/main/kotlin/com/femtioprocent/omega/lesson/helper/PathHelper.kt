@@ -3,7 +3,7 @@ package com.femtioprocent.omega.lesson.helper
 import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.adm.assets.TargetCombinations.TCItem
 import com.femtioprocent.omega.anim.tool.path.Path
-import com.femtioprocent.omega.anim.tool.path.Path.Companion.format_
+import com.femtioprocent.omega.anim.tool.path.Path.Companion.format
 import com.femtioprocent.omega.lesson.repository.Restore
 import com.femtioprocent.omega.lesson.repository.Save
 import com.femtioprocent.omega.util.Log
@@ -80,16 +80,8 @@ class PathHelper(var dep_set: MutableSet<TCItem?>) {
 	    val lenArr = p.lenA
 	    val point2d = p.point2D
 	    Log.getLogger().info("flatness " + i + ": " + OmegaConfig.FLATNESS)
-	    Log.getLogger().info(
-		    "len " + i + ": " + lenArr!!.size + ' ' + format_(
-			    lenArr
-		    )
-	    )
-	    Log.getLogger().info(
-		    "seg " + i + ": " + point2d!!.size + ' ' + format_(
-			    point2d
-		    )
-	    )
+	    Log.getLogger().info("len " + i + ": " + lenArr!!.size + ' ' + format(lenArr))
+	    Log.getLogger().info("seg " + i + ": " + point2d!!.size + ' ' + format(point2d))
 	    var el_i = el_tp.findElement("info", 0)
 	    if (el_i == null) {
 		el_i = Element("info")
@@ -110,8 +102,8 @@ class PathHelper(var dep_set: MutableSet<TCItem?>) {
 	    } else {
 		cntHelpExist++
 	    }
-	    el_h.addAttr("len", format_(lenArr))
-	    el_h.addAttr("seg", format_(point2d))
+	    el_h.addAttr("len", format(lenArr))
+	    el_h.addAttr("seg", format(point2d))
 	}
 	return "n:$cntTpath +:$cntInfoAdded,$cntHelpAdded =:$cntInfoExist,$cntHelpExist"
     }
