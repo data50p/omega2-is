@@ -57,7 +57,7 @@ class JPlayer(fn: String) : LineListener {
 
     fun play() {
 	try {
-	    val th = Thread(Runnable {
+	    Thread(Runnable {
 		try {
 		    Log.getLogger().info("JPlayer started Thread " + sdataline + ' ' + aformat)
 		    //Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 3);
@@ -105,8 +105,7 @@ class JPlayer(fn: String) : LineListener {
 		    sdataline = null
 		    lock.withLock { condition.signalAll() }
 		}
-	    })
-	    th.start()
+	    }).start()
 	    Log.getLogger().info("JPlayer thread start()")
 	} catch (ex: Exception) {
 	    Log.getLogger().info("ERR: JPlayer3: $ex")
