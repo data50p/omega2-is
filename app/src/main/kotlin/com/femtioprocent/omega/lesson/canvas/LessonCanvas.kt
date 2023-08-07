@@ -1472,6 +1472,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     fun init() {
 	target!!.releaseAllT_Items()
+	setMarkTargetNo()
 	resetItemFont()
 	repaintTarget()
     }
