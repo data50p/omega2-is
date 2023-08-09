@@ -9,8 +9,6 @@ import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -37,33 +35,21 @@ public class Omega_IS extends JDialog {
 	setModal(true);
 	getRootPane().setDefaultButton(settingsButton);
 
-	lessonEditorButton.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setVisible(false);
-		selection = 1;
-	    }
+	lessonEditorButton.addActionListener(e -> {
+	    setVisible(false);
+	    selection = 1;
 	});
-	lessonRuntimeButton.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setVisible(false);
-		selection = 2;
-	    }
+	lessonRuntimeButton.addActionListener(e -> {
+	    setVisible(false);
+	    selection = 2;
 	});
-	animEditorButton.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setVisible(false);
-		selection = 3;
-	    }
+	animEditorButton.addActionListener(e -> {
+	    setVisible(false);
+	    selection = 3;
 	});
-	settingsButton.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setVisible(false);
-		selection = 4;
-	    }
+	settingsButton.addActionListener(e -> {
+	    setVisible(false);
+	    selection = 4;
 	});
 
 	String version = OmegaVersion.getVersionBlurb();
@@ -72,9 +58,7 @@ public class Omega_IS extends JDialog {
     }
 
     public static void initFx() {
-	SwingUtilities.invokeLater(() -> {
-	    new JFXPanel();
-	});
+	SwingUtilities.invokeLater(JFXPanel::new);
     }
 
     public static void main(String[] argv) {
@@ -85,27 +69,13 @@ public class Omega_IS extends JDialog {
 	    throw new RuntimeException(e);
 	}
 
-	Integer selection = askForIt(argv);
+	int selection = askForIt(argv);
 
-	while (selection == null) {
-	    try {
-		Thread.sleep(100);
-	    } catch (InterruptedException e) {
-	    }
-	}
 	switch (selection) {
-	    case 1:
-		LessonEditorAppl.main(argv);
-		break;
-	    case 2:
-		LessonRuntimeAppl.main(argv);
-		break;
-	    case 3:
-		AnimEditorAppl.main(argv);
-		break;
-	    case 4:
-		Settings.main(argv);
-		break;
+	    case 1 -> LessonEditorAppl.main(argv);
+	    case 2 -> LessonRuntimeAppl.main(argv);
+	    case 3 -> AnimEditorAppl.main(argv);
+	    case 4 -> Settings.main(argv);
 	}
     }
 
@@ -118,12 +88,6 @@ public class Omega_IS extends JDialog {
     }
 
     public Integer waitForSelection() {
-	while (selection == null || selection == 0) {
-	    try {
-		Thread.sleep(200);
-	    } catch (InterruptedException e) {
-	    }
-	}
 	return selection;
     }
 

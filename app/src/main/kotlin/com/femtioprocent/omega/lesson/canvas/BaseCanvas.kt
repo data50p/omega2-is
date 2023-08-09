@@ -541,7 +541,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
 	private fun setPopupVisible(b: Boolean) {
 	    if (popup != null) for (i in popup!!.indices) {
-		if (b == false) popup!![i]!!.border = BorderFactory.createBevelBorder(BevelBorder.RAISED)
+		if (!b) popup!![i]!!.border = BorderFactory.createBevelBorder(BevelBorder.RAISED)
 		popup!![i]!!.isVisible = b
 	    }
 	}
@@ -599,7 +599,7 @@ open class BaseCanvas(l_ctxt: LessonContext) : JPanel() {
 
     fun buttonsEnable(b: Boolean) {
 	buttons_enabled = b
-	if (b == false) {
+	if (!b) {
 	    setAllNoRed()
 	} else {
 	    setRedBut(1)

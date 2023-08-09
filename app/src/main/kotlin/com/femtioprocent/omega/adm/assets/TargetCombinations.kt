@@ -19,9 +19,9 @@ class TargetCombinations {
 	    if (!fn.contains("/")) Log.getLogger().info("LESS using /")
 	}
 
-	override fun equals(o: Any?): Boolean {
-	    if (o == null) return false
-	    return if (o !is TCItem) false else o.fn == fn
+	override fun equals(other: Any?): Boolean {
+	    if (other == null) return false
+	    return if (other !is TCItem) false else other.fn == fn
 	}
 
 	override fun hashCode(): Int {

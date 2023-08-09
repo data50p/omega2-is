@@ -10,30 +10,31 @@ import java.awt.event.*;
 import java.util.concurrent.Semaphore;
 
 public class ShowLicense extends JDialog {
-    String s = "Licence Agreement\n" +
-	    "Please review the licence terms before installing Omega-is.\n" +
-	    "Copyright (C) 2004 The Omega-is Group:\n" +
-	    "Heimann, Lundälv, Tjus, Nelson\n" +
-	    "Topic Dos Hb, Meloton Hb, Tomas Tjus Psykologbyrå SuperImpact Images Inc.\n" +
-	    "All rights reserved.\n" +
-	    "This software is provided as-is, without any express or implied warranty.\n" +
-	    "In no event will the authors or suppliers be held liable for any damages\n" +
-	    "arising from the use of this software. Warning: This computer program is\n" +
-	    "protected by copyright law and international treaties.\n" +
-	    "Unauthorized reproduction or distribution of this program, or any portion\n" +
-	    "of it may result in severe civil and criminal penalties, and will be\n" +
-	    "prosecuted to the maximum extent as possible under law.\n" +
-	    "Title, ownership rights, and intellectual property rights in and to the\n" +
-	    "software shall remain with The Omega-is Group.  You agree to abide by the\n" +
-	    "copyright law and all other applicable including, but not limited to,\n" +
-	    "export control laws.  You acknowledge that the software in source code form remains\n" +
-	    "a confidential trade secret of The Omega-is Group and therefore you agree\n" +
-	    "not to modify the software\n" +
-	    "or attempt to decipher, decompile, disassemble or reverse engineer the software,\n" +
-	    "except to the extent&#xa;applicable laws specifically prohibit such restriction.\n" +
-	    "--------------------------------------------------\n" +
-	    "If you accept all the terms of the agreement, choose I accept... to continue.\n" +
-	    "You must accept the agreement to install Omega-is.";
+    String s = """
+            Licence Agreement
+            Please review the licence terms before installing Omega-is.
+            Copyright (C) 2004 The Omega-is Group:
+            Heimann, Lundälv, Tjus, Nelson
+            Topic Dos Hb, Meloton Hb, Tomas Tjus Psykologbyrå SuperImpact Images Inc.
+            All rights reserved.
+            This software is provided as-is, without any express or implied warranty.
+            In no event will the authors or suppliers be held liable for any damages
+            arising from the use of this software. Warning: This computer program is
+            protected by copyright law and international treaties.
+            Unauthorized reproduction or distribution of this program, or any portion
+            of it may result in severe civil and criminal penalties, and will be
+            prosecuted to the maximum extent as possible under law.
+            Title, ownership rights, and intellectual property rights in and to the
+            software shall remain with The Omega-is Group.  You agree to abide by the
+            copyright law and all other applicable including, but not limited to,
+            export control laws.  You acknowledge that the software in source code form remains
+            a confidential trade secret of The Omega-is Group and therefore you agree
+            not to modify the software
+            or attempt to decipher, decompile, disassemble or reverse engineer the software,
+            except to the extent&#xa;applicable laws specifically prohibit such restriction.
+            --------------------------------------------------
+            If you accept all the terms of the agreement, choose I accept... to continue.
+            You must accept the agreement to install Omega-is.""";
     Boolean accepted = false;
     Semaphore semaphore;
     private JPanel contentPane;
@@ -50,17 +51,9 @@ public class ShowLicense extends JDialog {
 	    getRootPane().setDefaultButton(buttonOK);
 
 	    textArea1.append(s);
-	    buttonOK.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		    onOK();
-		}
-	    });
+	    buttonOK.addActionListener(e -> onOK());
 
-	    buttonCancel.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		    onCancel();
-		}
-	    });
+	    buttonCancel.addActionListener(e -> onCancel());
 
 	    // call onCancel() when cross is clicked
 	    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -71,11 +64,10 @@ public class ShowLicense extends JDialog {
 	    });
 
 	    // call onCancel() on ESCAPE
-	    contentPane.registerKeyboardAction(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		    onCancel();
-		}
-	    }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+	    contentPane.registerKeyboardAction(
+		    e -> onCancel(),
+		    KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+		    JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	} catch (Exception ex) {
 	    semaphore.release();
 	    Log.getLogger().severe("I got: " + ex);
