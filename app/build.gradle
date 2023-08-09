@@ -8,9 +8,11 @@
 
 plugins {
     id 'java'
+//    kotlin("jvm")
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.14'
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id "io.gitlab.arturbosch.detekt" version "1.23.0"
 }
 
 task wrapper(type: Wrapper){
@@ -28,6 +30,10 @@ jar {
     manifest {
         attributes 'Main-Class': 'com.femtioprocent.omega.appl.Omega_IS'
     }
+}
+
+detekt {
+    config = files("config/detekt/detekt.yaml")
 }
 
 repositories {
@@ -49,7 +55,7 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(20)
+        languageVersion = JavaLanguageVersion.of(18)
     }
 }
 
