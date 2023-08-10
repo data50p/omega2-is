@@ -11,6 +11,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * Created by lars on 2016-12-10.
@@ -35,22 +37,15 @@ public class Omega_IS extends JDialog {
 	setModal(true);
 	getRootPane().setDefaultButton(settingsButton);
 
-	lessonEditorButton.addActionListener(e -> {
+	Consumer<Integer> callback = (Integer a) -> {
 	    setVisible(false);
-	    selection = 1;
-	});
-	lessonRuntimeButton.addActionListener(e -> {
-	    setVisible(false);
-	    selection = 2;
-	});
-	animEditorButton.addActionListener(e -> {
-	    setVisible(false);
-	    selection = 3;
-	});
-	settingsButton.addActionListener(e -> {
-	    setVisible(false);
-	    selection = 4;
-	});
+	    selection = a;
+	};
+
+	lessonEditorButton.addActionListener(e -> callback.accept(1));
+	lessonRuntimeButton.addActionListener(e -> callback.accept(2));
+	animEditorButton.addActionListener(e -> callback.accept(3));
+	settingsButton.addActionListener(e -> callback.accept(4));
 
 	String version = OmegaVersion.getVersionBlurb();
 	theInfoAndSomeTextPane.setText(version);
