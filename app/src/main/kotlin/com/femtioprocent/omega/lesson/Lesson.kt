@@ -77,7 +77,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     var globalExit = false
     var l_ctxt: LessonContext
     var run_mode = 'p'.code
-    var audio_log = OmegaContext.def_log
     var lesson_log = OmegaContext.def_log
     var msg_log = OmegaContext.def_log
     var machine: Machine
@@ -116,21 +115,21 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     fun constructTM(t_mode: Int): TM {
-	when (t_mode) {
-	    TM.CREATE.code -> return TM.CREATE
-	    TM.RAND.code -> return TM.RAND
-	    TM.PRE_1.code -> return TM.PRE_1
-	    TM.PRE_2.code -> return TM.PRE_2
-	    TM.POST_1.code -> return TM.POST_1
-	    TM.POST_2.code -> return TM.POST_2
+	return when (t_mode) {
+	    TM.CREATE.code -> TM.CREATE
+	    TM.RAND.code -> TM.RAND
+	    TM.PRE_1.code -> TM.PRE_1
+	    TM.PRE_2.code -> TM.PRE_2
+	    TM.POST_1.code -> TM.POST_1
+	    TM.POST_2.code -> TM.POST_2
 	    else -> throw IllegalArgumentException("No such TM enum: " + t_mode)
 	}
     }
 
     fun constructTMG(t_mode_group: Int): TMG {
-	when (t_mode_group) {
-	    TMG.CREATE.code -> return TMG.CREATE
-	    TMG.TEST.code -> return TMG.TEST
+	return when (t_mode_group) {
+	    TMG.CREATE.code -> TMG.CREATE
+	    TMG.TEST.code -> TMG.TEST
 	    else -> throw IllegalArgumentException("No such TMG enum: " + t_mode_group)
 	}
     }
@@ -348,7 +347,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		TM.PRE_2 -> "pre2"
 		TM.POST_1 -> "post1"
 		TM.POST_2 -> "post2"
-		else -> "X"
 	    }
 	}
 
@@ -882,11 +880,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     fun mkTestModeGroup(test_mode: TM): TMG {
-	when (test_mode) {
-	    TM.CREATE -> return TMG.CREATE
-	    TM.RAND, TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> return TMG.TEST
+	return when (test_mode) {
+	    TM.CREATE -> TMG.CREATE
+	    TM.RAND, TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> TMG.TEST
 	}
-	throw Error("no TMG")
     }
 
     fun isTestModeGroup(test_mode: TM, test_mode_group: TMG): Boolean {
@@ -1378,7 +1375,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    canvases.keySet().forEach {k ->
 		val lbc = canvases[k!!]
 		val lbc_el = Element("canvas")
-		lbc_el.addAttr("name", k!! as String)
+		lbc_el.addAttr("name", k as String)
 		lbc!!.fillElement(lbc_el)
 		el.add(lbc_el)
 	    }
@@ -2441,9 +2438,6 @@ target pos $tg_ix"""
 				    }
 				}
 				le_canvas!!.renderTg()
-				val ct0 = ct()
-				System.gc()
-				System.gc()
 				val showSoundWord = currentPupil.getBool("showSoundWord", true)
 				if (showSoundWord) {
 				    PLAYSND@ while (true) {
