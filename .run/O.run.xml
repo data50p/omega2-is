@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="O" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="jdk 20 - homebrew" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="com.femtioprocent.omega.appl.Omega_IS" />
+    <module name="omega-is.app.main" />
+    <option name="PROGRAM_PARAMETERS" value="-smaller -log" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/runtime" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
