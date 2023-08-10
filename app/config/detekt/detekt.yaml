@@ -2,6 +2,8 @@ naming:
   VariableNaming:
     variablePattern: '[a-z][A-Za-z0-9_]*'
   FunctionParameterNaming:
-    variablePattern: '[a-z][A-Za-z0-9_]*'
+    parameterPattern: '[a-z][A-Za-z0-9_]*'
+  FunctionNaming:
+    functionPattern: '[a-z][A-Za-z0-9_]*'
   ConstructorParameterNaming:
-    variablePattern: '[a-z][A-Za-z0-9_]*'
+    parameterPattern: '[a-z][A-Za-z0-9_]*'
