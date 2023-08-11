@@ -16,13 +16,14 @@ import com.femtioprocent.omega.util.SundryUtils.flagAsMap
 import java.io.File
 import javax.swing.JFileChooser
 import javax.swing.UIManager
+import kotlin.system.exitProcess
 
-class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize, run_mode: Char) : OmegaAppl("Lesson runtime") {
-    var le_rt: LessonRuntime
-    var ask: Boolean
+class LessonRuntimeAppl(fn_: String?, ask: Boolean, winSize: OmegaConfig.WinSize, run_mode: Char) : OmegaAppl("Lesson runtime") {
+    private var le_rt: LessonRuntime
+    private var ask: Boolean
 
     init {
-	var fn = fn
+	var fn = fn_
 	this.ask = ask
 	Log.getLogger().info("LessonRuntimeAppl...")
 	if (ask) {
@@ -42,9 +43,8 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize,
 		    fn = fn + "." + ChooseLessonFile.ext
 		}
 	    } else {
-		System.exit(0)
+		exitProcess(0)
 	    }
-	} else {
 	}
 	le_rt = LessonRuntime(name, fn, winSize, run_mode)
     }
@@ -54,13 +54,8 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize,
 	    return Files.toURL(file)!!
 	}
 
-	var last_logged = ct()
-
-	@JvmStatic
-	fun main(argv: Array<String>) {
+	fun main() {
 	    Log.getLogger().info("started")
-	    val flag: HashMap<String, String> = flagAsMap(argv)
-	    val argl = argAsList(argv)
 
 	    OmegaContext.setWindowSize(flag)
 
@@ -82,7 +77,7 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize,
 	    }
 	    Log.getLogger().info(":--: " + "Omega demo: " + OmegaContext.DEMO)
 	    val ask = flag["ask"] != null
-	    val fn = if (argl.size > 0) argl[0] else null
+	    val fn = if (argl.isNotEmpty()) argl[0] else null
 	    //log	OmegaContext.sout_log.getLogger().info(":--: " + "start " + ask + ' ' + fn);
 	    val t_steps = flag["T"]
 	    if (t_steps != null) {
@@ -105,10 +100,17 @@ class LessonRuntimeAppl(fn: String?, ask: Boolean, winSize: OmegaConfig.WinSize,
 		ch = 'a'
 	    }
 	    if (showAndAccepted()) {
-		val rt = LessonRuntimeAppl(fn, ask, OmegaContext.winSize, ch)
+		LessonRuntimeAppl(fn, ask, OmegaContext.winSize, ch)
 	    } else {
-		System.exit(1)
+		exitProcess(1)
 	    }
+	}
+
+	@JvmStatic
+	fun main(argv: Array<String>) {
+	    flag = flagAsMap(argv)
+	    argl = argAsList(argv)
+	    main()
 	}
     }
 }

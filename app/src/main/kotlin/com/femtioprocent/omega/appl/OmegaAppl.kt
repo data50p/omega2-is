@@ -5,20 +5,22 @@ open class OmegaAppl(name: String) {
 
     init {
 	this.name = "Omega - $name"
-	name.also { propHashMap.set("name", it) }
+	name.also { propHashMap["name"] = it }
 	Omega_IS.initFx() // for audio played by JavaFX
     }
 
     companion object {
 	var propHashMap = HashMap<String, String>()
-	var splash: Splash? = Splash()
+	private var splash: Splash? = Splash()
+	var flag : HashMap<String, String> = HashMap()
+	var argl : List<String> = listOf()
 
 	fun waitAndCloseSplash() {
 	    Splash.waitForIt()
 	    closeSplash()
 	}
 
-	fun closeSplash() {
+	private fun closeSplash() {
 	    if (splash != null) {
 		splash!!.isVisible = false
 		splash = null

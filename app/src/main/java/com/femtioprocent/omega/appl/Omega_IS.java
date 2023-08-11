@@ -19,7 +19,6 @@ import java.util.function.Function;
  */
 public class Omega_IS extends JDialog {
     private static Integer selection = null;
-    String[] args;
     private JPanel contentPane;
     private JButton lessonEditorButton;
     private JButton settingsButton;
@@ -64,7 +63,7 @@ public class Omega_IS extends JDialog {
 	    throw new RuntimeException(e);
 	}
 
-	int selection = askForIt(argv);
+	int selection = askForIt();
 
 	switch (selection) {
 	    case 1 -> LessonEditorAppl.main(argv);
@@ -74,9 +73,8 @@ public class Omega_IS extends JDialog {
 	}
     }
 
-    static int askForIt(String[] argv) {
+    static int askForIt() {
 	Omega_IS ss = new Omega_IS();
-	ss.args = argv;
 	ss.pack();
 	ss.setVisible(true);
 	return ss.waitForSelection();

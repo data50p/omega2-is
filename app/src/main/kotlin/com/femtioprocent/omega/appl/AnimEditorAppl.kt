@@ -12,6 +12,7 @@ import java.awt.DefaultKeyboardFocusManager
 import java.awt.KeyboardFocusManager
 import java.awt.event.KeyEvent
 import javax.swing.UIManager
+import kotlin.system.exitProcess
 
 class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
     var ae: AnimEditor
@@ -37,11 +38,7 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
     }
 
     companion object {
-	@JvmStatic
-	fun main(argv: Array<String>) {
-	    val flag: HashMap<String, String> = flagAsMap(argv)
-	    val argl = argAsList(argv)
-
+	fun main() {
 	    OmegaContext.setWindowSize(flag)
 
 	    OmegaContext.omega_lang = flag["omega_lang"]
@@ -55,19 +52,24 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 	    if (flag["v"] != null) verbose = true
 	    if (flag["R"] != null) OmegaConfig.RUN_MODE = true
 	    if (flag["T"] != null) OmegaConfig.T = true
-	    var s: String? = flag["t"]
+	    val s: String? = flag["t"]
 
 	    if (s != null) OmegaConfig.t_step = s.toInt()
 	    //log	OmegaContext.sout_log.getLogger().info(":--: " + "" + OmegaConfig.t_step);
 	    if (showAndAccepted()) {
-		val e = AnimEditorAppl(verbose)
+		AnimEditorAppl(verbose)
 		m_sleep(3000)
 		waitAndCloseSplash()
 	    } else {
-		System.exit(1)
+		exitProcess(1)
 	    }
+	}
 
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "--------ok-------");
+	    @JvmStatic
+	fun main(argv: Array<String>) {
+	    flag = flagAsMap(argv)
+	    argl = argAsList(argv)
+	    main()
 	}
     }
 }

@@ -121,12 +121,16 @@ class Settings internal constructor() {
 	    return default_settings
 	}
 
+	fun main() {
+	    val s = getSettings()
+	    s!!.main()
+	}
+
 	@JvmStatic
 	fun main(argv: Array<String>) {
 	    flags = flagAsMap(argv)
 	    args = argAsList(argv)
-	    val s = getSettings()
-	    s!!.main()
+	    main()
 	}
     }
 }
