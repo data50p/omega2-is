@@ -60,20 +60,12 @@ class ResultDialog(owner: Frame?) : JDialog(owner, "Omega -Result", true), ListS
 	    val ac = o.actionCommand
 	    val b = o.isSelected
 	    if (ac == "test") {
-		if (b) {
-		    if (create_tb!!.isSelected) create_tb!!.isSelected = !b
-		} else {
-		    if (create_tb!!.isSelected) create_tb!!.isSelected = !b
-		}
+		if (create_tb!!.isSelected) create_tb!!.isSelected = !b
 		_f(F_T, b)
 		upd_filter()
 	    }
 	    if (ac == "create") {
-		if (b) {
-		    if (test_tb!!.isSelected) test_tb!!.isSelected = !b
-		} else {
-		    if (test_tb!!.isSelected) test_tb!!.isSelected = !b
-		}
+		if (test_tb!!.isSelected) test_tb!!.isSelected = !b
 		_f(F_C, b)
 		upd_filter()
 	    }
