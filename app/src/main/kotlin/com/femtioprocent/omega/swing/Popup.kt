@@ -9,6 +9,7 @@ import javax.swing.event.PopupMenuListener
 
 class Popup(var comp: Component) : PopupMenuListener {
     var jpop: JPopupMenu? = null
+
     fun popup(title: String?, sa: Array<String>, x: Int, y: Int, al: ActionListener?) {
 	jpop = JPopupMenu(title)
 	jpop!!.addPopupMenuListener(this)

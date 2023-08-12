@@ -7,3 +7,13 @@ naming:
     functionPattern: '[a-z][A-Za-z0-9_]*'
   ConstructorParameterNaming:
     parameterPattern: '[a-z][A-Za-z0-9_]*'
+  ObjectPropertyNaming:
+    propertyPattern: '[a-z][A-Za-z0-9_]*'
+style:
+  MagicNumber:
+    ignoreNumbers:
+      - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+complexity:
+  LongParameterList:
+    constructorThreshold: 10
+    functionThreshold: 10

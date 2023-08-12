@@ -89,7 +89,7 @@ class HtmlPanel(s: String?) : JPanel(), HyperlinkListener {
      *
      * @param u the URL to follow
      */
-    protected fun linkActivated(u: URL?) {
+    private fun linkActivated(u: URL?) {
 	val c = html!!.cursor
 	val waitCursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)
 	html!!.cursor = waitCursor

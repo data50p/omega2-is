@@ -25,11 +25,6 @@ class TimeLineComponent(var tlp: TimeLinePanel) : JPanel(), PlayCtrlListener {
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera begin");
     }
 
-    fun playAt(lt: Int, t: Int): Boolean {
-//log	OmegaContext.sout_log.getLogger().info(":--: " + "updatera " + lt + ' ' + t);
-	return false
-    }
-
     override fun playAt(t: Int): Boolean {
 	tlsp.updateValues()
 	tlp.setTick(t)

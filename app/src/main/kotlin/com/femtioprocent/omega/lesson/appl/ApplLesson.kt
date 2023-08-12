@@ -13,7 +13,7 @@ open class ApplLesson internal constructor(title: String?, is_editor: Boolean) :
     var httpd: Server
 
     init {
-	TOP_JFRAME = this
+	top_jframe = this
 	OmegaContext.init("Httpd", null)
 	val httpd_ = OmegaContext.getSubsystem("Httpd") as Httpd
 	httpd = Httpd.httpd!!
@@ -39,7 +39,7 @@ open class ApplLesson internal constructor(title: String?, is_editor: Boolean) :
     }
 
     companion object {
-	var TOP_JFRAME: JFrame? = null
+	var top_jframe: JFrame? = null
 	var help: HelpSystem? = null
 	var is_editor: Boolean? = null
 	var isMac = false
