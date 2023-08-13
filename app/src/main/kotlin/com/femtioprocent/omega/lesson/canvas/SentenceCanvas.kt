@@ -523,9 +523,6 @@ class SentenceCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	val pd: PlayData? = null
     }
 
-    val listenListener: ListenListener?
-	get() = null
-
     fun setRead(b: Boolean) {
 	if (read_mode != b) {
 	    read_mode = b
