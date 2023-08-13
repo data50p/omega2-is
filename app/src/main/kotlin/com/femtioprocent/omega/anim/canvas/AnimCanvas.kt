@@ -43,6 +43,7 @@ import java.util.*
 import javax.swing.JFrame
 import javax.swing.JOptionPane
 import javax.swing.event.MouseInputAdapter
+import kotlin.time.measureTime
 
 class AnimCanvas : Canvas {
     var ap = AllPath()
@@ -127,7 +128,12 @@ class AnimCanvas : Canvas {
 	    mpress_p = Point2D.Double(e.x.toDouble(), e.y.toDouble())
 
 	    if ( mpress_p!!.x <= 10 && mpress_p!!.y <= 10 ) {
-		demo()
+		val mt = measureTime {
+		    demo()
+		}
+		System.err.println("It took (demo) $mt")
+		System.err.println("" + l)
+		System.err.println("" + l2)
 		return
 	    }
 
@@ -360,16 +366,33 @@ class AnimCanvas : Canvas {
 	}
     }
 
+
+    var l = ArrayList<Long>()
+    var l2 = ArrayList<Long>()
+
     private fun demo() = runBlocking {
-	for(i in 0..<100) {
+	val ct0 = System.currentTimeMillis()
+	l = ArrayList<Long>()
+	l2 = ArrayList<Long>()
+
+	for(i in 0..<1000) {
 	    launch {
+		val ct1 = System.currentTimeMillis()
+		l.add(ct1 - ct0)
 		delay(SundryUtils.rand(1000).toLong())
-		graphics2D.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
-		graphics2D.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
-		graphics2D.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
+		val g2 = graphics2D
+		g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+		g2.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
+		g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+		g2.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
+		g2.dispose()
+		val ct2 = System.currentTimeMillis()
+		l2.add(ct2 - ct1)
 	    }
 	}
-	graphics2D.drawString("123", 10, 50)
+	val g2 = graphics2D
+	g2.drawString("123", 10, 50)
+	g2.dispose()
     }
 
     internal inner class Mouse2(anim_canvas: AnimCanvas) : Mouse(anim_canvas) {
