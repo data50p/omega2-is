@@ -3,6 +3,8 @@ package com.femtioprocent.omega.t9n
 import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.util.Log
 import com.femtioprocent.omega.util.SundryUtils
+import kotlinx.coroutines.*
+import java.awt.event.ActionEvent
 import java.beans.XMLDecoder
 import java.beans.XMLEncoder
 import java.io.*
@@ -12,14 +14,6 @@ class T {
     private fun before_(s: String): String {
 	val ix = s.indexOf('_')
 	return if (ix == -1) s else s.substring(0, ix)
-    }
-
-    class MyThread : Thread() {
-	override fun run() {
-	    SundryUtils.m_sleep(5000)
-	    putXML(hm_new, "T_new_" + lang_country)
-	    mythread = null
-	}
     }
 
     init {
@@ -164,8 +158,6 @@ class T {
 	    }
 	}
 
-	var mythread: MyThread? = null
-
 	fun t(s: String): String {
 	    init()
 	    if (hm == null) return s
@@ -181,18 +173,11 @@ class T {
 		    ss = s
 		    hm!![s] = ss
 		    hm_new!![s] = ss
-		    if (mythread == null) {
-			mythread = MyThread()
-			mythread!!.start()
+		    GlobalScope.launch {
+			delay(5000L)
+			putXML(hm_new, "T_new_" + lang_country)
 		    }
-		    // 		PrintWriter pw = SundryUtils.createPrintWriter("T_new", true);
-// 		pw.println("[" + s + "][" + s + "]");
-// 		pw.flush();
-// 		pw.close();
-//log		OmegaContext.sout_log.getLogger().info(":--: " + "T.t " + s);
 		}
-	    } else {
-		//	    OmegaContext.sout_log.getLogger().info(":--: " + "Tt " + s + ' ' + ss);
 	    }
 	    return ss
 	}

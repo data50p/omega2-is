@@ -16,6 +16,9 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.StackPane
 import javafx.scene.shape.Circle
 import javafx.stage.Stage
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class OmegaFxAppl : Application() {
     fun start2(primaryStage: Stage) {
@@ -42,17 +45,17 @@ class OmegaFxAppl : Application() {
 	val prefsItem = MenuItem("Preferences...")
 	prefsItem.onAction = EventHandler { event: ActionEvent? -> Log.getLogger().info("prefs clicked") }
 	appMenu.items.addAll(
-		aboutItem, SeparatorMenuItem(), prefsItem, SeparatorMenuItem(),
-		tk.createHideMenuItem(appName), tk.createHideOthersMenuItem(), tk.createUnhideAllMenuItem(),
-		SeparatorMenuItem(), tk.createQuitMenuItem(appName)
+	    aboutItem, SeparatorMenuItem(), prefsItem, SeparatorMenuItem(),
+	    tk.createHideMenuItem(appName), tk.createHideOthersMenuItem(), tk.createUnhideAllMenuItem(),
+	    SeparatorMenuItem(), tk.createQuitMenuItem(appName)
 	)
 
 	// File Menu (items TBD)
 	val fileMenu = Menu("File")
 	val newItem = MenuItem("New...")
 	fileMenu.items.addAll(
-		newItem, SeparatorMenuItem(), tk.createCloseWindowMenuItem(),
-		SeparatorMenuItem(), MenuItem("TBD")
+	    newItem, SeparatorMenuItem(), tk.createCloseWindowMenuItem(),
+	    SeparatorMenuItem(), MenuItem("TBD")
 	)
 
 	// Edit (items TBD)
@@ -71,8 +74,8 @@ class OmegaFxAppl : Application() {
 	// TBD standard window menu items
 	val windowMenu = Menu("Window")
 	windowMenu.items.addAll(
-		tk.createMinimizeMenuItem(), tk.createZoomMenuItem(), tk.createCycleWindowsItem(),
-		SeparatorMenuItem(), tk.createBringAllToFrontItem()
+	    tk.createMinimizeMenuItem(), tk.createZoomMenuItem(), tk.createCycleWindowsItem(),
+	    SeparatorMenuItem(), tk.createBringAllToFrontItem()
 	)
 
 	// Help Menu (items TBD)
@@ -105,7 +108,18 @@ class OmegaFxAppl : Application() {
 	stage.isAlwaysOnTop = true
 	stage.show()
 	Log.getLogger().info("started")
-	Thread {
+	runBlocking {
+	    launch {
+		delay(500L)
+		stage.hide()
+		LessonEditorAppl.main(args)
+		Platform.runLater { stage.show() }
+		m_sleep(500)
+	    }
+	}
+    }
+
+	/*	Thread {
 	    m_sleep(500)
 	    Platform.runLater {
 
@@ -120,6 +134,7 @@ class OmegaFxAppl : Application() {
 	    }
 	}.start()
     }
+    */
 
     override fun stop() {
 	Log.getLogger().info("stop")

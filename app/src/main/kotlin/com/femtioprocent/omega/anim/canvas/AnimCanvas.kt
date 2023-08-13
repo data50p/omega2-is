@@ -28,6 +28,7 @@ import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.util.SundryUtils.tD
 import com.femtioprocent.omega.xml.Element
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -131,6 +132,10 @@ class AnimCanvas : Canvas {
 		val mt = measureTime {
 		    demo()
 		}
+		System.err.println("It took (demo) $mt")
+		System.err.println("" + l)
+		System.err.println("" + l2)
+		SundryUtils.m_sleep(3000)
 		System.err.println("It took (demo) $mt")
 		System.err.println("" + l)
 		System.err.println("" + l2)
@@ -374,26 +379,26 @@ class AnimCanvas : Canvas {
 	var g2 = graphics2D
 	g2.drawString("123", 10, 50)
 	g2.dispose()
-	runBlocking {
-	    val ct0 = System.currentTimeMillis()
-	    l = ArrayList<Long>()
-	    l2 = ArrayList<Long>()
+	GlobalScope.launch {
+		val ct0 = System.currentTimeMillis()
+		l = ArrayList<Long>()
+		l2 = ArrayList<Long>()
 
-	    for(i in 0..<100) {
-		launch {
-		    val ct1 = System.currentTimeMillis()
-		    val g2 = graphics2D
-		    l.add(ct1 - ct0)
-		    delay(SundryUtils.rand(1000).toLong())
-		    //g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
-		    //g2.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
-		    g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
-		    g2.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
-		    g2.dispose()
-		    val ct2 = System.currentTimeMillis()
-		    l2.add(ct2 - ct1)
+		for (i in 0..<10_000) {
+		    launch {
+			val ct1 = System.currentTimeMillis()
+			val g2 = graphics2D
+			l.add(ct1 - ct0)
+			delay(SundryUtils.rand(1000).toLong())
+			//g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+			//g2.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
+			g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+			g2.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
+			g2.dispose()
+			val ct2 = System.currentTimeMillis()
+			l2.add(ct2 - ct1)
+		    }
 		}
-	    }
 	}
 	g2 = graphics2D
 	g2.drawString("_123_", 60, 50)

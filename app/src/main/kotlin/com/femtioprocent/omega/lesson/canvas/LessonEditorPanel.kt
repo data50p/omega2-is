@@ -8,6 +8,8 @@ import com.femtioprocent.omega.OmegaContext.Companion.omegaAssetsName
 import com.femtioprocent.omega.OmegaContext.Companion.setOmegaAssets
 import com.femtioprocent.omega.anim.appl.AnimEditor
 import com.femtioprocent.omega.anim.appl.EditStateListener
+import com.femtioprocent.omega.appl.LessonEditorAppl
+import com.femtioprocent.omega.appl.OmegaFxAppl
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.appl.LessonEditor
 import com.femtioprocent.omega.lesson.appl.LessonEditor.Companion.setDirty
@@ -19,9 +21,12 @@ import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files.mkRelativeCWD
 import com.femtioprocent.omega.util.Files.toURL
 import com.femtioprocent.omega.util.Log.getLogger
+import com.femtioprocent.omega.util.SundryUtils
 import com.femtioprocent.omega.value.Value
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.value.ValuesListener
+import javafx.application.Platform
+import kotlinx.coroutines.*
 import java.awt.Color
 import java.awt.GridBagLayout
 import java.awt.event.ActionEvent
@@ -212,33 +217,35 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 			    return
 			}
 			val sentence =
-				if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
+			    if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
 			val tg2 = Target()
 			val story_hm = Lesson.story_hm
 			tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
 			val allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(
-				sentence!!
+			    sentence!!
 			)
 			var ixTg = 0
 			for (ixArr in allTargetCombinationsIndexes) {
 			    OmegaContext.sout_log.getLogger()
-				    .info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
+				.info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
 			    le_canvas.l_ctxt.lesson.l_ctxt.target!!.pickItemAt(ixArr[1], ixArr[2], ixTg)
 			    ixTg++
 			}
 			le_canvas.reCreateBoxesKeep()
-			val th = Thread {
-			    try {
-				Thread.sleep(1700)
-			    } catch (e: InterruptedException) {
-				e.printStackTrace()
-			    }
-			    if (ev.modifiers and ActionEvent.SHIFT_MASK == 0) {
-				le_canvas.l_ctxt.lesson.sendMsg("playAll", null)
-			    } else {
+
+			suspend fun doMyWork() = coroutineScope {
+			    launch {
+				delay(1700L)
+				System.err.println("Im on 1700 " + Thread.currentThread())
+				if (ev.modifiers and ActionEvent.SHIFT_MASK == 0) {
+				    le_canvas.l_ctxt.lesson.sendMsg("playAll", null)
+				}
 			    }
 			}
-			th.start()
+			GlobalScope.launch {
+			    System.err.println("Im on " + Thread.currentThread())
+			    doMyWork()
+			}
 		    }
 		} catch (ex: Exception) {
 		    ex.printStackTrace()
