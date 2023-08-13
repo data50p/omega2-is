@@ -22,15 +22,15 @@ import com.femtioprocent.omega.lesson.canvas.BaseCanvas.ColorColors
 import com.femtioprocent.omega.swing.Popup
 import com.femtioprocent.omega.swing.ToolExecute
 import com.femtioprocent.omega.t9n.T.Companion.t
-import com.femtioprocent.omega.util.GenericEvent
-import com.femtioprocent.omega.util.GenericEventListener
-import com.femtioprocent.omega.util.GenericEventManager
-import com.femtioprocent.omega.util.Log
+import com.femtioprocent.omega.util.*
 import com.femtioprocent.omega.util.SundryUtils.ct
 import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.util.SundryUtils.tD
 import com.femtioprocent.omega.xml.Element
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.awt.*
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
@@ -125,6 +125,13 @@ class AnimCanvas : Canvas {
 	    }
 	    setVisibilityMode_(SHOW_PATH)
 	    mpress_p = Point2D.Double(e.x.toDouble(), e.y.toDouble())
+
+	    if ( mpress_p!!.x <= 10 && mpress_p!!.y <= 10 ) {
+		demo()
+		return
+	    }
+
+
 	    when (m_tool) {
 		M_TOOL_IMAGE, M_TOOL_PATH, M_TOOL_MARKER -> when (m_tool_sub) {
 		    MT_EXTEND -> {
@@ -351,6 +358,18 @@ class AnimCanvas : Canvas {
 		else -> Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)
 	    }
 	}
+    }
+
+    private fun demo() = runBlocking {
+	for(i in 0..<100) {
+	    launch {
+		delay(SundryUtils.rand(1000).toLong())
+		graphics2D.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+		graphics2D.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
+		graphics2D.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
+	    }
+	}
+	graphics2D.drawString("123", 10, 50)
     }
 
     internal inner class Mouse2(anim_canvas: AnimCanvas) : Mouse(anim_canvas) {
