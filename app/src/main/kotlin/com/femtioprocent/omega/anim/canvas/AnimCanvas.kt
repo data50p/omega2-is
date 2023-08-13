@@ -370,28 +370,33 @@ class AnimCanvas : Canvas {
     var l = ArrayList<Long>()
     var l2 = ArrayList<Long>()
 
-    private fun demo() = runBlocking {
-	val ct0 = System.currentTimeMillis()
-	l = ArrayList<Long>()
-	l2 = ArrayList<Long>()
+    private fun demo() {
+	var g2 = graphics2D
+	g2.drawString("123", 10, 50)
+	g2.dispose()
+	runBlocking {
+	    val ct0 = System.currentTimeMillis()
+	    l = ArrayList<Long>()
+	    l2 = ArrayList<Long>()
 
-	for(i in 0..<1000) {
-	    launch {
-		val ct1 = System.currentTimeMillis()
-		l.add(ct1 - ct0)
-		delay(SundryUtils.rand(1000).toLong())
-		val g2 = graphics2D
-		g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
-		g2.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
-		g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
-		g2.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
-		g2.dispose()
-		val ct2 = System.currentTimeMillis()
-		l2.add(ct2 - ct1)
+	    for(i in 0..<100) {
+		launch {
+		    val ct1 = System.currentTimeMillis()
+		    val g2 = graphics2D
+		    l.add(ct1 - ct0)
+		    delay(SundryUtils.rand(1000).toLong())
+		    //g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+		    //g2.drawRect(SundryUtils.rand(300), SundryUtils.rand(300), SundryUtils.rand(100), SundryUtils.rand(100))
+		    g2.color = Color(SundryUtils.rand(256), SundryUtils.rand(256), SundryUtils.rand(256))
+		    g2.drawString("" + i, 10 + SundryUtils.rand(400), 10 + SundryUtils.rand(300))
+		    g2.dispose()
+		    val ct2 = System.currentTimeMillis()
+		    l2.add(ct2 - ct1)
+		}
 	    }
 	}
-	val g2 = graphics2D
-	g2.drawString("123", 10, 50)
+	g2 = graphics2D
+	g2.drawString("_123_", 60, 50)
 	g2.dispose()
     }
 
