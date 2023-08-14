@@ -398,7 +398,7 @@ class Target {
 	    var aa = 0
 	    var isVar = false
 	    for (j in 0 until s.length) {
-		isVar = if (s[j] == '-') {
+		isVar = if (s.length > 1 && s[j] == '-') {
 		    a--
 		    aa++
 		    true
@@ -420,13 +420,21 @@ class Target {
 		}
 		sb.append(sa[i])
 	    } else {
-		val var_ix = s[aa].code - '0'.code
-		var ix = 0
 		var def = ""
-		if (s.indexOf(':').also { ix = it } != -1) {
-		    def = s.substring(ix + 1)
+		var var_ix = -1
+		try {
+		    var_ix = s[aa].code - '0'.code
+		    var ix = 0
+		    def = ""
+		    if (s.indexOf(':').also { ix = it } != -1) {
+			def = s.substring(ix + 1)
+		    }
+		} catch (ex: StringIndexOutOfBoundsException) {
+		    System.err.println("" + ex)
 		}
+
 		var var_val: String?
+
 		try {
 		    var_val = t_items!![ord + a]!!.item!!.getVar(var_ix) // the H4 bug, item is null
 		    if (var_val == null) var_val = def
@@ -439,6 +447,8 @@ class Target {
 		    } else {
 			//OmegaContext.sout_log.getLogger().info("apply: " + max + ',' + ord + ',' + txt + " -> " + var_val);
 		    }
+		} catch (ex: StringIndexOutOfBoundsException) {
+		    var_val = def
 		} catch (ex: IndexOutOfBoundsException) {
 		    var_val = def
 		} catch (ex: NullPointerException) {

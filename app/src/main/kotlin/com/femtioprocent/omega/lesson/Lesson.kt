@@ -1555,9 +1555,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     val msg_list_condition = msg_list_lock.newCondition()
 
     var stop_msg = false
-    fun sendMsg(msg: String, o: Any?) {
-	sendMsg(msg, o, "")
-    }
 
     fun sendMsgWait(msg: String, o: Any?) {
 	wait_id[0] = "" + System.nanoTime()
@@ -1571,7 +1568,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    private fun sendMsg(msg: String, o: Any?, id: String) {
+    fun sendMsg(msg: String, o: Any?, id: String = "") {
 	val m = Message(msg, o, java.lang.Long.valueOf(ct()), id)
 	OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + msg + ' ' + ct() + ' ' + o + ' ' + id)
 	msg_list_lock.withLock {
