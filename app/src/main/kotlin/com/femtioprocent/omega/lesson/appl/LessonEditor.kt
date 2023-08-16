@@ -48,7 +48,7 @@ $this"""
  	""".trimIndent() else ""
 	    )
 	    if (sel == 0) {
-		le!!.sendMsg("exitLesson", "")
+		le!!.messageHandler.sendMsg("exitLesson", "")
 		globalExit2 = true //System.exit(0);
 		isVisible = false
 		maybeClose()

@@ -160,7 +160,7 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 			val url_s = toURL(file)
 			val fn = mkRelFname1(url_s!!)
 			OmegaContext.serr_log.getLogger().info("scanned: $fn")
-			l_ctxt.lesson.sendMsgWait("load", fn)
+			l_ctxt.lesson.messageHandler.sendMsgWait("load", fn)
 			m_sleep(200)
 			latestTargetCombinations = l_ctxt.lessonCanvas.getAllTargetCombinationsEx2(false)
 			latestTargetCombinations!!.src_set.add(TCItem(l_ctxt.lesson.loadedFName!!))

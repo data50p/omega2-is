@@ -134,7 +134,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    class Message(var msg: String, var obj: Any?, var msg_time: Long, var id: String)
+    class MessageItem(var msg: String, var obj: Any?, var id: String) {
+	val msg_time = ct()
+    }
+
     inner class PlayDataList {
 	var ord = 0
 	var date: Date? = null
@@ -840,6 +843,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     var pupil_settings_dialog = PupilSettingsDialog(this)
     var last_ord = -1
+
     fun act_performLesson(msg: String?) {
 	story_hm["sentence_list"] = SentenceList()
 	OmegaContext.story_log.getLogger().info("mew sentL 619 " + story_hm)
@@ -937,17 +941,17 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		if (register != null) {
 		    register!!.restart()
 		}
-		sendMsg("create", fn, "loadTest1")
+		messageHandler.sendMsg("create", fn, "loadTest1")
 	    }
 
 	    TM.RAND -> {
 		card_show("anim1")
-		sendMsg("new_test", fn, "loadTest2")
+		messageHandler.sendMsg("new_test", fn, "loadTest2")
 	    }
 
 	    TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> {
 		card_show("anim1")
-		sendMsg("new_test", fn, "loadTest3")
+		messageHandler.sendMsg("new_test", fn, "loadTest3")
 	    }
 	}
 	//log 	OmegaContext.sout_log.getLogger().info(":--: " + "loadTest <<<");
@@ -999,11 +1003,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		return
 	    }
 	    if (msg.startsWith("button main:read_story")) {
-		sendMsg("read_story", null, "")
+		messageHandler.sendMsg("read_story", null, "")
 	    }
 	    if (msg.startsWith("button sent:")) {
 		val submsg = msg.substring(12)
-		sendMsg("sent_$submsg", null, "button")
+		messageHandler.sendMsg("sent_$submsg", null, "button")
 	    }
 	    if (msg.startsWith("button pupil:")) {
 		val submsg = msg.substring(13)
@@ -1041,11 +1045,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		}
 	    }
 	    if ("action" == msg) {
-		sendMsg("action", null, "L758 ")
+		messageHandler.sendMsg("action", null, "L758 ")
 	    }
 	    if ("show_result" == msg) {
 		OmegaContext.sout_log.getLogger().info(":--: show_result $register")
-		sendMsg("show_result_msg", null, "exit_create")
+		messageHandler.sendMsg("show_result_msg", null, "exit_create")
 	    }
 	    if ("exit create" == msg) {
 		act_exit_create()
@@ -1179,7 +1183,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    // savePrefetch();
 	    if (edit) {
 		globalExit = true
-		sendMsg("exitLesson", "", "")
+		messageHandler.sendMsg("exitLesson", "", "")
 		//System.exit(0);
 	    }
 	    if (register != null) {
@@ -1292,7 +1296,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     private fun loadFN(fn: String?) {
 	restoreSettings()
-	sendMsg("load", fn, "loadFN")
+	messageHandler.sendMsg("load", fn, "loadFN")
     }
 
     private fun save(fn: String?) {
@@ -1550,47 +1554,55 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	current_card = name
     }
 
-    var msg_list: MutableList<Message> = ArrayList()
-    val msg_list_lock = ReentrantLock()
-    val msg_list_condition = msg_list_lock.newCondition()
+    class MessageHandler {
+	var messageItemQueue: MutableList<MessageItem> = ArrayList()
+	val msg_list_lock = ReentrantLock()
+	val msg_list_condition = msg_list_lock.newCondition()
+	var wait_id = arrayOf("")
+	val wait_id_lock = ReentrantLock()
+	val wait_id_condition = wait_id_lock.newCondition()
 
-    var stop_msg = false
-
-    fun sendMsgWait(msg: String, o: Any?) {
-	wait_id[0] = "" + System.nanoTime()
-	sendMsg(msg, o, wait_id[0])
-	wait_id_lock.withLock {
-	    try {
-		wait_id_condition.await()
-	    } catch (e: InterruptedException) {
-		e.printStackTrace()
-	    }
-	}
-    }
-
-    fun sendMsg(msg: String, o: Any?, id: String = "") {
-	val m = Message(msg, o, java.lang.Long.valueOf(ct()), id)
-	OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + msg + ' ' + ct() + ' ' + o + ' ' + id)
-	msg_list_lock.withLock {
-	    msg_list.add(m)
-	    //log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
-	    msg_list_condition.signal()
-	}
-    }
-
-    private val msg: Message
-	private get() {
+	fun nextMessageItem(): MessageItem {
 	    msg_list_lock.withLock {
-		while (msg_list.size == 0) {
+		while (messageItemQueue.size == 0) {
 		    try {
 			msg_list_condition.await()
 		    } catch (ec: InterruptedException) {
 		    }
 		}
-		val len = msg_list.size
-		return msg_list.removeAt(0)
+		val len = messageItemQueue.size
+		return messageItemQueue.removeAt(0)
 	    }
 	}
+
+	private fun sendMsg(messageItem: MessageItem) {
+	    OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + messageItem)
+	    msg_list_lock.withLock {
+		messageItemQueue.add(messageItem)
+		//log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
+		msg_list_condition.signal()
+	    }
+	}
+
+	fun sendMsg(msg: String, o: Any?, id: String = "") {
+	    val messageItem = MessageItem(msg, o, id)
+	    sendMsg(messageItem)
+	}
+
+	fun sendMsgWait(msg: String, o: Any?, id: String = "") {
+	    wait_id[0] = "" + System.nanoTime()
+	    sendMsg(msg, o, wait_id[0])
+
+	    wait_id_lock.withLock {
+		try {
+		    wait_id_condition.await()
+		} catch (e: InterruptedException) {
+		    e.printStackTrace()
+		}
+	    }
+	}
+    }
+    val messageHandler = MessageHandler()
 
     var sa_lock = ReentrantLock()
     val sa_condition = sa_lock.newCondition()
@@ -1827,10 +1839,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	return false
     }
 
-    var wait_id = arrayOf("")
-    val wait_id_lock = ReentrantLock()
-    val wait_id_condition = wait_id_lock.newCondition()
-
     private var last_msg_time = ct()
     fun execLesson(fn: String?) {
 	val tg = Target(machine)
@@ -1845,18 +1853,18 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	waitAndCloseSplash()
 	if (fn != null) {
 	    card_show("words")
-	    sendMsg("load", fn, "execLesson")
+	    messageHandler.sendMsg("load", fn, "execLesson")
 	}
 	var test_index: Set<Array<IntArray>>? = null
 	var last_id = "!"
 	while (true) {
-	    wait_id_lock.withLock { if (last_id == wait_id[0]) wait_id_condition.signal() }
+	    messageHandler.wait_id_lock.withLock { if (last_id == messageHandler.wait_id[0]) messageHandler.wait_id_condition.signal() }
 	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
-	    val m = msg
-	    val msg = m.msg
-	    val obj = m.obj
-	    val msg_time = m.msg_time
-	    val id = m.id
+	    val messageItem = messageHandler.nextMessageItem()
+	    val msg = messageItem.msg
+	    val obj = messageItem.obj
+	    val msg_time = messageItem.msg_time
+	    val id = messageItem.id
 	    val delta = msg_time - last_msg_time
 	    last_msg_time = msg_time
 	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% msg $msg $obj $delta $id")
@@ -1874,15 +1882,15 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    } else if ("create" == msg) {
 		le_canvas!!.hideMsg()
 		le_canvas!!.setMarkTargetNo()
-		sendMsg("load", obj as String?, "create")
+		messageHandler.sendMsg("load", obj as String?, "create")
 	    } else if ("new_test" == msg) {
 		//seq.initNewTest();
 		le_canvas!!.hideMsg()
 		//		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
-		sendMsg("load", obj as String?, "new_test")
+		messageHandler.sendMsg("load", obj as String?, "new_test")
 		// 		if ( current_test_mode_group == TMG_CREATE )
 		// 		    card_show("words");
-		sendMsg("test_cont", null, "new_test2")
+		messageHandler.sendMsg("test_cont", null, "new_test2")
 	    } else if ("test_cont" == msg) {
 		test_index = exec_test_cont()
 	    } else if ("show_result_msg" == msg) {
@@ -1901,17 +1909,17 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		exec_hbox(hBox, tg, test_index)
 		le_canvas!!.gotoNextBox()
 	    } else if ("action" == msg) {
-		sendMsg("play", null, "action")
+		messageHandler.sendMsg("play", null, "action")
 		//log 		OmegaContext.sout_log.getLogger().info(":--: " + "action:play done");
 		if (tg.storyNext != null) {
 		    //		    show_progress = false;
 		    OmegaContext.sout_log.getLogger().info(":--: " + "STORY NEXT  " + tg.storyNext)
-		    sendMsg("create", tg.storyNext, "action2")
+		    messageHandler.sendMsg("create", tg.storyNext, "action2")
 		    card_show("words", 5)
 		} else {
 		    //		    show_progress = true;
 		    if (!last_story_flag) {
-			sendMsg("load", loadedFName, "action3")
+			messageHandler.sendMsg("load", loadedFName, "action3")
 		    }
 		}
 	    } else if ("listen" == msg) {
@@ -1942,7 +1950,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		sentence_canvas!!.showMsg(null)
 		sentence_canvas!!.setRead(true)
 		card_show("sent")
-		sendMsg("sent_select", "")
+		messageHandler.sendMsg("sent_select", "")
 	    } else if ("sent_quit" == msg) {
 		sentence_canvas!!.hidePopup(3)
 		play_data_list = PlayDataList()
@@ -1977,7 +1985,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		card_show("sent")
 	    } else if ("sent_print" == msg) {
 		// not anymore                sentence_canvas.togglePopup(3);
-		sendMsg("sent_print_print", "")
+		messageHandler.sendMsg("sent_print_print", "")
 	    } else if ("sent_print_select" == msg) {
 		//not anymore
 	    } else if ("sent_print_print" == msg) {
@@ -2302,7 +2310,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    card_show("main", 3)
 		} else {
 		    le_canvas!!.setMarkTarget(0)
-		    sendMsg("play", null, "exec_test_cont")
+		    messageHandler.sendMsg("play", null, "exec_test_cont")
 		}
 	    } else {
 		global_skipF(true)
@@ -2817,7 +2825,7 @@ target pos $tg_ix"""
 					//				    OmegaContext.sout_log.getLogger().info(":--: " + "====))) " + has_more + ' ' + seq);
 					if (has_more) {
 					    card_show("anim1")
-					    sendMsg("test_cont", null, "L1745")
+					    messageHandler.sendMsg("test_cont", null, "L1745")
 					} else {
 					    le_canvas!!.showMsg(resultSummary_MsgItem)
 
@@ -3607,7 +3615,7 @@ target pos $tg_ix"""
 			    }
 			}
 			if (e.keyCode == KeyEvent.VK_F12 && e.isControlDown && e.isShiftDown) {
-			    SwingUtilities.invokeLater { sendMsg("test_dialog", "", "loadTest1") }
+			    SwingUtilities.invokeLater { messageHandler.sendMsg("test_dialog", "", "loadTest1") }
 			}
 		    }
 		    if (e.id == KeyEvent.KEY_TYPED) {
@@ -3702,7 +3710,7 @@ target pos $tg_ix"""
 	    override fun windowClosing(ev: WindowEvent) {
 		//		    savePrefetch();
 		globalExit = true
-		sendMsg("exitLesson", "", "")
+		messageHandler.sendMsg("exitLesson", "", "")
 		//System.exit(0);
 	    }
 	})

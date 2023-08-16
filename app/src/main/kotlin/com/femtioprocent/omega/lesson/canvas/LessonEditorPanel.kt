@@ -200,7 +200,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 		le_canvas.reCreateBoxesKeep()
 	    }
 	    if (s == "play") {
-		le_canvas.l_ctxt.lesson.sendMsg("play&return", null)
+		le_canvas.l_ctxt.lesson.messageHandler.sendMsg("play&return", null)
 	    }
 	    if (s == "playAll") {
 		val target = le_canvas.target
@@ -238,7 +238,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 				delay(1700L)
 				System.err.println("Im on 1700 " + Thread.currentThread())
 				if (ev.modifiers and ActionEvent.SHIFT_MASK == 0) {
-				    le_canvas.l_ctxt.lesson.sendMsg("playAll", null)
+				    le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playAll", null)
 				}
 			    }
 			}
@@ -255,7 +255,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 		playSign()
 	    }
 	    if (s == "listen") {
-		le_canvas.l_ctxt.lesson.sendMsg("listen", null)
+		le_canvas.l_ctxt.lesson.messageHandler.sendMsg("listen", null)
 	    }
 	    if (s == "editanim") {
 		val fn = le_canvas.l_ctxt.target!!.getActionFileName(0) // main default, first
@@ -349,7 +349,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 	private fun playSign() {
 	    // LIU
 	    lessonLang = editorLessonLang!!.text
-	    le_canvas.l_ctxt.lesson.sendMsg("playSign:", "media/sign-sv/M.mpg")
+	    le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playSign:", "media/sign-sv/M.mpg")
 	}
     }
 
