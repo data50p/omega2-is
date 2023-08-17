@@ -222,10 +222,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		talking = true
 
 		tg.allSounds
-		    .map{p -> Pair(p.first, createAPlayer(currentPupil.getStringNo0("languageSuffix", null), p.second, null, "SA_${p.first}")) }
-		    .forEach{ap ->
-			le_canvas!!.setMarkTarget(ap.first, true)
-			ap.second.playWait()
+		    .map{(ix,name) -> Pair(ix, createAPlayer(currentPupil.getStringNo0("languageSuffix", null), name, null, "SA_$ix")) }
+		    .forEach{(ix, ap) ->
+			le_canvas!!.setMarkTarget(ix, true)
+			ap.playWait()
 		    }
 	    } catch (ex: Exception) {
 		OmegaContext.sout_log.getLogger().info("ERR: Exception! Lesson.sayAll(): $ex")
