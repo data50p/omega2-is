@@ -835,21 +835,21 @@ class Target {
 	    }
 	    return li.toTypedArray<String>()
 	}
-    val allSounds: Array<String?>
+    val allSounds: Array<Pair<Int,String?>>
 	get() {
-	    val li: MutableList<String?> = ArrayList()
+	    val li: MutableList<Pair<Int,String?>> = ArrayList()
 	    var ix = 0
 	    t_items!!.forEach { titm ->
 		if (titm != null && titm.item != null) {
 		    var s = titm.item!!.soundD
 		    s = fillVarHere(ix, s)
-		    li.add(s)
+		    li.add(Pair(ix, s))
 		}
 		ix++
 	    }
 
 //log	OmegaContext.sout_log.getLogger().info(":--: " + "[] get sounds " + SundryUtils.a2s(sa));
-	    return li.toTypedArray<String?>()
+	    return li.toTypedArray<Pair<Int,String?>>()
 	}
 
     fun getSoundsAt(x: Int, y: Int): Array<String?> {

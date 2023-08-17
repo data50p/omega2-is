@@ -220,16 +220,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    if (say(lang, tg.allTTS, true)) return
 		}
 		talking = true
-		val sa = tg.allSounds
-		val apA = arrayOfNulls<APlayer>(sa.size)
-		for (i in sa.indices) {
-		    val ss = sa[i]
-		    apA[i] = createAPlayer(currentPupil.getStringNo0("languageSuffix", null), ss, null, "SA_$i")
-		}
-		for (i in apA.indices) {
-		    le_canvas!!.setMarkTarget(i, true)
-		    apA[i]!!.playWait()
-		}
+
+		tg.allSounds
+		    .map{p -> Pair(p.first, createAPlayer(currentPupil.getStringNo0("languageSuffix", null), p.second, null, "SA_${p.first}")) }
+		    .forEach{ap ->
+			le_canvas!!.setMarkTarget(ap.first, true)
+			ap.second.playWait()
+		    }
 	    } catch (ex: Exception) {
 		OmegaContext.sout_log.getLogger().info("ERR: Exception! Lesson.sayAll(): $ex")
 		ex.printStackTrace()
