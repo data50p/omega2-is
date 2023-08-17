@@ -134,10 +134,6 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    class MessageItem(var msg: String, var obj: Any?, var id: String) {
-	val msg_time = ct()
-    }
-
     inner class PlayDataList {
 	var ord = 0
 	var date: Date? = null
@@ -158,130 +154,107 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    private fun signMoviePrepare(tg: Target, tg_ix: Int): LiuMovieManager? {
-	OmegaContext.sout_log.getLogger().info("Liu Prepare sign movie")
-	val tgr = le_canvas!!.getTargetRectangle(tg_ix)
-	val lmm = LiuMovieManager(window!!, le_canvas!!)
-	val t_Item = tg.getT_Item(tg_ix)
-	val smfName = lmm.getSignMovieFileName(t_Item!!.item!!, tg, tg_ix)
-	if (smfName != null) {
-	    val liuMovieOk = lmm.prepare(media(), smfName, true)
-	    if (!liuMovieOk) {
-		OmegaContext.serr_log.getLogger().info("sign move not OK")
-		return null
-	    }
-	} else {
-	    OmegaContext.serr_log.getLogger().info("sign move not OK'")
-	    return null
-	}
-	OmegaContext.serr_log.getLogger().info("Sign movie ok")
-	return lmm
+    class MessageItem(var msg: String, var obj: Any?, var id: String) {
+	val msg_time = ct()
     }
 
-    private fun playSignFile(tg: Target, editMode: Boolean) {
-	val lmm = LiuMovieManager(window!!, le_canvas!!)
-	try {
-	    val bgCol = omega_settings_dialog.signSentence_background!!.color
-	    val alphaCol = omega_settings_dialog.signSentence_alpha!!.value
-	    var sms = omega_settings_dialog.signMovieSentence_scale!!.value
-	    if (sms == 0) {
-		sms = 1
-	    }
-	    val all_text = tg.allText
-	    val specificSignMovie = action_specific!!.isSign(all_text)
-	    if (specificSignMovie) {
-		try {
-		    if (false && all_text.startsWith("MMMM ")) {
-			var cnt = 0
-			val dir = File("../../TextbitarB-F-")
-			for (f in dir.listFiles()) {
-			    val sign_mv = f.name
-			    if (false) {
-				if (lmm.prepare(dir.absolutePath + "/", sign_mv, true)) {
-				    val sh = le_canvas!!.targetShape
-				    val tgr = sh.bounds
-				    startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
-				    lmm.cleanup()
-				    if (cnt++ > 10) {
-					break
-				    }
-				}
-			    } else {
-			    }
-			}
-		    }
-		    val specificMovieName = action_specific!!.getSign(all_text)
-		    if (lmm.prepare("", specificMovieName!!, true)) {
-			val sh = le_canvas!!.targetShape
-			val tgr = sh.bounds
-			startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
-		    }
-		} catch (ex_mv: Exception) {
-		    OmegaContext.sout_log.getLogger().info("While play movie: $ex_mv")
-		}
-	    } else {
-		val smFname = getMediaFile("sign-" + OmegaContext.lessonLang + "/" + all_text + ".mp4")
-		val smFileName = findSupportedFname(smFname!!)
-		val smFile = smFileName?.let { File(it) }
-		if (smFile != null && smFile.exists() && smFile.canRead()) {
+    class MessageHandler {
+	var messageItemQueue: MutableList<MessageItem> = ArrayList()
+	val q_lock = ReentrantLock()
+	val q_condition = q_lock.newCondition()
+	var id = arrayOf("")
+	val id_lock = ReentrantLock()
+	val id_condition = id_lock.newCondition()
+
+	fun nextMessageItem(): MessageItem {
+	    q_lock.withLock {
+		while (messageItemQueue.size == 0) {
 		    try {
-			le_canvas!!.setMarkTargetAll()
-			if (lmm.prepare("", smFname, true)) {
-			    val sh = le_canvas!!.targetShape
-			    val tgr = sh.bounds
-			    startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
-			    lmm.cleanup()
-			}
-		    } catch (ex_mv: Exception) {
-			OmegaContext.sout_log.getLogger().info("While play movie: $ex_mv")
-		    } finally {
+			q_condition.await()
+		    } catch (ec: InterruptedException) {
 		    }
-		} else {
-		    // word by word
-		    val sign_movies = tg.getAllSignMovies(lmm)
-		    var tg_ix = 0
-		    for (sign_mv in sign_movies) {
-			try {
-			    le_canvas!!.setMarkTarget(tg_ix, true)
-			    if (sign_mv.length > 0 && lmm.prepare(media(), sign_mv, true)) {
-				val sh = le_canvas!!.targetShape
-				val tgr = sh.bounds
-				startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
-				lmm.cleanup()
-			    }
-			} catch (ex_mv: Exception) {
-			    OmegaContext.sout_log.getLogger().info("While play movie: $tg_ix $ex_mv")
-			} finally {
-			    tg_ix++
-			}
+		}
+		val len = messageItemQueue.size
+		return messageItemQueue.removeAt(0)
+	    }
+	}
+
+	fun sendMsg(messageItem: MessageItem) {
+	    OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + messageItem)
+	    q_lock.withLock {
+		messageItemQueue.add(messageItem)
+		//log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
+		q_condition.signal()
+	    }
+	}
+
+	fun sendMsg(msg: String, o: Any?, id: String = "") {
+	    val messageItem = MessageItem(msg, o, id)
+	    sendMsg(messageItem)
+	}
+
+	fun sendMsgWait(msg: String, o: Any?, id: String = "") {
+	    this.id[0] = "" + System.nanoTime()
+	    sendMsg(msg, o, this.id[0])
+
+	    id_lock.withLock {
+		try {
+		    id_condition.await()
+		} catch (e: InterruptedException) {
+		    e.printStackTrace()
+		}
+	    }
+	}
+    }
+    public val messageHandler = MessageHandler()
+
+    class SayAllHandler() {
+	var talking = false
+	var lock = ReentrantLock()
+	val condition = lock.newCondition()
+
+	fun sayAll(tg: Target, currentPupil: Pupil) {
+	    try {
+		if (OmegaConfig.tts) {
+		    val lang = OmegaContext.lessonLang
+		    if (say(lang, tg.allTTS, true)) return
+		}
+		talking = true
+		val sa = tg.allSounds
+		val apA = arrayOfNulls<APlayer>(sa.size)
+		for (i in sa.indices) {
+		    val ss = sa[i]
+		    apA[i] = createAPlayer(currentPupil.getStringNo0("languageSuffix", null), ss, null, "SA_$i")
+		}
+		for (i in apA.indices) {
+		    le_canvas!!.setMarkTarget(i, true)
+		    apA[i]!!.playWait()
+		}
+	    } catch (ex: Exception) {
+		OmegaContext.sout_log.getLogger().info("ERR: Exception! Lesson.sayAll(): $ex")
+		ex.printStackTrace()
+	    } finally {
+		lock.withLock {
+		    talking = false
+		    condition.signalAll()
+		}
+	    }
+	    //	APlayer.unloadAll("SA_[0-9]*");
+	}
+
+	internal fun waitSayAll() {
+	    lock.withLock {
+		while (talking) {
+		    try {
+			condition.await()
+		    } catch (ex: InterruptedException) {
 		    }
 		}
 	    }
-	} finally {
-	    mistNoMouse = false
-	    le_canvas!!.setMist(0, null, null, 0)
-	    lmm.cleanup()
 	}
     }
+    val sayAllHandler = SayAllHandler()
 
-    private fun startMovieAndWait(
-	    lmm: LiuMovieManager,
-	    tgr: Rectangle,
-	    bgCol: Color,
-	    alphaCol: Int,
-	    scale: Int,
-	    mistMode: Int
-    ) {
-	mistNoMouse = true
-	le_canvas!!.setMist(mistMode, tgr, bgCol, alphaCol)
-	val mRect = lmm.start(
-		(tgr.getX() + tgr.getWidth() / 2).toInt(),
-		(tgr.getY() + tgr.getHeight()).toInt(),
-		(100 / scale).toDouble()
-	)
-	le_canvas!!.signMovieRectangle = mRect
-	lmm.wait((tgr.getX() + tgr.getWidth() / 2).toInt(), (tgr.getY() + tgr.getHeight()).toInt(), 100.0 / scale)
-    }
 
     class SentenceList : Serializable {
 	var sentence_list: ArrayList<String?>?
@@ -813,6 +786,131 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
+    private fun signMoviePrepare(tg: Target, tg_ix: Int): LiuMovieManager? {
+	OmegaContext.sout_log.getLogger().info("Liu Prepare sign movie")
+	val tgr = le_canvas!!.getTargetRectangle(tg_ix)
+	val lmm = LiuMovieManager(window!!, le_canvas!!)
+	val t_Item = tg.getT_Item(tg_ix)
+	val smfName = lmm.getSignMovieFileName(t_Item!!.item!!, tg, tg_ix)
+	if (smfName != null) {
+	    val liuMovieOk = lmm.prepare(media(), smfName, true)
+	    if (!liuMovieOk) {
+		OmegaContext.serr_log.getLogger().info("sign move not OK")
+		return null
+	    }
+	} else {
+	    OmegaContext.serr_log.getLogger().info("sign move not OK'")
+	    return null
+	}
+	OmegaContext.serr_log.getLogger().info("Sign movie ok")
+	return lmm
+    }
+
+    private fun playSignFile(tg: Target, editMode: Boolean) {
+	val lmm = LiuMovieManager(window!!, le_canvas!!)
+	try {
+	    val bgCol = omega_settings_dialog.signSentence_background!!.color
+	    val alphaCol = omega_settings_dialog.signSentence_alpha!!.value
+	    var sms = omega_settings_dialog.signMovieSentence_scale!!.value
+	    if (sms == 0) {
+		sms = 1
+	    }
+	    val all_text = tg.allText
+	    val specificSignMovie = action_specific!!.isSign(all_text)
+	    if (specificSignMovie) {
+		try {
+		    if (false && all_text.startsWith("MMMM ")) {
+			var cnt = 0
+			val dir = File("../../TextbitarB-F-")
+			for (f in dir.listFiles()) {
+			    val sign_mv = f.name
+			    if (false) {
+				if (lmm.prepare(dir.absolutePath + "/", sign_mv, true)) {
+				    val sh = le_canvas!!.targetShape
+				    val tgr = sh.bounds
+				    startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
+				    lmm.cleanup()
+				    if (cnt++ > 10) {
+					break
+				    }
+				}
+			    } else {
+			    }
+			}
+		    }
+		    val specificMovieName = action_specific!!.getSign(all_text)
+		    if (lmm.prepare("", specificMovieName!!, true)) {
+			val sh = le_canvas!!.targetShape
+			val tgr = sh.bounds
+			startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
+		    }
+		} catch (ex_mv: Exception) {
+		    OmegaContext.sout_log.getLogger().info("While play movie: $ex_mv")
+		}
+	    } else {
+		val smFname = getMediaFile("sign-" + OmegaContext.lessonLang + "/" + all_text + ".mp4")
+		val smFileName = findSupportedFname(smFname!!)
+		val smFile = smFileName?.let { File(it) }
+		if (smFile != null && smFile.exists() && smFile.canRead()) {
+		    try {
+			le_canvas!!.setMarkTargetAll()
+			if (lmm.prepare("", smFname, true)) {
+			    val sh = le_canvas!!.targetShape
+			    val tgr = sh.bounds
+			    startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
+			    lmm.cleanup()
+			}
+		    } catch (ex_mv: Exception) {
+			OmegaContext.sout_log.getLogger().info("While play movie: $ex_mv")
+		    } finally {
+		    }
+		} else {
+		    // word by word
+		    val sign_movies = tg.getAllSignMovies(lmm)
+		    var tg_ix = 0
+		    for (sign_mv in sign_movies) {
+			try {
+			    le_canvas!!.setMarkTarget(tg_ix, true)
+			    if (sign_mv.length > 0 && lmm.prepare(media(), sign_mv, true)) {
+				val sh = le_canvas!!.targetShape
+				val tgr = sh.bounds
+				startMovieAndWait(lmm, tgr, bgCol, alphaCol, sms, 2)
+				lmm.cleanup()
+			    }
+			} catch (ex_mv: Exception) {
+			    OmegaContext.sout_log.getLogger().info("While play movie: $tg_ix $ex_mv")
+			} finally {
+			    tg_ix++
+			}
+		    }
+		}
+	    }
+	} finally {
+	    mistNoMouse = false
+	    le_canvas!!.setMist(0, null, null, 0)
+	    lmm.cleanup()
+	}
+    }
+
+    private fun startMovieAndWait(
+	lmm: LiuMovieManager,
+	tgr: Rectangle,
+	bgCol: Color,
+	alphaCol: Int,
+	scale: Int,
+	mistMode: Int
+    ) {
+	mistNoMouse = true
+	le_canvas!!.setMist(mistMode, tgr, bgCol, alphaCol)
+	val mRect = lmm.start(
+	    (tgr.getX() + tgr.getWidth() / 2).toInt(),
+	    (tgr.getY() + tgr.getHeight()).toInt(),
+	    (100 / scale).toDouble()
+	)
+	le_canvas!!.signMovieRectangle = mRect
+	lmm.wait((tgr.getX() + tgr.getWidth() / 2).toInt(), (tgr.getY() + tgr.getHeight()).toInt(), 100.0 / scale)
+    }
+
     fun sortList(li: List<String?>): MutableList<String?> {
 	val sa = li.toTypedArray<String?>()
 	Arrays.sort(sa)
@@ -990,6 +1088,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		null
 	    }
 	}
+
     var om_msg_li: Listener = object : Listener {
 	override fun msg(msg: String?) {
 	    msg_log.getLogger().info("====M=== message $msg")
@@ -1554,99 +1653,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	current_card = name
     }
 
-    class MessageHandler {
-	var messageItemQueue: MutableList<MessageItem> = ArrayList()
-	val msg_list_lock = ReentrantLock()
-	val msg_list_condition = msg_list_lock.newCondition()
-	var wait_id = arrayOf("")
-	val wait_id_lock = ReentrantLock()
-	val wait_id_condition = wait_id_lock.newCondition()
 
-	fun nextMessageItem(): MessageItem {
-	    msg_list_lock.withLock {
-		while (messageItemQueue.size == 0) {
-		    try {
-			msg_list_condition.await()
-		    } catch (ec: InterruptedException) {
-		    }
-		}
-		val len = messageItemQueue.size
-		return messageItemQueue.removeAt(0)
-	    }
-	}
-
-	private fun sendMsg(messageItem: MessageItem) {
-	    OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + messageItem)
-	    msg_list_lock.withLock {
-		messageItemQueue.add(messageItem)
-		//log 	    OmegaContext.sout_log.getLogger().info(":--: " + "%%%%% inserted sendMsg >>> " + msg + ' ' + o);
-		msg_list_condition.signal()
-	    }
-	}
-
-	fun sendMsg(msg: String, o: Any?, id: String = "") {
-	    val messageItem = MessageItem(msg, o, id)
-	    sendMsg(messageItem)
-	}
-
-	fun sendMsgWait(msg: String, o: Any?, id: String = "") {
-	    wait_id[0] = "" + System.nanoTime()
-	    sendMsg(msg, o, wait_id[0])
-
-	    wait_id_lock.withLock {
-		try {
-		    wait_id_condition.await()
-		} catch (e: InterruptedException) {
-		    e.printStackTrace()
-		}
-	    }
-	}
-    }
-    val messageHandler = MessageHandler()
-
-    var sa_lock = ReentrantLock()
-    val sa_condition = sa_lock.newCondition()
-
-    var say_all = false
-    fun sayAll(tg: Target) {
-	try {
-	    if (OmegaConfig.tts) {
-		val lang = OmegaContext.lessonLang
-		if (say(lang, tg.allTTS, true)) return
-	    }
-	    say_all = true
-	    val sa = tg.allSounds
-	    val apA = arrayOfNulls<APlayer>(sa.size)
-	    for (i in sa.indices) {
-		val ss = sa[i]
-		apA[i] = createAPlayer(currentPupil.getStringNo0("languageSuffix", null), ss, null, "SA_$i")
-	    }
-	    for (i in apA.indices) {
-		le_canvas!!.setMarkTarget(i, true)
-		apA[i]!!.playWait()
-	    }
-	} catch (ex: Exception) {
-	    OmegaContext.sout_log.getLogger().info("ERR: Exception! Lesson.sayAll(): $ex")
-	    ex.printStackTrace()
-	} finally {
-	    sa_lock.withLock {
-		say_all = false
-		sa_condition.signalAll()
-	    }
-	}
-	//	APlayer.unloadAll("SA_[0-9]*");
-    }
-
-    private fun waitSayAll() {
-	sa_lock.withLock {
-	    while (say_all) {
-		try {
-		    sa_condition.await()
-		} catch (ex: InterruptedException) {
-		}
-	    }
-	}
-    }
 
     //      private void waitBoxPlay() {
     // // 	APlayer ap = box_ap;
@@ -1858,7 +1865,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	var test_index: Set<Array<IntArray>>? = null
 	var last_id = "!"
 	while (true) {
-	    messageHandler.wait_id_lock.withLock { if (last_id == messageHandler.wait_id[0]) messageHandler.wait_id_condition.signal() }
+	    messageHandler.id_lock.withLock { if (last_id == messageHandler.id[0]) messageHandler.id_condition.signal() }
 	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
 	    val messageItem = messageHandler.nextMessageItem()
 	    val msg = messageItem.msg
@@ -1924,7 +1931,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		}
 	    } else if ("listen" == msg) {
 		if (tg.isTargetFilled) {
-		    sayAll(tg)
+		    sayAllHandler.sayAll(tg, currentPupil)
 		    le_canvas!!.setMarkTargetNo()
 		}
 		card_show("words")
@@ -2540,18 +2547,18 @@ target pos $tg_ix"""
 					le_canvas!!.enableQuitButton(false)
 					le_canvas!!.resetHboxFocus()
 					if (do_repeat_whole) {
-					    waitSayAll()
+					    sayAllHandler.waitSayAll()
 					    //					    waitBoxPlay();
 					    m_sleep(currentPupil.getSpeed(500))
 					    le_canvas!!.setMarkTargetAll()
 					    sayPingSentence()
 					    le_canvas!!.eraseHilitedBox()
 					    m_sleep(currentPupil.getSpeed(300))
-					    sayAll(tg)
-					    waitSayAll()
+					    sayAllHandler.sayAll(tg, currentPupil)
+					    sayAllHandler.waitSayAll()
 					    m_sleep(currentPupil.getSpeed(400))
 					} else {
-					    waitSayAll()
+					    sayAllHandler.waitSayAll()
 					    //					    waitBoxPlay();
 					    m_sleep(currentPupil.getSpeed(500))
 					}
@@ -2568,14 +2575,14 @@ target pos $tg_ix"""
 				    } else {  // current_test_mode == TM_PRE/POST/RAND
 					le_canvas!!.enableQuitButton(false)
 					le_canvas!!.resetHboxFocus()
-					waitSayAll()
+					sayAllHandler.waitSayAll()
 					//					waitBoxPlay();
 					m_sleep(currentPupil.getSpeed(500))
 					le_canvas!!.setMarkTargetAll()
 					sayPingSentence()
 					m_sleep(currentPupil.getSpeed(300))
-					sayAll(tg)
-					waitSayAll()
+					sayAllHandler.sayAll(tg, currentPupil)
+					sayAllHandler.waitSayAll()
 					m_sleep(currentPupil.getSpeed(500))
 					le_canvas!!.setMarkTargetAll()
 					val all_text = tg.allText
@@ -2742,7 +2749,7 @@ target pos $tg_ix"""
 					    mistNoMouse = false
 					    m_sleep(currentPupil.getSpeed(500))
 					    sayPingAnim()
-					    waitSayAll()
+					    sayAllHandler.waitSayAll()
 					    //					    waitBoxPlay();
 					} else { // wrong sentence
 					    seq!!.cnt_sent_wrong++
@@ -3069,7 +3076,7 @@ target pos $tg_ix"""
 			class MyRA : Runnable {
 			    override fun run() {
 				OmegaContext.sout_log.getLogger().info(":--: " + "MyRA called")
-				sayAll(tg)
+				sayAllHandler.sayAll(tg, currentPupil)
 			    }
 			}
 
@@ -3191,7 +3198,7 @@ target pos $tg_ix"""
 	    class MyRA : Runnable {
 		override fun run() {
 		    OmegaContext.sout_log.getLogger().info(":--: " + "MyRA called")
-		    sayAll(tg)
+		    sayAllHandler.sayAll(tg, currentPupil)
 		}
 	    }
 
