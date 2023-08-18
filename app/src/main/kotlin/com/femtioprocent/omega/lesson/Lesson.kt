@@ -66,6 +66,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.locks.ReentrantLock
+import java.util.logging.Logger
 import java.util.prefs.Preferences
 import javax.print.PrintService
 import javax.swing.*
@@ -1844,7 +1845,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
     private var last_msg_time = ct()
-    fun execLesson(fn: String?) {
+    fun execLessonMessageLoop(fn: String?) {
 	val tg = Target(machine)
 	machine.target = tg
 	// APlayer.unloadAll("Box[0-9]*");
@@ -1861,10 +1862,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
 	var test_index: Set<Array<IntArray>>? = null
 	var last_id = "!"
+
+
+	loop@
 	while (true) {
-	    messageHandler.id_lock.withLock { if (last_id == messageHandler.id[0]) messageHandler.id_condition.signal() }
+	    messageHandler.id_lock.withLock {
+		if (last_id == messageHandler.id[0])
+		    messageHandler.id_condition.signal()
+	    }
 	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
+
+
 	    val messageItem = messageHandler.nextMessageItem()
+
 	    val msg = messageItem.msg
 	    val obj = messageItem.obj
 	    val msg_time = messageItem.msg_time
@@ -1872,225 +1882,256 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    val delta = msg_time - last_msg_time
 	    last_msg_time = msg_time
 	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% msg $msg $obj $delta $id")
-	    if ("load" == msg) {
-		exec_load(obj as String?, tg)
-		progress!!.dismiss()
-		if (current_test_mode_group == TMG.CREATE) {
-		    if (!last_story_flag) {
+
+	    if (msg != null && msg.startsWith("playSign:")) {
+	    	if (tg.isTargetFilled) {
+			playSignFile(tg, true)
+			le_canvas!!.setMarkTargetNo()
 			card_show("words")
+	    	}
+		continue@loop
+	    }
+
+	    when (msg) {
+		"load" -> {
+		    exec_load(obj as String?, tg)
+		    progress!!.dismiss()
+		    if (current_test_mode_group == TMG.CREATE) {
+			if (!last_story_flag) {
+			    card_show("words")
+			}
+			if (register != null) {
+			    register!!.setStarted()
+			}
 		    }
+		}
+		"create" -> {
+		    le_canvas!!.hideMsg()
+		    le_canvas!!.setMarkTargetNo()
+		    messageHandler.sendMsg("load", obj as String?, "create")
+		}
+		"new_test" -> {
+		    //seq.initNewTest();
+		    le_canvas!!.hideMsg()
+		    //		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
+		    messageHandler.sendMsg("load", obj as String?, "new_test")
+		    // 		if ( current_test_mode_group == TMG_CREATE )
+		    // 		    card_show("words");
+		    messageHandler.sendMsg("test_cont", null, "new_test2")
+		}
+		"test_cont" -> {
+		    test_index = exec_test_cont()
+		}
+		"show_result_msg" -> {
+		    OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + ' ' + register)
+		    if (register != null && register!!.has_shown == false && current_test_mode == TM.RAND) {
+			le_canvas!!.showMsg(resultSummary_MsgItem)
+			register!!.has_shown = true
+			register!!.close()
+		    }
+		    le_canvas!!.fireRealExit()
+		}
+		"hBoxM" -> {
+		    val hBox = obj as LessonCanvas.Box?
+		    exec_hbox(hBox, tg, test_index)
+		}
+		"hBoxK" -> {
+		    val hBox = obj as LessonCanvas.Box?
+		    exec_hbox(hBox, tg, test_index)
+		    le_canvas!!.gotoNextBox()
+		}
+		"action" -> {
+		    messageHandler.sendMsg("play", null, "action")
+		    //log 		OmegaContext.sout_log.getLogger().info(":--: " + "action:play done");
+		    if (tg.storyNext != null) {
+			//		    show_progress = false;
+			OmegaContext.sout_log.getLogger().info(":--: " + "STORY NEXT  " + tg.storyNext)
+			messageHandler.sendMsg("create", tg.storyNext, "action2")
+			card_show("words", 5)
+		    } else {
+			//		    show_progress = true;
+			if (!last_story_flag) {
+			    messageHandler.sendMsg("load", loadedFName, "action3")
+			}
+		    }
+		}
+		"listen" -> {
+		    if (tg.isTargetFilled) {
+			sayAllHandler.sayAll(tg, currentPupil)
+			le_canvas!!.setMarkTargetNo()
+		    }
+		    card_show("words")
+		}
+		"play" -> {
+		    exec_play(tg, true)
+		    //		OmegaContext.sout_log.getLogger().info(":--: " + "exec_play done");
 		    if (register != null) {
 			register!!.setStarted()
 		    }
 		}
-	    } else if ("create" == msg) {
-		le_canvas!!.hideMsg()
-		le_canvas!!.setMarkTargetNo()
-		messageHandler.sendMsg("load", obj as String?, "create")
-	    } else if ("new_test" == msg) {
-		//seq.initNewTest();
-		le_canvas!!.hideMsg()
-		//		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
-		messageHandler.sendMsg("load", obj as String?, "new_test")
-		// 		if ( current_test_mode_group == TMG_CREATE )
-		// 		    card_show("words");
-		messageHandler.sendMsg("test_cont", null, "new_test2")
-	    } else if ("test_cont" == msg) {
-		test_index = exec_test_cont()
-	    } else if ("show_result_msg" == msg) {
-		OmegaContext.sout_log.getLogger().info(":--: " + "show_result_msg " + ' ' + register)
-		if (register != null && register!!.has_shown == false && current_test_mode == TM.RAND) {
-		    le_canvas!!.showMsg(resultSummary_MsgItem)
-		    register!!.has_shown = true
-		    register!!.close()
-		}
-		le_canvas!!.fireRealExit()
-	    } else if ("hBoxM" == msg) {
-		val hBox = obj as LessonCanvas.Box?
-		exec_hbox(hBox, tg, test_index)
-	    } else if ("hBoxK" == msg) {
-		val hBox = obj as LessonCanvas.Box?
-		exec_hbox(hBox, tg, test_index)
-		le_canvas!!.gotoNextBox()
-	    } else if ("action" == msg) {
-		messageHandler.sendMsg("play", null, "action")
-		//log 		OmegaContext.sout_log.getLogger().info(":--: " + "action:play done");
-		if (tg.storyNext != null) {
-		    //		    show_progress = false;
-		    OmegaContext.sout_log.getLogger().info(":--: " + "STORY NEXT  " + tg.storyNext)
-		    messageHandler.sendMsg("create", tg.storyNext, "action2")
-		    card_show("words", 5)
-		} else {
-		    //		    show_progress = true;
-		    if (!last_story_flag) {
-			messageHandler.sendMsg("load", loadedFName, "action3")
-		    }
-		}
-	    } else if ("listen" == msg) {
-		if (tg.isTargetFilled) {
-		    sayAllHandler.sayAll(tg, currentPupil)
-		    le_canvas!!.setMarkTargetNo()
-		}
-		card_show("words")
-	    } else if (msg != null && msg.startsWith("playSign:")) {
-		if (tg.isTargetFilled) {
-		    playSignFile(tg, true)
-		    le_canvas!!.setMarkTargetNo()
+		"playAll" -> {
+		    exec_play(tg, false)
 		    card_show("words")
 		}
-	    } else if ("play" == msg) {
-		exec_play(tg, true)
-		//		OmegaContext.sout_log.getLogger().info(":--: " + "exec_play done");
-		if (register != null) {
-		    register!!.setStarted()
+		"play&return" -> {
+		    exec_play(tg, true)
+		    card_show("words")
 		}
-	    } else if ("playAll" == msg) {
-		exec_play(tg, false)
-		card_show("words")
-	    } else if ("play&return" == msg) {
-		exec_play(tg, true)
-		card_show("words")
-	    } else if ("read_story" == msg) {
-		sentence_canvas!!.showMsg(null)
-		sentence_canvas!!.setRead(true)
-		card_show("sent")
-		messageHandler.sendMsg("sent_select", "")
-	    } else if ("sent_quit" == msg) {
-		sentence_canvas!!.hidePopup(3)
-		play_data_list = PlayDataList()
-		play_data_list_is_last = PlayDataList()
-		sentence_canvas!!.showMsg(null)
-		//		sentence_canvas.setRead(false);
-		card_show("main")
-	    } else if ("sent_read" == msg) {
-		sentence_canvas!!.hidePopup(3)
-		val sent_li = story_hm["sentence_list"]
-		val ss_li = sent_li!!.sentence_list
-		OmegaContext.story_log.getLogger().info("sent_read story_hm 1599 " + story_hm)
-		OmegaContext.story_log.getLogger().info("sent_read sent_li 1599 $sent_li")
-		OmegaContext.story_log.getLogger().info("sent_read ss_li 1599 $ss_li")
-		OmegaContext.story_log.getLogger().info("sent_read playdatalist 1599 $play_data_list")
-		sentence_canvas!!.ignorePress(true)
-		sentence_canvas!!.showMsg(null)
-		sentence_canvas!!.showMsg(ss_li)
-		sentence_canvas!!.setStoryData(play_data_list) // strange
-		card_show("sent")
-		listenFromDataList(play_data_list_is_last) //, sentence_canvas.getListenListener());
-		sentence_canvas!!.ignorePress(false)
-	    } else if ("sent_replay" == msg) {
-		sentence_canvas!!.hidePopup(3)
-		if (action == null) {
-		    action = AnimAction()
-		    card_panel!!.add(action!!.canvas, "anim1")
+		"read_story" -> {
+		    sentence_canvas!!.showMsg(null)
+		    sentence_canvas!!.setRead(true)
+		    card_show("sent")
+		    messageHandler.sendMsg("sent_select", "")
 		}
-		card_show("anim1")
-		hit_key = 0
-		playFromDataList(play_data_list)
-		card_show("sent")
-	    } else if ("sent_print" == msg) {
-		// not anymore                sentence_canvas.togglePopup(3);
-		messageHandler.sendMsg("sent_print_print", "")
-	    } else if ("sent_print_select" == msg) {
-		//not anymore
-	    } else if ("sent_print_print" == msg) {
-		sentence_canvas!!.setBusy(true)
-		val sent_li = story_hm["sentence_list"]
-		val ss_li = sent_li!!.sentence_list
-		OmegaContext.story_log.getLogger().info("sent_print story_hm 1599 " + story_hm)
-		OmegaContext.story_log.getLogger().info("sent_print sent_li 1599 $sent_li")
-		OmegaContext.story_log.getLogger().info("sent_print ss_li 1599 $ss_li")
-		printFromDataList(play_data_list_is_last)
-		sentence_canvas!!.setBusy(false)
-		sentence_canvas!!.hidePopup(3)
-	    } else if ("sent_save" == msg) {
-		sentence_canvas!!.hidePopup(3)
-		val sent_li = story_hm["sentence_list"]
-		val ss_li = sent_li!!.sentence_list
-		val lname = sent_li.lesson_name
-		val df: DateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
-		val d = play_data_list.date
-		val date = df.format(d)
-		val ord = play_data_list.nextOrd()
-		if (register == null) { // null after windows resize
-		    register = RegisterProxy(currentPupil)
+		"sent_quit" -> {
+		    sentence_canvas!!.hidePopup(3)
+		    play_data_list = PlayDataList()
+		    play_data_list_is_last = PlayDataList()
+		    sentence_canvas!!.showMsg(null)
+		    //		sentence_canvas.setRead(false);
+		    card_show("main")
 		}
-		val dir = register!!.rl.getDirPath(currentPupil.name)
-		val fname = (currentPupil.name + '-'
-			+ lname + '-'
-			+ date + '-'
-			+ ord)
-		val fullname = "$dir$fname.omega_story_text"
-		val fullname_2 = "$dir$fname.omega_story_replay"
-		try {
-		    PrintWriter(FileWriter(File(fullname))).use { pw ->
-			ss_li!!.forEach {sent -> pw.println(sent) }
+		"sent_read" -> {
+		    sentence_canvas!!.hidePopup(3)
+		    val sent_li = story_hm["sentence_list"]
+		    val ss_li = sent_li!!.sentence_list
+		    OmegaContext.story_log.getLogger().info("sent_read story_hm 1599 " + story_hm)
+		    OmegaContext.story_log.getLogger().info("sent_read sent_li 1599 $sent_li")
+		    OmegaContext.story_log.getLogger().info("sent_read ss_li 1599 $ss_li")
+		    OmegaContext.story_log.getLogger().info("sent_read playdatalist 1599 $play_data_list")
+		    sentence_canvas!!.ignorePress(true)
+		    sentence_canvas!!.showMsg(null)
+		    sentence_canvas!!.showMsg(ss_li)
+		    sentence_canvas!!.setStoryData(play_data_list) // strange
+		    card_show("sent")
+		    listenFromDataList(play_data_list_is_last) //, sentence_canvas.getListenListener());
+		    sentence_canvas!!.ignorePress(false)
+		}
+		"sent_replay" -> {
+		    sentence_canvas!!.hidePopup(3)
+		    if (action == null) {
+			action = AnimAction()
+			card_panel!!.add(action!!.canvas, "anim1")
 		    }
-		    ObjectOutputStream(FileOutputStream(fullname_2)).use { oo ->
-			oo.writeObject(sent_li)
-			oo.writeObject(play_data_list.arr)
-			oo.writeObject(play_data_list_is_last.arr)
+		    card_show("anim1")
+		    hit_key = 0
+		    playFromDataList(play_data_list)
+		    card_show("sent")
+		}
+		"sent_print" -> {
+		    // not anymore                sentence_canvas.togglePopup(3);
+		    messageHandler.sendMsg("sent_print_print", "")
+		}
+		"sent_print_select" -> {
+		    //not anymore
+		}
+		"sent_print_print" -> {
+		    sentence_canvas!!.setBusy(true)
+		    val sent_li = story_hm["sentence_list"]
+		    val ss_li = sent_li!!.sentence_list
+		    OmegaContext.story_log.getLogger().info("sent_print story_hm 1599 " + story_hm)
+		    OmegaContext.story_log.getLogger().info("sent_print sent_li 1599 $sent_li")
+		    OmegaContext.story_log.getLogger().info("sent_print ss_li 1599 $ss_li")
+		    printFromDataList(play_data_list_is_last)
+		    sentence_canvas!!.setBusy(false)
+		    sentence_canvas!!.hidePopup(3)
+		}
+		"sent_save" -> {
+		    sentence_canvas!!.hidePopup(3)
+		    val sent_li = story_hm["sentence_list"]
+		    val ss_li = sent_li!!.sentence_list
+		    val lname = sent_li.lesson_name
+		    val df: DateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
+		    val d = play_data_list.date
+		    val date = df.format(d)
+		    val ord = play_data_list.nextOrd()
+		    if (register == null) { // null after windows resize
+			register = RegisterProxy(currentPupil)
 		    }
-		    global_skipF(true)
-		    JOptionPane.showMessageDialog(ApplContext.top_frame, t("Saved in file") + ' ' + fullname)
-		    global_skipF(false)
-		} catch (ex: Exception) {
-		    ex.printStackTrace()
-		    global_skipF(true)
-		    JOptionPane.showMessageDialog(
+		    val dir = register!!.rl.getDirPath(currentPupil.name)
+		    val fname = (currentPupil.name + '-'
+			    + lname + '-'
+			    + date + '-'
+			    + ord)
+		    val fullname = "$dir$fname.omega_story_text"
+		    val fullname_2 = "$dir$fname.omega_story_replay"
+		    try {
+			PrintWriter(FileWriter(File(fullname))).use { pw ->
+			    ss_li!!.forEach { sent -> pw.println(sent) }
+			}
+			ObjectOutputStream(FileOutputStream(fullname_2)).use { oo ->
+			    oo.writeObject(sent_li)
+			    oo.writeObject(play_data_list.arr)
+			    oo.writeObject(play_data_list_is_last.arr)
+			}
+			global_skipF(true)
+			JOptionPane.showMessageDialog(ApplContext.top_frame, t("Saved in file") + ' ' + fullname)
+			global_skipF(false)
+		    } catch (ex: Exception) {
+			ex.printStackTrace()
+			global_skipF(true)
+			JOptionPane.showMessageDialog(
 			    ApplContext.top_frame,
 			    t("File") + ' ' + fullname + ' ' + t("not saved") + '.'
-		    )
-		    global_skipF(false)
-		    OmegaContext.sout_log.getLogger().info(":--: $ex")
+			)
+			global_skipF(false)
+			OmegaContext.sout_log.getLogger().info(":--: $ex")
+		    }
 		}
-	    } else if ("sent_select" == msg) {
-		sentence_canvas!!.hidePopup(3)
-		sentence_canvas!!.setBusy(true)
-		try {
-		    //		    global_skipF(true);
+		"sent_select" -> {
+		    sentence_canvas!!.hidePopup(3)
+		    sentence_canvas!!.setBusy(true)
 		    try {
-			if (register == null) {
-			    register = RegisterProxy(currentPupil)
-			}
-			val dir = register!!.rl.getDirPath(currentPupil.name)
-			lesson_log.getLogger().info("get it from $dir")
-			val dir_file = File(dir)
-			val files = dir_file.list { dir, name ->
-			    name.endsWith(".omega_story_replay")
-			}
-			if (files.size > 0) {
-			    sentence_canvas!!.showMsg(null)
-			    sentence_canvas!!.enableStoryList(true)
-			    sentence_canvas!!.setListData(files)
-			    val filename = sentence_canvas!!.waitDone()
-			    val file = File("$dir/$filename")
-			    lesson_log.getLogger().info("story reply file is $file")
-			    ObjectInputStream(FileInputStream(file)).use { `in` ->
-				val sent_li = `in`.readObject() as SentenceList
-				story_hm["sentence_list"] = sent_li
-				play_data_list.arr = `in`.readObject() as ArrayList<PlayData>
-				play_data_list_is_last.arr = `in`.readObject() as ArrayList<PlayData>
+			//		    global_skipF(true);
+			try {
+			    if (register == null) {
+				register = RegisterProxy(currentPupil)
 			    }
-			} else {
-			    global_skipF(true)
-			    JOptionPane.showMessageDialog(
+			    val dir = register!!.rl.getDirPath(currentPupil.name)
+			    lesson_log.getLogger().info("get it from $dir")
+			    val dir_file = File(dir)
+			    val files = dir_file.list { dir, name ->
+				name.endsWith(".omega_story_replay")
+			    }
+			    if (files.size > 0) {
+				sentence_canvas!!.showMsg(null)
+				sentence_canvas!!.enableStoryList(true)
+				sentence_canvas!!.setListData(files)
+				val filename = sentence_canvas!!.waitDone()
+				val file = File("$dir/$filename")
+				lesson_log.getLogger().info("story reply file is $file")
+				ObjectInputStream(FileInputStream(file)).use { `in` ->
+				    val sent_li = `in`.readObject() as SentenceList
+				    story_hm["sentence_list"] = sent_li
+				    play_data_list.arr = `in`.readObject() as ArrayList<PlayData>
+				    play_data_list_is_last.arr = `in`.readObject() as ArrayList<PlayData>
+				}
+			    } else {
+				global_skipF(true)
+				JOptionPane.showMessageDialog(
 				    ApplContext.top_frame,
 				    t("Can't find any saved story")
-			    )
-			    global_skipF(false)
+				)
+				global_skipF(false)
+			    }
+			} catch (ex: Exception) {
+			    OmegaContext.sout_log.getLogger().info("ERR: $ex")
 			}
-		    } catch (ex: Exception) {
-			OmegaContext.sout_log.getLogger().info("ERR: $ex")
+		    } finally {
+			global_skipF(false)
+			sentence_canvas!!.enableStoryList(false)
+			sentence_canvas!!.setBusy(false)
 		    }
-		} finally {
-		    global_skipF(false)
-		    sentence_canvas!!.enableStoryList(false)
-		    sentence_canvas!!.setBusy(false)
 		}
-	    } else if ("test_dialog" == msg) {
-		testDialog()
-	    } else if ("exitLesson" == msg) {
-		return
+		"test_dialog" -> {
+		    testDialog()
+		}
+		"exitLesson" -> {
+		    return
+		}
+		else -> {
+		    lesson_log.getLogger().warning("Unhandled msg: $msg")
+		}
 	    }
 	    last_id = id
 	}
@@ -3541,8 +3582,8 @@ target pos $tg_ix"""
 	}
     }
 
-    fun runLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, winSize: OmegaConfig.WinSize) {
-	var winSize= winSize
+    fun prepareRunLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, winSize: OmegaConfig.WinSize) {
+	var winSize = winSize
 	Lesson.edit = edit
 	le_canvas!!.edit = edit
 	window = w
@@ -3562,8 +3603,8 @@ target pos $tg_ix"""
 		var was_first = false
 		var do_it = false
 		if (e.id == KeyEvent.KEY_PRESSED && (isKeySelect(kc)
-				|| isKeyESC(kc)
-				|| isKeyNext(kc))
+			    || isKeyESC(kc)
+			    || isKeyNext(kc))
 		) {
 		    hit_key = kc
 		    cnt_hit_keyOrButton++
@@ -3576,8 +3617,8 @@ target pos $tg_ix"""
 		    if (e.id == KeyEvent.KEY_PRESSED) {
 			if (P) {
 			    OmegaContext.sout_log.getLogger().info(
-				    ":--: " + "KEY: P " + current_card + ' ' + e.id
-					    + " '" + ch + "' " + kc + "" + ' ' + state + last_state
+				":--: " + "KEY: P " + current_card + ' ' + e.id
+					+ " '" + ch + "' " + kc + "" + ' ' + state + last_state
 			    )
 			}
 			if (state == 'r') {
@@ -3625,7 +3666,7 @@ target pos $tg_ix"""
 		    if (e.id == KeyEvent.KEY_TYPED) {
 			if (P) {
 			    OmegaContext.sout_log.getLogger()
-				    .info(":--: " + "KEY: T " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
+				.info(":--: " + "KEY: T " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
 			}
 			state = 't'
 			if (first_tr == false) {
@@ -3638,7 +3679,7 @@ target pos $tg_ix"""
 			state = 'r'
 			if (P) {
 			    OmegaContext.sout_log.getLogger()
-				    .info(":--: " + "KEY: R " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
+				.info(":--: " + "KEY: R " + current_card + ' ' + e.id + " '" + ch + "' " + kc + "" + ' ' + state + last_state)
 			}
 			first_tr = false
 		    }
@@ -3664,8 +3705,8 @@ target pos $tg_ix"""
 			    }
 			}
 			if (isKeyNext(kc)
-				|| isKeySelect(kc)
-				|| isKeyESC(kc)
+			    || isKeySelect(kc)
+			    || isKeyESC(kc)
 			) {
 			    if ("anim1" == cc) {
 				dispatch = true
@@ -3779,7 +3820,7 @@ target pos $tg_ix"""
 		    val getApplication = appClass.getMethod("getApplication", *params)
 		    val application = getApplication.invoke(appClass)
 		    val requestToggleFulLScreen =
-			    application.javaClass.getMethod("requestToggleFullScreen", Window::class.java)
+			application.javaClass.getMethod("requestToggleFullScreen", Window::class.java)
 		    requestToggleFulLScreen.invoke(application, window)
 		    //		    Application.getApplication().requestToggleFullScreen(window);
 		} catch (e: Exception) {
@@ -3787,9 +3828,14 @@ target pos $tg_ix"""
 		}
 	    }
 	}
+    }
+
+    fun runLessons(fn: String?) {
+	// fn is null for lesson runtime mode
 	while (true) {
 	    try {
-		execLesson(fn)
+		// for LessonRuntime this is only called one time and never return
+		execLessonMessageLoop(fn)
 		if (globalExit) return
 		break
 	    } catch (ex: Exception) {

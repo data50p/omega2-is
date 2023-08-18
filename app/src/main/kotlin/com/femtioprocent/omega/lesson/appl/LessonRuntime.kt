@@ -21,13 +21,14 @@ class LessonRuntime(title: String?, fn: String?, winSize: OmegaConfig.WinSize, r
 	    }
 	})
 	val le = Lesson(run_mode)
-	le.runLessons(
+	le.prepareRunLessons(
 		wi,
 		f.contentPane as JPanel,
 		fn,
 		false,
 		winSize
-	)   // // // This never return
+	)
+    	le.runLessons(fn)// // // This never return, and called only once
     }
 
     private fun maybeClose() {
