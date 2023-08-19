@@ -66,7 +66,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.locks.ReentrantLock
-import java.util.logging.Logger
 import java.util.prefs.Preferences
 import javax.print.PrintService
 import javax.swing.*
@@ -155,8 +154,12 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    class MessageItem(var msg: String, var obj: Any?, var id: String) {
+    class MessageItem(var msg: String, var arg: Any?, var id: String) {
 	val msg_time = ct()
+
+	override fun toString() : String {
+	    return "MessageItem{$msg.$arg,$id}"
+	}
     }
 
     class MessageHandler {
@@ -189,14 +192,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	}
 
-	fun sendMsg(msg: String, o: Any?, id: String = "") {
-	    val messageItem = MessageItem(msg, o, id)
+	fun sendMsg(msg: String, arg: Any?, id: String = "") {
+	    val messageItem = MessageItem(msg, arg, id)
 	    sendMsg(messageItem)
 	}
 
-	fun sendMsgWait(msg: String, o: Any?, id: String = "") {
+	fun sendMsgWait(msg: String, arg: Any?, id: String = "") {
 	    this.id[0] = "" + System.nanoTime()
-	    sendMsg(msg, o, this.id[0])
+	    sendMsg(msg, arg, this.id[0])
 
 	    id_lock.withLock {
 		try {
@@ -1873,28 +1876,15 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
 
 
-	    val messageItem = messageHandler.nextMessageItem()
+	    val mI = messageHandler.nextMessageItem()
 
-	    val msg = messageItem.msg
-	    val obj = messageItem.obj
-	    val msg_time = messageItem.msg_time
-	    val id = messageItem.id
-	    val delta = msg_time - last_msg_time
-	    last_msg_time = msg_time
-	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% msg $msg $obj $delta $id")
+	    val delta = mI.msg_time - last_msg_time
+	    last_msg_time = mI.msg_time
+	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% <- $mI")
 
-	    if (msg != null && msg.startsWith("playSign:")) {
-	    	if (tg.isTargetFilled) {
-			playSignFile(tg, true)
-			le_canvas!!.setMarkTargetNo()
-			card_show("words")
-	    	}
-		continue@loop
-	    }
-
-	    when (msg) {
+	    when (mI.msg) {
 		"load" -> {
-		    exec_load(obj as String?, tg)
+		    exec_load(mI.arg as String?, tg)
 		    progress!!.dismiss()
 		    if (current_test_mode_group == TMG.CREATE) {
 			if (!last_story_flag) {
@@ -1908,13 +1898,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		"create" -> {
 		    le_canvas!!.hideMsg()
 		    le_canvas!!.setMarkTargetNo()
-		    messageHandler.sendMsg("load", obj as String?, "create")
+		    messageHandler.sendMsg("load", mI.arg, "create")
 		}
 		"new_test" -> {
 		    //seq.initNewTest();
 		    le_canvas!!.hideMsg()
 		    //		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
-		    messageHandler.sendMsg("load", obj as String?, "new_test")
+		    messageHandler.sendMsg("load", mI.arg, "new_test")
 		    // 		if ( current_test_mode_group == TMG_CREATE )
 		    // 		    card_show("words");
 		    messageHandler.sendMsg("test_cont", null, "new_test2")
@@ -1932,11 +1922,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    le_canvas!!.fireRealExit()
 		}
 		"hBoxM" -> {
-		    val hBox = obj as LessonCanvas.Box?
+		    val hBox = mI.arg as LessonCanvas.Box?
 		    exec_hbox(hBox, tg, test_index)
 		}
 		"hBoxK" -> {
-		    val hBox = obj as LessonCanvas.Box?
+		    val hBox = mI.arg as LessonCanvas.Box?
 		    exec_hbox(hBox, tg, test_index)
 		    le_canvas!!.gotoNextBox()
 		}
@@ -1976,6 +1966,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		"play&return" -> {
 		    exec_play(tg, true)
 		    card_show("words")
+		}
+		"playSign" -> {
+		    if (tg.isTargetFilled) {
+			playSignFile(tg, true)
+			le_canvas!!.setMarkTargetNo()
+			card_show("words")
+		    }
+		    continue@loop
 		}
 		"read_story" -> {
 		    sentence_canvas!!.showMsg(null)
@@ -2130,10 +2128,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    return
 		}
 		else -> {
-		    lesson_log.getLogger().warning("Unhandled msg: $msg")
+		    lesson_log.getLogger().warning("Unhandled msg: $mI")
 		}
 	    }
-	    last_id = id
+	    last_id = mI.id
 	}
     }
 

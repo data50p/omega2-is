@@ -349,7 +349,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 	private fun playSign() {
 	    // LIU
 	    lessonLang = editorLessonLang!!.text
-	    le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playSign:", "media/sign-sv/M.mpg")
+	    le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playSign", "media/sign-sv/M.mpg")
 	}
     }
 
