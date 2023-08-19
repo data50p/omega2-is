@@ -1982,39 +1982,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    messageHandler.sendMsg("button_sent_select", "")
 		}
 		"button_sent_quit" -> {
-		    sentence_canvas!!.hidePopup(3)
-		    play_data_list = PlayDataList()
-		    play_data_list_is_last = PlayDataList()
-		    sentence_canvas!!.showMsg(null)
-		    //		sentence_canvas.setRead(false);
-		    card_show("main")
+		    msgAction_button_sent_quit()
 		}
 		"button_sent_read" -> {
-		    sentence_canvas!!.hidePopup(3)
-		    val sent_li = story_hm["sentence_list"]
-		    val ss_li = sent_li!!.sentence_list
-		    OmegaContext.story_log.getLogger().info("button_sent_read story_hm 1599 " + story_hm)
-		    OmegaContext.story_log.getLogger().info("button_sent_read sent_li 1599 $sent_li")
-		    OmegaContext.story_log.getLogger().info("button_sent_read ss_li 1599 $ss_li")
-		    OmegaContext.story_log.getLogger().info("button_sent_read playdatalist 1599 $play_data_list")
-		    sentence_canvas!!.ignorePress(true)
-		    sentence_canvas!!.showMsg(null)
-		    sentence_canvas!!.showMsg(ss_li)
-		    sentence_canvas!!.setStoryData(play_data_list) // strange
-		    card_show("sent")
-		    listenFromDataList(play_data_list_is_last) //, sentence_canvas.getListenListener());
-		    sentence_canvas!!.ignorePress(false)
+		    msgAction_button_sent_read()
 		}
 		"button_sent_replay" -> {
-		    sentence_canvas!!.hidePopup(3)
-		    if (action == null) {
-			action = AnimAction()
-			card_panel!!.add(action!!.canvas, "anim1")
-		    }
-		    card_show("anim1")
-		    hit_key = 0
-		    playFromDataList(play_data_list)
-		    card_show("sent")
+		    msgAction_button_sent_replay()
 		}
 		"button_sent_print" -> {
 		    // not anymore                sentence_canvas.togglePopup(3);
@@ -2024,105 +1998,16 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    //not anymore
 		}
 		"button_sent_print_print" -> {
-		    sentence_canvas!!.setBusy(true)
-		    val sent_li = story_hm["sentence_list"]
-		    val ss_li = sent_li!!.sentence_list
-		    OmegaContext.story_log.getLogger().info("button_sent_print story_hm 1599 " + story_hm)
-		    OmegaContext.story_log.getLogger().info("button_sent_print sent_li 1599 $sent_li")
-		    OmegaContext.story_log.getLogger().info("button_sent_print ss_li 1599 $ss_li")
-		    printFromDataList(play_data_list_is_last)
-		    sentence_canvas!!.setBusy(false)
-		    sentence_canvas!!.hidePopup(3)
+		    msgAction_button_sent_print_print()
 		}
 		"button_sent_save" -> {
-		    sentence_canvas!!.hidePopup(3)
-		    val sent_li = story_hm["sentence_list"]
-		    val ss_li = sent_li!!.sentence_list
-		    val lname = sent_li.lesson_name
-		    val df: DateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
-		    val d = play_data_list.date
-		    val date = df.format(d)
-		    val ord = play_data_list.nextOrd()
-		    if (register == null) { // null after windows resize
-			register = RegisterProxy(currentPupil)
-		    }
-		    val dir = register!!.rl.getDirPath(currentPupil.name)
-		    val fname = (currentPupil.name + '-'
-			    + lname + '-'
-			    + date + '-'
-			    + ord)
-		    val fullname = "$dir$fname.omega_story_text"
-		    val fullname_2 = "$dir$fname.omega_story_replay"
-		    try {
-			PrintWriter(FileWriter(File(fullname))).use { pw ->
-			    ss_li!!.forEach { sent -> pw.println(sent) }
-			}
-			ObjectOutputStream(FileOutputStream(fullname_2)).use { oo ->
-			    oo.writeObject(sent_li)
-			    oo.writeObject(play_data_list.arr)
-			    oo.writeObject(play_data_list_is_last.arr)
-			}
-			global_skipF(true)
-			JOptionPane.showMessageDialog(ApplContext.top_frame, t("Saved in file") + ' ' + fullname)
-			global_skipF(false)
-		    } catch (ex: Exception) {
-			ex.printStackTrace()
-			global_skipF(true)
-			JOptionPane.showMessageDialog(
-			    ApplContext.top_frame,
-			    t("File") + ' ' + fullname + ' ' + t("not saved") + '.'
-			)
-			global_skipF(false)
-			OmegaContext.sout_log.getLogger().info(":--: $ex")
-		    }
+		    msgAction_button_sent_save()
 		}
 		"button_sent_select" -> {
-		    sentence_canvas!!.hidePopup(3)
-		    sentence_canvas!!.setBusy(true)
-		    try {
-			//		    global_skipF(true);
-			try {
-			    if (register == null) {
-				register = RegisterProxy(currentPupil)
-			    }
-			    val dir = register!!.rl.getDirPath(currentPupil.name)
-			    lesson_log.getLogger().info("get it from $dir")
-			    val dir_file = File(dir)
-			    val files = dir_file.list { dir, name ->
-				name.endsWith(".omega_story_replay")
-			    }
-			    if (files.size > 0) {
-				sentence_canvas!!.showMsg(null)
-				sentence_canvas!!.enableStoryList(true)
-				sentence_canvas!!.setListData(files)
-				val filename = sentence_canvas!!.waitDone()
-				val file = File("$dir/$filename")
-				lesson_log.getLogger().info("story reply file is $file")
-				ObjectInputStream(FileInputStream(file)).use { `in` ->
-				    val sent_li = `in`.readObject() as SentenceList
-				    story_hm["sentence_list"] = sent_li
-				    play_data_list.arr = `in`.readObject() as ArrayList<PlayData>
-				    play_data_list_is_last.arr = `in`.readObject() as ArrayList<PlayData>
-				}
-			    } else {
-				global_skipF(true)
-				JOptionPane.showMessageDialog(
-				    ApplContext.top_frame,
-				    t("Can't find any saved story")
-				)
-				global_skipF(false)
-			    }
-			} catch (ex: Exception) {
-			    OmegaContext.sout_log.getLogger().info("ERR: $ex")
-			}
-		    } finally {
-			global_skipF(false)
-			sentence_canvas!!.enableStoryList(false)
-			sentence_canvas!!.setBusy(false)
-		    }
+		    msgAction_button_sent_select()
 		}
 		"test_dialog" -> {
-		    testDialog()
+		    msgAction_test_dialog()
 		}
 		"exitLesson" -> {
 		    return
@@ -2140,6 +2025,145 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    OmegaContext.serr_log.getLogger().info(" -----------> done ${mI.id}")
 	}
+    }
+
+    private fun msgAction_button_sent_select() {
+	sentence_canvas!!.hidePopup(3)
+	sentence_canvas!!.setBusy(true)
+	try {
+	    //		    global_skipF(true);
+	    try {
+		if (register == null) {
+		    register = RegisterProxy(currentPupil)
+		}
+		val dir = register!!.rl.getDirPath(currentPupil.name)
+		lesson_log.getLogger().info("get it from $dir")
+		val dir_file = File(dir)
+		val files = dir_file.list { dir, name ->
+		    name.endsWith(".omega_story_replay")
+		}
+		if (files.size > 0) {
+		    sentence_canvas!!.showMsg(null)
+		    sentence_canvas!!.enableStoryList(true)
+		    sentence_canvas!!.setListData(files)
+		    val filename = sentence_canvas!!.waitDone()
+		    val file = File("$dir/$filename")
+		    lesson_log.getLogger().info("story reply file is $file")
+		    ObjectInputStream(FileInputStream(file)).use { `in` ->
+			val sent_li = `in`.readObject() as SentenceList
+			story_hm["sentence_list"] = sent_li
+			play_data_list.arr = `in`.readObject() as ArrayList<PlayData>
+			play_data_list_is_last.arr = `in`.readObject() as ArrayList<PlayData>
+		    }
+		} else {
+		    global_skipF(true)
+		    JOptionPane.showMessageDialog(
+			ApplContext.top_frame,
+			t("Can't find any saved story")
+		    )
+		    global_skipF(false)
+		}
+	    } catch (ex: Exception) {
+		OmegaContext.sout_log.getLogger().info("ERR: $ex")
+	    }
+	} finally {
+	    global_skipF(false)
+	    sentence_canvas!!.enableStoryList(false)
+	    sentence_canvas!!.setBusy(false)
+	}
+    }
+
+    private fun msgAction_button_sent_save() {
+	sentence_canvas!!.hidePopup(3)
+	val sent_li = story_hm["sentence_list"]
+	val ss_li = sent_li!!.sentence_list
+	val lname = sent_li.lesson_name
+	val df: DateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
+	val d = play_data_list.date
+	val date = df.format(d)
+	val ord = play_data_list.nextOrd()
+	if (register == null) { // null after windows resize
+	    register = RegisterProxy(currentPupil)
+	}
+	val dir = register!!.rl.getDirPath(currentPupil.name)
+	val fname = (currentPupil.name + '-'
+		+ lname + '-'
+		+ date + '-'
+		+ ord)
+	val fullname = "$dir$fname.omega_story_text"
+	val fullname_2 = "$dir$fname.omega_story_replay"
+	try {
+	    PrintWriter(FileWriter(File(fullname))).use { pw ->
+		ss_li!!.forEach { sent -> pw.println(sent) }
+	    }
+	    ObjectOutputStream(FileOutputStream(fullname_2)).use { oo ->
+		oo.writeObject(sent_li)
+		oo.writeObject(play_data_list.arr)
+		oo.writeObject(play_data_list_is_last.arr)
+	    }
+	    global_skipF(true)
+	    JOptionPane.showMessageDialog(ApplContext.top_frame, t("Saved in file") + ' ' + fullname)
+	    global_skipF(false)
+	} catch (ex: Exception) {
+	    ex.printStackTrace()
+	    global_skipF(true)
+	    JOptionPane.showMessageDialog(
+		ApplContext.top_frame,
+		t("File") + ' ' + fullname + ' ' + t("not saved") + '.'
+	    )
+	    global_skipF(false)
+	    OmegaContext.sout_log.getLogger().info(":--: $ex")
+	}
+    }
+
+    private fun msgAction_button_sent_print_print() {
+	sentence_canvas!!.setBusy(true)
+	val sent_li = story_hm["sentence_list"]
+	val ss_li = sent_li!!.sentence_list
+	OmegaContext.story_log.getLogger().info("button_sent_print story_hm 1599 " + story_hm)
+	OmegaContext.story_log.getLogger().info("button_sent_print sent_li 1599 $sent_li")
+	OmegaContext.story_log.getLogger().info("button_sent_print ss_li 1599 $ss_li")
+	printFromDataList(play_data_list_is_last)
+	sentence_canvas!!.setBusy(false)
+	sentence_canvas!!.hidePopup(3)
+    }
+
+    private fun msgAction_button_sent_replay() {
+	sentence_canvas!!.hidePopup(3)
+	if (action == null) {
+	    action = AnimAction()
+	    card_panel!!.add(action!!.canvas, "anim1")
+	}
+	card_show("anim1")
+	hit_key = 0
+	playFromDataList(play_data_list)
+	card_show("sent")
+    }
+
+    private fun msgAction_button_sent_read() {
+	sentence_canvas!!.hidePopup(3)
+	val sent_li = story_hm["sentence_list"]
+	val ss_li = sent_li!!.sentence_list
+	OmegaContext.story_log.getLogger().info("button_sent_read story_hm 1599 " + story_hm)
+	OmegaContext.story_log.getLogger().info("button_sent_read sent_li 1599 $sent_li")
+	OmegaContext.story_log.getLogger().info("button_sent_read ss_li 1599 $ss_li")
+	OmegaContext.story_log.getLogger().info("button_sent_read playdatalist 1599 $play_data_list")
+	sentence_canvas!!.ignorePress(true)
+	sentence_canvas!!.showMsg(null)
+	sentence_canvas!!.showMsg(ss_li)
+	sentence_canvas!!.setStoryData(play_data_list) // strange
+	card_show("sent")
+	listenFromDataList(play_data_list_is_last) //, sentence_canvas.getListenListener());
+	sentence_canvas!!.ignorePress(false)
+    }
+
+    private fun msgAction_button_sent_quit() {
+	sentence_canvas!!.hidePopup(3)
+	play_data_list = PlayDataList()
+	play_data_list_is_last = PlayDataList()
+	sentence_canvas!!.showMsg(null)
+	//		sentence_canvas.setRead(false);
+	card_show("main")
     }
 
     /**
@@ -3277,7 +3301,7 @@ target pos $tg_ix"""
 	return pan
     }
 
-    private fun testDialog() {
+    private fun msgAction_test_dialog() {
 	val choise = arrayOf(
 		"Printer",
 		"Story",
