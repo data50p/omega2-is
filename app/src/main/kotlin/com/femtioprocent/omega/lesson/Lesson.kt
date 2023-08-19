@@ -1981,40 +1981,19 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    card_show("sent")
 		    messageHandler.sendMsg("button_sent_select", "")
 		}
-		"button_sent_quit" -> {
-		    msgAction_button_sent_quit()
-		}
-		"button_sent_read" -> {
-		    msgAction_button_sent_read()
-		}
-		"button_sent_replay" -> {
-		    msgAction_button_sent_replay()
-		}
-		"button_sent_print" -> {
-		    // not anymore                sentence_canvas.togglePopup(3);
-		    messageHandler.sendMsg("button_sent_print_print", "")
-		}
+		"button_sent_quit" -> msgAction_button_sent_quit()
+		"button_sent_read" -> msgAction_button_sent_read()
+		"button_sent_replay" -> msgAction_button_sent_replay()
+		"button_sent_print" -> messageHandler.sendMsg("button_sent_print_print", "")
 		"button_sent_print_select" -> {
 		    //not anymore
 		}
-		"button_sent_print_print" -> {
-		    msgAction_button_sent_print_print()
-		}
-		"button_sent_save" -> {
-		    msgAction_button_sent_save()
-		}
-		"button_sent_select" -> {
-		    msgAction_button_sent_select()
-		}
-		"test_dialog" -> {
-		    msgAction_test_dialog()
-		}
-		"exitLesson" -> {
-		    return
-		}
-		else -> {
-		    lesson_log.getLogger().warning("Unhandled msg: $mI")
-		}
+		"button_sent_print_print" -> msgAction_button_sent_print_print()
+		"button_sent_save" -> msgAction_button_sent_save()
+		"button_sent_select" -> msgAction_button_sent_select()
+		"test_dialog" -> msgAction_test_dialog()
+		"exitLesson" -> return
+		else -> lesson_log.getLogger().warning("Unhandled msg: $mI")
 	    }
 
 	    messageHandler.id_lock.withLock {
