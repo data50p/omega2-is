@@ -1858,7 +1858,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     }
 
 
-    fun execLessonMessageLoop(fn: String?) {
+    private fun execLessonMessageLoop(fn: String?) {
 	val tg = Target(machine)
 	machine.target = tg
 	// APlayer.unloadAll("Box[0-9]*");
@@ -3590,7 +3590,7 @@ target pos $tg_ix"""
 	}
     }
 
-    fun prepareRunLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, winSize: OmegaConfig.WinSize) {
+    fun prepareRunLessons(w: Window?, mpan: JPanel, fn: String?, edit: Boolean, winSize: OmegaConfig.WinSize) : () -> Unit {
 	var winSize = winSize
 	Lesson.edit = edit
 	le_canvas!!.edit = edit
@@ -3836,9 +3836,11 @@ target pos $tg_ix"""
 		}
 	    }
 	}
+
+	return { -> runLessons(fn) }
     }
 
-    fun runLessons(fn: String?) {
+    private fun runLessons(fn: String?) {
 	// fn is null for lesson runtime mode
 	while (true) {
 	    try {

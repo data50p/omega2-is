@@ -8,8 +8,6 @@ import com.femtioprocent.omega.OmegaContext.Companion.omegaAssetsName
 import com.femtioprocent.omega.OmegaContext.Companion.setOmegaAssets
 import com.femtioprocent.omega.anim.appl.AnimEditor
 import com.femtioprocent.omega.anim.appl.EditStateListener
-import com.femtioprocent.omega.appl.LessonEditorAppl
-import com.femtioprocent.omega.appl.OmegaFxAppl
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.appl.LessonEditor
 import com.femtioprocent.omega.lesson.appl.LessonEditor.Companion.setDirty
@@ -21,12 +19,13 @@ import com.femtioprocent.omega.t9n.T.Companion.t
 import com.femtioprocent.omega.util.Files.mkRelativeCWD
 import com.femtioprocent.omega.util.Files.toURL
 import com.femtioprocent.omega.util.Log.getLogger
-import com.femtioprocent.omega.util.SundryUtils
 import com.femtioprocent.omega.value.Value
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.value.ValuesListener
-import javafx.application.Platform
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.awt.Color
 import java.awt.GridBagLayout
 import java.awt.event.ActionEvent
@@ -182,156 +181,143 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 
     inner class myActionListener : ActionListener {
 	override fun actionPerformed(ev: ActionEvent) {
-	    val s = ev.actionCommand
-	    if (s == "tg_prop") {
-		popupTargetProp()
-	    }
-	    //  	    if ( s.equals("tst_prop") ) {
+	    when(ev.actionCommand) {
+		"tg_prop" -> { popupTargetProp() }
+		    //  	    if ( s.equals("tst_prop") ) {
 //  		popupTestProp();
 //  	    }
-	    if (s == "snt_prop") {
-		popupSentenceProp()
-	    }
-	    if (s == "itm_prop") {
-		popupItemProp()
-	    }
-	    if (s == "redraw") {
-		autoPlayNext.reset()
-		le_canvas.reCreateBoxesKeep()
-	    }
-	    if (s == "play") {
-		le_canvas.l_ctxt.lesson.messageHandler.sendMsg("play&return", null)
-	    }
-	    if (s == "playAll") {
-		val target = le_canvas.target
-		try {
-		    if (autoPlayNext.firstTime()) {
-			val tg2 = Target()
-			val story_hm = Lesson.story_hm
-			tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
-			val sa = tg2.getAllTargetCombinations(" ")
-			autoPlayNext.start(sa)
-		    } else {
-			if (autoPlayNext.done()) {
-			    autoPlayNext.reset()
-			    return
-			}
-			val sentence =
-			    if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
-			val tg2 = Target()
-			val story_hm = Lesson.story_hm
-			tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
-			val allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(
-			    sentence!!
-			)
-			var ixTg = 0
-			for (ixArr in allTargetCombinationsIndexes) {
-			    OmegaContext.sout_log.getLogger()
-				.info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
-			    le_canvas.l_ctxt.lesson.l_ctxt.target!!.pickItemAt(ixArr[1], ixArr[2], ixTg)
-			    ixTg++
-			}
-			le_canvas.reCreateBoxesKeep()
+		"snt_prop" -> { popupSentenceProp() }
+		"itm_prop" -> { popupItemProp() }
+		"redraw" -> {
+		    autoPlayNext.reset()
+		    le_canvas.reCreateBoxesKeep()
+		}
+		"play" -> { le_canvas.l_ctxt.lesson.messageHandler.sendMsg("play&return", null) }
+		"playAll" -> {
+		    val target = le_canvas.target
+		    try {
+			if (autoPlayNext.firstTime()) {
+			    val tg2 = Target()
+			    val story_hm = Lesson.story_hm
+			    tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
+			    val sa = tg2.getAllTargetCombinations(" ")
+			    autoPlayNext.start(sa)
+			} else {
+			    if (autoPlayNext.done()) {
+				autoPlayNext.reset()
+				return
+			    }
+			    val sentence =
+				if (ev.modifiers and ActionEvent.CTRL_MASK == 0) autoPlayNext.nextSentence() else autoPlayNext.prevSentence()
+			    val tg2 = Target()
+			    val story_hm = Lesson.story_hm
+			    tg2.loadFromEl(le_canvas.l_ctxt.lesson.element, "", story_hm, false, false) // FIX nomix?
+			    val allTargetCombinationsIndexes = tg2.getAllTargetCombinationsIndexes(
+				sentence!!
+			    )
+			    var ixTg = 0
+			    for (ixArr in allTargetCombinationsIndexes) {
+				OmegaContext.sout_log.getLogger()
+				    .info("Sentence: " + sentence + ' ' + Arrays.toString(ixArr))
+				le_canvas.l_ctxt.lesson.l_ctxt.target!!.pickItemAt(ixArr[1], ixArr[2], ixTg)
+				ixTg++
+			    }
+			    le_canvas.reCreateBoxesKeep()
 
-			suspend fun doMyWork() = coroutineScope {
-			    launch {
-				delay(1700L)
-				System.err.println("Im on 1700 " + Thread.currentThread())
-				if (ev.modifiers and ActionEvent.SHIFT_MASK == 0) {
-				    le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playAll", null)
+			    suspend fun doMyWork() = coroutineScope {
+				launch {
+				    delay(1700L)
+				    System.err.println("Im on 1700 " + Thread.currentThread())
+				    if (ev.modifiers and ActionEvent.SHIFT_MASK == 0) {
+					le_canvas.l_ctxt.lesson.messageHandler.sendMsg("playAll", null)
+				    }
 				}
 			    }
+			    GlobalScope.launch {
+				System.err.println("Im on " + Thread.currentThread())
+				doMyWork()
+			    }
 			}
-			GlobalScope.launch {
-			    System.err.println("Im on " + Thread.currentThread())
-			    doMyWork()
-			}
+		    } catch (ex: Exception) {
+			ex.printStackTrace()
 		    }
-		} catch (ex: Exception) {
-		    ex.printStackTrace()
 		}
-	    }
-	    if (s == "playSign") {
-		playSign()
-	    }
-	    if (s == "listen") {
-		le_canvas.l_ctxt.lesson.messageHandler.sendMsg("listen", null)
-	    }
-	    if (s == "editanim") {
-		val fn = le_canvas.l_ctxt.target!!.getActionFileName(0) // main default, first
-		getLogger().info(":--: MANY? $fn")
-		if (fn == null || fn.length == 0) {
-		    JOptionPane.showMessageDialog(
+		"playSign" -> { playSign() }
+		"listen" -> { le_canvas.l_ctxt.lesson.messageHandler.sendMsg("listen", null) }
+		"editanim" -> {
+		    val fn = le_canvas.l_ctxt.target!!.getActionFileName(0) // main default, first
+		    getLogger().info(":--: MANY? $fn")
+		    if (fn == null || fn.length == 0) {
+			JOptionPane.showMessageDialog(
 			    LessonEditor.TOP_JFRAME,  //le_canvas.l_ctxt.top_frame,
 			    t("Can't find lesson file: ") +
 				    fn
-		    )
-		} else {
-		    if (anim_editor == null) {
-			anim_editor = AnimEditor(fn)
-			anim_editor!!.addEditStateListener(object : EditStateListener {
-			    override fun dirtyChanged(is_dirty: Boolean) {
-				if (is_dirty) {
-				    editanim!!.foreground = Color.red
-				} else {
-				    editanim!!.foreground = Color.black
-				}
-			    }
-			})
+			)
 		    } else {
-			anim_editor!!.isVisible = true
-			anim_editor!!.loadFile(fn)
+			if (anim_editor == null) {
+			    anim_editor = AnimEditor(fn)
+			    anim_editor!!.addEditStateListener(object : EditStateListener {
+				override fun dirtyChanged(is_dirty: Boolean) {
+				    if (is_dirty) {
+					editanim!!.foreground = Color.red
+				    } else {
+					editanim!!.foreground = Color.black
+				    }
+				}
+			    })
+			} else {
+			    anim_editor!!.isVisible = true
+			    anim_editor!!.loadFile(fn)
+			}
 		    }
 		}
-	    }
-	    if (s == "enableLLN") {
-		val b = enable_LLN.isSelected
-		lesson_link_next.isEnabled = b
-		first_LLN.isEnabled = b
-	    }
-	    if (s == "getFiles_LLN") {
-		val choose_af = ChooseLessonFile(1)
-		val rv = choose_af.showDialog(this@LessonEditorPanel, t("Select"))
-		if (rv == JFileChooser.APPROVE_OPTION) {
-		    try {
-			val file = choose_af.selectedFile
-			var fname_s = file.name
-			//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
+		"enableLLN" -> {
+		    val b = enable_LLN.isSelected
+		    lesson_link_next.isEnabled = b
+		    first_LLN.isEnabled = b
+		}
+		"getFiles_LLN" -> {
+		    val choose_af = ChooseLessonFile(1)
+		    val rv = choose_af.showDialog(this@LessonEditorPanel, t("Select"))
+		    if (rv == JFileChooser.APPROVE_OPTION) {
+			try {
+			    val file = choose_af.selectedFile
+			    var fname_s = file.name
+			    //log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
 //                        fname_s = file.toURI().toURL().toString(); // getCanonicalPath();
-			fname_s = toURL(file)
-			//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
-			var fn = mkRelativeCWD(fname_s)
-			fn = antiOmegaAssets(fn)
-			//log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fn);
-			lesson_link_next.text = fn
-			enable_LLN.isSelected = true
-			lesson_link_next.isEnabled = true
-			//			LessonEditor.setDirty();
-		    } catch (ex: Exception) {
-			getLogger().info("ERR: can't $ex")
+			    fname_s = toURL(file)
+			    //log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fname_s);
+			    var fn = mkRelativeCWD(fname_s)
+			    fn = antiOmegaAssets(fn)
+			    //log			OmegaContext.sout_log.getLogger().info(":--: " + "--> " + fn);
+			    lesson_link_next.text = fn
+			    enable_LLN.isSelected = true
+			    lesson_link_next.isEnabled = true
+			    //			LessonEditor.setDirty();
+			} catch (ex: Exception) {
+			    getLogger().info("ERR: can't $ex")
+			}
 		    }
 		}
-	    }
-	    if (s == "getOmegaAssetsDependenciec") {
-		popupOmegaAssetsProp()
-	    }
-	    if (s == "setassets") {
-		val old = UIManager.getBoolean("FileChooser.readOnly")
-		val chooseOmegaAssetsDir = ChooseOmegaAssetsDir()
-		UIManager.put("FileChooser.readOnly", old)
-		var url_s: String? = null
-		val rv = chooseOmegaAssetsDir.showDialog(null, t("Select"))
-		if (rv == JFileChooser.APPROVE_OPTION) {
-		    val file = chooseOmegaAssetsDir.selectedFile
-		    try {
-			url_s = toURL(file.canonicalFile)
-			url_s = url_s!!.replace("/$".toRegex(), "")
-			url_s = rmDuplicate(url_s)
-			val oa = mkRelativeCWD(url_s)
-			OmegaContext.serr_log.getLogger().info("setOmegaAssets: $url_s")
-			setOmegaAssets(oa)
-			omega_assets_name!!.text = omegaAssetsName()
-		    } catch (e: IOException) {
+		"getOmegaAssetsDependenciec" -> { popupOmegaAssetsProp() }
+		"setassets" -> {
+		    val old = UIManager.getBoolean("FileChooser.readOnly")
+		    val chooseOmegaAssetsDir = ChooseOmegaAssetsDir()
+		    UIManager.put("FileChooser.readOnly", old)
+		    var url_s: String? = null
+		    val rv = chooseOmegaAssetsDir.showDialog(null, t("Select"))
+		    if (rv == JFileChooser.APPROVE_OPTION) {
+			val file = chooseOmegaAssetsDir.selectedFile
+			try {
+			    url_s = toURL(file.canonicalFile)
+			    url_s = url_s!!.replace("/$".toRegex(), "")
+			    url_s = rmDuplicate(url_s)
+			    val oa = mkRelativeCWD(url_s)
+			    OmegaContext.serr_log.getLogger().info("setOmegaAssets: $url_s")
+			    setOmegaAssets(oa)
+			    omega_assets_name!!.text = omegaAssetsName()
+			} catch (e: IOException) {
+			}
 		    }
 		}
 	    }

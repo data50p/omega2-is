@@ -27,8 +27,7 @@ class LessonRuntime(title: String?, fn: String?, winSize: OmegaConfig.WinSize, r
 		fn,
 		false,
 		winSize
-	)
-    	le.runLessons(fn)// // // This never return, and called only once
+	)()
     }
 
     private fun maybeClose() {

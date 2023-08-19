@@ -132,7 +132,7 @@ class Item {
     // {nn} where nn is digit -> unicode
     // {-2} {+2:abc} -> variable subst
     // {lesson_name.path_lid.part:def} story chaining
-    protected fun krull(s: String): String {
+    private fun krull(s: String): String {
 	try {
 	    val ix = s.indexOf('{')
 	    if (ix == -1 || ix + 1 >= s.length) return s
