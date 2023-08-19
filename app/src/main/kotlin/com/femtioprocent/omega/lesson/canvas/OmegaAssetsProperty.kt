@@ -180,9 +180,14 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 
     private fun scanOmegaLessons(file: File, list: MutableList<File>) {
 	val files = file.listFiles()
-	for (f in files) {
-	    if (f.isDirectory) scanOmegaLessons(f, list)
-	    if (f.name.endsWith(".omega_lesson")) list.add(f)
+	if ( files == null )
+	{
+	    OmegaContext.serr_log.getLogger().warning("Files is null: $file")
+	} else {
+	    for (f in files) {
+		if (f.isDirectory) scanOmegaLessons(f, list)
+		if (f.name.endsWith(".omega_lesson")) list.add(f)
+	    }
 	}
     }
 

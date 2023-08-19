@@ -157,8 +157,18 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
     class MessageItem(var msg: String, var arg: Any?, var id: String) {
 	val msg_time = ct()
 
+	fun deltaTimeAndUpdate() : Long {
+	    val d = msg_time - last_msg_time
+	    last_msg_time = msg_time
+	    return d
+	}
+
 	override fun toString() : String {
 	    return "MessageItem{$msg.$arg,$id}"
+	}
+
+	companion object {
+	    var last_msg_time: Long = ct()
 	}
     }
 
@@ -166,7 +176,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	var messageItemQueue: MutableList<MessageItem> = ArrayList()
 	val q_lock = ReentrantLock()
 	val q_condition = q_lock.newCondition()
-	var id = arrayOf("")
+	var msgId = "!"
 	val id_lock = ReentrantLock()
 	val id_condition = id_lock.newCondition()
 
@@ -197,9 +207,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    sendMsg(messageItem)
 	}
 
-	fun sendMsgWait(msg: String, arg: Any?, id: String = "") {
-	    this.id[0] = "" + System.nanoTime()
-	    sendMsg(msg, arg, this.id[0])
+	fun sendMsgWait(msg: String, arg: Any?) {
+	    msgId = "" + System.nanoTime()
+	    sendMsg(msg, arg, msgId)
 
 	    id_lock.withLock {
 		try {
@@ -1107,7 +1117,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	    if (msg.startsWith("button sent:")) {
 		val submsg = msg.substring(12)
-		messageHandler.sendMsg("sent_$submsg", null, "button")
+		messageHandler.sendMsg("button_sent_$submsg", null, "button")
 	    }
 	    if (msg.startsWith("button pupil:")) {
 		val submsg = msg.substring(13)
@@ -1847,7 +1857,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	return false
     }
 
-    private var last_msg_time = ct()
+
     fun execLessonMessageLoop(fn: String?) {
 	val tg = Target(machine)
 	machine.target = tg
@@ -1864,23 +1874,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    messageHandler.sendMsg("load", fn, "execLesson")
 	}
 	var test_index: Set<Array<IntArray>>? = null
-	var last_id = "!"
-
 
 	loop@
 	while (true) {
-	    messageHandler.id_lock.withLock {
-		if (last_id == messageHandler.id[0])
-		    messageHandler.id_condition.signal()
-	    }
-	    OmegaContext.serr_log.getLogger().info(" -----------> done $last_id")
-
-
 	    val mI = messageHandler.nextMessageItem()
+	    val msgDeltaTime = mI.deltaTimeAndUpdate()
 
-	    val delta = mI.msg_time - last_msg_time
-	    last_msg_time = mI.msg_time
-	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% <- $mI")
+	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% dt=$msgDeltaTime <- $mI")
 
 	    when (mI.msg) {
 		"load" -> {
@@ -1979,9 +1979,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    sentence_canvas!!.showMsg(null)
 		    sentence_canvas!!.setRead(true)
 		    card_show("sent")
-		    messageHandler.sendMsg("sent_select", "")
+		    messageHandler.sendMsg("button_sent_select", "")
 		}
-		"sent_quit" -> {
+		"button_sent_quit" -> {
 		    sentence_canvas!!.hidePopup(3)
 		    play_data_list = PlayDataList()
 		    play_data_list_is_last = PlayDataList()
@@ -1989,14 +1989,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    //		sentence_canvas.setRead(false);
 		    card_show("main")
 		}
-		"sent_read" -> {
+		"button_sent_read" -> {
 		    sentence_canvas!!.hidePopup(3)
 		    val sent_li = story_hm["sentence_list"]
 		    val ss_li = sent_li!!.sentence_list
-		    OmegaContext.story_log.getLogger().info("sent_read story_hm 1599 " + story_hm)
-		    OmegaContext.story_log.getLogger().info("sent_read sent_li 1599 $sent_li")
-		    OmegaContext.story_log.getLogger().info("sent_read ss_li 1599 $ss_li")
-		    OmegaContext.story_log.getLogger().info("sent_read playdatalist 1599 $play_data_list")
+		    OmegaContext.story_log.getLogger().info("button_sent_read story_hm 1599 " + story_hm)
+		    OmegaContext.story_log.getLogger().info("button_sent_read sent_li 1599 $sent_li")
+		    OmegaContext.story_log.getLogger().info("button_sent_read ss_li 1599 $ss_li")
+		    OmegaContext.story_log.getLogger().info("button_sent_read playdatalist 1599 $play_data_list")
 		    sentence_canvas!!.ignorePress(true)
 		    sentence_canvas!!.showMsg(null)
 		    sentence_canvas!!.showMsg(ss_li)
@@ -2005,7 +2005,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    listenFromDataList(play_data_list_is_last) //, sentence_canvas.getListenListener());
 		    sentence_canvas!!.ignorePress(false)
 		}
-		"sent_replay" -> {
+		"button_sent_replay" -> {
 		    sentence_canvas!!.hidePopup(3)
 		    if (action == null) {
 			action = AnimAction()
@@ -2016,25 +2016,25 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    playFromDataList(play_data_list)
 		    card_show("sent")
 		}
-		"sent_print" -> {
+		"button_sent_print" -> {
 		    // not anymore                sentence_canvas.togglePopup(3);
-		    messageHandler.sendMsg("sent_print_print", "")
+		    messageHandler.sendMsg("button_sent_print_print", "")
 		}
-		"sent_print_select" -> {
+		"button_sent_print_select" -> {
 		    //not anymore
 		}
-		"sent_print_print" -> {
+		"button_sent_print_print" -> {
 		    sentence_canvas!!.setBusy(true)
 		    val sent_li = story_hm["sentence_list"]
 		    val ss_li = sent_li!!.sentence_list
-		    OmegaContext.story_log.getLogger().info("sent_print story_hm 1599 " + story_hm)
-		    OmegaContext.story_log.getLogger().info("sent_print sent_li 1599 $sent_li")
-		    OmegaContext.story_log.getLogger().info("sent_print ss_li 1599 $ss_li")
+		    OmegaContext.story_log.getLogger().info("button_sent_print story_hm 1599 " + story_hm)
+		    OmegaContext.story_log.getLogger().info("button_sent_print sent_li 1599 $sent_li")
+		    OmegaContext.story_log.getLogger().info("button_sent_print ss_li 1599 $ss_li")
 		    printFromDataList(play_data_list_is_last)
 		    sentence_canvas!!.setBusy(false)
 		    sentence_canvas!!.hidePopup(3)
 		}
-		"sent_save" -> {
+		"button_sent_save" -> {
 		    sentence_canvas!!.hidePopup(3)
 		    val sent_li = story_hm["sentence_list"]
 		    val ss_li = sent_li!!.sentence_list
@@ -2076,7 +2076,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 			OmegaContext.sout_log.getLogger().info(":--: $ex")
 		    }
 		}
-		"sent_select" -> {
+		"button_sent_select" -> {
 		    sentence_canvas!!.hidePopup(3)
 		    sentence_canvas!!.setBusy(true)
 		    try {
@@ -2131,7 +2131,14 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    lesson_log.getLogger().warning("Unhandled msg: $mI")
 		}
 	    }
-	    last_id = mI.id
+
+	    messageHandler.id_lock.withLock {
+		if (mI.id == messageHandler.msgId) {
+		    messageHandler.id_condition.signal()
+		    OmegaContext.serr_log.getLogger().info(" signal msg done: $mI")
+		}
+	    }
+	    OmegaContext.serr_log.getLogger().info(" -----------> done ${mI.id}")
 	}
     }
 
@@ -3101,7 +3108,7 @@ target pos $tg_ix"""
 			if (tg.storyNext == null) {
 			    if (ss_li!!.size <= 1) {
 				story_hm["sentence_list"] = SentenceList()
-				OmegaContext.story_log.getLogger().info("new sent_list 2214 $ss_li")
+				OmegaContext.story_log.getLogger().info("new button_sent_list 2214 $ss_li")
 			    } else {
 				OmegaContext.story_log.getLogger().info("Lst in story  2214 $ss_li")
 				last_story_flag = true
