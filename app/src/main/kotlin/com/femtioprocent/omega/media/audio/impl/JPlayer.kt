@@ -153,17 +153,20 @@ class JPlayer(fn: String) : LineListener {
     override fun update(le: LineEvent) {
 	tlock.withLock {
 	    val t = le.type
-	    if (t === LineEvent.Type.OPEN) {
-		opened = true
-		s_pe("+open+")
-	    } else if (t === LineEvent.Type.START) {
-		started = true
-		s_pe("+start+")
-	    } else if (t === LineEvent.Type.CLOSE) {
-		eom = true
-		s_pe("+close+")
-	    } else if (t === LineEvent.Type.STOP) {
-		s_pe("+stop+")
+	    when (t) {
+		LineEvent.Type.OPEN -> {
+		    opened = true
+		    s_pe("+open+")
+		}
+		LineEvent.Type.START -> {
+		    started = true
+		    s_pe("+start+")
+		}
+		LineEvent.Type.CLOSE -> {
+		    eom = true
+		    s_pe("+close+")
+		}
+		LineEvent.Type.STOP -> s_pe("+stop+")
 	    }
 	    tcondition.signalAll()
 	    s_pe("signalAll()")

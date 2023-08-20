@@ -103,44 +103,35 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 	    val it_iy = active_item_iy
 	    val itm = le_canvas.target!!.getItemAt(it_ix, it_iy) ?: return
 	    val is_action = itm.it_ent!!.type == "action"
-	    if (v!!.id == "text") {
-		itm.setText_Krull(v.str!!)
-	    } else if (v.id == "tts") {
-		itm.setTTS_Krull(v.str!!)
-	    } else if (v.id == "dummytext") {
-		itm.setDummyText_Krull(v.str, true)
-	    } else if (v.id == "tid") {
-		itm.it_ent!!.tid = v.str
-	    } else if (v.id == "v1") {
-		itm.setVar(1, v.str)
-	    } else if (v.id == "v2") {
-		itm.setVar(2, v.str)
-	    } else if (v.id == "v3") {
-		itm.setVar(3, v.str)
-	    } else if (v.id == "v4") {
-		itm.setVar(4, v.str)
-	    } else if (v.id == "v5") {
-		itm.setVar(5, v.str)
-	    } else if (v.id == "lid") {
-		itm.setLid_Krull(v.str!!)
-	    } else if (v.id == "sound") {
-		itm.setSound_Krull(v.str!!)
-	    } else if (v.id == "sign") {
-		itm.setSign_Krull(v.str!!)
-	    } else if (v.id == "dummysound") {
-		itm.setDummySound_Krull(v.str, true)
-	    } else if (v.id == "dummysign") {
-		itm.setDummySign_Krull(v.str, true)
-	    } else if (v.id == "fname") {
-		getLogger().info(":--: " + "FNAME " + itm.it_ent!!.type)
-		if (true || itm.it_ent!!.type == "action") { // isAction ) {
-		    itm.setAction_Fname(v.str, "omega_anim")
+
+	    when (v!!.id) {
+		"text" -> itm.setText_Krull(v.str!!)
+		"tts" -> itm.setTTS_Krull(v.str!!)
+		"dummytext" -> itm.setDummyText_Krull(v.str, true)
+		"tid" -> itm.it_ent!!.tid = v.str
+		"v1" -> itm.setVar(1, v.str)
+		"v2" -> itm.setVar(2, v.str)
+		"v3" -> itm.setVar(3, v.str)
+		"v4" -> itm.setVar(4, v.str)
+		"v5" -> itm.setVar(5, v.str)
+		"lid" -> itm.setLid_Krull(v.str!!)
+		"sound" -> itm.setSound_Krull(v.str!!)
+		"sign" -> itm.setSign_Krull(v.str!!)
+		"dummysound" -> itm.setDummySound_Krull(v.str, true)
+		"dummysign" -> itm.setDummySign_Krull(v.str, true)
+		"fname" -> {
+		    getLogger().info(":--: " + "FNAME " + itm.it_ent!!.type)
+		    if (true || itm.it_ent!!.type == "action") { // isAction ) {
+			itm.setAction_Fname(v.str, "omega_anim")
+		    }
 		}
-	    } else if (v.id == "ftype") {
-		if (itm.isAction) {
-		    itm.action_type = v.str
+		"ftype" -> {
+		    if (itm.isAction) {
+			itm.action_type = v.str
+		    }
 		}
 	    }
+
 	    le_canvas.repaint(itm)
 	}
     }

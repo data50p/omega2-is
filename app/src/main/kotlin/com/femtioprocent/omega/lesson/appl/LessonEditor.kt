@@ -38,76 +38,76 @@ $this"""
 
     var ae_texec = ToolExecute { cmd ->
 	if (OmegaConfig.T) Log.getLogger().info(":--: LessonEditor.texec: execute $cmd")
-	if ("exit" == cmd) {
-	    val sel = JOptionPane.showConfirmDialog(
+
+	when(cmd) {
+	    "exit" -> {
+		val sel = JOptionPane.showConfirmDialog(
 		    this@LessonEditor,
 		    t("Are you sure to exit Omega?") +
 			    if (is_dirty) """
  	
- 	${t("Changes are unsaved!")}
- 	""".trimIndent() else ""
-	    )
-	    if (sel == 0) {
-		le!!.messageHandler.sendMsg("exitLesson", "")
-		globalExit2 = true //System.exit(0);
-		isVisible = false
-		maybeClose()
+ 	                    ${t("Changes are unsaved!")}
+ 	            """.trimIndent() else ""
+		)
+		if (sel == 0) {
+		    le!!.messageHandler.sendMsg("exitLesson", "")
+		    globalExit2 = true //System.exit(0);
+		    isVisible = false
+		    maybeClose()
+		}
 	    }
-	} else if ("new" == cmd) {
-	    var do_open = false
-	    if (is_dirty) {
-		val sel = JOptionPane.showConfirmDialog(
+	    "new" -> {
+		var do_open = false
+		if (is_dirty) {
+		    val sel = JOptionPane.showConfirmDialog(
 			this@LessonEditor,
 			"""
 		     	${t("Are you sure to open?")}
 		     	${t("Changes are unsaved!")}
 		     	""".trimIndent()
-		)
-		if (sel == 0) do_open = true
-	    } else do_open = true
-	    if (do_open) {
-		le!!.mact_New()
+		    )
+		    if (sel == 0) do_open = true
+		} else do_open = true
+		if (do_open) {
+		    le!!.mact_New()
+		    unsetDirty()
+		}
+	    }
+	    "save" -> {
+		le!!.mact_Save()
 		unsetDirty()
 	    }
-	} else if ("save" == cmd) {
-	    le!!.mact_Save()
-	    unsetDirty()
-	} else if ("saveas" == cmd) {
-	    le!!.mact_SaveAs()
-	    unsetDirty()
-	} else if ("open" == cmd) {
-	    var do_open = false
-	    if (is_dirty) {
-		val sel = JOptionPane.showConfirmDialog(
+	    "saveas" -> {
+		le!!.mact_SaveAs()
+		unsetDirty()
+	    }
+	    "open" -> {
+		var do_open = false
+		if (is_dirty) {
+		    val sel = JOptionPane.showConfirmDialog(
 			this@LessonEditor,
 			"""
 		     	${t("Are you sure to open?")}
 		     	${t("Changes are unsaved!")}
 		     	""".trimIndent()
-		)
-		if (sel == 0) do_open = true
-	    } else do_open = true
-	    if (do_open) {
-		le!!.mact_Open()
-		unsetDirty()
+		    )
+		    if (sel == 0) do_open = true
+		} else do_open = true
+		if (do_open) {
+		    le!!.mact_Open()
+		    unsetDirty()
+		}
 	    }
-	} else if ("save_color_main" == cmd) {
-	    le!!.displayColor("main")
-	} else if ("save_color_pupil" == cmd) {
-	    le!!.displayColor("pupil")
-	} else if ("save_color_words" == cmd) {
-	    le!!.displayColor("words")
-	} else if ("save_colors_theme" == cmd) {
-	    le!!.saveColor()
-	} else if ("manualLE" == cmd) {
-	    help!!.showManualL(null)
-	} else if ("manualAE" == cmd) {
-	    help!!.showManualA()
-	} else if ("about" == cmd) {
-	    help!!.showAbout()
-	} else if ("aboutLE" == cmd) {
-	    help!!.showAboutLE()
-	} else if ("show manual" == cmd) {
+	    "save_color_main" -> le!!.displayColor("main")
+	    "save_color_pupil" -> le!!.displayColor("pupil")
+	    "save_color_words" -> le!!.displayColor("words")
+	    "save_colors_theme" -> le!!.saveColor()
+	    "manualLE" -> help!!.showManualL(null)
+	    "manualAE" -> help!!.showManualA()
+	    "about" -> help!!.showAbout()
+	    "aboutLE" -> help!!.showAboutLE()
+	    "show manual" -> {
+	    }
 	}
     }
 

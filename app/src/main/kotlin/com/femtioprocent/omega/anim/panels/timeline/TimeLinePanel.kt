@@ -101,28 +101,33 @@ class TimeLinePanel(val mtl: MasterTimeLine) : JPanel() {
 			    if (dx != 0) {
 				val tm = tl.selectedTimeMarker
 				if (tmp != null) tmp!!.setObject(tm)
-				if (tm!!.type == TimeMarker.END) {
-				    playEnd = e.x * scale
-				    if (playEnd < tick_start) playEnd = tick_start
-				    mtl.updateEndMarkers(playEnd)
-				    AnimContext.ae!!.isDirty = true
-				    repaint()
-				} else if (tm.type == TimeMarker.BEGIN) {
-				    if (false) {
-					tick_start = (e.x - TLOFF) * scale
-					if (tick_start < 0) tick_start = 0
-					if (tick_start > playEnd) tick_start = playEnd
-					mtl.updateBeginMarkers(tick_start)
+				when (tm!!.type) {
+				    TimeMarker.END -> {
+					playEnd = e.x * scale
+					if (playEnd < tick_start) playEnd = tick_start
+					mtl.updateEndMarkers(playEnd)
 					AnimContext.ae!!.isDirty = true
 					repaint()
 				    }
-				} else if (tm.type == TimeMarker.STOP) {
-				    tl.adjustSomeTimeMarkerRelative(dx.toDouble() / (tm.`when` - tl.offset))
-				    tl.moveSelectedTimeMarker(dx, grid)
-				    AnimContext.ae!!.isDirty = true
-				} else {
-				    tl.moveSelectedTimeMarker(dx, grid)
-				    AnimContext.ae!!.isDirty = true
+				    TimeMarker.BEGIN -> {
+					if (false) {
+					    tick_start = (e.x - TLOFF) * scale
+					    if (tick_start < 0) tick_start = 0
+					    if (tick_start > playEnd) tick_start = playEnd
+					    mtl.updateBeginMarkers(tick_start)
+					    AnimContext.ae!!.isDirty = true
+					    repaint()
+					}
+				    }
+				    TimeMarker.STOP -> {
+					tl.adjustSomeTimeMarkerRelative(dx.toDouble() / (tm.`when` - tl.offset))
+					tl.moveSelectedTimeMarker(dx, grid)
+					AnimContext.ae!!.isDirty = true
+				    }
+				    else -> {
+					tl.moveSelectedTimeMarker(dx, grid)
+					AnimContext.ae!!.isDirty = true
+				    }
 				}
 				press_p = Point(e.x, e.y)
 			    }

@@ -219,19 +219,22 @@ class AnimRuntime {
 	    }
 
 	    override fun actionMarkerAtTime(tm: TimeMarker?, t: Int, dry: Boolean) {
-		if (tm!!.type == TimeMarker.BEGIN) {
-		    val ac: Actor? = aC!!.getAnimatedActor(tm.tl.nid)
-		    if (ac != null) {
-			val gimae: GImAE = ac.gimae
-			gimae.beginPlay()
+		when (tm!!.type) {
+		    TimeMarker.BEGIN -> {
+			val ac: Actor? = aC!!.getAnimatedActor(tm.tl.nid)
+			if (ac != null) {
+			    val gimae: GImAE = ac.gimae
+			    gimae.beginPlay()
+			}
 		    }
-		} else if (tm.type == TimeMarker.END) {
-		    a_ctxt!!.tl_player!!.stop()
-		} else if (tm.type == TimeMarker.START) {
-		} else if (tm.type == TimeMarker.STOP) {
-		    val ac: Actor? = aC!!.getAnimatedActor(tm.tl.nid)
-		    if (ac != null) {
-			val gimae: GImAE = ac.gimae
+		    TimeMarker.END -> a_ctxt!!.tl_player!!.stop()
+		    TimeMarker.START -> {
+		    }
+		    TimeMarker.STOP -> {
+			val ac: Actor? = aC!!.getAnimatedActor(tm.tl.nid)
+			if (ac != null) {
+			    val gimae: GImAE = ac.gimae
+			}
 		    }
 		}
 		tm.doAllAction(mtea, dry)

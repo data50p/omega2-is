@@ -806,14 +806,11 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	    }
 	    if (!Lesson.mistNoMouse) {
 		if (hitQuitButton(e.x, e.y)) {
-		    if (quit_state == 1) {
-			setQuitState("mQ", 2)
-		    } else if (quit_state == 2) {
-			setQuitState("mQ", 1)
-		    } else if (quit_state == 3) {
-			setQuitState("mQ", 1)
-		    } else {
-			setQuitState("mQ", 1)
+		    when (quit_state) {
+			1 -> setQuitState("mQ", 2)
+			2 -> setQuitState("mQ", 1)
+			3 -> setQuitState("mQ", 1)
+			else -> setQuitState("mQ", 1)
 		    }
 		} else {
 		    if (hitExtraQuitButton(e.x, e.y)) {

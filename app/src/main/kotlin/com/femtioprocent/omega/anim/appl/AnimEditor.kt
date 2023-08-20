@@ -140,137 +140,140 @@ class AnimEditor : JFrame {
 	val ae_texec: ToolExecute = object : ToolExecute {
 	    override fun execute(cmd: String?) {
 		if (OmegaConfig.T) Log.getLogger().info(":--: AnimEditor.texec: execute $cmd")
-		if (("exit" == cmd)) {
-		    var s = ""
-		    if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
+		when (cmd) {
+		    "exit" -> {
+			var s = ""
+			if ((a_ctxt != null) && (AnimContext.ae != null) && AnimContext.ae!!.isDirty) s =
 			    "\n" + t("Changes not saved")
-		    if (false && exit_on_close) {
-			val sel = JOptionPane.showConfirmDialog(
+			if (false && exit_on_close) {
+			    val sel = JOptionPane.showConfirmDialog(
 				this@AnimEditor,
 				t("Are you sure to exit Omega?") +
 					s
-			)
-			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
-			if (sel == 0) System.exit(0)
-		    } else {
-			val sel = JOptionPane.showConfirmDialog(
+			    )
+			    //log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
+			    if (sel == 0) System.exit(0)
+			} else {
+			    val sel = JOptionPane.showConfirmDialog(
 				this@AnimEditor,
 				t("Are you sure to close Anim Editor?") +
 					s
-			)
-			//log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
-			if (sel == 0) {
-			    try {
-				a_ctxt!!.arun!!.clean()
-			    } catch (_ex: Exception) {
+			    )
+			    //log			    OmegaContext.sout_log.getLogger().info(":--: " + "" + sel);
+			    if (sel == 0) {
+				try {
+				    a_ctxt!!.arun!!.clean()
+				} catch (_ex: Exception) {
+				}
+				isVisible = false
+				maybeClose()
 			    }
-			    isVisible = false
-			    maybeClose()
 			}
 		    }
-		} else if (("new" == cmd)) {
-		    if (isDirty) {
-			val sel = JOptionPane.showConfirmDialog(
+		    "new" -> {
+			if (isDirty) {
+			    val sel = JOptionPane.showConfirmDialog(
 				this@AnimEditor,
 				(t("Are you sure to start with a new animation") + "\n" +
 					t("Changes are unsaved!"))
-			)
-			if (sel == 0) initNew()
-		    } else {
-			initNew()
+			    )
+			    if (sel == 0) initNew()
+			} else {
+			    initNew()
+			}
 		    }
-		} else if (("save" == cmd)) {
-		    save(false)
-		} else if (("saveas" == cmd)) {
-		    save(true)
-		} else if (("open" == cmd)) {
-		    if (isDirty) {
-			val sel = JOptionPane.showConfirmDialog(
+		    "save" -> save(false)
+		    "saveas" -> save(true)
+		    "open" -> {
+			if (isDirty) {
+			    val sel = JOptionPane.showConfirmDialog(
 				this@AnimEditor,
 				(t("Are you sure to open an animation") + "\n" +
 					t("Changes are unsaved!"))
-			)
-			if (sel == 0) open()
-		    } else {
-			open()
+			    )
+			    if (sel == 0) open()
+			} else {
+			    open()
+			}
 		    }
-		} else if (("reopen" == cmd)) {
-		    val fn = anim_repository!!.name
-		    if (fn != null) {
-			if (isDirty) {
-			    val sel = JOptionPane.showConfirmDialog(
+		    "reopen" -> {
+			val fn = anim_repository!!.name
+			if (fn != null) {
+			    if (isDirty) {
+				val sel = JOptionPane.showConfirmDialog(
 				    this@AnimEditor,
 				    (t("Are you sure to reopen the animation") + "\n" +
 					    t("Changes are unsaved!"))
-			    )
-			    if (sel == 0) open(fn)
+				)
+				if (sel == 0) open(fn)
+			    } else {
+				open(fn)
+			    }
 			} else {
-			    open(fn)
-			}
-		    } else {
-			JOptionPane.showMessageDialog(
+			    JOptionPane.showMessageDialog(
 				AnimContext.top_frame,
 				t("No name, use open."),
 				"Omega",
 				JOptionPane.INFORMATION_MESSAGE
-			)
+			    )
+			}
 		    }
-		} else if (("about" == cmd)) {
-		    help!!.showAbout()
-		} else if (("aboutAE" == cmd)) {
-		    help!!.showAboutAE()
-		} else if (("show manual" == cmd)) {
-		    help!!.showManualAE()
-		} else if (("show prop act" == cmd)) {
-		    AnimContext.ae!!.cabaret_panel!!.popup(0)
-		} else if (("show prop wing" == cmd)) {
-		    AnimContext.ae!!.wings_panel!!.popup(0)
-		} else if (("dep_set background" == cmd)) {
-		    val url_s: String? = fileAsURLString
-		    setBackground(url_s)
-		    wings_panel!!.removeAllWings()
-		    a_ctxt!!.anim_canvas!!.toolExecute!!.execute("fit")
-		} else if (("dep_set actor0" == cmd)) {
-		    val url_s: String? = fileAsURLStringActor
-		    loadActor(0, url_s)
-		} else if (("dep_set actor1" == cmd)) {
-		    val url_s: String? = fileAsURLStringActor
-		    loadActor(1, url_s)
-		} else if (("dep_set actor2" == cmd)) {
-		    val url_s: String? = fileAsURLStringActor
-		    loadActor(2, url_s)
-		} else if (("dep_set actor3" == cmd)) {
-		    val url_s: String? = fileAsURLStringActor
-		    loadActor(3, url_s)
-		} else if (("flip aw" == cmd)) {
-		    cab_wing_pan_card!!.next(cab_wing_pan)
-		} else if (("add w" == cmd)) {
-		    loadWing()
+		    "about" -> help!!.showAbout()
+		    "aboutAE" -> help!!.showAboutAE()
+		    "show manual" -> help!!.showManualAE()
+		    "show prop act" -> AnimContext.ae!!.cabaret_panel!!.popup(0)
+		    "show prop wing" -> AnimContext.ae!!.wings_panel!!.popup(0)
+		    "dep_set background" -> {
+			val url_s: String? = fileAsURLString
+			setBackground(url_s)
+			wings_panel!!.removeAllWings()
+			a_ctxt!!.anim_canvas!!.toolExecute!!.execute("fit")
+		    }
+		    "dep_set actor0" -> {
+			val url_s: String? = fileAsURLStringActor
+			loadActor(0, url_s)
+		    }
+		    "dep_set actor1" -> {
+			val url_s: String? = fileAsURLStringActor
+			loadActor(1, url_s)
+		    }
+		    "dep_set actor2" -> {
+			val url_s: String? = fileAsURLStringActor
+			loadActor(2, url_s)
+		    }
+		    "dep_set actor3" -> {
+			val url_s: String? = fileAsURLStringActor
+			loadActor(3, url_s)
+		    }
+		    "flip aw" -> {
+			cab_wing_pan_card!!.next(cab_wing_pan)
+		    }
+		    "add w" -> loadWing()
+		    "play" -> {
+			validate()
+			arun!!.playAnimation()
+		    }
+		    "stop" -> {
+			arun!!.stopAnimation()
+			validate()
+		    }
+		    "pause" -> a_ctxt!!.tl_player!!.pause()
+		    "prop_act_show" -> {
+			a_ctxt!!.anim_canvas!!.traceNoWing()
+			AnimContext.ae!!.cabaret_panel!!.setSelected(true)
+			AnimContext.ae!!.wings_panel!!.setSelected(false)
+		    }
+		    "prop_wing_show" -> {
+			AnimContext.ae!!.cabaret_panel!!.setSelected(!true)
+			AnimContext.ae!!.wings_panel!!.setSelected(!false)
+		    }
+		    "prop_act" -> AnimContext.ae!!.cabaret_panel!!.popup(0)
+		    "prop_wing" -> AnimContext.ae!!.wings_panel!!.popup(0)
+		    else -> {
+			val gel = a_ctxt!!.anim_canvas!!.toolExecute
+			if (gel != null) gel.execute(cmd) else Log.getLogger().info(":--: ! missed $cmd")
+		    }
 		}
-		if (("play" == cmd)) {
-		    validate()
-		    arun!!.playAnimation()
-		} else if (("stop" == cmd)) {
-		    arun!!.stopAnimation()
-		    validate()
-		} else if (("pause" == cmd)) {
-		    a_ctxt!!.tl_player!!.pause()
-		}
-		if (("prop_act_show" == cmd)) {
-		    a_ctxt!!.anim_canvas!!.traceNoWing()
-		    AnimContext.ae!!.cabaret_panel!!.setSelected(true)
-		    AnimContext.ae!!.wings_panel!!.setSelected(false)
-		} else if (("prop_wing_show" == cmd)) {
-		    AnimContext.ae!!.cabaret_panel!!.setSelected(!true)
-		    AnimContext.ae!!.wings_panel!!.setSelected(!false)
-		}
-		if (("prop_act" == cmd)) {
-		    AnimContext.ae!!.cabaret_panel!!.popup(0)
-		} else if (("prop_wing" == cmd)) {
-		    AnimContext.ae!!.wings_panel!!.popup(0)
-		}
-		val gel = a_ctxt!!.anim_canvas!!.toolExecute
-		if (gel != null) gel.execute(cmd) else Log.getLogger().info(":--: ! missed $cmd")
 	    }
 	}
 	mb = JMenuBar()

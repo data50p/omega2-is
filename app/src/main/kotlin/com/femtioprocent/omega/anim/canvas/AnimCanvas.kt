@@ -551,135 +551,152 @@ class AnimCanvas : Canvas {
 	}
 
 	fun perform(cmd: String, d: Double) {
-	    if (cmd == "left") {
-		offs_w -= if (sca > 1.0) d * 100 else sca * d * 100
-		centerBackground()
-		repaint()
-	    } else if (cmd == "right") {
-		offs_w += if (sca > 1.0) d * 100 else sca * d * 100
-		centerBackground()
-		repaint()
-	    } else if (cmd == "up") {
-		offs_h -= if (sca > 1.0) d * 100 else sca * d * 100
-		centerBackground()
-		repaint()
-	    } else if (cmd == "down") {
-		offs_h += if (sca > 1.0) d * 100 else sca * d * 100
-		centerBackground()
-		repaint()
-	    } else if (cmd == "upper_left") {
-		offs_w = 0.0
-		offs_h = 0.0
-		//		offs_x = offs_y = 0;
-		sca = 1.0
-		centerBackground()
-		repaint()
-	    } else if (cmd == "fit") {
-		offs_w = 0.0
-		offs_h = 0.0
-		sca = 1.0
-		val fd: Double = fit * 1.1
-		sca /= d * fd
-		offs_w /= d * fd
-		offs_h /= d * fd
-		centerBackground()
-		repaint()
-	    } else if (cmd == "bigger") {
-		sca *= d * 1.41
-		offs_w *= d * 1.41
-		offs_h *= d * 1.41
-		centerBackground()
-		repaint()
-	    } else if (cmd == "smaller") {
-		sca /= d * 1.41
-		offs_w /= d * 1.41
-		offs_h /= d * 1.41
-		centerBackground()
-		repaint()
-	    } else if (cmd == "path_tool") {
-		m!!.setM_Tool(m!!.M_TOOL_PATH)
-		repaint()
-	    } else if (cmd == "im_tool") {
-		m!!.setM_Tool(m!!.M_TOOL_IMAGE)
-		repaint()
-	    }
-	    if (cmd == "hideActor") {
-		repaint()
-	    }
-	    if (cmd == "select_path") {
-		m!!.setM_Tool(m!!.M_TOOL_PATH)
-		repaint()
-	    } else if (cmd == "select_image") {
-		m!!.setM_Tool(m!!.M_TOOL_IMAGE)
-		repaint()
-	    }
-	    if (cmd == "path_create") {
-		if (a_ctxt.mtl!!.freeTLIndex == -1) {
-		    JOptionPane.showMessageDialog(
-			    this@AnimCanvas,
-			    t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
-			    "Omega",
-			    JOptionPane.INFORMATION_MESSAGE
-		    )
-		} else {
-		    createNewPath()
+	    when (cmd) {
+		"left" -> {
+		    offs_w -= if (sca > 1.0) d * 100 else sca * d * 100
+		    centerBackground()
+		    repaint()
 		}
-	    } else if (cmd == "path_duplicate") {
-		if (a_ctxt.mtl!!.freeTLIndex == -1) {
-		    JOptionPane.showMessageDialog(
+		"right" -> {
+		    offs_w += if (sca > 1.0) d * 100 else sca * d * 100
+		    centerBackground()
+		    repaint()
+		}
+		"up" -> {
+		    offs_h -= if (sca > 1.0) d * 100 else sca * d * 100
+		    centerBackground()
+		    repaint()
+		}
+		"down" -> {
+		    offs_h += if (sca > 1.0) d * 100 else sca * d * 100
+		    centerBackground()
+		    repaint()
+		}
+		"upper_left" -> {
+		    offs_w = 0.0
+		    offs_h = 0.0
+		    //		offs_x = offs_y = 0;
+		    sca = 1.0
+		    centerBackground()
+		    repaint()
+		}
+		"fit" -> {
+		    offs_w = 0.0
+		    offs_h = 0.0
+		    sca = 1.0
+		    val fd: Double = fit * 1.1
+		    sca /= d * fd
+		    offs_w /= d * fd
+		    offs_h /= d * fd
+		    centerBackground()
+		    repaint()
+		}
+		"bigger" -> {
+		    sca *= d * 1.41
+		    offs_w *= d * 1.41
+		    offs_h *= d * 1.41
+		    centerBackground()
+		    repaint()
+		}
+		"smaller" -> {
+		    sca /= d * 1.41
+		    offs_w /= d * 1.41
+		    offs_h /= d * 1.41
+		    centerBackground()
+		    repaint()
+		}
+		"path_tool" -> {
+		    m!!.setM_Tool(m!!.M_TOOL_PATH)
+		    repaint()
+		}
+		"im_tool" -> {
+		    m!!.setM_Tool(m!!.M_TOOL_IMAGE)
+		    repaint()
+		}
+		"hideActor" -> {
+		    repaint()
+		}
+		"select_path" -> {
+		    m!!.setM_Tool(m!!.M_TOOL_PATH)
+		    repaint()
+		}
+		"select_image" -> {
+		    m!!.setM_Tool(m!!.M_TOOL_IMAGE)
+		    repaint()
+		}
+		"path_create" -> {
+		    if (a_ctxt.mtl!!.freeTLIndex == -1) {
+			JOptionPane.showMessageDialog(
 			    this@AnimCanvas,
 			    t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
 			    "Omega",
 			    JOptionPane.INFORMATION_MESSAGE
-		    )
-		} else {
+			)
+		    } else {
+			createNewPath()
+		    }
+		}
+		"path_duplicate" -> {
+		    if (a_ctxt.mtl!!.freeTLIndex == -1) {
+			JOptionPane.showMessageDialog(
+			    this@AnimCanvas,
+			    t("Can't create path, max is " + OmegaConfig.TIMELINES_N),
+			    "Omega",
+			    JOptionPane.INFORMATION_MESSAGE
+			)
+		    } else {
+			m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
+			if (selected_prb != null) {
+			    val nid = a_ctxt.mtl!!.freeTLIndex
+			    if (nid == -1) {
+				return
+			    }
+			    val pa_src = selected_prb!!.seg!!.path
+			    val pa_new = Path(nid, pa_src!!, pa_offs, pa_offs)
+			    pa_offs += 10
+			    pa_offs %= 50
+			    if (pa_offs == 0) pa_offs = 10
+			    ap.add(pa_new)
+			    repaint()
+			    val src_nid = selected_prb!!.seg!!.path!!.nid
+			    //			OmegaContext.sout_log.getLogger().info(":--: " + "src " + src_nid + ' ' + nid);
+			    val tl_src = a_ctxt.mtl!!.getTimeLine(src_nid)!!
+			    val tl = TimeLine(nid, tl_src)
+			    a_ctxt.mtl!!.addTimeLine(tl)
+			    ae!!.tlc!!.repaint()
+			    ae!!.isDirty = true
+			}
+		    }
+		}
+		"path_delete_all" -> {
 		    m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
 		    if (selected_prb != null) {
-			val nid = a_ctxt.mtl!!.freeTLIndex
-			if (nid == -1) {
-			    return
-			}
 			val pa_src = selected_prb!!.seg!!.path
-			val pa_new = Path(nid, pa_src!!, pa_offs, pa_offs)
-			pa_offs += 10
-			pa_offs %= 50
-			if (pa_offs == 0) pa_offs = 10
-			ap.add(pa_new)
-			repaint()
-			val src_nid = selected_prb!!.seg!!.path!!.nid
-			//			OmegaContext.sout_log.getLogger().info(":--: " + "src " + src_nid + ' ' + nid);
-			val tl_src = a_ctxt.mtl!!.getTimeLine(src_nid)!!
-			val tl = TimeLine(nid, tl_src)
-			a_ctxt.mtl!!.addTimeLine(tl)
-			ae!!.tlc!!.repaint()
+			val src_nid = pa_src!!.nid
+			deleteAllNid(src_nid)
 			ae!!.isDirty = true
 		    }
 		}
-	    } else if (cmd == "path_delete_all") {
-		m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
-		if (selected_prb != null) {
-		    val pa_src = selected_prb!!.seg!!.path
-		    val src_nid = pa_src!!.nid
-		    deleteAllNid(src_nid)
-		    ae!!.isDirty = true
+		"path_extend" -> {
+		    if (selected_prb != null) {
+			m!!.setM_Tool(m!!.M_TOOL_PATH, m!!.MT_EXTEND)
+			m!!.stack = Stack<Any?>()
+			ae!!.isDirty = true
+		    }
 		}
-	    } else if (cmd == "path_extend") {
-		if (selected_prb != null) {
-		    m!!.setM_Tool(m!!.M_TOOL_PATH, m!!.MT_EXTEND)
-		    m!!.stack = Stack<Any?>()
-		    ae!!.isDirty = true
+		"path_split" -> {
+		    if (selected_prb != null) {
+			selected_prb!!.seg!!.path!!.splitSegment()
+			ae!!.isDirty = true
+			repaint()
+		    }
 		}
-	    } else if (cmd == "path_split") {
-		if (selected_prb != null) {
-		    selected_prb!!.seg!!.path!!.splitSegment()
-		    ae!!.isDirty = true
-		    repaint()
-		}
-	    } else if (cmd == "path_delete") {
-		if (selected_prb != null) {
-		    selected_prb!!.seg!!.path!!.removeSegment()
-		    ae!!.isDirty = true
-		    repaint()
+		"path_delete" -> {
+		    if (selected_prb != null) {
+			selected_prb!!.seg!!.path!!.removeSegment()
+			ae!!.isDirty = true
+			repaint()
+		    }
 		}
 	    }
 	}
