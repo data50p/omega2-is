@@ -130,77 +130,80 @@ class AnimRuntime {
 		    //log		    OmegaContext.sout_log.getLogger().info(":--: " + "}}}}} action " + cmd + ' ' + tm.tl.nid + ' ' + ac);
 		    if (ac == null) return
 		    val gimae: GImAE = ac.gimae
-		    if ((cmd == "ImageAttrib")) {
-			val anam: String = te.argString
-			//log			OmegaContext.sout_log.getLogger().info(":--: " + ">>>>> anam " + anam);
-			if (hasVar(anam)) {
-			    val scat: String = composeVar(anam)
-			    //log			    OmegaContext.sout_log.getLogger().info(":--: " + "var attrib " + scat);
-			    if (dry) gimae.setAttribName(scat) else gimae.setAttribNameUncommited(scat)
-			} else if (dry) gimae.setAttribName(anam) else gimae.setAttribNameUncommited(anam)
-		    }
-		    if ((cmd == "SetAnimSpeed")) {
-			val d: Double = (te as TriggerEventSetAnimSpeed?)!!.argDouble
-			gimae.setAnimSpeed(d)
-		    }
-		    if ((cmd == "SetMirror")) {
-			val v: Int = (te as TriggerEventSetMirror?)!!.argInt
-			gimae.setMirror((v and 1) == 1, (v and 2) == 2)
-		    }
-		    if ((cmd == "SetLayer")) gimae.layer = (te as TriggerEventSetLayer?)!!.argInt
-		    if ((cmd == "Rotate")) {
+
+		    when (cmd) {
+			"ImageAttrib" -> {
+			    val anam: String = te.argString
+			    //log			OmegaContext.sout_log.getLogger().info(":--: " + ">>>>> anam " + anam);
+			    if (hasVar(anam)) {
+				val scat: String = composeVar(anam)
+				//log			    OmegaContext.sout_log.getLogger().info(":--: " + "var attrib " + scat);
+				if (dry) gimae.setAttribName(scat) else gimae.setAttribNameUncommited(scat)
+			    } else if (dry) gimae.setAttribName(anam) else gimae.setAttribNameUncommited(anam)
+			}
+			"SetAnimSpeed" -> {
+			    val d: Double = (te as TriggerEventSetAnimSpeed?)!!.argDouble
+			    gimae.setAnimSpeed(d)
+			}
+			"SetMirror" -> {
+			    val v: Int = (te as TriggerEventSetMirror?)!!.argInt
+			    gimae.setMirror((v and 1) == 1, (v and 2) == 2)
+			}
+			"SetLayer" -> gimae . layer =(te as TriggerEventSetLayer?)!!.argInt
+			"Rotate" -> {
 			var d: Double = (te as TriggerEventRotate?)!!.argDouble
-			var d2: Double = (te as TriggerEventRotate?)!!.argDouble2nd
-			d /= 360.0
-			d *= 3.14159265358979 * 2
-			d /= 1000.0
-			if (d2 < 19999) {
-			    d2 /= 360.0
-			    d2 *= 3.14159265358979 * 2
-			}
-			gimae.setRotation(d, d2, tm.`when`)
-		    }
-		    if ((cmd == "ResetSequence")) {
-			val arg: String = (te as TriggerEventResetSequence?)!!.argString
-			gimae.setResetSequence(arg, tm.`when`, tm.tl.getAllTimeMarkerType('[').get(0)!!.`when`)
-		    }
-		    if ((cmd == "Scale")) {
-			var d: Double = (te as TriggerEventScale?)!!.argDouble
-			val d2: Double = (te as TriggerEventScale?)!!.getArgDouble2nd(d)
-			d /= 1000.0
-			gimae.setScale(d, d2, tm.`when`)
-		    }
-		    if ((cmd == "SetVisibility")) gimae.setVisibility((te as TriggerEventSetVisibility?)!!.argInt)
-		    if ((cmd == "PlaySound")) {
-			var arg: String = (te as TriggerEventPlaySound?)!!.argString
-			if (hasVar(arg)) {
-			    val scat: String = composeVar(arg)
-			    arg = scat
-			}
-			val arg_alt: String = gimae.lessonIdAlt.replace(':', '_')
-			if (dry) {
-			    Log.getLogger().info(":--: " + "PLAY SOUND " + arg + ' ' + arg_alt)
-			} else {
-			    var ap: APlayer = APlayer.createAPlayer(arg, arg_alt, "TL_" + tm.tl.nid)
-			    if (!ap.isLoaded()) {
-				val arg_alt2: String = gimae.lessonIdAlt
-				var ix: Int
-				if ((arg_alt2.lastIndexOf(':').also({ ix = it })) != -1) {
-				    val arg_alt3: String = arg_alt2.substring(0, ix)
-				    ap = APlayer.createAPlayer(arg, arg_alt3, "TL_" + tm.tl.nid)
-				}
+			    var d2: Double = (te as TriggerEventRotate?)!!.argDouble2nd
+			    d /= 360.0
+			    d *= 3.14159265358979 * 2
+			    d /= 1000.0
+			    if (d2 < 19999) {
+				d2 /= 360.0
+				d2 *= 3.14159265358979 * 2
 			    }
-			    //			    ap_li.add(ap);
-			    if (ap.isLoaded()) ap.play()
+			    gimae.setRotation(d, d2, tm.`when`)
 			}
-		    }
-		    if ((cmd == "Dinner")) {
-			val v: Int = (te as TriggerEventDinner?)!!.argInt
-			gimae.setDinner((v and 1) == 1, (v and 2) == 2) // can eat, can bee eaten
-		    }
-		    if ((cmd == "Option")) {
-			val v: Int = (te as TriggerEventOption?)!!.argInt
-			gimae.setOption(v)
+			"ResetSequence" -> {
+			    val arg: String = (te as TriggerEventResetSequence?)!!.argString
+			    gimae.setResetSequence(arg, tm.`when`, tm.tl.getAllTimeMarkerType('[').get(0)!!.`when`)
+			}
+			"Scale" -> {
+			    var d: Double = (te as TriggerEventScale?)!!.argDouble
+			    val d2: Double = (te as TriggerEventScale?)!!.getArgDouble2nd(d)
+			    d /= 1000.0
+			    gimae.setScale(d, d2, tm.`when`)
+			}
+			"SetVisibility" -> gimae . setVisibility ((te as TriggerEventSetVisibility?)!!.argInt)
+			"PlaySound" -> {
+			    var arg: String = (te as TriggerEventPlaySound?)!!.argString
+			    if (hasVar(arg)) {
+				val scat: String = composeVar(arg)
+				arg = scat
+			    }
+			    val arg_alt: String = gimae.lessonIdAlt.replace(':', '_')
+			    if (dry) {
+				Log.getLogger().info(":--: " + "PLAY SOUND " + arg + ' ' + arg_alt)
+			    } else {
+				var ap: APlayer = APlayer.createAPlayer(arg, arg_alt, "TL_" + tm.tl.nid)
+				if (!ap.isLoaded()) {
+				    val arg_alt2: String = gimae.lessonIdAlt
+				    var ix: Int
+				    if ((arg_alt2.lastIndexOf(':').also({ ix = it })) != -1) {
+					val arg_alt3: String = arg_alt2.substring(0, ix)
+					ap = APlayer.createAPlayer(arg, arg_alt3, "TL_" + tm.tl.nid)
+				    }
+				}
+				//			    ap_li.add(ap);
+				if (ap.isLoaded()) ap.play()
+			    }
+			}
+			"Dinner" -> {
+			    val v: Int = (te as TriggerEventDinner?)!!.argInt
+			    gimae.setDinner((v and 1) == 1, (v and 2) == 2) // can eat, can bee eaten
+			}
+			"Option" -> {
+			    val v: Int = (te as TriggerEventOption?)!!.argInt
+			    gimae.setOption(v)
+			}
 		    }
 		} catch (ex: Exception) {
 		    Log.getLogger().throwing(this.javaClass.getName(), "doAction", ex)

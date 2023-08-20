@@ -107,142 +107,144 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		return
 	    }
 	    val cmd = ae.actionCommand
-	    if ("selImage" == cmd) {
-		val url_s = selImage()
-		if (url_s != null) {
-		    val tfn = mkRelativeCWD(url_s)
-		    image_label!!.text = tfn
-		    val imc = createImageIcon(tfn, 100, 80)
-		    image_label!!.icon = imc
-		    pack()
-		    doLayout()
-		}
-	    }
-	    if ("selImageWrong" == cmd) {
-		val url_s = selImage()
-		if (url_s != null) {
-		    val tfn = mkRelativeCWD(url_s)
-		    image_wrong_label!!.text = tfn
-		    val imc = createImageIcon(tfn, 100, 80)
-		    image_wrong_label!!.icon = imc
-		    pack()
-		    doLayout()
-		}
-	    }
-	    if ("selMovie" == cmd) {
-		val url_s = selMovie()
-		if (url_s != null) {
-		    var tfn = mkRelativeCWD(url_s)
-		    val tfno = tfn
-		    movie_label!!.text = tfn
-		    tfn = tfn!!.replaceFirst("\\.mpg".toRegex(), ".png")
-		    var imc = createImageIcon(tfn, 100, 80)
-		    if (imc == null) {
-			tfn = "$tfno.png"
-			imc = createImageIcon(tfn, 100, 80)
-			if (imc == null) {
-			    val iim_s = "media/default/moviefeedback.png"
-			    imc = createImageIcon(iim_s, 100, 80)
-			}
+	    when (cmd) {
+		"selImage" -> {
+		    val url_s = selImage()
+		    if (url_s != null) {
+			val tfn = mkRelativeCWD(url_s)
+			image_label!!.text = tfn
+			val imc = createImageIcon(tfn, 100, 80)
+			image_label!!.icon = imc
+			pack()
+			doLayout()
 		    }
-		    movie_label!!.icon = imc
-		    pack()
-		    doLayout()
 		}
-	    }
-	    if ("selSignMovie" == cmd) {
-		val url_s = selMoviesDir()
-		if (url_s != null) {
-		    val tfn = mkRelativeCWD(url_s)
-		    val f = File(tfn)
-		    if (!f.exists()) {
-			JOptionPane.showMessageDialog(
+		"selImageWrong" -> {
+		    val url_s = selImage()
+		    if (url_s != null) {
+			val tfn = mkRelativeCWD(url_s)
+			image_wrong_label!!.text = tfn
+			val imc = createImageIcon(tfn, 100, 80)
+			image_wrong_label!!.icon = imc
+			pack()
+			doLayout()
+		    }
+		}
+		"selMovie" -> {
+		    val url_s = selMovie()
+		    if (url_s != null) {
+			var tfn = mkRelativeCWD(url_s)
+			val tfno = tfn
+			movie_label!!.text = tfn
+			tfn = tfn!!.replaceFirst("\\.mpg".toRegex(), ".png")
+			var imc = createImageIcon(tfn, 100, 80)
+			if (imc == null) {
+			    tfn = "$tfno.png"
+			    imc = createImageIcon(tfn, 100, 80)
+			    if (imc == null) {
+				val iim_s = "media/default/moviefeedback.png"
+				imc = createImageIcon(iim_s, 100, 80)
+			    }
+			}
+			movie_label!!.icon = imc
+			pack()
+			doLayout()
+		    }
+		}
+		"selSignMovie" -> {
+		    val url_s = selMoviesDir()
+		    if (url_s != null) {
+			val tfn = mkRelativeCWD(url_s)
+			val f = File(tfn)
+			if (!f.exists()) {
+			    JOptionPane.showMessageDialog(
 				AnimContext.top_frame,
 				t("Invalid directory name."),
 				"Omega",
 				JOptionPane.WARNING_MESSAGE
-			)
-			return
-		    }
-		    val tfno = tfn
-		    sign_movie_label!!.text = tfn
-		    var imc = createImageIcon(tfn + "moviesignfeedback.png", 100, 80)
-		    if (imc == null) {
-			var iim_s = "media/default/moviesignfeedback.png"
-			imc = createImageIcon(iim_s, 100, 80)
-			if (imc == null) {
-			    iim_s = "media/default/moviefeedback.png"
-			    imc = createImageIcon(iim_s, 100, 80)
+			    )
+			    return
 			}
+			val tfno = tfn
+			sign_movie_label!!.text = tfn
+			var imc = createImageIcon(tfn + "moviesignfeedback.png", 100, 80)
+			if (imc == null) {
+			    var iim_s = "media/default/moviesignfeedback.png"
+			    imc = createImageIcon(iim_s, 100, 80)
+			    if (imc == null) {
+				iim_s = "media/default/moviefeedback.png"
+				imc = createImageIcon(iim_s, 100, 80)
+			    }
+			}
+			sign_movie_label!!.icon = imc
+			pack()
+			doLayout()
 		    }
-		    sign_movie_label!!.icon = imc
-		    pack()
-		    doLayout()
 		}
-	    }
-	    if ("selSpeech" == cmd) {
-		val url_s = selSpeech()
-		if (url_s != null) {
-		    var tfn = mkRelativeCWD(url_s)
-		    if (tfn!!.startsWith("media/")) {
-			tfn = tfn.substring(6)
+		"selSpeech" -> {
+		    val url_s = selSpeech()
+		    if (url_s != null) {
+			var tfn = mkRelativeCWD(url_s)
+			if (tfn!!.startsWith("media/")) {
+			    tfn = tfn.substring(6)
+			}
+			speech_tf!!.text = tfn
 		    }
-		    speech_tf!!.text = tfn
 		}
-	    }
-	    if ("activate" == cmd) {
-		active = !active
-		if (active) {
-		    showMore()
-		} else {
+		"activate" -> {
+		    active = !active
+		    if (active) {
+			showMore()
+		    } else {
+			showNoMore()
+		    }
+		}
+		"deletePupil" -> {
+		    deletePupil()
 		    showNoMore()
 		}
-	    }
-	    if ("deletePupil" == cmd) {
-		deletePupil()
-		showNoMore()
-	    }
-	    if ("change_color_lesson" == cmd) {
-		if (lesson != null) {
-		    lesson!!.displayColor("main")
-		}
-	    }
-	    if ("change_color_words" == cmd) {
-		if (lesson != null) {
-		    lesson!!.displayColor("words")
-		}
-	    }
-	    if ("change_color_login" == cmd) {
-		if (lesson != null) {
-		    lesson!!.displayColor("pupil")
-		}
-	    }
-	    if ("change_color_sent" == cmd) {
-		if (lesson != null) {
-		    lesson!!.displayColor("sent")
-		}
-	    }
-	    if ("pupim" == cmd) {
-		try {
-		    val choose_pif = ChoosePupilImageFile()
-		    val rv = choose_pif.showDialog(this@PupilSettingsDialog, t("Select"))
-		    if (rv == JFileChooser.APPROVE_OPTION) {
-			val file = choose_pif.selectedFile
-			val fn = file.name
-			val ix = fn.lastIndexOf('.')
-			var ext = ".jpg"
-			if (ix != -1) {
-			    ext = file.name.substring(ix)
-			}
-			val pims = "register/" + pupil_!!.name + ".p/id" + ext
-			val pimf = File(pims)
-			fileCopy(file, pimf)
-			val imc2 = createImageIcon(pims, 80, 60)
-			pupim_jl!!.icon = imc2
+		"change_color_lesson" -> {
+		    if (lesson != null) {
+			lesson!!.displayColor("main")
 		    }
-		} catch (ex: Exception) {
-		    OmegaContext.sout_log.getLogger().info("ERR: ex $ex")
-		    ex.printStackTrace()
+		}
+		"change_color_words" -> {
+		    if (lesson != null) {
+			lesson!!.displayColor("words")
+		    }
+		}
+		"change_color_login" -> {
+		    if (lesson != null) {
+			lesson!!.displayColor("pupil")
+		    }
+		}
+		"change_color_sent" -> {
+		    if (lesson != null) {
+			lesson!!.displayColor("sent")
+		    }
+		}
+		"pupim" -> {
+		    try {
+			val choose_pif = ChoosePupilImageFile()
+			val rv = choose_pif.showDialog(this@PupilSettingsDialog, t("Select"))
+			if (rv == JFileChooser.APPROVE_OPTION) {
+			    val file = choose_pif.selectedFile
+			    val fn = file.name
+			    val ix = fn.lastIndexOf('.')
+			    var ext = ".jpg"
+			    if (ix != -1) {
+				ext = file.name.substring(ix)
+			    }
+			    val pims = "register/" + pupil_!!.name + ".p/id" + ext
+			    val pimf = File(pims)
+			    fileCopy(file, pimf)
+			    val imc2 = createImageIcon(pims, 80, 60)
+			    pupim_jl!!.icon = imc2
+			}
+		    } catch (ex: Exception) {
+			OmegaContext.sout_log.getLogger().info("ERR: ex $ex")
+			ex.printStackTrace()
+		    }
 		}
 	    }
 	}

@@ -380,37 +380,39 @@ class CabaretProperties(owner: JFrame?, cabp: CabaretPanel) : OmegaProperties(ow
 
     fun updDoc(doc: Document) {
 	setDirty()
-	if (doc === prim_scale!!.document) {
-	    try {
-		val d = tD(prim_scale!!.text)
-		if (d == 0.0) prim_scale!!.foreground = Color.red else {
-		    if (bound_act != null) bound_act!!.gimae.primScale = d
-		    prim_scale!!.foreground = Color.black
+	when (doc) {
+	    prim_scale!!.document -> {
+		try {
+		    val d = tD(prim_scale!!.text)
+		    if (d == 0.0) prim_scale!!.foreground = Color.red else {
+			if (bound_act != null) bound_act!!.gimae.primScale = d
+			prim_scale!!.foreground = Color.black
+		    }
+		} catch (ex: Exception) {
+		    prim_scale!!.foreground = Color.red
 		}
-	    } catch (ex: Exception) {
-		prim_scale!!.foreground = Color.red
+		repaint()
 	    }
-	    repaint()
-	}
-	if (doc === lesson_id!!.document) {
-	    val lid = lesson_id!!.text
-	    if (bound_act != null) bound_act!!.gimae.lessonId = lid
-	}
-	if (doc === var1!!.document) {
-	    val ss = var1!!.text
-	    if (bound_act != null) bound_act!!.gimae.setVariable(1, ss)
-	}
-	if (doc === var2!!.document) {
-	    val ss = var2!!.text
-	    if (bound_act != null) bound_act!!.gimae.setVariable(2, ss)
-	}
-	if (doc === var3!!.document) {
-	    val ss = var3!!.text
-	    if (bound_act != null) bound_act!!.gimae.setVariable(3, ss)
-	}
-	if (doc === image_petasknid!!.document) {
-	    val petnid = image_petasknid!!.text
-	    if (bound_act != null) bound_act!!.gimae.xim.peTaskNid = petnid
+	    lesson_id!!.document -> {
+		val lid = lesson_id!!.text
+		if (bound_act != null) bound_act!!.gimae.lessonId = lid
+	    }
+	    var1!!.document -> {
+		val ss = var1!!.text
+		if (bound_act != null) bound_act!!.gimae.setVariable(1, ss)
+	    }
+	    var2!!.document -> {
+		val ss = var2!!.text
+		if (bound_act != null) bound_act!!.gimae.setVariable(2, ss)
+	    }
+	    var3!!.document -> {
+		val ss = var3!!.text
+		if (bound_act != null) bound_act!!.gimae.setVariable(3, ss)
+	    }
+	    image_petasknid!!.document -> {
+		val petnid = image_petasknid!!.text
+		if (bound_act != null) bound_act!!.gimae.xim.peTaskNid = petnid
+	    }
 	}
     }
 
