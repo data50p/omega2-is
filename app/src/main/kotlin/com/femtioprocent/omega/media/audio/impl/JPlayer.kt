@@ -152,8 +152,7 @@ class JPlayer(fn: String) : LineListener {
     @Synchronized
     override fun update(le: LineEvent) {
 	tlock.withLock {
-	    val t = le.type
-	    when (t) {
+	    when (le.type) {
 		LineEvent.Type.OPEN -> {
 		    opened = true
 		    s_pe("+open+")
