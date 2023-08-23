@@ -31,7 +31,6 @@ import com.femtioprocent.omega.xml.Element
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.awt.*
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
@@ -86,15 +85,21 @@ class AnimCanvas : Canvas {
 
     var hook: MouseInputAdapter? = null
 
+    enum class M_TOOL(val code: Int) {
+	PATH(0),
+	IMAGE(1),
+	MARKER(2),
+    }
+
+    enum class MT(val code: Int) {
+	VOID(0),
+	EXTEND(1),
+    }
+
     open inner class Mouse(var anim_canvas: AnimCanvas) : MouseInputAdapter() {
 	var was_shift = false
-	val M_TOOL_PATH = 0
-	val M_TOOL_IMAGE = 1
-	private val M_TOOL_MARKER = 2
-	val MT_VOID = 0
-	val MT_EXTEND = 200
-	var m_tool = M_TOOL_PATH
-	var m_tool_sub = MT_VOID
+	var m_tool = M_TOOL.PATH
+	var m_tool_sub = MT.VOID
 	var stack: Stack<*>
 	var mpress_p: Point2D? = null
 
@@ -105,14 +110,18 @@ class AnimCanvas : Canvas {
 	    stack = Stack<Any?>()
 	}
 
-	fun setM_Tool(mt: Int) {
-	    setM_Tool(mt, m_tool_sub)
-	}
-
-	fun setM_Tool(mt: Int, mts: Int) {
+	fun setM_Tool(mt: M_TOOL, mts: MT) {
 	    m_tool = mt
 	    m_tool_sub = mts
 	    updCursor()
+	}
+
+	fun setM_Tool(mt: M_TOOL) {
+	    setM_Tool(mt, m_tool_sub)
+	}
+
+	fun setMT(mts: MT) {
+	    setM_Tool(m_tool, mts)
 	}
 
 	override fun mousePressed(e: MouseEvent) {
@@ -144,11 +153,11 @@ class AnimCanvas : Canvas {
 
 
 	    when (m_tool) {
-		M_TOOL_IMAGE, M_TOOL_PATH, M_TOOL_MARKER -> when (m_tool_sub) {
-		    MT_EXTEND -> {
+		M_TOOL.IMAGE, M_TOOL.PATH, M_TOOL.MARKER -> when (m_tool_sub) {
+		    MT.EXTEND -> {
 			if (selected_prb != null) {
 			    if (!e.isShiftDown && was_shift) {
-				setM_Tool(m_tool, MT_VOID)
+				setMT(MT.VOID)
 				was_shift = false
 			    } else {
 				val p_p: Point2D = Point2D.Double((e.x - offs_x) / sca, (e.y - offs_y) / sca)
@@ -156,11 +165,11 @@ class AnimCanvas : Canvas {
 				// extendTimeLineAsWell();
 				repaint()
 				if (e.isShiftDown) {
-				    setM_Tool(M_TOOL_MARKER, m!!.MT_EXTEND)
+				    setM_Tool(M_TOOL.MARKER, MT.EXTEND)
 				    stack = Stack<Any?>()
 				    was_shift = true
 				} else {
-				    setM_Tool(m_tool, m!!.MT_VOID)
+				    setMT(MT.VOID)
 				    was_shift = false
 				}
 				val prb = ap.findNearest(p_p)
@@ -174,7 +183,7 @@ class AnimCanvas : Canvas {
 			}
 		    }
 
-		    0 -> {
+		    MT.VOID -> {
 			press_p = Point2D.Double((e.x - offs_x) / sca, (e.y - offs_y) / sca)
 			val pt = e.isPopupTrigger
 			if (false) { // omega 2
@@ -196,7 +205,7 @@ class AnimCanvas : Canvas {
 				    ae!!.selectTimeLine(pa)
 				    selected_prb = null
 				    selected_mark = mk
-				    setM_Tool(M_TOOL_MARKER)
+				    setM_Tool(M_TOOL.MARKER)
 				}
 			    } else {
 				var prb = ap.findNearest(press_p)
@@ -215,9 +224,9 @@ class AnimCanvas : Canvas {
 					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)
 				    ) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 				    ae!!.selectTimeLine(prb.seg!!.path!!)
-				    setM_Tool(M_TOOL_PATH)
+				    setM_Tool(M_TOOL.PATH)
 				} else {
-				    setM_Tool(M_TOOL_IMAGE)
+				    setM_Tool(M_TOOL.IMAGE)
 				}
 				selected_prb = prb
 			    }
@@ -244,7 +253,7 @@ class AnimCanvas : Canvas {
 				    ae!!.selectTimeLine(pa)
 				    selected_prb = null
 				    selected_mark = mk
-				    setM_Tool(M_TOOL_MARKER)
+				    setM_Tool(M_TOOL.MARKER)
 				}
 			    } else {
 				var prb = ap.findNearest(press_p)
@@ -261,9 +270,9 @@ class AnimCanvas : Canvas {
 					    prb.seg == prb.seg!!.path!!.getSq(prb.seg!!.path!!.sqN - 1)
 				    ) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
 				    ae!!.selectTimeLine(prb.seg!!.path!!)
-				    setM_Tool(M_TOOL_PATH)
+				    setM_Tool(M_TOOL.PATH)
 				} else {
-				    setM_Tool(M_TOOL_IMAGE)
+				    setM_Tool(M_TOOL.IMAGE)
 				}
 				selected_prb = prb
 			    }
@@ -285,15 +294,15 @@ class AnimCanvas : Canvas {
 		if (mk != null) {
 		    val pa = mk.pa
 		    pa.draw(graphics2D)
-		    setM_Tool(M_TOOL_MARKER)
+		    setM_Tool(M_TOOL.MARKER)
 		}
 	    } else {
 		val mv_p: Point2D = Point2D.Double((e.x - offs_x) / sca, (e.y - offs_y) / sca)
 		val prb = ap.findNearest(mv_p)
 		if (prb != null && prb.dist > 20) {
-		    setM_Tool(M_TOOL_IMAGE)
+		    setM_Tool(M_TOOL.IMAGE)
 		} else {
-		    setM_Tool(M_TOOL_PATH)
+		    setM_Tool(M_TOOL.PATH)
 		}
 	    }
 	    updCursor()
@@ -305,7 +314,7 @@ class AnimCanvas : Canvas {
 		return
 	    }
 	    when (m_tool) {
-		M_TOOL_IMAGE -> {
+		M_TOOL.IMAGE -> {
 		    val drag2_p: Point2D = Point2D.Double(e.x.toDouble(), e.y.toDouble())
 		    offs_w += drag2_p.x - mpress_p!!.x
 		    offs_h += drag2_p.y - mpress_p!!.y
@@ -314,7 +323,7 @@ class AnimCanvas : Canvas {
 		    repaint()
 		}
 
-		M_TOOL_MARKER -> {
+		M_TOOL.MARKER -> {
 		    val mk = selected_mark
 		    if (mk != null) {
 			val drag3_p: Point2D = Point2D.Double((e.x - offs_x) / sca, (e.y - offs_y) / sca)
@@ -325,8 +334,8 @@ class AnimCanvas : Canvas {
 		    }
 		}
 
-		M_TOOL_PATH -> when (m_tool_sub) {
-		    MT_VOID -> {
+		M_TOOL.PATH -> when (m_tool_sub) {
+		    MT.VOID -> {
 			val drag_p: Point2D = Point2D.Double((e.x - offs_x) / sca, (e.y - offs_y) / sca)
 			if (e.isShiftDown) {
 			    if (selected_prb != null) {
@@ -346,6 +355,7 @@ class AnimCanvas : Canvas {
 			}
 			repaint()
 		    }
+		    MT.EXTEND -> {}
 		}
 	    }
 	    if (pa_prop != null) pa_prop!!.setObject(Path.global_selected)
@@ -360,12 +370,12 @@ class AnimCanvas : Canvas {
 
 	fun updCursor() {
 	    cursor = when (m_tool) {
-		M_TOOL_IMAGE -> if (m_tool_sub == MT_EXTEND) Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR) else Cursor.getPredefinedCursor(
+		M_TOOL.IMAGE -> if (m_tool_sub == MT.EXTEND) Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR) else Cursor.getPredefinedCursor(
 			Cursor.HAND_CURSOR
 		)
 
-		M_TOOL_MARKER -> Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)
-		M_TOOL_PATH -> Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR)
+		M_TOOL.MARKER -> Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)
+		M_TOOL.PATH -> Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR)
 		else -> Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)
 	    }
 	}
@@ -606,22 +616,22 @@ class AnimCanvas : Canvas {
 		    repaint()
 		}
 		"path_tool" -> {
-		    m!!.setM_Tool(m!!.M_TOOL_PATH)
+		    m!!.setM_Tool(M_TOOL.PATH)
 		    repaint()
 		}
 		"im_tool" -> {
-		    m!!.setM_Tool(m!!.M_TOOL_IMAGE)
+		    m!!.setM_Tool(M_TOOL.IMAGE)
 		    repaint()
 		}
 		"hideActor" -> {
 		    repaint()
 		}
 		"select_path" -> {
-		    m!!.setM_Tool(m!!.M_TOOL_PATH)
+		    m!!.setM_Tool(M_TOOL.PATH)
 		    repaint()
 		}
 		"select_image" -> {
-		    m!!.setM_Tool(m!!.M_TOOL_IMAGE)
+		    m!!.setM_Tool(M_TOOL.IMAGE)
 		    repaint()
 		}
 		"path_create" -> {
@@ -645,7 +655,7 @@ class AnimCanvas : Canvas {
 			    JOptionPane.INFORMATION_MESSAGE
 			)
 		    } else {
-			m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
+			m!!.setM_Tool(M_TOOL.IMAGE, MT.VOID)
 			if (selected_prb != null) {
 			    val nid = a_ctxt.mtl!!.freeTLIndex
 			    if (nid == -1) {
@@ -669,7 +679,7 @@ class AnimCanvas : Canvas {
 		    }
 		}
 		"path_delete_all" -> {
-		    m!!.setM_Tool(m!!.M_TOOL_IMAGE, m!!.MT_VOID)
+		    m!!.setM_Tool(M_TOOL.IMAGE, MT.VOID)
 		    if (selected_prb != null) {
 			val pa_src = selected_prb!!.seg!!.path
 			val src_nid = pa_src!!.nid
@@ -679,7 +689,7 @@ class AnimCanvas : Canvas {
 		}
 		"path_extend" -> {
 		    if (selected_prb != null) {
-			m!!.setM_Tool(m!!.M_TOOL_PATH, m!!.MT_EXTEND)
+			m!!.setM_Tool(M_TOOL.PATH, MT.EXTEND)
 			m!!.stack = Stack<Any?>()
 			ae!!.isDirty = true
 		    }
