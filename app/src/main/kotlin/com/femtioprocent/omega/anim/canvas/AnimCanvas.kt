@@ -28,9 +28,7 @@ import com.femtioprocent.omega.util.SundryUtils.m_sleep
 import com.femtioprocent.omega.util.SundryUtils.split
 import com.femtioprocent.omega.util.SundryUtils.tD
 import com.femtioprocent.omega.xml.Element
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.awt.*
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
@@ -39,6 +37,7 @@ import java.awt.geom.Area
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
 import java.awt.geom.RoundRectangle2D
+import java.lang.Runnable
 import java.util.*
 import javax.swing.JFrame
 import javax.swing.JOptionPane
@@ -389,7 +388,7 @@ class AnimCanvas : Canvas {
 	var g2 = graphics2D
 	g2.drawString("123", 10, 50)
 	g2.dispose()
-	GlobalScope.launch {
+	CoroutineScope(Dispatchers.Default).launch {
 		val ct0 = System.currentTimeMillis()
 		l = ArrayList<Long>()
 		l2 = ArrayList<Long>()

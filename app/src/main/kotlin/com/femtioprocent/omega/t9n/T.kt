@@ -173,7 +173,7 @@ class T {
 		    ss = s
 		    hm!![s] = ss
 		    hm_new!![s] = ss
-		    GlobalScope.launch {
+		    CoroutineScope(Dispatchers.Default).launch {
 			delay(5000L)
 			putXML(hm_new, "T_new_" + lang_country)
 		    }

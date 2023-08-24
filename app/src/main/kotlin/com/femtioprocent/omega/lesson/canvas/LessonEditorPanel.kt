@@ -22,10 +22,7 @@ import com.femtioprocent.omega.util.Log.getLogger
 import com.femtioprocent.omega.value.Value
 import com.femtioprocent.omega.value.Values
 import com.femtioprocent.omega.value.ValuesListener
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.awt.Color
 import java.awt.GridBagLayout
 import java.awt.event.ActionEvent
@@ -224,7 +221,7 @@ class LessonEditorPanel(var le_canvas: LessonCanvas) : JPanel() {
 				    }
 				}
 			    }
-			    GlobalScope.launch {
+			    CoroutineScope(Dispatchers.Default).launch {
 				System.err.println("Im on " + Thread.currentThread())
 				doMyWork()
 			    }
