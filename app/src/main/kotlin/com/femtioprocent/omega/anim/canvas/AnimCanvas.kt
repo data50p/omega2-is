@@ -262,6 +262,19 @@ class AnimCanvas : Canvas {
 				    ae!!.selectTimeLine()
 				}
 				if (prb != null) {
+				    if ( false ) {
+					// this code should work, how about this = ... ?
+					with(prb.seg!!) {
+					    path!!.selected = true
+					    selectedPoint = prb.sel
+					    path!!.draw(graphics2D)
+					    if (this == path!!.getSq(0) ||
+						this == path!!.getSq(path!!.sqN - 1)
+					    ) ae!!.toolbar_cmd!!.enable_path(1) else ae!!.toolbar_cmd!!.enable_path(2)
+					    ae!!.selectTimeLine(path!!)
+					    setM_Tool(M_TOOL.PATH)
+					}
+				    }
 				    prb.seg!!.path!!.selected = true
 				    prb.seg!!.selectedPoint = prb.sel
 				    prb.seg!!.path!!.draw(graphics2D)
