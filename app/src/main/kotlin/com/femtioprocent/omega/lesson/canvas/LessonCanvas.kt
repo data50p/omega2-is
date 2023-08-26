@@ -909,7 +909,7 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 	bx.repaintBox()
 	if (useThisText(bx.item!!.text)) {
 	    bx.when_hit = when_hit
-	    l_ctxt.lesson.messageHandler.sendMsg("hBox" + if (with_mouse) "M" else "K", bx)
+	    l_ctxt.lesson.messageHandler_sendMsg("hBox" + if (with_mouse) "M" else "K", bx)
 	}
 	if (bx.item != null && bx.item!!.isAction) {
 	    active_item_action_box = bx

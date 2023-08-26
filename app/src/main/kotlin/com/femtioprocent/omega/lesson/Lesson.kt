@@ -172,7 +172,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	}
     }
 
-    class MessageHandler {
+    private object MessageHandler {
 	var messageItemQueue: MutableList<MessageItem> = ArrayList()
 	val q_lock = ReentrantLock()
 	val q_condition = q_lock.newCondition()
@@ -193,7 +193,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	}
 
-	fun sendMsg(messageItem: MessageItem) {
+	private fun sendMsg(messageItem: MessageItem) {
 	    OmegaContext.sout_log.getLogger().info(":--: " + "!!!!!!!! sendMsg " + messageItem)
 	    q_lock.withLock {
 		messageItemQueue.add(messageItem)
@@ -220,7 +220,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    }
 	}
     }
-    public val messageHandler = MessageHandler()
+
+    fun messageHandler_sendMsg(s: String, arg: Any? = null, wait: Boolean = false) {
+	if ( wait )
+	    MessageHandler.sendMsgWait(s, arg)
+	else
+	    MessageHandler.sendMsg(s, arg)
+    }
 
     class SayAllHandler() {
 	var talking = false
@@ -1050,17 +1056,17 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		if (register != null) {
 		    register!!.restart()
 		}
-		messageHandler.sendMsg("create", fn, "loadTest1")
+		MessageHandler.sendMsg("create", fn, "loadTest1")
 	    }
 
 	    TM.RAND -> {
 		card_show("anim1")
-		messageHandler.sendMsg("new_test", fn, "loadTest2")
+		MessageHandler.sendMsg("new_test", fn, "loadTest2")
 	    }
 
 	    TM.PRE_1, TM.PRE_2, TM.POST_1, TM.POST_2 -> {
 		card_show("anim1")
-		messageHandler.sendMsg("new_test", fn, "loadTest3")
+		MessageHandler.sendMsg("new_test", fn, "loadTest3")
 	    }
 	}
 	//log 	OmegaContext.sout_log.getLogger().info(":--: " + "loadTest <<<");
@@ -1113,11 +1119,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		return
 	    }
 	    if (msg.startsWith("button main:read_story")) {
-		messageHandler.sendMsg("read_story", null, "")
+		MessageHandler.sendMsg("read_story", null, "")
 	    }
 	    if (msg.startsWith("button sent:")) {
 		val submsg = msg.substring(12)
-		messageHandler.sendMsg("button_sent_$submsg", null, "button")
+		MessageHandler.sendMsg("button_sent_$submsg", null, "button")
 	    }
 	    if (msg.startsWith("button pupil:")) {
 		val submsg = msg.substring(13)
@@ -1155,11 +1161,11 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		}
 	    }
 	    if ("action" == msg) {
-		messageHandler.sendMsg("action", null, "L758 ")
+		MessageHandler.sendMsg("action", null, "L758 ")
 	    }
 	    if ("show_result" == msg) {
 		OmegaContext.sout_log.getLogger().info(":--: show_result $register")
-		messageHandler.sendMsg("show_result_msg", null, "exit_create")
+		MessageHandler.sendMsg("show_result_msg", null, "exit_create")
 	    }
 	    if ("exit create" == msg) {
 		act_exit_create()
@@ -1293,7 +1299,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	    // savePrefetch();
 	    if (edit) {
 		globalExit = true
-		messageHandler.sendMsg("exitLesson", "", "")
+		MessageHandler.sendMsg("exitLesson", "", "")
 		//System.exit(0);
 	    }
 	    if (register != null) {
@@ -1406,7 +1412,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     private fun loadFN(fn: String?) {
 	restoreSettings()
-	messageHandler.sendMsg("load", fn, "loadFN")
+	MessageHandler.sendMsg("load", fn, "loadFN")
     }
 
     private fun save(fn: String?) {
@@ -1871,13 +1877,13 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 	waitAndCloseSplash()
 	if (fn != null) {
 	    card_show("words")
-	    messageHandler.sendMsg("load", fn, "execLesson")
+	    MessageHandler.sendMsg("load", fn, "execLesson")
 	}
 	var test_index: Set<Array<IntArray>>? = null
 
 	loop@
 	while (true) {
-	    val mI = messageHandler.nextMessageItem()
+	    val mI = MessageHandler.nextMessageItem()
 	    val msgDeltaTime = mI.deltaTimeAndUpdate()
 
 	    msg_log.getLogger().info("%%%%%%%%%%%%%%%%%%% dt=$msgDeltaTime <- $mI")
@@ -1898,16 +1904,16 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		"create" -> {
 		    le_canvas!!.hideMsg()
 		    le_canvas!!.setMarkTargetNo()
-		    messageHandler.sendMsg("load", mI.arg, "create")
+		    MessageHandler.sendMsg("load", mI.arg, "create")
 		}
 		"new_test" -> {
 		    //seq.initNewTest();
 		    le_canvas!!.hideMsg()
 		    //		OmegaContext.sout_log.getLogger().info(":--: " + "here load_test");
-		    messageHandler.sendMsg("load", mI.arg, "new_test")
+		    MessageHandler.sendMsg("load", mI.arg, "new_test")
 		    // 		if ( current_test_mode_group == TMG_CREATE )
 		    // 		    card_show("words");
-		    messageHandler.sendMsg("test_cont", null, "new_test2")
+		    MessageHandler.sendMsg("test_cont", null, "new_test2")
 		}
 		"test_cont" -> {
 		    test_index = exec_test_cont()
@@ -1931,17 +1937,17 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    le_canvas!!.gotoNextBox()
 		}
 		"action" -> {
-		    messageHandler.sendMsg("play", null, "action")
+		    MessageHandler.sendMsg("play", null, "action")
 		    //log 		OmegaContext.sout_log.getLogger().info(":--: " + "action:play done");
 		    if (tg.storyNext != null) {
 			//		    show_progress = false;
 			OmegaContext.sout_log.getLogger().info(":--: " + "STORY NEXT  " + tg.storyNext)
-			messageHandler.sendMsg("create", tg.storyNext, "action2")
+			MessageHandler.sendMsg("create", tg.storyNext, "action2")
 			card_show("words", 5)
 		    } else {
 			//		    show_progress = true;
 			if (!last_story_flag) {
-			    messageHandler.sendMsg("load", loadedFName, "action3")
+			    MessageHandler.sendMsg("load", loadedFName, "action3")
 			}
 		    }
 		}
@@ -1979,12 +1985,12 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    sentence_canvas!!.showMsg(null)
 		    sentence_canvas!!.setRead(true)
 		    card_show("sent")
-		    messageHandler.sendMsg("button_sent_select", "")
+		    MessageHandler.sendMsg("button_sent_select", "")
 		}
 		"button_sent_quit" -> msgAction_button_sent_quit()
 		"button_sent_read" -> msgAction_button_sent_read()
 		"button_sent_replay" -> msgAction_button_sent_replay()
-		"button_sent_print" -> messageHandler.sendMsg("button_sent_print_print", "")
+		"button_sent_print" -> MessageHandler.sendMsg("button_sent_print_print", "")
 		"button_sent_print_select" -> {
 		    //not anymore
 		}
@@ -1996,9 +2002,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		else -> lesson_log.getLogger().warning("Unhandled msg: $mI")
 	    }
 
-	    messageHandler.id_lock.withLock {
-		if (mI.id == messageHandler.msgId) {
-		    messageHandler.id_condition.signal()
+	    MessageHandler.id_lock.withLock {
+		if (mI.id == MessageHandler.msgId) {
+		    MessageHandler.id_condition.signal()
 		    OmegaContext.serr_log.getLogger().info(" signal msg done: $mI")
 		}
 	    }
@@ -2363,7 +2369,7 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		    card_show("main", 3)
 		} else {
 		    le_canvas!!.setMarkTarget(0)
-		    messageHandler.sendMsg("play", null, "exec_test_cont")
+		    MessageHandler.sendMsg("play", null, "exec_test_cont")
 		}
 	    } else {
 		global_skipF(true)
@@ -2878,7 +2884,7 @@ target pos $tg_ix"""
 					//				    OmegaContext.sout_log.getLogger().info(":--: " + "====))) " + has_more + ' ' + seq);
 					if (has_more) {
 					    card_show("anim1")
-					    messageHandler.sendMsg("test_cont", null, "L1745")
+					    MessageHandler.sendMsg("test_cont", null, "L1745")
 					} else {
 					    le_canvas!!.showMsg(resultSummary_MsgItem)
 
@@ -3668,7 +3674,7 @@ target pos $tg_ix"""
 			    }
 			}
 			if (e.keyCode == KeyEvent.VK_F12 && e.isControlDown && e.isShiftDown) {
-			    SwingUtilities.invokeLater { messageHandler.sendMsg("test_dialog", "", "loadTest1") }
+			    SwingUtilities.invokeLater { MessageHandler.sendMsg("test_dialog", "", "loadTest1") }
 			}
 		    }
 		    if (e.id == KeyEvent.KEY_TYPED) {
@@ -3763,7 +3769,7 @@ target pos $tg_ix"""
 	    override fun windowClosing(ev: WindowEvent) {
 		//		    savePrefetch();
 		globalExit = true
-		messageHandler.sendMsg("exitLesson", "", "")
+		MessageHandler.sendMsg("exitLesson", "", "")
 		//System.exit(0);
 	    }
 	})
