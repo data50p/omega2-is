@@ -29,12 +29,12 @@ class Wing(comp: Component?, var name: String, x: Int, y: Int, var layer: Int, o
 
     val element: Element
 	get() {
-	    val el = Element("Wing")
-	    el.addAttr("name", name)
-	    el.addAttr("layer", "" + layer)
-	    el.addAttr("mirror", "" + mirror)
-	    el.addAttr("scale", "" + scale)
-	    el.addAttr("position", "" + pos.getX() + ' ' + pos.getY())
-	    return el
+	    return Element("Wing").also {
+		it.addAttr("name", name)
+		it.addAttr("layer", "" + layer)
+		it.addAttr("mirror", "" + mirror)
+		it.addAttr("scale", "" + scale)
+		it.addAttr("position", "" + pos.getX() + ' ' + pos.getY())
+	    }
 	}
 }

@@ -29,14 +29,14 @@ class SelectEntry : Entry {
 
     override val element: Element
 	get() {
-	    val el = Element("entry")
-	    el.addAttr("type", "select")
-	    el.addAttr("extra", extra)
-	    el.addAttr("ord", "" + ord)
-	    el.addAttr("word", "" + word)
-	    el.addAttr("when", "" + `when`)
-	    el.addAttr("l_id", "" + l_id)
-	    return el
+	    return Element("entry").also {
+		it.addAttr("type", "select")
+		it.addAttr("extra", extra)
+		it.addAttr("ord", "" + ord)
+		it.addAttr("word", "" + word)
+		it.addAttr("when", "" + `when`)
+		it.addAttr("l_id", "" + l_id)
+	    }
 	}
 
     override fun toString(): String {

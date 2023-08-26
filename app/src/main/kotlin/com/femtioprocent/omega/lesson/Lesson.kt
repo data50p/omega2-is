@@ -762,34 +762,34 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
 	val element: Element
 	    get() {
-		val el = Element("test_entries")
-		for (i in 0..1) {
-		    for (j in 0..1) {
-			val t_mode = 10 * (i + 1) + j
-			val t_mode_e = constructTM(t_mode)
-			val li_ = getList(t_mode_e)
-			if (li_ != null && li_.size > 0) {
-			    val li = li_.shuffled() as ArrayList<String> // why shuffle when we sort below
-			    val sa = li.toTypedArray<String>()
-			    Arrays.sort(sa)
-			    val te_el = Element("test_entry")
-			    te_el.addAttr("type", t_id[i])
-			    te_el.addAttr("ord", "" + j)
-			    for (ii in sa.indices) {
-				val s = sa[ii]
-				val sa2 = split(s, ":")
-				val ord = sa2[0].toInt()
-				val txt = sa2[1]
-				val s_el = Element("sentence")
-				s_el.addAttr("ord", "" + ord)
-				s_el.addAttr("text", txt)
-				te_el.add(s_el)
+		return Element("test_entries").also {
+		    for (i in 0..1) {
+			for (j in 0..1) {
+			    val t_mode = 10 * (i + 1) + j
+			    val t_mode_e = constructTM(t_mode)
+			    val li_ = getList(t_mode_e)
+			    if (li_ != null && li_.size > 0) {
+				val li = li_.shuffled() as ArrayList<String> // why shuffle when we sort below
+				val sa = li.toTypedArray<String>()
+				Arrays.sort(sa)
+				val te_el = Element("test_entry")
+				te_el.addAttr("type", t_id[i])
+				te_el.addAttr("ord", "" + j)
+				for (ii in sa.indices) {
+				    val s = sa[ii]
+				    val sa2 = split(s, ":")
+				    val ord = sa2[0].toInt()
+				    val txt = sa2[1]
+				    val s_el = Element("sentence")
+				    s_el.addAttr("ord", "" + ord)
+				    s_el.addAttr("text", txt)
+				    te_el.add(s_el)
+				}
+				it.add(te_el)
 			    }
-			    el.add(te_el)
 			}
 		    }
 		}
-		return el
 	    }
 
 	fun dump() {
@@ -1445,61 +1445,61 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
     val element: Element
 	get() {
-	    val el = Element("omega_lesson")
-	    el.addAttr("version", "0.0")
-	    val c_el = le_canvas!!.element
-	    el.add(c_el)
-	    val lel = Element("lesson")
-	    lel.addAttr("ord", "0")
-	    val lesson_name = le_canvas!!.lessonName
-	    lel.addAttr("name", lesson_name)
-	    val tel = machine.target!!.targetElement
-	    lel.add(tel)
-	    val itel = machine.target!!.itemsElement
-	    lel.add(itel)
-	    el.add(lel)
-	    if (action_specific != null) {
-		var as_el = action_specific!!.element
-		el.add(as_el)
-		as_el = action_specific!!.signElement
-		el.add(as_el)
+	    return Element("omega_lesson").also {
+		it.addAttr("version", "0.0")
+		val c_el = le_canvas!!.element
+		it.add(c_el)
+		val lel = Element("lesson")
+		lel.addAttr("ord", "0")
+		val lesson_name = le_canvas!!.lessonName
+		lel.addAttr("name", lesson_name)
+		val tel = machine.target!!.targetElement
+		lel.add(tel)
+		val itel = machine.target!!.itemsElement
+		lel.add(itel)
+		it.add(lel)
+		if (action_specific != null) {
+		    var as_el = action_specific!!.element
+		    it.add(as_el)
+		    as_el = action_specific!!.signElement
+		    it.add(as_el)
+		}
+		val seq_el = seq!!.element
+		if (seq_el != null) {
+		    it.add(seq_el)
+		}
+		val st_el = elementStory
+		if (st_el != null) {
+		    it.add(st_el)
+		}
 	    }
-	    val seq_el = seq!!.element
-	    if (seq_el != null) {
-		el.add(seq_el)
-	    }
-	    val st_el = elementStory
-	    if (st_el != null) {
-		el.add(st_el)
-	    }
-	    return el
 	}
     val elementStory: Element?
 	get() {
-	    val el = Element("story")
-	    el.addAttr("isfirst", if (le_canvas!!.lessonIsFirst) "yes" else "no")
-	    val link_next = le_canvas!!.lessonLinkNext
-	    if (link_next != null && link_next.length > 0) {
-		val e = Element("link")
-		e.addAttr("next", link_next)
-		el.add(e)
-	    } else {
-		return null
+	    return Element("story").also {
+		it.addAttr("isfirst", if (le_canvas!!.lessonIsFirst) "yes" else "no")
+		val link_next = le_canvas!!.lessonLinkNext
+		if (link_next != null && link_next.length > 0) {
+		    val e = Element("link")
+		    e.addAttr("next", link_next)
+		    it.add(e)
+		} else {
+		    return null
+		}
 	    }
-	    return el
 	}
     val settingsElement: Element
 	get() {
-	    val el = Element("omega_settings")
-	    el.addAttr("version", "0.0")
-	    canvases.keySet().forEach {k ->
-		val lbc = canvases[k!!]
-		val lbc_el = Element("canvas")
-		lbc_el.addAttr("name", k as String)
-		lbc!!.fillElement(lbc_el)
-		el.add(lbc_el)
+	    return Element("omega_settings").also {
+		it.addAttr("version", "0.0")
+		canvases.keySet().forEach { k ->
+		    val lbc = canvases[k!!]
+		    val lbc_el = Element("canvas")
+		    lbc_el.addAttr("name", k as String)
+		    lbc!!.fillElement(lbc_el)
+		    it.add(lbc_el)
+		}
 	    }
-	    return el
 	}
 
     fun copySettings(from: String?, to: String?) {
@@ -1783,31 +1783,31 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 
 	val element: Element
 	    get() {
-		val el = Element("action_specific")
-		hm.keys.forEach {key ->
-		    val `val` = hm[key]
-		    if (!empty(`val`)) {
-			val el1 = Element("value")
-			el1.addAttr("key", key)
-			el1.addAttr("val", `val`)
-			el.add(el1)
+		return Element("action_specific").also {
+		    hm.keys.forEach { key ->
+			val `val` = hm[key]
+			if (!empty(`val`)) {
+			    it.add(Element("value").also {
+				it.addAttr("key", key)
+				it.addAttr("val", `val`)
+			    })
+			}
 		    }
 		}
-		return el
 	    }
 	val signElement: Element
 	    get() {
-		val el = Element("sign_specific")
-		hmSign.keys.forEach {key ->
-		    val `val` = hmSign[key]
-		    if (!empty(`val`)) {
-			val el1 = Element("value")
-			el1.addAttr("key", key)
-			el1.addAttr("val", `val`)
-			el.add(el1)
+		return Element("sign_specific").also {
+		    hmSign.keys.forEach { key ->
+			val `val` = hmSign[key]
+			if (!empty(`val`)) {
+			    it.add(Element("value").also {
+				it.addAttr("key", key)
+				it.addAttr("val", `val`)
+			    })
+			}
 		    }
 		}
-		return el
 	    }
 
 	fun fill(el: Element) {

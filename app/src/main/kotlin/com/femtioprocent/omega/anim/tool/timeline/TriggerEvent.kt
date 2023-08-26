@@ -49,11 +49,11 @@ open class TriggerEvent(var arg: String? = null) {
 
     val element: Element
 	get() {
-	    val el = Element("TriggerEvent")
-	    el.addAttr("cmd", cmd)
-	    el.addAttr("arg", arg)
-	    el.addAttr("isOn", if (is_on) "true" else "false")
-	    return el
+	    return Element("TriggerEvent").also {
+		it.addAttr("cmd", cmd)
+		it.addAttr("arg", arg)
+		it.addAttr("isOn", if (is_on) "true" else "false")
+	    }
 	}
 
     fun doAction() {}

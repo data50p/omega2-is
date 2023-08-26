@@ -26,13 +26,13 @@ class CreateEntry : Entry {
 
     override val element: Element
 	get() {
-	    val el = Element("entry")
-	    el.addAttr("type", "create")
-	    el.addAttr("sentence", sentence)
-	    el.addAttr("ord", "" + ord)
-	    el.addAttr("duration", "" + duration)
-	    el.addAttr("l_id_list", "" + l_id_list)
-	    return el
+	    return Element("entry").also {
+		it.addAttr("type", "create")
+		it.addAttr("sentence", sentence)
+		it.addAttr("ord", "" + ord)
+		it.addAttr("duration", "" + duration)
+		it.addAttr("l_id_list", "" + l_id_list)
+	    }
 	}
 
     override fun toString(): String {

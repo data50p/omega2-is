@@ -265,13 +265,11 @@ open class Canvas : JPanel(), ImageObserver {
 
     val element: Element
 	get() {
-	    val el = Element("Canvas")
-	    val bel = Element("background")
-	    bel.addAttr("name", im_name)
-	    bel.addAttr("width", "" + imageBackground!!.getWidth(null))
-	    bel.addAttr("height", "" + imageBackground!!.getHeight(null))
-	    el.add(bel)
-	    return el
+	    return Element("Canvas").also { it.add(Element("background").also {
+		it.addAttr("name", im_name)
+		it.addAttr("width", "" + imageBackground!!.getWidth(null))
+		it.addAttr("height", "" + imageBackground!!.getHeight(null))
+	    })}
 	}
 
     open fun load(el: Element) {

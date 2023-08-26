@@ -100,21 +100,21 @@ class TimeMarker : Serializable {
 
     val element: Element
 	get() {
-	    val el = Element("TimeMarker")
-	    el.addAttr("type", "" + type)
-	    el.addAttr("when", "" + (`when` - tl.offset))
-	    el.addAttr("duration", "" + duration)
-	    if (t_event != null) {
-		val tel = Element("T_Event")
-		for (i in t_event!!.indices) {
-		    if (t_event!![i] != null) {
-			val teel = t_event!![i]!!.element
-			tel.add(teel)
+	    return Element("TimeMarker").also {
+		it.addAttr("type", "" + type)
+		it.addAttr("when", "" + (`when` - tl.offset))
+		it.addAttr("duration", "" + duration)
+		if (t_event != null) {
+		    val tel = Element("T_Event")
+		    for (i in t_event!!.indices) {
+			if (t_event!![i] != null) {
+			    val teel = t_event!![i]!!.element
+			    tel.add(teel)
+			}
 		    }
+		    it.add(tel)
 		}
-		el.add(tel)
 	    }
-	    return el
 	}
 
     fun fetchPlaySound(li: MutableList<String>) {

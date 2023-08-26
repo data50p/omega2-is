@@ -48,16 +48,16 @@ class TestEntry : Entry {
 
     override val element: Element
 	get() {
-	    val el = Element("entry")
-	    el.addAttr("type", type)
-	    el.addAttr("extra", extra)
-	    el.addAttr("sentence", sentence)
-	    el.addAttr("answer", answer)
-	    el.addAttr("ord", "" + ord)
-	    el.addAttr("duration", "" + duration)
-	    el.addAttr("cnt_correct_words", "" + cnt_correct_words)
-	    el.addAttr("l_id_list", "" + l_id_list)
-	    return el
+	    return Element("entry").also {
+		it.addAttr("type", type)
+		it.addAttr("extra", extra)
+		it.addAttr("sentence", sentence)
+		it.addAttr("answer", answer)
+		it.addAttr("ord", "" + ord)
+		it.addAttr("duration", "" + duration)
+		it.addAttr("cnt_correct_words", "" + cnt_correct_words)
+		it.addAttr("l_id_list", "" + l_id_list)
+	    }
 	}
 
     override fun toString(): String {

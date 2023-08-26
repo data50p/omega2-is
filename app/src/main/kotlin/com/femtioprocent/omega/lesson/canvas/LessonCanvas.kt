@@ -2553,10 +2553,10 @@ class LessonCanvas(l_ctxt: LessonContext?) : BaseCanvas(l_ctxt!!) {
 
     val element: Element
 	get() {
-	    val el = Element("lesson_canvas")
-	    el.addAttr("show_wordbox", "" + show_wordbox)
-	    fillElement(el)
-	    return el
+	    return Element("lesson_canvas").also {
+		it.addAttr("show_wordbox", "" + show_wordbox)
+		fillElement(it)
+	    }
 	}
 
     fun setFrom(el: Element, dummy: Boolean) {

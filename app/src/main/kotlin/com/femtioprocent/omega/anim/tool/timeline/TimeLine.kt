@@ -305,15 +305,15 @@ class TimeLine : Serializable {
 
     val element: Element
 	get() {
-	    val el = Element("TimeLine")
-	    el.addAttr("lesson_id", "" + lessonId)
-	    el.addAttr("offset", "" + offset)
-	    el.addAttr("duration", "" + duration)
-	    el.addAttr("nid", "" + nid)
-	    for (tm in markers) {
-		el.add(tm.element)
+	    return Element("TimeLine").also {
+		it.addAttr("lesson_id", "" + lessonId)
+		it.addAttr("offset", "" + offset)
+		it.addAttr("duration", "" + duration)
+		it.addAttr("nid", "" + nid)
+		for (tm in markers) {
+		    it.add(tm.element)
+		}
 	    }
-	    return el
 	}
 
     fun fetchPlaySound(li: MutableList<String>) {

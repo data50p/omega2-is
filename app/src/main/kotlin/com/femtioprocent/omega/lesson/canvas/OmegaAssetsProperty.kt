@@ -515,28 +515,28 @@ class OmegaAssetsProperty internal constructor(var owner: JFrame?, var l_ctxt: L
 
     val element: Element
 	get() {
-	    val el = Element("test_prop")
-	    var pel = Element("test")
-	    pel.addAttr("kind", "pre")
-	    pel.addAttr("ord", "1")
-	    pel.addAttr("text", (guimap["pret1"] as JTextField?)!!.text)
-	    el.add(pel)
-	    pel = Element("test")
-	    pel.addAttr("kind", "pre")
-	    pel.addAttr("ord", "2")
-	    pel.addAttr("text", (guimap["pret2"] as JTextField?)!!.text)
-	    el.add(pel)
-	    pel = Element("test")
-	    pel.addAttr("kind", "post")
-	    pel.addAttr("ord", "1")
-	    pel.addAttr("text", (guimap["postt1"] as JTextField?)!!.text)
-	    el.add(pel)
-	    pel = Element("test")
-	    pel.addAttr("kind", "post")
-	    pel.addAttr("ord", "2")
-	    pel.addAttr("text", (guimap["postt2"] as JTextField?)!!.text)
-	    el.add(pel)
-	    return el
+	    return Element("test_prop").also {
+		it.add(Element("test").also {
+		    it.addAttr("kind", "pre")
+		    it.addAttr("ord", "1")
+		    it.addAttr("text", (guimap["pret1"] as JTextField?)!!.text)
+		})
+		it.add(Element("test").also {
+		    it.addAttr("kind", "pre")
+		    it.addAttr("ord", "2")
+		    it.addAttr("text", (guimap["pret2"] as JTextField?)!!.text)
+		})
+		it.add(Element("test").also {
+		    it.addAttr("kind", "post")
+		    it.addAttr("ord", "1")
+		    it.addAttr("text", (guimap["postt1"] as JTextField?)!!.text)
+		})
+		it.add(Element("test").also {
+		    it.addAttr("kind", "post")
+		    it.addAttr("ord", "2")
+		    it.addAttr("text", (guimap["postt2"] as JTextField?)!!.text)
+		})
+	    }
 	}
 
     companion object {

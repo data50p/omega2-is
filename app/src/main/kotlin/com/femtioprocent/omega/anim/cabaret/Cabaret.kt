@@ -140,8 +140,8 @@ class Cabaret(var a_ctxt: AnimContext) {
 
     val element: Element
 	get() {
-	    val el = Element("Cabaret")
-	    el.addAttr("a", "b")
-	    return el
+	    return Element("Cabaret").also {
+		it.addAttr("a", "b")
+	    }
 	}
 }

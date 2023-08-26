@@ -54,11 +54,11 @@ class Path {
 
 	val element: Element
 	    get() {
-		val em = Element("mark")
-		em.addAttr("id", "" + id)
-		em.addAttr("type", "" + type)
-		em.addAttr("where", "" + where)
-		return em
+		return Element("mark").also {
+		    it.addAttr("id", "" + id)
+		    it.addAttr("type", "" + type)
+		    it.addAttr("where", "" + where)
+		}
 	    }
     }
 
@@ -533,17 +533,17 @@ class Path {
     }
 
     fun element(): Element {
-	val el = Element("TPath")
-	for (i in seg_l.indices) {
-	    val qq = getSq(i)
-	    val eq = Element("q")
-	    eq.addAttr("ord", "" + i)
-	    eq.addAttr("p1", "" + encodePoint(qq.p1))
-	    eq.addAttr("p2", "" + encodePoint(qq.p2))
-	    eq.addAttr("pc", "" + encodePoint(qq.pc))
-	    el.add(eq)
+	return Element("TPath").also {
+	    for (i in seg_l.indices) {
+		val qq = getSq(i)
+		it.add(Element("q").also {
+		    it.addAttr("ord", "" + i)
+		    it.addAttr("p1", "" + encodePoint(qq.p1))
+		    it.addAttr("p2", "" + encodePoint(qq.p2))
+		    it.addAttr("pc", "" + encodePoint(qq.pc))
+		})
+	    }
 	}
-	return el
     }
 
     val element: Element
@@ -552,12 +552,12 @@ class Path {
 	    el.addAttr("nid", "" + nid)
 	    for (i in seg_l.indices) {
 		val qq = getSq(i)
-		val eq = Element("q")
-		eq.addAttr("ord", "" + i)
-		eq.addAttr("p1", "" + encodePoint(qq.p1))
-		eq.addAttr("p2", "" + encodePoint(qq.p2))
-		eq.addAttr("pc", "" + encodePoint(qq.pc))
-		el.add(eq)
+		el.add(Element("q").also {
+		    it.addAttr("ord", "" + i)
+		    it.addAttr("p1", "" + encodePoint(qq.p1))
+		    it.addAttr("p2", "" + encodePoint(qq.p2))
+		    it.addAttr("pc", "" + encodePoint(qq.pc))
+		})
 	    }
 	    val lenArr = lenA
 	    val point2d = point2D

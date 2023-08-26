@@ -91,12 +91,12 @@ class AllPath {
 
     val element: Element
 	get() {
-	    val el = Element("AllPath")
-	    li.forEach {pa ->
-		val pel = pa!!.element
-		el.add(pel)
+	    return Element("AllPath").also {
+		li.forEach { pa ->
+		    val pel = pa!!.element
+		    it.add(pel)
+		}
 	    }
-	    return el
 	}
 
     fun load(el: Element) {

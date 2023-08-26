@@ -85,10 +85,10 @@ abstract class GIm {
     }
 
     fun setVisibility(percent: Int) {
-	acomp = if (percent == 0) AlphaComposite.getInstance(
-		AlphaComposite.SRC_OVER,
-		0.0.toFloat()
-	) else AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (percent / 100.0).toFloat())
+	acomp = if (percent == 0)
+	    AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.0.toFloat())
+	else
+	    AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (percent / 100.0).toFloat())
     }
 
     @Synchronized
