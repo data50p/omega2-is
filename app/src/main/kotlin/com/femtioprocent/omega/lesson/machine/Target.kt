@@ -67,12 +67,12 @@ class Target {
 
 	val element: Element
 	    get() {
-		val el = Element("t-item")
-		el.addAttr("ord", "" + (ord + 0))
-		el.addAttr("type", "" + type)
-		el.addAttr("Tid", "" + tid)
-		if (lID4TgOrNull_KeepVar != null) el.addAttr("Lid", "" + lID4TgOrNull_KeepVar)
-		return el
+		return Element("t-item").also {
+		    it.addAttr("ord", "" + (ord + 0))
+		    it.addAttr("type", "" + type)
+		    it.addAttr("Tid", "" + tid)
+		    if (lID4TgOrNull_KeepVar != null) it.addAttr("Lid", "" + lID4TgOrNull_KeepVar)
+		}
 	    }
 
 	override fun toString(): String {
@@ -227,12 +227,11 @@ class Target {
 
     val targetElement: Element
 	get() {
-	    val el = Element("target")
-	    t_items!!.forEach { titm ->
-		val tel = titm!!.element
-		el.add(tel)
+	    return Element("target").also {
+		t_items!!.forEach { titm ->
+		    it.add(titm!!.element)
+		}
 	    }
-	    return el
 	}
     val itemsElement: Element
 	get() = items!!.element

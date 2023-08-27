@@ -30,9 +30,10 @@ object XML_cmd {
 	if (cmd == "extract") {
 	    val tag = argl[2]
 	    val li = el!!.find(tag)
-	    val eel = Element("extract")
-	    eel.addAttr("found_tag", tag)
-	    eel.addAttr("found_items", "" + li.size)
+	    val eel = Element("extract").also {
+		it.addAttr("found_tag", tag)
+		it.addAttr("found_items", "" + li.size)
+	    }
 	    try {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)

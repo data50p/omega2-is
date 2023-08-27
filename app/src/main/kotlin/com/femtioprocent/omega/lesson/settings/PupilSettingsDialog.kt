@@ -647,10 +647,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	if (key == null || `val` == null) {
 	    return
 	}
-	val el1 = Element("value")
-	el1.addAttr("key", key)
-	el1.addAttr("val", `val`)
-	el.add(el1)
+	el.add(Element("value").also {
+	    it.addAttr("key", key)
+	    it.addAttr("val", `val`)
+	})
     }
 
     fun upd_jcomponent(key: String?, `val`: String) {
@@ -744,24 +744,24 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 
     val elements: Element
 	get() {
-	    val el = Element("values")
-	    jcomponent_hm.keys.forEach {key ->
-		val com = jcomponent_hm[key]
-		if (com === lang_cb) {
-		    val lang = (lang_cb!!.selectedItem as MultiString).sa[0]
-		    add(el, "languageSuffix", lang)
-		} else if (com === theme_cb) {
-		    val th = (theme_cb!!.selectedItem as MultiString).sa[0]
-		    add(el, "theme", th)
-		} else if (com === space_cb) {
-		    val th = (space_cb!!.selectedItem as MultiString).sa[0]
-		    add(el, "space_key", th)
-		} else {
-		    val `val` = getValue(com)
-		    add(el, key, `val`)
+	    return Element("values").also {
+		jcomponent_hm.keys.forEach { key ->
+		    val com = jcomponent_hm[key]
+		    if (com === lang_cb) {
+			val lang = (lang_cb!!.selectedItem as MultiString).sa[0]
+			add(it, "languageSuffix", lang)
+		    } else if (com === theme_cb) {
+			val th = (theme_cb!!.selectedItem as MultiString).sa[0]
+			add(it, "theme", th)
+		    } else if (com === space_cb) {
+			val th = (space_cb!!.selectedItem as MultiString).sa[0]
+			add(it, "space_key", th)
+		    } else {
+			val `val` = getValue(com)
+			add(it, key, `val`)
+		    }
 		}
 	    }
-	    return el
 	}
 
     private fun getValue(cmp: JComponent?): String {

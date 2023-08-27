@@ -121,8 +121,7 @@ class AllGIm internal constructor(var ca: Canvas) {
 	get() {
 	    return Element("AllGIm").also {
 		for (i in arr.indices) {
-		    val ael = Element("actor")
-		    it.add(ael)
+		    it.add(Element("actor"))
 		}
 	    }
 	}

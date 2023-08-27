@@ -772,20 +772,20 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 				val li = li_.shuffled() as ArrayList<String> // why shuffle when we sort below
 				val sa = li.toTypedArray<String>()
 				Arrays.sort(sa)
-				val te_el = Element("test_entry")
-				te_el.addAttr("type", t_id[i])
-				te_el.addAttr("ord", "" + j)
-				for (ii in sa.indices) {
-				    val s = sa[ii]
-				    val sa2 = split(s, ":")
-				    val ord = sa2[0].toInt()
-				    val txt = sa2[1]
-				    val s_el = Element("sentence")
-				    s_el.addAttr("ord", "" + ord)
-				    s_el.addAttr("text", txt)
-				    te_el.add(s_el)
-				}
-				it.add(te_el)
+				it.add( Element("test_entry").also {
+				    it.addAttr("type", t_id[i])
+				    it.addAttr("ord", "" + j)
+				    for (ii in sa.indices) {
+					val s = sa[ii]
+					val sa2 = split(s, ":")
+					val ord = sa2[0].toInt()
+					val txt = sa2[1]
+					val s_el = Element("sentence")
+					s_el.addAttr("ord", "" + ord)
+					s_el.addAttr("text", txt)
+					it.add(s_el)
+				    }
+				})
 			    }
 			}
 		    }
@@ -1449,20 +1449,15 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		it.addAttr("version", "0.0")
 		val c_el = le_canvas!!.element
 		it.add(c_el)
-		val lel = Element("lesson")
-		lel.addAttr("ord", "0")
-		val lesson_name = le_canvas!!.lessonName
-		lel.addAttr("name", lesson_name)
-		val tel = machine.target!!.targetElement
-		lel.add(tel)
-		val itel = machine.target!!.itemsElement
-		lel.add(itel)
-		it.add(lel)
+		it.add(	Element("lesson").also {
+		    it.addAttr("ord", "0")
+		    it.addAttr("name", le_canvas!!.lessonName)
+		    it.add(machine.target!!.targetElement)
+		    it.add(machine.target!!.itemsElement)
+		})
 		if (action_specific != null) {
-		    var as_el = action_specific!!.element
-		    it.add(as_el)
-		    as_el = action_specific!!.signElement
-		    it.add(as_el)
+		    it.add(action_specific!!.element)
+		    it.add(action_specific!!.signElement)
 		}
 		val seq_el = seq!!.element
 		if (seq_el != null) {
@@ -1480,9 +1475,9 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		it.addAttr("isfirst", if (le_canvas!!.lessonIsFirst) "yes" else "no")
 		val link_next = le_canvas!!.lessonLinkNext
 		if (link_next != null && link_next.length > 0) {
-		    val e = Element("link")
-		    e.addAttr("next", link_next)
-		    it.add(e)
+		    it.add(Element("link").also {
+			it.addAttr("next", link_next)
+		    })
 		} else {
 		    return null
 		}
@@ -1494,10 +1489,10 @@ class Lesson(run_mode: Char) : LessonCanvasListener {
 		it.addAttr("version", "0.0")
 		canvases.keySet().forEach { k ->
 		    val lbc = canvases[k!!]
-		    val lbc_el = Element("canvas")
-		    lbc_el.addAttr("name", k as String)
-		    lbc!!.fillElement(lbc_el)
-		    it.add(lbc_el)
+		    it.add( Element("canvas").also {
+			it.addAttr("name", k as String)
+			lbc!!.fillElement(it)
+		    })
 		}
 	    }
 	}

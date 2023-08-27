@@ -105,14 +105,14 @@ class TimeMarker : Serializable {
 		it.addAttr("when", "" + (`when` - tl.offset))
 		it.addAttr("duration", "" + duration)
 		if (t_event != null) {
-		    val tel = Element("T_Event")
-		    for (i in t_event!!.indices) {
-			if (t_event!![i] != null) {
-			    val teel = t_event!![i]!!.element
-			    tel.add(teel)
+		    it.add(Element("T_Event").also {
+			for (i in t_event!!.indices) {
+			    if (t_event!![i] != null) {
+				val teel = t_event!![i]!!.element
+				it.add(teel)
+			    }
 			}
-		    }
-		    it.add(tel)
+		    })
 		}
 	    }
 	}

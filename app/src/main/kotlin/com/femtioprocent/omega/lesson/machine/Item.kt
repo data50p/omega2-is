@@ -358,25 +358,25 @@ class Item {
 
     val element: Element
 	get() {
-	    val el = Element("item")
-	    el.addAttr("ord", "" + ord)
-	    var t = encode(text_Orig)
-	    el.addAttr("text", t)
-	    t = encode(tTS_Orig)
-	    el.addAttr("tts", t)
-	    t = encode(dummytext_orig)
-	    el.addAttr("dummytext", t)
-	    el.addAttr("sound", sound_Orig)
-	    el.addAttr("dummysound", dummysound_orig)
-	    el.addAttr("sign", sign_Orig)
-	    el.addAttr("dummysign", dummysign_orig)
-	    if (lid != null && lid!!.length > 0) el.addAttr("Lid", lid_Orig)
-	    for (i in 0 until OmegaConfig.VAR_NUM) el.addAttr("var-" + (i + 1), getVar(i + 1))
-	    if (isAction) {
-		el.addAttr("action-type", "" + action_type)
-		el.addAttr("action-fname", action_fname_orig)
+	    return Element("item").also {
+		it.addAttr("ord", "" + ord)
+		var t = encode(text_Orig)
+		it.addAttr("text", t)
+		t = encode(tTS_Orig)
+		it.addAttr("tts", t)
+		t = encode(dummytext_orig)
+		it.addAttr("dummytext", t)
+		it.addAttr("sound", sound_Orig)
+		it.addAttr("dummysound", dummysound_orig)
+		it.addAttr("sign", sign_Orig)
+		it.addAttr("dummysign", dummysign_orig)
+		if (lid != null && lid!!.length > 0) it.addAttr("Lid", lid_Orig)
+		for (i in 0 until OmegaConfig.VAR_NUM) it.addAttr("var-" + (i + 1), getVar(i + 1))
+		if (isAction) {
+		    it.addAttr("action-type", "" + action_type)
+		    it.addAttr("action-fname", action_fname_orig)
+		}
 	    }
-	    return el
 	}
     val textD: String?
 	get() =// DUMMY?

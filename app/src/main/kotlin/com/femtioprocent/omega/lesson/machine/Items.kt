@@ -115,20 +115,20 @@ class Items {
 
     val element: Element
 	get() {
-	    val el = Element("items")
-	    var a = 0
-	    for (it_ent in item_entry_list) {
-		val iel = Element("item-entry")
-		iel.addAttr("ord", "" + a++)
-		iel.addAttr("type", it_ent.type)
-		iel.addAttr("Tid", it_ent.tid)
-		for (ix in 0 until it_ent.howManyItems()) {
-		    val itm = it_ent.getItemAt(ix)
-		    val itel = itm!!.element
-		    iel.add(itel)
+	    return Element("items").also {
+		var a = 0
+		for (it_ent in item_entry_list) {
+		    it.add(Element("item-entry").also {
+			it.addAttr("ord", "" + a++)
+			it.addAttr("type", it_ent.type)
+			it.addAttr("Tid", it_ent.tid)
+			for (ix in 0 until it_ent.howManyItems()) {
+			    val itm = it_ent.getItemAt(ix)
+			    val itel = itm!!.element
+			    it.add(itel)
+			}
+		    })
 		}
-		el.add(iel)
 	    }
-	    return el
 	}
 }

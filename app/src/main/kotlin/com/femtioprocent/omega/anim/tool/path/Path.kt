@@ -548,31 +548,31 @@ class Path {
 
     val element: Element
 	get() {
-	    val el = Element("TPath")
-	    el.addAttr("nid", "" + nid)
-	    for (i in seg_l.indices) {
-		val qq = getSq(i)
-		el.add(Element("q").also {
-		    it.addAttr("ord", "" + i)
-		    it.addAttr("p1", "" + encodePoint(qq.p1))
-		    it.addAttr("p2", "" + encodePoint(qq.p2))
-		    it.addAttr("pc", "" + encodePoint(qq.pc))
+	    return Element("TPath").also {
+		it.addAttr("nid", "" + nid)
+		for (i in seg_l.indices) {
+		    val qq = getSq(i)
+		    it.add(Element("q").also {
+			it.addAttr("ord", "" + i)
+			it.addAttr("p1", "" + encodePoint(qq.p1))
+			it.addAttr("p2", "" + encodePoint(qq.p2))
+			it.addAttr("pc", "" + encodePoint(qq.pc))
+		    })
+		}
+		val lenArr = lenA
+		val point2d = point2D
+		it.add( Element("help").also {
+		    it.addAttr("len", format(lenArr))
+		    it.addAttr("seg", format(point2d))
 		})
+		it.add(Element("info").also {
+		    it.addAttr("flatness", "" + OmegaConfig.FLATNESS)
+		    it.addAttr("size", "" + point2d!!.size)
+		})
+		for (i in marker.indices) {
+		    it.add(marker[i].element)
+		}
 	    }
-	    val lenArr = lenA
-	    val point2d = point2D
-	    val help = Element("help")
-	    help.addAttr("len", format(lenArr))
-	    help.addAttr("seg", format(point2d))
-	    el.add(help)
-	    val info = Element("info")
-	    info.addAttr("flatness", "" + OmegaConfig.FLATNESS)
-	    info.addAttr("size", "" + point2d!!.size)
-	    el.add(info)
-	    for (i in marker.indices) {
-		el.add(marker[i].element)
-	    }
-	    return el
 	}
 
     companion object {
