@@ -81,19 +81,16 @@ class ResultTest : Result {
 
     override var element: Element? = null
 	get() {
-	    val el = Element("result")
-	    el.addAttr("pupil", pupil)
-	    el.addAttr("type", type)
-	    val df = DateFormat.getDateTimeInstance()
-	    el.addAttr("created_date", fixString("" + df.format(created)))
-	    val eel = Element("entries")
-	    eel.addAttr("session_length", "" + session_length)
-	    entries.forEach {e ->
-		val e1 = e.element
-		eel.add(e1)
+	    return Element("result").also { el ->
+		el.addAttr("pupil", pupil)
+		el.addAttr("type", type)
+		val df = DateFormat.getDateTimeInstance()
+		el.addAttr("created_date", fixString("" + df.format(created)))
+		val eel = Element("entries")
+		eel.addAttr("session_length", "" + session_length)
+		entries.forEach { e -> eel.add(e.element) }
+		el.add(eel)
 	    }
-	    el.add(eel)
-	    return el
 	}
 
     fun dump() {

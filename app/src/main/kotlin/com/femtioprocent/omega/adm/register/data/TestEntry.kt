@@ -18,6 +18,7 @@ class TestEntry : Entry {
 	    cnt_correct_words: String,
 	    l_id_list: String
     ) {
+	this.extra = extra
 	this.sentence = sentence
 	this.answer = answer
 	this.duration = duration
@@ -29,21 +30,14 @@ class TestEntry : Entry {
     constructor(e: Element) {
 	type = "test"
 	//  	String s = e.findAttr("type");
-//  	type = s;
-	var s = e.findAttr("extra")
-	extra = s
-	s = e.findAttr("sentence")
-	sentence = s!!
-	s = e.findAttr("answer")
-	answer = s!!
-	s = e.findAttr("ord")
-	ord = s!!.toInt()
-	s = e.findAttr("duration")
-	duration = s!!.toInt()
-	s = e.findAttr("cnt_correct_words")
-	cnt_correct_words = s!! // Integer.parseInt(s);
-	s = e.findAttr("l_id_list")
-	l_id_list = s!!
+	//  	type = s;
+	extra = e.findAttr("extra")
+	sentence = e.findAttr("sentence")!!
+	answer = e.findAttr("answer")!!
+	ord = e.findAttr("ord")!!.toInt()
+	duration = e.findAttr("duration")!!.toInt()
+	cnt_correct_words = e.findAttr("cnt_correct_words")!! // Integer.parseInt(s);
+	l_id_list = e.findAttr("l_id_list")!!
     }
 
     override val element: Element

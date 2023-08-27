@@ -1280,7 +1280,7 @@ class AnimCanvas : Canvas {
 	}
 	val aacel = Element("AllActors")
 	(0 ..< cab.actorNum()).forEach {
-	    val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanelAbs(i)
+	    val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanelAbs(it)
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "saving " + i + ' ' + act);
 	    if (act != null) {
 		val acel = act.element
@@ -1289,10 +1289,10 @@ class AnimCanvas : Canvas {
 	    }
 	}
 	val awel = Element("AllWings")
-	for (i in AnimContext.ae!!.wings_panel!!.wingA.arr.indices) {
-	    if (AnimContext.ae!!.wings_panel!!.getWing(i) != null) {
-		val wel = AnimContext.ae!!.wings_panel!!.getWing(i)?.element
-		wel?.addAttr("nid", "" + i)
+	AnimContext.ae!!.wings_panel!!.wingA.arr.indices.forEach {
+	    if (AnimContext.ae!!.wings_panel!!.getWing(it) != null) {
+		val wel = AnimContext.ae!!.wings_panel!!.getWing(it)?.element
+		wel?.addAttr("nid", "" + it)
 		awel.add(wel)
 	    }
 	}
