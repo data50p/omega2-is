@@ -837,8 +837,8 @@ class AnimCanvas : Canvas {
     }
 
     fun bindAllNoActor() {
-	for (i in 0 until OmegaConfig.TIMELINES_N) {
-	    val tl = a_ctxt.mtl!!.getTimeLine(i)
+	(0..< OmegaConfig.TIMELINES_N).forEach {
+	    val tl = a_ctxt.mtl!!.getTimeLine(it)
 	    if (tl != null) {
 		val lid = tl.lessonId
 		if (lid != null && lid.length > 0) {
@@ -860,12 +860,12 @@ class AnimCanvas : Canvas {
     }
 
     fun bindAllStatistActor() {
-	for (i in 0 until OmegaConfig.TIMELINES_N) {
-	    val tl = a_ctxt.mtl!!.getTimeLine(i)
+	(0..< OmegaConfig.TIMELINES_N).forEach {
+	    val tl = a_ctxt.mtl!!.getTimeLine(it)
 	    if (tl != null) {
 		val lid = tl.lessonId
 		if (lid != null && lid.length == 0) {
-		    val act = findActorByNId(i)
+		    val act = findActorByNId(it)
 		    if (act != null) bindActorOnTL(tl.nid, act.gimae)
 		    //		    OmegaContext.sout_log.getLogger().info(":--: " + "--- statist actor " + tl.nid + ' ' + act);
 		}
@@ -1138,10 +1138,10 @@ class AnimCanvas : Canvas {
 	    g2.clip = a
 	    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.08f)
 	    g2.color = Color(15, 15, 15)
-	    for (i in 0..6) {
+	    (0.. 6).forEach {
 		val frs: RoundRectangle2D = RoundRectangle2D.Double(
-			(x + 10 - i).toDouble(),
-			(y + 10 - i).toDouble(),
+			(x + 10 - it).toDouble(),
+			(y + 10 - it).toDouble(),
 			w.toDouble(),
 			h.toDouble(),
 			r.toDouble(),
@@ -1279,12 +1279,12 @@ class AnimCanvas : Canvas {
 	    mel.add(verb_el)
 	}
 	val aacel = Element("AllActors")
-	for (i in 0 until cab.actorNum()) {
+	(0 ..< cab.actorNum()).forEach {
 	    val act = AnimContext.ae!!.cabaret_panel!!.getActorInPanelAbs(i)
 	    //	    OmegaContext.sout_log.getLogger().info(":--: " + "saving " + i + ' ' + act);
 	    if (act != null) {
 		val acel = act.element
-		acel.addAttr("nid", "" + i)
+		acel.addAttr("nid", "" + it)
 		aacel.add(acel)
 	    }
 	}
@@ -1317,8 +1317,8 @@ class AnimCanvas : Canvas {
 	val aael = eel.findElement("AllActors", 0)
 	if (aael != null) {
 	    createDefaultActors()
-	    for (i in 0 until OmegaConfig.CABARET_ACTOR_N) {
-		val acel = aael.findElement("Actor", i)
+	    (0 ..< OmegaConfig.CABARET_ACTOR_N).forEach {
+		val acel = aael.findElement("Actor", it)
 		if (acel != null) {
 		    val ix = acel.findAttr("nid")!!.toInt()
 		    val fn = acel.findAttr("name")
@@ -1341,10 +1341,10 @@ class AnimCanvas : Canvas {
 		    if (hs != null) {
 			act.gimae.setHotSpotIx(0, hs)
 		    }
-		    for (ih in 0 until Hotspot.HOTSPOT_N) {
+		    for (ih in 0 until Hotspot.HOTSPOT_N) { // have break
 			hs = acel.findAttr("hotspot_" + Hotspot.getType(ih))
 			if (hs == null) {
-			    for (ih2 in 1 until Hotspot.HOTSPOT_N) act.gimae.setHotSpotIxSame(ih2)
+			    (1 ..< Hotspot.HOTSPOT_N).forEach {ih2 -> act.gimae.setHotSpotIxSame(ih2) }
 			    break
 			}
 			act.gimae.setHotSpotIx(ih, hs)
@@ -1355,14 +1355,14 @@ class AnimCanvas : Canvas {
 		    act.gimae.setVariable(3, var3)
 		    val scd = tD(sc)
 		    act.gimae.primScale = scd
-		    act.gimae.primMirror = mi.toInt()
+		    act.gimae.primMirror = mi!!.toInt()
 		}
 	    }
 	}
 	val awel = eel.findElement("AllWings", 0)
 	if (awel != null) {
-	    for (i in 0 until OmegaConfig.WINGS_N) {
-		val wel = awel.findElement("Wing", i)
+	    (0 ..< OmegaConfig.WINGS_N).forEach {
+		val wel = awel.findElement("Wing", it)
 		if (wel != null) {
 		    val ix = wel.findAttr("nid")!!.toInt()
 		    val fn = wel.findAttr("name")
@@ -1381,7 +1381,7 @@ class AnimCanvas : Canvas {
 		    if (sc != null) sc_d = tD(sc)
 		    val w = createWing(
 			    fn, d1.toInt(), d2.toInt(), la.toInt(),
-			    sc_d, mi.toInt()
+			    sc_d, mi!!.toInt()
 		    )
 		    val wing_nid = w.ord
 		    if (AnimContext.ae != null) AnimContext.ae!!.wings_panel!!.setWing(w, wing_nid)
