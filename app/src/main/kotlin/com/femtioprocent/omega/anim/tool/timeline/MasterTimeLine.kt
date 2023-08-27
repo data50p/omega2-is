@@ -155,11 +155,7 @@ class MasterTimeLine(var a_ctxt: AnimContext) : PlayCtrlListener {
 
     fun fillElement(el: Element) {
 	el.add( Element("MTL").also {
-	    for (tl in timelines) {
-		if (tl == null) continue
-		val tel = tl.element
-		it.add(tel)
-	    }
+	    timelines.filter { it != null }.forEach { tl -> it.add(tl!!.element) }
 	})
     }
 
