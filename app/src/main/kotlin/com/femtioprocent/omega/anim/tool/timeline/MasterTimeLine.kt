@@ -154,13 +154,13 @@ class MasterTimeLine(var a_ctxt: AnimContext) : PlayCtrlListener {
     }
 
     fun fillElement(el: Element) {
-	val mel = Element("MTL")
-	for (tl in timelines) {
-	    if (tl == null) continue
-	    val tel = tl.element
-	    mel.add(tel)
-	}
-	el.add(mel)
+	el.add( Element("MTL").also {
+	    for (tl in timelines) {
+		if (tl == null) continue
+		val tel = tl.element
+		it.add(tel)
+	    }
+	})
     }
 
     //      public void save(XML_PW xmlpw) {

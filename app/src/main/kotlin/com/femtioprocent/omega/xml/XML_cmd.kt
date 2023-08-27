@@ -51,8 +51,9 @@ object XML_cmd {
 	    val tag = argl[2]
 	    val tags = split(tag, ",")
 	    val rel = el!!.remove(tags)
-	    val eel = Element("remove")
-	    eel.addAttr("removed_tag", tag)
+	    val eel = Element("remove").also {
+		it.addAttr("removed_tag", tag)
+	    }
 	    try {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)
@@ -100,10 +101,11 @@ object XML_cmd {
 //  		    return i1 - i2; // s1.compareTo(s2);
 	    }
 	    val sli = Arrays.asList(*oa)
-	    val eel = Element("sort")
-	    eel.addAttr("sorted_tag", tag)
-	    eel.addAttr("sorted_attr", a)
-	    eel.addAttr("sorted_items", "" + sli.size)
+	    val eel = Element("sort").also {
+		it.addAttr("sorted_tag", tag)
+		it.addAttr("sorted_attr", a)
+		it.addAttr("sorted_items", "" + sli.size)
+	    }
 	    try {
 		XML_PW(System.out).use { xmlpw ->
 		    xmlpw.push(eel)
