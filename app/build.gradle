@@ -61,10 +61,8 @@ java {
     }
 }
 
-mainClassName = 'com.femtioprocent.omega.appl.Omega_IS'
-
 application {
-    mainClass = mainClassName
+    mainClass = 'com.femtioprocent.omega.appl.Omega_IS'
     File runningDir = new File('../runtime')
     runningDir.mkdirs()
     tasks.run.workingDir = runningDir
