@@ -246,12 +246,8 @@ class ResultDialogTableDetail(
 	}
     }
 
-    private fun Tt(s1: String, s2: String, s3: String, s4: String): String {
-	return t(s1) + s2 + t(s3) + s4
-    }
-
     private fun Tt(s1: String, s2: String): String {
-	return Tt(s1, " = ", s2, "    ")
+	return "${t(s1)} = ${t(s2)}    "
     }
 
     internal inner class Control : JPanel() {
@@ -261,23 +257,15 @@ class ResultDialogTableDetail(
 	    val mf = Font("sans", Font.PLAIN, 9)
 	    val pan = JPanel()
 	    pan.layout = GridLayout(0, 3)
-	    var jl: JLabel
-	    pan.add(JLabel(Tt("NCS", "No. Correct Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("NCW", "No. Correct Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("NWW", "No. Wrong Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("TS", "Time Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("TW", "Time Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("CS", "Correct Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("CW", "Correct Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("WW", "Wrong Word")).also { jl = it })
-	    jl.font = mf
+	    fun JLabel.sF() { font = mf }
+	    pan.add(JLabel(Tt("NCS", "No. Correct Sentence")).apply { sF() })
+	    pan.add(JLabel(Tt("NCW", "No. Correct Word")).apply { sF() })
+	    pan.add(JLabel(Tt("NWW", "No. Wrong Word")).apply { sF() })
+	    pan.add(JLabel(Tt("TS", "Time Sentence")).apply { sF() })
+	    pan.add(JLabel(Tt("TW", "Time Word")).apply { sF() })
+	    pan.add(JLabel(Tt("CS", "Correct Sentence")).apply { sF() })
+	    pan.add(JLabel(Tt("CW", "Correct Word")).apply { sF() })
+	    pan.add(JLabel(Tt("WW", "Wrong Word")).apply { sF() })
 	    add(pan, gbcf.createL(0, 0, 1))
 	    add(crBu(t("Close"), "close"), gbcf.createL(1, 0, 1))
 	}

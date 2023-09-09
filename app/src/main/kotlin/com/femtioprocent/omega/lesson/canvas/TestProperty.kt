@@ -77,6 +77,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 	var jb: JButton
 	var Y = 0
 	var X = 0
+
 	con.add(JLabel(t("Parameter:   ")), gbcf.createL(X++, Y, 1))
 	con.add(JLabel(t("Value          ")), gbcf.createL(X++, Y, 1))
 	con.add(object : JPanel() {
@@ -86,20 +87,25 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 		g.fillRect(0, 0, 12, 12)
 	    }
 	}, gbcf.createL(X++, Y, 1))
+
 	Y++
 	X = 0
 	con.add(JLabel(t("Pretest 1")).also { jl = it }, gbcf.createL(X++, Y, 1))
-	con.add(JTextField("", 50).also { tf = it }, gbcf.createL(X++, Y, 1))
+	con.add(JTextField("", 50).also {
+	    it.document.addDocumentListener(mydocl)
+	    it.isEnabled = false
+	    guimap["pret1"] = it
+	}, gbcf.createL(X++, Y, 1))
+
 	con.add(JButton(t("Set shown")).also { jb = it }, gbcf.createL(X++, Y, 1))
 	jb.actionCommand = "setpret1_"
 	jb.addActionListener(myactl)
+
 	con.add(JButton(t("Set from list")).also { jb = it }, gbcf.createL(X++, Y, 1))
 	jb.actionCommand = "setpret1"
 	jb.addActionListener(myactl)
-	tf.document.addDocumentListener(mydocl)
-	tf.isEnabled = false
-	guimap["pret1"] = tf
 	guimap["Lpret1"] = jl
+
 	Y++
 	X = 0
 	con.add(JLabel(t("Pretest 2")).also { jl = it }, gbcf.createL(X++, Y, 1))
@@ -192,7 +198,7 @@ class TestProperty internal constructor(owner: JFrame?, var l_ctxt: LessonContex
 
     override fun updTrigger(doc: Document) {
 	guimap.keys.forEach {key ->
-	    val o: Any? = guimap[key]
+	    val o = guimap[key]
 	    if (o is JTextField) {
 		val tf = o
 		if (doc === tf.document) {
