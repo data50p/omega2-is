@@ -254,18 +254,18 @@ class ResultDialogTableDetail(
 	init {
 	    val gbcf = GBC_Factory()
 	    layout = GridBagLayout()
-	    val mf = Font("sans", Font.PLAIN, 9)
-	    val pan = JPanel()
-	    pan.layout = GridLayout(0, 3)
-	    fun JLabel.sF() { font = mf }
-	    pan.add(JLabel(Tt("NCS", "No. Correct Sentence")).apply { sF() })
-	    pan.add(JLabel(Tt("NCW", "No. Correct Word")).apply { sF() })
-	    pan.add(JLabel(Tt("NWW", "No. Wrong Word")).apply { sF() })
-	    pan.add(JLabel(Tt("TS", "Time Sentence")).apply { sF() })
-	    pan.add(JLabel(Tt("TW", "Time Word")).apply { sF() })
-	    pan.add(JLabel(Tt("CS", "Correct Sentence")).apply { sF() })
-	    pan.add(JLabel(Tt("CW", "Correct Word")).apply { sF() })
-	    pan.add(JLabel(Tt("WW", "Wrong Word")).apply { sF() })
+	    val pan = JPanel().apply {
+		layout = GridLayout(0, 3)
+		fun JLabel.sF() { font = Font("sans", Font.PLAIN, 9) }
+		add(JLabel(Tt("NCS", "No. Correct Sentence")).apply { sF() })
+		add(JLabel(Tt("NCW", "No. Correct Word")).apply { sF() })
+		add(JLabel(Tt("NWW", "No. Wrong Word")).apply { sF() })
+		add(JLabel(Tt("TS", "Time Sentence")).apply { sF() })
+		add(JLabel(Tt("TW", "Time Word")).apply { sF() })
+		add(JLabel(Tt("CS", "Correct Sentence")).apply { sF() })
+		add(JLabel(Tt("CW", "Correct Word")).apply { sF() })
+		add(JLabel(Tt("WW", "Wrong Word")).apply { sF() })
+	    }
 	    add(pan, gbcf.createL(0, 0, 1))
 	    add(crBu(t("Close"), "close"), gbcf.createL(1, 0, 1))
 	}

@@ -289,40 +289,25 @@ class ResultDialogTableSummary(var owner: Frame) : JDialog(owner, t("Omega - Res
 	init {
 	    val gbcf = GBC_Factory()
 	    layout = GridBagLayout()
-	    val mf = Font("sans", Font.PLAIN, 9)
-	    val pan = JPanel()
-	    pan.layout = GridLayout(0, 4)
-	    var jl: JLabel
-	    pan.add(JLabel(Tt("Dat", "Date")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("L#", "Lesson id")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("Lt", "Lesson type")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("CS", "Correct Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("WS", "Wrong Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("NS", "No. of Sentences")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("%CS", "Correct Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("CW", "Correct Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("WW", "Wrong Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("NW", "No. of Words")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("%CW", "Correct Word")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("TCS", "Time Correct Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("TWS", "Time Wrong Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("TS", "Time Sentence")).also { jl = it })
-	    jl.font = mf
-	    pan.add(JLabel(Tt("SL", "Session Length")).also { jl = it })
-	    jl.font = mf
+	    val pan = JPanel().apply {
+		fun JLabel.sF() { font = Font("sans", Font.PLAIN, 9) }
+		layout = GridLayout(0, 4)
+		add(JLabel(Tt("Dat", "Date")).apply { sF() })
+		add(JLabel(Tt("L#", "Lesson id")).apply { sF() })
+		add(JLabel(Tt("Lt", "Lesson type")).apply { sF() })
+		add(JLabel(Tt("CS", "Correct Sentence")).apply { sF() })
+		add(JLabel(Tt("WS", "Wrong Sentence")).apply { sF() })
+		add(JLabel(Tt("NS", "No. of Sentences")).apply { sF() })
+		add(JLabel(Tt("%CS", "Correct Sentence")).apply { sF() })
+		add(JLabel(Tt("CW", "Correct Word")).apply { sF() })
+		add(JLabel(Tt("WW", "Wrong Word")).apply { sF() })
+		add(JLabel(Tt("NW", "No. of Words")).apply { sF() })
+		add(JLabel(Tt("%CW", "Correct Word")).apply { sF() })
+		add(JLabel(Tt("TCS", "Time Correct Sentence")).apply { sF() })
+		add(JLabel(Tt("TWS", "Time Wrong Sentence")).apply { sF() })
+		add(JLabel(Tt("TS", "Time Sentence")).apply { sF() })
+		add(JLabel(Tt("SL", "Session Length")).apply { sF() })
+	    }
 	    add(pan, gbcf.createL(0, 0, 1))
 	    add(crBu(t("Close"), "close"), gbcf.createL(1, 0, 1))
 	}
