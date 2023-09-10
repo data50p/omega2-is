@@ -3893,6 +3893,7 @@ target pos $tg_ix"""
 		}
 		cd.isVisible = true
 		cd.toFront()
+		cd.requestFocus()
 	    }
 	} finally {
 	    global_skipF(false)

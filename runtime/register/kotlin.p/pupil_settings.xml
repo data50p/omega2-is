@@ -6,10 +6,14 @@
 <value key="image_on" val="false"/>
 <value key="image" val="media/default/feedback.png"/>
 <value key="showSoundWord" val="true"/>
+<value key="showSignWord" val="true"/>
 <value key="image_wrong" val="media/default/feedbackwrong.png"/>
 <value key="movie" val=""/>
+<value key="sign_movie_on" val="false"/>
 <value key="speech_on" val="false"/>
+<value key="sign_movie" val=""/>
 <value key="movie_on" val="false"/>
+<value key="showSignSentence" val="true"/>
 <value key="text_on" val="true"/>
 <value key="speed" val="1"/>
 <value key="pingSentence" val="true"/>
