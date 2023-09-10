@@ -3864,31 +3864,35 @@ target pos $tg_ix"""
 	try {
 	    if (l != null) {
 		global_skipF(true)
-		val cd = ColorDisplay(l.colors, name!!)
-		cd.isVisible = true
-		if (cd.select) {
-		    for ((key, value) in cd.colors!!) {
-			l.colors[key] = value
-		    }
-		    l.updateDisp()
-		    l.repaint()
-		    if (false) { // do not select file
-			val choose_f = ChooseColorFile()
-			var url_s: String? = null
-			val rv = choose_f.showDialog(null, t("Save"))
-			if (rv == JFileChooser.APPROVE_OPTION) {
-			    val file = choose_f.selectedFile
-			    url_s = toURL(file)
-			    if (!url_s!!.endsWith("." + ChooseColorFile.ext)) {
-				url_s = url_s + "." + ChooseColorFile.ext
+		val cd = ColorDisplay(l.colors, name!!) {cd ->
+		    if (cd.select) {
+			if ( cd.colors != null ) {
+			    for ((key, value) in cd.colors!!) {
+				l.colors[key] = value
 			    }
-			    val tfn = mkRelativeCWD(url_s)
-			    saveSettings(tfn)
 			}
-		    } else {
-			saveSettings(fn)
+			l.updateDisp()
+			l.repaint()
+			if (false) { // do not select file
+			    val choose_f = ChooseColorFile()
+			    var url_s: String? = null
+			    val rv = choose_f.showDialog(null, t("Save"))
+			    if (rv == JFileChooser.APPROVE_OPTION) {
+				val file = choose_f.selectedFile
+				url_s = toURL(file)
+				if (!url_s!!.endsWith("." + ChooseColorFile.ext)) {
+				    url_s = url_s + "." + ChooseColorFile.ext
+				}
+				val tfn = mkRelativeCWD(url_s!!)
+				saveSettings(tfn)
+			    }
+			} else {
+			    saveSettings(fn)
+			}
 		    }
 		}
+		cd.isVisible = true
+		cd.toFront()
 	    }
 	} finally {
 	    global_skipF(false)

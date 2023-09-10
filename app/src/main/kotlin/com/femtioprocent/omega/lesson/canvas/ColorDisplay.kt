@@ -16,8 +16,7 @@ import java.io.File
 import java.io.FilenameFilter
 import javax.swing.*
 
-class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: String) :
-	JDialog(), ActionListener {
+class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: String, val callback: (me: ColorDisplay) -> Unit) : JDialog(), ActionListener {
     //    JDialog(LessonEditor.TOP_JFRAME, true), ActionListener {
     var WW = 700
     var HH = 500
@@ -211,9 +210,11 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 	//  	cmd = (String)mi.getActionCommand();
 	cmd = ae.actionCommand as String
 	if (cmd == "select") {
+	    colors = colors_orig
 	    colors_orig.putAll(colors_orig)
 	    select = true
 	    isVisible = false
+	    callback(this)
 	    return
 	}
 	if (cmd == "restore") {
@@ -232,7 +233,6 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
 	repaint()
     }
 
-    @Deprecated("")
     private fun fillColorFiles() {
 	val dir = File(omegaAssets("."))
 	val sa = dir.list(fnf)
@@ -242,29 +242,33 @@ class ColorDisplay(var colors_orig: HashMap<String, ColorColors>, var who: Strin
     fun build() {
 	can = Canvas()
 	val c = contentPane
-	val pan_n = JPanel()
 
 // 	color_file = new JComboBox();
 // 	color_file.addItemListener(myiteml);
 // 	color_file.addItem("");
 	fillColorFiles()
 
-// 	pan_n.add(color_file);
-	var b: JButton
-	b = JButton("Restore")
-	b.actionCommand = "restore"
-	b.addActionListener(this)
-	pan_n.add(b)
-	c.add(pan_n, BorderLayout.NORTH)
+	c.add(JPanel().also {
+// 	    it.add(color_file);
+	    it.add(JButton("Restore").also {
+		it.actionCommand = "restore"
+		it.addActionListener(this)
+	    })
+	}, BorderLayout.NORTH)
+
 	c.add(can, BorderLayout.CENTER)
-	val pan = JPanel()
-	pan.add(JButton(t("Select")).also { b = it })
-	b.actionCommand = "select"
-	b.addActionListener(this)
-	pan.add(JButton(t("Cancel")).also { b = it })
-	b.actionCommand = "dismiss"
-	b.addActionListener(this)
-	c.add(pan, BorderLayout.SOUTH)
+
+	c.add(JPanel().also {
+	    it.add(JButton(t("Select")).also {
+		it.actionCommand = "select"
+		it.addActionListener(this)
+	    })
+	    it.add(JButton(t("Cancel")).also {
+		it.actionCommand = "dismiss"
+		it.addActionListener(this)
+	    })
+	}, BorderLayout.SOUTH)
+
 	val mb = JMenuBar()
 	jMenuBar = mb
 	var jm = JMenu(t("Background"))
