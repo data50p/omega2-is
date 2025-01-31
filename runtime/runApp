@@ -1,4 +1,6 @@
+cd /Users/lars/project-apelsin-copy-parts/omega/omega2_dev/github/Omega_IS-2/runtime
+
 java -version
 
-ls default.omega_assets && java -cp $(alljar lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
+ls default.omega_assets && java -cp $(./alljar lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
 

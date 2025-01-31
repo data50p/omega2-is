@@ -90,7 +90,7 @@ class AllGIm internal constructor(var ca: Canvas) {
 	for (i in 0..4) {
 	    for (ii in gA.indices) {
 		if (tlA[ii] == null) continue
-		val gim = get(ii) as GImAE// gA[ii];
+		val gim = get(ii) as GImAE?// gA[ii];
 		if (gim != null) {
 		    try {
 			if (gim.layer == i) {
