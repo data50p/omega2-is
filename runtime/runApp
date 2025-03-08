@@ -1,4 +1,14 @@
-java -version
+#!/bin/bash
 
-ls default.omega_assets && java -cp $(alljar lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
+echo pwd 1: $(pwd)
+
+jx=/opt/homebrew/Cellar/openjdk/20.0.1/bin/java
+
+cd $(dirname $0)
+
+echo pwd 2: $(pwd)
+
+$jx -version
+
+ls default.omega_assets && $jx -cp "lib/*" com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
 
