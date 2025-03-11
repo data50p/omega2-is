@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 
 class GImAE : GIm {
-    val fnBase: String = "FN_BASE"
+    fun fnBase(): String = xim.fNBase()
 
     // a + b * dt
     private var rot_a = 0.0
