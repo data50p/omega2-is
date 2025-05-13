@@ -497,9 +497,8 @@ object InvokeExternBrowser {
 		    errorMessage = ite.message
 		    browser
 		}
-		val systemFolder: File
-		try {
-		    systemFolder = findFolder!!.invoke(null, *arrayOf(kSystemFolderType)) as File
+		var systemFolder: File = try {
+		    findFolder!!.invoke(null, *arrayOf(kSystemFolderType)) as File
 		} catch (iare: IllegalArgumentException) {
 		    browser = null
 		    errorMessage = iare.message
