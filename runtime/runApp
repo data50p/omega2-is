@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-cd /Users/lars/project-apelsin-copy-parts/omega/omega2_dev/github/Omega_IS-2/runtime
-
-java -version
-
-ls default.omega_assets && java -cp $(./alljar lib) com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
-=======
 #!/bin/bash
 
 echo pwd 1: $(pwd)
 
-jx=/opt/homebrew/Cellar/openjdk/20.0.1/bin/java
+jx=$(which java)
 
 cd $(dirname $0)
 
@@ -18,5 +11,3 @@ echo pwd 2: $(pwd)
 $jx -version
 
 ls default.omega_assets && $jx -cp "lib/*" com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
->>>>>>> b564f081d0a25b7d5a2fc5cd22b6ec04ec0f6df9
-

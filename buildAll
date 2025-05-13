@@ -1,2 +1,2 @@
 #!/bin/bash
-./runGradle clean build installDist
+./runGradle build installDist
