@@ -15,9 +15,9 @@ class Actor(var anim_ctxt: AnimContext, val gimae: GImAE) {
 	    val el = Element("Actor")
 	    val peTaskNid = gimae.peTaskNid
 	    if (!empty(peTaskNid)) {
-		el.addAttr("name", "{*" + peTaskNid + ":" + gimae.fnBase + "}")
+		el.addAttr("name", "{*" + peTaskNid + ":" + gimae.fnBase() + "}")
 	    } else {
-		el.addAttr("name", gimae.fnBase)
+		el.addAttr("name", gimae.fnBase())
 	    }
 	    val lid = gimae.lessonId
 	    if (lid != null && !(lid.startsWith("#") || lid.length == 0)) el.addAttr("lesson_id", lid)
