@@ -2,7 +2,7 @@
 #cd -- $(dirname $BASH_SOURCE)
 cd -- "$(dirname $0)"
 
-jx=/opt/homebrew/Cellar/openjdk/20.0.1/bin/java
+jx=$(which java)
 
 $jx -cp "lib/*" com.femtioprocent.omega.appl.Omega_IS
 
