@@ -1,2 +1,4 @@
 #!/bin/bash
 ./runGradle build installDist
+git restore  app/src/main/kotlin/com/femtioprocent/omega/OmegaVersion.kt
+
