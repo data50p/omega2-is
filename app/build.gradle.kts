@@ -12,11 +12,11 @@ plugins {
     id("org.openjfx.javafxplugin") version "0.0.14"
 //    kotlin("jvm") version "2.1.20"
     id("org.jetbrains.kotlin.jvm") version "2.1.20"
-//    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 tasks.register<Wrapper>("wrapper") {
-    gradleVersion = "8.2.1"
+    gradleVersion = "8.14"
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -36,10 +36,11 @@ javafx {
     modules("javafx.controls", "javafx.fxml", "javafx.swing", "javafx.media", "javafx.graphics")
 }
 
-/*detekt {
+detekt {
     files("config/detekt/detekt.yaml")
+    toolVersion = "1.23.8"
+    ignoreFailures = true
 }
-*/
 
 repositories {
     mavenCentral()

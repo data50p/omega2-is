@@ -1,2 +1,4 @@
 #!/bin/bash
 ./runGradle clean build installDist
+echo  open app/build/reports/detekt/detekt.html
+

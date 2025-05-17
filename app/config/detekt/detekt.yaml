@@ -12,8 +12,24 @@ naming:
 style:
   MagicNumber:
     ignoreNumbers:
-      "0, 1, 2, 3, 4, 5, 6, 7, 8, 9"
+      "-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9"
 complexity:
   LongParameterList:
     constructorThreshold: 10
     functionThreshold: 10
+console-reports:
+  active: true
+  exclude:
+  #  - 'ProjectStatisticsReport'
+  #  - 'ComplexityReport'
+  #  - 'NotificationReport'
+  #  - 'FindingsReport'
+  #  - 'FileBasedFindingsReport'
+  #  - 'LiteFindingsReport'
+  output-reports:
+    active: true
+    exclude:
+      - 'TxtOutputReport'
+      - 'XmlOutputReport'
+      - 'SarifOutputReport'
+  #  - 'HtmlOutputReport'
