@@ -30,3 +30,4 @@ runtime*.tar
 .kotlin
 runtime/startOmega.app/Home
 runtime/startOmega.app/openjdk-24.0.1/
+runtime/developer.omega_assets
