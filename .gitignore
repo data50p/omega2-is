@@ -28,3 +28,4 @@ runtime/lib
 runtime*.tar.gz
 runtime*.tar
 .kotlin
+runtime/startOmega.app/Home
