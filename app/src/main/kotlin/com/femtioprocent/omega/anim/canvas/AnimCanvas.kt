@@ -2,6 +2,7 @@ package com.femtioprocent.omega.anim.canvas
 
 import com.femtioprocent.omega.OmegaConfig
 import com.femtioprocent.omega.OmegaContext
+import com.femtioprocent.omega.OmegaVersion
 import com.femtioprocent.omega.anim.appl.AnimEditor
 import com.femtioprocent.omega.anim.appl.AnimRuntime
 import com.femtioprocent.omega.anim.cabaret.Actor
@@ -1298,6 +1299,22 @@ class AnimCanvas : Canvas {
 	}
 	mel.add(aacel)
 	mel.add(awel)
+
+	val meta = Element("meta")
+
+	meta.addAttr("langVersion", OmegaVersion.the_LangVersion)
+	meta.addAttr("cwd", OmegaVersion.the_CWD)
+	meta.addAttr("omegaVersion", OmegaVersion.the_OmegaVersion)
+	meta.addAttr("vendorVersion", OmegaVersion.the_VendorVersion)
+	meta.addAttr("javaHome", OmegaVersion.the_JavaHome)
+
+	val user = Element("user").also {
+	    it.addAttr("name", System.getProperty("user.name", "_"))
+	    it.addAttr("home", System.getProperty("user.home", "_"))
+	}
+	meta.add(user)
+	el.add(meta)
+
 	el.add(mel)
     }
 

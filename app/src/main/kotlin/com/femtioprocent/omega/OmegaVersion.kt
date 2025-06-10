@@ -16,6 +16,17 @@ object OmegaVersion {
     val theCWD: String
 	get() = "CWD: $cwd"
 
+    val the_OmegaVersion: String
+	get() = "" + detailedVersion
+    val the_LangVersion: String
+	get() = "java $javaVersion,   kotlin: ${KotlinVersion.CURRENT},    javafx ${VersionInfo.getRuntimeVersion()}"
+    val the_VendorVersion: String
+	get() = "$javaVendor; OS name: ${System.getProperty("os.name").lowercase(Locale.getDefault())}"
+    val the_JavaHome: String
+	get() = "$javaHome"
+    val the_CWD: String
+	get() = "$cwd"
+
     private val cwd: String
 	get() = System.getProperty("user.dir")
     private val javaHome: String
