@@ -862,7 +862,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		OmegaAppl.closeSplash()
 		JOptionPane.showMessageDialog(
 		    null, // a_ctxt.
-		    T.t("Can't find default.omega_assets")
+		    T.t("Can't find default.omega_assets in " + com.femtioprocent.omega.OmegaVersion.the_CWD + "")
 		)
 		System.exit(88)
 	    }
