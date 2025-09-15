@@ -20,7 +20,7 @@ open class OmegaAppl(name: String) {
 	    closeSplash()
 	}
 
-	private fun closeSplash() {
+	fun closeSplash() {
 	    if (splash != null) {
 		splash!!.isVisible = false
 		splash = null

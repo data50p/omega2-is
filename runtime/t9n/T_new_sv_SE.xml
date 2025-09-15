@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="20.0.1" class="java.beans.XMLDecoder">
+<java version="24.0.2" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>Sign Word Movie Scale</string>
@@ -192,6 +192,10 @@
   <void method="put">
    <string>Svenska</string>
    <string>Svenska</string>
+  </void>
+  <void method="put">
+   <string>Can&apos;t find default.omega_assets</string>
+   <string>Can&apos;t find default.omega_assets</string>
   </void>
   <void method="put">
    <string>&lt;Ny Elev&gt;</string>

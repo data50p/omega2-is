@@ -5,6 +5,7 @@ import com.femtioprocent.omega.OmegaContext
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssets
 import com.femtioprocent.omega.OmegaContext.Companion.omegaAssetsExist
 import com.femtioprocent.omega.anim.context.AnimContext
+import com.femtioprocent.omega.appl.OmegaAppl
 import com.femtioprocent.omega.lesson.Lesson
 import com.femtioprocent.omega.lesson.pupil.Pupil
 import com.femtioprocent.omega.swing.ScaledImageIcon
@@ -119,6 +120,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			doLayout()
 		    }
 		}
+
 		"selImageWrong" -> {
 		    val url_s = selImage()
 		    if (url_s != null) {
@@ -130,6 +132,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			doLayout()
 		    }
 		}
+
 		"selMovie" -> {
 		    val url_s = selMovie()
 		    if (url_s != null) {
@@ -151,6 +154,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			doLayout()
 		    }
 		}
+
 		"selSignMovie" -> {
 		    val url_s = selMoviesDir()
 		    if (url_s != null) {
@@ -181,6 +185,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			doLayout()
 		    }
 		}
+
 		"selSpeech" -> {
 		    val url_s = selSpeech()
 		    if (url_s != null) {
@@ -191,6 +196,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			speech_tf!!.text = tfn
 		    }
 		}
+
 		"activate" -> {
 		    active = !active
 		    if (active) {
@@ -199,30 +205,36 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 			showNoMore()
 		    }
 		}
+
 		"deletePupil" -> {
 		    deletePupil()
 		    showNoMore()
 		}
+
 		"change_color_lesson" -> {
 		    if (lesson != null) {
 			lesson!!.displayColor("main")
 		    }
 		}
+
 		"change_color_words" -> {
 		    if (lesson != null) {
 			lesson!!.displayColor("words")
 		    }
 		}
+
 		"change_color_login" -> {
 		    if (lesson != null) {
 			lesson!!.displayColor("pupil")
 		    }
 		}
+
 		"change_color_sent" -> {
 		    if (lesson != null) {
 			lesson!!.displayColor("sent")
 		    }
 		}
+
 		"pupim" -> {
 		    try {
 			val choose_pif = ChoosePupilImageFile()
@@ -274,10 +286,10 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 
     fun createImageIcon(fn: String?, max_w: Int, max_h: Int): ImageIcon? {
 	return ScaledImageIcon.createImageIcon(
-		this,
-		fn!!,
-		max_w,
-		max_h
+	    this,
+	    fn!!,
+	    max_w,
+	    max_h
 	)
     }
 
@@ -588,10 +600,11 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	X = 0
 	Y = 1
 	if (true) {
-	    cp_admin.add(JLabel(t("Pupil Image")).also { pupim_jl = it },
-		    JButton(t("Set Pupil Image...")).also {
-			pupim_jb = it
-		    }, Y, ++X
+	    cp_admin.add(
+		JLabel(t("Pupil Image")).also { pupim_jl = it },
+		JButton(t("Set Pupil Image...")).also {
+		    pupim_jb = it
+		}, Y, ++X
 	    )
 	    val `val` = "register/" + "Guest" + ".p/id.png"
 	    val imc2 = createImageIcon(`val`, 80, 60)
@@ -608,16 +621,16 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	X = 0
 	Y++
 	cp_admin.add(
-		JLabel(t("")),
-		JLabel(
-			"<html><h3>" + t("Warning!!!") + "</h3>"
-				+ t("The pupil data will ramain in the file system.<br>")
-				+ "</html>"
-		).also {
-		    secure_warning = it
-		},
-		Y,
-		++X
+	    JLabel(t("")),
+	    JLabel(
+		"<html><h3>" + t("Warning!!!") + "</h3>"
+			+ t("The pupil data will ramain in the file system.<br>")
+			+ "</html>"
+	    ).also {
+		secure_warning = it
+	    },
+	    Y,
+	    ++X
 	)
 	X = 0
 	Y++
@@ -845,6 +858,14 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	    val scanned_lang = dot.list { dir, name ->
 		name.startsWith("lesson-")
 	    }
+	    if (scanned_lang == null) {
+		OmegaAppl.closeSplash()
+		JOptionPane.showMessageDialog(
+		    null, // a_ctxt.
+		    T.t("Can't find default.omega_assets")
+		)
+		System.exit(88)
+	    }
 	    val lA = arrayOfNulls<Locale>(scanned_lang.size)
 	    for (i in lA.indices) {
 		var l = scanned_lang[i].substring(7)
@@ -854,6 +875,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 		}
 		lA[i] = Locale(l)
 	    }
+
 	    val v: Vector<MultiString?> = Vector()
 	    v.add(MultiString(t("Default language"), arrayOf("")))
 	    for (i in lA.indices) {
@@ -878,6 +900,7 @@ class PupilSettingsDialog(var lesson: Lesson?) : SettingsDialog("Omega - " + t("
 	    }
 	    return v
 	}
+
     val themes: Vector<MultiString>
 	get() {
 	    val dot = File(omegaAssets("."))
