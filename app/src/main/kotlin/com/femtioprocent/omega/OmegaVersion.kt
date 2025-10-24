@@ -55,7 +55,7 @@ object OmegaVersion {
     private operator fun get(item: String): String {
 	return when (item) {
 	    "Version" -> "2.1.1"
-	    "Date" -> "§§25-10-24_12:19:12 hallon.local§§".replace("§".toRegex(), "")
+	    "Date" -> "§§25-10-24_20:57:20 hallon.local§§".replace("§".toRegex(), "")
 	    else -> "?"
 	}
     }

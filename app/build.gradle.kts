@@ -10,13 +10,12 @@ plugins {
     java
     application
     id("org.openjfx.javafxplugin") version "0.1.0"
-//    kotlin("jvm") version "2.1.20"
     id("org.jetbrains.kotlin.jvm") version "2.1.20"
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 tasks.register<Wrapper>("wrapper") {
-    gradleVersion = "8.14"
+    gradleVersion = "9.1.0"
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -51,13 +50,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation("com.google.guava:guava:33.5.0-jre")
     implementation("de.codecentric.centerdevice:centerdevice-nsmenufx:2.1.4")
-    implementation("com.intellij:forms_rt:7.0.3")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.arrow-kt:arrow-core:1.2.0")
-    implementation("io.arrow-kt:arrow-fx-coroutines:1.2.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("com.intellij:forms_rt:7.0.3") // probably latest (= 2008)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.2.21")
+    implementation("io.arrow-kt:arrow-core:2.1.2")
+    implementation("io.arrow-kt:arrow-fx-coroutines:2.1.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
