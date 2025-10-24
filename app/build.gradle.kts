@@ -22,7 +22,7 @@ tasks.named<Jar>("jar") {
 }
 
 javafx {
-    version = "20"
+    version = "21"
     modules("javafx.controls", "javafx.fxml", "javafx.swing", "javafx.media", "javafx.graphics")
 }
 
