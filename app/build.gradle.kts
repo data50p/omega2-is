@@ -3,7 +3,6 @@ plugins {
     application
     id("org.openjfx.javafxplugin") version "0.1.0"
     id("org.jetbrains.kotlin.jvm") version "2.1.20"
-    id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 tasks.register<Wrapper>("wrapper") {
@@ -22,14 +21,8 @@ tasks.named<Jar>("jar") {
 }
 
 javafx {
-    version = "21"
+    version = "23"
     modules("javafx.controls", "javafx.fxml", "javafx.swing", "javafx.media", "javafx.graphics")
-}
-
-detekt {
-    files("config/detekt/detekt.yaml")
-    toolVersion = "1.23.8"
-    ignoreFailures = true
 }
 
 repositories {
@@ -50,4 +43,10 @@ dependencies {
 application {
     mainClass = "com.femtioprocent.omega.appl.Omega_IS"
     executableDir = "../runtime"
+}
+
+java {
+    toolchain {
+	languageVersion.set(JavaLanguageVersion.of(23))
+    }
 }
