@@ -11,30 +11,30 @@ import java.util.concurrent.Semaphore;
 
 public class ShowLicense extends JDialog {
     String s = """
-	    Licence Agreement
-	    Please review the licence terms before installing Omega-is.
-	    Copyright (C) 2004 The Omega-is Group:
-	    Heimann, Lundälv, Tjus, Nelson
-	    Topic Dos Hb, Meloton Hb, Tomas Tjus Psykologbyrå SuperImpact Images Inc.
-	    All rights reserved.
-	    This software is provided as-is, without any express or implied warranty.
-	    In no event will the authors or suppliers be held liable for any damages
-	    arising from the use of this software. Warning: This computer program is
-	    protected by copyright law and international treaties.
-	    Unauthorized reproduction or distribution of this program, or any portion
-	    of it may result in severe civil and criminal penalties, and will be
-	    prosecuted to the maximum extent as possible under law.
-	    Title, ownership rights, and intellectual property rights in and to the
-	    software shall remain with The Omega-is Group.  You agree to abide by the
-	    copyright law and all other applicable including, but not limited to,
-	    export control laws.  You acknowledge that the software in source code form remains
-	    a confidential trade secret of The Omega-is Group and therefore you agree
-	    not to modify the software
-	    or attempt to decipher, decompile, disassemble or reverse engineer the software,
-	    except to the extent&#xa;applicable laws specifically prohibit such restriction.
-	    --------------------------------------------------
-	    If you accept all the terms of the agreement, choose I accept... to continue.
-	    You must accept the agreement to install Omega-is.""";
+            Licence Agreement
+            Please review the licence terms before installing Omega-is.
+            Copyright (C) 2004 The Omega-is Group:
+            Heimann, Lundälv, Tjus, Nelson
+            Topic Dos Hb, Meloton Hb, Tomas Tjus Psykologbyrå SuperImpact Images Inc.
+            All rights reserved.
+            This software is provided as-is, without any express or implied warranty.
+            In no event will the authors or suppliers be held liable for any damages
+            arising from the use of this software. Warning: This computer program is
+            protected by copyright law and international treaties.
+            Unauthorized reproduction or distribution of this program, or any portion
+            of it may result in severe civil and criminal penalties, and will be
+            prosecuted to the maximum extent as possible under law.
+            Title, ownership rights, and intellectual property rights in and to the
+            software shall remain with The Omega-is Group.  You agree to abide by the
+            copyright law and all other applicable including, but not limited to,
+            export control laws.  You acknowledge that the software in source code form remains
+            a confidential trade secret of The Omega-is Group and therefore you agree
+            not to modify the software
+            or attempt to decipher, decompile, disassemble or reverse engineer the software,
+            except to the extent&#xa;applicable laws specifically prohibit such restriction.
+            --------------------------------------------------
+            If you accept all the terms of the agreement, choose I accept... to continue.
+            You must accept the agreement to install Omega-is.""";
     Boolean accepted = false;
     Semaphore semaphore;
     private JPanel contentPane;
@@ -43,67 +43,67 @@ public class ShowLicense extends JDialog {
     private JTextArea textArea1;
 
     public ShowLicense(Semaphore semaphore) {
-	try {
-	    this.semaphore = semaphore;
-	    semaphore.acquire();
-	    setContentPane(contentPane);
-	    setModal(true);
-	    getRootPane().setDefaultButton(buttonOK);
+        try {
+            this.semaphore = semaphore;
+            semaphore.acquire();
+            setContentPane(contentPane);
+            setModal(true);
+            getRootPane().setDefaultButton(buttonOK);
 
-	    textArea1.append(s);
-	    buttonOK.addActionListener(e -> onOK());
+            textArea1.append(s);
+            buttonOK.addActionListener(e -> onOK());
 
-	    buttonCancel.addActionListener(e -> onCancel());
+            buttonCancel.addActionListener(e -> onCancel());
 
-	    // call onCancel() when cross is clicked
-	    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-	    addWindowListener(new WindowAdapter() {
-		public void windowClosing(WindowEvent e) {
-		    onCancel();
-		}
-	    });
+            // call onCancel() when cross is clicked
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    onCancel();
+                }
+            });
 
-	    // call onCancel() on ESCAPE
-	    contentPane.registerKeyboardAction(
-		    e -> onCancel(),
-		    KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-		    JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-	} catch (Exception ex) {
-	    semaphore.release();
-	    Log.getLogger().severe("I got: " + ex);
-	}
+            // call onCancel() on ESCAPE
+            contentPane.registerKeyboardAction(
+                    e -> onCancel(),
+                    KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                    JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        } catch (Exception ex) {
+            semaphore.release();
+            Log.getLogger().severe("I got: " + ex);
+        }
     }
 
     public static void main(String[] args) {
-	Semaphore semaphore = new Semaphore(1);
-	ShowLicense dialog = new ShowLicense(semaphore);
-	dialog.pack();
-	dialog.setVisible(true);
-	try {
-	    semaphore.acquire();
-	} catch (InterruptedException e) {
-	    throw new RuntimeException(e);
-	}
-	System.exit(dialog.accepted ? 0 : 1);
+        Semaphore semaphore = new Semaphore(1);
+        ShowLicense dialog = new ShowLicense(semaphore);
+        dialog.pack();
+        dialog.setVisible(true);
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.exit(dialog.accepted ? 0 : 1);
     }
 
     private void onOK() {
-	accepted = true;
-	dispose();
-	semaphore.release();
+        accepted = true;
+        dispose();
+        semaphore.release();
     }
 
     private void onCancel() {
-	accepted = false;
-	dispose();
-	semaphore.release();
+        accepted = false;
+        dispose();
+        semaphore.release();
     }
 
     {
 // GUI initializer generated by IntelliJ IDEA GUI Designer
 // >>> IMPORTANT!! <<<
 // DO NOT EDIT OR ADD ANY CODE HERE!
-	$$$setupUI$$$();
+        $$$setupUI$$$();
     }
 
     /**
@@ -114,39 +114,39 @@ public class ShowLicense extends JDialog {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-	contentPane = new JPanel();
-	contentPane.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
-	final JPanel panel1 = new JPanel();
-	panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-	contentPane.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-	final JPanel panel2 = new JPanel();
-	panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
-	panel1.add(panel2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, 1, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-	buttonOK = new JButton();
-	buttonOK.setText("Yes");
-	panel2.add(buttonOK, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-	buttonCancel = new JButton();
-	buttonCancel.setText("No");
-	panel2.add(buttonCancel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-	final JLabel label1 = new JLabel();
-	label1.setHorizontalAlignment(11);
-	label1.setText("Do you accept the license ?");
-	panel1.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-	final JPanel panel3 = new JPanel();
-	panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-	contentPane.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(24, 314), null, 0, false));
-	textArea1 = new JTextArea();
-	panel3.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-	final JLabel label2 = new JLabel();
-	label2.setText("License");
-	contentPane.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        contentPane = new JPanel();
+        contentPane.setLayout(new GridLayoutManager(3, 1, new Insets(10, 10, 10, 10), -1, -1));
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        contentPane.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1, true, false));
+        panel1.add(panel2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, 1, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        buttonOK = new JButton();
+        buttonOK.setText("Yes");
+        panel2.add(buttonOK, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        buttonCancel = new JButton();
+        buttonCancel.setText("No");
+        panel2.add(buttonCancel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setHorizontalAlignment(11);
+        label1.setText("Do you accept the license ?");
+        panel1.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        contentPane.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(24, 314), null, 0, false));
+        textArea1 = new JTextArea();
+        panel3.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setText("License");
+        contentPane.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-	return contentPane;
+        return contentPane;
     }
 
 }

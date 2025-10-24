@@ -9,7 +9,7 @@
 plugins {
     java
     application
-    id("org.openjfx.javafxplugin") version "0.0.14"
+    id("org.openjfx.javafxplugin") version "0.1.0"
 //    kotlin("jvm") version "2.1.20"
     id("org.jetbrains.kotlin.jvm") version "2.1.20"
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
