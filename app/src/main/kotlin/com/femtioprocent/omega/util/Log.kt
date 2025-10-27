@@ -5,6 +5,7 @@ import com.femtioprocent.omega.appl.Omega_IS
 import com.femtioprocent.omega.util.SundryUtils.ct
 import com.femtioprocent.omega.util.SundryUtils.padLeft
 import com.femtioprocent.omega.util.SundryUtils.padRight
+import femtioprocent.ansi.Ansi
 import java.io.File
 import java.io.IOException
 import java.io.OutputStream
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.logging.*
 import java.util.logging.Formatter
+import femtioprocent.ansi.Color5
 
 object Log {
     var fh: FileHandler? = null
@@ -73,13 +75,13 @@ object Log {
 	    val lt = (ms - last).toInt()
 	    last = ms
 	    return "" +
-		    padRight("" + record.level, 10, ' ') +
-		    d + ' ' +
-		    padLeft("" + th_id, 12, ' ') + ' ' +
-		    padLeft("" + lt, 5, ' ') + ' ' +
-		    padRight("" + s, 23, ' ') + ' ' +
-		    padRight("" + record.sourceMethodName, 22, ' ') + ' ' +
-		    record.message + '\n'
+		   Color5.fg5(Color5.ColorValue.MAGENTA, padRight("" + record.level, 10, ' ')) +
+		   d + ' ' +
+		   padLeft("" + th_id, 12, ' ') + ' ' +
+		   padLeft("" + lt, 5, ' ') + ' ' +
+		   padRight("" + s, 23, ' ') + ' ' +
+		   padRight("" + record.sourceMethodName, 22, ' ') + ' ' +
+		   record.message + '\n'
 	}
 
 	companion object {
