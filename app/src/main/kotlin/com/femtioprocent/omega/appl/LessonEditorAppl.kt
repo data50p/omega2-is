@@ -29,7 +29,7 @@ class LessonEditorAppl(fn: String?) : OmegaAppl("Lesson editor") {
 		System.err.println("-small")
 		System.err.println("-")
 		System.err.println("-")
-		exitProcess(1)
+		exitProcess(0)
 	    }
 
 	    setOmegaAssets(flag["omega_assets"])
@@ -49,7 +49,7 @@ class LessonEditorAppl(fn: String?) : OmegaAppl("Lesson editor") {
 	    if (showAndAccepted()) {
 		LessonEditorAppl(fn)
 	    } else {
-		exitProcess(1)
+		exitProcess(0)
 	    }
 	}
 

@@ -76,7 +76,7 @@ class LessonRuntimeAppl(fn_: String?, ask: Boolean, winSize: OmegaConfig.WinSize
 		System.err.println("-ask                 Ask for a lesson file [lesson runtime]")
 		System.err.println("-pupil               Set run mode to pupil (default) [lesson runtime]")
 		System.err.println("-admin -teacher      Set run mode to admin/teacher [lesson runtime]")
-		System.exit(1)
+		System.exit(0)
 	    }
 	    Log.getLogger().info("started")
 
@@ -125,7 +125,7 @@ class LessonRuntimeAppl(fn_: String?, ask: Boolean, winSize: OmegaConfig.WinSize
 	    if (showAndAccepted()) {
 		LessonRuntimeAppl(fn, ask, OmegaContext.winSize, ch)
 	    } else {
-		exitProcess(1)
+		exitProcess(0)
 	    }
 	}
 

@@ -61,7 +61,7 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 		m_sleep(3000)
 		waitAndCloseSplash()
 	    } else {
-		exitProcess(1)
+		exitProcess(0)
 	    }
 	}
 

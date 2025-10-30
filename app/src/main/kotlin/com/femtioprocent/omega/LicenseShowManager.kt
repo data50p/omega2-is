@@ -25,7 +25,7 @@ object LicenseShowManager {
 	dialog.pack()
 	dialog.isVisible = true
 	semaphore.acquire()
-	if (!dialog.accepted) System.exit(1)
+	if (!dialog.accepted) System.exit(0)
 	pu.save(licShow, yes)
 	return true
     }

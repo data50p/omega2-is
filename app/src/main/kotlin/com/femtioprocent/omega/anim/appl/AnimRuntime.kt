@@ -433,7 +433,7 @@ class AnimRuntime {
 			"Omega",
 			JOptionPane.ERROR_MESSAGE
 		)
-		System.exit(1)
+		System.exit(0)
 	    }
 	    Log.getLogger().info(":--: " + "nVt " + arrToString(v_pa))
 	    fa_ctxt.anim_canvas!!.bindAllStatistActor()

@@ -84,7 +84,7 @@ public class ShowLicense extends JDialog {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.exit(dialog.accepted ? 0 : 1);
+        System.exit(dialog.accepted ? 0 : 0);
     }
 
     private void onOK() {
