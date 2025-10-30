@@ -1,0 +1,10 @@
+#cd /Users/lars/project/omega/omega2_dev/github/Omega_IS-2/runtime
+#cd -- $(dirname $BASH_SOURCE)
+cd -- "$(dirname $0)"
+
+jx=$(which java)
+
+app=$1
+shift
+
+$jx -cp "lib/*" com.femtioprocent.omega.appl.$app "$@"
