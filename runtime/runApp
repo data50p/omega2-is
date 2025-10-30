@@ -10,4 +10,4 @@ echo pwd 2: $(pwd)
 
 $jx -version
 
-ls default.omega_assets && $jx -cp "lib/*" com.femtioprocent.omega.appl.Omega_IS || ./selectOmegaAssets
+ls default.omega_assets && $jx -cp "lib/*" com.femtioprocent.omega.appl.Omega_IS "$@" || ./selectOmegaAssets

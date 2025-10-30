@@ -3988,9 +3988,8 @@ target pos $tg_ix"""
 	lemain_canvas = LessonMainCanvas(l_ctxt)
 	canvases.put("main", lemain_canvas)
 	pupil_canvas = PupilCanvas(l_ctxt, currentPupil.name)
+
 	if (run_mode == 'a') {
-	    pupil_canvas!!.behaviour = PupilCanvas.BH_ADMINISTRATOR
-	} else if (run_mode == 'e') {
 	    pupil_canvas!!.behaviour = PupilCanvas.BH_ADMINISTRATOR
 	} else if (run_mode == 'p') {
 	    pupil_canvas!!.behaviour = PupilCanvas.BH_PUPIL

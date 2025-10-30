@@ -22,13 +22,13 @@ class LessonEditorAppl(fn: String?) : OmegaAppl("Lesson editor") {
     companion object {
 	fun main() {
 	    if (flag["help"] != null) {
-		Log.getLogger().info("-help")
-		Log.getLogger().info("-omega_assets=<assets name>")
-		Log.getLogger().info("-omega_lang=<lang>")
-		Log.getLogger().info("-T=<step>")
-		Log.getLogger().info("-small")
-		Log.getLogger().info("-")
-		Log.getLogger().info("-")
+		System.err.println("-help")
+		System.err.println("-omega_assets=<assets name>")
+		System.err.println("-omega_lang=<lang>")
+		System.err.println("-T=<step>")
+		System.err.println("-small")
+		System.err.println("-")
+		System.err.println("-")
 		exitProcess(1)
 	    }
 
