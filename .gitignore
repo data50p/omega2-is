@@ -6,6 +6,7 @@ invoke
 logs
 out
 runtime/logs
+runtime/DEVELOPER
 runtime/omega*.jar
 *.omega_result
 /.nb-gradle/
