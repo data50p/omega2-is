@@ -22,14 +22,7 @@ class LessonEditorAppl(fn: String?) : OmegaAppl("Lesson editor") {
     companion object {
 	fun main() {
 	    if (flag["help"] != null) {
-		System.err.println("-help")
-		System.err.println("-omega_assets=<assets name>")
-		System.err.println("-omega_lang=<lang>")
-		System.err.println("-T=<step>")
-		System.err.println("-small")
-		System.err.println("-")
-		System.err.println("-")
-		exitProcess(0)
+		Omega_IS.helpAndExit()
 	    }
 
 	    setOmegaAssets(flag["omega_assets"])

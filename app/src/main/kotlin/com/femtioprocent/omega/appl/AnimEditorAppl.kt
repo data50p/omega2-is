@@ -41,6 +41,10 @@ class AnimEditorAppl(verbose: Boolean) : OmegaAppl("Animator editor") {
 	fun main() {
 	    OmegaContext.setWindowSize(flag)
 
+	    if ( flag["help"] != null ) {
+		Omega_IS.helpAndExit()
+	    }
+
 	    OmegaContext.omega_lang = flag["omega_lang"]
 	    Log.getLogger().info(":--: " + "param omega_lang is " + OmegaContext.omega_lang)
 	    try {

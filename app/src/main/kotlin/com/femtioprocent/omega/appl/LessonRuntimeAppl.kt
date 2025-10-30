@@ -58,25 +58,7 @@ class LessonRuntimeAppl(fn_: String?, ask: Boolean, winSize: OmegaConfig.WinSize
 	fun main() {
 
 	    if ( flag["help"] != null ) {
-		System.err.println("Args:")
-		System.err.println("-help                This help text")
-		System.err.println("-log                 Turn on logging")
-		System.err.println("-small               Shows a small window size")
-		System.err.println("-smaller             Shows a smaller window size")
-		System.err.println("-smallest            Shows a the smallest window size")
-		System.err.println("-omega_lang=<lang>   Set omega lang")
-		System.err.println("-v                   Set verbose mode")
-		System.err.println("-T                   Set a config setting to true")
-		System.err.println("-R                   Set run mode to true")
-		System.err.println("-t=<value>           Set step time in milli seconds")
-		System.err.println("-T=<value>           Set step time in milli seconds for lesson editor")
-		System.err.println("-omega_assets=<dir>  Set location of omega assets")
-		System.err.println("-few                 Put only a few items in cache")
-		System.err.println("-demo                Demo mode")
-		System.err.println("-ask                 Ask for a lesson file [lesson runtime]")
-		System.err.println("-pupil               Set run mode to pupil (default) [lesson runtime]")
-		System.err.println("-admin -teacher      Set run mode to admin/teacher [lesson runtime]")
-		System.exit(0)
+		Omega_IS.helpAndExit()
 	    }
 	    Log.getLogger().info("started")
 

@@ -8,6 +8,7 @@ Omega - Interactive Sentences - version 2
 1. Install omega assets content in runtim/omega_assets
 1. Execute: ./buildAll
 1. Execute: ./run
+1. Execute: ./run -help for help text on arguments
 
 The provided gradlew wrapper should suffice when building the app. For developing I strongly recomend IntelliJ Idea.
 
